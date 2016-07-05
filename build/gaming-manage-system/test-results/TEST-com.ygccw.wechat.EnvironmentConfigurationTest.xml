@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.ygccw.wechat.EnvironmentConfigurationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-07-01T08:33:07" hostname="SOLDERXU" time="0.015">
+  <properties/>
+  <testcase name="validateEnvPropertyFilesOverrideDefault" classname="com.ygccw.wechat.EnvironmentConfigurationTest" time="0.012"/>
+  <testcase name="validateEnvConfigFilesOverrideDefault" classname="com.ygccw.wechat.EnvironmentConfigurationTest" time="0.003"/>
+  <testcase name="validateTestPropertyFilesOverridesDefault" classname="com.ygccw.wechat.EnvironmentConfigurationTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

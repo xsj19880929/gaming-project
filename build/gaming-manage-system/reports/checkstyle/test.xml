@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.7">
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\test\java\com\ygccw\wechat\ConfigurationTest.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\test\java\com\ygccw\wechat\DatabaseRule.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\test\java\com\ygccw\wechat\EnvironmentConfigurationTest.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\test\java\com\ygccw\wechat\SpringTest.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\test\java\com\ygccw\wechat\TestEnvironmentConfig.java">
+</file>
+</checkstyle>

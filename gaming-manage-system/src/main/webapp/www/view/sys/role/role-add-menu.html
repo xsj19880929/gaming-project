@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <ol class="breadcrumb small bg-none no-p">
+        <li>
+            <a ui-sref="index"><i class="fa fa-home"></i> 首页</a>
+        </li>
+
+        <li class="active">角色管理</b>
+        </li>
+        <li class="active">关联权限</b>
+        </li>
+    </ol>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="well">
+                <a href="" class="btn btn-primary" ng-click="updateMenuToRole()">保存</a>
+                <button class="btn btn-default" onClick="javascript :history.back(-1)">返回</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="well">
+                角色名：{{sysRole.name}}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4" ng-repeat=" sysMenu in sysMenus">
+            <table class="table table-bordered">
+                <th class="alert-info" colspan="4">
+                    <input type="checkbox" ng-model="sysMenu.selected" ng-click="chk(sysMenu)"/>
+                    {{sysMenu.name}}
+                </th>
+                <tr ng-repeat=" sysMenu2 in sysMenu.children">
+                    <td width="20%" style="text-indent:2em;">
+                        <table>
+                            <th class="alert-info" colspan="4">
+                                <input type="checkbox" ng-click="chk(sysMenu2,sysMenu)" ng-model="sysMenu2.selected"/>
+                                {{sysMenu2.name}}
+                            </th>
+                            <tr ng-repeat=" sysMenu3 in sysMenu2.children">
+                                <td width="20%" style="text-indent:4em;">
+                                    <input type="checkbox" ng-click="chk(sysMenu3,sysMenu,sysMenu2)"
+                                           ng-model="sysMenu3.selected"/>
+                                    {{sysMenu3.name}}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <ol class="breadcrumb small bg-none no-p">
+        <li>
+            <a ui-sref="index"><i class="fa fa-home"></i> 首页</a>
+        </li>
+
+        <li class="active">角色管理</b>
+        </li>
+        <li class="active">关联用户</b>
+        </li>
+    </ol>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="well">
+                <a href="" class="btn btn-primary" ng-click="updateUserToRole()">保存</a>
+                <button class="btn btn-default" onClick="javascript :history.back(-1)">返回</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="well">
+                角色名：{{sysRole.name}}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <div ui-grid="gridOptions" ui-grid-pagination class="grid" style="height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+</div>

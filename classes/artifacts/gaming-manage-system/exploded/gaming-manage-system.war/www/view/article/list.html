@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#" ui-sref="index">首页</a></li>
+        <li><a href="#" ui-sref="website.article.list">专区管理</a></li>
+        <li class="active">赛事管理</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="ygccw-art-list">赛事列表</h2>
+        </div>
+    </div>
+    <form class="well form-inline">
+        <uib-tabset vertical="false" type="pills">
+            <uib-tab ng-repeat="articleType in articleTypes" heading="{{articleType.name}}({{articleType.count}})"
+                     ng-click="listByArticleType(articleType.uuid)">
+            </uib-tab>
+        </uib-tabset>
+    </form>
+
+    <a href="" class="btn btn-success ygccw-add-btn" ui-sref="website.article.update">添加赛事</a>
+
+    <div class="table-responsive" style="margin-top:20px;">
+        <div ui-grid="gridOptions" ui-grid-pagination class="grid" style="height: 500px"></div>
+    </div>
+</div>

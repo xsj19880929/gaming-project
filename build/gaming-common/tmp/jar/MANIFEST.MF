@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: gaming-common
+Implementation-Version: 1.0.0
+Created-By: 1.7.0_04 (Oracle Corporation)
+Built-With: gradle-2.2.1, groovy-2.3.6
+Built-By: soldier.xu
+Built-On: SOLDERXU/172.16.6.69
+Build-Time: 2016/07/01 16:32:17
+

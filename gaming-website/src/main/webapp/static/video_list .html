@@ -1,0 +1,418 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/public.css" />
+<link rel="stylesheet" type="text/css" href="css/wcg.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/wcg.js"></script>
+<title>视频列表</title>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div style="height:41px; border-bottom:1px solid #ececec; width:100%; text-align:center;background:#fff"><img src="temp/top.png" /></div>
+
+<!--head-->
+<div class="general">
+  <div class="pipaw_logo"> <a href="http://www.pipaw.com/"><img src="http://www.pipaw.com/assets/newgamesite/img/logo.png" /></a> <span>电竞频道</span> </div>
+  <div class="ppw_search">
+    <dl>
+      <dt>
+        <div class="search_change">全部</div>
+        <div class="search_option"> <span>网游</span> <span>单机</span> <span>礼包</span> <span>资讯</span> </div>
+        <input type="text" class="ppw_tx new_ppw_tx" onfocus="if(this.value=='请输入您要搜索的关键字'){this.value=''}" onblur="if(this.value==''){this.value='请输入您要搜索的关键字'}"  value="请输入您要搜索的关键字"/>
+        <input type="button" class="ppw_bt"  value="搜索"/>
+      </dt>
+      <dd> <a href="###">WCA</a> <a href="###">LSPL</a> <a href="###">小苍</a> <a href="###">小智</a> <a href="###">LPL</a> <a href="###">德玛西亚杯</a> <a href="###">徐老师来巡山</a> </dd>
+    </dl>
+  </div>
+</div>
+<!--menu-->
+<div class="general">
+  <ul class="ppw_nav">
+    <li><a href="../index.html">电竞首页</a></li>
+    <li><a href="###">新闻资讯</a></li>
+    <li class="sel"><a href="###">视频中心</a></li>
+    <li><a href="###">赛事专区</a></li>
+    <li><a href="###">主播专题</a></li>
+    <li><a href="###">竞技美图</a></li>
+  </ul>
+</div>
+
+<div class="general">
+ <!--面包屑-->
+ <div class="position"><a href="#">电竞首页</a>&gt;<em>视频列表</em></div>
+ <!--赛事筛选-->
+ <div class="list_choose">
+  <div class="index_tit_two title"><span class="text_left">视频筛选</span></div>
+  <div class="list_choose_con">
+   <dl>
+    <dt>类型</dt>
+    <dd class="dd1"><a href="#" class="hover">全部</a><a href="#">比赛视频</a><a href="#">主播视频</a><a href="#">玩家视频</a><a href="#">娱乐视频</a><a href="#">原创视频</a></dd>
+   </dl>
+   <dl>
+    <dt>游戏</dt>
+    <dd class="dd1"><a href="#" class="hover">全部</a><a href="#">英雄联盟</a><a href="#">DOTA2</a><a href="#">炉石传说</a><a href="#">风暴英雄</a><a href="#">自由之战</a><a href="#">王者荣耀</a><a href="#">全民枪战</a><a href="#">虚荣</a><a href="#">自由之战</a><span>More</span></dd>
+    <dd class="dd2">
+     <a href="#">Raven掠夺者</a><a href="#">大话西游手游</a><a href="#">炉石传说</a><a href="#">风暴英雄</a><a href="#">自由之战</a><a href="#">王者荣耀</a><a href="#">全民枪战</a><a href="#">虚荣</a><a href="#">自由之战</a><a href="#">炉石传说</a><a href="#">风暴英雄</a><a href="#">自由之战</a><a href="#">王者荣耀</a><a href="#">全民枪战</a>
+    </dd>
+   </dl>
+   <dl>
+    <dt>主播</dt>
+    <dd class="dd1"><a href="#" class="hover">全部</a><a href="#">主播名1</a><a href="#">主播名2</a><a href="#">主播名3</a><a href="#">主播名1</a><a href="#">主播名2</a><a href="#">主播名3</a><a href="#">主播名1</a><a href="#">主播名2</a><a href="#">主播名3</a><span>More</span></dd>
+    <dd class="dd2">
+     <a href="#">主播名</a><a href="#">主播主播</a><a href="#">主播主播主播</a><a href="#">主播</a><a href="#">主播主播主播</a><a href="#">主播主播主播主播</a><a href="#">主播主播</a><a href="#">主播</a><a href="#">自由之战</a><a href="#">主播主播</a><a href="#">主播主播</a>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <!--最新最热-->
+ <div class="list_tab_one">
+   <div class="tab_two">
+    <ul>
+     <li onClick="setTab('one',1,2)" id="one1" class="hover"><span>最新</span></li>
+     <li onClick="setTab('one',2,2)" id="one2"><span>最热</span></li>
+    </ul>
+  </div>
+  <div id="con_one_1" style="display:block">
+    <div class="index_video_right view_box">
+   		<ul>
+    		<li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic1.jpg" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">MISS排位日记263期 中单阿狸大杀四方</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+    	</ul>
+    </div>
+    
+      
+      
+      <!--页码-->
+      <div class="newyiiPager" >
+          <ol id="yw0" class="yiiPager">
+            <li>共2页：</li>
+            <li class="page hidden"><a href="">首页</a></li>
+            <li class="previous hidden"><a href="#">上一页</a></li>
+            <li class="page selected"><span>1</span></li>
+            <li class="page"><a href="#">2</a></li>
+            <li class="page"><a href="#">3</a></li>
+            <li class="page"><a href="#">4</a></li>
+            <li class="next"><a href="#">下一页</a></li>
+            <li class="last"><a href="#">末页</a></li>
+          </ol>
+        </div>
+  </div>
+  <div id="con_one_2" style="display:none">
+  	<div class="index_video_right view_box">
+   		<ul>
+    		<li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+            <li>
+     			<a href="#" class="img" >
+      			<img src="img/view/view_pic2.png" />
+      			<p class="p1"><span>42:15</span></p>
+      			<p class="p2"><em></em></p>
+     			</a>
+     			<a href="#" class="text">小仓第一视角 雷庭船长一枪千伤狂暴16杀</a>
+                <p class="p3"><img src="img/view/view_arrow.png" />43265<span>英雄联盟</span></p>
+    		</li>
+        </ul>
+    </div>
+    
+    <!--页码-->
+    <div class="newyiiPager" >
+          <ol id="yw0" class="yiiPager">
+            <li>共2页：</li>
+            <li class="page hidden"><a href="">首页</a></li>
+            <li class="previous hidden"><a href="#">上一页</a></li>
+            <li class="page selected"><span>1</span></li>
+            <li class="page"><a href="#">2</a></li>
+            <li class="page"><a href="#">3</a></li>
+            <li class="page"><a href="#">4</a></li>
+            <li class="next"><a href="#">下一页</a></li>
+            <li class="last"><a href="#">末页</a></li>
+          </ol>
+     </div>
+  </div>
+ </div>
+</div>
+
+
+<!--线上琵琶网首页的foot，这里只是截图-->
+<div style="width:100%; text-align:center; clear:both"><img src="temp/foot.png"  style="margin-top:20px;width:100%;"/></div>
+
+</body>
+</html>

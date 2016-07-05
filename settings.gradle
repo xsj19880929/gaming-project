@@ -1,0 +1,4 @@
+include  'db-migration',
+		'gaming-common',
+        'gaming-website',
+        'gaming-manage-system'

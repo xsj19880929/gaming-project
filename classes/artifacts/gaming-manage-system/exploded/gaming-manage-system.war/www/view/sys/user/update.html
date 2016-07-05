@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#" ui-sref="index">首页</a></li>
+        <li><a href="#" ui-sref="admin.sys-user.list">账户管理</a></li>
+        <li class="active" ng-if="!id">添加账户</li>
+    </ol>
+
+    <!--<h2 class="page-header">车型信息</h2>-->
+
+    <form name="form" nclass="form-horizontal" ovalidate>
+        <div class="well">
+            <a href="" class="btn btn-primary" validation-submit="form" ng-click="updateSysUser()">保存</a>
+            <button class="btn btn-default" onClick="javascript :history.back(-1)">返回</button>
+        </div>
+        <div class="section form-horizontal">
+            <table class="table">
+
+                <tr>
+                    <td width="10%">用户名：</td>
+                    <td width="20%"><input class="form-control col-sm-1" type="text" ng-model="sysUser.username"/></td>
+                    <td width="10%">密码：</td>
+                    <td width="20%"><input class="form-control col-sm-1" type="text" ng-model="sysUser.password"/></td>
+                </tr>
+                <tr>
+                    <td width="10%">类型：</td>
+                    <td width="20%">
+                        <select class="form-control col-sm-1" ng-model="sysUser.userType"
+                                ng-options="userType.label for userType in userTypes track by userType.name">
+                            <option value="">--请选择--</option>
+                        </select>
+                    </td>
+
+                    <td width="10%">上级账号：</td>
+                    <td width="20%">
+                        <select class="form-control col-sm-1" ng-model="sysUser.parentUuid"
+                                ng-options="parentUser.username for parentUser in parentUsers track by parentUser.uuid">
+                            <option value="">--请选择--</option>
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td width="10%" >描述：</td>
+                    <td width="20%" colspan="3"><textarea class="form-control col-sm-1"  ng-model="sysUser.remark"/></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>

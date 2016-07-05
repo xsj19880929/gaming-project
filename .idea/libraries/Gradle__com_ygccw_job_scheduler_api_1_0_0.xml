@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.ygccw:job-scheduler-api:1.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ygccw/job-scheduler-api/1.0.0/ccfeae9fde3ff514d853c1b2680699470db474ba/job-scheduler-api-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ygccw/job-scheduler-api/1.0.0/2c90756b94ff53e46727fffec46f43659d52985/job-scheduler-api-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,96 @@
+<!-- 实例化编辑器 -->
+<script src="ue/ueditor.config.js"></script>
+<script src="ue/ueditor.all.js"></script>
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#" ui-sref="index">首页</a></li>
+        <li><a href="#" ui-sref="wechat.article.list">资讯管理</a></li>
+    </ol>
+
+    <h2 class="page-header">编辑文章</h2>
+
+    <form name="form" class="form-horizontal">
+        <div class="well">
+            <a href="" class="btn btn-primary" ng-click="updateArticle()">保存</a>
+            <a href="" class="btn btn-danger" ng-click="LookArticle()">预览</a>
+        </div>
+        <div class="section form-horizontal">
+            <table class="table">
+
+                <tr>
+                    <td width="10%">文章类型：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <div ng-repeat="a in articleTypes" class="checkbox-inline">
+                                <input type="radio" ng-value="a.uuid" name="type" ng-model="article.typeUuid"
+                                       ng-click="selectArticleType(a)"/>{{a.name}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">关联车型：</td>
+                    <td width="40%">
+                        <ul>
+                            <li ng-repeat="carBrand in carBrandList">
+                                {{carBrand.showCarBrand.name}}:
+                                <input id="chkAll+$index" type="checkbox" ng-model="chkall"
+                                       ng-click="selectAll(chkall,$index)"/>全选
+                                <div ng-repeat="cs in carBrand.showCarSeriesList" class="checkbox-inline">
+                                    <input type="checkbox" ng-value="cs.uuid" name="series"
+                                           ng-click="clickCarSeries(cs)" ng-checked="cs.isChecked"/>{{cs.name}}
+                                </div>
+
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">专区名称：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="matchZone.name"
+                                   placeholder=""/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">专区名称拼音：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="matchZone.name"
+                                   placeholder=""/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">文章图片：</td>
+                    <td width="40%">
+                        <img img-src="{{article.coverImage}}" alt=""/>
+                        <div class="btn btn-primary" ng-file-select ng-file-change="uploadCoverImage($files)">上传</div>
+                        (支持格式：jpg,jpeg,png,bmp, 建议像素为360*270)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">是否发布：</td>
+                    <td width="40%">
+                        <input type="checkbox" ng-model="article.published">发布产品
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">文章详情：</td>
+
+                    <td width="70%">
+                        <script id="container" name="content" type="text/plain">
+                        </script>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </form>
+</div>

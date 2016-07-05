@@ -1,0 +1,699 @@
+<?xml version="1.0"?>
+<JDepend>
+    <Packages>
+
+        <Package name="com.baidu.ueditor.define">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="com.baidu.ueditor.hunter">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="com.baidu.ueditor.upload">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="com.google.common.base">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="com.google.common.io">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="com.ygccw.wechat">
+            <Stats>
+                <TotalClasses>2</TotalClasses>
+                <ConcreteClasses>2</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>19</Ce>
+                <A>0</A>
+                <I>1</I>
+                <D>0</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="AppConfig.java">
+                    com.ygccw.wechat.AppConfig
+                </Class>
+                <Class sourceFile="WebConfig.java">
+                    com.ygccw.wechat.WebConfig
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>com.ygccw.wechat.sys</Package>
+                <Package>core.api.file</Package>
+                <Package>core.enumeration.domain</Package>
+                <Package>core.framework.database</Package>
+                <Package>core.framework.http</Package>
+                <Package>core.framework.web</Package>
+                <Package>core.framework.web.site.cookie</Package>
+                <Package>core.framework.web.site.scheme</Package>
+                <Package>core.framework.web.site.session</Package>
+                <Package>java.lang</Package>
+                <Package>java.util</Package>
+                <Package>javax.sql</Package>
+                <Package>org.apache.commons.dbcp</Package>
+                <Package>org.hibernate.dialect</Package>
+                <Package>org.springframework.core.env</Package>
+                <Package>org.springframework.orm.jpa</Package>
+                <Package>org.springframework.orm.jpa.vendor</Package>
+                <Package>org.springframework.transaction</Package>
+                <Package>org.springframework.web.servlet.config.annotation</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="com.ygccw.wechat.common.sys.entity">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="com.ygccw.wechat.common.sys.enums">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="com.ygccw.wechat.common.sys.exception">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="com.ygccw.wechat.common.sys.service">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="com.ygccw.wechat.common.sys.service.impl">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="com.ygccw.wechat.common.zone.entity">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="com.ygccw.wechat.common.zone.service">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="com.ygccw.wechat.constant">
+            <Stats>
+                <TotalClasses>2</TotalClasses>
+                <ConcreteClasses>2</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>2</Ca>
+                <Ce>4</Ce>
+                <A>0</A>
+                <I>0.67</I>
+                <D>0.33</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="CookieKeys.java">
+                    com.ygccw.wechat.constant.CookieKeys
+                </Class>
+                <Class sourceFile="SessionKeys.java">
+                    com.ygccw.wechat.constant.SessionKeys
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>com.ygccw.wechat.common.sys.entity</Package>
+                <Package>com.ygccw.wechat.sys</Package>
+                <Package>core.framework.web.site.session</Package>
+                <Package>java.lang</Package>
+            </DependsUpon>
+
+            <UsedBy>
+                <Package>com.ygccw.wechat.sys</Package>
+                <Package>com.ygccw.wechat.sys.controller</Package>
+            </UsedBy>
+        </Package>
+
+        <Package name="com.ygccw.wechat.sys">
+            <Stats>
+                <TotalClasses>6</TotalClasses>
+                <ConcreteClasses>5</ConcreteClasses>
+                <AbstractClasses>1</AbstractClasses>
+                <Ca>3</Ca>
+                <Ce>16</Ce>
+                <A>0.17</A>
+                <I>0.84</I>
+                <D>0.01</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+                <Class sourceFile="Menu.java">
+                    com.ygccw.wechat.sys.Menu
+                </Class>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="SecurityErrorControllerAdvice.java">
+                    com.ygccw.wechat.sys.SecurityErrorControllerAdvice
+                </Class>
+                <Class sourceFile="SecurityInterceptor.java">
+                    com.ygccw.wechat.sys.SecurityInterceptor
+                </Class>
+                <Class sourceFile="SecuritySettings.java">
+                    com.ygccw.wechat.sys.SecuritySettings
+                </Class>
+                <Class sourceFile="SecuritySettings.java">
+                    com.ygccw.wechat.sys.SecuritySettings$SecurityLevel
+                </Class>
+                <Class sourceFile="SysMenuContext.java">
+                    com.ygccw.wechat.sys.SysMenuContext
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>com.google.common.base</Package>
+                <Package>com.ygccw.wechat.common.sys.entity</Package>
+                <Package>com.ygccw.wechat.common.sys.exception</Package>
+                <Package>com.ygccw.wechat.constant</Package>
+                <Package>core.framework.util</Package>
+                <Package>core.framework.web.rest.exception</Package>
+                <Package>core.framework.web.site</Package>
+                <Package>core.framework.web.site.session</Package>
+                <Package>java.io</Package>
+                <Package>java.lang</Package>
+                <Package>java.lang.annotation</Package>
+                <Package>java.util</Package>
+                <Package>javax.servlet.http</Package>
+                <Package>org.springframework.http</Package>
+                <Package>org.springframework.util</Package>
+                <Package>org.springframework.web.servlet.handler</Package>
+            </DependsUpon>
+
+            <UsedBy>
+                <Package>com.ygccw.wechat</Package>
+                <Package>com.ygccw.wechat.constant</Package>
+                <Package>com.ygccw.wechat.sys.controller</Package>
+            </UsedBy>
+        </Package>
+
+        <Package name="com.ygccw.wechat.sys.controller">
+            <Stats>
+                <TotalClasses>9</TotalClasses>
+                <ConcreteClasses>9</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>17</Ce>
+                <A>0</A>
+                <I>1</I>
+                <D>0</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="CurrentSysUserController.java">
+                    com.ygccw.wechat.sys.controller.CurrentSysUserController
+                </Class>
+                <Class sourceFile="LoginController.java">
+                    com.ygccw.wechat.sys.controller.LoginController
+                </Class>
+                <Class sourceFile="LogoutController.java">
+                    com.ygccw.wechat.sys.controller.LogoutController
+                </Class>
+                <Class sourceFile="MenuController.java">
+                    com.ygccw.wechat.sys.controller.MenuController
+                </Class>
+                <Class sourceFile="SysRoleController.java">
+                    com.ygccw.wechat.sys.controller.SysRoleController
+                </Class>
+                <Class sourceFile="SysRoleMenuController.java">
+                    com.ygccw.wechat.sys.controller.SysRoleMenuController
+                </Class>
+                <Class sourceFile="SysUserController.java">
+                    com.ygccw.wechat.sys.controller.SysUserController
+                </Class>
+                <Class sourceFile="SysUserRoleController.java">
+                    com.ygccw.wechat.sys.controller.SysUserRoleController
+                </Class>
+                <Class sourceFile="UtilsRESTController.java">
+                    com.ygccw.wechat.sys.controller.UtilsRESTController
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>com.google.common.base</Package>
+                <Package>com.ygccw.wechat.common.sys.entity</Package>
+                <Package>com.ygccw.wechat.common.sys.enums</Package>
+                <Package>com.ygccw.wechat.common.sys.service</Package>
+                <Package>com.ygccw.wechat.common.sys.service.impl</Package>
+                <Package>com.ygccw.wechat.constant</Package>
+                <Package>com.ygccw.wechat.sys</Package>
+                <Package>com.ygccw.wechat.sys.utils</Package>
+                <Package>core.framework.database</Package>
+                <Package>core.framework.web.filter</Package>
+                <Package>core.framework.web.site.cookie</Package>
+                <Package>core.framework.web.site.session</Package>
+                <Package>java.io</Package>
+                <Package>java.lang</Package>
+                <Package>java.util</Package>
+                <Package>javax.servlet.http</Package>
+                <Package>org.springframework.core.env</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="com.ygccw.wechat.sys.model">
+            <Stats>
+                <TotalClasses>1</TotalClasses>
+                <ConcreteClasses>1</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>1</Ce>
+                <A>0</A>
+                <I>1</I>
+                <D>0</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="SysUserDomain.java">
+                    com.ygccw.wechat.sys.model.SysUserDomain
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>com.ygccw.wechat.common.sys.entity</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="com.ygccw.wechat.sys.utils">
+            <Stats>
+                <TotalClasses>2</TotalClasses>
+                <ConcreteClasses>2</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>1</Ca>
+                <Ce>2</Ce>
+                <A>0</A>
+                <I>0.67</I>
+                <D>0.33</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="UserTypeRouter.java">
+                    com.ygccw.wechat.sys.utils.UserTypeRouter
+                </Class>
+                <Class sourceFile="UserTypeRouter.java">
+                    com.ygccw.wechat.sys.utils.UserTypeRouter$1
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>com.ygccw.wechat.common.sys.enums</Package>
+                <Package>java.lang</Package>
+            </DependsUpon>
+
+            <UsedBy>
+                <Package>com.ygccw.wechat.sys.controller</Package>
+            </UsedBy>
+        </Package>
+
+        <Package name="com.ygccw.wechat.ue">
+            <Stats>
+                <TotalClasses>1</TotalClasses>
+                <ConcreteClasses>1</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>13</Ce>
+                <A>0</A>
+                <I>1</I>
+                <D>0</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="UeFileUploadController.java">
+                    com.ygccw.wechat.ue.UeFileUploadController
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>com.baidu.ueditor.define</Package>
+                <Package>com.google.common.io</Package>
+                <Package>com.ygccw.wechat.utils</Package>
+                <Package>core.api.file.api</Package>
+                <Package>core.api.file.client</Package>
+                <Package>core.api.file.controller</Package>
+                <Package>java.io</Package>
+                <Package>java.lang</Package>
+                <Package>java.util</Package>
+                <Package>javax.servlet.http</Package>
+                <Package>org.slf4j</Package>
+                <Package>org.springframework.core.env</Package>
+                <Package>org.springframework.web.multipart</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="com.ygccw.wechat.ue.ueditor">
+            <Stats>
+                <TotalClasses>2</TotalClasses>
+                <ConcreteClasses>2</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>9</Ce>
+                <A>0</A>
+                <I>1</I>
+                <D>0</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="ActionEnter.java">
+                    com.ygccw.wechat.ue.ueditor.ActionEnter
+                </Class>
+                <Class sourceFile="ConfigManager.java">
+                    com.ygccw.wechat.ue.ueditor.ConfigManager
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>com.baidu.ueditor.define</Package>
+                <Package>com.baidu.ueditor.hunter</Package>
+                <Package>com.baidu.ueditor.upload</Package>
+                <Package>java.io</Package>
+                <Package>java.lang</Package>
+                <Package>java.util</Package>
+                <Package>javax.servlet</Package>
+                <Package>javax.servlet.http</Package>
+                <Package>org.json</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="com.ygccw.wechat.utils">
+            <Stats>
+                <TotalClasses>2</TotalClasses>
+                <ConcreteClasses>2</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>1</Ca>
+                <Ce>6</Ce>
+                <A>0</A>
+                <I>0.86</I>
+                <D>0.14</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="Files.java">
+                    com.ygccw.wechat.utils.Files
+                </Class>
+                <Class sourceFile="HttpUtil.java">
+                    com.ygccw.wechat.utils.HttpUtil
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>core.framework.util</Package>
+                <Package>java.lang</Package>
+                <Package>java.net</Package>
+                <Package>java.util</Package>
+                <Package>javax.servlet.http</Package>
+                <Package>org.apache.commons.lang3</Package>
+            </DependsUpon>
+
+            <UsedBy>
+                <Package>com.ygccw.wechat.ue</Package>
+            </UsedBy>
+        </Package>
+
+        <Package name="com.ygccw.wechat.zone">
+            <Stats>
+                <TotalClasses>1</TotalClasses>
+                <ConcreteClasses>1</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>1</Ce>
+                <A>0</A>
+                <I>1</I>
+                <D>0</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="Test.java">
+                    com.ygccw.wechat.zone.Test
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>java.lang</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="com.ygccw.wechat.zone.controller">
+            <Stats>
+                <TotalClasses>1</TotalClasses>
+                <ConcreteClasses>1</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>5</Ce>
+                <A>0</A>
+                <I>1</I>
+                <D>0</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="MatchZoneController.java">
+                    com.ygccw.wechat.zone.controller.MatchZoneController
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>com.ygccw.wechat.common.zone.entity</Package>
+                <Package>com.ygccw.wechat.common.zone.service</Package>
+                <Package>core.framework.database</Package>
+                <Package>java.lang</Package>
+                <Package>java.util</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="core.api.file">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.api.file.api">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.api.file.client">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.api.file.controller">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.enumeration.domain">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.framework.database">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.framework.http">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.framework.util">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.framework.web">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.framework.web.filter">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.framework.web.rest.exception">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.framework.web.site">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.framework.web.site.cookie">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.framework.web.site.scheme">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="core.framework.web.site.session">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.io">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.lang">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.lang.annotation">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.net">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.util">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="javax.servlet">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="javax.servlet.http">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="javax.sql">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.apache.commons.dbcp">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.apache.commons.lang3">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.hibernate.dialect">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.json">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.slf4j">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.core.env">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.http">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.orm.jpa">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.orm.jpa.vendor">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.transaction">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.util">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.web.multipart">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.web.servlet.config.annotation">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.web.servlet.handler">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+    </Packages>
+
+    <Cycles>
+        <Package Name="com.ygccw.wechat">
+            <Package>com.ygccw.wechat.sys</Package>
+            <Package>com.ygccw.wechat.constant</Package>
+            <Package>com.ygccw.wechat.sys</Package>
+        </Package>
+
+        <Package Name="com.ygccw.wechat.constant">
+            <Package>com.ygccw.wechat.sys</Package>
+            <Package>com.ygccw.wechat.constant</Package>
+        </Package>
+
+        <Package Name="com.ygccw.wechat.sys">
+            <Package>com.ygccw.wechat.constant</Package>
+            <Package>com.ygccw.wechat.sys</Package>
+        </Package>
+
+        <Package Name="com.ygccw.wechat.sys.controller">
+            <Package>com.ygccw.wechat.constant</Package>
+            <Package>com.ygccw.wechat.sys</Package>
+            <Package>com.ygccw.wechat.constant</Package>
+        </Package>
+
+    </Cycles>
+</JDepend>

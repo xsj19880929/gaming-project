@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.7">
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\AppConfig.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\WebConfig.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\constant\CookieKeys.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\constant\SessionKeys.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\Menu.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\SecurityErrorControllerAdvice.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\SecurityInterceptor.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\SecuritySettings.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\SysMenuContext.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\controller\CurrentSysUserController.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\controller\LoginController.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\controller\LogoutController.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\controller\MenuController.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\controller\SysRoleController.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\controller\SysRoleMenuController.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\controller\SysUserController.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\controller\SysUserRoleController.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\controller\UtilsRESTController.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\model\SysUserDomain.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\sys\utils\UserTypeRouter.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\ue\UeFileUploadController.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\ue\ueditor\ActionEnter.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\ue\ueditor\ConfigManager.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\utils\Files.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\utils\HttpUtil.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\zone\Test.java">
+</file>
+<file name="D:\workspaceIntellij\gaming-project\gaming-manage-system\src\main\java\com\ygccw\wechat\zone\controller\MatchZoneController.java">
+</file>
+</checkstyle>
