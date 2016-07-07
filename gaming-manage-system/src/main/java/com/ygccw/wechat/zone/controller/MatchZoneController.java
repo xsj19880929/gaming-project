@@ -1,8 +1,10 @@
 package com.ygccw.wechat.zone.controller;
 
+import com.ygccw.wechat.common.zone.entity.MatchTeam;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import com.ygccw.wechat.common.zone.entity.MatchZoneArea;
 import com.ygccw.wechat.common.zone.entity.MatchZoneYear;
+import com.ygccw.wechat.common.zone.service.MatchTeamService;
 import com.ygccw.wechat.common.zone.service.MatchZoneAreaService;
 import com.ygccw.wechat.common.zone.service.MatchZoneService;
 import com.ygccw.wechat.common.zone.service.MatchZoneYearService;
@@ -32,6 +34,8 @@ public class MatchZoneController {
     MatchZoneAreaService matchZoneAreaService;
     @Inject
     MatchZoneYearService matchZoneYearService;
+    @Inject
+    MatchTeamService matchTeamService;
 
     @RequireSession
     @RequestMapping(value = "/zone/match-zone/list", method = RequestMethod.POST)
@@ -81,6 +85,13 @@ public class MatchZoneController {
     @ResponseBody
     public List<MatchZoneYear> listMatchZoneYearAll() {
         return matchZoneYearService.listAll();
+    }
+
+    @RequireSession
+    @RequestMapping(value = "/zone/match-zone/match-team/list", method = RequestMethod.GET)
+    @ResponseBody
+    public List<MatchTeam> listMatchTeam() {
+        return matchTeamService.listAll();
     }
 
 

@@ -12,6 +12,7 @@
         $scope.matchZoneArea = [];
         $scope.matchZoneYear = [];
         $scope.matchStatusList = [];
+        $scope.matchTeamList = [];
 
         $scope.ue = UE.getEditor('container');
 
@@ -21,6 +22,10 @@
 
         $http.get('zone/match-zone/match-zone-year/list').success(function (data) {
             $scope.matchZoneYearList = data;
+        });
+
+        $http.get('/zone/match-zone/match-team/list').success(function (data) {
+            $scope.matchTeamList = data;
         });
         $http.get('/enum/com.ygccw.wechat.common.zone.enums.MatchStatus').success(function (data) {
             $scope.matchStatusList = data;
@@ -111,6 +116,51 @@
                 }
             }
         };
+        $scope.matchZoneBonus = {};
+        $scope.matchZoneBonusList = [];
+        $scope.saveMatchZoneBonus = function () {
+            if ($scope.matchZoneBonus) {
+                $scope.matchZoneBonusList.push(angular.copy($scope.matchZoneBonus));
+                $scope.matchZone.matchZoneBonusList = $scope.matchZoneBonusList;
+                $scope.matchZoneBonus = {};
+            }
+        };
+        $scope.deleteMatchZoneBonus = function (matchZoneBonus) {
+            for (var i = 0; i < $scope.matchZoneBonusList.length; i++) {
+                if ($scope.matchZoneBonusList[i] == matchZoneBonus) {
+                    $scope.matchZoneBonusList.splice(i, 1);
+                }
+            }
+            $scope.matchZone.matchZoneBonusList = $scope.matchZoneBonusList;
+
+        }
+
+        $scope.matchZoneCalendar = {};
+        $scope.matchZoneCalendarList = [];
+        $scope.saveMatchZoneCalendar = function () {
+            if ($scope.matchZoneCalendar) {
+                for (var i = 0; i < $scope.matchTeamList.length; i++) {
+                    if ($scope.matchZoneCalendar.matchTeamOneId == $scope.matchTeamList[i].id) {
+                        $scope.matchZoneCalendar.matchTeamOneName = $scope.matchTeamList[i].name;
+                    }
+                    if ($scope.matchZoneCalendar.matchTeamTwoId == $scope.matchTeamList[i].id) {
+                        $scope.matchZoneCalendar.matchTeamTwoName = $scope.matchTeamList[i].name;
+                    }
+                }
+                $scope.matchZoneCalendarList.push(angular.copy($scope.matchZoneCalendar));
+                $scope.matchZone.matchZoneCalendarList = $scope.matchZoneCalendarList;
+                $scope.matchZoneCalendar = {};
+            }
+        };
+        $scope.deleteMatchZoneCalendar = function (matchZoneCalendar) {
+            for (var i = 0; i < $scope.matchZoneCalendarList.length; i++) {
+                if ($scope.matchZoneCalendarList[i] == matchZoneCalendar) {
+                    $scope.matchZoneCalendarList.splice(i, 1);
+                }
+            }
+            $scope.matchZone.matchZoneCalendarList = $scope.matchZoneCalendarList;
+
+        }
 
     }]);
 })(angular);

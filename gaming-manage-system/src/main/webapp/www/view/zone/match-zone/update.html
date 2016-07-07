@@ -239,17 +239,19 @@
                     <td>奖金金额</td>
                     <td>操作</td>
                 </tr>
-                <td>
-                    <input class="form-control" type="text"
-                           ng-model="matchZoneBonus.ranking"
-                           placeholder="请输入名次"/></td>
-                <td>
-                    <input class="form-control" type="text" ng-model="matchZoneBonus.bonusFee"
-                           placeholder="请输入奖金金额"/>
-                </td>
-                <td>
-                    <button class="btn btn-primary" ng-click="saveMatchZoneBonus()">保存</button>
-                </td>
+                <tr>
+                    <td>
+                        <input class="form-control" type="text"
+                               ng-model="matchZoneBonus.ranking"
+                               placeholder="请输入名次"/></td>
+                    <td>
+                        <input class="form-control" type="text" ng-model="matchZoneBonus.bonusFee"
+                               placeholder="请输入奖金金额"/>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="saveMatchZoneBonus()">保存</button>
+                    </td>
+                </tr>
                 <tr ng-repeat="matchZoneBonus in matchZone.matchZoneBonusList">
                     <td>
                         {{matchZoneBonus.ranking}}
@@ -258,7 +260,7 @@
                         {{matchZoneBonus.bonusFee}}
                     </td>
                     <td>
-                        <button class="btn btn-danger" ng-click="deleteMatchZoneBonus()">删除</button>
+                        <button class="btn btn-danger" ng-click="deleteMatchZoneBonus(matchZoneBonus)">删除</button>
                     </td>
                 </tr>
             </table>
@@ -271,47 +273,54 @@
                     <td>日期</td>
                     <td>操作</td>
                 </tr>
-                <td>
-                    <input class="form-control" type="text"
-                           ng-model="matchZoneCalendar.matchTeamOneId"
-                           placeholder="请输入队一"/></td>
-                <td>
-                    <input class="form-control" type="text" ng-model="matchZoneCalendar.matchTeamTwoId"
-                           placeholder="请输入队二"/>
-                </td>
-                <td>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" id="calendarStartTime" role="button" data-toggle="dropdown"
-                           data-target="#" href="#">
-                            <div class="input-group">
-                                <input type="text" class="form-control"
-                                       ng-model="matchZoneCalendar.startTime | date:'yyyy-MM-dd HH:mm:ss'">
+                <tr>
+                    <td>
+                        <select class="form-control" ng-model="matchZoneCalendar.matchTeamOneId"
+                                ng-options="m.id as m.name for m in matchTeamList"
+                                name="matchTeamOneId">
+                            <option value="">请选择队一</option>
+                        </select>
+                    <td>
+                        <select class="form-control" ng-model="matchZoneCalendar.matchTeamTwoId"
+                                ng-options="m.id as m.name for m in matchTeamList"
+                                name="matchTeamOneId">
+                            <option value="">请选择队二</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" id="calendarStartTime" role="button" data-toggle="dropdown"
+                               data-target="#" href="#">
+                                <div class="input-group">
+                                    <input type="text" class="form-control"
+                                           ng-model="matchZoneCalendar.startTime | date:'yyyy-MM-dd HH:mm:ss'">
                                     <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-calendar"></i>
                                     </span>
-                            </div>
-                        </a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <datetimepicker ng-model="matchZoneCalendar.startTime"
-                                            datetimepicker-config="{ dropdownSelector: '#calendarStartTime' }"/>
-                        </ul>
-                    </div>
-                </td>
-                <td>
-                    <button class="btn btn-primary" ng-click="saveMatchZoneCalendar()">保存</button>
-                </td>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="matchZoneCalendar.startTime"
+                                                datetimepicker-config="{ dropdownSelector: '#calendarStartTime' }"/>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="saveMatchZoneCalendar()">保存</button>
+                    </td>
+                </tr>
                 <tr ng-repeat="matchZoneCalendar in matchZone.matchZoneCalendarList">
                     <td>
-                        {{matchZoneCalendar.matchTeamOneId}}
+                        {{matchZoneCalendar.matchTeamOneName}}
                     </td>
                     <td>
-                        {{matchZoneCalendar.matchTeamTwoId}}
+                        {{matchZoneCalendar.matchTeamTwoName}}
                     </td>
                     <td>
-                        {{matchZoneCalendar.startTime}}
+                        {{matchZoneCalendar.startTime| date:'yyyy-MM-dd HH:mm:ss'}}
                     </td>
                     <td>
-                        <button class="btn btn-danger" ng-click="deleteMatchZoneCalendar()">删除</button>
+                        <button class="btn btn-danger" ng-click="deleteMatchZoneCalendar(matchZoneCalendar)">删除</button>
                     </td>
                 </tr>
             </table>
