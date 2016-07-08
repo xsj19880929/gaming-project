@@ -119,6 +119,9 @@
         $scope.matchZoneBonus = {};
         $scope.matchZoneBonusList = [];
         $scope.saveMatchZoneBonus = function () {
+            if ($scope.matchZone.matchZoneBonusList) {
+                $scope.matchZoneBonusList = $scope.matchZone.matchZoneBonusList;
+            }
             if ($scope.matchZoneBonus) {
                 $scope.matchZoneBonusList.push(angular.copy($scope.matchZoneBonus));
                 $scope.matchZone.matchZoneBonusList = $scope.matchZoneBonusList;
@@ -138,6 +141,9 @@
         $scope.matchZoneCalendar = {};
         $scope.matchZoneCalendarList = [];
         $scope.saveMatchZoneCalendar = function () {
+            if ($scope.matchZone.matchZoneCalendarList) {
+                $scope.matchZoneCalendarList = $scope.matchZone.matchZoneCalendarList;
+            }
             if ($scope.matchZoneCalendar) {
                 for (var i = 0; i < $scope.matchTeamList.length; i++) {
                     if ($scope.matchZoneCalendar.matchTeamOneId == $scope.matchTeamList[i].id) {

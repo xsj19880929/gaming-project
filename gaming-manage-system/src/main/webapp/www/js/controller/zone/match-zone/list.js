@@ -69,7 +69,7 @@
         };
         $scope.deleteMatchZone = function (id) {
             if (confirm("确认删除？")) {
-                $http.remove('zone/match-zone/' + id).success(function (data) {
+                $http.delete('zone/match-zone/' + id).success(function (data) {
                     loadData($scope.offset, $scope.fetchSize);
                 });
             }

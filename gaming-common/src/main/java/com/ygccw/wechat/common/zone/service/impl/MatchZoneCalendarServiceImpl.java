@@ -39,7 +39,7 @@ public class MatchZoneCalendarServiceImpl implements MatchZoneCalendarService {
 
     @Override
     public List<MatchZoneCalendar> listByMatchZoneId(Long matchZoneId) {
-        return null;
+        return matchZoneCalendarDao.listByMatchZoneId(matchZoneId);
     }
 
     @Override

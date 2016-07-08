@@ -16,10 +16,28 @@ public class MatchZoneCalendar {
     private Long matchZoneId;
     private Long matchTeamOneId;
     private Long matchTeamTwoId;
+    private String matchTeamOneName;
+    private String matchTeamTwoName;
     private Date startTime;
     private Integer status;
     private Date createTime;
     private Date updateTime;
+
+    public String getMatchTeamOneName() {
+        return matchTeamOneName;
+    }
+
+    public void setMatchTeamOneName(String matchTeamOneName) {
+        this.matchTeamOneName = matchTeamOneName;
+    }
+
+    public String getMatchTeamTwoName() {
+        return matchTeamTwoName;
+    }
+
+    public void setMatchTeamTwoName(String matchTeamTwoName) {
+        this.matchTeamTwoName = matchTeamTwoName;
+    }
 
     public Long getId() {
         return id;

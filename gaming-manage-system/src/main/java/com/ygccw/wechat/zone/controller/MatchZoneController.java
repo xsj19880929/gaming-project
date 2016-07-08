@@ -9,6 +9,8 @@ import com.ygccw.wechat.common.zone.service.MatchZoneAreaService;
 import com.ygccw.wechat.common.zone.service.MatchZoneService;
 import com.ygccw.wechat.common.zone.service.MatchZoneYearService;
 import com.ygccw.wechat.sys.Menu;
+import com.ygccw.wechat.zone.model.MatchZoneModel;
+import com.ygccw.wechat.zone.service.MatchZoneModelService;
 import core.framework.database.FindResult;
 import core.framework.web.site.session.RequireSession;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +38,8 @@ public class MatchZoneController {
     MatchZoneYearService matchZoneYearService;
     @Inject
     MatchTeamService matchTeamService;
+    @Inject
+    MatchZoneModelService matchZoneModelService;
 
     @RequireSession
     @RequestMapping(value = "/zone/match-zone/list", method = RequestMethod.POST)
@@ -48,29 +52,29 @@ public class MatchZoneController {
     @RequestMapping(value = "/zone/match-zone/{id}", method = RequestMethod.GET)
     @ResponseBody
     public MatchZone findOne(@PathVariable("id") Long id) {
-        return matchZoneService.findById(id);
+        return matchZoneModelService.findById(id);
     }
 
     @RequireSession
     @RequestMapping(value = "/zone/match-zone", method = RequestMethod.PUT)
     @ResponseBody
-    public void update(@RequestBody MatchZone matchZone) {
-        matchZoneService.update(matchZone);
+    public void update(@RequestBody MatchZoneModel matchZoneModel) {
+        matchZoneModelService.update(matchZoneModel);
     }
 
 
     @RequireSession
     @RequestMapping(value = "/zone/match-zone/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public void del(@PathVariable("id") Long id) {
+    public void delete(@PathVariable("id") Long id) {
         matchZoneService.deleteStatus(id);
     }
 
     @RequireSession
     @RequestMapping(value = "/zone/match-zone", method = RequestMethod.POST)
     @ResponseBody
-    public void save(@RequestBody MatchZone matchZone) {
-        matchZoneService.save(matchZone);
+    public void save(@RequestBody MatchZoneModel matchZoneModel) {
+        matchZoneModelService.save(matchZoneModel);
     }
 
     @RequireSession

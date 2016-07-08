@@ -39,7 +39,7 @@ public class MatchZoneBonusServiceImpl implements MatchZoneBonusService {
 
     @Override
     public List<MatchZoneBonus> listByMatchZoneId(Long matchZoneId) {
-        return null;
+        return matchZoneBonusDao.listByMatchZoneId(matchZoneId);
     }
 
     @Override
