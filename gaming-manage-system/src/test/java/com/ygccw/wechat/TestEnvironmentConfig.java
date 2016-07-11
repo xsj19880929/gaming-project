@@ -1,5 +1,6 @@
 package com.ygccw.wechat;
 
+import core.enumeration.domain.SystemEnum;
 import core.framework.database.JPAAccess;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -42,8 +43,7 @@ public class TestEnvironmentConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource());
-        factoryBean.setPackagesToScan(AppConfig.class.getPackage().getName());
-
+        factoryBean.setPackagesToScan("com.ygccw", SystemEnum.class.getPackage().getName());
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabase(Database.HSQL);
         vendorAdapter.setShowSql(true);

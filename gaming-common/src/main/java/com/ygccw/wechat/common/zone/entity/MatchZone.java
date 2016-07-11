@@ -7,12 +7,14 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * @author soldier
  */
 @Entity
+@Table(name = "match_zone")
 public class MatchZone {
     @Id
     @GeneratedValue

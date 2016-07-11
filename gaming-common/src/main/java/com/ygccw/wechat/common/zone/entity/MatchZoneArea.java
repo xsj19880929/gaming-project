@@ -3,12 +3,14 @@ package com.ygccw.wechat.common.zone.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * @author soldier
  */
 @Entity
+@Table(name = "match_zone_area")
 public class MatchZoneArea {
     @Id
     @GeneratedValue
