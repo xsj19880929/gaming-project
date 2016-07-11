@@ -51,11 +51,13 @@ public class MatchZoneModelService {
         matchZoneBonusService.deleteByMatchZoneId(matchZone.getId());
         for (MatchZoneBonus matchZoneBonus : matchZoneModel.getMatchZoneBonusList()) {
             matchZoneBonus.setMatchZoneId(matchZone.getId());
+            matchZoneBonus.setId(null);
             matchZoneBonusService.save(matchZoneBonus);
         }
         matchZoneCalendarService.deleteByMatchZoneId(matchZone.getId());
         for (MatchZoneCalendar matchZoneCalendar : matchZoneModel.getMatchZoneCalendarList()) {
             matchZoneCalendar.setMatchZoneId(matchZone.getId());
+            matchZoneCalendar.setId(null);
             matchZoneCalendarService.save(matchZoneCalendar);
         }
     }

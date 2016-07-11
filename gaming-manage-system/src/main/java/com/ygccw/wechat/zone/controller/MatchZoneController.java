@@ -1,5 +1,6 @@
 package com.ygccw.wechat.zone.controller;
 
+import com.ygccw.wechat.common.recommend.enums.RecommendType;
 import com.ygccw.wechat.common.zone.entity.MatchTeam;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import com.ygccw.wechat.common.zone.entity.MatchZoneArea;
@@ -95,6 +96,13 @@ public class MatchZoneController {
     @RequestMapping(value = "/zone/match-zone/match-team/list", method = RequestMethod.GET)
     @ResponseBody
     public List<MatchTeam> listMatchTeam() {
+        return matchTeamService.listAll();
+    }
+
+    @RequireSession
+    @RequestMapping(value = "/zone/match-zone/recommend/list", method = RequestMethod.GET)
+    @ResponseBody
+    public List<MatchTeam> listRecommend(@PathVariable("recommendType") RecommendType recommendType) {
         return matchTeamService.listAll();
     }
 
