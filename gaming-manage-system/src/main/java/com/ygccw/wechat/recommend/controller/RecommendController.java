@@ -80,5 +80,11 @@ public class RecommendController {
         return recommendMappingModelService.listRecommendMapping(recommendType);
     }
 
+    @RequireSession
+    @RequestMapping(value = "/recommend/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Recommend findById(@PathVariable("id") Long id) {
+        return recommendService.findById(id);
+    }
 
 }

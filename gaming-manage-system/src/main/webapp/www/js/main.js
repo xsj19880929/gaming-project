@@ -156,25 +156,6 @@
                 templateUrl: "www/view/sys/template-message-config/template-message-config.update.html",
                 controller: "TemplateMessageConfigUpdateController"
             })
-            .state('website.index', {
-                url: "/index",
-                templateUrl: "www/view/index/website.index.html",
-                controller: 'WebsiteIndexController'
-            })
-            .state('website.article', {
-                url: "/article",
-                templateUrl: "www/view/article/index.html"
-            })
-            .state('website.article.list', {
-                url: "/",
-                templateUrl: "www/view/article/list.html",
-                controller: 'ArticleListController'
-            })
-            .state('website.article.update', {
-                url: "/update",
-                templateUrl: "www/view/article/update.html",
-                controller: 'ArticleUpdateController'
-            })
             .state('zone', {
                 url: "/zone",
                 templateUrl: "www/view/module.view.html"
@@ -207,6 +188,24 @@
                 url: "/update",
                 templateUrl: "www/view/zone/match-team/update.html",
                 controller: 'MatchTeamUpdateController'
+            })
+            .state('recommend', {
+                url: "/recommend",
+                templateUrl: "www/view/module.view.html"
+            })
+            .state('recommend.recommend', {
+                url: "/recommend",
+                templateUrl: "www/view/recommend/recommend/index.html"
+            })
+            .state('recommend.recommend.list', {
+                url: "/",
+                templateUrl: "www/view/recommend/recommend/list.html",
+                controller: 'RecommendListController'
+            })
+            .state('recommend.recommend.update', {
+                url: "/update",
+                templateUrl: "www/view/recommend/recommend/update.html",
+                controller: 'RecommendUpdateController'
             })
 
 

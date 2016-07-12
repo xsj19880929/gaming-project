@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#" ui-sref="index">首页</a></li>
+        <li><a href="#" ui-sref="recommend.recommend.list">推荐管理</a></li>
+        <li><a href="#" ui-sref="recommend.recommend.list">推荐位管理</a></li>
+    </ol>
+
+    <h2 class="page-header">编辑推荐位</h2>
+
+    <form name="form" class="form-horizontal">
+        <div class="well">
+            <button class="btn btn-primary" validation-submit="form" ng-click="updateRecommend()">保存</button>
+        </div>
+        <div class="section form-horizontal">
+            <table class="table">
+
+                <tr>
+                    <td width="10%">名称：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="recommend.name"
+                                   placeholder="" validator="required" name="name"/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">类型：</td>
+                    <td width="40%">
+                        <select class="form-control" ng-model="recommend.recommendType.name"
+                                ng-options="m.name as m.label for m in recommendTypeList" validator="required"
+                                name="recommendType">
+                            <option value="">请选择</option>
+                        </select>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </form>
+</div>
