@@ -7,6 +7,15 @@ import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
  */
 public class RecommendMappingModel extends RecommendMapping {
     private String recommendName;
+    private Boolean checked;
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
 
     public String getRecommendName() {
         return recommendName;

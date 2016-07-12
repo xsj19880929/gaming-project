@@ -79,4 +79,9 @@ public class MatchZoneServiceImpl implements MatchZoneService {
     public int listSize(MatchZone matchZone) {
         return matchZoneDao.listSize(matchZone);
     }
+
+    @Override
+    public List<MatchZone> listAll() {
+        return matchZoneDao.listAll();
+    }
 }

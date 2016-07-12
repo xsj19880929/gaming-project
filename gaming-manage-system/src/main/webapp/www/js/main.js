@@ -194,6 +194,20 @@
                 templateUrl: "www/view/zone/match-zone/update.html",
                 controller: 'MatchZoneUpdateController'
             })
+            .state('zone.match-team', {
+                url: "/match-team",
+                templateUrl: "www/view/zone/match-team/index.html"
+            })
+            .state('zone.match-team.list', {
+                url: "/",
+                templateUrl: "www/view/zone/match-team/list.html",
+                controller: 'MatchTeamListController'
+            })
+            .state('zone.match-team.update', {
+                url: "/update",
+                templateUrl: "www/view/zone/match-team/update.html",
+                controller: 'MatchTeamUpdateController'
+            })
 
 
     }).config(

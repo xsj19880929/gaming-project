@@ -2,6 +2,7 @@ package com.ygccw.wechat.common.recommend.entity;
 
 import com.ygccw.wechat.common.recommend.enums.RecommendType;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import java.util.Date;
 /**
  * @author soldier
  */
+@Entity
 public class RecommendMapping {
     @Id
     @GeneratedValue

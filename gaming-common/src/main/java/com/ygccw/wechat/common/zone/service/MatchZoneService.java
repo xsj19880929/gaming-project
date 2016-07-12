@@ -22,4 +22,6 @@ public interface MatchZoneService {
     List<MatchZone> list(MatchZone matchZone, int offset, int fetchSize);
 
     int listSize(MatchZone matchZone);
+
+    List<MatchZone> listAll();
 }

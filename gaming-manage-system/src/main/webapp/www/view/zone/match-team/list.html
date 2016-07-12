@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#" ui-sref="index">首页</a></li>
+        <li><a href="#" ui-sref="zone.match-zone.list">专区管理</a></li>
+        <li class="active">战队管理</li>
+    </ol>
+
+    <h2 class="page-header">战队列表</h2>
+    <div class="well">
+        <a href="" class="btn btn-success ygccw-add-btn" ui-sref="zone.match-team.update">添加战队</a>
+    </div>
+
+    <div class="well form-inline">
+        <input class="form-control" type="text" ng-model="params.name" placeholder="请输入战队名称查询"/>
+        <button class="btn btn-primary" ng-click="search()">搜索</button>
+    </div>
+
+    <div class="table-responsive">
+        <div ui-grid="gridOptions" ui-grid-pagination class="grid" style="height: 500px;"></div>
+    </div>
+</div>
+

@@ -46,6 +46,17 @@
                     </td>
                 </tr>
                 <tr>
+                    <td width="10%">推荐位：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <div ng-repeat="recommendMappingModel in matchZone.recommendMappingModelList"
+                                 class="checkbox-inline">
+                                <input type="checkbox" ng-model="recommendMappingModel.checked" name="checked"/>{{recommendMappingModel.recommendName}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
                     <td width="10%">地区：</td>
                     <td width="40%">
                         <div class="col-sm-7">

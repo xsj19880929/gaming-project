@@ -1,13 +1,13 @@
 (function (angular) {
     var module = angular.module('app');
 
-    module.controller('MatchZoneListController', ['$scope', '$http', '$location', '$rootScope', function ($scope, $http, $location, $rootScope) {
+    module.controller('MatchTeamListController', ['$scope', '$http', '$location', '$rootScope', function ($scope, $http, $location, $rootScope) {
         $scope.offset = 0;
         $scope.fetchSize = 25;
         $scope.params = {};
 
         var loadData = function (offset, fetchSize) {
-            var url = "/zone/match-zone/list?offset=" + offset + "&fetchSize=" + fetchSize;
+            var url = "/zone/match-team/list?offset=" + offset + "&fetchSize=" + fetchSize;
             $http.post(url, $scope.params).success(function (data) {
                 $scope.gridOptions.data = data.list;
                 $scope.gridOptions.totalItems = data.total;
@@ -23,31 +23,20 @@
             useExternalPagination: true,
             columnDefs: [
                 {
-                    name: '专区名称',
+                    name: '名称',
                     field: 'name'
                 },
                 {
-                    name: '访问次数',
-                    field: 'visitCount'
+                    name: '是否明星战队',
+                    field: 'ifStarTeam',
+                    cellTemplate: '<span>{{row.entity.ifStarTeam==true?"是":"否"}}</span>'
                 },
-                {
-                    name: '启动赛事',
-                    field: 'ifStart',
-                    cellTemplate: '<span>{{row.entity.ifStart==true?"是":"否"}}</span>'
-                },
-                {
-                    name: '主播赛事',
-                    field: 'ifAnchorMatch',
-                    cellTemplate: '<span>{{row.entity.ifAnchorMatch==true?"是":"否"}}</span>'
-                },
-                {name: '地区', field: 'matchZoneAreaName'},
-                {name: '时间', field: 'matchZoneYearName'},
-                {name: '状态', field: 'matchStatus.label'},
-                {name: '发布时间', field: 'updateTime', type: 'date', cellFilter: 'date:"yyyy-MM-dd HH:mm:ss"'},
+
+                {name: '成立时间', field: 'setUpTime', type: 'date', cellFilter: 'date:"yyyy-MM-dd HH:mm:ss"'},
                 {
                     name: '操作',
-                    cellTemplate: '<button class="btn btn-primary btn-sm" ng-click="grid.appScope.updateMatchZone(row.entity.id);">编辑</button>' +
-                    '<button class="btn btn-danger btn-sm" ng-click="grid.appScope.deleteMatchZone(row.entity.id);">删除</button>'
+                    cellTemplate: '<button class="btn btn-primary btn-sm" ng-click="grid.appScope.updateMatchTeam(row.entity.id);">编辑</button>' +
+                    '<button class="btn btn-danger btn-sm" ng-click="grid.appScope.deleteMatchTeam(row.entity.id);">删除</button>'
                 }
             ],
             onRegisterApi: function (gridApi) {
@@ -59,13 +48,13 @@
         };
 
 
-        $scope.updateMatchZone = function (id) {
+        $scope.updateMatchTeam = function (id) {
             $location.search('id', id);
-            $location.path('zone/match-zone/update');
+            $location.path('zone/match-team/update');
         };
-        $scope.deleteMatchZone = function (id) {
+        $scope.deleteMatchTeam = function (id) {
             if (confirm("确认删除？")) {
-                $http.delete('zone/match-zone/' + id).success(function (data) {
+                $http.delete('zone/match-team/' + id).success(function (data) {
                     loadData($scope.offset, $scope.fetchSize);
                 });
             }

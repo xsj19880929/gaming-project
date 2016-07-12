@@ -63,4 +63,11 @@ public class MatchZoneDao {
         return jpaAccess.findOne(QueryBuilder.query("from MatchZone").append("id", id).append("status", 1).build());
     }
 
+    public List<MatchZone> listAll() {
+        QueryBuilder queryBuilder = QueryBuilder.query("from MatchZone").append("status", 1)
+                .skipEmptyFields().orderBy("createTime").desc();
+        Query query = queryBuilder.build();
+        return jpaAccess.find(query);
+    }
+
 }

@@ -37,6 +37,10 @@
                     $scope.ue.setContent($scope.matchZone.introduction);
                 });
             });
+        } else {
+            $http.get('recommend/listRecommendMapping?recommendType=matchZone').success(function (data) {
+                $scope.matchZone.recommendMappingModelList = data;
+            });
         }
         if (!$rootScope.imageServerUrl) {
             $http.get('image/server').success(function (urlResponse) {

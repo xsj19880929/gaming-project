@@ -23,7 +23,7 @@ import java.util.List;
  * @author soldier
  */
 @RestController
-@Menu({"recommend.list"})
+@Menu({"recommend.recommend.list"})
 public class RecommendController {
     @Inject
     RecommendService recommendService;
@@ -71,6 +71,13 @@ public class RecommendController {
     @ResponseBody
     public List<RecommendMappingModel> listRecommendMappingByEntityId(@RequestParam("recommendType") RecommendType recommendType, @RequestParam("entityId") Long entityId) {
         return recommendMappingModelService.listByEntityAndTyp(entityId, recommendType);
+    }
+
+    @RequireSession
+    @RequestMapping(value = "/recommend/listRecommendMapping", method = RequestMethod.GET)
+    @ResponseBody
+    public List<RecommendMappingModel> listRecommendMapping(@RequestParam("recommendType") RecommendType recommendType) {
+        return recommendMappingModelService.listRecommendMapping(recommendType);
     }
 
 

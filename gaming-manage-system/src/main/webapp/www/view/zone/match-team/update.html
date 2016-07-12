@@ -1,0 +1,85 @@
+<!-- 实例化编辑器 -->
+<script src="ue/ueditor.config.js"></script>
+<script src="ue/ueditor.all.js"></script>
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#" ui-sref="index">首页</a></li>
+        <li><a href="#" ui-sref="zone.match-zone.list">专区管理</a></li>
+        <li><a href="#" ui-sref="zone.match-zone.list">战队管理</a></li>
+    </ol>
+
+    <h2 class="page-header">编辑战队</h2>
+
+    <form name="form" class="form-horizontal">
+        <div class="well">
+            <button class="btn btn-primary" validation-submit="form" ng-click="updateMatchTeam()">保存</button>
+        </div>
+        <div class="section form-horizontal">
+            <table class="table">
+
+                <tr>
+                    <td width="10%">名称：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="matchTeam.name"
+                                   placeholder="" validator="required" name="name"/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">图标图片：</td>
+                    <td width="40%">
+                        <img img-src="{{matchTeam.icoImage}}" alt=""/>
+                        <div class="btn btn-primary" ng-file-select ng-file-change="uploadIcoImage($files)">上传</div>
+                        (支持格式：jpg,jpeg,png,bmp, 建议像素为360*270)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">成立时间：</td>
+                    <td width="40%">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" id="startTime" role="button" data-toggle="dropdown"
+                               data-target="#" href="#">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" validator="required" name="setUpTime"
+                                           ng-model="matchTeam.setUpTime | date:'yyyy-MM-dd HH:mm:ss'"
+                                           placeholder="请选择开始时间">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="matchTeam.setUpTime"
+                                                datetimepicker-config="{ dropdownSelector: '#setUpTime' }"/>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td width="10%">是否启用：</td>
+                    <td width="40%">
+                        <input type="checkbox" ng-model="matchTeam.ifStarTeam">是否明星战队
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">关联赛事：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <div ng-repeat="matchTeamMappingModel in matchTeam.matchTeamMappingModelList"
+                                 class="checkbox-inline">
+                                <input type="checkbox" ng-model="matchTeamMappingModel.checked" name="checked"/>{{matchTeamMappingModel.matchZoneName}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </form>
+</div>

@@ -36,4 +36,20 @@ public class RecommendMappingModelService {
         return recommendMappingModelList;
 
     }
+
+    public List<RecommendMappingModel> listRecommendMapping(RecommendType recommendType) {
+        List<Recommend> recommendList = recommendService.listByType(recommendType);
+        List<RecommendMappingModel> recommendMappingModelListNew = new ArrayList<>();
+        for (Recommend recommend : recommendList) {
+            RecommendMappingModel recommendMappingModelNew = new RecommendMappingModel();
+            recommendMappingModelNew.setChecked(false);
+            recommendMappingModelNew.setRecommendName(recommend.getName());
+            recommendMappingModelNew.setRecommendId(recommend.getId());
+            recommendMappingModelNew.setRecommendType(RecommendType.matchZone);
+            recommendMappingModelListNew.add(recommendMappingModelNew);
+        }
+        return recommendMappingModelListNew;
+
+    }
+
 }
