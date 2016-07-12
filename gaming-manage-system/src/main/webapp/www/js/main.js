@@ -207,6 +207,20 @@
                 templateUrl: "www/view/recommend/recommend/update.html",
                 controller: 'RecommendUpdateController'
             })
+            .state('recommend.advertising', {
+                url: "/advertising",
+                templateUrl: "www/view/recommend/advertising/index.html"
+            })
+            .state('recommend.advertising.list', {
+                url: "/",
+                templateUrl: "www/view/recommend/advertising/list.html",
+                controller: 'AdvertisingListController'
+            })
+            .state('recommend.advertising.update', {
+                url: "/update",
+                templateUrl: "www/view/recommend/advertising/update.html",
+                controller: 'AdvertisingUpdateController'
+            })
 
 
     }).config(

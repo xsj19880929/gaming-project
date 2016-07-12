@@ -20,25 +20,6 @@
             });
 
         }
-        $scope.uploadFile = function (files, editor, editorElem) {
-            if (files && files.length > 0) {
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    $upload.upload({
-                        url: 'image/upload', //$scope.uploadServerUrl,
-                        file: file
-                    }).progress(function (evt) {
-                        $scope.message = 'uploading……';
-                    }).success(function (data, status, headers, config) {
-                        if (editor) {
-                            editor.insertImage(editorElem, $rootScope.uploadServerUrl + data.path, '');
-                        } else {
-                            $scope.files.push(data);
-                        }
-                    });
-                }
-            }
-        };
 
         $scope.updateMatchTeam = function () {
             if ($scope.id) {
