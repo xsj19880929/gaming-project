@@ -1,0 +1,236 @@
+<!-- 实例化编辑器 -->
+<script src="ue/ueditor.config.js"></script>
+<script src="ue/ueditor.all.js"></script>
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#" ui-sref="index">首页</a></li>
+        <li><a href="#" ui-sref="zone.anchor-zone.list">专区管理</a></li>
+        <li><a href="#" ui-sref="zone.anchor-zone.list">主播管理</a></li>
+    </ol>
+
+    <h2 class="page-header">编辑主播</h2>
+
+    <form name="form" class="form-horizontal">
+        <div class="well">
+            <button class="btn btn-primary" validation-submit="form" ng-click="updateAnchorZone()">保存</button>
+        </div>
+        <div class="section form-horizontal">
+            <table class="table">
+
+                <tr>
+                    <td width="10%">专区名称：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="anchorZone.name"
+                                   placeholder="" validator="required" name="name"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">专区名称拼音：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="anchorZone.nameSpell"
+                                   placeholder="" validator="required" name="nameSpell"/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">拼音首字母：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="anchorZone.nameFirstLetter"
+                                   placeholder="" validator="required" name="nameFirstLetter"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">推荐位：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <div ng-repeat="recommendMappingModel in anchorZone.recommendMappingModelList"
+                                 class="checkbox-inline">
+                                <input type="checkbox" ng-model="recommendMappingModel.checked" name="checked"/>{{recommendMappingModel.recommendName}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">赛事：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <div ng-repeat="anchorZoneMatchZoneMappingModel in anchorZone.anchorZoneMatchZoneMappingModelList"
+                                 class="checkbox-inline">
+                                <input type="checkbox" ng-model="anchorZoneMatchZoneMappingModel.checked"
+                                       name="anchorZoneChecked"/>{{anchorZoneMatchZoneMappingModel.matchZoneName}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">平台：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <select class="form-control" ng-model="anchorZone.platformId"
+                                    ng-options="m.id as m.name for m in anchorZonePlatformList" validator="required"
+                                    name="platformId">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">SEO标题：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="anchorZone.seoTitle"
+                                   placeholder=""/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">SEO关键字：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="anchorZone.seoKeywords"
+                                   placeholder=""/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">SEO描述：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="anchorZone.seoDescription"
+                                   placeholder=""/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">访问次数：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="anchorZone.visitCount"
+                                   placeholder="" ng-init="anchorZone.visitCount=0"/>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td width="10%">图标图片：</td>
+                    <td width="40%">
+                        <img img-src="{{anchorZone.icoImage}}" alt=""/>
+                        <div class="btn btn-primary" ng-file-select ng-file-change="uploadIcoImage($files)">上传</div>
+                        (支持格式：jpg,jpeg,png,bmp, 建议像素为360*270)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">背景图片：</td>
+                    <td width="40%">
+                        <img img-src="{{anchorZone.backgroundImage}}" alt=""/>
+                        <div class="btn btn-primary" ng-file-select ng-file-change="uploadBackgroundImage($files)">上传
+                        </div>
+                        (支持格式：jpg,jpeg,png,bmp, 建议像素为360*270)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">推荐图片：</td>
+                    <td width="40%">
+                        <img img-src="{{anchorZone.recommendImage}}" alt=""/>
+                        <div class="btn btn-primary" ng-file-select ng-file-change="uploadRecommendImage($files)">上传
+                        </div>
+                        (支持格式：jpg,jpeg,png,bmp, 建议像素为360*270)
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td width="10%">姓名：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="anchorZone.username"
+                                   placeholder="" validator="required" name="username"/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">别名：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="anchorZone.otherUsername"
+                                   placeholder="" validator="required" name="otherUsername"/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">专区介绍：</td>
+
+                    <td width="70%">
+                        <script id="container" name="content" type="text/plain">
+                        </script>
+                    </td>
+                </tr>
+
+
+            </table>
+
+            <table class="table table-bordered">
+                <th class="alert-info" colspan="7">荣誉</th>
+                <tr>
+                    <td>奖项</td>
+                    <td>日期</td>
+                    <td>操作</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="form-control" type="text" ng-model="anchorZoneHonor.name"
+                               placeholder="" name="anchorZoneHonorName"/>
+                    <td>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" id="honorTime" role="button" data-toggle="dropdown"
+                               data-target="#" href="#">
+                                <div class="input-group">
+                                    <input type="text" class="form-control"
+                                           ng-model="anchorZoneHonor.honorTime | date:'yyyy-MM-dd HH:mm:ss'">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="anchorZoneHonor.honorTime"
+                                                datetimepicker-config="{ dropdownSelector: '#honorTime' }"/>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="saveAnchorZoneHonor()">保存</button>
+                    </td>
+                </tr>
+                <tr ng-repeat="anchorZoneHonor in anchorZone.anchorZoneHonorList">
+                    <td>
+                        {{anchorZoneHonor.name}}
+                    </td>
+                    <td>
+                        {{anchorZoneHonor.honorTime| date:'yyyy-MM-dd HH:mm:ss'}}
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="deleteAnchorZoneHonor(anchorZoneHonor)">删除
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </div>
+    </form>
+</div>

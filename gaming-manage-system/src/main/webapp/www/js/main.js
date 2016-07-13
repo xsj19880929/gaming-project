@@ -221,6 +221,20 @@
                 templateUrl: "www/view/recommend/advertising/update.html",
                 controller: 'AdvertisingUpdateController'
             })
+            .state('zone.anchor-zone', {
+                url: "/anchor-zone",
+                templateUrl: "www/view/zone/anchor-zone/index.html"
+            })
+            .state('zone.anchor-zone.list', {
+                url: "/",
+                templateUrl: "www/view/zone/anchor-zone/list.html",
+                controller: 'AnchorZoneListController'
+            })
+            .state('zone.anchor-zone.update', {
+                url: "/update",
+                templateUrl: "www/view/zone/anchor-zone/update.html",
+                controller: 'AnchorZoneUpdateController'
+            })
 
 
     }).config(

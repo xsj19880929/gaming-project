@@ -45,7 +45,7 @@ public class RecommendMappingModelService {
             recommendMappingModelNew.setChecked(false);
             recommendMappingModelNew.setRecommendName(recommend.getName());
             recommendMappingModelNew.setRecommendId(recommend.getId());
-            recommendMappingModelNew.setRecommendType(RecommendType.matchZone);
+            recommendMappingModelNew.setRecommendType(recommendType);
             recommendMappingModelListNew.add(recommendMappingModelNew);
         }
         return recommendMappingModelListNew;

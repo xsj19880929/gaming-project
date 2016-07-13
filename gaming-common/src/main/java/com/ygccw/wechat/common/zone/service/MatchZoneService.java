@@ -24,4 +24,6 @@ public interface MatchZoneService {
     int listSize(MatchZone matchZone);
 
     List<MatchZone> listAll();
+
+    List<MatchZone> listByIfAnchorMatch();
 }

@@ -18,6 +18,37 @@ public class AnchorZone {
     private Integer status;
     private Date createTime;
     private Date updateTime;
+    private String name;
+    private String nameSpell;
+    private String nameFirstLetter;
+    private String introduction;
+    private String seoTitle;
+    private String seoKeywords;
+    private String seoDescription;
+    private Long visitCount;
+    private String icoImage;
+    private String backgroundImage;
+    private String recommendImage;
+    private String username;
+    private String otherUsername;
+    private Long platformId;
+    private String platformName;
+
+    public Long getPlatformId() {
+        return platformId;
+    }
+
+    public void setPlatformId(Long platformId) {
+        this.platformId = platformId;
+    }
+
+    public String getPlatformName() {
+        return platformName;
+    }
+
+    public void setPlatformName(String platformName) {
+        this.platformName = platformName;
+    }
 
     public Long getId() {
         return id;
@@ -49,5 +80,109 @@ public class AnchorZone {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNameSpell() {
+        return nameSpell;
+    }
+
+    public void setNameSpell(String nameSpell) {
+        this.nameSpell = nameSpell;
+    }
+
+    public String getNameFirstLetter() {
+        return nameFirstLetter;
+    }
+
+    public void setNameFirstLetter(String nameFirstLetter) {
+        this.nameFirstLetter = nameFirstLetter;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getSeoTitle() {
+        return seoTitle;
+    }
+
+    public void setSeoTitle(String seoTitle) {
+        this.seoTitle = seoTitle;
+    }
+
+    public String getSeoKeywords() {
+        return seoKeywords;
+    }
+
+    public void setSeoKeywords(String seoKeywords) {
+        this.seoKeywords = seoKeywords;
+    }
+
+    public String getSeoDescription() {
+        return seoDescription;
+    }
+
+    public void setSeoDescription(String seoDescription) {
+        this.seoDescription = seoDescription;
+    }
+
+    public Long getVisitCount() {
+        return visitCount;
+    }
+
+    public void setVisitCount(Long visitCount) {
+        this.visitCount = visitCount;
+    }
+
+    public String getIcoImage() {
+        return icoImage;
+    }
+
+    public void setIcoImage(String icoImage) {
+        this.icoImage = icoImage;
+    }
+
+    public String getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(String backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
+
+    public String getRecommendImage() {
+        return recommendImage;
+    }
+
+    public void setRecommendImage(String recommendImage) {
+        this.recommendImage = recommendImage;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getOtherUsername() {
+        return otherUsername;
+    }
+
+    public void setOtherUsername(String otherUsername) {
+        this.otherUsername = otherUsername;
     }
 }

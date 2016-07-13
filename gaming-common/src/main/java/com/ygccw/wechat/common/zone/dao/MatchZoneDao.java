@@ -70,4 +70,11 @@ public class MatchZoneDao {
         return jpaAccess.find(query);
     }
 
+    public List<MatchZone> listByIfAnchorMatch() {
+        QueryBuilder queryBuilder = QueryBuilder.query("from MatchZone").append("status", 1).append("ifAnchorMatch", true)
+                .skipEmptyFields().orderBy("createTime").desc();
+        Query query = queryBuilder.build();
+        return jpaAccess.find(query);
+    }
+
 }

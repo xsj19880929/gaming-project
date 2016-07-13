@@ -84,4 +84,9 @@ public class MatchZoneServiceImpl implements MatchZoneService {
     public List<MatchZone> listAll() {
         return matchZoneDao.listAll();
     }
+
+    @Override
+    public List<MatchZone> listByIfAnchorMatch() {
+        return matchZoneDao.listByIfAnchorMatch();
+    }
 }
