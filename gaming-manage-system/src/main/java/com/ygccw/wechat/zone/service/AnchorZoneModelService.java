@@ -93,36 +93,44 @@ public class AnchorZoneModelService {
             }
         }
         if (anchorZoneModel.getRecommendMappingModelList() != null) {
-            for (RecommendMappingModel recommendMappingModel : anchorZoneModel.getRecommendMappingModelList()) {
-                RecommendMapping recommendMapping = new RecommendMapping();
-                BeanUtils.copyProperties(recommendMappingModel, recommendMapping);
-                if (recommendMappingModel.getChecked()) {
-                    if (recommendMapping.getId() == null) {
-                        recommendMappingService.save(recommendMapping);
-                    } else {
-                        recommendMappingService.update(recommendMapping);
-                    }
+            saveOrUpdateRecommendMapping(anchorZoneModel.getRecommendMappingModelList());
+        }
+        if (anchorZoneModel.getAnchorZoneMatchZoneMappingModelList() != null) {
+            saveOrUpdateAnchorZoneMatchZoneMapping(anchorZoneModel.getAnchorZoneMatchZoneMappingModelList());
+        }
+    }
+
+    private void saveOrUpdateRecommendMapping(List<RecommendMappingModel> recommendMappingModelList) {
+        for (RecommendMappingModel recommendMappingModel : recommendMappingModelList) {
+            RecommendMapping recommendMapping = new RecommendMapping();
+            BeanUtils.copyProperties(recommendMappingModel, recommendMapping);
+            if (recommendMappingModel.getChecked()) {
+                if (recommendMapping.getId() == null) {
+                    recommendMappingService.save(recommendMapping);
                 } else {
-                    if (recommendMapping.getId() != null) {
-                        recommendMappingService.delete(recommendMapping.getId());
-                    }
+                    recommendMappingService.update(recommendMapping);
+                }
+            } else {
+                if (recommendMapping.getId() != null) {
+                    recommendMappingService.delete(recommendMapping.getId());
                 }
             }
         }
-        if (anchorZoneModel.getAnchorZoneMatchZoneMappingModelList() != null) {
-            for (AnchorZoneMatchZoneMappingModel anchorZoneMatchZoneMappingModel : anchorZoneModel.getAnchorZoneMatchZoneMappingModelList()) {
-                AnchorZoneMatchZoneMapping anchorZoneMatchZoneMapping = new AnchorZoneMatchZoneMapping();
-                BeanUtils.copyProperties(anchorZoneMatchZoneMappingModel, anchorZoneMatchZoneMapping);
-                if (anchorZoneMatchZoneMappingModel.getChecked()) {
-                    if (anchorZoneMatchZoneMapping.getId() == null) {
-                        anchorZoneMatchZoneMappingService.save(anchorZoneMatchZoneMapping);
-                    } else {
-                        anchorZoneMatchZoneMappingService.update(anchorZoneMatchZoneMapping);
-                    }
+    }
+
+    private void saveOrUpdateAnchorZoneMatchZoneMapping(List<AnchorZoneMatchZoneMappingModel> anchorZoneMatchZoneMappingModelList) {
+        for (AnchorZoneMatchZoneMappingModel anchorZoneMatchZoneMappingModel : anchorZoneMatchZoneMappingModelList) {
+            AnchorZoneMatchZoneMapping anchorZoneMatchZoneMapping = new AnchorZoneMatchZoneMapping();
+            BeanUtils.copyProperties(anchorZoneMatchZoneMappingModel, anchorZoneMatchZoneMapping);
+            if (anchorZoneMatchZoneMappingModel.getChecked()) {
+                if (anchorZoneMatchZoneMapping.getId() == null) {
+                    anchorZoneMatchZoneMappingService.save(anchorZoneMatchZoneMapping);
                 } else {
-                    if (anchorZoneMatchZoneMapping.getId() != null) {
-                        anchorZoneMatchZoneMappingService.delete(anchorZoneMatchZoneMapping.getId());
-                    }
+                    anchorZoneMatchZoneMappingService.update(anchorZoneMatchZoneMapping);
+                }
+            } else {
+                if (anchorZoneMatchZoneMapping.getId() != null) {
+                    anchorZoneMatchZoneMappingService.delete(anchorZoneMatchZoneMapping.getId());
                 }
             }
         }

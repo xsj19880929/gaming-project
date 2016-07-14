@@ -92,19 +92,23 @@ public class MatchZoneModelService {
             }
         }
         if (matchZoneModel.getRecommendMappingModelList() != null) {
-            for (RecommendMappingModel recommendMappingModel : matchZoneModel.getRecommendMappingModelList()) {
-                RecommendMapping recommendMapping = new RecommendMapping();
-                BeanUtils.copyProperties(recommendMappingModel, recommendMapping);
-                if (recommendMappingModel.getChecked()) {
-                    if (recommendMapping.getId() == null) {
-                        recommendMappingService.save(recommendMapping);
-                    } else {
-                        recommendMappingService.update(recommendMapping);
-                    }
+            saveOrUpdateRecommendMapping(matchZoneModel.getRecommendMappingModelList());
+        }
+    }
+
+    private void saveOrUpdateRecommendMapping(List<RecommendMappingModel> recommendMappingModelList) {
+        for (RecommendMappingModel recommendMappingModel : recommendMappingModelList) {
+            RecommendMapping recommendMapping = new RecommendMapping();
+            BeanUtils.copyProperties(recommendMappingModel, recommendMapping);
+            if (recommendMappingModel.getChecked()) {
+                if (recommendMapping.getId() == null) {
+                    recommendMappingService.save(recommendMapping);
                 } else {
-                    if (recommendMapping.getId() != null) {
-                        recommendMappingService.delete(recommendMapping.getId());
-                    }
+                    recommendMappingService.update(recommendMapping);
+                }
+            } else {
+                if (recommendMapping.getId() != null) {
+                    recommendMappingService.delete(recommendMapping.getId());
                 }
             }
         }
