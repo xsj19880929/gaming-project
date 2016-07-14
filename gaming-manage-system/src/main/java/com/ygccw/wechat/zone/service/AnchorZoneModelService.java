@@ -182,7 +182,7 @@ public class AnchorZoneModelService {
             anchorZoneMatchZoneMappingModel.setMatchZoneName(matchZone.getName());
             for (AnchorZoneMatchZoneMapping anchorZoneMatchZoneMapping : anchorZoneMatchZoneMappingList) {
                 if (anchorZoneMatchZoneMapping.getMatchZoneId().compareTo(matchZone.getId()) == 0) {
-                    BeanUtils.copyProperties(anchorZoneMatchZoneMappingModel, anchorZoneMatchZoneMappingModel);
+                    BeanUtils.copyProperties(anchorZoneMatchZoneMapping, anchorZoneMatchZoneMappingModel);
                     anchorZoneMatchZoneMappingModel.setChecked(true);
                     anchorZoneMatchZoneMappingModel.setMatchZoneName(matchZone.getName());
                 }
