@@ -2,6 +2,8 @@ package com.ygccw.wechat.picture.controller;
 
 import com.ygccw.wechat.common.picture.entity.Picture;
 import com.ygccw.wechat.common.picture.service.PictureService;
+import com.ygccw.wechat.picture.model.PictureModel;
+import com.ygccw.wechat.picture.service.PictureModelService;
 import com.ygccw.wechat.sys.Menu;
 import core.framework.database.FindResult;
 import core.framework.web.site.session.RequireSession;
@@ -23,6 +25,8 @@ import javax.inject.Inject;
 public class PictureController {
     @Inject
     PictureService pictureService;
+    @Inject
+    PictureModelService pictureModelService;
 
     @RequireSession
     @RequestMapping(value = "picture/list", method = RequestMethod.POST)
@@ -34,15 +38,15 @@ public class PictureController {
     @RequireSession
     @RequestMapping(value = "picture/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Picture findOne(@PathVariable("id") Long id) {
-        return pictureService.findById(id);
+    public PictureModel findOne(@PathVariable("id") Long id) {
+        return pictureModelService.findById(id);
     }
 
     @RequireSession
     @RequestMapping(value = "picture", method = RequestMethod.PUT)
     @ResponseBody
-    public void update(@RequestBody Picture picture) {
-        pictureService.update(picture);
+    public void update(@RequestBody PictureModel pictureModel) {
+        pictureModelService.update(pictureModel);
     }
 
 
@@ -56,8 +60,8 @@ public class PictureController {
     @RequireSession
     @RequestMapping(value = "picture", method = RequestMethod.POST)
     @ResponseBody
-    public void save(@RequestBody Picture picture) {
-        pictureService.save(picture);
+    public void save(@RequestBody PictureModel pictureModel) {
+        pictureModelService.save(pictureModel);
     }
 
 

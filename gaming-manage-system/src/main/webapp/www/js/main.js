@@ -235,6 +235,20 @@
                 templateUrl: "www/view/zone/anchor-zone/update.html",
                 controller: 'AnchorZoneUpdateController'
             })
+            .state('picture', {
+                url: "/picture",
+                templateUrl: "www/view/picture/index.html"
+            })
+            .state('picture.list', {
+                url: "/",
+                templateUrl: "www/view/picture/list.html",
+                controller: 'PictureListController'
+            })
+            .state('picture.update', {
+                url: "/update",
+                templateUrl: "www/view/picture/update.html",
+                controller: 'PictureUpdateController'
+            })
 
 
     }).config(

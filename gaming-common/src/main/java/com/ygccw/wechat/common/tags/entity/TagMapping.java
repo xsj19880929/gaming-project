@@ -22,6 +22,15 @@ public class TagMapping {
     private Long entityId;
     private TagType tagType;
     private TagZoneType tagZoneType;
+    private Long tagsId;
+
+    public Long getTagsId() {
+        return tagsId;
+    }
+
+    public void setTagsId(Long tagsId) {
+        this.tagsId = tagsId;
+    }
 
     public Long getId() {
         return id;

@@ -1,6 +1,8 @@
 package com.ygccw.wechat.common.tags.dao;
 
 import com.ygccw.wechat.common.tags.entity.Tags;
+import com.ygccw.wechat.common.tags.enums.TagType;
+import com.ygccw.wechat.common.tags.enums.TagZoneType;
 import core.framework.database.JPAAccess;
 import core.framework.database.Query;
 import core.framework.database.QueryBuilder;
@@ -63,6 +65,14 @@ public class TagsDao {
 
     public Tags findById(Long id) {
         return jpaAccess.findOne(QueryBuilder.query("from Tags").append("id", id).append("status", 1).build());
+    }
+
+    public Tags findByName(String name, TagType tagType, TagZoneType tagZoneType) {
+        QueryBuilder queryBuilder = QueryBuilder.query("from Tags")
+                .append("status", 1).append("name", name).append("tagType", tagType).append("tagZoneType", tagZoneType)
+                .skipEmptyFields().orderBy("updateTime").desc();
+        Query query = queryBuilder.build();
+        return jpaAccess.findOne(query);
     }
 
 }

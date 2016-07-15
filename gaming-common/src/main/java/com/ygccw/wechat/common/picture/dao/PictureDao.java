@@ -26,8 +26,8 @@ public class PictureDao {
                 .append("pictureZoneType", picture.getPictureZoneType())
                 .append("verify", picture.getVerify())
                 .skipEmptyFields().orderBy("updateTime").desc();
-        if (StringUtils.hasText(picture.getTitle())) {
-            queryBuilder.append("title", "%" + picture.getTitle() + "%", "like");
+        if (StringUtils.hasText(picture.getDescription())) {
+            queryBuilder.append("description", "%" + picture.getDescription() + "%", "like");
         }
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
@@ -40,8 +40,8 @@ public class PictureDao {
                 .append("pictureZoneType", picture.getPictureZoneType())
                 .append("verify", picture.getVerify())
                 .skipEmptyFields();
-        if (StringUtils.hasText(picture.getTitle())) {
-            queryBuilder.append("title", "%" + picture.getTitle() + "%", "like");
+        if (StringUtils.hasText(picture.getDescription())) {
+            queryBuilder.append("description", "%" + picture.getDescription() + "%", "like");
         }
         return Integer.parseInt(jpaAccess.find(queryBuilder.build()).get(0).toString());
 

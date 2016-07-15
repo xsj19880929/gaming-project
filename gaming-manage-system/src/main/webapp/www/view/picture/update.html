@@ -1,0 +1,150 @@
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#" ui-sref="index">首页</a></li>
+        <li><a href="#" ui-sref="picture.list">图集管理</a></li>
+    </ol>
+
+    <h2 class="page-header">编辑图集</h2>
+
+    <form name="form" class="form-horizontal">
+        <div class="well">
+            <button class="btn btn-primary" validation-submit="form" ng-click="updatePicture()">保存</button>
+        </div>
+        <div class="section form-horizontal">
+            <table class="table">
+
+                <tr>
+                    <td width="10%">标题图片：</td>
+                    <td width="40%">
+                        <img img-src="{{picture.image}}" alt=""/>
+                        <div class="btn btn-primary" ng-file-select ng-file-change="uploadImage($files)">上传</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">美图简介：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="picture.description"
+                                   placeholder="" validator="required" name="description"/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">来源：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="picture.source"
+                                   placeholder="" validator="required" name="description"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">标签：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="picture.tags"
+                                   placeholder="" name="tags"/>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td width="10%">推荐位：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <div ng-repeat="recommendMappingModel in picture.recommendMappingModelList"
+                                 class="checkbox-inline">
+                                <input type="checkbox" ng-model="recommendMappingModel.checked" name="checked"/>{{recommendMappingModel.recommendName}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">SEO标题：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="picture.seoTitle"
+                                   placeholder=""/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">SEO关键字：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="picture.seoKeywords"
+                                   placeholder=""/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">SEO描述：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="picture.seoDescription"
+                                   placeholder=""/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">人气：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="picture.visitCount"
+                                   placeholder="" ng-init="picture.visitCount=0"/>
+                        </div>
+                    </td>
+                </tr>
+
+
+            </table>
+
+            <table class="table table-bordered">
+                <th class="alert-info" colspan="7">图集</th>
+                <tr>
+                    <td>图片</td>
+                    <td>描述</td>
+                    <td>顺序</td>
+                    <td>操作</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img img-src="{{pictureDetail.image}}" alt="" ng-if="pictureDetail.image"/>
+                        <div class="btn btn-primary" ng-file-select ng-file-change="uploadPictureDetailImage($files)">
+                            上传
+                        </div>
+                    <td>
+                        <input class="form-control" type="text" ng-model="pictureDetail.description"/>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" ng-model="pictureDetail.sort"/>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="savePictureDetail()">添加</button>
+                    </td>
+                </tr>
+                <tr ng-repeat="pictureDetail in picture.pictureDetailList">
+                    <td>
+                        <img img-src="{{pictureDetail.image}}" alt=""/>
+                    </td>
+                    <td>
+                        {{pictureDetail.description}}
+                    </td>
+                    <td>
+                        {{pictureDetail.sort}}
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="deletePictureDetail(pictureDetail)">删除
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <br><br>
+        </div>
+    </form>
+</div>

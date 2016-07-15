@@ -20,14 +20,13 @@ public class Picture {
     private Date updateTime;
     private String type;
     private String source;
-    private String title;
     private String description;
     private String image;
     private String seoTitle;
     private String seoKeywords;
     private String seoDescription;
     private String publishTime;
-    private Integer visit;
+    private Integer visitCount;
     private String tags;
     private Integer verify;
     private Integer zoneId;
@@ -81,13 +80,6 @@ public class Picture {
         this.source = source;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getDescription() {
         return description;
@@ -129,12 +121,12 @@ public class Picture {
         this.publishTime = publishTime;
     }
 
-    public Integer getVisit() {
-        return visit;
+    public Integer getVisitCount() {
+        return visitCount;
     }
 
-    public void setVisit(Integer visit) {
-        this.visit = visit;
+    public void setVisitCount(Integer visitCount) {
+        this.visitCount = visitCount;
     }
 
     public String getTags() {

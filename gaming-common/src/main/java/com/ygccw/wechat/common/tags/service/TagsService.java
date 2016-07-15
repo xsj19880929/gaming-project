@@ -2,6 +2,8 @@ package com.ygccw.wechat.common.tags.service;
 
 
 import com.ygccw.wechat.common.tags.entity.Tags;
+import com.ygccw.wechat.common.tags.enums.TagType;
+import com.ygccw.wechat.common.tags.enums.TagZoneType;
 
 import java.util.List;
 
@@ -22,5 +24,7 @@ public interface TagsService {
     List<Tags> list(Tags tags, int offset, int fetchSize);
 
     int listSize(Tags tags);
+
+    Tags findByName(String name, TagType tagType, TagZoneType tagZoneType);
 
 }

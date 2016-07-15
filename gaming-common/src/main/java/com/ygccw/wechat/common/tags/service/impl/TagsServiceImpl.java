@@ -3,6 +3,8 @@ package com.ygccw.wechat.common.tags.service.impl;
 
 import com.ygccw.wechat.common.tags.dao.TagsDao;
 import com.ygccw.wechat.common.tags.entity.Tags;
+import com.ygccw.wechat.common.tags.enums.TagType;
+import com.ygccw.wechat.common.tags.enums.TagZoneType;
 import com.ygccw.wechat.common.tags.service.TagsService;
 import org.springframework.stereotype.Service;
 
@@ -57,4 +59,8 @@ public class TagsServiceImpl implements TagsService {
         return tagsDao.listSize(tags);
     }
 
+    @Override
+    public Tags findByName(String name, TagType tagType, TagZoneType tagZoneType) {
+        return tagsDao.findByName(name, tagType, tagZoneType);
+    }
 }
