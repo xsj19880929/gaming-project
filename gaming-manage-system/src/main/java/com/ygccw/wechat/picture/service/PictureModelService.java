@@ -142,12 +142,15 @@ public class PictureModelService {
         if (StringUtils.hasText(tags)) {
             String[] tagArray = tags.split(" ");
             List<String> tagList = Arrays.asList(tagArray);
+            tagMappingService.deleteByEntityIdAndType(entityId, TagType.picture, null);
             for (String tag : tagList) {
                 Tags tagsEntity = tagsService.findByName(tag, TagType.picture, null);
-                if (tagsEntity != null) {
+                if (tagsEntity == null) {
+                    tagsEntity = new Tags();
+                    tagsEntity.setTagType(TagType.picture);
+                    tagsEntity.setName(tag);
                     tagsService.save(tagsEntity);
                 }
-                tagMappingService.deleteByEntityIdAndType(entityId, TagType.picture, null);
                 TagMapping tagMapping = new TagMapping();
                 tagMapping.setEntityId(entityId);
                 tagMapping.setTagsId(tagsEntity.getId());

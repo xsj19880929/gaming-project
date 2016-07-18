@@ -4,6 +4,8 @@ import com.ygccw.wechat.common.tags.enums.TagType;
 import com.ygccw.wechat.common.tags.enums.TagZoneType;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
@@ -20,7 +22,9 @@ public class Tags {
     private Date createTime;
     private Date updateTime;
     private String name;
+    @Enumerated(EnumType.STRING)
     private TagType tagType;
+    @Enumerated(EnumType.STRING)
     private TagZoneType tagZoneType;
 
     public Long getId() {

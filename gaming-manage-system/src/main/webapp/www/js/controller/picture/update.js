@@ -9,10 +9,14 @@
 
         $scope.id = $location.search().id;
         $scope.files = [];
-
+        $scope.pictureDetail = {};
+        $scope.pictureDetailList = [];
+        $scope.pictureDetail.sort = 1;
         if ($location.search().id) {
             $http.get('picture/' + $location.search().id).success(function (data) {
                 $scope.picture = data;
+                $scope.pictureDetailList = $scope.picture.pictureDetailList;
+                $scope.pictureDetail.sort = $scope.pictureDetailList.length + 1;
             });
         } else {
             $http.get('recommend/listRecommendMapping?recommendType=picture').success(function (data) {
@@ -63,16 +67,7 @@
                 }
             }
         };
-        $scope.pictureDetail = {};
-        $scope.pictureDetailList = [];
-        $scope.pictureDetail.sort = 1;
-        if ($scope.picture.pictureDetailList) {
-            $scope.pictureDetail.sort = $scope.pictureDetailList.length + 1;
-        }
         $scope.savePictureDetail = function () {
-            if ($scope.picture.pictureDetailList) {
-                $scope.pictureDetailList = $scope.picture.pictureDetailList;
-            }
             if ($scope.pictureDetail) {
                 $scope.pictureDetailList.push(angular.copy($scope.pictureDetail));
                 $scope.picture.pictureDetailList = $scope.pictureDetailList;

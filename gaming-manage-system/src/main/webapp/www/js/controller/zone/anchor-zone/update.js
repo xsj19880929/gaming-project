@@ -10,7 +10,8 @@
         $scope.id = $location.search().id;
         $scope.files = [];
         $scope.anchorZonePlatformList = [];
-
+        $scope.anchorZoneHonor = {};
+        $scope.anchorZoneHonorList = [];
         $scope.ue = UE.getEditor('container');
 
         $http.get('zone/anchor-zone/anchor-zone-platform/list').success(function (data) {
@@ -20,6 +21,7 @@
         if ($location.search().id) {
             $http.get('zone/anchor-zone/' + $location.search().id).success(function (data) {
                 $scope.anchorZone = data;
+                $scope.anchorZoneHonorList = $scope.anchorZone.anchorZoneHonorList;
                 $scope.ue.ready(function () {
                     $scope.ue.setContent($scope.anchorZone.introduction);
                 });
@@ -126,12 +128,8 @@
                 }
             }
         };
-        $scope.anchorZoneHonor = {};
-        $scope.anchorZoneHonorList = [];
+
         $scope.saveAnchorZoneHonor = function () {
-            if ($scope.anchorZone.anchorZoneHonorList) {
-                $scope.anchorZoneHonorList = $scope.anchorZone.anchorZoneHonorList;
-            }
             if ($scope.anchorZoneHonor) {
                 $scope.anchorZoneHonorList.push(angular.copy($scope.anchorZoneHonor));
                 $scope.anchorZone.anchorZoneHonorList = $scope.anchorZoneHonorList;

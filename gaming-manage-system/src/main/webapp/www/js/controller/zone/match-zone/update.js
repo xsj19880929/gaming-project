@@ -13,6 +13,10 @@
         $scope.matchZoneYear = [];
         $scope.matchStatusList = [];
         $scope.matchTeamList = [];
+        $scope.matchZoneBonus = {};
+        $scope.matchZoneBonusList = [];
+        $scope.matchZoneCalendar = {};
+        $scope.matchZoneCalendarList = [];
 
         $scope.ue = UE.getEditor('container');
 
@@ -33,6 +37,8 @@
         if ($location.search().id) {
             $http.get('zone/match-zone/' + $location.search().id).success(function (data) {
                 $scope.matchZone = data;
+                $scope.matchZoneBonusList = $scope.matchZone.matchZoneBonusList;
+                $scope.matchZoneCalendarList = $scope.matchZone.matchZoneCalendarList;
                 $scope.ue.ready(function () {
                     $scope.ue.setContent($scope.matchZone.introduction);
                 });
@@ -120,12 +126,8 @@
                 }
             }
         };
-        $scope.matchZoneBonus = {};
-        $scope.matchZoneBonusList = [];
+
         $scope.saveMatchZoneBonus = function () {
-            if ($scope.matchZone.matchZoneBonusList) {
-                $scope.matchZoneBonusList = $scope.matchZone.matchZoneBonusList;
-            }
             if ($scope.matchZoneBonus) {
                 $scope.matchZoneBonusList.push(angular.copy($scope.matchZoneBonus));
                 $scope.matchZone.matchZoneBonusList = $scope.matchZoneBonusList;
@@ -142,12 +144,8 @@
 
         }
 
-        $scope.matchZoneCalendar = {};
-        $scope.matchZoneCalendarList = [];
+
         $scope.saveMatchZoneCalendar = function () {
-            if ($scope.matchZone.matchZoneCalendarList) {
-                $scope.matchZoneCalendarList = $scope.matchZone.matchZoneCalendarList;
-            }
             if ($scope.matchZoneCalendar) {
                 for (var i = 0; i < $scope.matchTeamList.length; i++) {
                     if ($scope.matchZoneCalendar.matchTeamOneId == $scope.matchTeamList[i].id) {

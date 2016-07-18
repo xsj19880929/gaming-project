@@ -65,8 +65,9 @@ public class TagMappingDao {
         return jpaAccess.findOne(QueryBuilder.query("from TagMapping").append("id", id).append("status", 1).build());
     }
 
+    @Transactional
     public void deleteByEntityIdAndType(Long entityId, TagType tagType, TagZoneType tagZoneType) {
-        QueryBuilder queryBuilder = QueryBuilder.query("delete TagMapping").append("entityId", entityId).append("tagType", tagType).append("tagZoneType", tagZoneType);
+        QueryBuilder queryBuilder = QueryBuilder.query("delete TagMapping").append("entityId", entityId).append("tagType", tagType).append("tagZoneType", tagZoneType).skipEmptyFields().skipNullFields();
         Query query = queryBuilder.build();
         jpaAccess.update(query);
     }
