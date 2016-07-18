@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#" ui-sref="index">首页</a></li>
+        <li class="active">资讯管理</li>
+    </ol>
+
+    <h2 class="page-header">资讯列表</h2>
+    <div class="well">
+        <a href="" class="btn btn-success ygccw-add-btn" ui-sref="info.update">添加资讯</a>
+    </div>
+
+    <div class="well form-inline">
+        <input class="form-control" type="text" ng-model="params.title" placeholder="请输入资讯标题查询"/>
+        <button class="btn btn-primary" ng-click="search()">搜索</button>
+    </div>
+
+    <div class="table-responsive">
+        <div ui-grid="gridOptions" ui-grid-pagination class="grid" style="height: 500px;"></div>
+    </div>
+</div>
+

@@ -3,6 +3,8 @@ package com.ygccw.wechat.common.picture.entity;
 import com.ygccw.wechat.common.picture.enums.PictureZoneType;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
@@ -30,6 +32,7 @@ public class Picture {
     private String tags;
     private Integer verify;
     private Integer zoneId;
+    @Enumerated(EnumType.STRING)
     private PictureZoneType pictureZoneType;
 
     public Long getId() {

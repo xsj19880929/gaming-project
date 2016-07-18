@@ -49,6 +49,27 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td width="10%">分类：</td>
+                    <td width="40%">
+                        <div class="col-sm-3">
+                            <select class="form-control" ng-model="picture.pictureZoneType.name"
+                                    ng-options="m.name as m.label for m in pictureZoneTypeList" validator="required"
+                                    name="pictureZoneType" ng-change="getZoneList()">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4" ng-if="zoneList">
+                            <select class="form-control" ng-model="picture.zoneId"
+                                    ng-options="m.id as m.name for m in zoneList" validator="required"
+                                    name="zoneId">
+                                <option value="">请选择</option>
+                            </select>
+
+                        </div>
+                    </td>
+                </tr>
+
 
                 <tr>
                     <td width="10%">推荐位：</td>

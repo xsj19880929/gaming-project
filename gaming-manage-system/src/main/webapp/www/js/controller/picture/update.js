@@ -17,12 +17,29 @@
                 $scope.picture = data;
                 $scope.pictureDetailList = $scope.picture.pictureDetailList;
                 $scope.pictureDetail.sort = $scope.pictureDetailList.length + 1;
+                $scope.getZoneList();
             });
         } else {
             $http.get('recommend/listRecommendMapping?recommendType=picture').success(function (data) {
                 $scope.picture.recommendMappingModelList = data;
             });
 
+        }
+        $http.get('/enum/com.ygccw.wechat.common.picture.enums.PictureZoneType').success(function (data) {
+            $scope.pictureZoneTypeList = data;
+        });
+        $scope.getZoneList = function () {
+            if ($scope.picture.pictureZoneType.name == 'matchZone') {
+                $http.get('zone/match-zone/listAll').success(function (data) {
+                    $scope.zoneList = data;
+                });
+            } else if ($scope.picture.pictureZoneType.name == 'anchorZone') {
+                $http.get('zone/anchor-zone/listAll').success(function (data) {
+                    $scope.zoneList = data;
+                });
+            } else {
+                $scope.zoneList = [];
+            }
         }
         $scope.updatePicture = function () {
             if ($scope.id) {

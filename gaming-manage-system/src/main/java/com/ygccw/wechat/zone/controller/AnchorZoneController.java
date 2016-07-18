@@ -84,5 +84,12 @@ public class AnchorZoneController {
         return anchorZoneModelService.listAnchorZoneMatchZoneMappingModel();
     }
 
+    @RequireSession
+    @RequestMapping(value = "/zone/anchor-zone/listAll", method = RequestMethod.GET)
+    @ResponseBody
+    public List<AnchorZone> listAll() {
+        return anchorZoneService.listAll();
+    }
+
 
 }

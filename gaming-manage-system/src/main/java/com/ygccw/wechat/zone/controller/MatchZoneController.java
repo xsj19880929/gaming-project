@@ -106,5 +106,12 @@ public class MatchZoneController {
         return matchTeamService.listAll();
     }
 
+    @RequireSession
+    @RequestMapping(value = "/zone/match-zone/listAll", method = RequestMethod.GET)
+    @ResponseBody
+    public List<MatchZone> listAll() {
+        return matchZoneService.listAll();
+    }
+
 
 }

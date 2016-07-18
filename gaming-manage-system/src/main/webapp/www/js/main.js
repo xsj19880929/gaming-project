@@ -249,6 +249,20 @@
                 templateUrl: "www/view/picture/update.html",
                 controller: 'PictureUpdateController'
             })
+            .state('info', {
+                url: "/info",
+                templateUrl: "www/view/info/index.html"
+            })
+            .state('info.list', {
+                url: "/",
+                templateUrl: "www/view/info/list.html",
+                controller: 'InfoListController'
+            })
+            .state('info.update', {
+                url: "/update",
+                templateUrl: "www/view/info/update.html",
+                controller: 'InfoUpdateController'
+            })
 
 
     }).config(
