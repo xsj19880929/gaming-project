@@ -5,6 +5,7 @@
         $scope.offset = 0;
         $scope.fetchSize = 25;
         $scope.params = {};
+        $scope.params.verify = 1;
 
         var loadData = function (offset, fetchSize) {
             var url = "info/list?offset=" + offset + "&fetchSize=" + fetchSize;
@@ -31,10 +32,20 @@
                     field: 'title'
                 },
                 {
+                    name: '资讯类型',
+                    field: 'infoType',
+                    cellTemplate: '<span>{{row.entity.infoType.label}}</span>'
+                },
+                {
+                    name: '专区类型',
+                    field: 'infoZoneType',
+                    cellTemplate: '<span>{{row.entity.infoZoneType.label}}</span>'
+                },
+                {
                     name: '专区名称',
                     field: 'zoneName'
                 },
-                {name: '创建时间', field: 'publishTime', type: 'date', cellFilter: 'date:"yyyy-MM-dd HH:mm:ss"'},
+                {name: '更新时间', field: 'updateTime', type: 'date', cellFilter: 'date:"yyyy-MM-dd HH:mm:ss"'},
                 {
                     name: '操作',
                     cellTemplate: '<button class="btn btn-primary btn-sm" ng-click="grid.appScope.updateInfo(row.entity.id);">编辑</button>' +
@@ -65,6 +76,41 @@
         $scope.search = function () {
             loadData($scope.offset, $scope.fetchSize);
         };
+        $scope.tab = function (verify) {
+            $scope.params.verify = verify;
+            loadData($scope.offset, $scope.fetchSize);
+        }
+
+        $http.get('/enum/com.ygccw.wechat.common.info.enums.InfoType').success(function (data) {
+            $scope.infoTypeList = data;
+        });
+
+        $scope.getInfoVideoTypeList = function () {
+            if ($scope.params.infoType.name == 'video') {
+                $http.get('/enum/com.ygccw.wechat.common.info.enums.InfoVideoType').success(function (data) {
+                    $scope.infoVideoTypeList = data;
+                });
+            } else {
+                $scope.infoVideoTypeList = [];
+            }
+        }
+
+        $http.get('/enum/com.ygccw.wechat.common.info.enums.InfoZoneType').success(function (data) {
+            $scope.infoZoneTypeList = data;
+        });
+        $scope.getZoneList = function () {
+            if ($scope.params.infoZoneType.name == 'matchZone') {
+                $http.get('zone/match-zone/listAll').success(function (data) {
+                    $scope.zoneList = data;
+                });
+            } else if ($scope.params.infoZoneType.name == 'anchorZone') {
+                $http.get('zone/anchor-zone/listAll').success(function (data) {
+                    $scope.zoneList = data;
+                });
+            } else {
+                $scope.zoneList = [];
+            }
+        }
 
     }]);
 })(angular);

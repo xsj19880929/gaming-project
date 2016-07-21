@@ -8,14 +8,57 @@
     <div class="well">
         <a href="" class="btn btn-success ygccw-add-btn" ui-sref="info.update">添加资讯</a>
     </div>
+    <div class="well">
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active">
+                <a href="javascript:void(0)" data-toggle="tab" ng-click="tab(1)">
+                    已审核
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" data-toggle="tab" ng-click="tab(0)">
+                    待审核
+                </a>
+            </li>
+
+        </ul>
+    </div>
 
     <div class="well form-inline">
         <input class="form-control" type="text" ng-model="params.title" placeholder="请输入资讯标题查询"/>
+
+        <select class="form-control" ng-model="params.infoType.name"
+                ng-options="m.name as m.label for m in infoTypeList"
+                name="infoType" ng-change="getInfoVideoTypeList()">
+            <option value="">请选择资讯类型</option>
+        </select>
+
+        <select class="form-control" ng-model="params.infoVideoType.name"
+                ng-if="infoVideoTypeList&&infoVideoTypeList.length>0"
+                ng-options="m.name as m.label for m in infoVideoTypeList" validator="required"
+                name="infoVideoType">
+            <option value="">请选择视频类型</option>
+        </select>
+
+        <select class="form-control" ng-model="params.infoZoneType.name"
+                ng-options="m.name as m.label for m in infoZoneTypeList" validator="required"
+                name="infoZoneType" ng-change="getZoneList()">
+            <option value="">请选择专区类型</option>
+        </select>
+
+        <select class="form-control" ng-model="params.zoneId" ng-if="zoneList&&zoneList.length>0"
+                ng-options="m.id as m.name for m in zoneList" validator="required"
+                name="zoneId">
+            <option value="">请选择专区</option>
+        </select>
         <button class="btn btn-primary" ng-click="search()">搜索</button>
     </div>
 
-    <div class="table-responsive">
-        <div ui-grid="gridOptions" ui-grid-pagination class="grid" style="height: 500px;"></div>
-    </div>
+
+</div>
+
+<div class="table-responsive">
+    <div ui-grid="gridOptions" ui-grid-pagination class="grid" style="height: 500px;"></div>
+</div>
 </div>
 

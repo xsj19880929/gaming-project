@@ -22,6 +22,7 @@ public class InfoServiceImpl implements InfoService {
     public void save(Info info) {
         info.setCreateTime(new Date());
         info.setUpdateTime(new Date());
+        info.setPublishTime(new Date());
         info.setStatus(1);
         info.setVerify(1);
         infoDao.save(info);

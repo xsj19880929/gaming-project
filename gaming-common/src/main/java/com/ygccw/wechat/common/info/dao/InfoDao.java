@@ -24,6 +24,8 @@ public class InfoDao {
                 .append("status", 1)
                 .append("zoneId", info.getZoneId())
                 .append("infoZoneType", info.getInfoZoneType())
+                .append("infoType", info.getInfoType())
+                .append("infoZoneType", info.getInfoZoneType())
                 .append("verify", info.getVerify())
                 .skipEmptyFields().orderBy("updateTime").desc();
         if (StringUtils.hasText(info.getTitle())) {
@@ -37,6 +39,8 @@ public class InfoDao {
         QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from Info")
                 .append("status", 1)
                 .append("zoneId", info.getZoneId())
+                .append("infoZoneType", info.getInfoZoneType())
+                .append("infoType", info.getInfoType())
                 .append("infoZoneType", info.getInfoZoneType())
                 .append("verify", info.getVerify())
                 .skipEmptyFields();

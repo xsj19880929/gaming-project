@@ -15,7 +15,7 @@
                 $scope.info = data;
                 $scope.getZoneList();
                 $scope.ue.ready(function () {
-                    $scope.ue.setContent($scope.matchZone.introduction);
+                    $scope.ue.setContent($scope.info.content);
                 });
             });
         } else {
@@ -89,6 +89,7 @@
             }
         }
         $scope.updateInfo = function () {
+            $scope.info.content = $scope.ue.getContent();
             if ($scope.id) {
                 $http.put("/info", $scope.info).success(function () {
                     alert('更新成功');

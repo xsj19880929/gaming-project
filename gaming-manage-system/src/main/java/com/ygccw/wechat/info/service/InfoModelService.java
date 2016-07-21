@@ -1,6 +1,8 @@
 package com.ygccw.wechat.info.service;
 
 import com.ygccw.wechat.common.info.entity.Info;
+import com.ygccw.wechat.common.info.enums.InfoType;
+import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.recommend.entity.Recommend;
 import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
@@ -10,8 +12,13 @@ import com.ygccw.wechat.common.recommend.service.RecommendService;
 import com.ygccw.wechat.common.tags.entity.TagMapping;
 import com.ygccw.wechat.common.tags.entity.Tags;
 import com.ygccw.wechat.common.tags.enums.TagType;
+import com.ygccw.wechat.common.tags.enums.TagZoneType;
 import com.ygccw.wechat.common.tags.service.TagMappingService;
 import com.ygccw.wechat.common.tags.service.TagsService;
+import com.ygccw.wechat.common.zone.entity.AnchorZone;
+import com.ygccw.wechat.common.zone.entity.MatchZone;
+import com.ygccw.wechat.common.zone.service.AnchorZoneService;
+import com.ygccw.wechat.common.zone.service.MatchZoneService;
 import com.ygccw.wechat.info.model.InfoModel;
 import com.ygccw.wechat.recommend.model.RecommendMappingModel;
 import com.ygccw.wechat.recommend.service.RecommendMappingModelService;
@@ -42,6 +49,10 @@ public class InfoModelService {
     private TagsService tagsService;
     @Inject
     private TagMappingService tagMappingService;
+    @Inject
+    private MatchZoneService matchZoneService;
+    @Inject
+    private AnchorZoneService anchorZoneService;
 
 
     @Transactional
@@ -59,7 +70,8 @@ public class InfoModelService {
                 }
             }
         }
-        saveTags(infoModel.getTags(), info.getId());
+
+        saveTags(infoModel.getTags(), info.getId(), changeTagType(info.getInfoType()), changeTagZoneType(info.getInfoZoneType()));
     }
 
     @Transactional
@@ -70,7 +82,29 @@ public class InfoModelService {
         if (infoModel.getRecommendMappingModelList() != null) {
             saveOrUpdateRecommendMapping(infoModel.getRecommendMappingModelList());
         }
-        saveTags(infoModel.getTags(), info.getId());
+        saveTags(infoModel.getTags(), info.getId(), changeTagType(info.getInfoType()), changeTagZoneType(info.getInfoZoneType()));
+    }
+
+    private TagType changeTagType(InfoType infoType) {
+        TagType tagType = null;
+        if (InfoType.news.toString().equals(infoType.name().toString())) {
+            tagType = TagType.news;
+        } else if (InfoType.video.toString().equals(infoType.name().toString())) {
+            tagType = TagType.video;
+        }
+        return tagType;
+    }
+
+    private TagZoneType changeTagZoneType(InfoZoneType infoZoneType) {
+        TagZoneType tagZoneType = null;
+        if (InfoZoneType.matchZone.toString().equals(infoZoneType.name().toString())) {
+            tagZoneType = TagZoneType.matchZone;
+        } else if (InfoZoneType.anchorZone.toString().equals(infoZoneType.name().toString())) {
+            tagZoneType = TagZoneType.anchorZone;
+        } else if (InfoZoneType.trade.toString().equals(infoZoneType.name().toString())) {
+            tagZoneType = TagZoneType.trade;
+        }
+        return tagZoneType;
     }
 
     private void saveOrUpdateRecommendMapping(List<RecommendMappingModel> recommendMappingModelList) {
@@ -119,27 +153,47 @@ public class InfoModelService {
 
     }
 
-    private void saveTags(String tags, Long entityId) {
+    private void saveTags(String tags, Long entityId, TagType tagType, TagZoneType tagZoneType) {
         if (StringUtils.hasText(tags)) {
             String[] tagArray = tags.split(" ");
             List<String> tagList = Arrays.asList(tagArray);
-            tagMappingService.deleteByEntityIdAndType(entityId, TagType.news, null);
+            tagMappingService.deleteByEntityIdAndType(entityId, tagType, tagZoneType);
             for (String tag : tagList) {
-                Tags tagsEntity = tagsService.findByName(tag, TagType.news, null);
+                Tags tagsEntity = tagsService.findByName(tag, tagType, tagZoneType);
                 if (tagsEntity == null) {
                     tagsEntity = new Tags();
-                    tagsEntity.setTagType(TagType.news);
+                    tagsEntity.setTagType(tagType);
                     tagsEntity.setName(tag);
+                    tagsEntity.setTagZoneType(tagZoneType);
                     tagsService.save(tagsEntity);
                 }
                 TagMapping tagMapping = new TagMapping();
                 tagMapping.setEntityId(entityId);
                 tagMapping.setTagsId(tagsEntity.getId());
-                tagMapping.setTagType(TagType.news);
+                tagMapping.setTagType(tagType);
+                tagMapping.setTagZoneType(tagZoneType);
                 tagMappingService.save(tagMapping);
             }
 
         }
 
+    }
+
+    public List<InfoModel> list(Info infoRequest, int offset, int fetchSize) {
+        List<Info> list = infoService.list(infoRequest, offset, fetchSize);
+        List<InfoModel> infoModelList = new ArrayList<>();
+        for (Info info : list) {
+            InfoModel infoModel = new InfoModel();
+            BeanUtils.copyProperties(info, infoModel);
+            if (InfoZoneType.matchZone.getName().compareTo(info.getInfoZoneType().getName()) == 0) {
+                MatchZone matchZone = matchZoneService.findById(info.getZoneId());
+                infoModel.setZoneName(matchZone.getName());
+            } else if (InfoZoneType.anchorZone.getName().compareTo(info.getInfoZoneType().getName()) == 0) {
+                AnchorZone anchorZone = anchorZoneService.findById(info.getZoneId());
+                infoModel.setZoneName(anchorZone.getName());
+            }
+            infoModelList.add(infoModel);
+        }
+        return infoModelList;
     }
 }

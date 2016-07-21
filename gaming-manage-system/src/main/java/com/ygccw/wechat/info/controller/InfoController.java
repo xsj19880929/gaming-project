@@ -31,8 +31,8 @@ public class InfoController {
     @RequireSession
     @RequestMapping(value = "info/list", method = RequestMethod.POST)
     @ResponseBody
-    public FindResult<Info> list(@RequestBody Info info, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "25") int fetchSize) {
-        return new FindResult<>(infoService.list(info, offset, fetchSize), offset, infoService.listSize(info));
+    public FindResult<InfoModel> list(@RequestBody Info info, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "25") int fetchSize) {
+        return new FindResult<>(infoModelService.list(info, offset, fetchSize), offset, infoService.listSize(info));
     }
 
     @RequireSession

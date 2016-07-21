@@ -10,6 +10,15 @@ import java.util.List;
  */
 public class InfoModel extends Info {
     private List<RecommendMappingModel> recommendMappingModelList;
+    private String zoneName;
+
+    public String getZoneName() {
+        return zoneName;
+    }
+
+    public void setZoneName(String zoneName) {
+        this.zoneName = zoneName;
+    }
 
     public List<RecommendMappingModel> getRecommendMappingModelList() {
         return recommendMappingModelList;
