@@ -24,4 +24,6 @@ public interface MatchTeamMappingService {
     int listSize(MatchTeamMapping matchTeamMapping);
 
     List<MatchTeamMapping> listByMatchTeamId(Long matchTeamId);
+
+    List<MatchTeamMapping> listByMatchZoneId(Long matchZoneId);
 }

@@ -25,6 +25,13 @@ public class MatchTeamMappingDao {
         return jpaAccess.find(query);
     }
 
+    public List<MatchTeamMapping> listByMatchZoneId(Long matchZoneId) {
+        QueryBuilder queryBuilder = QueryBuilder.query("from MatchTeamMapping").append("status", 1).append("matchZoneId", matchZoneId)
+                .skipEmptyFields().orderBy("createTime").desc();
+        Query query = queryBuilder.build();
+        return jpaAccess.find(query);
+    }
+
     public List<MatchTeamMapping> list(MatchTeamMapping matchTeamMapping, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from MatchTeamMapping").append("status", 1)
                 .skipEmptyFields().orderBy("createTime").desc();

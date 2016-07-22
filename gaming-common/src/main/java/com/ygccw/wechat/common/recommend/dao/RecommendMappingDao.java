@@ -26,6 +26,14 @@ public class RecommendMappingDao {
         return jpaAccess.find(query);
     }
 
+    public List<RecommendMapping> listByRecommendIdAndType(Long recommendId, RecommendType recommendType, int offset, int fetchSize) {
+        QueryBuilder queryBuilder = QueryBuilder.query("from RecommendMapping").append("status", 1).append("recommendId", recommendId).append("recommendType", recommendType)
+                .skipEmptyFields().orderBy("createTime").desc();
+        Query query = queryBuilder.build().from(offset).fetch(fetchSize);
+        return jpaAccess.find(query);
+    }
+
+
     public List<RecommendMapping> list(RecommendMapping recommendMapping, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from RecommendMapping").append("status", 1)
                 .skipEmptyFields().orderBy("createTime").desc();

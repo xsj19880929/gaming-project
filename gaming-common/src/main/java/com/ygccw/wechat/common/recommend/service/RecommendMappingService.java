@@ -25,4 +25,6 @@ public interface RecommendMappingService {
     int listSize(RecommendMapping recommendMapping);
 
     List<RecommendMapping> listByEntityIdAndType(Long entityId, RecommendType recommendType);
+
+    List<RecommendMapping> listByRecommendIdAndType(Long entityId, RecommendType recommendType, int offset, int fetchSize);
 }

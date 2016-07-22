@@ -2,6 +2,7 @@ package com.ygccw.website;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
+import com.ygccw.website.thymeleaf.ImgSrcAttrProcessor;
 import com.ygccw.website.thymeleaf.MobileDialect;
 import core.api.file.FileServerSettings;
 import core.framework.util.TimeLength;
@@ -77,7 +78,7 @@ public class WebConfig extends DefaultSiteConfig {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
         registry.addResourceHandler("favicon.ico").addResourceLocations("/");
-        registry.addResourceHandler("index.html").addResourceLocations("/");
+        registry.addResourceHandler("index").addResourceLocations("/");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 
@@ -140,6 +141,12 @@ public class WebConfig extends DefaultSiteConfig {
         templateEngine.setDialect(mobileDialect());
 
         return templateEngine;
+    }
+
+    @Bean
+    public ImgSrcAttrProcessor imgSrcAttrProcessor() {
+        SiteSettings siteSettings = siteSettings();
+        return new ImgSrcAttrProcessor(env.getProperty("out.image.downloadUrl"), env.getProperty("out.file.uploadServer"), siteSettings.baseCdnUrls());
     }
 
 

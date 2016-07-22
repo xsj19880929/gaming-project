@@ -62,4 +62,9 @@ public class RecommendMappingServiceImpl implements RecommendMappingService {
     public List<RecommendMapping> listByEntityIdAndType(Long entityId, RecommendType recommendType) {
         return recommendMappingDao.listByEntityIdAndType(entityId, recommendType);
     }
+
+    @Override
+    public List<RecommendMapping> listByRecommendIdAndType(Long recommendId, RecommendType recommendType, int offset, int fetchSize) {
+        return recommendMappingDao.listByRecommendIdAndType(recommendId, recommendType, offset, fetchSize);
+    }
 }

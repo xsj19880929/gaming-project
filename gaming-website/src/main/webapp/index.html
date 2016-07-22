@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="static/css/public.css"/>
@@ -48,54 +47,16 @@
 <!--赛事列表-->
 <div class="general">
     <ul class="wcg_list">
-        <li>
+        <li th:each="matchZone:${matchZoneList}" th:id="${matchZone.id}">
             <div class="bg"></div>
             <div class="con">
-                <p class="p1"><a href="#">2015风暴英雄总决赛</a></p>
+                <p class="p1"><a href="#" th:text="${matchZone.name}">2015风暴英雄总决赛</a></p>
                 <dl class="d1">
                     <dt><img src="static/temp/1.png"/></dt>
                     <dd>
-                        <p class="p2"><img src="static/temp/game01.jpg"/><img src="static/temp/game02.jpg"/></p>
-                        <p class="p3"><em class="over">已结束</em></p>
-                    </dd>
-                </dl>
-            </div>
-        </li>
-        <li>
-            <div class="bg"></div>
-            <div class="con">
-                <p class="p1"><a href="#">GSL2016星际2第一赛季</a></p>
-                <dl class="d1">
-                    <dt><img src="static/temp/2.png"/></dt>
-                    <dd>
-                        <p class="p2"><img src="static/temp/game01.jpg"/></p>
-                        <p class="p3"><em class="ing">赛事进行中</em></p>
-                    </dd>
-                </dl>
-            </div>
-        </li>
-        <li>
-            <div class="bg"></div>
-            <div class="con">
-                <p class="p1"><a href="#">2016炉石传说春季赛</a></p>
-                <dl class="d1">
-                    <dt><img src="static/temp/3.png"/></dt>
-                    <dd>
-                        <p class="p2"><img src="static/temp/game02.jpg"/></p>
-                        <p class="p3"><em class="ing">赛事进行中</em></p>
-                    </dd>
-                </dl>
-            </div>
-        </li>
-        <li class="no_margin">
-            <div class="bg"></div>
-            <div class="con">
-                <p class="p1"><a href="#">《英雄联盟》2015全明星赛</a></p>
-                <dl class="d1">
-                    <dt><img src="static/temp/4.jpg"/></dt>
-                    <dd>
-                        <p class="p2"><img src="static/temp/game01.jpg"/></p>
-                        <p class="p3"><em class="over">已结束</em></p>
+                        <p class="p2"><img th:each="matchTeam:${matchZone.matchTeamList}"
+                                           th:img-src="${matchTeam.icoImage}"/>
+                        <p class="p3"><em class="over" th:text="${matchZone.matchStatus.label}">已结束</em></p>
                     </dd>
                 </dl>
             </div>

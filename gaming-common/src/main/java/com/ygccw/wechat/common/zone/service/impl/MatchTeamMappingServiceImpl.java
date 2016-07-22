@@ -61,4 +61,9 @@ public class MatchTeamMappingServiceImpl implements MatchTeamMappingService {
     public List<MatchTeamMapping> listByMatchTeamId(Long matchTeamId) {
         return matchTeamMappingDao.listByMatchTeamId(matchTeamId);
     }
+
+    @Override
+    public List<MatchTeamMapping> listByMatchZoneId(Long matchZoneId) {
+        return matchTeamMappingDao.listByMatchZoneId(matchZoneId);
+    }
 }
