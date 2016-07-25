@@ -363,30 +363,26 @@
                             <p class="p1"><a href="#"><span></span><img
                                     th:img-src="/image/106X106${matchTeam.icoImage}"/></a></p>
                             <p class="p2">
-                                <span class="span01"><a href="#">Absolute Legends</a></span>
-                                <span class="span02"><em>所属项目：</em><img src="static/temp/game01.jpg"/><img
-                                        src="static/temp/game02.jpg"/></span>
+                                <span class="span01"><a href="#" th:text="${matchTeam.name}">Absolute Legends</a></span>
+                                <span class="span02"><em>所属项目：</em><img th:img-src="/image/28x28${matchZone.icoImage}"
+                                                                        th:each="matchZone:${matchTeam.matchZoneList}"/></span>
                                 <span class="span02"><em
-                                        th:text="${'成立时间：'+#calendars.format(info.publishTime, 'yyyy年MM月dd日')}">成立时间：2014年11月20日</em></span>
+                                        th:text="${'成立时间：'+#calendars.format(matchTeam.createTime, 'yyyy年MM月dd日')}">成立时间：2014年11月20日</em></span>
                             </p>
                         </li>
                     </ul>
-                    <ul class="list_01">
-                        <li>
-                            <p class="p1"><a href="#"><span></span><img src="static/temp/dj06.jpg"/></a></p>
+                    <ul class=" list_01">
+                        <li th:each="matchTeam,iterStat:${starMatchTeamList}"
+                            th:if="${iterStat.index==2||iterStat.index==3}"
+                            th:class="${iterStat.odd==true?'no_border':''}">
+                            <p class="p1"><a href="#"><span></span><img
+                                    th:img-src="/image/106X106${matchTeam.icoImage}"/></a></p>
                             <p class="p2">
-                                <span class="span01"><a href="#">Orenda.luffy</a></span>
-                                <span class="span02"><em>所属项目：</em><img src="static/temp/game02.jpg"/></span>
-                                <span class="span02"><em>成立时间：2016年02月15日</em></span>
-                            </p>
-                        </li>
-                        <li class="no_border">
-                            <p class="p1"><a href="#"><span></span><img src="static/temp/dj04.jpg"/></a></p>
-                            <p class="p2">
-                                <span class="span01"><a href="#">HGT.KAKA.</a></span>
-                                <span class="span02"><em>所属项目：</em><img src="static/temp/game01.jpg"/><img
-                                        src="static/temp/game02.jpg"/></span>
-                                <span class="span02"><em>成立时间：2015年01月03日</em></span>
+                                <span class="span01"><a href="#" th:text="${matchTeam.name}">Absolute Legends</a></span>
+                                <span class="span02"><em>所属项目：</em><img th:img-src="/image/28x28${matchZone.icoImage}"
+                                                                        th:each="matchZone:${matchTeam.matchZoneList}"/></span>
+                                <span class="span02"><em
+                                        th:text="${'成立时间：'+#calendars.format(matchTeam.createTime, 'yyyy年MM月dd日')}">成立时间：2014年11月20日</em></span>
                             </p>
                         </li>
                     </ul>
