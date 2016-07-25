@@ -47,15 +47,18 @@
 <!--赛事列表-->
 <div class="general">
     <ul class="wcg_list">
-        <li th:each="matchZone:${matchZoneList}" th:id="${matchZone.id}">
+        <li th:each="matchZone,iterStat:${matchZoneList}" th:class="${iterStat.index==3?'no_margin':''}">
             <div class="bg"></div>
             <div class="con">
                 <p class="p1"><a href="#" th:text="${matchZone.name}">2015风暴英雄总决赛</a></p>
                 <dl class="d1">
-                    <dt><img src="static/temp/1.png"/></dt>
+                    <dt><img th:if="${iterStat.index==0}"
+                             th:each="matchTeam,iterStat:${matchZone.matchTeamList}"
+                             th:img-src="/image/66x66${matchTeam.icoImage}"/></dt>
                     <dd>
-                        <p class="p2"><img th:each="matchTeam:${matchZone.matchTeamList}"
-                                           th:img-src="${matchTeam.icoImage}"/>
+                        <p class="p2"><img th:if="${iterStat.index!=0}"
+                                           th:each="matchTeam,iterStat:${matchZone.matchTeamList}"
+                                           th:img-src="/image/28x28${matchTeam.icoImage}"/>
                         <p class="p3"><em class="over" th:text="${matchZone.matchStatus.label}">已结束</em></p>
                     </dd>
                 </dl>
@@ -104,13 +107,10 @@
     <div class="wcg_banner slideBox2">
         <div class="big_pic bd">
             <ul>
-                <li><a href="###"><img src="static/temp/img01.jpg"/><span><em>韩国《英雄联盟》代练爆料：Riot韩国公司受贿行为</em></span></a>
+                <li th:each="advImage:${advImageList}"><a th:href="${advImage.url}" href="#"><img
+                        th:img-src="/image/698x370${advImage.image}" th:alt="${advImage.name}"/><span><em
+                        th:text="${advImage.name}">韩国《英雄联盟》代练爆料：Riot韩国公司受贿行为</em></span></a>
                 </li>
-                <li><a href="###"><img src="static/temp/img02.jpg"/><span><em>《甜甜萌物语》3D换装 无死角变身萌翻天</em></span></a></li>
-                <li><a href="###"><img src="static/temp/img03.jpg"/><span><em>音控专属 《偶像梦幻祭》超强声优阵容来袭</em></span></a></li>
-                <li><a href="###"><img src="static/temp/img04.jpg"/><span><em>圣斗士星矢：重生29日iOS首发 战斗视频首曝</em></span></a>
-                </li>
-                <li><a href="###"><img src="static/temp/img05.jpg"/><span><em>奇葩的卡组搭配 来自皇室战争的黑科技</em></span></a></li>
             </ul>
         </div>
         <div class="wcg_force hd">
@@ -134,51 +134,29 @@
     </script>
     <!--右边-->
     <div class="index_right">
-        <div class="index_tit">
-            <ul>
-                <li>
-                    <p class="p1"><a href="#">LPL第七周末日综述 VG.Endless狂暴五杀</a></p>
-                    <p class="p2"><a href="#">[赛场外第七期：余震]</a><a href="#">[主题曲《英雄》首发]</a><a href="#">[预选位模式图文教程]</a></p>
-                </li>
-                <li>
-                    <p class="p1"><a href="#">VPGAME联赛将再升级：CDEC开放日赛</a></p>
-                    <p class="p2"><a href="#">[V社考虑取消上海特锦赛]</a><a href="#">[Yao帝公告复出]</a><a
-                            href="#">[xiao8回归加盟LGD战队]</a></p>
-                </li>
-            </ul>
-        </div>
+        <!--<div class="index_tit">-->
+        <!--<ul>-->
+        <!--<li>-->
+        <!--<p class="p1" th:each="advWord,iterStat:${advWordList}" th:if="iterStat.index==0"><a th:href="${advWord.url}"-->
+        <!--th:text="${advWord.name}">LPL第七周末日综述-->
+        <!--VG.Endless狂暴五杀</a></p>-->
+        <!--<p class="p2" th:each="advWord,iterStat:${advWordList}" th:if="iterStat.index==1"><a th:href="${advWord.url}" th:text="@{'['${advWord.name}']'}">[赛场外第七期：余震]</a><a href="#">[主题曲《英雄》首发]</a><a href="#">[预选位模式图文教程]</a></p>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<p class="p1"><a href="#">VPGAME联赛将再升级：CDEC开放日赛</a></p>-->
+        <!--<p class="p2"><a href="#">[V社考虑取消上海特锦赛]</a><a href="#">[Yao帝公告复出]</a><a-->
+        <!--href="#">[xiao8回归加盟LGD战队]</a></p>-->
+        <!--</li>-->
+        <!--</ul>-->
+        <!--</div>-->
         <div class="index_con">
             <ul class="clearfix">
-                <li class="hover">
-                    <span>21</span>
-                    <a href="#" class="a1">举手投足偶像范 阿狸粉红Party</a>
-                    <a href="#">《秀你一脸》精确制导 弹无虚发</a>
+                <li class="hover" th:each="advWord:${advWordList}">
+                    <span th:id="${advWord.id}">21</span>
+                    <a th:href="${advWord.url}" class="a1" th:text="${advWord.name}">举手投足偶像范 阿狸粉红Party</a>
+                    <a th:href="${advWord.url}" th:text="${advWord.name}">《秀你一脸》精确制导 弹无虚发</a>
                 </li>
-                <li>
-                    <span>10</span>
-                    <a href="#" class="a1">值得铭记回忆 电竞女子战队发展史</a>
-                    <a href="#">盘点LPL赛区中那些中韩友谊</a>
-                </li>
-                <li>
-                    <span>01</span>
-                    <a href="#" class="a1">CF挑战模式中征服者的技巧解析</a>
-                    <a href="#">《风暴英雄》2016全民实力赛</a>
-                </li>
-                <li>
-                    <span>22</span>
-                    <a href="#" class="a1">魔兽电影影评：永不落幕的世界</a>
-                    <a href="#">微笑西卡担任周杰伦直播队友</a>
-                </li>
-                <li>
-                    <span>11</span>
-                    <a href="#" class="a1">腾讯UP2016发布会神秘作外泄</a>
-                    <a href="#">LOL新皮肤 愚人节系列震撼来袭</a>
-                </li>
-                <li class="no_margin">
-                    <span>28</span>
-                    <a href="#" class="a1">伟大永不退役 TGP致敬传奇科比</a>
-                    <a href="#">《西楚霸王》职业系统遭破解</a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -186,23 +164,16 @@
 <!--赛事列表2-->
 <div class="general">
     <ul class="wcg_list_two">
-        <li>
-            <p class="p1"><a href="#"><img src="static/temp/ls01.jpg"/></a></p>
-            <p class="p2"><a href="#">LPL2016英雄联盟职业联赛春季赛</a></p>
-            <p class="p3">时间：2016.01.14 - 2016.04.10</p>
-            <p class="p3"><span class="zt">状态：<em class="ing">赛事进行中</em></span><span>赛区：全球</span></p>
-        </li>
-        <li>
-            <p class="p1"><a href="#"><img src="static/temp/ls02.jpg"/></a></p>
-            <p class="p2"><a href="#">GHL2015风暴英雄黄金总决赛</a></p>
-            <p class="p3">时间：2016.01.14 - 2016.04.10</p>
-            <p class="p3"><span class="zt">状态：<em class="ing">赛事进行中</em></span><span>赛区：全球</span></p>
-        </li>
-        <li class="no_margin">
-            <p class="p1"><a href="#"><img src="static/temp/ls03.jpg"/></a></p>
-            <p class="p2"><a href="#">SL i-League炉石传说全球总决赛</a></p>
-            <p class="p3">时间：2016.01.14 - 2016.04.10</p>
-            <p class="p3"><span class="zt">状态：<em class="over">已结束</em></span><span>赛区：全球</span></p>
+        <li th:each="matchZone,iterStat:${matchZoneNewList}" th:class="${iterStat.index==2?'no_margin':''}">
+            <p class="p1"><a href="#"><img th:img-src="/image/373X155${matchZone.icoImage}" th:alt="${matchZone.name}"/></a>
+            </p>
+            <p class="p2"><a href="#" th:text="${matchZone.name}">LPL2016英雄联盟职业联赛春季赛</a></p>
+            <p class="p3"
+               th:text="${'时间：'+#calendars.format(matchZone.startTime, 'yyyy-MM-dd')+' - '+#calendars.format(matchZone.endTime, 'yyyy-MM-dd')}">
+                时间：2016.01.14 - 2016.04.10</p>
+            <p class="p3"><span class="zt">状态：<em class="ing" th:text="${matchZone.matchStatus.label}">赛事进行中</em></span><span
+                    th:text="${'赛区：'+matchZone.matchZoneAreaName}">赛区：全球</span>
+            </p>
         </li>
     </ul>
 </div>
@@ -216,52 +187,26 @@
                 <li onMouseOver="setTab('one',1,5)" id="one1" class="hover">推荐资讯</li>
                 <li onMouseOver="setTab('one',2,5)" id="one2">行业</li>
                 <li onMouseOver="setTab('one',3,5)" id="one3">赛事</li>
-                <li onMouseOver="setTab('one',4,5)" id="one4">活动</li>
-                <li onMouseOver="setTab('one',5,5)" id="one5">人物</li>
+                <!--<li onMouseOver="setTab('one',4,5)" id="one4">活动</li>-->
+                <!--<li onMouseOver="setTab('one',5,5)" id="one5">人物</li>-->
             </ul>
         </div>
         <!--tab内容-->
         <div class="tab_one_con">
             <div class="tab_deatil" id="con_one_1" style="display:block">
                 <ul>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                            <p class="p2"><a href="#">行业新闻</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                    <li th:each="info:${infoNewestList}">
+                        <div class="d1"><a href="#"><img th:img-src="/image/204X108${info.titleImage}"
+                                                         th:alt="${info.title}"/></a>
                         </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list02.jpg"/></a></div>
                         <div class="d2">
-                            <p class="p1"><a href="#">《英雄联盟》主播55开直播提车 引大量玩家围观</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list03.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">DOTA2冬季赛小蓝本彩蛋：新英雄深渊领主到来？</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list04.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">电竞火爆催生千万身价网红主播 娱乐明星也入局</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li class="no_border">
-                        <div class="d1"><a href="#"><img src="static/temp/list05.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                            <p class="p1"><a href="#" th:text="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
+                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}">行业新闻</a><em
+                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
+                                10:35</em>
+                            </p>
+                            <p class="p3" th:text="${info.subTitle}">
+                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
                         </div>
                     </li>
                 </ul>
@@ -270,44 +215,18 @@
 
             <div class="tab_deatil" id="con_one_2">
                 <ul>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list04.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">222《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>
-                            <p class="p2"><a href="#">行业新闻</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                    <li th:each="info:${infoTradeList}">
+                        <div class="d1"><a href="#"><img th:img-src="/image/204X108${info.titleImage}"
+                                                         th:alt="${info.title}"/></a>
                         </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>
                         <div class="d2">
-                            <p class="p1"><a href="#">《英雄联盟》主播55开直播提车 引大量玩家围观</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list05.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">DOTA2冬季赛小蓝本彩蛋：新英雄深渊领主到来？</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">电竞火爆催生千万身价网红主播 娱乐明星也入局</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li class="no_border">
-                        <div class="d1"><a href="#"><img src="static/temp/list03.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                            <p class="p1"><a href="#" th:text="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
+                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}">行业新闻</a><em
+                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
+                                10:35</em>
+                            </p>
+                            <p class="p3" th:text="${info.subTitle}">
+                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
                         </div>
                     </li>
                 </ul>
@@ -315,139 +234,113 @@
             </div>
             <div class="tab_deatil" id="con_one_3">
                 <ul>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list05.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">333《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>
-                            <p class="p2"><a href="#">行业新闻</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                    <li th:each="info:${infoMatchZoneList}">
+                        <div class="d1"><a href="#"><img th:img-src="/image/204X108${info.titleImage}"
+                                                         th:alt="${info.title}"/></a>
                         </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list03.jpg"/></a></div>
                         <div class="d2">
-                            <p class="p1"><a href="#">《英雄联盟》主播55开直播提车 引大量玩家围观</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list04.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">DOTA2冬季赛小蓝本彩蛋：新英雄深渊领主到来？</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list02.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">电竞火爆催生千万身价网红主播 娱乐明星也入局</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li class="no_border">
-                        <div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                            <p class="p1"><a href="#" th:text="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
+                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}">行业新闻</a><em
+                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
+                                10:35</em>
+                            </p>
+                            <p class="p3" th:text="${info.subTitle}">
+                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
                         </div>
                     </li>
                 </ul>
                 <p class="add_more"><a href="#">查看更多</a></p>
             </div>
-            <div class="tab_deatil" id="con_one_4">
-                <ul>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list04.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">444《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>
-                            <p class="p2"><a href="#">行业新闻</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">《英雄联盟》主播55开直播提车 引大量玩家围观</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list05.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">DOTA2冬季赛小蓝本彩蛋：新英雄深渊领主到来？</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">电竞火爆催生千万身价网红主播 娱乐明星也入局</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li class="no_border">
-                        <div class="d1"><a href="#"><img src="static/temp/list03.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                </ul>
-                <p class="add_more"><a href="#">查看更多</a></p>
-            </div>
-            <div class="tab_deatil" id="con_one_5">
-                <ul>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list02.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">55555《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>
-                            <p class="p2"><a href="#">行业新闻</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list03.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">《英雄联盟》主播55开直播提车 引大量玩家围观</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list05.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">DOTA2冬季赛小蓝本彩蛋：新英雄深渊领主到来？</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">电竞火爆催生千万身价网红主播 娱乐明星也入局</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                    <li class="no_border">
-                        <div class="d1"><a href="#"><img src="static/temp/list03.jpg"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#">《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>
-                            <p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>
-                            <p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                </ul>
-                <p class="add_more"><a href="#">查看更多</a></p>
-            </div>
+            <!--<div class="tab_deatil" id="con_one_4">-->
+            <!--<ul>-->
+            <!--<li>-->
+            <!--<div class="d1"><a href="#"><img src="static/temp/list04.jpg"/></a></div>-->
+            <!--<div class="d2">-->
+            <!--<p class="p1"><a href="#">444《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>-->
+            <!--<p class="p2"><a href="#">行业新闻</a><em>10-20 10:35</em></p>-->
+            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>-->
+            <!--<div class="d2">-->
+            <!--<p class="p1"><a href="#">《英雄联盟》主播55开直播提车 引大量玩家围观</a></p>-->
+            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
+            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<div class="d1"><a href="#"><img src="static/temp/list05.jpg"/></a></div>-->
+            <!--<div class="d2">-->
+            <!--<p class="p1"><a href="#">DOTA2冬季赛小蓝本彩蛋：新英雄深渊领主到来？</a></p>-->
+            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
+            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>-->
+            <!--<div class="d2">-->
+            <!--<p class="p1"><a href="#">电竞火爆催生千万身价网红主播 娱乐明星也入局</a></p>-->
+            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
+            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--<li class="no_border">-->
+            <!--<div class="d1"><a href="#"><img src="static/temp/list03.jpg"/></a></div>-->
+            <!--<div class="d2">-->
+            <!--<p class="p1"><a href="#">《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>-->
+            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
+            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--<p class="add_more"><a href="#">查看更多</a></p>-->
+            <!--</div>-->
+            <!--<div class="tab_deatil" id="con_one_5">-->
+            <!--<ul>-->
+            <!--<li>-->
+            <!--<div class="d1"><a href="#"><img src="static/temp/list02.jpg"/></a></div>-->
+            <!--<div class="d2">-->
+            <!--<p class="p1"><a href="#">55555《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>-->
+            <!--<p class="p2"><a href="#">行业新闻</a><em>10-20 10:35</em></p>-->
+            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<div class="d1"><a href="#"><img src="static/temp/list03.jpg"/></a></div>-->
+            <!--<div class="d2">-->
+            <!--<p class="p1"><a href="#">《英雄联盟》主播55开直播提车 引大量玩家围观</a></p>-->
+            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
+            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<div class="d1"><a href="#"><img src="static/temp/list05.jpg"/></a></div>-->
+            <!--<div class="d2">-->
+            <!--<p class="p1"><a href="#">DOTA2冬季赛小蓝本彩蛋：新英雄深渊领主到来？</a></p>-->
+            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
+            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>-->
+            <!--<div class="d2">-->
+            <!--<p class="p1"><a href="#">电竞火爆催生千万身价网红主播 娱乐明星也入局</a></p>-->
+            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
+            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--<li class="no_border">-->
+            <!--<div class="d1"><a href="#"><img src="static/temp/list03.jpg"/></a></div>-->
+            <!--<div class="d2">-->
+            <!--<p class="p1"><a href="#">《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>-->
+            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
+            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--<p class="add_more"><a href="#">查看更多</a></p>-->
+            <!--</div>-->
         </div>
     </div>
     <!--right-->
@@ -464,21 +357,17 @@
             <div class="qiehuan">
                 <div class="inner">
                     <ul class="list_01">
-                        <li>
-                            <p class="p1"><a href="#"><span></span><img src="static/temp/dj02.jpg"/></a></p>
+                        <li th:each="matchTeam,iterStat:${starMatchTeamList}"
+                            th:if="${iterStat.index==0||iterStat.index==1}"
+                            th:class="${iterStat.odd==true?'no_border':''}">
+                            <p class="p1"><a href="#"><span></span><img
+                                    th:img-src="/image/106X106${matchTeam.icoImage}"/></a></p>
                             <p class="p2">
                                 <span class="span01"><a href="#">Absolute Legends</a></span>
                                 <span class="span02"><em>所属项目：</em><img src="static/temp/game01.jpg"/><img
                                         src="static/temp/game02.jpg"/></span>
-                                <span class="span02"><em>成立时间：2014年11月20日</em></span>
-                            </p>
-                        </li>
-                        <li class="no_border">
-                            <p class="p1"><a href="#"><span></span><img src="static/temp/dj01.jpg"/></a></p>
-                            <p class="p2">
-                                <span class="span01"><a href="#">2144 Gaming</a></span>
-                                <span class="span02"><em>所属项目：</em><img src="static/temp/game01.jpg"/></span>
-                                <span class="span02"><em>成立时间：2013年08月16日</em></span>
+                                <span class="span02"><em
+                                        th:text="${'成立时间：'+#calendars.format(info.publishTime, 'yyyy年MM月dd日')}">成立时间：2014年11月20日</em></span>
                             </p>
                         </li>
                     </ul>

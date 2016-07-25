@@ -19,6 +19,13 @@ public class IndexController {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(final ModelMap model) {
         model.put("matchZoneList", indexWebService.findRecommendMatchZone());
+        model.put("advImageList", indexWebService.findAdvertising(5));
+        model.put("advWordList", indexWebService.findAdvertising(10));
+        model.put("matchZoneNewList", indexWebService.findMatchZone());
+        model.put("infoTradeList", indexWebService.findTradeInfo());
+        model.put("infoNewestList", indexWebService.findNewestInfo());
+        model.put("infoMatchZoneList", indexWebService.findMatchZoneInfo());
+        model.put("starMatchTeamList", indexWebService.findStarMatchTeam());
         return "/index.html";
     }
 }

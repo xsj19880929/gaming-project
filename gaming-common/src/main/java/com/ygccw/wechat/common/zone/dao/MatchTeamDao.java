@@ -26,14 +26,14 @@ public class MatchTeamDao {
     }
 
     public List<MatchTeam> list(MatchTeam matchTeam, int offset, int fetchSize) {
-        QueryBuilder queryBuilder = QueryBuilder.query("from MatchTeam").append("status", 1)
+        QueryBuilder queryBuilder = QueryBuilder.query("from MatchTeam").append("status", 1).append("ifStarTeam", matchTeam.getIfStarTeam())
                 .skipEmptyFields().orderBy("createTime").desc();
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
     }
 
     public int listSize(MatchTeam matchTeam) {
-        QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from MatchTeam").append("status", 1)
+        QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from MatchTeam").append("status", 1).append("ifStarTeam", matchTeam.getIfStarTeam())
                 .skipEmptyFields().orderBy("createTime").desc();
         return Integer.parseInt(jpaAccess.find(queryBuilder.build()).get(0).toString());
 

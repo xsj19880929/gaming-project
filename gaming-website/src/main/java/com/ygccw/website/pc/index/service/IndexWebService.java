@@ -1,6 +1,12 @@
 package com.ygccw.website.pc.index.service;
 
+import com.ygccw.website.pc.index.model.MatchTeamWeb;
 import com.ygccw.website.pc.index.model.MatchZoneWeb;
+import com.ygccw.wechat.common.advertising.entity.Advertising;
+import com.ygccw.wechat.common.advertising.service.AdvertisingService;
+import com.ygccw.wechat.common.info.entity.Info;
+import com.ygccw.wechat.common.info.enums.InfoZoneType;
+import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
 import com.ygccw.wechat.common.recommend.enums.RecommendType;
 import com.ygccw.wechat.common.recommend.service.RecommendMappingService;
@@ -30,6 +36,10 @@ public class IndexWebService {
     private MatchTeamMappingService matchTeamMappingService;
     @Inject
     private MatchTeamService matchTeamService;
+    @Inject
+    private AdvertisingService advertisingService;
+    @Inject
+    private InfoService infoService;
 
     public List<MatchZoneWeb> findRecommendMatchZone() {
         List<RecommendMapping> recommendMappingList = recommendMappingService.listByRecommendIdAndType(1L, RecommendType.matchZone, 0, 4);
@@ -48,5 +58,55 @@ public class IndexWebService {
             matchZoneWebList.add(matchZoneWeb);
         }
         return matchZoneWebList;
+    }
+
+    public List<Advertising> findAdvertising(int number) {
+        List<Advertising> advertisingList = advertisingService.list(null, 0, number);
+        return advertisingList;
+    }
+
+    public List<MatchZone> findMatchZone() {
+        MatchZone matchZone = new MatchZone();
+        return matchZoneService.list(matchZone, 0, 3);
+    }
+
+    public List<Info> findNewestInfo() {
+        Info info = new Info();
+        info.setVerify(1);
+        return infoService.list(info, 0, 5);
+    }
+
+    public List<Info> findTradeInfo() {
+        Info info = new Info();
+        info.setInfoZoneType(InfoZoneType.trade);
+        info.setVerify(1);
+        return infoService.list(info, 0, 5);
+    }
+
+    public List<Info> findMatchZoneInfo() {
+        Info info = new Info();
+        info.setInfoZoneType(InfoZoneType.matchZone);
+        info.setVerify(1);
+        return infoService.list(info, 0, 5);
+    }
+
+    public List<MatchTeamWeb> findStarMatchTeam() {
+        MatchTeam matchTeamRequest = new MatchTeam();
+        List<MatchTeam> matchTeamList = matchTeamService.list(matchTeamRequest, 0, 100);
+        List<MatchTeamWeb> matchTeamWebList = new ArrayList<>();
+        for (MatchTeam matchTeam : matchTeamList) {
+            MatchTeamWeb matchTeamWeb = new MatchTeamWeb();
+            BeanUtils.copyProperties(matchTeam, matchTeamWeb);
+            List<MatchZone> matchZoneList = new ArrayList<>();
+            List<MatchTeamMapping> matchTeamMappingList = matchTeamMappingService.listByMatchTeamId(matchTeam.getId());
+            for (MatchTeamMapping matchTeamMapping : matchTeamMappingList) {
+                MatchZone matchZone = matchZoneService.findById(matchTeamMapping.getMatchZoneId());
+                matchZoneList.add(matchZone);
+            }
+            matchTeamWeb.setMatchZoneList(matchZoneList);
+            matchTeamWebList.add(matchTeamWeb);
+
+        }
+        return matchTeamWebList;
     }
 }

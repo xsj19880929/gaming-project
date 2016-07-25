@@ -10,6 +10,7 @@ import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.processor.attr.StandardHrefAttrProcessor;
 import org.thymeleaf.standard.processor.attr.StandardSrcAttrProcessor;
 
+import javax.inject.Inject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +24,8 @@ public class MobileDialect extends DefaultDialect {
     private final List<String> baseCdnUrls;
     private final String imageServerUrl;
     private final String version = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+    @Inject
+    private ImgSrcAttrProcessor imgSrcAttrProcessor;
 
 
     public MobileDialect(String baseUrl, String imageServerUrl, List<String> baseCdnUrls) {
@@ -42,12 +45,13 @@ public class MobileDialect extends DefaultDialect {
                 processors.add(processor);
             }
         }
-
+        processors.add(new LinkHrefAttrProcessor(baseUrl, baseCdnUrls, version));
         processors.add(new DefaultSrcAttrProcessor(baseUrl, baseCdnUrls, version));
         processors.add(new PaginationProcessor(baseUrl));
         processors.add(new MetaImgAttrProcessor(imageServerUrl, baseCdnUrls));
         processors.add(new PageAttrProcessor());
         processors.add(new CdnProcessor(baseUrl, baseCdnUrls, version));
+        processors.add(imgSrcAttrProcessor);
 //        processors.add(shareProcessor);
 
 
