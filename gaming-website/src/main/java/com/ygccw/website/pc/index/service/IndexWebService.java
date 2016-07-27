@@ -5,8 +5,11 @@ import com.ygccw.website.pc.index.model.MatchZoneWeb;
 import com.ygccw.wechat.common.advertising.entity.Advertising;
 import com.ygccw.wechat.common.advertising.service.AdvertisingService;
 import com.ygccw.wechat.common.info.entity.Info;
+import com.ygccw.wechat.common.info.enums.InfoVideoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
+import com.ygccw.wechat.common.picture.entity.Picture;
+import com.ygccw.wechat.common.picture.service.PictureService;
 import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
 import com.ygccw.wechat.common.recommend.enums.RecommendLocal;
 import com.ygccw.wechat.common.recommend.enums.RecommendType;
@@ -45,6 +48,8 @@ public class IndexWebService {
     private InfoService infoService;
     @Inject
     private AnchorZoneService anchorZoneService;
+    @Inject
+    private PictureService pictureService;
 
     public List<MatchZoneWeb> findRecommendMatchZone() {
         List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.index, RecommendType.matchZone, 0, 4);
@@ -135,14 +140,42 @@ public class IndexWebService {
         return matchZoneList;
     }
 
-    public List<Info> findMatchZoneVideoInfo() {
-        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.matchZoneVideo, RecommendType.matchZone, 0, 4);
+    public List<Info> findZoneVideoInfoByRecommendLocal(RecommendLocal recommendLocal, RecommendType recommendType, InfoVideoType infoVideoType) {
+        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(recommendLocal, recommendType, 0, 4);
         List<Long> zoneIdList = new ArrayList<>();
         for (RecommendMapping recommendMapping : recommendMappingList) {
             zoneIdList.add(recommendMapping.getEntityId());
         }
         Info info = new Info();
         info.setZoneIdList(zoneIdList);
+        info.setInfoVideoType(infoVideoType);
         return infoService.list(info, 0, 7);
     }
+
+    public List<AnchorZone> findAnchorZoneVideo() {
+        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.anchorZoneVideo, RecommendType.anchorZone, 0, 4);
+        List<AnchorZone> anchorZoneList = new ArrayList<>();
+        for (RecommendMapping recommendMapping : recommendMappingList) {
+            AnchorZone anchorZone = anchorZoneService.findById(recommendMapping.getEntityId());
+            anchorZoneList.add(anchorZone);
+        }
+        return anchorZoneList;
+    }
+
+    public List<Info> findPlayerVideoInfoList() {
+        Info info = new Info();
+        info.setInfoVideoType(InfoVideoType.playerVideo);
+        return infoService.list(info, 0, 5);
+    }
+
+    public List<MatchZone> findTopMatchZoneList() {
+        return matchZoneService.listOrderByVisit(0, 10);
+
+    }
+
+    public List<Picture> findNewestPictureList() {
+        return pictureService.list(null, 0, 6);
+    }
+
+
 }

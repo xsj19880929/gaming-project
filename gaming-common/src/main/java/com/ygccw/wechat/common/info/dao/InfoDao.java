@@ -26,7 +26,7 @@ public class InfoDao {
                 .append("zoneId", info.getZoneId())
                 .append("infoZoneType", info.getInfoZoneType())
                 .append("infoType", info.getInfoType())
-                .append("infoZoneType", info.getInfoZoneType())
+                .append("infoVideoType", info.getInfoVideoType())
                 .append("verify", info.getVerify())
                 .append("zoneId", info.getZoneIdList(), "zoneId", "=", "or")
                 .skipEmptyFields().orderBy("updateTime").desc();
@@ -43,7 +43,7 @@ public class InfoDao {
                 .append("zoneId", info.getZoneId())
                 .append("infoZoneType", info.getInfoZoneType())
                 .append("infoType", info.getInfoType())
-                .append("infoZoneType", info.getInfoZoneType())
+                .append("infoVideoType", info.getInfoVideoType())
                 .append("verify", info.getVerify())
                 .append("zoneId", info.getZoneIdList(), "zoneId", "=", "or")
                 .skipEmptyFields();

@@ -89,4 +89,8 @@ public class MatchZoneServiceImpl implements MatchZoneService {
     public List<MatchZone> listByIfAnchorMatch() {
         return matchZoneDao.listByIfAnchorMatch();
     }
+
+    public List<MatchZone> listOrderByVisit(int offset, int fetchSize) {
+        return matchZoneDao.listOrderByVisit(offset, fetchSize);
+    }
 }

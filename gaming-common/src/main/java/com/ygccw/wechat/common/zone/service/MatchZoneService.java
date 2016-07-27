@@ -26,4 +26,6 @@ public interface MatchZoneService {
     List<MatchZone> listAll();
 
     List<MatchZone> listByIfAnchorMatch();
+
+    List<MatchZone> listOrderByVisit(int offset, int fetchSize);
 }

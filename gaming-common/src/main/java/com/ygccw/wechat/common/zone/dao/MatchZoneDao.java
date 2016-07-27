@@ -19,6 +19,13 @@ public class MatchZoneDao {
     @Inject
     JPAAccess jpaAccess;
 
+    public List<MatchZone> listOrderByVisit(int offset, int fetchSize) {
+        QueryBuilder queryBuilder = QueryBuilder.query("from MatchZone").append("status", 1)
+                .skipEmptyFields().orderBy("visitCount", false);
+        Query query = queryBuilder.build().from(offset).fetch(fetchSize);
+        return jpaAccess.find(query);
+    }
+
     public List<MatchZone> list(MatchZone matchZone, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from MatchZone").append("status", 1)
                 .skipEmptyFields().orderBy("createTime").desc();
