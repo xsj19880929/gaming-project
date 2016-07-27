@@ -26,6 +26,9 @@ public class IndexController {
         model.put("infoNewestList", indexWebService.findNewestInfo());
         model.put("infoMatchZoneList", indexWebService.findMatchZoneInfo());
         model.put("starMatchTeamList", indexWebService.findStarMatchTeam());
+        model.put("anchorZoneList", indexWebService.findAnchorZone());
+        model.put("matchZoneVideoList", indexWebService.findMatchZoneVideo());
+        model.put("infoMatchZoneVideoList", indexWebService.findMatchZoneVideoInfo());
         return "/index.html";
     }
 }

@@ -23,6 +23,9 @@
         $http.get('/enum/com.ygccw.wechat.common.recommend.enums.RecommendType').success(function (data) {
             $scope.recommendTypeList = data;
         });
+        $http.get('/enum/com.ygccw.wechat.common.recommend.enums.RecommendLocal').success(function (data) {
+            $scope.recommendLocalList = data;
+        });
         $scope.updateRecommend = function () {
             if ($scope.id) {
                 $http.put("/recommend", $scope.recommend).success(function () {

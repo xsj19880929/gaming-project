@@ -3,6 +3,7 @@ package com.ygccw.wechat.common.recommend.service.impl;
 
 import com.ygccw.wechat.common.recommend.dao.RecommendMappingDao;
 import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
+import com.ygccw.wechat.common.recommend.enums.RecommendLocal;
 import com.ygccw.wechat.common.recommend.enums.RecommendType;
 import com.ygccw.wechat.common.recommend.service.RecommendMappingService;
 import org.springframework.stereotype.Service;
@@ -66,5 +67,10 @@ public class RecommendMappingServiceImpl implements RecommendMappingService {
     @Override
     public List<RecommendMapping> listByRecommendIdAndType(Long recommendId, RecommendType recommendType, int offset, int fetchSize) {
         return recommendMappingDao.listByRecommendIdAndType(recommendId, recommendType, offset, fetchSize);
+    }
+
+    @Override
+    public List<RecommendMapping> listByLocalAndType(RecommendLocal recommendLocal, RecommendType recommendType, int offset, int fetchSize) {
+        return recommendMappingDao.listByLocalAndType(recommendLocal, recommendType, offset, fetchSize);
     }
 }

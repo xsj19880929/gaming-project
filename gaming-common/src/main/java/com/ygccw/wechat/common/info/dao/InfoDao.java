@@ -4,6 +4,7 @@ import com.ygccw.wechat.common.info.entity.Info;
 import core.framework.database.JPAAccess;
 import core.framework.database.Query;
 import core.framework.database.QueryBuilder;
+import core.framework.database.QueryBuilderL;
 import core.framework.util.StringUtils;
 import org.springframework.stereotype.Repository;
 
@@ -20,13 +21,14 @@ public class InfoDao {
     JPAAccess jpaAccess;
 
     public List<Info> list(Info info, int offset, int fetchSize) {
-        QueryBuilder queryBuilder = QueryBuilder.query("from Info")
+        QueryBuilderL queryBuilder = QueryBuilderL.query("from Info")
                 .append("status", 1)
                 .append("zoneId", info.getZoneId())
                 .append("infoZoneType", info.getInfoZoneType())
                 .append("infoType", info.getInfoType())
                 .append("infoZoneType", info.getInfoZoneType())
                 .append("verify", info.getVerify())
+                .append("zoneId", info.getZoneIdList(), "zoneId", "=", "or")
                 .skipEmptyFields().orderBy("updateTime").desc();
         if (StringUtils.hasText(info.getTitle())) {
             queryBuilder.append("title", "%" + info.getTitle() + "%", "like");
@@ -36,13 +38,14 @@ public class InfoDao {
     }
 
     public int listSize(Info info) {
-        QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from Info")
+        QueryBuilderL queryBuilder = QueryBuilderL.query("select count(id) from Info")
                 .append("status", 1)
                 .append("zoneId", info.getZoneId())
                 .append("infoZoneType", info.getInfoZoneType())
                 .append("infoType", info.getInfoType())
                 .append("infoZoneType", info.getInfoZoneType())
                 .append("verify", info.getVerify())
+                .append("zoneId", info.getZoneIdList(), "zoneId", "=", "or")
                 .skipEmptyFields();
         if (StringUtils.hasText(info.getTitle())) {
             queryBuilder.append("title", "%" + info.getTitle() + "%", "like");

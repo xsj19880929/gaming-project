@@ -9,7 +9,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author soldier
@@ -42,6 +44,16 @@ public class Info {
     private String source;
     private Date publishTime;
     private String author;
+    @Transient
+    private List<Long> zoneIdList;
+
+    public List<Long> getZoneIdList() {
+        return zoneIdList;
+    }
+
+    public void setZoneIdList(List<Long> zoneIdList) {
+        this.zoneIdList = zoneIdList;
+    }
 
     public Long getId() {
         return id;

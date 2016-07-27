@@ -1,5 +1,6 @@
 package com.ygccw.wechat.common.recommend.entity;
 
+import com.ygccw.wechat.common.recommend.enums.RecommendLocal;
 import com.ygccw.wechat.common.recommend.enums.RecommendType;
 
 import javax.persistence.Entity;
@@ -23,6 +24,16 @@ public class Recommend {
     @Enumerated(EnumType.STRING)
     private RecommendType recommendType;
     private String name;
+    @Enumerated(EnumType.STRING)
+    private RecommendLocal recommendLocal;
+
+    public RecommendLocal getRecommendLocal() {
+        return recommendLocal;
+    }
+
+    public void setRecommendLocal(RecommendLocal recommendLocal) {
+        this.recommendLocal = recommendLocal;
+    }
 
     public Long getId() {
         return id;

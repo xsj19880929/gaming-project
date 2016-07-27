@@ -8,11 +8,14 @@ import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
+import com.ygccw.wechat.common.recommend.enums.RecommendLocal;
 import com.ygccw.wechat.common.recommend.enums.RecommendType;
 import com.ygccw.wechat.common.recommend.service.RecommendMappingService;
+import com.ygccw.wechat.common.zone.entity.AnchorZone;
 import com.ygccw.wechat.common.zone.entity.MatchTeam;
 import com.ygccw.wechat.common.zone.entity.MatchTeamMapping;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
+import com.ygccw.wechat.common.zone.service.AnchorZoneService;
 import com.ygccw.wechat.common.zone.service.MatchTeamMappingService;
 import com.ygccw.wechat.common.zone.service.MatchTeamService;
 import com.ygccw.wechat.common.zone.service.MatchZoneService;
@@ -40,9 +43,11 @@ public class IndexWebService {
     private AdvertisingService advertisingService;
     @Inject
     private InfoService infoService;
+    @Inject
+    private AnchorZoneService anchorZoneService;
 
     public List<MatchZoneWeb> findRecommendMatchZone() {
-        List<RecommendMapping> recommendMappingList = recommendMappingService.listByRecommendIdAndType(1L, RecommendType.matchZone, 0, 4);
+        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.index, RecommendType.matchZone, 0, 4);
         List<MatchZoneWeb> matchZoneWebList = new ArrayList<>();
         for (RecommendMapping recommendMapping : recommendMappingList) {
             MatchZoneWeb matchZoneWeb = new MatchZoneWeb();
@@ -108,5 +113,36 @@ public class IndexWebService {
 
         }
         return matchTeamWebList;
+    }
+
+    public List<AnchorZone> findAnchorZone() {
+        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.index, RecommendType.anchorZone, 0, 2);
+        List<AnchorZone> anchorZoneList = new ArrayList<>();
+        for (RecommendMapping recommendMapping : recommendMappingList) {
+            AnchorZone anchorZone = anchorZoneService.findById(recommendMapping.getEntityId());
+            anchorZoneList.add(anchorZone);
+        }
+        return anchorZoneList;
+    }
+
+    public List<MatchZone> findMatchZoneVideo() {
+        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.matchZoneVideo, RecommendType.matchZone, 0, 4);
+        List<MatchZone> matchZoneList = new ArrayList<>();
+        for (RecommendMapping recommendMapping : recommendMappingList) {
+            MatchZone matchZone = matchZoneService.findById(recommendMapping.getEntityId());
+            matchZoneList.add(matchZone);
+        }
+        return matchZoneList;
+    }
+
+    public List<Info> findMatchZoneVideoInfo() {
+        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.matchZoneVideo, RecommendType.matchZone, 0, 4);
+        List<Long> zoneIdList = new ArrayList<>();
+        for (RecommendMapping recommendMapping : recommendMappingList) {
+            zoneIdList.add(recommendMapping.getEntityId());
+        }
+        Info info = new Info();
+        info.setZoneIdList(zoneIdList);
+        return infoService.list(info, 0, 7);
     }
 }

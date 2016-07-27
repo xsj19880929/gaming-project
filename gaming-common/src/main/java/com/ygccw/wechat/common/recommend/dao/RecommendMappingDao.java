@@ -1,6 +1,7 @@
 package com.ygccw.wechat.common.recommend.dao;
 
 import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
+import com.ygccw.wechat.common.recommend.enums.RecommendLocal;
 import com.ygccw.wechat.common.recommend.enums.RecommendType;
 import core.framework.database.JPAAccess;
 import core.framework.database.Query;
@@ -28,6 +29,13 @@ public class RecommendMappingDao {
 
     public List<RecommendMapping> listByRecommendIdAndType(Long recommendId, RecommendType recommendType, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from RecommendMapping").append("status", 1).append("recommendId", recommendId).append("recommendType", recommendType)
+                .skipEmptyFields().orderBy("createTime").desc();
+        Query query = queryBuilder.build().from(offset).fetch(fetchSize);
+        return jpaAccess.find(query);
+    }
+
+    public List<RecommendMapping> listByLocalAndType(RecommendLocal recommendLocal, RecommendType recommendType, int offset, int fetchSize) {
+        QueryBuilder queryBuilder = QueryBuilder.query("from RecommendMapping").append("status", 1).append("recommendLocal", recommendLocal).append("recommendType", recommendType)
                 .skipEmptyFields().orderBy("createTime").desc();
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);

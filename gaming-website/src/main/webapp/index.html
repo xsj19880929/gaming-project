@@ -396,20 +396,12 @@
                 <a href="#" class="more">更多</a>
             </div>
             <ul class="zhubo_list">
-                <li>
-                    <a href="#"><img src="static/temp/zbo01.jpg"/>
-                        <p class="p1">LOL代练MOBA大神 美萌老鼠mayuyu</p></a>
+                <li th:each="anchorZone:${anchorZoneList}">
+                    <a href="#"><img th:img-src="/image/340x160${anchorZone.recommendImage}"/>
+                        <p class="p1" th:text="${anchorZone.name}">LOL代练MOBA大神 美萌老鼠mayuyu</p></a>
                     <p class="p2">
-                        <span>主播：<a href="#">小智脑残粉</a></span>
-                        <span>人气：<em>58621032</em></span>
-                    </p>
-                </li>
-                <li>
-                    <a href="#"><img src="static/temp/zbo02.jpg"/>
-                        <p class="p1">主播小苍：从解说转型直播 难舍游戏情</p></a>
-                    <p class="p2">
-                        <span>主播：<a href="#">小粉</a></span>
-                        <span>人气：<em>58621032</em></span>
+                        <span>主播：<a href="#" th:text="${anchorZone.username}">小智脑残粉</a></span>
+                        <span>人气：<em th:text="${anchorZone.visitCount}">58621032</em></span>
                     </p>
                 </li>
             </ul>
@@ -421,61 +413,25 @@
 <div class="general white clearfix">
     <div class="index_tit_two title">
         <span class="text_left">比赛视频</span>
-        <p class="link_nav"><a href="#">炉石传说</a>|<a href="#">虚荣</a>|<a href="#">全民枪战</a>|<a href="#">自由之战</a></p>
+        <p class="link_nav"><span th:each="matchZone:${matchZoneVideoList}"><a href="#"
+                                                                               th:text="${matchZone.name}">炉石传说</a>|</span>
+        </p>
         <a href="#" class="more">更多</a>
     </div>
     <div class="index_video clearfix">
-        <p class="index_video_left"><a href="#"><img
-                src="static/temp/temp01.jpg"/><span>魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a></p>
+        <p class="index_video_left"><a href="#" th:each="info,iterStat:${infoMatchZoneVideoList}"
+                                       th:if="${iterStat.index==0}"><img
+                th:img-src="/image/486X360${info.titleImage}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
+        </p>
         <div class="index_video_right">
             <ul>
-                <li>
+                <li th:each="info,iterStat:${infoMatchZoneVideoList}" th:if="${iterStat.index!=0}">
                     <a href="#" class="img">
-                        <img src="static/temp/temp03.jpg"/>
-                        <p class="p1"><span>42:15</span></p>
+                        <img th:img-src="/image/200X118${info.titleImage}"/>
+                        <p class="p1"><span></span></p>
                         <p class="p2"><em></em></p>
                     </a>
-                    <a href="#" class="text">电竞校园联赛炉石传说Top3</a>
-                </li>
-                <li>
-                    <a href="#" class="img">
-                        <img src="static/temp/temp02.jpg"/>
-                        <p class="p1"><span>42:15</span></p>
-                        <p class="p2"><em></em></p>
-                    </a>
-                    <a href="#" class="text">《虚荣》韩国pQq战队训练赛酒枪</a>
-                </li>
-                <li>
-                    <a href="#" class="img">
-                        <img src="static/temp/temp03.jpg"/>
-                        <p class="p1"><span>42:15</span></p>
-                        <p class="p2"><em></em></p>
-                    </a>
-                    <a href="#" class="text">电竞校园联赛全民枪战总决赛</a>
-                </li>
-                <li>
-                    <a href="#" class="img">
-                        <img src="static/temp/temp02.jpg"/>
-                        <p class="p1"><span>42:15</span></p>
-                        <p class="p2"><em></em></p>
-                    </a>
-                    <a href="#" class="text">电竞校园联赛 全民枪战北体决赛</a>
-                </li>
-                <li>
-                    <a href="#" class="img">
-                        <img src="static/temp/temp03.jpg"/>
-                        <p class="p1"><span>42:15</span></p>
-                        <p class="p2"><em></em></p>
-                    </a>
-                    <a href="#" class="text">电竞校园联赛全民枪战总决赛</a>
-                </li>
-                <li>
-                    <a href="#" class="img">
-                        <img src="static/temp/temp02.jpg"/>
-                        <p class="p1"><span>42:15</span></p>
-                        <p class="p2"><em></em></p>
-                    </a>
-                    <a href="#" class="text">电竞校园联赛 全民枪战北体决赛</a>
+                    <a href="#" class="text" th:text="${info.title}">电竞校园联赛炉石传说Top3</a>
                 </li>
             </ul>
         </div>

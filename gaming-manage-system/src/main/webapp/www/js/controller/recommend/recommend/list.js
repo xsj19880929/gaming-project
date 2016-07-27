@@ -30,6 +30,10 @@
                     name: '类型',
                     field: 'recommendType.label'
                 },
+                {
+                    name: '推荐位置',
+                    field: 'recommendLocal.label'
+                },
                 {name: '创建时间', field: 'createTime', type: 'date', cellFilter: 'date:"yyyy-MM-dd HH:mm:ss"'},
                 {
                     name: '操作',
