@@ -475,43 +475,11 @@
         <ul>
             <li th:each="info:${infoPlayerVideoInfoList}">
                 <a href="#" class="img">
-                    <img src="static/temp/temp03.jpg"/>
+                    <img th:img-src="/image/200x118${info.titleImage}"/>
                     <p class="p1"><span>42:15</span></p>
                     <p class="p2"><em></em></p>
                 </a>
-                <a href="#" class="text">电竞校园联赛炉石传说Top3</a>
-            </li>
-            <li>
-                <a href="#" class="img">
-                    <img src="static/temp/temp02.jpg"/>
-                    <p class="p1"><span>42:15</span></p>
-                    <p class="p2"><em></em></p>
-                </a>
-                <a href="#" class="text">《虚荣》韩国pQq战队训练赛酒枪</a>
-            </li>
-            <li>
-                <a href="#" class="img">
-                    <img src="static/temp/temp03.jpg"/>
-                    <p class="p1"><span>42:15</span></p>
-                    <p class="p2"><em></em></p>
-                </a>
-                <a href="#" class="text">电竞校园联赛全民枪战总决赛</a>
-            </li>
-            <li>
-                <a href="#" class="img">
-                    <img src="static/temp/temp02.jpg"/>
-                    <p class="p1"><span>42:15</span></p>
-                    <p class="p2"><em></em></p>
-                </a>
-                <a href="#" class="text">电竞校园联赛 全民枪战北体决赛</a>
-            </li>
-            <li>
-                <a href="#" class="img">
-                    <img src="static/temp/temp03.jpg"/>
-                    <p class="p1"><span>42:15</span></p>
-                    <p class="p2"><em></em></p>
-                </a>
-                <a href="#" class="text">电竞校园联赛全民枪战总决赛</a>
+                <a href="#" class="text" th:text="${info.title}">电竞校园联赛炉石传说Top3</a>
             </li>
         </ul>
     </div>
@@ -522,76 +490,14 @@
 <div class="general index_rank">
     <div class="index_tit_two title"><span class="text_left">电竞排行榜</span></div>
     <ul class="index_rank_con clearfix">
-        <li>
-            <p class="p1"><a href="#"><span></span><img src="static/temp/dj02.jpg"/></a></p>
+        <li th:each="matchZone:${matchZoneTopList}">
+            <p class="p1"><a href="#"><span></span><img th:img-src="/image/106x106/${matchZone.icoImage}"/></a></p>
             <p class="p2">
-                <span class="span01"><a href="#">风暴英雄</a></span>
-                <span class="span02">人气：<em>41987</em></span>
+                <span class="span01"><a href="#" th:text="${matchZone.name}">风暴英雄</a></span>
+                <span class="span02">人气：<em th:text="${matchZone.visitCount}">41987</em></span>
             </p>
         </li>
-        <li>
-            <p class="p1"><a href="#"><span></span><img src="static/temp/dj01.jpg"/></a></p>
-            <p class="p2">
-                <span class="span01"><a href="#">风暴英雄</a></span>
-                <span class="span02">人气：<em>41987</em></span>
-            </p>
-        </li>
-        <li>
-            <p class="p1"><a href="#"><span></span><img src="static/temp/dj03.jpg"/></a></p>
-            <p class="p2">
-                <span class="span01"><a href="#">风暴英雄</a></span>
-                <span class="span02">人气：<em>41987</em></span>
-            </p>
-        </li>
-        <li>
-            <p class="p1"><a href="#"><span></span><img src="static/temp/dj04.jpg"/></a></p>
-            <p class="p2">
-                <span class="span01"><a href="#">风暴英雄</a></span>
-                <span class="span02">人气：<em>41987</em></span>
-            </p>
-        </li>
-        <li>
-            <p class="p1"><a href="#"><span></span><img src="static/temp/dj05.jpg"/></a></p>
-            <p class="p2">
-                <span class="span01"><a href="#">风暴英雄</a></span>
-                <span class="span02">人气：<em>41987</em></span>
-            </p>
-        </li>
-        <li>
-            <p class="p1"><a href="#"><span></span><img src="static/temp/dj06.jpg"/></a></p>
-            <p class="p2">
-                <span class="span01"><a href="#">风暴英雄</a></span>
-                <span class="span02">人气：<em>41987</em></span>
-            </p>
-        </li>
-        <li>
-            <p class="p1"><a href="#"><span></span><img src="static/temp/dj03.jpg"/></a></p>
-            <p class="p2">
-                <span class="span01"><a href="#">风暴英雄</a></span>
-                <span class="span02">人气：<em>41987</em></span>
-            </p>
-        </li>
-        <li>
-            <p class="p1"><a href="#"><span></span><img src="static/temp/dj05.jpg"/></a></p>
-            <p class="p2">
-                <span class="span01"><a href="#">风暴英雄</a></span>
-                <span class="span02">人气：<em>41987</em></span>
-            </p>
-        </li>
-        <li>
-            <p class="p1"><a href="#"><span></span><img src="static/temp/dj06.jpg"/></a></p>
-            <p class="p2">
-                <span class="span01"><a href="#">风暴英雄</a></span>
-                <span class="span02">人气：<em>41987</em></span>
-            </p>
-        </li>
-        <li>
-            <p class="p1"><a href="#"><span></span><img src="static/temp/dj04.jpg"/></a></p>
-            <p class="p2">
-                <span class="span01"><a href="#">风暴英雄</a></span>
-                <span class="span02">人气：<em>41987</em></span>
-            </p>
-        </li>
+
     </ul>
 </div>
 <!--竞技美图 -->
@@ -602,24 +508,24 @@
     </div>
     <div class="index_pic_con">
         <ul class="ul1">
-            <li><a href="#"><img src="static/temp/girl1.jpg"/>
-                <p>黑发巨乳美少女宮浦三汐福利图集</p></a></li>
-            <li><a href="#"><img src="static/temp/girl2.jpg"/>
-                <p>黑发巨乳美少女宮浦三汐福利图集</p></a></li>
+            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==0||iterStat.index==1}"><a href=" #
+            "><img th:img-src="/image/280x178${picture.image}"/>
+                <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
         </ul>
         <ul class="ul2">
-            <li><a href="#"><img src="static/temp/girl5.jpg"/>
-                <p>黑发巨乳美少女宮浦三汐福利图集</p></a></li>
+            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==2}"><a href=" #
+            "><img th:img-src="/image/280x362${picture.image}"/>
+                <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
         </ul>
         <ul class="ul1">
-            <li><a href="#"><img src="static/temp/girl4.jpg"/>
-                <p>黑发巨乳美少女宮浦三汐福利图集</p></a></li>
-            <li><a href="#"><img src="static/temp/girl3.jpg"/>
-                <p>黑发巨乳美少女宮浦三汐福利图集</p></a></li>
+            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==3||iterStat.index==4}"><a href=" #
+            "><img th:img-src="/image/280x178${picture.image}"/>
+                <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
         </ul>
         <ul class="ul2">
-            <li><a href="#"><img src="static/temp/girl6.jpg"/>
-                <p>黑发巨乳美少女宮浦三汐福利图集</p></a></li>
+            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==5}"><a href=" #
+            "><img th:img-src="/image/280x362${picture.image}"/>
+                <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
         </ul>
     </div>
 </div>

@@ -21,7 +21,7 @@ public class MatchZoneDao {
 
     public List<MatchZone> listOrderByVisit(int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from MatchZone").append("status", 1)
-                .skipEmptyFields().orderBy("visitCount", false);
+                .skipEmptyFields().orderBy("visitCount", true);
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
     }

@@ -174,7 +174,8 @@ public class IndexWebService {
     }
 
     public List<Picture> findNewestPictureList() {
-        return pictureService.list(null, 0, 6);
+        Picture picture = new Picture();
+        return pictureService.list(picture, 0, 6);
     }
 
 
