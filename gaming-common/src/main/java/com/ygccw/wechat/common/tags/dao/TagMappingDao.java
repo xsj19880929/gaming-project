@@ -29,6 +29,7 @@ public class TagMappingDao {
 
     public List<TagMapping> list(TagMapping tagMapping, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from TagMapping").append("status", 1)
+                .append("tagType", tagMapping.getTagType()).append("tagZoneType", tagMapping.getTagZoneType())
                 .skipEmptyFields().orderBy("createTime").desc();
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
@@ -36,6 +37,7 @@ public class TagMappingDao {
 
     public int listSize(TagMapping tagMapping) {
         QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from TagMapping").append("status", 1)
+                .append("tagType", tagMapping.getTagType()).append("tagZoneType", tagMapping.getTagZoneType())
                 .skipEmptyFields().orderBy("createTime").desc();
         return Integer.parseInt(jpaAccess.find(queryBuilder.build()).get(0).toString());
 
