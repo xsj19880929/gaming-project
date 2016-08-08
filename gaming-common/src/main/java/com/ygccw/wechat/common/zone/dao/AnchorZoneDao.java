@@ -25,6 +25,11 @@ public class AnchorZoneDao {
         if (StringUtils.hasText(anchorZone.getName())) {
             queryBuilder.append("name", "%" + anchorZone.getName() + "%", "like");
         }
+        if (StringUtils.hasText(anchorZone.getSortName())) {
+            queryBuilder.orderBy(anchorZone.getSortName(), anchorZone.getSortIfDesc());
+        } else {
+            queryBuilder.orderBy("updateTime", true);
+        }
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
     }
@@ -34,6 +39,11 @@ public class AnchorZoneDao {
                 .skipEmptyFields().orderBy("createTime").desc();
         if (StringUtils.hasText(anchorZone.getName())) {
             queryBuilder.append("name", "%" + anchorZone.getName() + "%", "like");
+        }
+        if (StringUtils.hasText(anchorZone.getSortName())) {
+            queryBuilder.orderBy(anchorZone.getSortName(), anchorZone.getSortIfDesc());
+        } else {
+            queryBuilder.orderBy("updateTime", true);
         }
         return Integer.parseInt(jpaAccess.find(queryBuilder.build()).get(0).toString());
 

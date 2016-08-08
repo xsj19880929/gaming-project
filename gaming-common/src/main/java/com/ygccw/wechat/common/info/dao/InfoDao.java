@@ -33,6 +33,11 @@ public class InfoDao {
         if (StringUtils.hasText(info.getTitle())) {
             queryBuilder.append("title", "%" + info.getTitle() + "%", "like");
         }
+        if (StringUtils.hasText(info.getSortName())) {
+            queryBuilder.orderBy(info.getSortName(), info.getSortIfDesc());
+        } else {
+            queryBuilder.orderBy("updateTime", true);
+        }
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
     }

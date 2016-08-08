@@ -17,13 +17,15 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author rainbow.cai
+ * @author soldier
  */
 public class MobileDialect extends DefaultDialect {
     private final String baseUrl;
     private final List<String> baseCdnUrls;
     private final String imageServerUrl;
     private final String version = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+    //    @Inject
+//    DocumentHeadProcessor documentHeadProcessor;
     @Inject
     private ImgSrcAttrProcessor imgSrcAttrProcessor;
 
@@ -52,7 +54,7 @@ public class MobileDialect extends DefaultDialect {
         processors.add(new PageAttrProcessor());
         processors.add(new CdnProcessor(baseUrl, baseCdnUrls, version));
         processors.add(imgSrcAttrProcessor);
-//        processors.add(shareProcessor);
+//        processors.add(documentHeadProcessor);
 
 
         return processors;

@@ -46,6 +46,26 @@ public class Info {
     private String author;
     @Transient
     private List<Long> zoneIdList;
+    @Transient
+    private String sortName;
+    @Transient
+    private Boolean sortIfDesc;
+
+    public String getSortName() {
+        return sortName;
+    }
+
+    public void setSortName(String sortName) {
+        this.sortName = sortName;
+    }
+
+    public Boolean getSortIfDesc() {
+        return sortIfDesc;
+    }
+
+    public void setSortIfDesc(Boolean sortIfDesc) {
+        this.sortIfDesc = sortIfDesc;
+    }
 
     public List<Long> getZoneIdList() {
         return zoneIdList;

@@ -3,13 +3,17 @@ package com.ygccw.website.pc.info.service;
 import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.website.pc.info.model.TagMappingWeb;
 import com.ygccw.wechat.common.info.entity.Info;
+import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.tags.entity.TagMapping;
 import com.ygccw.wechat.common.tags.entity.Tags;
 import com.ygccw.wechat.common.tags.enums.TagType;
+import com.ygccw.wechat.common.tags.enums.TagZoneType;
 import com.ygccw.wechat.common.tags.service.TagMappingService;
 import com.ygccw.wechat.common.tags.service.TagsService;
+import com.ygccw.wechat.common.zone.entity.AnchorZone;
+import com.ygccw.wechat.common.zone.service.AnchorZoneService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +32,10 @@ public class InfoWebService {
     TagMappingService tagMappingService;
     @Inject
     TagsService tagsService;
+    @Inject
+    AnchorZoneService anchorZoneService;
 
-    public List<InfoWeb> infoList(InfoZoneType infoZoneType, int offset, int fetchSize) {
+    public List<InfoWeb> infoList(InfoZoneType infoZoneType, TagZoneType tagZoneType, int offset, int fetchSize) {
         Info infoRequest = new Info();
         infoRequest.setInfoZoneType(infoZoneType);
         infoRequest.setVerify(1);
@@ -40,7 +46,8 @@ public class InfoWebService {
             BeanUtils.copyProperties(info, infoWeb);
             TagMapping tagMappingRequest = new TagMapping();
             tagMappingRequest.setTagType(TagType.news);
-//            tagMappingRequest.setTagZoneType(infoZoneType);
+            tagMappingRequest.setTagZoneType(tagZoneType);
+            tagMappingRequest.setEntityId(info.getId());
             List<TagMapping> tagMappingList = tagMappingService.list(tagMappingRequest, 0, 10);
             List<TagMappingWeb> tagMappingWebList = new ArrayList<>();
             for (TagMapping tagMapping : tagMappingList) {
@@ -54,5 +61,30 @@ public class InfoWebService {
             infoWebList.add(infoWeb);
         }
         return infoWebList;
+    }
+
+    public List<Info> videoListTop(int offset, int fetchSize) {
+        Info infoRequest = new Info();
+        infoRequest.setInfoType(InfoType.video);
+        infoRequest.setSortName("visitCount");
+        infoRequest.setSortIfDesc(true);
+        List<Info> infoList = infoService.list(infoRequest, offset, fetchSize);
+        return infoList;
+    }
+
+    public List<Info> newsListTop(int offset, int fetchSize) {
+        Info infoRequest = new Info();
+        infoRequest.setInfoType(InfoType.news);
+        infoRequest.setSortName("visitCount");
+        infoRequest.setSortIfDesc(true);
+        List<Info> infoList = infoService.list(infoRequest, offset, fetchSize);
+        return infoList;
+    }
+
+    public List<AnchorZone> anchorListTop(int offset, int fetchSize) {
+        AnchorZone anchorZone = new AnchorZone();
+        anchorZone.setSortIfDesc(true);
+        anchorZone.setSortName("visitCount");
+        return anchorZoneService.list(anchorZone, offset, fetchSize);
     }
 }
