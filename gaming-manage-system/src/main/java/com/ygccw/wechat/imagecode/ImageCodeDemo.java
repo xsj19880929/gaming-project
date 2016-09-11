@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,11 +18,23 @@ import java.util.Map;
 public class ImageCodeDemo {
     public static void main(String[] args) {
         try {
-//            List<BufferedImage> bufferedImageList = splitImage(removeBackground("E:\\验证码\\wordnew\\DrawImage.png"));
-//            for (BufferedImage bufferedImage : bufferedImageList) {
-//                ImageIO.write(bufferedImage, "png", new File("E:\\验证码\\wordnew\\" + System.currentTimeMillis() + ".png"));
-//            }
-            ImageIO.write(Rotate(drawString("那"), 385), "png", new File("E:\\验证码\\wordnew\\" + System.currentTimeMillis() + ".png"));
+            List<BufferedImage> bufferedImageList = splitImage(removeBackground("D:\\验证码\\DrawImage (9).png"));
+            for (BufferedImage bufferedImage : bufferedImageList) {
+                ImageIO.write(bufferedImage, "png", new File("D:\\验证码\\spit\\" + System.currentTimeMillis() + ".png"));
+            }
+            String[] wordArray = new String[]{"慢", "团", "么", "动", "门", "九", "落", "忽", "可"};
+            for (String word : wordArray) {
+                for (int i = 330; i <= 400; i++) {
+                    if (i % 5 == 0) {
+                        ImageIO.write(splitWidthImage(splitHeightImage(Rotate(drawString(word), i))), "png", new File("D:\\验证码\\wordnew\\" + word + i + ".png"));
+                    }
+                }
+            }
+            for (BufferedImage bufferedImage : bufferedImageList) {
+                check(bufferedImage);
+            }
+
+//            ImageIO.write(Rotate(drawString("慢"), 340), "png", new File("D:\\验证码\\wordnew\\" + System.currentTimeMillis() + ".png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,6 +107,54 @@ public class ImageCodeDemo {
                 spitWidthBegin = mapEntry.getKey();
                 markWidthList.add(spitWidthBegin);
             } else if (mapEntry.getKey() != 0 && mapEntry.getValue() != height && heightMap.get(mapEntry.getKey() - 1) == height) {
+                if (mapEntry.getKey() - spitWidthBegin > 10 || spitWidthBegin == 0) {
+                    spitWidthBegin = mapEntry.getKey();
+                    markWidthList.add(spitWidthBegin);
+                }
+
+            }
+            if (mapEntry.getKey() == width && mapEntry.getValue() != height) {
+                spitWidthEnd = mapEntry.getKey();
+                markWidthList.add(spitWidthEnd);
+            } else if (mapEntry.getKey() != 0 && mapEntry.getValue() != height && heightMap.get(mapEntry.getKey() + 1) == height) {
+                if (mapEntry.getKey() - spitWidthBegin > 10) {
+                    spitWidthEnd = mapEntry.getKey() + 1;
+                    markWidthList.add(spitWidthEnd);
+                }
+
+            }
+        }
+        System.out.println(JSONBinder.toJSON(markWidthList));
+        subImageList.add(splitHeightImage(img.getSubimage(markWidthList.get(0), 0, markWidthList.get(1) - markWidthList.get(0), height)));
+        subImageList.add(splitHeightImage(img.getSubimage(markWidthList.get(2), 0, markWidthList.get(3) - markWidthList.get(2), height)));
+        subImageList.add(splitHeightImage(img.getSubimage(markWidthList.get(4), 0, markWidthList.get(5) - markWidthList.get(4), height)));
+        subImageList.add(splitHeightImage(img.getSubimage(markWidthList.get(6), 0, markWidthList.get(7) - markWidthList.get(6), height)));
+        return subImageList;
+
+
+    }
+
+    public static BufferedImage splitWidthImage(BufferedImage img) throws Exception {
+        int width = img.getWidth();
+        int height = img.getHeight();
+        Map<Integer, Integer> heightMap = new LinkedHashMap<>();
+        for (int x = 0; x < width; x++) {
+            int count = 0;
+            for (int y = 0; y < height; y++) {
+                if (isWhite(img.getRGB(x, y)) == 1) {
+                    count++;
+                }
+            }
+            heightMap.put(x, count);
+        }
+        int spitWidthBegin = 0;
+        int spitWidthEnd = 0;
+        List<Integer> markWidthList = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> mapEntry : heightMap.entrySet()) {
+            if (mapEntry.getKey() == 0 && mapEntry.getValue() != height) {
+                spitWidthBegin = mapEntry.getKey();
+                markWidthList.add(spitWidthBegin);
+            } else if (mapEntry.getKey() != 0 && mapEntry.getValue() != height && heightMap.get(mapEntry.getKey() - 1) == height) {
                 spitWidthBegin = mapEntry.getKey();
                 markWidthList.add(spitWidthBegin);
             }
@@ -105,13 +166,7 @@ public class ImageCodeDemo {
                 markWidthList.add(spitWidthEnd);
             }
         }
-        System.out.println(JSONBinder.toJSON(markWidthList));
-        subImageList.add(splitHeightImage(img.getSubimage(markWidthList.get(0), 0, markWidthList.get(1) - markWidthList.get(0), height)));
-        subImageList.add(splitHeightImage(img.getSubimage(markWidthList.get(2), 0, markWidthList.get(3) - markWidthList.get(2), height)));
-        subImageList.add(splitHeightImage(img.getSubimage(markWidthList.get(4), 0, markWidthList.get(5) - markWidthList.get(4), height)));
-        subImageList.add(splitHeightImage(img.getSubimage(markWidthList.get(6), 0, markWidthList.get(7) - markWidthList.get(6), height)));
-        return subImageList;
-
+        return img.getSubimage(markWidthList.get(0), 0, markWidthList.get(1) - markWidthList.get(0), height);
 
     }
 
@@ -148,7 +203,7 @@ public class ImageCodeDemo {
                 markHeightList.add(spitHeightEnd);
             }
         }
-        System.out.println(JSONBinder.toJSON(markHeightList));
+//        System.out.println(JSONBinder.toJSON(markHeightList));
         return img.getSubimage(0, markHeightList.get(0), width, markHeightList.get(1) - markHeightList.get(0));
 
     }
@@ -216,6 +271,44 @@ public class ImageCodeDemo {
         int des_width = src.width + len_dalta_width * 2;
         int des_height = src.height + len_dalta_height * 2;
         return new Rectangle(new Dimension(des_width, des_height));
+    }
+
+    public static String check(BufferedImage img) {
+        String result = "";
+        try {
+            Map<BufferedImage, String> map = new HashMap<BufferedImage, String>();
+            File dir = new File("D:\\验证码\\wordnew");
+            File[] files = dir.listFiles();
+            for (File file : files) {
+                map.put(ImageIO.read(file), file.getName().charAt(0) + "");
+            }
+            int width = img.getWidth();
+            int height = img.getHeight();
+            int temp = 0;
+            for (BufferedImage bi : map.keySet()) {
+                int count = 0;
+                int biWidth = bi.getWidth();
+                int biHeight = bi.getHeight();
+                for (int x = 0; x < width; x++) {
+                    for (int y = 0; y < height; y++) {
+                        if (y < biHeight && x < biWidth && isBlack(img.getRGB(x, y)) == isBlack(bi.getRGB(x, y))) {
+                            count++;
+                        }
+
+                    }
+                }
+//                System.out.println(map.get(bi) + "=" + count);
+                if (temp < count) {
+                    temp = count;
+//                    System.out.println(map.get(bi) + "=" + count);
+                    result = map.get(bi);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(result);
+        return result;
     }
 
 
