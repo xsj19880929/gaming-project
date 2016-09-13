@@ -17,7 +17,7 @@ public class HospitalRegisterServiceTest extends SpringTest {
     @Rollback
     public void test() {
         try {
-            hospitalRegisterService.reservationList();
+            hospitalRegisterService.testDo();
         } catch (Exception e) {
             e.printStackTrace();
         }

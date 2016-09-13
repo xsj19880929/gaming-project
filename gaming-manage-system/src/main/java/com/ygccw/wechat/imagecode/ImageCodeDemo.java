@@ -1,11 +1,20 @@
 package com.ygccw.wechat.imagecode;
 
-import core.framework.util.JSONBinder;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -18,30 +27,105 @@ import java.util.Map;
 public class ImageCodeDemo {
     public static void main(String[] args) {
         try {
-            List<BufferedImage> bufferedImageList = splitImage(removeBackground("D:\\验证码\\DrawImage (9).png"));
-            for (BufferedImage bufferedImage : bufferedImageList) {
-                ImageIO.write(bufferedImage, "png", new File("D:\\验证码\\spit\\" + System.currentTimeMillis() + ".png"));
-            }
-            String[] wordArray = new String[]{"慢", "团", "么", "动", "门", "九", "落", "忽", "可"};
-            for (String word : wordArray) {
-                for (int i = 330; i <= 400; i++) {
-                    if (i % 5 == 0) {
-                        ImageIO.write(splitWidthImage(splitHeightImage(Rotate(drawString(word), i))), "png", new File("D:\\验证码\\wordnew\\" + word + i + ".png"));
-                    }
-                }
-            }
-            for (BufferedImage bufferedImage : bufferedImageList) {
-                check(bufferedImage);
-            }
+//            List<BufferedImage> bufferedImageList = splitImage(removeBackground("D:\\验证码\\DrawImage (9).png"));
+//            for (BufferedImage bufferedImage : bufferedImageList) {
+//                ImageIO.write(bufferedImage, "png", new File("D:\\验证码\\spit\\" + System.currentTimeMillis() + ".png"));
+//            }
+//            String[] wordArray = new String[]{"无", "老", "倒", "色", "石", "答", "装", "林", "动"};
+//            for (String word : wordArray) {
+//                for (int i = 330; i <= 400; i++) {
+//                    if (i % 5 == 0) {
+//                        ImageIO.write(splitWidthImage(splitHeightImage(Rotate(drawString(word), i))), "png", new File("D:\\验证码\\wordnew\\" + word + i + ".png"));
+//                    }
+//                }
+//            }
+//            for (BufferedImage bufferedImage : bufferedImageList) {
+//                check(bufferedImage);
+//            }
 
-//            ImageIO.write(Rotate(drawString("慢"), 340), "png", new File("D:\\验证码\\wordnew\\" + System.currentTimeMillis() + ".png"));
+//
+
+//            HttpUriRequest request = RequestBuilder.get()
+//                    .setUri("http://wechat.xmsmjk.com/zycapwxsehr/DrawImage?openid=oYNMFt49BHWpGRDCzqmtJg_vrfXg&_=0.16891295321519362")
+//                    .setHeader("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Mobile/9B176 MicroMessenger/4.3.2")
+//                    .build();
+//            HttpResponse httpResponse = httpClient.execute(request);
+//            imageToWord("见笑两带其又改定友", "1", httpResponse.getEntity().getContent());
+//            ImageIO.write(Rotate(drawString("慢"), 340), "png", new File("D:\\验证码\\wordnew\\" + System.currentTimeMilli() + ".png"));
+//            System.out.println(URLEncoder.encode("厦门市妇幼保健院", "UTF-8"));
+            HttpClient httpClient = HttpClients.createDefault();
+            HttpPost post = new HttpPost("http://wechat.xmsmjk.com/zycapwxsehr/HospitalNoteController/getRegister.do");
+            post.setHeader("Cookie", "JSESSIONID=42420FBE05B4709BCF49963F56106A2E");
+            post.setHeader("Host", "wechat.xmsmjk.com");
+            post.setHeader("Referer", "http://wechat.xmsmjk.com/zycapwxsehr/view/appointment/confirm.jsp");
+            //创建参数列表
+            List<NameValuePair> list = new ArrayList<NameValuePair>();
+            list.add(new BasicNameValuePair("orgCode", "350211G1001"));
+            list.add(new BasicNameValuePair("deptCode", "320"));
+            list.add(new BasicNameValuePair("docCode", "040"));
+            list.add(new BasicNameValuePair("sectionType", "PM "));
+            list.add(new BasicNameValuePair("startTime", "2016-09-18 14:36:00"));
+            list.add(new BasicNameValuePair("ssid", "600865500445500594400905502"));
+            list.add(new BasicNameValuePair("patientName", "许少军"));
+            list.add(new BasicNameValuePair("patientID", "500135400835500094400975500665400875500075400935500365"));
+            list.add(new BasicNameValuePair("patientPhone", "400935500594400845500484500035505"));
+            list.add(new BasicNameValuePair("patientSex", "男"));
+            list.add(new BasicNameValuePair("orgName", "厦门市妇幼保健院"));
+            list.add(new BasicNameValuePair("openID", "oYNMFt49BHWpGRDCzqmtJg_vrfXg"));
+            list.add(new BasicNameValuePair("deptName", "宫颈疾病门诊"));
+            list.add(new BasicNameValuePair("doctorName", "吴冬梅"));
+            list.add(new BasicNameValuePair("seq", "201609181436"));
+            list.add(new BasicNameValuePair("state", "124"));
+            list.add(new BasicNameValuePair("iptCode", "群历天们"));
+            //url格式编码
+            UrlEncodedFormEntity uefEntity = new UrlEncodedFormEntity(list, "UTF-8");
+            post.setEntity(uefEntity);
+            System.out.println("POST 请求...." + post.getURI());
+            //执行请求
+            HttpResponse httpResponse = httpClient.execute(post);
+            String responseStr = EntityUtils.toString(httpResponse.getEntity());
+            System.out.println(responseStr);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static BufferedImage removeBackground(String picFile) throws Exception {
-        BufferedImage img = ImageIO.read(new File(picFile));
+    public static String imageToWord(String wordArray, String folder, String url) throws Exception {
+        URL get = new URL(url);
+        return imageToWord(wordArray, folder, get.openStream());
+    }
+
+    public static String imageToWord(String wordArray, String folder, InputStream inputStream) throws Exception {
+        String path = "D:\\imagecode\\" + folder;
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdirs();
+        } else {
+            File[] files = file.listFiles();
+            for (File file1 : files) {
+                file1.delete();
+            }
+        }
+        StringBuffer wordBuffer = new StringBuffer();
+        BufferedImage image = ImageIO.read(inputStream);
+        List<BufferedImage> bufferedImageList = splitImage(removeBackground(image));
+        for (int k = 0; k < wordArray.length(); k++) {
+            String word = wordArray.charAt(k) + "";
+            for (int i = 330; i <= 400; i++) {
+                if (i % 5 == 0) {
+                    ImageIO.write(splitWidthImage(splitHeightImage(Rotate(drawString(word), i))), "png", new File(path + "\\" + word + i + ".png"));
+                }
+            }
+        }
+        for (BufferedImage bufferedImage : bufferedImageList) {
+            String resultWord = check(bufferedImage, path);
+            wordBuffer.append(resultWord);
+        }
+        return wordBuffer.toString();
+    }
+
+    public static BufferedImage removeBackground(BufferedImage img) throws Exception {
+//        BufferedImage img = ImageIO.read(new File(picFile));
         int width = img.getWidth();
         int height = img.getHeight();
         for (int x = 0; x < width; ++x) {
@@ -124,7 +208,7 @@ public class ImageCodeDemo {
 
             }
         }
-        System.out.println(JSONBinder.toJSON(markWidthList));
+//        System.out.println(JSONBinder.toJSON(markWidthList));
         subImageList.add(splitHeightImage(img.getSubimage(markWidthList.get(0), 0, markWidthList.get(1) - markWidthList.get(0), height)));
         subImageList.add(splitHeightImage(img.getSubimage(markWidthList.get(2), 0, markWidthList.get(3) - markWidthList.get(2), height)));
         subImageList.add(splitHeightImage(img.getSubimage(markWidthList.get(4), 0, markWidthList.get(5) - markWidthList.get(4), height)));
@@ -166,7 +250,7 @@ public class ImageCodeDemo {
                 markWidthList.add(spitWidthEnd);
             }
         }
-        return img.getSubimage(markWidthList.get(0), 0, markWidthList.get(1) - markWidthList.get(0), height);
+        return img.getSubimage(markWidthList.get(0), 0, markWidthList.get(markWidthList.size() - 1) - markWidthList.get(0), height);
 
     }
 
@@ -204,7 +288,7 @@ public class ImageCodeDemo {
             }
         }
 //        System.out.println(JSONBinder.toJSON(markHeightList));
-        return img.getSubimage(0, markHeightList.get(0), width, markHeightList.get(1) - markHeightList.get(0));
+        return img.getSubimage(0, markHeightList.get(0), width, markHeightList.get(markHeightList.size() - 1) - markHeightList.get(0));
 
     }
 
@@ -273,11 +357,11 @@ public class ImageCodeDemo {
         return new Rectangle(new Dimension(des_width, des_height));
     }
 
-    public static String check(BufferedImage img) {
+    public static String check(BufferedImage img, String path) {
         String result = "";
         try {
             Map<BufferedImage, String> map = new HashMap<BufferedImage, String>();
-            File dir = new File("D:\\验证码\\wordnew");
+            File dir = new File(path);
             File[] files = dir.listFiles();
             for (File file : files) {
                 map.put(ImageIO.read(file), file.getName().charAt(0) + "");
@@ -307,7 +391,7 @@ public class ImageCodeDemo {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(result);
+//        System.out.println(result);
         return result;
     }
 
