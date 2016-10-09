@@ -1,8 +1,9 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
-<div th:fragment="top">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<div th:fragment="top(selectedMenuName)">
     <!--线上的top内容,这个仅放截图-->
     <div style="height:41px; border-bottom:1px solid #ececec; width:100%; text-align:center;background:#fff"><img
-            src="static/temp/top.png"/></div>
+            src="/static/temp/top.png"/></div>
 
     <!--head-->
     <div class="general">
@@ -25,9 +26,9 @@
     <!--menu-->
     <div class="general">
         <ul class="ppw_nav">
-            <li class="sel"><a href="index.html">电竞首页</a></li>
-            <li><a href="###">新闻资讯</a></li>
-            <li><a href="static/video_list%20.html">视频中心</a></li>
+            <li th:classappend="${selectedMenuName}=='index'?'sel'"><a href="/index.html">电竞首页</a></li>
+            <li th:classappend="${selectedMenuName}=='news'?'sel'"><a href="/news.html">新闻资讯</a></li>
+            <li th:classappend="${selectedMenuName}=='video'?'sel'"><a href="/video.html">视频中心</a></li>
             <li><a href="###">赛事专区</a></li>
             <li><a href="###">主播专题</a></li>
             <li><a href="###">竞技美图</a></li>

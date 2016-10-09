@@ -29,7 +29,7 @@ public class InfoDao {
                 .append("infoVideoType", info.getInfoVideoType())
                 .append("verify", info.getVerify())
                 .append("zoneId", info.getZoneIdList(), "zoneId", "=", "or")
-                .skipEmptyFields().orderBy("updateTime").desc();
+                .skipEmptyFields();
         if (StringUtils.hasText(info.getTitle())) {
             queryBuilder.append("title", "%" + info.getTitle() + "%", "like");
         }
