@@ -28,10 +28,18 @@ public class MatchZoneDao {
 
     public List<MatchZone> list(MatchZone matchZone, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from MatchZone").append("status", 1)
-                .skipEmptyFields().orderBy("createTime").desc();
+                .skipEmptyFields();
         if (StringUtils.hasText(matchZone.getName())) {
             queryBuilder.append("name", "%" + matchZone.getName() + "%", "like");
         }
+        if (StringUtils.hasText(matchZone.getSortName())) {
+            queryBuilder.orderBy(matchZone.getSortName(), matchZone.getSortIfDesc());
+        } else {
+            queryBuilder.orderBy("updateTime", true);
+        }
+        queryBuilder.append("matchZoneAreaId", matchZone.getMatchZoneAreaId());
+        queryBuilder.append("matchZoneYearId", matchZone.getMatchZoneYearId());
+        queryBuilder.append("matchStatus", matchZone.getMatchStatus());
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
     }
@@ -42,6 +50,9 @@ public class MatchZoneDao {
         if (StringUtils.hasText(matchZone.getName())) {
             queryBuilder.append("name", "%" + matchZone.getName() + "%", "like");
         }
+        queryBuilder.append("matchZoneAreaId", matchZone.getMatchZoneAreaId());
+        queryBuilder.append("matchZoneYearId", matchZone.getMatchZoneYearId());
+        queryBuilder.append("matchStatus", matchZone.getMatchStatus());
         return Integer.parseInt(jpaAccess.find(queryBuilder.build()).get(0).toString());
 
     }
