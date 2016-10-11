@@ -68,8 +68,7 @@ public class InfoWebService {
         infoRequest.setInfoType(InfoType.video);
         infoRequest.setSortName("visitCount");
         infoRequest.setSortIfDesc(true);
-        List<Info> infoList = infoService.list(infoRequest, offset, fetchSize);
-        return infoList;
+        return infoService.list(infoRequest, offset, fetchSize);
     }
 
     public List<Info> newsListTop(int offset, int fetchSize) {
@@ -77,8 +76,7 @@ public class InfoWebService {
         infoRequest.setInfoType(InfoType.news);
         infoRequest.setSortName("visitCount");
         infoRequest.setSortIfDesc(true);
-        List<Info> infoList = infoService.list(infoRequest, offset, fetchSize);
-        return infoList;
+        return infoService.list(infoRequest, offset, fetchSize);
     }
 
     public List<AnchorZone> anchorListTop(int offset, int fetchSize) {

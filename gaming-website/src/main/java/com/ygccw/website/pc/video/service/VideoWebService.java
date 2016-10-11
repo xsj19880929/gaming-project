@@ -27,8 +27,7 @@ public class VideoWebService {
 
     public List<MatchZone> matchZoneList(int offset, int fetchSize) {
         MatchZone matchZone = new MatchZone();
-        List<MatchZone> matchZoneList = matchZoneService.list(matchZone, offset, fetchSize);
-        return matchZoneList;
+        return matchZoneService.list(matchZone, offset, fetchSize);
     }
 
     public List<AnchorZone> anchorList(int offset, int fetchSize) {
@@ -38,15 +37,13 @@ public class VideoWebService {
 
     public List<Info> videoList(Info info, int offset, int fetchSize) {
         info.setInfoType(InfoType.video);
-        List<Info> videoList = infoService.list(info, offset, fetchSize);
-        return videoList;
+        return infoService.list(info, offset, fetchSize);
     }
 
     public List<Info> videoListTop(Info info, int offset, int fetchSize) {
         info.setSortIfDesc(true);
         info.setSortName("visitCount");
         info.setInfoType(InfoType.video);
-        List<Info> videoList = infoService.list(info, offset, fetchSize);
-        return videoList;
+        return infoService.list(info, offset, fetchSize);
     }
 }

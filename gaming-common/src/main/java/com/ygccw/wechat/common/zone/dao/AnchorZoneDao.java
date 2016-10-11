@@ -21,7 +21,7 @@ public class AnchorZoneDao {
 
     public List<AnchorZone> list(AnchorZone anchorZone, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from AnchorZone").append("status", 1)
-                .skipEmptyFields().orderBy("createTime").desc();
+                .skipEmptyFields().append("platformId", anchorZone.getPlatformId());
         if (StringUtils.hasText(anchorZone.getName())) {
             queryBuilder.append("name", "%" + anchorZone.getName() + "%", "like");
         }
@@ -36,7 +36,7 @@ public class AnchorZoneDao {
 
     public int listSize(AnchorZone anchorZone) {
         QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from AnchorZone").append("status", 1)
-                .skipEmptyFields().orderBy("createTime").desc();
+                .skipEmptyFields().append("platformId", anchorZone.getPlatformId());
         if (StringUtils.hasText(anchorZone.getName())) {
             queryBuilder.append("name", "%" + anchorZone.getName() + "%", "like");
         }

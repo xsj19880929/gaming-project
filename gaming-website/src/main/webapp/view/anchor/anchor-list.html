@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <title>视频列表</title>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/head.html::top('anchor')"></div>
+
+<div class="general">
+    <!--面包屑-->
+    <div class="position"><a href="#">电竞首页</a>&gt;<em>视频列表</em></div>
+    <!--赛事筛选-->
+    <div class="list_choose">
+        <div class="index_tit_two title"><span class="text_left">视频筛选</span></div>
+        <div class="list_choose_con">
+            <dl>
+                <dt>平台</dt>
+                <dd class="dd1"><a th:href="/anchor/findPlatformId/0.html"
+                                   th:classappend="${platformIdSelected}==0?'hover'">全部</a><a
+                        href="#"
+                        th:each="anchorZonePlatform:${anchorZonePlatformList}"
+                        th:text="${anchorZonePlatform.name}"
+                        th:href="/anchor/findPlatformId/${anchorZonePlatform.id}.html"
+                        th:classappend="${anchorZonePlatform.id}==${platformIdSelected}?'hover'">虎牙视频</a></dd>
+            </dl>
+            <!--<dl>-->
+            <!--<dt>游戏</dt>-->
+            <!--<dd class="dd1"><a href="#" class="hover">全部</a><a href="#">英雄联盟</a><a href="#">DOTA2</a><a href="#">炉石传说</a><a-->
+            <!--href="#">风暴英雄</a><a href="#">自由之战</a><a href="#">王者荣耀</a><a href="#">全民枪战</a><a-->
+            <!--href="#">虚荣</a><a href="#">自由之战</a><span>More</span></dd>-->
+            <!--<dd class="dd2">-->
+            <!--<a href="#">Raven掠夺者</a><a href="#">大话西游手游</a><a href="#">炉石传说</a><a href="#">风暴英雄</a><a href="#">自由之战</a><a-->
+            <!--href="#">王者荣耀</a><a href="#">全民枪战</a><a href="#">虚荣</a><a href="#">自由之战</a><a-->
+            <!--href="#">炉石传说</a><a href="#">风暴英雄</a><a href="#">自由之战</a><a href="#">王者荣耀</a><a-->
+            <!--href="#">全民枪战</a>-->
+            <!--</dd>-->
+            <!--</dl>-->
+        </div>
+    </div>
+    <!--最新最热-->
+    <div class="list_tab_one">
+        <div class="tab_two">
+            <ul>
+                <li onClick="setTab('one',1,2)" id="one1" class="hover"><span>最新</span></li>
+                <li onClick="setTab('one',2,2)" id="one2"><span>最热</span></li>
+            </ul>
+        </div>
+        <div id="con_one_1" style="display:block">
+            <div class="zhubo_main_box">
+                <dl style="margin-left:19px;" th:each="anchorZone:${anchorZoneListNew}">
+                    <dt>
+                        <a href="">
+                            <p class="zhubo_p1"><span><img src="/static/img/circle_bg.png"/></span><img
+                                    th:img-src="/image/120x120${anchorZone.icoImage}"/></p>
+                            <p class="zhubo_p2" th:text="${anchorZone.username}">小学生院长</p>
+                            <p style="margin-bottom:11px;"><span style="margin-right:14px;"
+                                                                 th:each="matchZone:${anchorZone.matchZoneList}"><img
+                                    th:img-src="/image/24x24${matchZone.icoImage}"/></span></p>
+                        </a>
+                    </dt>
+                    <dd>人气：<span th:text="${anchorZone.visitCount}">432432</span></dd>
+                    <div class="change_border">
+                        <span><a href="">点击查看</a></span>
+                    </div>
+                </dl>
+
+                <div class="clear"></div>
+            </div>
+
+
+            <!--页码-->
+            <div class="newyiiPager">
+                <ol id="yw0" class="yiiPager">
+                    <li>共2页：</li>
+                    <li class="page hidden"><a href="">首页</a></li>
+                    <li class="previous hidden"><a href="#">上一页</a></li>
+                    <li class="page selected"><span>1</span></li>
+                    <li class="page"><a href="#">2</a></li>
+                    <li class="page"><a href="#">3</a></li>
+                    <li class="page"><a href="#">4</a></li>
+                    <li class="next"><a href="#">下一页</a></li>
+                    <li class="last"><a href="#">末页</a></li>
+                </ol>
+            </div>
+        </div>
+        <div id="con_one_2" style="display:none">
+            <div class="zhubo_main_box">
+                <dl style="margin-left:19px;" th:each="anchorZone:${anchorZoneListTop}">
+                    <dt>
+                        <a href="">
+                            <p class="zhubo_p1"><span><img src="/static/img/circle_bg.png"/></span><img
+                                    th:img-src="/image/120x120${anchorZone.icoImage}"/></p>
+                            <p class="zhubo_p2" th:text="${anchorZone.username}">小学生院长</p>
+                            <p style="margin-bottom:11px;"><span style="margin-right:14px;"
+                                                                 th:each="matchZone:${anchorZone.matchZoneList}"><img
+                                    th:img-src="/image/24x24${matchZone.icoImage}"/></span></p>
+                        </a>
+                    </dt>
+                    <dd>人气：<span th:text="${anchorZone.visitCount}">432432</span></dd>
+                    <div class="change_border">
+                        <span><a href="">点击查看</a></span>
+                    </div>
+                </dl>
+                <div class="clear"></div>
+            </div>
+            <!--页码-->
+            <div class="newyiiPager">
+                <ol id="yw0" class="yiiPager">
+                    <li>共2页：</li>
+                    <li class="page hidden"><a href="">首页</a></li>
+                    <li class="previous hidden"><a href="#">上一页</a></li>
+                    <li class="page selected"><span>1</span></li>
+                    <li class="page"><a href="#">2</a></li>
+                    <li class="page"><a href="#">3</a></li>
+                    <li class="page"><a href="#">4</a></li>
+                    <li class="next"><a href="#">下一页</a></li>
+                    <li class="last"><a href="#">末页</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--线上琵琶网首页的foot，这里只是截图-->
+<div style="width:100%; text-align:center; clear:both"><img src="/static/temp/foot.png"
+                                                            style="margin-top:20px;width:100%;"/></div>
+
+</body>
+</html>

@@ -71,8 +71,7 @@ public class IndexWebService {
     }
 
     public List<Advertising> findAdvertising(int number) {
-        List<Advertising> advertisingList = advertisingService.list(null, 0, number);
-        return advertisingList;
+        return advertisingService.list(null, 0, number);
     }
 
     public List<MatchZone> findMatchZone() {
