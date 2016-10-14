@@ -1,16 +1,20 @@
 package com.ygccw.wechat.common.tags.dao;
 
+import com.ygccw.wechat.common.db.RsExtractor4MapList;
 import com.ygccw.wechat.common.tags.entity.TagMapping;
 import com.ygccw.wechat.common.tags.enums.TagType;
 import com.ygccw.wechat.common.tags.enums.TagZoneType;
 import core.framework.database.JPAAccess;
 import core.framework.database.Query;
 import core.framework.database.QueryBuilder;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.sql.Types;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author soldier
@@ -19,6 +23,9 @@ import java.util.List;
 public class TagMappingDao {
     @Inject
     JPAAccess jpaAccess;
+    @Inject
+    JdbcTemplate jdbcTemplate;
+
 
     public List<TagMapping> listByTagsId(Long tagsId) {
         QueryBuilder queryBuilder = QueryBuilder.query("from TagMapping").append("status", 1).append("tagsId", tagsId)
@@ -33,6 +40,12 @@ public class TagMappingDao {
                 .skipEmptyFields().orderBy("createTime").desc();
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
+    }
+
+    public List<Map<String, Object>> listHotTags(TagMapping tagMapping, int offset, int fetchSize) {
+        String sql = "select count(t1.tags_id) tag_count,t2.* from tag_mapping t1 left JOIN tags t2 on t1.tags_id=t2.id where t1.tag_type=? and t1.tag_zone_type=?  group by t1.tags_id order by tag_count desc limit ?,?";
+        List<Map<String, Object>> list = jdbcTemplate.query(sql, new Object[]{tagMapping.getTagType(), tagMapping.getTagZoneType(), offset, fetchSize}, new int[]{Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.INTEGER}, new RsExtractor4MapList());
+        return list;
     }
 
     public int listSize(TagMapping tagMapping) {

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <title>竞技美图</title>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/head.html::top('picture')"></div>
+<div class="general">
+    <!--面包屑-->
+    <div class="position"><a href="#">电竞首页</a>&gt;<em>竞技美图</em></div>
+    <!--赛事筛选-->
+    <div class="list_choose">
+        <div class="list_choose_con">
+            <dl>
+                <dt>热门标签</dt>
+                <dd class="dd1"><a href="#" class="hover">全部</a><a href="#">ShowGirl</a><a href="#">COSPLAY</a><a
+                        href="#">清纯</a><a href="#">萝莉</a><a href="#">美女</a><a href="#">主播</a><a href="#">少女</a><a
+                        href="#">甜美</a></dd>
+            </dl>
+        </div>
+    </div>
+    <!--瀑布流-->
+    <div class="pubu_list" id="wrapper">
+        <div class="brand-list">
+            <div class="brand-bd cle" id="brand-waterfall">
+                <div class="item" id="brand-a" th:each="picture:${pictureList}">
+                    <p class="p1"><a href="#"><img th:img-src="${picture.image}"/></a></p>
+                    <p class="p2"><a href="#" th:text="${picture.description}">LOL国服主播排行榜TOP8：第一名小智你们服不服？</a></p>
+                    <p class="p3"><span class="time" th:text="${#calendars.format(picture.createTime, 'yyyy-MM-dd')}">2016-05-02</span><span
+                            class="eye" th:text="${picture.visitCount}">214321</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--页码-->
+    <div class="newyiiPager">
+        <ol id="yw0" class="yiiPager">
+            <li>共2页：</li>
+            <li class="page hidden"><a href="">首页</a></li>
+            <li class="previous hidden"><a href="#">上一页</a></li>
+            <li class="page selected"><span>1</span></li>
+            <li class="page"><a href="#">2</a></li>
+            <li class="page"><a href="#">3</a></li>
+            <li class="page"><a href="#">4</a></li>
+            <li class="next"><a href="#">下一页</a></li>
+            <li class="last"><a href="#">末页</a></li>
+        </ol>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#brand-waterfall').waterfall();
+    });
+    // 瀑布流插件
+    // pannysp 2013.4.9
+    ;
+    (function ($) {
+        $.fn.waterfall = function (options) {
+            var df = {
+                item: '.item',
+                margin: 20,
+                addfooter: true
+            };
+            options = $.extend(df, options);
+            return this.each(function () {
+                var $box = $(this), pos = [],
+                        _box_width = $box.width(),
+                        $items = $box.find(options.item),
+                        _owidth = $items.eq(0).outerWidth() + options.margin,
+                        _oheight = $items.eq(0).outerHeight() + options.margin,
+                        _num = Math.floor(_box_width / _owidth);
+                (function () {
+                    var i = 0;
+                    for (; i < _num; i++) {
+                        pos.push([i * _owidth, 0]);
+                    }
+                })();
+                $items.each(function () {
+                    var _this = $(this),
+                            _temp = 0,
+                            _height = _this.outerHeight() + options.margin;
+
+                    _this.hover(function () {
+                        _this.addClass('hover');
+                    }, function () {
+                        _this.removeClass('hover');
+                    });
+
+                    for (var j = 0; j < _num; j++) {
+                        if (pos[j][1] < pos[_temp][1]) {
+                            //暂存top值最小那列的index
+                            _temp = j;
+                        }
+                    }
+                    this.style.cssText = 'left:' + pos[_temp][0] + 'px; top:' + pos[_temp][1] + 'px;';
+                    //插入后，更新下该列的top值
+                    pos[_temp][1] = pos[_temp][1] + _height;
+                });
+
+                // 计算top值最大的赋给外围div
+                (function () {
+                    var i = 0, tops = [];
+                    for (; i < _num; i++) {
+                        tops.push(pos[i][1]);
+                    }
+                    tops.sort(function (a, b) {
+                        return a - b;
+                    });
+                    $box.height(tops[_num - 1]);
+                    //增加尾部填充div
+                    if (options.addfooter) {
+                        addfooter(tops[_num - 1]);
+                    }
+                })();
+                function addfooter(max) {
+                    var addfooter = document.createElement('div');
+                    addfooter.className = 'item additem';
+                    for (var i = 0; i < _num; i++) {
+                        if (max != pos[i][1]) {
+                            var clone = addfooter.cloneNode(),
+                                    _height = max - pos[i][1] - options.margin;
+                            clone.style.cssText = 'left:' + pos[i][0] + 'px; top:' + pos[i][1] + 'px; height:' + _height + 'px;';
+                            $box[0].appendChild(clone);
+                        }
+                    }
+                }
+            });
+        }
+    })(jQuery);</script>
+<!--线上琵琶网首页的foot，这里只是截图-->
+<div style="width:100%; text-align:center; clear:both"><img src="/static/temp/foot.png" style="width:100%;"/></div>
+</body>
+</html>

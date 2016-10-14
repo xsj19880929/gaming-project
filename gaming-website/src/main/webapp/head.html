@@ -31,7 +31,7 @@
             <li th:classappend="${selectedMenuName}=='video'?'sel'"><a href="/video.html">视频中心</a></li>
             <li th:classappend="${selectedMenuName}=='game'?'sel'"><a href="/game.html">赛事专区</a></li>
             <li th:classappend="${selectedMenuName}=='anchor'?'sel'"><a href="/anchor.html">主播专题</a></li>
-            <li><a href="###">竞技美图</a></li>
+            <li th:classappend="${selectedMenuName}=='picture'?'sel'"><a href="/picture.html">竞技美图</a></li>
         </ul>
     </div>
 </div>
