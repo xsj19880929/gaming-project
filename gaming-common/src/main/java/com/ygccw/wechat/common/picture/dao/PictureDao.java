@@ -25,9 +25,14 @@ public class PictureDao {
                 .append("zoneId", picture.getZoneId())
                 .append("pictureZoneType", picture.getPictureZoneType())
                 .append("verify", picture.getVerify())
-                .skipEmptyFields().orderBy("updateTime").desc();
+                .skipEmptyFields();
         if (StringUtils.hasText(picture.getDescription())) {
             queryBuilder.append("description", "%" + picture.getDescription() + "%", "like");
+        }
+        if (StringUtils.hasText(picture.getSortName())) {
+            queryBuilder.orderBy(picture.getSortName(), picture.getSortIfDesc());
+        } else {
+            queryBuilder.orderBy("updateTime", true);
         }
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);

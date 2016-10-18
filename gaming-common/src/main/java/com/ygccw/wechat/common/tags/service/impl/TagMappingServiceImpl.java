@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author soldier
@@ -67,5 +68,10 @@ public class TagMappingServiceImpl implements TagMappingService {
     @Override
     public void deleteByEntityIdAndType(Long entityId, TagType tagType, TagZoneType tagZoneType) {
         tagMappingDao.deleteByEntityIdAndType(entityId, tagType, tagZoneType);
+    }
+
+    @Override
+    public List<Map<String, Object>> listHotTags(TagMapping tagMapping, int offset, int fetchSize) {
+        return tagMappingDao.listHotTags(tagMapping, offset, fetchSize);
     }
 }

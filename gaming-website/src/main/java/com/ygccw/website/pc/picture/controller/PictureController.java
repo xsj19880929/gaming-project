@@ -19,6 +19,7 @@ public class PictureController {
     @RequestMapping(value = "/picture.html", method = RequestMethod.GET)
     public String pictureList(final ModelMap model) {
         model.put("pictureList", pictureWebService.pictureList(0, 15));
+        model.put("tagList", pictureWebService.listHotTags());
         return "/view/picture/picture-list.html";
     }
 

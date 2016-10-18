@@ -43,8 +43,8 @@ public class TagMappingDao {
     }
 
     public List<Map<String, Object>> listHotTags(TagMapping tagMapping, int offset, int fetchSize) {
-        String sql = "select count(t1.tags_id) tag_count,t2.* from tag_mapping t1 left JOIN tags t2 on t1.tags_id=t2.id where t1.tag_type=? and t1.tag_zone_type=?  group by t1.tags_id order by tag_count desc limit ?,?";
-        List<Map<String, Object>> list = jdbcTemplate.query(sql, new Object[]{tagMapping.getTagType(), tagMapping.getTagZoneType(), offset, fetchSize}, new int[]{Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.INTEGER}, new RsExtractor4MapList());
+        String sql = "select count(t1.tags_id) tag_count,t2.* from tag_mapping t1 left JOIN tags t2 on t1.tags_id=t2.id where t1.tag_type=?  group by t1.tags_id order by tag_count desc limit ?,?";
+        List<Map<String, Object>> list = jdbcTemplate.query(sql, new Object[]{tagMapping.getTagType(), offset, fetchSize}, new int[]{Types.VARCHAR, Types.INTEGER, Types.INTEGER}, new RsExtractor4MapList());
         return list;
     }
 

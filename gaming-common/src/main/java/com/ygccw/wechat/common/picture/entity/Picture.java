@@ -7,6 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
@@ -34,6 +35,26 @@ public class Picture {
     private Integer zoneId;
     @Enumerated(EnumType.STRING)
     private PictureZoneType pictureZoneType;
+    @Transient
+    private String sortName;
+    @Transient
+    private Boolean sortIfDesc;
+
+    public String getSortName() {
+        return sortName;
+    }
+
+    public void setSortName(String sortName) {
+        this.sortName = sortName;
+    }
+
+    public Boolean getSortIfDesc() {
+        return sortIfDesc;
+    }
+
+    public void setSortIfDesc(Boolean sortIfDesc) {
+        this.sortIfDesc = sortIfDesc;
+    }
 
     public Long getId() {
         return id;

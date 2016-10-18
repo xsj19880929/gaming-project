@@ -6,6 +6,7 @@ import com.ygccw.wechat.common.tags.enums.TagType;
 import com.ygccw.wechat.common.tags.enums.TagZoneType;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author soldier
@@ -28,4 +29,6 @@ public interface TagMappingService {
     int listSize(TagMapping tagMapping);
 
     List<TagMapping> listByTagsId(Long tagsId);
+
+    List<Map<String, Object>> listHotTags(TagMapping tagMapping, int offset, int fetchSize);
 }

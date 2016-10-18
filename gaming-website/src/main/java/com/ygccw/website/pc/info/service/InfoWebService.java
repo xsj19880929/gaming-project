@@ -6,6 +6,8 @@ import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
+import com.ygccw.wechat.common.picture.entity.Picture;
+import com.ygccw.wechat.common.picture.service.PictureService;
 import com.ygccw.wechat.common.tags.entity.TagMapping;
 import com.ygccw.wechat.common.tags.entity.Tags;
 import com.ygccw.wechat.common.tags.enums.TagType;
@@ -14,12 +16,15 @@ import com.ygccw.wechat.common.tags.service.TagMappingService;
 import com.ygccw.wechat.common.tags.service.TagsService;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
 import com.ygccw.wechat.common.zone.service.AnchorZoneService;
+import core.framework.util.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author soldier
@@ -34,6 +39,8 @@ public class InfoWebService {
     TagsService tagsService;
     @Inject
     AnchorZoneService anchorZoneService;
+    @Inject
+    PictureService pictureService;
 
     public List<InfoWeb> infoList(InfoZoneType infoZoneType, TagZoneType tagZoneType, int offset, int fetchSize) {
         Info infoRequest = new Info();
@@ -57,7 +64,9 @@ public class InfoWebService {
                 tagMappingWeb.setName(tags.getName());
                 tagMappingWebList.add(tagMappingWeb);
             }
-            infoWeb.setTagMappingWebList(tagMappingWebList);
+            if (!tagMappingWebList.isEmpty()) {
+                infoWeb.setTagMappingWebList(tagMappingWebList);
+            }
             infoWebList.add(infoWeb);
         }
         return infoWebList;
@@ -84,5 +93,60 @@ public class InfoWebService {
         anchorZone.setSortIfDesc(true);
         anchorZone.setSortName("visitCount");
         return anchorZoneService.list(anchorZone, offset, fetchSize);
+    }
+
+    public InfoWeb findById(Long id) {
+        Info info = infoService.findById(id);
+        InfoWeb infoWeb = new InfoWeb();
+        BeanUtils.copyProperties(info, infoWeb);
+        TagMapping tagMappingRequest = new TagMapping();
+        tagMappingRequest.setTagType(TagType.news);
+        tagMappingRequest.setEntityId(info.getId());
+        List<TagMapping> tagMappingList = tagMappingService.list(tagMappingRequest, 0, 10);
+        List<TagMappingWeb> tagMappingWebList = new ArrayList<>();
+        for (TagMapping tagMapping : tagMappingList) {
+            TagMappingWeb tagMappingWeb = new TagMappingWeb();
+            BeanUtils.copyProperties(tagMapping, tagMappingWeb);
+            Tags tags = tagsService.findById(tagMappingWeb.getTagsId());
+            tagMappingWeb.setName(tags.getName());
+            tagMappingWebList.add(tagMappingWeb);
+        }
+        if (!tagMappingWebList.isEmpty()) {
+            infoWeb.setTagMappingWebList(tagMappingWebList);
+        }
+        return infoWeb;
+    }
+
+    public List<Picture> pictureListTop(int offset, int fetchSize) {
+        Picture picture = new Picture();
+        picture.setSortName("visitCount");
+        picture.setSortIfDesc(true);
+        return pictureService.list(picture, offset, fetchSize);
+    }
+
+    public Set<Info> likeInfoList(InfoWeb infoWeb, int fetchSize) {
+        Set<Info> infoList = new HashSet<>(fetchSize);
+        if (StringUtils.hasText(infoWeb.getTags())) {
+            String[] tagArray = infoWeb.getTags().split(" ");
+            TagZoneType tagZoneTypeRequest = null;
+            for (TagZoneType tagZoneType : TagZoneType.values()) {
+                if (infoWeb.getInfoZoneType().getName().equals(tagZoneType.getName())) {
+                    tagZoneTypeRequest = tagZoneType;
+                }
+            }
+            for (String tagName : tagArray) {
+                Tags tags = tagsService.findByName(tagName, TagType.news, tagZoneTypeRequest);
+                List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId());
+                for (TagMapping tagMapping : tagMappingList) {
+                    Info info = infoService.findById(tagMapping.getEntityId());
+                    infoList.add(info);
+                    if (infoList.size() == fetchSize) {
+                        break;
+                    }
+                }
+            }
+        }
+        return infoList;
+
     }
 }
