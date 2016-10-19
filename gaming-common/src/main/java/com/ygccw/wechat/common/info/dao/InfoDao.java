@@ -83,4 +83,35 @@ public class InfoDao {
         return jpaAccess.findOne(QueryBuilder.query("from Info").append("id", id).append("status", 1).build());
     }
 
+    public Info lastInfo(Info info) {
+        QueryBuilderL queryBuilder = QueryBuilderL.query("from Info")
+                .append("status", 1)
+                .append("zoneId", info.getZoneId())
+                .append("infoZoneType", info.getInfoZoneType())
+                .append("infoType", info.getInfoType())
+                .append("infoVideoType", info.getInfoVideoType())
+                .append("verify", info.getVerify())
+                .append("zoneId", info.getZoneIdList(), "zoneId", "=", "or")
+                .append("id", info.getId(), "id", "<")
+                .skipEmptyFields().orderBy("id", true);
+        Query query = queryBuilder.build().from(0).fetch(1);
+        return jpaAccess.findOne(query);
+    }
+
+    public Info nextInfo(Info info) {
+        QueryBuilderL queryBuilder = QueryBuilderL.query("from Info")
+                .append("status", 1)
+                .append("zoneId", info.getZoneId())
+                .append("infoZoneType", info.getInfoZoneType())
+                .append("infoType", info.getInfoType())
+                .append("infoVideoType", info.getInfoVideoType())
+                .append("verify", info.getVerify())
+                .append("zoneId", info.getZoneIdList(), "zoneId", "=", "or")
+                .append("id", info.getId(), "id", ">")
+                .skipEmptyFields().orderBy("id", true);
+        Query query = queryBuilder.build().from(0).fetch(1);
+        return jpaAccess.findOne(query);
+    }
+
+
 }

@@ -70,8 +70,12 @@
                         with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
                     </script>
                     <span>分享到：</span></div>
-                <p class="p1">上一篇：<a href="###" class="a1">天天酷跑地狱熊爵熊队长极速5000米对比</a></p>
-                <p class="p3">下一篇：<a href="###">天天传奇战士搭配什么伙伴好 战士阵容搭配推荐</a></p>
+                <p class="p1">上一篇：<a href="###" class="a1" th:if="${lastInfo!=null}" th:text="${lastInfo.title}"
+                                     th:href="/news/${lastInfo.id}.html">天天酷跑地狱熊爵熊队长极速5000米对比</a><span
+                        th:if="${lastInfo==null}">没有了</span></p>
+                <p class="p3">下一篇：<a href="###" th:if="${nextInfo!=null}" th:text="${nextInfo.title}"
+                                     th:href="/news/${nextInfo.id}.html">天天传奇战士搭配什么伙伴好战士阵容搭配推荐</a><span
+                        th:if="${nextInfo==null}">没有了</span></p>
             </div>
         </div>
         <!--相关文章-->

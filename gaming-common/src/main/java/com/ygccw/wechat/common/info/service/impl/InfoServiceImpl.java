@@ -59,4 +59,13 @@ public class InfoServiceImpl implements InfoService {
         return infoDao.listSize(info);
     }
 
+    @Override
+    public Info lastInfo(Info info) {
+        return infoDao.lastInfo(info);
+    }
+
+    @Override
+    public Info nextInfo(Info info) {
+        return infoDao.nextInfo(info);
+    }
 }

@@ -40,6 +40,8 @@ public class InfoController {
         model.put("videoTopList", infoWebService.videoListTop(0, 4));
         model.put("pictureTopList", infoWebService.pictureListTop(0, 6));
         model.put("likeInfoList", infoWebService.likeInfoList(infoWeb, 10));
+        model.put("nextInfo", infoWebService.nextInfo(infoWeb));
+        model.put("lastInfo", infoWebService.lastInfo(infoWeb));
         return "/view/news/news-detail.html";
     }
 }

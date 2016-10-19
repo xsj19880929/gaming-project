@@ -139,6 +139,7 @@ public class InfoWebService {
             }
             for (String tagName : tagArray) {
                 Tags tags = tagsService.findByName(tagName, TagType.news, tagZoneTypeRequest);
+                if (tags == null) continue;
                 List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId());
                 for (TagMapping tagMapping : tagMappingList) {
                     Info info = infoService.findById(tagMapping.getEntityId());
@@ -155,5 +156,15 @@ public class InfoWebService {
         }
         return infoList;
 
+    }
+
+    public Info lastInfo(InfoWeb infoWeb) {
+        infoWeb.setZoneId(null);
+        return infoService.lastInfo(infoWeb);
+    }
+
+    public Info nextInfo(InfoWeb infoWeb) {
+        infoWeb.setZoneId(null);
+        return infoService.nextInfo(infoWeb);
     }
 }

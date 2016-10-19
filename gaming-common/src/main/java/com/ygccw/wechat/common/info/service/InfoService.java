@@ -23,4 +23,8 @@ public interface InfoService {
 
     int listSize(Info info);
 
+    Info lastInfo(Info info);
+
+    Info nextInfo(Info info);
+
 }
