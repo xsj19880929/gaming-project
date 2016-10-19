@@ -22,8 +22,10 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -126,6 +128,7 @@ public class InfoWebService {
 
     public Set<Info> likeInfoList(InfoWeb infoWeb, int fetchSize) {
         Set<Info> infoList = new HashSet<>(fetchSize);
+        Map<Long, Info> mappingMap = new HashMap<>(fetchSize);
         if (StringUtils.hasText(infoWeb.getTags())) {
             String[] tagArray = infoWeb.getTags().split(" ");
             TagZoneType tagZoneTypeRequest = null;
@@ -139,12 +142,16 @@ public class InfoWebService {
                 List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId());
                 for (TagMapping tagMapping : tagMappingList) {
                     Info info = infoService.findById(tagMapping.getEntityId());
-                    infoList.add(info);
-                    if (infoList.size() == fetchSize) {
+                    mappingMap.put(tagMapping.getEntityId(), info);
+                    if (mappingMap.size() == fetchSize) {
                         break;
                     }
                 }
             }
+        }
+        mappingMap.remove(infoWeb.getId());
+        for (Map.Entry<Long, Info> entry : mappingMap.entrySet()) {
+            infoList.add(entry.getValue());
         }
         return infoList;
 
