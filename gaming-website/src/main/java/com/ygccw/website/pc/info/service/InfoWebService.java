@@ -102,7 +102,7 @@ public class InfoWebService {
         InfoWeb infoWeb = new InfoWeb();
         BeanUtils.copyProperties(info, infoWeb);
         TagMapping tagMappingRequest = new TagMapping();
-        tagMappingRequest.setTagType(TagType.news);
+        tagMappingRequest.setTagType(getTagTypeByString(info.getInfoType().getName()));
         tagMappingRequest.setEntityId(info.getId());
         List<TagMapping> tagMappingList = tagMappingService.list(tagMappingRequest, 0, 10);
         List<TagMappingWeb> tagMappingWebList = new ArrayList<>();
@@ -117,6 +117,16 @@ public class InfoWebService {
             infoWeb.setTagMappingWebList(tagMappingWebList);
         }
         return infoWeb;
+    }
+
+    private TagType getTagTypeByString(String tagTypeString) {
+        for (TagType tagType : TagType.values()) {
+            if (tagType.getName().equals(tagTypeString)) {
+                return tagType;
+            }
+        }
+        return null;
+
     }
 
     public List<Picture> pictureListTop(int offset, int fetchSize) {
@@ -138,7 +148,7 @@ public class InfoWebService {
                 }
             }
             for (String tagName : tagArray) {
-                Tags tags = tagsService.findByName(tagName, TagType.news, tagZoneTypeRequest);
+                Tags tags = tagsService.findByName(tagName, getTagTypeByString(infoWeb.getInfoType().getName()), tagZoneTypeRequest);
                 if (tags == null) continue;
                 List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId());
                 for (TagMapping tagMapping : tagMappingList) {

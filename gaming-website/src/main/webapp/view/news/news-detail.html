@@ -16,13 +16,14 @@
 <div th:replace="/head.html::top('news')"></div>
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="#">电竞首页</a>&gt;<a href="#">全部资讯</a>&gt;<a href="#">行业新闻</a>&gt;<em>正文</em></div>
+    <div class="position"><a href="#">电竞首页</a>&gt;<a href="#">全部资讯</a>&gt;<a href="#">行业新闻</a>&gt;<em
+            th:text="${info.title}">正文</em></div>
     <!--资讯详情,左边-->
     <div class="zixun_left">
         <div class="zixun_left_con clearfix">
             <div class="news_d_top">
                 <p th:text="${info.title}">梦幻西游手游大唐修炼怎么点 大唐修炼选择优先顺序</p>
-                来源：<a href="http://www.pipaw.com" th:text="${info.source}">www.pipaw.com</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                来源：<a th:text="${info.source}">www.pipaw.com</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 时间：<span th:text="${#calendars.format(info.publishTime, 'yyyy-MM-dd')}">2015-04-28</span>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 作者：<span th:text="${info.author}">晨落</span>&nbsp;&nbsp;&nbsp;&nbsp; <span>评论：0条</span></div>

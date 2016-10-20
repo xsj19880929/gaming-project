@@ -1,8 +1,12 @@
 package com.ygccw.website.pc.video.service;
 
+import com.ygccw.website.pc.info.model.InfoWeb;
+import com.ygccw.website.pc.info.service.InfoWebService;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.service.InfoService;
+import com.ygccw.wechat.common.tags.service.TagMappingService;
+import com.ygccw.wechat.common.tags.service.TagsService;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import com.ygccw.wechat.common.zone.service.AnchorZoneService;
@@ -23,6 +27,12 @@ public class VideoWebService {
     AnchorZoneService anchorZoneService;
     @Inject
     MatchZoneService matchZoneService;
+    @Inject
+    TagMappingService tagMappingService;
+    @Inject
+    TagsService tagsService;
+    @Inject
+    InfoWebService infoWebService;
 
 
     public List<MatchZone> matchZoneList(int offset, int fetchSize) {
@@ -45,5 +55,30 @@ public class VideoWebService {
         info.setSortName("visitCount");
         info.setInfoType(InfoType.video);
         return infoService.list(info, offset, fetchSize);
+    }
+
+    public InfoWeb findById(Long id) {
+        return infoWebService.findById(id);
+    }
+
+
+    public List<AnchorZone> anchorListTop(int offset, int fetchSize) {
+        AnchorZone anchorZone = new AnchorZone();
+        anchorZone.setSortIfDesc(true);
+        anchorZone.setSortName("visitCount");
+        return anchorZoneService.list(anchorZone, offset, fetchSize);
+    }
+
+    public List<MatchZone> findTopMatchZoneList(int offset, int fetchSize) {
+        return matchZoneService.listOrderByVisit(offset, fetchSize);
+
+    }
+
+    public Info lastInfo(InfoWeb infoWeb) {
+        return infoWebService.lastInfo(infoWeb);
+    }
+
+    public Info nextInfo(InfoWeb infoWeb) {
+        return infoWebService.nextInfo(infoWeb);
     }
 }

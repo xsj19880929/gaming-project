@@ -1,5 +1,6 @@
 package com.ygccw.website.pc.video.controller;
 
+import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.website.pc.video.service.VideoWebService;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoVideoType;
@@ -70,5 +71,17 @@ public class VideoController {
         model.put("videoListNew", videoWebService.videoList(info, 0, 16));
         model.put("videoListTop", videoWebService.videoListTop(info, 0, 16));
         return "/view/video/video-list.html";
+    }
+
+    @RequestMapping(value = "/video/{id}.html", method = RequestMethod.GET)
+    public String videoList(final ModelMap model, @PathVariable Long id) {
+        InfoWeb infoWeb = videoWebService.findById(id);
+        model.put("video", infoWeb);
+        model.put("videoTopList", videoWebService.videoListTop(new Info(), 0, 10));
+        model.put("anchorTopList", videoWebService.anchorListTop(0, 6));
+        model.put("matchZoneTopList", videoWebService.findTopMatchZoneList(0, 10));
+        model.put("nextVideo", videoWebService.nextInfo(infoWeb));
+        model.put("lastVideo", videoWebService.lastInfo(infoWeb));
+        return "/view/video/video-detail.html";
     }
 }

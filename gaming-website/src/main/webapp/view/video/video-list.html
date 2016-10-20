@@ -83,12 +83,14 @@
             <div class="index_video_right view_box">
                 <ul>
                     <li th:each="video:${videoListNew}">
-                        <a href="#" class="img">
-                            <img th:img-src="/image/270X160${video.titleImage}"/>
+                        <a href="#" class="img" th:title="${video.title}"
+                           th:href="/video/${video.id}.html">
+                            <img th:img-src="/image/270X160${video.titleImage}" th:alt="${video.title}"/>
                             <p class="p1"><span>42:15</span></p>
                             <p class="p2"><em></em></p>
                         </a>
-                        <a href="#" class="text" th:text="${video.title}">MISS排位日记263期 中单阿狸大杀四方</a>
+                        <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
+                           th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
                         <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
                         </p>
                     </li>
@@ -116,12 +118,14 @@
             <div class="index_video_right view_box">
                 <ul>
                     <li th:each="video:${videoListTop}">
-                        <a href="#" class="img">
-                            <img th:img-src="/image/270X160${video.titleImage}"/>
+                        <a href="#" class="img" th:title="${video.title}"
+                           th:href="/video/${video.id}.html">
+                            <img th:img-src="/image/270X160${video.titleImage}" th:alt="${video.title}"/>
                             <p class="p1"><span>42:15</span></p>
                             <p class="p2"><em></em></p>
                         </a>
-                        <a href="#" class="text" th:text="${video.title}">MISS排位日记263期 中单阿狸大杀四方</a>
+                        <a href="#" class="text" th:title="${video.title}"
+                           th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
                         <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
                         </p>
                     </li>
