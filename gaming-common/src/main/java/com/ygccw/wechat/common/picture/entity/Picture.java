@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author soldier
@@ -39,6 +40,16 @@ public class Picture {
     private String sortName;
     @Transient
     private Boolean sortIfDesc;
+    @Transient
+    private List<PictureDetail> pictureDetailList;
+
+    public List<PictureDetail> getPictureDetailList() {
+        return pictureDetailList;
+    }
+
+    public void setPictureDetailList(List<PictureDetail> pictureDetailList) {
+        this.pictureDetailList = pictureDetailList;
+    }
 
     public String getSortName() {
         return sortName;
