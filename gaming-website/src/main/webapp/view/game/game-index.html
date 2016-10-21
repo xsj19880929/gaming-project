@@ -1,0 +1,378 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <title>赛事专区首页</title>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/view/game/game-head.html::top('index')"></div>
+<div class="game_main_box">
+    <div class="game_main_left">
+        <div class="game_tit">
+            <img src="/static/img/game/game_logo.png"/>
+            <dl>
+                <dt>LPL2016英雄联盟职业联赛春季赛</dt>
+                <dd>
+                    <h1><span>举办方：</span>银川圣地国际游戏投资有限公司</h1>
+                    <h1><span>比赛区域：</span>全球</h1>
+                    <h1><span>服务器：</span>中国</h1>
+                    <h1 style="margin-top:18px;"><span>比赛类型：</span>线下赛</h1>
+                    <h1 style="margin-top:18px;"><span>开始时间：</span>2016年1月14日</h1>
+                    <h1 style="margin-top:18px;"><span>结束时间：</span>2016年4月28日</h1>
+
+                </dd>
+            </dl>
+            <p>《英雄联盟》职业联赛（LOL Professional League）是由腾讯举办的中国LOL赛事体系，每年由春季赛和夏季赛组成，每季赛事又分为
+                常规赛和季后赛。《英雄联盟》职业联赛第五赛季世界总决赛，将在欧洲四座城市进行。参加战队有16只，包括中国大陆、韩国、北美、欧洲各3个名额，台港澳赛区的2个名额，其他地区两个名额。</p>
+            <div class="clear"></div>
+        </div>
+        <div class="zhandui clearfix">
+            <div class="index_tit_two"><span class="text_left padding1">参赛战队</span><a href="#" class="more">更多</a></div>
+            <div class="general slideBox icon_game02">
+                <div class="game_list02 bd">
+                    <ul>
+                        <li><a href="#"><img src="/static/temp/dj02.jpg"/><span></span>
+                            <p>DOTA</p></a></li>
+                        <li><a href="#"><img src="/static/temp/dj01.jpg"/><span></span>
+                            <p>守望先锋</p></a></li>
+                        <li><a href="#"><img src="/static/temp/dj03.jpg"/><span></span>
+                            <p>超神英雄</p></a></li>
+                        <li><a href="#"><img src="/static/temp/dj04.jpg"/><span></span>
+                            <p>全职大师</p></a></li>
+                        <li><a href="#"><img src="/static/temp/dj05.jpg"/><span></span>
+                            <p>DOTA</p></a></li>
+                        <li><a href="#"><img src="/static/temp/dj06.jpg"/><span></span>
+                            <p>守望先锋</p></a></li>
+                        <li><a href="#"><img src="/static/temp/dj02.jpg"/><span></span>
+                            <p>超神英雄</p></a></li>
+                        <li><a href="#"><img src="/static/temp/dj05.jpg"/><span></span>
+                            <p>守望先锋</p></a></li>
+                        <li><a href="#"><img src="/static/temp/dj04.jpg"/><span></span>
+                            <p>全职大师</p></a></li>
+                        <li><a href="#"><img src="/static/temp/dj01.jpg"/><span></span>
+                            <p>超神英雄</p></a></li>
+                        <li><a href="#"><img src="/static/temp/dj03.jpg"/><span></span>
+                            <p>守望先锋</p></a></li>
+                        <li><a href="#"><img src="/static/temp/dj06.jpg"/><span></span>
+                            <p>全职大师</p></a></li>
+                    </ul>
+                </div>
+                <div class="ppw_pr_bt ppw_pr_prev prev"></div>
+                <div class="ppw_pr_bt ppw_pr_next next"></div>
+            </div>
+            <script type="text/javascript">
+                jQuery(".slideBox").slide({
+                    mainCell: "ul",
+                    autoPlay: false,
+                    effect: "left",
+                    vis: 6,
+                    scroll: 1,
+                    autoPage: true,
+                    pnLoop: true
+                })
+            </script>
+        </div>
+        <div class="about_pic clearfix">
+            <div class="index_tit_two"><span class="text_left padding1">赛事资讯</span><a href="#" class="more">更多</a></div>
+            <div class="game_zixun_left">
+                <dl>
+                    <dt><a href=""><img src="/static/temp/list01.jpg"/></a></dt>
+                    <dd><a href="">iGirls战队处罚相关人员恶意<br/>煽动队员离队将予以追究相关责任。</a></dd>
+                </dl>
+                <ul>
+                    <li><a href="#">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
+                    <li><a href="#">值得铭记回忆 电竞女子战队发展史</a></li>
+                    <li><a href="#">LOL职业选手深夜直播扰民 邻居无奈报警调节</a></li>
+                    <li><a href="#">魔兽电影影评：永不落幕的世界</a></li>
+                    <li><a href="#">周杰伦已进军港股 拟携手成立电子竞技战队公司</a></li>
+                    <li><a href="#">我们一直都在！《魔兽争霸3》选手Th000纪录片</a></li>
+                    <li><a href="#">荣耀能否延续？2016年英雄联盟季中邀请赛落户</a></li>
+                    <li><a href="#">LPL前三周数据碎碎念：团战依然至上</a></li>
+                    <li><a href="#">英雄联盟S6总决赛详情：举办地确定为北美</a></li>
+                </ul>
+            </div>
+            <div class="game_zixun_right">
+                <dl>
+                    <dt><a href=""><img src="/static/temp/list01.jpg"/></a></dt>
+                    <dd><a href="">iGirls战队处罚相关人员恶意<br/>煽动队员离队将予以追究相关责任。</a></dd>
+                </dl>
+                <ul>
+                    <li><a href="#">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
+                    <li><a href="#">值得铭记回忆 电竞女子战队发展史</a></li>
+                    <li><a href="#">LOL职业选手深夜直播扰民 邻居无奈报警调节</a></li>
+                    <li><a href="#">魔兽电影影评：永不落幕的世界</a></li>
+                    <li><a href="#">周杰伦已进军港股 拟携手成立电子竞技战队公司</a></li>
+                    <li><a href="#">我们一直都在！《魔兽争霸3》选手Th000纪录片</a></li>
+                    <li><a href="#">荣耀能否延续？2016年英雄联盟季中邀请赛落户</a></li>
+                    <li><a href="#">LPL前三周数据碎碎念：团战依然至上</a></li>
+                    <li><a href="#">英雄联盟S6总决赛详情：举办地确定为北美</a></li>
+                </ul>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+        <!--比赛视频-->
+        <div class="bisai_video">
+            <div class="index_tit_two">
+                <span class="text_left padding1">比赛视频</span>
+                <a href="#" class="more vider_more">更多</a>
+            </div>
+            <div class="index_video_right right_video game_video1">
+                <ul>
+                    <li>
+                        <a href="#" class="img">
+                            <img src="/static/temp/temp03.jpg"/>
+                            <p class="p1"><span>42:15</span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text">电竞校园联赛炉石传说Top3</a>
+                    </li>
+                    <li>
+                        <a href="#" class="img">
+                            <img src="/static/temp/temp03.jpg"/>
+                            <p class="p1"><span>42:15</span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text">电竞校园联赛炉石传说Top3</a>
+                    </li>
+                    <li>
+                        <a href="#" class="img">
+                            <img src="/static/temp/temp03.jpg"/>
+                            <p class="p1"><span>42:15</span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text">电竞校园联赛炉石传说Top3</a>
+                    </li>
+                    <li>
+                        <a href="#" class="img">
+                            <img src="/static/temp/temp03.jpg"/>
+                            <p class="p1"><span>42:15</span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text">电竞校园联赛炉石传说Top3</a>
+                    </li>
+                    <li>
+                        <a href="#" class="img">
+                            <img src="/static/temp/temp03.jpg"/>
+                            <p class="p1"><span>42:15</span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text">电竞校园联赛炉石传说Top3</a>
+                    </li>
+                    <li>
+                        <a href="#" class="img">
+                            <img src="/static/temp/temp03.jpg"/>
+                            <p class="p1"><span>42:15</span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text">电竞校园联赛炉石传说Top3</a>
+                    </li>
+                    <li>
+                        <a href="#" class="img">
+                            <img src="/static/temp/temp03.jpg"/>
+                            <p class="p1"><span>42:15</span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text">电竞校园联赛炉石传说Top3</a>
+                    </li>
+                    <li>
+                        <a href="#" class="img">
+                            <img src="/static/temp/temp03.jpg"/>
+                            <p class="p1"><span>42:15</span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text">电竞校园联赛炉石传说Top3</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="about_pic clearfix">
+            <div class="index_tit_two"><span class="text_left padding1">赛事图集</span><a href="#" class="more">更多</a></div>
+            <div class="slideBox saishi_pic">
+                <div class="game_pic_box bd">
+                    <ol>
+                        <li>
+                            <a href="#">
+                                <img src="/static/temp/detail05.jpg"/>
+                                <p><span>最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="/static/temp/girl5.jpg"/>
+                                <p><span>最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="/static/temp/girl6.jpg"/>
+                                <p><span>最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="/static/temp/detail01.jpg"/>
+                                <p><span>最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="/static/temp/temp01.jpg"/>
+                                <p><span>最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="/static/temp/girl5.jpg"/>
+                                <p><span>最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+                <div class="prev"></div>
+                <div class="next"></div>
+            </div>
+            <script type="text/javascript">
+                jQuery(".slideBox").slide({
+                    mainCell: "ol",
+                    autoPlay: false,
+                    effect: "left",
+                    vis: 3,
+                    scroll: 1,
+                    autoPage: true,
+                    pnLoop: true
+                })
+            </script>
+        </div>
+        <div class="game_pinglun">
+            <div class="game_pinglun_title"><p>玩家评论</p><span>（已有<em>0</em>条评论）</span></div>
+            <div class="game_pinglun_box">
+                <dl>
+                    <dd><textarea placeholder="请输入评论内容..." name="saytext" id="saytext"></textarea></dd>
+                    <dt>
+                    <p class="ppw_face emotion">表情</p>
+                    <input type="submit" class="ppw_comment_bt" value="发表评论"/>
+                    </dt>
+                </dl>
+            </div>
+            <div class="game_more_comment">加载更多</div>
+        </div>
+    </div>
+
+
+    <div class="game_main_right">
+        <div class="game_money">
+            <dl style="height:62px;font-size:24px;line-height:62px;">
+                比赛奖金
+            </dl>
+            <dl>
+                <dt>名次</dt>
+                <dd>奖金</dd>
+                <div class="clear"></div>
+            </dl>
+            <dl style="border-bottom:1px dotted #e6e6e6;">
+                <dt style="color:#ff0000">冠军</dt>
+                <dd>1,500,000人民币</dd>
+                <div class="clear"></div>
+            </dl>
+            <dl style="border-bottom:1px dotted #e6e6e6;">
+                <dt style="color:#ff0000">亚军</dt>
+                <dd>800,000人民币</dd>
+                <div class="clear"></div>
+            </dl>
+            <dl style="border-bottom:1px dotted #e6e6e6;">
+                <dt style="color:#ff0000">季军</dt>
+                <dd>500,000人民币</dd>
+                <div class="clear"></div>
+            </dl>
+            <dl style="border-bottom:1px dotted #e6e6e6;">
+                <dt>殿军</dt>
+                <dd>300,000人民币</dd>
+                <div class="clear"></div>
+            </dl>
+            <dl style="border-bottom:1px dotted #e6e6e6;">
+                <dt>第五名</dt>
+                <dd>200,000人民币</dd>
+                <div class="clear"></div>
+            </dl>
+            <dl style="border-bottom:1px dotted #e6e6e6;">
+                <dt>第六名</dt>
+                <dd>100,000人民币</dd>
+                <div class="clear"></div>
+            </dl>
+        </div>
+        <div class="game_data">
+            <dl>比赛日程表</dl>
+            <ul>
+                <span>今日</span>
+                <li>17:00<a href="#" style="margin-left:20px;">Snake</a>VS<a href="#">EMF</a></li>
+                <li>17:00<a href="#" style="margin-left:20px;">LGD</a>VS<a href="#">IG</a></li>
+                <li>17:00<a href="#" style="margin-left:20px;">MSE</a>VS<a href="#">M17</a></li>
+            </ul>
+            <ul>
+                <span style="background:#999;">03-10</span>
+                <li>17:00<a href="#" style="margin-left:20px;">FNC</a>VS<a href="#">GIA</a></li>
+                <li>17:00<a href="#" style="margin-left:20px;">LGD</a>VS<a href="#">IG</a></li>
+                <li>17:00<a href="#" style="margin-left:20px;">Snake</a>VS<a href="#">EMF</a></li>
+                <li>17:00<a href="#" style="margin-left:20px;">Snake</a>VS<a href="#">EMF</a></li>
+                <li>17:00<a href="#" style="margin-left:20px;">Snake</a>VS<a href="#">EMF</a></li>
+            </ul>
+            <ul>
+                <span style="background:#999;">03-11</span>
+                <li>17:00<a href="#" style="margin-left:20px;">Snake</a>VS<a href="#">EMF</a></li>
+                <li>17:00<a href="#" style="margin-left:20px;">Snake</a>VS<a href="#">EMF</a></li>
+            </ul>
+        </div>
+        <div class="index_tit_two" style="height:320px;">
+            <span class="text_left padding1">精选视频</span>
+            <a href="#" class="more">更多</a>
+            <div class="game_hot">
+                <dl>
+                    <a href="#">
+                        <img src="/static/img/game/ls01.jpg"/>
+                        <dt>LPL2016英雄联盟职业联赛春季赛</dt>
+                    </a>
+                </dl>
+                <dl style="margin-top:20px;margin-bottom:20px;">
+                    <a href="#">
+                        <img src="/static/img/game/ls02.jpg"/>
+                        <dt>LPL2016英雄联盟职业联赛春季赛</dt>
+                    </a>
+                </dl>
+            </div>
+        </div>
+        <div class="index_tit_two">
+            <span class="text_left padding1">精选资讯</span>
+            <a href="#" class="more">更多</a>
+            <div class="game_zixun2">
+                <ul class="hot_zixun">
+                    <li><a href="#">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
+                    <li><a href="#">值得铭记回忆 电竞女子战队发展史</a></li>
+                    <li><a href="#">LOL职业选手深夜直播扰民 邻居无奈报警调解</a></li>
+                    <li><a href="#">魔兽电影影评：永不落幕的世界</a></li>
+                    <li><a href="#">周杰伦已进军港股 拟携手成立电子竞技战队公司</a></li>
+                    <li><a href="#">我们一直都在！《魔兽争霸3》选手Th000纪录片</a></li>
+                    <li><a href="#">荣耀能否延续？2016年英雄联盟季中邀请赛落户解</a></li>
+                    <li><a href="#">LPL前三周数据碎碎念：团战依然至上</a></li>
+                    <li><a href="#">LOL职业选手深夜直播扰民 邻居无奈报警调解</a></li>
+                    <li><a href="#">魔兽电影影评：永不落幕的世界</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<!--线上琵琶网首页的foot，这里只是截图-->
+<div style="width:100%; text-align:center"><img src="/static/temp/foot.png" style="width:100%;"/></div>
+
+</body>
+</html>

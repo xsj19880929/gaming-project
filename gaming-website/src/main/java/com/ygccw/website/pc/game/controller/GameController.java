@@ -61,4 +61,9 @@ public class GameController {
         model.put("matchStatusList", gameWebService.listMatchStatus());
         return "/view/game/game-list.html";
     }
+
+    @RequestMapping(value = "/game/{id}.html", method = RequestMethod.GET)
+    public String gameList(final ModelMap model, @PathVariable Long id) {
+        return "/view/game/game-index.html";
+    }
 }

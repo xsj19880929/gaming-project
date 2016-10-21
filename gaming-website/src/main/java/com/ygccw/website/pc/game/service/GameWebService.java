@@ -1,9 +1,13 @@
 package com.ygccw.website.pc.game.service;
 
+import com.ygccw.wechat.common.zone.entity.MatchTeam;
+import com.ygccw.wechat.common.zone.entity.MatchTeamMapping;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import com.ygccw.wechat.common.zone.entity.MatchZoneArea;
 import com.ygccw.wechat.common.zone.entity.MatchZoneYear;
 import com.ygccw.wechat.common.zone.enums.MatchStatus;
+import com.ygccw.wechat.common.zone.service.MatchTeamMappingService;
+import com.ygccw.wechat.common.zone.service.MatchTeamService;
 import com.ygccw.wechat.common.zone.service.MatchZoneAreaService;
 import com.ygccw.wechat.common.zone.service.MatchZoneService;
 import com.ygccw.wechat.common.zone.service.MatchZoneYearService;
@@ -24,6 +28,10 @@ public class GameWebService {
     private MatchZoneYearService matchZoneYearService;
     @Inject
     private MatchZoneAreaService matchZoneAreaService;
+    @Inject
+    private MatchTeamMappingService matchTeamMappingService;
+    @Inject
+    private MatchTeamService matchTeamService;
 
 
     public List<MatchZone> findMatchZoneNew(MatchZone matchZone, int offset, int fetchSize) {
@@ -50,6 +58,20 @@ public class GameWebService {
             matchStatusList.add(matchStatus);
         }
         return matchStatusList;
+    }
+
+    public MatchZone findById(Long id) {
+        return matchZoneService.findById(id);
+    }
+
+    public List<MatchTeam> listMatchTeam(Long matchZoneId) {
+        List<MatchTeamMapping> matchTeamMappingList = matchTeamMappingService.listByMatchZoneId(matchZoneId);
+        List<MatchTeam> matchTeamList = new ArrayList<>();
+        for (MatchTeamMapping matchTeamMapping : matchTeamMappingList) {
+            MatchTeam matchTeam = matchTeamService.findById(matchTeamMapping.getMatchTeamId());
+            matchTeamList.add(matchTeam);
+        }
+        return matchTeamList;
     }
 
 

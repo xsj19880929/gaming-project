@@ -309,7 +309,7 @@
                             th:if="${iterStat.index==2||iterStat.index==3}"
                             th:class="${iterStat.odd==true?'no_border':''}">
                             <p class="p1"><a href="#"><span></span><img
-                                    th:img-src="/image/106X106${matchTeam.icoImage}"/></a></p>
+                                    th:img-src="/image/106x106${matchTeam.icoImage}"/></a></p>
                             <p class="p2">
                                 <span class="span01"><a href="#" th:text="${matchTeam.name}">Absolute Legends</a></span>
                                 <span class="span02"><em>所属项目：</em><img th:img-src="/image/28x28${matchZone.icoImage}"
@@ -354,13 +354,13 @@
     <div class="index_video clearfix">
         <p class="index_video_left"><a href="#" th:each="info,iterStat:${infoMatchZoneVideoList}"
                                        th:if="${iterStat.index==0}"><img
-                th:img-src="/image/486X360${info.titleImage}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
+                th:img-src="/image/486x360${info.titleImage}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
         </p>
         <div class="index_video_right">
             <ul>
                 <li th:each="info,iterStat:${infoMatchZoneVideoList}" th:if="${iterStat.index!=0}">
                     <a href="#" class="img">
-                        <img th:img-src="/image/200X118${info.titleImage}"/>
+                        <img th:img-src="/image/200x118${info.titleImage}"/>
                         <p class="p1"><span></span></p>
                         <p class="p2"><em></em></p>
                     </a>
@@ -382,13 +382,13 @@
     <div class="index_video clearfix">
         <p class="index_video_left"><a href="#" th:each="info,iterStat:${infoAnchorZoneVideoList}"
                                        th:if="${iterStat.index==0}"><img
-                th:img-src="/image/486X360${info.titleImage}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
+                th:img-src="/image/486x360${info.titleImage}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
         </p>
         <div class="index_video_right">
             <ul>
                 <li th:each="info,iterStat:${infoMatchZoneVideoList}" th:if="${iterStat.index!=0}">
                     <a href="#" class="img">
-                        <img th:img-src="/image/200X118${info.titleImage}"/>
+                        <img th:img-src="/image/200x118${info.titleImage}"/>
                         <p class="p1"><span></span></p>
                         <p class="p2"><em></em></p>
                     </a>

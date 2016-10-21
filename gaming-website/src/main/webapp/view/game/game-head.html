@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<div th:fragment="top(selectedMenuName)">
+    <!--线上的top内容,这个仅放截图-->
+    <div style="position:absolute;top:0;left:0;height:42px;text-align:center;background:black;filter:Alpha(opacity=70);background:rgba(0,0,0,0.7);">
+        <img src="/static/img/game/game_nav.png" style="width:100%">
+    </div>
+
+    <div class="game_banner"></div>
+
+    <div class="game_nav">
+        <ul>
+            <li class="change"><a href="#"><span><img src="/static/img/game/game_home.png"/></span>电竞专区</a></li>
+            <li><a href="#"><span><img src="/static/img/game/game_data.png"/></span>赛事资讯</a></li>
+            <li><a href="#"><span><img src="/static/img/game/game_video.png"/></span>精彩视频</a></li>
+            <li><a href="#"><span><img src="/static/img/game/game_team.png"/></span>参赛战队</a></li>
+            <li><a href="#"><span><img src="/static/img/game/game_pic.png"/></span>赛事图锦</a></li>
+            <li><a href="#"><span><img src="/static/img/game/game_over.png"/></span>攻略网站</a></li>
+        </ul>
+    </div>
+</div>
