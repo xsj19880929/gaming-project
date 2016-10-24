@@ -64,6 +64,13 @@ public class GameController {
 
     @RequestMapping(value = "/game/{id}.html", method = RequestMethod.GET)
     public String gameList(final ModelMap model, @PathVariable Long id) {
+        model.put("matchZone", gameWebService.findById(id));
+        model.put("matchTeamList", gameWebService.listMatchTeamByMatchZoneId(id));
+        model.put("newsList", gameWebService.listInfoNewsByMatchZoneId(id));
+        model.put("videoList", gameWebService.listInfoVideoByMatchZoneId(id));
+        model.put("matchZoneBonusList", gameWebService.listMatchZoneBonusByMatchZoneId(id));
+        model.put("matchZoneCalendarList", gameWebService.listMatchZoneCalendarByMatchZoneId(id));
+        model.put("pictureList", gameWebService.listPictureByMatchZoneId(id));
         return "/view/game/game-index.html";
     }
 }

@@ -1,14 +1,25 @@
 package com.ygccw.website.pc.game.service;
 
+import com.ygccw.wechat.common.info.entity.Info;
+import com.ygccw.wechat.common.info.enums.InfoType;
+import com.ygccw.wechat.common.info.enums.InfoZoneType;
+import com.ygccw.wechat.common.info.service.InfoService;
+import com.ygccw.wechat.common.picture.entity.Picture;
+import com.ygccw.wechat.common.picture.enums.PictureZoneType;
+import com.ygccw.wechat.common.picture.service.PictureService;
 import com.ygccw.wechat.common.zone.entity.MatchTeam;
 import com.ygccw.wechat.common.zone.entity.MatchTeamMapping;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import com.ygccw.wechat.common.zone.entity.MatchZoneArea;
+import com.ygccw.wechat.common.zone.entity.MatchZoneBonus;
+import com.ygccw.wechat.common.zone.entity.MatchZoneCalendar;
 import com.ygccw.wechat.common.zone.entity.MatchZoneYear;
 import com.ygccw.wechat.common.zone.enums.MatchStatus;
 import com.ygccw.wechat.common.zone.service.MatchTeamMappingService;
 import com.ygccw.wechat.common.zone.service.MatchTeamService;
 import com.ygccw.wechat.common.zone.service.MatchZoneAreaService;
+import com.ygccw.wechat.common.zone.service.MatchZoneBonusService;
+import com.ygccw.wechat.common.zone.service.MatchZoneCalendarService;
 import com.ygccw.wechat.common.zone.service.MatchZoneService;
 import com.ygccw.wechat.common.zone.service.MatchZoneYearService;
 import org.springframework.stereotype.Controller;
@@ -32,6 +43,14 @@ public class GameWebService {
     private MatchTeamMappingService matchTeamMappingService;
     @Inject
     private MatchTeamService matchTeamService;
+    @Inject
+    private MatchZoneBonusService matchZoneBonusService;
+    @Inject
+    private MatchZoneCalendarService matchZoneCalendarService;
+    @Inject
+    private InfoService infoService;
+    @Inject
+    private PictureService pictureService;
 
 
     public List<MatchZone> findMatchZoneNew(MatchZone matchZone, int offset, int fetchSize) {
@@ -64,7 +83,7 @@ public class GameWebService {
         return matchZoneService.findById(id);
     }
 
-    public List<MatchTeam> listMatchTeam(Long matchZoneId) {
+    public List<MatchTeam> listMatchTeamByMatchZoneId(Long matchZoneId) {
         List<MatchTeamMapping> matchTeamMappingList = matchTeamMappingService.listByMatchZoneId(matchZoneId);
         List<MatchTeam> matchTeamList = new ArrayList<>();
         for (MatchTeamMapping matchTeamMapping : matchTeamMappingList) {
@@ -72,6 +91,37 @@ public class GameWebService {
             matchTeamList.add(matchTeam);
         }
         return matchTeamList;
+    }
+
+    public List<MatchZoneBonus> listMatchZoneBonusByMatchZoneId(Long matchZoneId) {
+        return matchZoneBonusService.listByMatchZoneId(matchZoneId);
+    }
+
+    public List<MatchZoneCalendar> listMatchZoneCalendarByMatchZoneId(Long matchZoneId) {
+        return matchZoneCalendarService.listByMatchZoneId(matchZoneId);
+    }
+
+    public List<Info> listInfoVideoByMatchZoneId(Long matchZoneId) {
+        Info info = new Info();
+        info.setZoneId(matchZoneId);
+        info.setInfoZoneType(InfoZoneType.matchZone);
+        info.setInfoType(InfoType.video);
+        return infoService.list(info, 0, 20);
+    }
+
+    public List<Info> listInfoNewsByMatchZoneId(Long matchZoneId) {
+        Info info = new Info();
+        info.setZoneId(matchZoneId);
+        info.setInfoZoneType(InfoZoneType.matchZone);
+        info.setInfoType(InfoType.news);
+        return infoService.list(info, 0, 20);
+    }
+
+    public List<Picture> listPictureByMatchZoneId(Long matchZoneId) {
+        Picture picture = new Picture();
+        picture.setPictureZoneType(PictureZoneType.matchZone);
+        picture.setZoneId(matchZoneId);
+        return pictureService.list(picture, 0, 10);
     }
 
 

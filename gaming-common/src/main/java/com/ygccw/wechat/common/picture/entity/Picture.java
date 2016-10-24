@@ -33,7 +33,7 @@ public class Picture {
     private Integer visitCount;
     private String tags;
     private Integer verify;
-    private Integer zoneId;
+    private Long zoneId;
     @Enumerated(EnumType.STRING)
     private PictureZoneType pictureZoneType;
     @Transient
@@ -181,11 +181,11 @@ public class Picture {
     }
 
 
-    public Integer getZoneId() {
+    public Long getZoneId() {
         return zoneId;
     }
 
-    public void setZoneId(Integer zoneId) {
+    public void setZoneId(Long zoneId) {
         this.zoneId = zoneId;
     }
 
