@@ -124,5 +124,19 @@ public class GameWebService {
         return pictureService.list(picture, 0, 10);
     }
 
+    public List<Info> listInfoVideo() {
+        Info info = new Info();
+        info.setInfoZoneType(InfoZoneType.matchZone);
+        info.setInfoType(InfoType.video);
+        return infoService.list(info, 0, 2);
+    }
+
+    public List<Info> listInfoNews() {
+        Info info = new Info();
+        info.setInfoZoneType(InfoZoneType.matchZone);
+        info.setInfoType(InfoType.news);
+        return infoService.list(info, 0, 10);
+    }
+
 
 }

@@ -71,6 +71,8 @@ public class GameController {
         model.put("matchZoneBonusList", gameWebService.listMatchZoneBonusByMatchZoneId(id));
         model.put("matchZoneCalendarList", gameWebService.listMatchZoneCalendarByMatchZoneId(id));
         model.put("pictureList", gameWebService.listPictureByMatchZoneId(id));
+        model.put("recommendVideoList", gameWebService.listInfoVideo());
+        model.put("recommendNewsList", gameWebService.listInfoNews());
         return "/view/game/game-index.html";
     }
 }

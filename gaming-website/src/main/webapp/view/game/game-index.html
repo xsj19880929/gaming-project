@@ -66,26 +66,28 @@
         <div class="about_pic clearfix">
             <div class="index_tit_two"><span class="text_left padding1">赛事资讯</span><a href="#" class="more">更多</a></div>
             <div class="game_zixun_left">
-                <dl th:each="news,iterStat:${newsList}" th:if="iterStat==0">
-                    <dt><a href=""><img src="/static/temp/list01.jpg" th:img-src="/image/204x108${news.image}"/></a>
+                <dl th:each="news,iterStat:${newsList}" th:if="${iterStat.index==0}">
+                    <dt><a href=""><img src="/static/temp/list01.jpg"
+                                        th:img-src="/image/204x108${news.titleImage}"/></a>
                     </dt>
                     <dd><a href="" th:text="${news.title}">iGirls战队处罚相关人员恶意<br/>煽动队员离队将予以追究相关责任。</a></dd>
                 </dl>
                 <ul>
-                    <li th:each="news,iterStat:${newsList}" th:if="iterStat>0&&iterStat<10"><a href="#"
-                                                                                               th:text="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                    <li th:each="news,iterStat:${newsList}" th:if="${iterStat.index>0&&iterStat.index<10}"><a href="#"
+                                                                                                              th:text="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>
             </div>
             <div class="game_zixun_right">
-                <dl th:each="news,iterStat:${newsList}" th:if="iterStat==10">
-                    <dt><a href=""><img src="/static/temp/list01.jpg" th:img-src="/image/204x108${news.image}"/></a>
+                <dl th:each="news,iterStat:${newsList}" th:if="${iterStat.index==10}">
+                    <dt><a href=""><img src="/static/temp/list01.jpg"
+                                        th:img-src="/image/204x108${news.titleImage}"/></a>
                     </dt>
                     <dd><a href="" th:text="${news.title}">iGirls战队处罚相关人员恶意<br/>煽动队员离队将予以追究相关责任。</a></dd>
                 </dl>
                 <ul>
-                    <li th:each="news,iterStat:${newsList}" th:if="iterStat>10&&iterStat<20"><a href="#"
-                                                                                                th:text="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                    <li th:each="news,iterStat:${newsList}" th:if="${iterStat.index>10&&iterStat.index<20}"><a href="#"
+                                                                                                               th:text="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>
             </div>
@@ -102,7 +104,7 @@
                 <ul>
                     <li th:each="video:${videoList}">
                         <a href="#" class="img">
-                            <img src="/static/temp/temp03.jpg" th:img-src="/image/200x118${video.image}"/>
+                            <img src="/static/temp/temp03.jpg" th:img-src="/image/200x118${video.titleImage}"/>
                             <p class="p1"><span></span></p>
                             <p class="p2"><em></em></p>
                         </a>
@@ -166,8 +168,13 @@
                 <dd>奖金</dd>
                 <div class="clear"></div>
             </dl>
-            <dl style="border-bottom:1px dotted #e6e6e6;" th:each="matchZoneBonus:${matchZoneBonusList}">
-                <dt style="color:#ff0000" th:text="${matchZoneBonus.ranking}">冠军</dt>
+            <dl style="border-bottom:1px dotted #e6e6e6;" th:each="matchZoneBonus,iterStat:${matchZoneBonusList}">
+                <dt style="color:#ff0000" th:text="${matchZoneBonus.ranking}"
+                    th:if="${iterStat.index==0||iterStat.index==1||iterStat.index==2}">冠军
+                </dt>
+                <dt style="color:#ff0000" th:text="${matchZoneBonus.ranking}"
+                    th:unless="${iterStat.index==0||iterStat.index==1||iterStat.index==2}">冠军
+                </dt>
                 <dd th:text="${matchZoneBonus.bonusFee}+'人民币'">1,500,000人民币</dd>
                 <div class="clear"></div>
             </dl>
@@ -176,10 +183,10 @@
             <dl>比赛日程表</dl>
             <ul th:each="matchZoneCalendar:${matchZoneCalendarList}">
                 <!--<span>今日</span>-->
-                <li th:text="${#calendars.format(matchZoneCalendar.startTime, 'yyyy-MM-dd HH:mm')}">17:00<a href="#"
-                                                                                                            style="margin-left:20px;"
-                                                                                                            th:text="${matchZoneCalendar.matchTeamOneName}">Snake</a>VS<a
-                        href="#" ${matchZoneCalendar.matchTeamTwoName}>EMF</a></li>
+                <li><font th:text="${#calendars.format(matchZoneCalendar.startTime, 'yyyy-MM-dd HH:mm')}">17:00</font><a
+                        href="#" style="margin-left:5px;"
+                        th:text="${matchZoneCalendar.matchTeamOneName}">Snake</a>VS<a
+                        href="#" th:text="${matchZoneCalendar.matchTeamTwoName}">EMF</a></li>
 
             </ul>
             <!--<ul>-->
@@ -200,18 +207,18 @@
             <span class="text_left padding1">精选视频</span>
             <a href="#" class="more">更多</a>
             <div class="game_hot">
-                <dl>
+                <dl style="margin-top:20px;margin-bottom:20px;" th:each="video:${recommendVideoList}">
                     <a href="#">
-                        <img src="/static/img/game/ls01.jpg"/>
-                        <dt>LPL2016英雄联盟职业联赛春季赛</dt>
+                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${video.titleImage}"/>
+                        <dt th:text="${video.title}">LPL2016英雄联盟职业联赛春季赛</dt>
                     </a>
                 </dl>
-                <dl style="margin-top:20px;margin-bottom:20px;">
-                    <a href="#">
-                        <img src="/static/img/game/ls02.jpg"/>
-                        <dt>LPL2016英雄联盟职业联赛春季赛</dt>
-                    </a>
-                </dl>
+                <!--<dl style="margin-top:20px;margin-bottom:20px;">-->
+                <!--<a href="#">-->
+                <!--<img src="/static/img/game/ls02.jpg"/>-->
+                <!--<dt>LPL2016英雄联盟职业联赛春季赛</dt>-->
+                <!--</a>-->
+                <!--</dl>-->
             </div>
         </div>
         <div class="index_tit_two">
@@ -219,16 +226,8 @@
             <a href="#" class="more">更多</a>
             <div class="game_zixun2">
                 <ul class="hot_zixun">
-                    <li><a href="#">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
-                    <li><a href="#">值得铭记回忆 电竞女子战队发展史</a></li>
-                    <li><a href="#">LOL职业选手深夜直播扰民 邻居无奈报警调解</a></li>
-                    <li><a href="#">魔兽电影影评：永不落幕的世界</a></li>
-                    <li><a href="#">周杰伦已进军港股 拟携手成立电子竞技战队公司</a></li>
-                    <li><a href="#">我们一直都在！《魔兽争霸3》选手Th000纪录片</a></li>
-                    <li><a href="#">荣耀能否延续？2016年英雄联盟季中邀请赛落户解</a></li>
-                    <li><a href="#">LPL前三周数据碎碎念：团战依然至上</a></li>
-                    <li><a href="#">LOL职业选手深夜直播扰民 邻居无奈报警调解</a></li>
-                    <li><a href="#">魔兽电影影评：永不落幕的世界</a></li>
+                    <li th:each="news:${recommendNewsList}"><a href="#" th:text="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                    </li>
                 </ul>
             </div>
         </div>
