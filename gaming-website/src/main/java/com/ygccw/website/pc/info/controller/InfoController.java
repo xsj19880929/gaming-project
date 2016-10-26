@@ -22,9 +22,9 @@ public class InfoController {
 
     @RequestMapping(value = "/news.html", method = RequestMethod.GET)
     public String index(final ModelMap model) {
-        model.put("infoTradeList", infoWebService.infoList(InfoZoneType.trade, TagZoneType.trade, 0, 9));
-        model.put("infoMatchList", infoWebService.infoList(InfoZoneType.matchZone, TagZoneType.matchZone, 0, 9));
-        model.put("infoAnchorList", infoWebService.infoList(InfoZoneType.anchorZone, TagZoneType.anchorZone, 0, 9));
+        model.put("infoTradeList", infoWebService.infoList(null, InfoZoneType.trade, TagZoneType.trade, 0, 9));
+        model.put("infoMatchList", infoWebService.infoList(null, InfoZoneType.matchZone, TagZoneType.matchZone, 0, 9));
+        model.put("infoAnchorList", infoWebService.infoList(null, InfoZoneType.anchorZone, TagZoneType.anchorZone, 0, 9));
         model.put("newsTopList", infoWebService.newsListTop(0, 10));
         model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
         model.put("videoTopList", infoWebService.videoListTop(0, 4));

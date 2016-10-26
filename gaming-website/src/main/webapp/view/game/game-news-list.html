@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <title>赛事专区首页</title>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/view/game/game-head.html::top('news',${matchZone.id})"></div>
+<!--面包屑-->
+<!--<div class="position"><a href="#">电竞首页</a>&gt;<em>英雄联盟电竞专区</em>&gt;<em>赛事资讯</em></div>-->
+
+
+<div class="game_main_box">
+    <div class="game_main_left">
+        <div class="all_zixun">
+            <div class="index_tit_two" style="margin-left:10px;"><span class="text_left"
+                                                                       th:text="${matchZone.name}+'电竞资讯'">英雄联盟电竞资讯</span>
+            </div>
+            <div class="tab_one_con2" style="margin-left:10px;">
+                <div class="tab_deatil" id="con_one_1" style="display:block">
+                    <ul>
+                        <li th:each="news:${newsList}">
+                            <div class="d1"><a href="#"><img src="/static/temp/list01.jpg"
+                                                             th:img-src="/image/204x108${news.titleImage}"
+                                                             th:alt="${news.title}"/></a></div>
+                            <div class="d2">
+                                <p class="p1"><a href="#" th:text="${news.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
+                                <p class="p2"><span><a href="#" th:href="/game/news/${news.id}.html"
+                                                       th:each="tag:${news.tagMappingWebList}"
+                                                       th:text="${tag.name}">电竞</a></span><em
+                                        th:text="${#calendars.format(news.publishTime, 'MM-dd HH:mm')}">10-20 10:35</em>
+                                </p>
+                                <p class="p3" th:text="${news.content}">
+                                    近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                            </div>
+                        </li>
+
+                        <!--<li class="no_border">-->
+                        <!--<div class="d1"><a href="#"><img src="/static/temp/list05.jpg"/></a></div>-->
+                        <!--<div class="d2">-->
+                        <!--<p class="p1"><a href="#">《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>-->
+                        <!--<p class="p2"><span><a href="#">电竞</a><a href="#">移动电子竞技大赛</a><a-->
+                        <!--href="#">CMEG</a></span><em>10-20 10:35</em></p>-->
+                        <!--<p class="p3">-->
+                        <!--近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+                        <!--</div>-->
+                        <!--</li>-->
+                    </ul>
+                    <!--页码-->
+                    <div class="newyiiPager">
+                        <ol id="yw0" class="yiiPager">
+                            <li>共2页：</li>
+                            <li class="page hidden"><a href="">首页</a></li>
+                            <li class="previous hidden"><a href="#">上一页</a></li>
+                            <li class="page selected"><span>1</span></li>
+                            <li class="page"><a href="#">2</a></li>
+                            <li class="page"><a href="#">3</a></li>
+                            <li class="page"><a href="#">4</a></li>
+                            <li class="next"><a href="#">下一页</a></li>
+                            <li class="last"><a href="#">末页</a></li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="game_main_right">
+        <div class="index_tit_two" style="height:320px;">
+            <span class="text_left padding1">热门赛事</span>
+            <a href="#" class="more">更多</a>
+            <div class="game_hot">
+                <dl style="margin-top:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
+                    th:if="${iterStat.index==0}">
+                    <a href="#">
+                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.icoImage}"/>
+                        <dt th:text="${matchZoneTop.name}">LPL2016英雄联盟职业联赛春季赛</dt>
+                    </a>
+                </dl>
+                <dl style="margin-top:20px;margin-bottom:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
+                    th:if="${iterStat.index==1}">
+                    <a href="#">
+                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.icoImage}"/>
+                        <dt th:text="${matchZoneTop.name}">LPL2016英雄联盟职业联赛春季赛</dt>
+                    </a>
+                </dl>
+            </div>
+        </div>
+        <div class="index_tit_two" style="height:440px;">
+            <span class="text_left padding1">热门资讯</span>
+            <a href="#" class="more">更多</a>
+            <div class="game_zixun2">
+                <ul class="hot_zixun">
+                    <li th:each="newsTop:${topNewsList}"><a href="#" th:text="${newsTop.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="index_tit_two">
+            <span class="text_left padding1" style="margin-top:20px;">最新资讯</span>
+            <a href="#" class="more" style="margin-top:24px;">更多</a>
+            <div class="game_zixun2">
+                <ul class="hot_zixun">
+                    <li th:each="news:${newestNewsList}"><a href="#" th:text="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<!--线上琵琶网首页的foot，这里只是截图-->
+<div style="width:100%; text-align:center"><img src="/static/temp/foot.png" style="width:100%;"/></div>
+
+</body>
+</html>

@@ -44,10 +44,12 @@ public class InfoWebService {
     @Inject
     PictureService pictureService;
 
-    public List<InfoWeb> infoList(InfoZoneType infoZoneType, TagZoneType tagZoneType, int offset, int fetchSize) {
+    public List<InfoWeb> infoList(Long zoneId, InfoZoneType infoZoneType, TagZoneType tagZoneType, int offset, int fetchSize) {
         Info infoRequest = new Info();
         infoRequest.setInfoZoneType(infoZoneType);
+        infoRequest.setZoneId(zoneId);
         infoRequest.setVerify(1);
+        infoRequest.setInfoType(InfoType.news);
         List<Info> infoList = infoService.list(infoRequest, offset, fetchSize);
         List<InfoWeb> infoWebList = new ArrayList<>();
         for (Info info : infoList) {
@@ -73,6 +75,7 @@ public class InfoWebService {
         }
         return infoWebList;
     }
+
 
     public List<Info> videoListTop(int offset, int fetchSize) {
         Info infoRequest = new Info();

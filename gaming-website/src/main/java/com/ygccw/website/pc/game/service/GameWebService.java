@@ -1,5 +1,7 @@
 package com.ygccw.website.pc.game.service;
 
+import com.ygccw.website.pc.info.model.InfoWeb;
+import com.ygccw.website.pc.info.service.InfoWebService;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
@@ -7,6 +9,7 @@ import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.picture.entity.Picture;
 import com.ygccw.wechat.common.picture.enums.PictureZoneType;
 import com.ygccw.wechat.common.picture.service.PictureService;
+import com.ygccw.wechat.common.tags.enums.TagZoneType;
 import com.ygccw.wechat.common.zone.entity.MatchTeam;
 import com.ygccw.wechat.common.zone.entity.MatchTeamMapping;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
@@ -51,6 +54,8 @@ public class GameWebService {
     private InfoService infoService;
     @Inject
     private PictureService pictureService;
+    @Inject
+    private InfoWebService infoWebService;
 
 
     public List<MatchZone> findMatchZoneNew(MatchZone matchZone, int offset, int fetchSize) {
@@ -101,41 +106,54 @@ public class GameWebService {
         return matchZoneCalendarService.listByMatchZoneId(matchZoneId);
     }
 
-    public List<Info> listInfoVideoByMatchZoneId(Long matchZoneId) {
+    public List<Info> listInfoVideoByMatchZoneId(Long matchZoneId, int offset, int fetchSize) {
         Info info = new Info();
         info.setZoneId(matchZoneId);
         info.setInfoZoneType(InfoZoneType.matchZone);
         info.setInfoType(InfoType.video);
-        return infoService.list(info, 0, 20);
+        return infoService.list(info, offset, fetchSize);
     }
 
-    public List<Info> listInfoNewsByMatchZoneId(Long matchZoneId) {
+    public List<Info> listInfoNewsByMatchZoneId(Long matchZoneId, int offset, int fetchSize) {
         Info info = new Info();
         info.setZoneId(matchZoneId);
         info.setInfoZoneType(InfoZoneType.matchZone);
         info.setInfoType(InfoType.news);
-        return infoService.list(info, 0, 20);
+        return infoService.list(info, offset, fetchSize);
     }
 
-    public List<Picture> listPictureByMatchZoneId(Long matchZoneId) {
+    public List<Picture> listPictureByMatchZoneId(Long matchZoneId, int offset, int fetchSize) {
         Picture picture = new Picture();
         picture.setPictureZoneType(PictureZoneType.matchZone);
         picture.setZoneId(matchZoneId);
-        return pictureService.list(picture, 0, 10);
+        return pictureService.list(picture, offset, fetchSize);
     }
 
-    public List<Info> listInfoVideo() {
+    public List<Info> listInfoVideo(int offset, int fetchSize) {
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.matchZone);
         info.setInfoType(InfoType.video);
-        return infoService.list(info, 0, 2);
+        return infoService.list(info, offset, offset);
     }
 
-    public List<Info> listInfoNews() {
+    public List<Info> listInfoNews(int offset, int fetchSize) {
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.matchZone);
         info.setInfoType(InfoType.news);
-        return infoService.list(info, 0, 10);
+        return infoService.list(info, offset, fetchSize);
+    }
+
+    public List<InfoWeb> listInfoNewsAndTag(Long matchZoneId, int offset, int fetchSize) {
+        return infoWebService.infoList(matchZoneId, InfoZoneType.matchZone, TagZoneType.matchZone, offset, fetchSize);
+    }
+
+    public List<Info> listInfoNewsTop(int offset, int fetchSize) {
+        Info info = new Info();
+        info.setInfoZoneType(InfoZoneType.matchZone);
+        info.setInfoType(InfoType.news);
+        info.setSortIfDesc(true);
+        info.setSortName("visitCount");
+        return infoService.list(info, offset, fetchSize);
     }
 
 

@@ -66,13 +66,24 @@ public class GameController {
     public String gameList(final ModelMap model, @PathVariable Long id) {
         model.put("matchZone", gameWebService.findById(id));
         model.put("matchTeamList", gameWebService.listMatchTeamByMatchZoneId(id));
-        model.put("newsList", gameWebService.listInfoNewsByMatchZoneId(id));
-        model.put("videoList", gameWebService.listInfoVideoByMatchZoneId(id));
+        model.put("newsList", gameWebService.listInfoNewsByMatchZoneId(id, 0, 20));
+        model.put("videoList", gameWebService.listInfoVideoByMatchZoneId(id, 0, 20));
         model.put("matchZoneBonusList", gameWebService.listMatchZoneBonusByMatchZoneId(id));
         model.put("matchZoneCalendarList", gameWebService.listMatchZoneCalendarByMatchZoneId(id));
-        model.put("pictureList", gameWebService.listPictureByMatchZoneId(id));
-        model.put("recommendVideoList", gameWebService.listInfoVideo());
-        model.put("recommendNewsList", gameWebService.listInfoNews());
+        model.put("pictureList", gameWebService.listPictureByMatchZoneId(id, 0, 10));
+        model.put("recommendVideoList", gameWebService.listInfoVideo(0, 2));
+        model.put("recommendNewsList", gameWebService.listInfoNews(0, 10));
         return "/view/game/game-index.html";
+    }
+
+    @RequestMapping(value = "/game/news-list/{matchZoneId}.html", method = RequestMethod.GET)
+    public String gameNewsList(final ModelMap model, @PathVariable Long matchZoneId) {
+        MatchZone matchZone = new MatchZone();
+        model.put("matchZone", gameWebService.findById(matchZoneId));
+        model.put("newsList", gameWebService.listInfoNewsAndTag(matchZoneId, 0, 8));
+        model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
+        model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
+        model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 2));
+        return "/view/game/game-news-list.html";
     }
 }
