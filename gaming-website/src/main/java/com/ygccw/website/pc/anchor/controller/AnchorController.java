@@ -41,4 +41,9 @@ public class AnchorController {
         model.put("platformIdSelected", platformId);
         return "/view/anchor/anchor-list.html";
     }
+
+    @RequestMapping(value = "/anchor/{id}.html", method = RequestMethod.GET)
+    public String findById(final ModelMap model, @PathVariable Long id) {
+        return "/view/anchor/anchor-index.html";
+    }
 }

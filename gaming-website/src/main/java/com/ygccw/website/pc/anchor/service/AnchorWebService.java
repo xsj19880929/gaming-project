@@ -64,5 +64,9 @@ public class AnchorWebService {
         return anchorZonePlatformService.listAll();
     }
 
+    public AnchorZone findAnchorById(Long id) {
+        return anchorZoneService.findById(id);
+    }
+
 
 }
