@@ -27,9 +27,11 @@
                 <div class="tab_deatil" id="con_one_1" style="display:block">
                     <ul>
                         <li th:each="news:${newsList}">
-                            <div class="d1"><a href="#"><img src="/static/temp/list01.jpg"
-                                                             th:img-src="/image/204x108${news.titleImage}"
-                                                             th:alt="${news.title}"/></a></div>
+                            <div class="d1"><a href="#" th:href="/game/news/${news.id}.html"
+                                               th:title="${news.title}"><img
+                                    src="/static/temp/list01.jpg"
+                                    th:img-src="/image/204x108${news.titleImage}"
+                                    th:alt="${news.title}"/></a></div>
                             <div class="d2">
                                 <p class="p1"><a href="#" th:text="${news.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
                                 <p class="p2"><span><a href="#" th:href="/game/news/${news.id}.html"
@@ -38,8 +40,7 @@
                                         th:text="${#calendars.format(news.publishTime, 'MM-dd HH:mm')}">10-20 10:35</em>
                                 </p>
                                 <p class="p3" th:text="${news.content}">
-                                    近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                            </div>
+                                    近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p></div>
                         </li>
 
                         <!--<li class="no_border">-->

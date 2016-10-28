@@ -1,6 +1,7 @@
 package com.ygccw.website.pc.game.controller;
 
 import com.ygccw.website.pc.game.service.GameWebService;
+import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import com.ygccw.wechat.common.zone.enums.MatchStatus;
 import org.springframework.stereotype.Controller;
@@ -85,5 +86,20 @@ public class GameController {
         model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
         model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 2));
         return "/view/game/game-news-list.html";
+    }
+
+    @RequestMapping(value = "/game/news/{newsId}.html", method = RequestMethod.GET)
+    public String gameNews(final ModelMap model, @PathVariable Long newsId) {
+        MatchZone matchZone = new MatchZone();
+        InfoWeb infoWeb = gameWebService.findInfoById(newsId);
+        model.put("info", infoWeb);
+        model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
+        model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
+        model.put("pictureTopList", gameWebService.pictureListTop(0, 6));
+        model.put("likeInfoList", gameWebService.likeInfoList(infoWeb, 10));
+        model.put("nextInfo", gameWebService.nextInfo(infoWeb));
+        model.put("lastInfo", gameWebService.lastInfo(infoWeb));
+        model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 2));
+        return "/view/game/game-news-detail.html";
     }
 }
