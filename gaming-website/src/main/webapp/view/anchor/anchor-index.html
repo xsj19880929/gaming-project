@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
@@ -17,18 +16,18 @@
 <div class="zhubo_con_box">
     <div class="zhubo_data">
         <div class="head_img"><span><img src="/static/img/circle_bg3.png"/></span><img
-                src="/static/img/zhubo/zhubo.png"/></div>
+                src="/static/img/zhubo/zhubo.png" th:img-src="/image/120x120${anchorZone.icoImage}"/></div>
         <div class="data">
             <dl>
                 <dt>
-                <h1>小智脑残粉</h1>
-                <h2>人气：<span>58621</span></h2>
+                <h1 th:text="${anchorZone.name}">小智脑残粉</h1>
+                <h2>人气：<span th:text="${anchorZone.visitCount}">58621</span></h2>
                 <a href="">
                     <h3><span style="margin-left:15px;margin-top:10px;"><img
                             src="/static/img/zhubo/tianjia.png"/></span><span
                             style="margin-left:6px;margin-top:7px;color:#fff;font-size:14px;">收藏</span></h3>
                 </a> </dt>
-                <dd> LOL新晋视频集锦创作者，【秀逗时刻】、【最佳坑姿势】作者。以最搞笑的方式，为你带来欢乐。喜欢不要忘记点收藏。</dd>
+                <dd th:text="${anchorZone.introduction}"> LOL新晋视频集锦创作者，【秀逗时刻】、【最佳坑姿势】作者。以最搞笑的方式，为你带来欢乐。喜欢不要忘记点收藏。</dd>
             </dl>
         </div>
         <div class="clear"></div>
@@ -63,77 +62,20 @@
                 <dt>主播资讯</dt>
                 <dd><a href="#">更多<img src="/static/img/more.png" style="margin-left:4px;"/></a></dd>
             </dl>
-            <div class="zhubo_news"><span><a href="#"><img src="/static/temp/list03.jpg"/></a></span>
+            <div class="zhubo_news" th:each="news,iterStat:${anchorNewsList}"><span><a href="#"><img
+                    src="/static/temp/list03.jpg" th:img-src="/image/204x108${news.titleImage}"/></a></span>
                 <div class="zhubo_news_main"><a href="#">
-                    <h1>lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
+                    <h1 th:text="${news.title}">lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
                 </a>
                     <dl>
-                        <dt><img src="/static/img/time.png"/> 10-20 10:35</dt>
-                        <dd><img src="/static/img/bq.jpg"/>&nbsp;电竞 电子移动竞技大赛 CMEG</dd>
+                        <dt><img src="/static/img/time.png"/> <span
+                                th:text="${#calendars.format(news.publishTime, 'MM-dd HH:mm')}">10-20 10:35</span></dt>
+                        <dd><img src="/static/img/bq.jpg"/>&nbsp;<a href="#"
+                                                                    th:each="tagTrade:${news.tagMappingWebList}"
+                                                                    th:text="${tagTrade.name}">电竞</a></dd>
                         <div class="clear"></div>
                     </dl>
-                    <ul>
-                        近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。
-                    </ul>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="zhubo_news"><span><a href="#"><img src="/static/temp/list03.jpg"/></a></span>
-                <div class="zhubo_news_main"><a href="#">
-                    <h1>lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
-                </a>
-                    <dl>
-                        <dt><img src="/static/img/time.png"/> 10-20 10:35</dt>
-                        <dd><img src="/static/img/bq.jpg"/>&nbsp;电竞 电子移动竞技大赛 CMEG</dd>
-                        <div class="clear"></div>
-                    </dl>
-                    <ul>
-                        近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。
-                    </ul>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="zhubo_news"><span><a href="#"><img src="/static/temp/list03.jpg"/></a></span>
-                <div class="zhubo_news_main"><a href="#">
-                    <h1>lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
-                </a>
-                    <dl>
-                        <dt><img src="/static/img/time.png"/> 10-20 10:35</dt>
-                        <dd><img src="/static/img/bq.jpg"/>&nbsp;电竞 电子移动竞技大赛 CMEG</dd>
-                        <div class="clear"></div>
-                    </dl>
-                    <ul>
-                        近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。
-                    </ul>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="zhubo_news"><span><a href="#"><img src="/static/temp/list03.jpg"/></a></span>
-                <div class="zhubo_news_main"><a href="#">
-                    <h1>lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
-                </a>
-                    <dl>
-                        <dt><img src="/static/img/time.png"/> 10-20 10:35</dt>
-                        <dd><img src="/static/img/bq.jpg"/>&nbsp;电竞 电子移动竞技大赛 CMEG</dd>
-                        <div class="clear"></div>
-                    </dl>
-                    <ul>
-                        近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。
-                    </ul>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="zhubo_news" style="border:none;"><span><a href="#"><img
-                    src="/static/temp/list03.jpg"/></a></span>
-                <div class="zhubo_news_main"><a href="#">
-                    <h1>lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
-                </a>
-                    <dl>
-                        <dt><img src="/static/img/time.png"/> 10-20 10:35</dt>
-                        <dd><img src="/static/img/bq.jpg"/>&nbsp;电竞 电子移动竞技大赛 CMEG</dd>
-                        <div class="clear"></div>
-                    </dl>
-                    <ul>
+                    <ul th:text="${news.content}">
                         近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。
                     </ul>
                 </div>
@@ -147,38 +89,21 @@
             </dl>
             <div class="index_video_right right_video zhubo_video01">
                 <ul>
-                    <li><a href="#" class="img"> <img src="/static/temp/temp03.jpg"/>
+                    <li th:each="video,iterStat:${anchorVideoList}" th:if="${iterStat.index==0}"><a href="#"
+                                                                                                    class="img"> <img
+                            src="/static/temp/temp03.jpg"
+                            th:img-src="/image/200x118/${video.titleImage}"/>
                         <p class="p1"><span>42:15</span></p>
                         <p class="p2"><em></em></p>
-                    </a> <a href="#" class="text">电竞校园联赛炉石传说Top3</a></li>
-                    <li style="margin-left:15px;"><a href="#" class="img"> <img src="/static/temp/temp03.jpg"/>
+                    </a> <a href="#" class="text" th:text="${video.title}">电竞校园联赛炉石传说Top3</a></li>
+                    <li style="margin-left:15px;" th:each="video:${anchorVideoList}" th:if="${iterStat.index>0}"><a
+                            href="#" class="img"> <img
+                            src="/static/temp/temp03.jpg"
+                            th:img-src="/image/200x118/${video.titleImage}"/>
                         <p class="p1"><span>42:15</span></p>
                         <p class="p2"><em></em></p>
-                    </a> <a href="#" class="text">电竞校园联赛炉石传说Top3</a></li>
-                    <li style="margin-left:15px;"><a href="#" class="img"> <img src="/static/temp/temp03.jpg"/>
-                        <p class="p1"><span>42:15</span></p>
-                        <p class="p2"><em></em></p>
-                    </a> <a href="#" class="text">电竞校园联赛炉石传说Top3</a></li>
-                    <li style="margin-left:15px;"><a href="#" class="img"> <img src="/static/temp/temp03.jpg"/>
-                        <p class="p1"><span>42:15</span></p>
-                        <p class="p2"><em></em></p>
-                    </a> <a href="#" class="text">电竞校园联赛炉石传说Top3</a></li>
-                    <li><a href="#" class="img"> <img src="/static/temp/temp03.jpg"/>
-                        <p class="p1"><span>42:15</span></p>
-                        <p class="p2"><em></em></p>
-                    </a> <a href="#" class="text">电竞校园联赛炉石传说Top3</a></li>
-                    <li style="margin-left:15px;"><a href="#" class="img"> <img src="/static/temp/temp03.jpg"/>
-                        <p class="p1"><span>42:15</span></p>
-                        <p class="p2"><em></em></p>
-                    </a> <a href="#" class="text">电竞校园联赛炉石传说Top3</a></li>
-                    <li style="margin-left:15px;"><a href="#" class="img"> <img src="/static/temp/temp03.jpg"/>
-                        <p class="p1"><span>42:15</span></p>
-                        <p class="p2"><em></em></p>
-                    </a> <a href="#" class="text">电竞校园联赛炉石传说Top3</a></li>
-                    <li style="margin-left:15px;"><a href="#" class="img"> <img src="/static/temp/temp03.jpg"/>
-                        <p class="p1"><span>42:15</span></p>
-                        <p class="p2"><em></em></p>
-                    </a> <a href="#" class="text">电竞校园联赛炉石传说Top3</a></li>
+                    </a> <a href="#" class="text" th:text="${video.title}">电竞校园联赛炉石传说Top3</a></li>
+
                 </ul>
             </div>
         </div>
@@ -189,23 +114,9 @@
                                                                                                                style="margin-top:10px;">更多</a>
             </div>
             <ul>
-                <li><a href="#"><img src="/static/temp/girl1.jpg"/>
-                    <p><span>最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
-                </a></li>
-                <li><a href="#"><img src="/static/temp/girl2.jpg"/>
-                    <p><span>最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
-                </a></li>
-                <li><a href="#"><img src="/static/temp/girl3.jpg"/>
-                    <p><span>最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
-                </a></li>
-                <li><a href="#"><img src="/static/temp/girl4.jpg"/>
-                    <p><span>最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
-                </a></li>
-                <li><a href="#"><img src="/static/temp/girl5.jpg"/>
-                    <p><span>最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
-                </a></li>
-                <li><a href="#"><img src="/static/temp/girl6.jpg"/>
-                    <p><span>最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
+                <li th:each="picture:${anchorPictureList}"><a href="#"><img
+                        th:img-src="/image/280x178${picture.image}"/>
+                    <p><span th:text="${picture.description}">最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
                 </a></li>
             </ul>
         </div>
@@ -230,43 +141,31 @@
     <div class="main_right">
         <div class="right_top">
             <div class="index_tit_two"><span class="text_right">基本资料</span></div>
-            <div class="ziliao"><span>姓名：<a href="#">韩懿莹</a></span> <span>别名：<a href="#">Miss</a></span> <span>平台：<a
-                    href="#">斗鱼</a>，<a href="#">虎牙TV</a></span> <span>游戏：<a href="#"><img
-                    src="/static/img/zhubo/game_logo1.png"/><img src="/static/img/zhubo/game_logo2.png"/></a></span>
-                <span>荣誉：</span> <span style="border-left:1px solid #e6e6e6;"> <span style="margin-left:-3px;">•&nbsp;&nbsp;2015-11</span> <span>2015英雄联盟最受欢迎解说</span>
-      <div class="clear"></div>
-      </span> <span style="border-left:1px solid #e6e6e6;margin-top:0;"> <span style="margin-left:-3px;">•&nbsp;&nbsp;2015-11</span> <span>2015英雄联盟最受欢迎解说</span>
-      <div class="clear"></div>
-      </span> <span style="border-left:1px solid #e6e6e6;margin-top:0;"> <span style="margin-left:-3px;">•&nbsp;&nbsp;2015-11</span> <span>2015英雄联盟最受欢迎解说</span>
-      <div class="clear"></div>
-      </span> <span style="border-left:1px solid #e6e6e6;margin-top:0;"> <span style="margin-left:-3px;">•&nbsp;&nbsp;2015-11</span> <span>2015英雄联盟最受欢迎解说</span>
-      <div class="clear"></div>
-      </span> <span style="border-left:1px solid #e6e6e6;margin-top:0;"> <span style="margin-left:-3px;">•&nbsp;&nbsp;2015-11</span> <span>2015英雄联盟最受欢迎解说</span>
-      <div class="clear"></div>
-      </span> <span style="border-left:1px solid #e6e6e6;margin-top:0;"> <span style="margin-left:-3px;">•&nbsp;&nbsp;2015-11</span> <span>2015英雄联盟最受欢迎解说</span>
-      <div class="clear"></div>
-      </span> <span style="border-left:1px solid #e6e6e6;margin-top:0;"> <span style="margin-left:-3px;">•&nbsp;&nbsp;2015-11</span> <span>2015英雄联盟最受欢迎解说</span>
-      <div class="clear"></div>
-      </span> <span style="border-left:1px solid #e6e6e6;margin-top:0;"> <span style="margin-left:-3px;">•&nbsp;&nbsp;2015-11</span> <span>2015英雄联盟最受欢迎解说</span>
-      <div class="clear"></div>
-      </span></div>
+            <div class="ziliao"><span>姓名：<a href="#" th:text="${anchorZone.username}">韩懿莹</a></span> <span>别名：<a
+                    href="#" th:text="${anchorZone.otherUsername}">Miss</a></span> <span>平台：<a
+                    href="#" th:text="${platformName}">斗鱼</a>，<a href="#">虎牙TV</a></span> <span>游戏：<a href="#"><img
+                    src="/static/img/zhubo/game_logo1.png" th:each="matchZone:${anchorMatchZoneList}"
+                    th:img-src="/image/24x24${matchZone.icoImage}"/></a></span>
+                <span>荣誉：</span>
+                <span style="border-left:1px solid #e6e6e6;" th:each="honor:${anchorZoneHonorList}">
+                    <span style="margin-left:-3px;"
+                          th:utext="'•&nbsp;&nbsp;'+${#calendars.format(honor.honorTime, 'yyyy-MM')}">•&nbsp;&nbsp;2015-11</span>
+                    <span th:text="${honor.name}">2015英雄联盟最受欢迎解说</span>
+                    <div class="clear"></div>
+                </span></div>
         </div>
         <div class="right_mid">
             <div class="index_tit_two"><span class="text_left">个人视频排行</span></div>
             <dl class="video_rank">
-                <dt><span style="background:url(/static/img/zhubo/zhubo_shipin.png) no-repeat;">1</span><a href="#">驰骋野区的风暴骑手：新版本打野人攻略</a>
+                <dt th:each="anchorVideo,iterStat:${anchorVideoList}"
+                    th:if="${iterStat.index==0||iterStat.index==1||iterStat.index==2}"><span
+                        style="background:url(/static/img/zhubo/zhubo_shipin.png) no-repeat;"
+                        th:text="${iterStat.index+1}">1</span><a href="#" th:text="${anchorVideo.title}">驰骋野区的风暴骑手：新版本打野人攻略</a>
                 </dt>
-                <dt><span style="background:url(/static/img/zhubo/zhubo_shipin.png) no-repeat;">2</span><a href="#">LPL前三周数据碎碎念：团战依然至上</a>
+                <dt th:each="anchorVideo,iterStat:${anchorVideoList}"
+                    th:if="${iterStat.index!=0&&iterStat.index!=1&&iterStat.index!=2}"><span
+                        th:text="${iterStat.index+4}">4</span><a href="#" th:text="${anchorVideo.title}">英雄联盟S6总决赛详情：举办地为北美</a>
                 </dt>
-                <dt><span style="background:url(/static/img/zhubo/zhubo_shipin.png) no-repeat;">3</span><a href="#">LOL职业选手深夜直播扰民
-                    邻居报警调解</a></dt>
-                <dt><span>4</span><a href="#">英雄联盟S6总决赛详情：举办地为北美</a></dt>
-                <dt><span>5</span><a href="#">周杰伦已进军港股 拟携手子竞技战队公司</a></dt>
-                <dt><span>6</span><a href="#">驰骋野区的风暴骑手：新版本打野人攻略</a></dt>
-                <dt><span>7</span><a href="#">英雄联盟S6总决赛详情：举办地为北美</a></dt>
-                <dt><span>8</span><a href="#">LOL职业选手深夜直播扰民 邻居报警调解</a></dt>
-                <dt><span>9</span><a href="#">驰骋野区的风暴骑手：新版本打野人攻略</a></dt>
-                <dt><span>10</span><a href="#">英雄联盟S6总决赛详情：举办地为北美</a></dt>
             </dl>
 
         </div>
@@ -274,35 +173,11 @@
             <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="#" class="more vider_more">更多</a>
             </div>
             <ul class="hot_zhubo">
-                <li><a href="#">
+                <li th:each="anchorZone:${anchorZoneTopList}"><a href="#">
                     <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                    <p class="p2"><img src="/static/temp/pic01.jpg"/></p>
-                    <p class="p3">拳头暴君</p>
-                </a></li>
-                <li><a href="#">
-                    <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                    <p class="p2"><img src="/static/temp/pic02.jpg"/></p>
-                    <p class="p3">冷小莫</p>
-                </a></li>
-                <li><a href="#">
-                    <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                    <p class="p2"><img src="/static/temp/pic03.jpg"/></p>
-                    <p class="p3">Miss</p>
-                </a></li>
-                <li><a href="#">
-                    <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                    <p class="p2"><img src="/static/temp/pic04.jpg"/></p>
-                    <p class="p3">微笑和草莓</p>
-                </a></li>
-                <li><a href="#">
-                    <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                    <p class="p2"><img src="/static/temp/pic05.jpg"/></p>
-                    <p class="p3">小苍</p>
-                </a></li>
-                <li><a href="#">
-                    <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                    <p class="p2"><img src="/static/temp/pic01.jpg"/></p>
-                    <p class="p3">神菠萝</p>
+                    <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"/>
+                    </p>
+                    <p class="p3" th:text="${anchorZone.name}">拳头暴君</p>
                 </a></li>
             </ul>
 
@@ -311,16 +186,7 @@
             <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="#" class="more vider_more">更多</a>
             </div>
             <ul class="hot_zixun">
-                <li><a href="#">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
-                <li><a href="#">值得铭记回忆 电竞女子战队发展史</a></li>
-                <li><a href="#">LOL职业选手深夜直播扰民 邻居无奈报警调解</a></li>
-                <li><a href="#">魔兽电影影评：永不落幕的世界</a></li>
-                <li><a href="#">周杰伦已进军港股 拟携手成立电子竞技战队公司</a></li>
-                <li><a href="#">我们一直都在！《魔兽争霸3》选手Th000纪录片</a></li>
-                <li><a href="#">荣耀能否延续？2016年英雄联盟季中邀请赛落户解</a></li>
-                <li><a href="#">LPL前三周数据碎碎念：团战依然至上</a></li>
-                <li><a href="#">LOL职业选手深夜直播扰民 邻居无奈报警调解</a></li>
-                <li><a href="#">魔兽电影影评：永不落幕的世界</a></li>
+                <li th:each="news:${newsTopList}"><a href="#" th:text="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
             </ul>
 
         </div>

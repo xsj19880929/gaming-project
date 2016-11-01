@@ -134,7 +134,7 @@ public class GameWebService {
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.matchZone);
         info.setInfoType(InfoType.video);
-        return infoService.list(info, offset, offset);
+        return infoService.list(info, offset, fetchSize);
     }
 
     public List<Info> listInfoNews(int offset, int fetchSize) {

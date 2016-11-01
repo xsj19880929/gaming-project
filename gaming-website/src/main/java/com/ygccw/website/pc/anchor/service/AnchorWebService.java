@@ -1,10 +1,22 @@
 package com.ygccw.website.pc.anchor.service;
 
 import com.ygccw.website.pc.anchor.model.AnchorZoneWeb;
+import com.ygccw.website.pc.info.model.InfoWeb;
+import com.ygccw.website.pc.info.service.InfoWebService;
+import com.ygccw.wechat.common.info.entity.Info;
+import com.ygccw.wechat.common.info.enums.InfoType;
+import com.ygccw.wechat.common.info.enums.InfoZoneType;
+import com.ygccw.wechat.common.info.service.InfoService;
+import com.ygccw.wechat.common.picture.entity.Picture;
+import com.ygccw.wechat.common.picture.enums.PictureZoneType;
+import com.ygccw.wechat.common.picture.service.PictureService;
+import com.ygccw.wechat.common.tags.enums.TagZoneType;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
+import com.ygccw.wechat.common.zone.entity.AnchorZoneHonor;
 import com.ygccw.wechat.common.zone.entity.AnchorZoneMatchZoneMapping;
 import com.ygccw.wechat.common.zone.entity.AnchorZonePlatform;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
+import com.ygccw.wechat.common.zone.service.AnchorZoneHonorService;
 import com.ygccw.wechat.common.zone.service.AnchorZoneMatchZoneMappingService;
 import com.ygccw.wechat.common.zone.service.AnchorZonePlatformService;
 import com.ygccw.wechat.common.zone.service.AnchorZoneService;
@@ -29,6 +41,14 @@ public class AnchorWebService {
     private MatchZoneService matchZoneService;
     @Inject
     private AnchorZonePlatformService anchorZonePlatformService;
+    @Inject
+    private AnchorZoneHonorService anchorZoneHonorService;
+    @Inject
+    private InfoWebService infoWebService;
+    @Inject
+    private InfoService infoService;
+    @Inject
+    private PictureService pictureService;
 
 
     public List<AnchorZoneWeb> findAnchorZoneNew(AnchorZone anchorZone, int offset, int fetchSize) {
@@ -66,6 +86,60 @@ public class AnchorWebService {
 
     public AnchorZone findAnchorById(Long id) {
         return anchorZoneService.findById(id);
+    }
+
+    public List<MatchZone> listMatchZoneListByAnchorZoneId(Long anchorZoneId) {
+        List<AnchorZoneMatchZoneMapping> anchorZoneMatchZoneMappingList = anchorZoneMatchZoneMappingService.listByAnchorZoneId(anchorZoneId);
+        List<MatchZone> matchZoneList = new ArrayList<>();
+        for (AnchorZoneMatchZoneMapping anchorZoneMatchZoneMapping : anchorZoneMatchZoneMappingList) {
+            MatchZone matchZone = matchZoneService.findById(anchorZoneMatchZoneMapping.getMatchZoneId());
+            matchZoneList.add(matchZone);
+        }
+        return matchZoneList;
+    }
+
+    public List<AnchorZoneHonor> listAnchorZoneHonorByAnchorZoneId(Long anchorZoneId) {
+        return anchorZoneHonorService.listByAnchorZoneId(anchorZoneId);
+    }
+
+    public List<InfoWeb> listInfoNewsAndTagByAnchorZoneId(Long anchorZoneId, int offset, int fetchSize) {
+        return infoWebService.infoList(anchorZoneId, InfoZoneType.anchorZone, TagZoneType.anchorZone, offset, fetchSize);
+    }
+
+    public List<Info> listInfoVideoByAnchorZoneId(Long anchorZoneId, int offset, int fetchSize) {
+        Info info = new Info();
+        info.setInfoZoneType(InfoZoneType.anchorZone);
+        info.setInfoType(InfoType.video);
+        info.setZoneId(anchorZoneId);
+        return infoService.list(info, offset, fetchSize);
+    }
+
+    public List<Picture> listPictureByAnchorZoneId(Long anchorZoneId, int offset, int fetchSize) {
+        Picture picture = new Picture();
+        picture.setSortName("visitCount");
+        picture.setSortIfDesc(true);
+        picture.setZoneId(anchorZoneId);
+        picture.setPictureZoneType(PictureZoneType.anchorZone);
+        return pictureService.list(picture, offset, fetchSize);
+    }
+
+    public List<Info> listInfoVideoTopByAnchorZoneId(Long anchorZoneId, int offset, int fetchSize) {
+        Info info = new Info();
+        info.setInfoZoneType(InfoZoneType.anchorZone);
+        info.setInfoType(InfoType.video);
+        info.setZoneId(anchorZoneId);
+        info.setSortIfDesc(true);
+        info.setSortName("visitCount");
+        return infoService.list(info, offset, fetchSize);
+    }
+
+    public List<Info> listInfoNewsTop(int offset, int fetchSize) {
+        Info info = new Info();
+        info.setInfoZoneType(InfoZoneType.anchorZone);
+        info.setInfoType(InfoType.news);
+        info.setSortIfDesc(true);
+        info.setSortName("visitCount");
+        return infoService.list(info, offset, fetchSize);
     }
 
 
