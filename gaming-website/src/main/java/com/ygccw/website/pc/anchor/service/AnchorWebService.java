@@ -27,6 +27,7 @@ import org.springframework.stereotype.Controller;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author soldier
@@ -140,6 +141,38 @@ public class AnchorWebService {
         info.setSortIfDesc(true);
         info.setSortName("visitCount");
         return infoService.list(info, offset, fetchSize);
+    }
+
+    public InfoWeb findInfoById(Long id) {
+        return infoWebService.findById(id);
+    }
+
+    public Info lastInfo(InfoWeb infoWeb) {
+        infoWeb.setZoneId(infoWeb.getZoneId());
+        infoWeb.setInfoZoneType(infoWeb.getInfoZoneType());
+        infoWeb.setInfoType(infoWeb.getInfoType());
+        return infoService.lastInfo(infoWeb);
+    }
+
+    public Info nextInfo(InfoWeb infoWeb) {
+        infoWeb.setZoneId(infoWeb.getZoneId());
+        infoWeb.setInfoZoneType(infoWeb.getInfoZoneType());
+        infoWeb.setInfoType(infoWeb.getInfoType());
+        return infoService.nextInfo(infoWeb);
+    }
+
+    public Set<Info> likeInfoList(InfoWeb infoWeb, int fetchSize) {
+        return infoWebService.likeInfoList(infoWeb, fetchSize);
+    }
+
+    public List<Picture> pictureListTop(int offset, int fetchSize) {
+        return infoWebService.pictureListTop(offset, fetchSize);
+    }
+
+    public List<MatchZone> findMatchZoneTop(MatchZone matchZone, int offset, int fetchSize) {
+        matchZone.setSortName("visitCount");
+        matchZone.setSortIfDesc(true);
+        return matchZoneService.list(matchZone, offset, fetchSize);
     }
 
 
