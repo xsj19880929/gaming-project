@@ -1,14 +1,5 @@
 package com.ygccw.wechat.imagecode;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,10 +7,13 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * @author soldier
@@ -27,6 +21,11 @@ import java.util.Map;
 public class ImageCodeDemo {
     public static void main(String[] args) {
         try {
+            BufferedImage image = ImageIO.read(new File("D:\\code\\DrawImage7.png"));
+            BufferedImage removeImage = removeBackground(image);
+//            getRgb(removeImage);
+            BufferedImage removeImage2 = removeInterferencePoint(removeImage);
+            ImageIO.write(removeImage2, "png", new File("D:\\code\\result\\DrawImage7.png"));
 //            List<BufferedImage> bufferedImageList = splitImage(removeBackground("D:\\验证码\\DrawImage (9).png"));
 //            for (BufferedImage bufferedImage : bufferedImageList) {
 //                ImageIO.write(bufferedImage, "png", new File("D:\\验证码\\spit\\" + System.currentTimeMillis() + ".png"));
@@ -53,38 +52,38 @@ public class ImageCodeDemo {
 //            imageToWord("见笑两带其又改定友", "1", httpResponse.getEntity().getContent());
 //            ImageIO.write(Rotate(drawString("慢"), 340), "png", new File("D:\\验证码\\wordnew\\" + System.currentTimeMilli() + ".png"));
 //            System.out.println(URLEncoder.encode("厦门市妇幼保健院", "UTF-8"));
-            HttpClient httpClient = HttpClients.createDefault();
-            HttpPost post = new HttpPost("http://wechat.xmsmjk.com/zycapwxsehr/HospitalNoteController/getRegister.do");
-            post.setHeader("Cookie", "JSESSIONID=42420FBE05B4709BCF49963F56106A2E");
-            post.setHeader("Host", "wechat.xmsmjk.com");
-            post.setHeader("Referer", "http://wechat.xmsmjk.com/zycapwxsehr/view/appointment/confirm.jsp");
-            //创建参数列表
-            List<NameValuePair> list = new ArrayList<NameValuePair>();
-            list.add(new BasicNameValuePair("orgCode", "350211G1001"));
-            list.add(new BasicNameValuePair("deptCode", "320"));
-            list.add(new BasicNameValuePair("docCode", "040"));
-            list.add(new BasicNameValuePair("sectionType", "PM "));
-            list.add(new BasicNameValuePair("startTime", "2016-09-18 14:36:00"));
-            list.add(new BasicNameValuePair("ssid", "600865500445500594400905502"));
-            list.add(new BasicNameValuePair("patientName", "许少军"));
-            list.add(new BasicNameValuePair("patientID", "500135400835500094400975500665400875500075400935500365"));
-            list.add(new BasicNameValuePair("patientPhone", "400935500594400845500484500035505"));
-            list.add(new BasicNameValuePair("patientSex", "男"));
-            list.add(new BasicNameValuePair("orgName", "厦门市妇幼保健院"));
-            list.add(new BasicNameValuePair("openID", "oYNMFt49BHWpGRDCzqmtJg_vrfXg"));
-            list.add(new BasicNameValuePair("deptName", "宫颈疾病门诊"));
-            list.add(new BasicNameValuePair("doctorName", "吴冬梅"));
-            list.add(new BasicNameValuePair("seq", "201609181436"));
-            list.add(new BasicNameValuePair("state", "124"));
-            list.add(new BasicNameValuePair("iptCode", "群历天们"));
-            //url格式编码
-            UrlEncodedFormEntity uefEntity = new UrlEncodedFormEntity(list, "UTF-8");
-            post.setEntity(uefEntity);
-            System.out.println("POST 请求...." + post.getURI());
-            //执行请求
-            HttpResponse httpResponse = httpClient.execute(post);
-            String responseStr = EntityUtils.toString(httpResponse.getEntity());
-            System.out.println(responseStr);
+//            HttpClient httpClient = HttpClients.createDefault();
+//            HttpPost post = new HttpPost("http://wechat.xmsmjk.com/zycapwxsehr/HospitalNoteController/getRegister.do");
+//            post.setHeader("Cookie", "JSESSIONID=42420FBE05B4709BCF49963F56106A2E");
+//            post.setHeader("Host", "wechat.xmsmjk.com");
+//            post.setHeader("Referer", "http://wechat.xmsmjk.com/zycapwxsehr/view/appointment/confirm.jsp");
+//            //创建参数列表
+//            List<NameValuePair> list = new ArrayList<NameValuePair>();
+//            list.add(new BasicNameValuePair("orgCode", "350211G1001"));
+//            list.add(new BasicNameValuePair("deptCode", "320"));
+//            list.add(new BasicNameValuePair("docCode", "040"));
+//            list.add(new BasicNameValuePair("sectionType", "PM "));
+//            list.add(new BasicNameValuePair("startTime", "2016-09-18 14:36:00"));
+//            list.add(new BasicNameValuePair("ssid", "600865500445500594400905502"));
+//            list.add(new BasicNameValuePair("patientName", "许少军"));
+//            list.add(new BasicNameValuePair("patientID", "500135400835500094400975500665400875500075400935500365"));
+//            list.add(new BasicNameValuePair("patientPhone", "400935500594400845500484500035505"));
+//            list.add(new BasicNameValuePair("patientSex", "男"));
+//            list.add(new BasicNameValuePair("orgName", "厦门市妇幼保健院"));
+//            list.add(new BasicNameValuePair("openID", "oYNMFt49BHWpGRDCzqmtJg_vrfXg"));
+//            list.add(new BasicNameValuePair("deptName", "宫颈疾病门诊"));
+//            list.add(new BasicNameValuePair("doctorName", "吴冬梅"));
+//            list.add(new BasicNameValuePair("seq", "201609181436"));
+//            list.add(new BasicNameValuePair("state", "124"));
+//            list.add(new BasicNameValuePair("iptCode", "群历天们"));
+//            //url格式编码
+//            UrlEncodedFormEntity uefEntity = new UrlEncodedFormEntity(list, "UTF-8");
+//            post.setEntity(uefEntity);
+//            System.out.println("POST 请求...." + post.getURI());
+//            //执行请求
+//            HttpResponse httpResponse = httpClient.execute(post);
+//            String responseStr = EntityUtils.toString(httpResponse.getEntity());
+//            System.out.println(responseStr);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -126,23 +125,114 @@ public class ImageCodeDemo {
 
     public static BufferedImage removeBackground(BufferedImage img) throws Exception {
 //        BufferedImage img = ImageIO.read(new File(picFile));
+        List<Map.Entry<Integer, Integer>> arrayList = getRgb(img);
         int width = img.getWidth();
         int height = img.getHeight();
         for (int x = 0; x < width; ++x) {
             for (int y = 0; y < height; ++y) {
-                if (isBlack(img.getRGB(x, y)) == 1 || isGreen(img.getRGB(x, y)) == 1) {
+                if (fourWordsColor(arrayList, img.getRGB(x, y)) != 1) {
                     img.setRGB(x, y, Color.white.getRGB());
                 } else {
-                    if (isWhite(img.getRGB(x, y)) == 1) {
-                        img.setRGB(x, y, img.getRGB(x, y));
-                    } else {
-                        img.setRGB(x, y, Color.black.getRGB());
-                    }
+                    img.setRGB(x, y, img.getRGB(x, y));
+//                    if (isWhite(img.getRGB(x, y)) == 1) {
+//img.setRGB(x, y, img.getRGB(x, y));
+//                    } else {
+//                        img.setRGB(x, y, Color.black.getRGB());
+//                    }
 
                 }
             }
         }
+
         return img;
+    }
+
+    public static BufferedImage removeInterferencePoint(BufferedImage img) throws Exception {
+        int width = img.getWidth();
+        int height = img.getHeight();
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height; ++y) {
+                if (isWhite(img.getRGB(x, y)) == 0 && noWhileNumber(img, height, width, x, y) < 3) {
+                    img.setRGB(x, y, Color.white.getRGB());
+                } else {
+                    img.setRGB(x, y, img.getRGB(x, y));
+                }
+            }
+        }
+
+        return img;
+    }
+
+    public static int noWhileNumber(BufferedImage img, int height, int width, int x, int y) {
+        int noWhileNumber = 0;
+        if (isWhite(img.getRGB(x, y)) == 0) {
+            noWhileNumber++;
+            if (height > (y + 1) && isWhite(img.getRGB(x, y + 1)) == 0) {
+                noWhileNumber++;
+            }
+            if (height > (y + 2) && isWhite(img.getRGB(x, y + 2)) == 0) {
+                noWhileNumber++;
+            }
+            if ((y - 1) >= 0 && isWhite(img.getRGB(x, y - 1)) == 0) {
+                noWhileNumber++;
+            }
+            if ((y - 2) >= 0 && isWhite(img.getRGB(x, y - 2)) == 0) {
+                noWhileNumber++;
+            }
+            if (width > (x + 1) && isWhite(img.getRGB(x + 1, y)) == 0) {
+                noWhileNumber++;
+            }
+            if (width > (x + 2) && isWhite(img.getRGB(x + 2, y)) == 0) {
+                noWhileNumber++;
+            }
+            if ((x - 1) >= 0 && isWhite(img.getRGB(x - 1, y)) == 0) {
+                noWhileNumber++;
+            }
+            if ((x - 2) >= 0 && isWhite(img.getRGB(x - 2, y)) == 0) {
+                noWhileNumber++;
+            }
+        }
+        return noWhileNumber;
+    }
+
+    public static int fourWordsColor(List<Map.Entry<Integer, Integer>> arrayList, int rgb) throws Exception {
+
+        for (int i = 1; i < (arrayList.size() >= 7 ? 7 : arrayList.size()); i++) {
+            Map.Entry<Integer, Integer> m = arrayList.get(i);
+            if (m.getKey() == rgb && isInterfereRGB(rgb) == 0) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    public static List getRgb(BufferedImage img) throws Exception {
+//        BufferedImage img = ImageIO.read(new File(picFile));
+        Map<Integer, Integer> map = new TreeMap<>();
+        int width = img.getWidth();
+        int height = img.getHeight();
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height; ++y) {
+                map.put(img.getRGB(x, y), map.get(img.getRGB(x, y)) == null ? 0 : map.get(img.getRGB(x, y)) + 1);
+            }
+        }
+//        for (Map.Entry<Integer, Integer> m : map.entrySet()) {
+//
+//            System.out.println(m.getKey() + "=" + m.getValue());
+//        }
+
+        List arrayList = new ArrayList(map.entrySet());
+        Collections.sort(arrayList, new Comparator() {
+            public int compare(Object o1, Object o2) {
+                Map.Entry obj1 = (Map.Entry) o1;
+                Map.Entry obj2 = (Map.Entry) o2;
+                return ((Integer) obj2.getValue()).compareTo((Integer) obj1.getValue());
+            }
+        });
+
+
+        System.out.println(arrayList);
+        return arrayList;
     }
 
     public static int isBlack(int colorInt) {
@@ -156,6 +246,22 @@ public class ImageCodeDemo {
     public static int isGreen(int colorInt) {
         Color color = new Color(colorInt);
         if (color.getRGB() == -16711936) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public static int isInterfereRGB(int colorInt) {
+        Color color = new Color(colorInt);
+        if (color.getRGB() == -16712192 || color.getRGB() == -16711936 || color.getRGB() == -16777216 || color.getRGB() == -285497 || color.getRGB() == -5464839 || color.getRGB() == -5641028 || color.getRGB() == -3557656 || color.getRGB() == -1250824 || color.getRGB() == -3494729 || color.getRGB() == -2576392 || color.getRGB() == -1) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public static int isDeep(int colorInt) {
+        Color color = new Color(colorInt);
+        if (color.getRed() + color.getGreen() + color.getBlue() > 400) {
             return 1;
         }
         return 0;
