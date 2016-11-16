@@ -19,7 +19,8 @@
         <li th:each="matchZone,iterStat:${matchZoneList}" th:class="${iterStat.index==3?'no_margin':''}">
             <div class="bg"></div>
             <div class="con">
-                <p class="p1"><a href="#" th:text="${matchZone.name}">2015风暴英雄总决赛</a></p>
+                <p class="p1"><a href="#" th:text="${matchZone.name}"
+                                 th:href="/game/${matchZone.id}.html" th:title="${matchZone.name}">2015风暴英雄总决赛</a></p>
                 <dl class="d1">
                     <dt><img th:if="${iterStat.index==0}"
                              th:each="matchTeam,iterStat:${matchZone.matchTeamList}"
@@ -98,9 +99,11 @@
 <div class="general">
     <ul class="wcg_list_two">
         <li th:each="matchZone,iterStat:${matchZoneNewList}" th:class="${iterStat.index==2?'no_margin':''}">
-            <p class="p1"><a href="#"><img th:img-src="/image/373X155${matchZone.icoImage}" th:alt="${matchZone.name}"/></a>
+            <p class="p1"><a href="#" th:href="/game/${matchZone.id}.html" th:title="${matchZone.name}"><img
+                    th:img-src="/image/373X155${matchZone.icoImage}" th:alt="${matchZone.name}"/></a>
             </p>
-            <p class="p2"><a href="#" th:text="${matchZone.name}">LPL2016英雄联盟职业联赛春季赛</a></p>
+            <p class="p2"><a href="#" th:text="${matchZone.name}" th:href="/game/${matchZone.id}.html"
+                             th:title="${matchZone.name}">LPL2016英雄联盟职业联赛春季赛</a></p>
             <p class="p3"
                th:text="${'时间：'+#calendars.format(matchZone.startTime, 'yyyy-MM-dd')+' - '+#calendars.format(matchZone.endTime, 'yyyy-MM-dd')}">
                 时间：2016.01.14 - 2016.04.10</p>
@@ -129,11 +132,13 @@
             <div class="tab_deatil" id="con_one_1" style="display:block">
                 <ul>
                     <li th:each="info:${infoNewestList}">
-                        <div class="d1"><a href="#"><img th:img-src="/image/204X108${info.titleImage}"
-                                                         th:alt="${info.title}"/></a>
+                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
+                                th:img-src="/image/204X108${info.titleImage}"
+                                th:alt="${info.title}"/></a>
                         </div>
                         <div class="d2">
-                            <p class="p1"><a href="#" th:text="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
+                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
+                                             th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
                             <p class="p2"><a href="#" th:text="${info.infoZoneType.label}">行业新闻</a><em
                                     th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
                                 10:35</em>
@@ -149,11 +154,13 @@
             <div class="tab_deatil" id="con_one_2">
                 <ul>
                     <li th:each="info:${infoTradeList}">
-                        <div class="d1"><a href="#"><img th:img-src="/image/204X108${info.titleImage}"
-                                                         th:alt="${info.title}"/></a>
+                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
+                                th:img-src="/image/204X108${info.titleImage}"
+                                th:alt="${info.title}"/></a>
                         </div>
                         <div class="d2">
-                            <p class="p1"><a href="#" th:text="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
+                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
+                                             th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
                             <p class="p2"><a href="#" th:text="${info.infoZoneType.label}">行业新闻</a><em
                                     th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
                                 10:35</em>
@@ -172,8 +179,10 @@
                                                          th:alt="${info.title}"/></a>
                         </div>
                         <div class="d2">
-                            <p class="p1"><a href="#" th:text="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}">行业新闻</a><em
+                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
+                                             th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
+                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}"
+                                             th:href="/news/${info.id}.html" th:title="${info.title}">行业新闻</a><em
                                     th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
                                 10:35</em>
                             </p>
@@ -330,10 +339,12 @@
             </div>
             <ul class="zhubo_list">
                 <li th:each="anchorZone:${anchorZoneList}">
-                    <a href="#"><img th:img-src="/image/340x160${anchorZone.recommendImage}"/>
+                    <a href="#" th:href="/anchor/${anchorZone.id}.html"
+                       th:title="${anchorZone.name}"><img th:img-src="/image/340x160${anchorZone.recommendImage}"/>
                         <p class="p1" th:text="${anchorZone.name}">LOL代练MOBA大神 美萌老鼠mayuyu</p></a>
                     <p class="p2">
-                        <span>主播：<a href="#" th:text="${anchorZone.username}">小智脑残粉</a></span>
+                        <span>主播：<a href="#" th:text="${anchorZone.username}" th:href="/news/${anchorZone.id}.html"
+                                    th:title="${anchorZone.username}">小智脑残粉</a></span>
                         <span>人气：<em th:text="${anchorZone.visitCount}">58621032</em></span>
                     </p>
                 </li>
@@ -347,24 +358,29 @@
     <div class="index_tit_two title">
         <span class="text_left">比赛视频</span>
         <p class="link_nav"><span th:each="matchZone:${matchZoneVideoList}"><a href="#"
-                                                                               th:text="${matchZone.name}">炉石传说</a>|</span>
+                                                                               th:text="${matchZone.name}"
+                                                                               th:href="/game/${matchZone.id}.html"
+                                                                               th:title="${matchZone.name}">炉石传说</a>|</span>
         </p>
-        <a href="#" class="more">更多</a>
+        <a href="/video/matchVideo/all/0.html" class="more">更多</a>
     </div>
     <div class="index_video clearfix">
         <p class="index_video_left"><a href="#" th:each="info,iterStat:${infoMatchZoneVideoList}"
-                                       th:if="${iterStat.index==0}"><img
+                                       th:if="${iterStat.index==0}" th:href="/video/${info.id}.html"
+                                       th:title="${info.title}"><img
                 th:img-src="/image/486x360${info.titleImage}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
         </p>
         <div class="index_video_right">
             <ul>
                 <li th:each="info,iterStat:${infoMatchZoneVideoList}" th:if="${iterStat.index!=0}">
-                    <a href="#" class="img">
+                    <a href="#" class="img" th:href="/video/${info.id}.html"
+                       th:title="${info.title}">
                         <img th:img-src="/image/200x118${info.titleImage}"/>
                         <p class="p1"><span></span></p>
                         <p class="p2"><em></em></p>
                     </a>
-                    <a href="#" class="text" th:text="${info.title}">电竞校园联赛炉石传说Top3</a>
+                    <a href="#" class="text" th:text="${info.title}" th:href="/video/${info.id}.html"
+                       th:title="${info.title}">电竞校园联赛炉石传说Top3</a>
                 </li>
             </ul>
         </div>
@@ -375,24 +391,28 @@
     <div class="index_tit_two title">
         <span class="text_left">主播解说</span>
         <p class="link_nav"><span th:each="anchorZone:${anchorZoneVideoList}"><a href="#"
-                                                                                 th:text="${anchorZone.name}">炉石传说</a>|</span>
+                                                                                 th:text="${anchorZone.name}"
+                                                                                 th:href="/anchor/${anchorZone.id}.html"
+                                                                                 th:title="${anchorZone.name}">炉石传说</a>|</span>
         </p>
-        <a href="#" class="more">更多</a>
+        <a href="/video/anchorVideo/all/0.html" class="more">更多</a>
     </div>
     <div class="index_video clearfix">
         <p class="index_video_left"><a href="#" th:each="info,iterStat:${infoAnchorZoneVideoList}"
-                                       th:if="${iterStat.index==0}"><img
+                                       th:if="${iterStat.index==0}" th:href="/video/${info.id}.html"
+                                       th:title="${info.title}"><img
                 th:img-src="/image/486x360${info.titleImage}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
         </p>
         <div class="index_video_right">
             <ul>
                 <li th:each="info,iterStat:${infoMatchZoneVideoList}" th:if="${iterStat.index!=0}">
-                    <a href="#" class="img">
+                    <a href="#" class="img" th:href="/video/${info.id}.html" th:title="${info.title}">
                         <img th:img-src="/image/200x118${info.titleImage}"/>
                         <p class="p1"><span></span></p>
                         <p class="p2"><em></em></p>
                     </a>
-                    <a href="#" class="text" th:text="${info.title}">电竞校园联赛炉石传说Top3</a>
+                    <a href="#" class="text" th:text="${info.title}" th:href="/video/${info.id}.html"
+                       th:title="${info.title}">电竞校园联赛炉石传说Top3</a>
                 </li>
             </ul>
         </div>
@@ -402,17 +422,19 @@
 <div class="general game_user clearfix">
     <div class="index_tit_two title">
         <span class="text_left">玩家视频</span>
-        <a href="#" class="more">更多</a>
+        <a href="/video/playerVideo/all/0.html" class="more">更多</a>
     </div>
     <div class="index_video_right game_user_con">
         <ul>
             <li th:each="info:${infoPlayerVideoInfoList}">
-                <a href="#" class="img">
+                <a href="#" class="img" th:href="/video/${info.id}.html"
+                   th:title="${info.title}">
                     <img th:img-src="/image/200x118${info.titleImage}"/>
                     <p class="p1"><span>42:15</span></p>
                     <p class="p2"><em></em></p>
                 </a>
-                <a href="#" class="text" th:text="${info.title}">电竞校园联赛炉石传说Top3</a>
+                <a href="#" class="text" th:text="${info.title}" th:href="/video/${info.id}.html"
+                   th:title="${info.title}">电竞校园联赛炉石传说Top3</a>
             </li>
         </ul>
     </div>
@@ -424,9 +446,12 @@
     <div class="index_tit_two title"><span class="text_left">电竞排行榜</span></div>
     <ul class="index_rank_con clearfix">
         <li th:each="matchZone:${matchZoneTopList}">
-            <p class="p1"><a href="#"><span></span><img th:img-src="/image/106x106/${matchZone.icoImage}"/></a></p>
+            <p class="p1"><a href="#" th:href="/game/${matchZone.id}.html"
+                             th:title="${matchZone.name}"><span></span><img
+                    th:img-src="/image/106x106/${matchZone.icoImage}"/></a></p>
             <p class="p2">
-                <span class="span01"><a href="#" th:text="${matchZone.name}">风暴英雄</a></span>
+                <span class="span01"><a href="#" th:text="${matchZone.name}" th:href="/game/${matchZone.id}.html"
+                                        th:title="${matchZone.name}">风暴英雄</a></span>
                 <span class="span02">人气：<em th:text="${matchZone.visitCount}">41987</em></span>
             </p>
         </li>
@@ -437,27 +462,35 @@
 <div class="general index_pic clearfix">
     <div class="index_tit_two title">
         <span class="text_left">竞技美图</span>
-        <a href="#" class="more">更多</a>
+        <a href="/picture.html" class="more">更多</a>
     </div>
     <div class="index_pic_con">
         <ul class="ul1">
-            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==0||iterStat.index==1}"><a href=" #
-            "><img th:img-src="/image/280x178${picture.image}"/>
+            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==0||iterStat.index==1}"><a href="#"
+                                                                                                             th:href="/picture/${picture.id}.html"
+                                                                                                             th:title="${picture.description}"><img
+                    th:img-src="/image/280x178${picture.image}" th:alt="${picture.description}"/>
                 <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
         </ul>
         <ul class="ul2">
-            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==2}"><a href=" #
-            "><img th:img-src="/image/280x362${picture.image}"/>
+            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==2}"><a href="#"
+                                                                                          th:href="/picture/${picture.id}.html"
+                                                                                          th:title="${picture.description}"><img
+                    th:img-src="/image/280x362${picture.image}"/>
                 <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
         </ul>
         <ul class="ul1">
-            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==3||iterStat.index==4}"><a href=" #
-            "><img th:img-src="/image/280x178${picture.image}"/>
+            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==3||iterStat.index==4}"><a href="#"
+                                                                                                             th:href="/picture/${picture.id}.html"
+                                                                                                             th:title="${picture.description}"><img
+                    th:img-src="/image/280x178${picture.image}"/>
                 <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
         </ul>
         <ul class="ul2">
-            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==5}"><a href=" #
-            "><img th:img-src="/image/280x362${picture.image}"/>
+            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==5}"><a href="#"
+                                                                                          th:href="/picture/${picture.id}.html"
+                                                                                          th:title="${picture.description}"><img
+                    th:img-src="/image/280x362${picture.image}"/>
                 <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
         </ul>
     </div>

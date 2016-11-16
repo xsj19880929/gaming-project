@@ -131,23 +131,28 @@
     <div class="zixun_right">
         <!--精选视频-->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">精选视频</span> <a href="#" class="more">更多</a></div>
+            <div class="index_tit_two"><span class="text_left">精选视频</span> <a href="/video.html" class="more">更多</a>
+            </div>
             <div class="index_video_right game_user_con small">
                 <ul>
-                    <li th:each="video:${videoTopList}"><a href="#" class="img"> <img
+                    <li th:each="video:${videoTopList}"><a href="#" class="img" th:href="/video/${video.id}.html"
+                                                           th:title="${video.title}"> <img
                             th:img-src="/image/154x90${video.titleImage}"/>
                         <p class="p1"><span>42:15</span></p>
                         <p class="p2"><em></em></p>
-                    </a> <a href="#" class="text" th:text="${video.title}">电竞校园联赛炉石传说Top3</a></li>
+                    </a> <a href="#" class="text" th:text="${video.title}" th:href="/video/${video.id}.html"
+                            th:title="${video.title}">电竞校园联赛炉石传说Top3</a></li>
                 </ul>
             </div>
         </div>
         <!--热门主播-->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="#" class="more">更多</a></div>
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor.html" class="more">更多</a>
+            </div>
             <ul class="hot_zhubo">
                 <li th:each="anchor:${anchorTopList}">
-                    <a href="#">
+                    <a href="#" th:href="/anchor/${anchor.id}.html"
+                       th:title="${anchor.name}">
                         <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
                         <p class="p2"><img th:img-src="/image/120x120${anchor.icoImage}"/></p>
                         <p class="p3" th:content="${anchor.username}">拳头暴君</p>
@@ -157,9 +162,12 @@
         </div>
         <!--热门资讯 -->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="#" class="more">更多</a></div>
+            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="/news.html" class="more">更多</a>
+            </div>
             <ul class="hot_zixun">
-                <li th:each="news:${newsTopList}"><a href="#" th:text="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
+                <li th:each="news:${newsTopList}"><a href="#" th:text="${news.title}"
+                                                     th:href="/news/${news.id}.html" th:title="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                </li>
             </ul>
         </div>
     </div>

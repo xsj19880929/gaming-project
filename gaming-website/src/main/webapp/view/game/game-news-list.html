@@ -33,7 +33,8 @@
                                     th:img-src="/image/204x108${news.titleImage}"
                                     th:alt="${news.title}"/></a></div>
                             <div class="d2">
-                                <p class="p1"><a href="#" th:text="${news.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
+                                <p class="p1"><a href="#" th:text="${news.title}" th:href="/game/news/${news.id}.html"
+                                                 th:title="${news.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
                                 <p class="p2"><span><a href="#" th:href="/game/news/${news.id}.html"
                                                        th:each="tag:${news.tagMappingWebList}"
                                                        th:text="${tag.name}">电竞</a></span><em
@@ -84,14 +85,14 @@
             <div class="game_hot">
                 <dl style="margin-top:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
                     th:if="${iterStat.index==0}">
-                    <a href="#">
+                    <a href="#" th:href="/game/${matchZoneTop.id}.html" th:title="${matchZoneTop.name}">
                         <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.icoImage}"/>
                         <dt th:text="${matchZoneTop.name}">LPL2016英雄联盟职业联赛春季赛</dt>
                     </a>
                 </dl>
                 <dl style="margin-top:20px;margin-bottom:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
                     th:if="${iterStat.index==1}">
-                    <a href="#">
+                    <a href="#" th:href="/game/${matchZoneTop.id}.html" th:title="${matchZoneTop.name}">
                         <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.icoImage}"/>
                         <dt th:text="${matchZoneTop.name}">LPL2016英雄联盟职业联赛春季赛</dt>
                     </a>
@@ -103,7 +104,9 @@
             <a href="#" class="more">更多</a>
             <div class="game_zixun2">
                 <ul class="hot_zixun">
-                    <li th:each="newsTop:${topNewsList}"><a href="#" th:text="${newsTop.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                    <li th:each="newsTop:${topNewsList}"><a href="#" th:text="${newsTop.title}"
+                                                            th:href="/game/news/${newsTop.id}.html"
+                                                            th:title="${newsTop.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>
             </div>
@@ -113,7 +116,9 @@
             <a href="#" class="more" style="margin-top:24px;">更多</a>
             <div class="game_zixun2">
                 <ul class="hot_zixun">
-                    <li th:each="news:${newestNewsList}"><a href="#" th:text="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                    <li th:each="news:${newestNewsList}"><a href="#" th:text="${news.title}"
+                                                            th:href="/game/news/${news.id}.html"
+                                                            th:title="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>
             </div>

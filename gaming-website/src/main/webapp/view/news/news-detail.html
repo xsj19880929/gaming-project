@@ -94,8 +94,9 @@
             <div class="index_tit_two"><span class="text_left">精选美图</span><a href="#" class="more">更多</a></div>
             <ul>
                 <li th:each="picture:${pictureTopList}">
-                    <a href="#"><img src="/static/temp/girl1.jpg" th:img-src="/image/234X148${picture.image}"
-                                     th:alt="${picture.description}"/>
+                    <a href="#" th:title="${picture.description}" th:href="/picture/${picture.id}.html"><img
+                            src="/static/temp/girl1.jpg" th:img-src="/image/234X148${picture.image}"
+                            th:alt="${picture.description}"/>
                         <p><span th:text="${picture.description}">最美拉克丝COS 水灵大眼神似小鹿斑比</span></p></a>
                 </li>
             </ul>
@@ -278,11 +279,13 @@
             <div class="index_tit_two"><span class="text_left">精选视频</span> <a href="#" class="more">更多</a></div>
             <div class="index_video_right game_user_con small">
                 <ul>
-                    <li th:each="video:${videoTopList}"><a href="#" class="img"> <img
+                    <li th:each="video:${videoTopList}"><a href="#" class="img" th:title="${video.title}"
+                                                           th:href="/video/${video.id}.html"> <img
                             th:img-src="/image/154x90${video.titleImage}"/>
                         <p class="p1"><span>42:15</span></p>
                         <p class="p2"><em></em></p>
-                    </a> <a href="#" class="text" th:text="${video.title}">电竞校园联赛炉石传说Top3</a></li>
+                    </a> <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
+                            th:href="/video/${video.id}.html">电竞校园联赛炉石传说Top3</a></li>
                 </ul>
             </div>
         </div>
@@ -291,7 +294,8 @@
             <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="#" class="more">更多</a></div>
             <ul class="hot_zhubo">
                 <li th:each="anchor:${anchorTopList}">
-                    <a href="#">
+                    <a href="#" th:title="${anchor.name}"
+                       th:href="/anchor/${anchor.id}.html">
                         <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
                         <p class="p2"><img th:img-src="/image/120x120${anchor.icoImage}"/></p>
                         <p class="p3" th:content="${anchor.username}">拳头暴君</p>
@@ -303,7 +307,8 @@
         <div class="list2_right_box">
             <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="#" class="more">更多</a></div>
             <ul class="hot_zixun">
-                <li th:each="news:${newsTopList}"><a href="#" th:text="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
+                <li th:each="news:${newsTopList}"><a href="#" th:text="${news.title}" th:title="${news.title}"
+                                                     th:href="/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
             </ul>
         </div>
     </div>
