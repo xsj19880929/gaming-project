@@ -43,9 +43,12 @@
             <a href="#">图集</a>
         </div>
         <div class="zhubo_zixun02">
-            <div class="zhubo_news" th:each="news,iterStat:${anchorNewsList}"><span><a href="#"><img
+            <div class="zhubo_news" th:each="news,iterStat:${anchorNewsList}"><span><a href="#"
+                                                                                       th:href="/anchor/news/${news.id}.html"
+                                                                                       th:title="${news.title}"><img
                     src="/static/temp/list03.jpg" th:img-src="/image/204x108${news.titleImage}"/></a></span>
-                <div class="zhubo_news_main"><a href="#" th:href="/anchor/news/${news.id}.html">
+                <div class="zhubo_news_main"><a href="#" th:href="/anchor/news/${news.id}.html"
+                                                th:title="${news.title}">
                     <h1 th:text="${news.title}">lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
                 </a>
                     <dl>
@@ -102,19 +105,25 @@
                 <dt th:each="anchorVideo,iterStat:${anchorVideoList}"
                     th:if="${iterStat.index==0||iterStat.index==1||iterStat.index==2}"><span
                         style="background:url(/static/img/zhubo/zhubo_shipin.png) no-repeat;"
-                        th:text="${iterStat.index+1}">1</span><a href="#" th:text="${anchorVideo.title}">驰骋野区的风暴骑手：新版本打野人攻略</a>
+                        th:text="${iterStat.index+1}">1</span><a href="#" th:text="${anchorVideo.title}"
+                                                                 th:href="/video/${anchorVideo.id}.html"
+                                                                 th:title="${anchorVideo.title}">驰骋野区的风暴骑手：新版本打野人攻略</a>
                 </dt>
                 <dt th:each="anchorVideo,iterStat:${anchorVideoList}"
                     th:if="${iterStat.index!=0&&iterStat.index!=1&&iterStat.index!=2}"><span
-                        th:text="${iterStat.index+4}">4</span><a href="#" th:text="${anchorVideo.title}">英雄联盟S6总决赛详情：举办地为北美</a>
+                        th:text="${iterStat.index+4}">4</span><a href="#" th:text="${anchorVideo.title}"
+                                                                 th:href="/video/${anchorVideo.id}.html"
+                                                                 th:title="${anchorVideo.title}">英雄联盟S6总决赛详情：举办地为北美</a>
                 </dt>
             </dl>
         </div>
         <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="#" class="more vider_more">更多</a>
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor.html"
+                                                                              class="more vider_more">更多</a>
             </div>
             <ul class="hot_zhubo">
-                <li th:each="anchorZone:${anchorZoneTopList}"><a href="#">
+                <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}.html"
+                                                                 th:title="${anchorZone.name}">
                     <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
                     <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"/>
                     </p>
@@ -123,11 +132,13 @@
             </ul>
         </div>
         <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">热门游戏</span> <a href="#" class="more vider_more">更多</a>
+            <div class="index_tit_two"><span class="text_left">热门游戏</span> <a href="/game.html" class="more vider_more">更多</a>
             </div>
             <ul class="hot_zixun">
                 <li th:each="matchZone:${matchZoneTopList}"><a href="#"
-                                                               th:text="${matchZone.name}">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
+                                                               th:text="${matchZone.name}"
+                                                               th:href="/game/${matchZone.id}.html"
+                                                               th:title="${matchZone.name}">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
             </ul>
 
         </div>
