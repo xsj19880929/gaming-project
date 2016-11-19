@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<div class="newyiiPager" th:fragment="page(url,currentPage,totalPage)" th:if="${totalPage>1}">
+    <ol id="yw0" class="yiiPager">
+        <li th:text="共+${totalPage}+页：">共2页：</li>
+        <li class="page hidden" th:if="${currentPage!=1}"><a href="" th:href="${url}_1.html">首页</a></li>
+        <li class="previous hidden" th:if="${currentPage!=1}"><a href="#" th:href="${url}_${currentPage-1}.html">上一页</a>
+        </li>
+        <li class="page" th:each="pageNo:${#numbers.sequence(1,totalPage)}"
+            th:classappend="${pageNo}==${currentPage}?'selected'">
+            <span th:text="${pageNo}" th:if="${pageNo}==${currentPage}">1</span>
+            <a href="#" th:if="${pageNo}!=${currentPage}" th:text="${pageNo}"
+               th:href="${url}_${pageNo}.html">2</a></li>
+        <li class="next" th:if="${currentPage!=totalPage}"><a href="#" th:href="${url}_${currentPage+1}.html">下一页</a>
+        </li>
+        <li class="last"><a href="#" th:if="${currentPage!=totalPage}" th:href="${url}_${totalPage}.html">末页</a></li>
+    </ol>
+</div>

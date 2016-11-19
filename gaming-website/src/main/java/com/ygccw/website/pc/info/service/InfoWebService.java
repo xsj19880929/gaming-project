@@ -76,6 +76,15 @@ public class InfoWebService {
         return infoWebList;
     }
 
+    public int infoListSize(Long zoneId, InfoZoneType infoZoneType) {
+        Info infoRequest = new Info();
+        infoRequest.setInfoZoneType(infoZoneType);
+        infoRequest.setZoneId(zoneId);
+        infoRequest.setVerify(1);
+        infoRequest.setInfoType(InfoType.news);
+        return infoService.listSize(infoRequest);
+    }
+
 
     public List<Info> videoListTop(int offset, int fetchSize) {
         Info infoRequest = new Info();

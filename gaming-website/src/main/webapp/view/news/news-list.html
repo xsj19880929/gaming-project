@@ -20,16 +20,19 @@
         <div class="index_tit_two"><span class="text_left">全部资讯</span></div>
         <div class="tab_three">
             <ul>
-                <li onMouseOver="setTab('one',1,5)" id="one1" class="hover">行业<em></em></li>
-                <li onMouseOver="setTab('one',2,5)" id="one2">赛事<em></em></li>
-                <li onMouseOver="setTab('one',3,5)" id="one3">主播<em></em></li>
+                <li th:classappend="${infoList.pageName}=='/news_trade'?'hover'"><a
+                        href="/news_trade_1.html">行业</a><em></em></li>
+                <li th:classappend="${infoList.pageName}=='/news_match'?'hover'"><a
+                        href="/news_match_1.html">赛事</a><em></em></li>
+                <li th:classappend="${infoList.pageName}=='/news_anchor'?'hover'"><a
+                        href="/news_anchor_1.html">主播</a><em></em></li>
             </ul>
         </div>
         <!--tab内容-->
         <div class="tab_one_con2">
             <div class="tab_deatil" id="con_one_1" style="display:block">
                 <ul>
-                    <li th:each="info:${infoTradeList}">
+                    <li th:each="info:${infoList.list}">
                         <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
                                 th:img-src="/image/204x108${info.titleImage}" th:alt="${info.title}"/></a></div>
                         <div class="d2">
@@ -45,85 +48,60 @@
                         </div>
                     </li>
                 </ul>
-                <!--页码-->
-                <div class="newyiiPager">
-                    <ol id="yw0" class="yiiPager">
-                        <li>共2页：</li>
-                        <li class="page hidden"><a href="">首页</a></li>
-                        <li class="previous hidden"><a href="#">上一页</a></li>
-                        <li class="page selected"><span>1</span></li>
-                        <li class="page"><a href="#">2</a></li>
-                        <li class="page"><a href="#">3</a></li>
-                        <li class="page"><a href="#">4</a></li>
-                        <li class="next"><a href="#">下一页</a></li>
-                        <li class="last"><a href="#">末页</a></li>
-                    </ol>
-                </div>
+                <div th:replace="/pager.html::page(${infoList.pageName},${infoList.currentPage},${infoList.totalPage})"></div>
             </div>
-            <div class="tab_deatil" id="con_one_2">
-                <ul>
-                    <li th:each="info:${infoMatchList}">
-                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
-                                th:img-src="/image/204x108${info.titleImage}"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
-                                             th:text="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                            <p class="p2"><span><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
-                                                   th:each="tagMatch:${info.tagMappingWebList}"
-                                                   th:text="${tagMatch.name}">电竞</a></span><em
-                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20 10:35</em></p>
-                            <p class="p3" th:text="${info.subTitle}">
-                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                </ul>
-                <!--页码-->
-                <div class="newyiiPager">
-                    <ol id="yw0" class="yiiPager">
-                        <li>共2页：</li>
-                        <li class="page hidden"><a href="">首页</a></li>
-                        <li class="previous hidden"><a href="#">上一页</a></li>
-                        <li class="page selected"><span>1</span></li>
-                        <li class="page"><a href="#">2</a></li>
-                        <li class="page"><a href="#">3</a></li>
-                        <li class="page"><a href="#">4</a></li>
-                        <li class="next"><a href="#">下一页</a></li>
-                        <li class="last"><a href="#">末页</a></li>
-                    </ol>
-                </div>
-            </div>
-            <div class="tab_deatil" id="con_one_3">
-                <ul>
-                    <li th:each="info:${infoAnchorList}">
-                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
-                                th:img-src="/image/204x108${info.titleImage}"/></a></div>
-                        <div class="d2">
-                            <p class="p1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
-                                             th:text="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                            <p class="p2"><span><a href="#" th:href="/news/${info.id}.html"
-                                                   th:each="tagAnchor:${info.tagMappingWebList}"
-                                                   th:text="${tagAnchor.name}">电竞</a></span><em
-                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20 10:35</em></p>
-                            <p class="p3" th:text="${info.subTitle}">
-                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                </ul>
-                <!--页码-->
-                <div class="newyiiPager">
-                    <ol id="yw0" class="yiiPager">
-                        <li>共2页：</li>
-                        <li class="page hidden"><a href="">首页</a></li>
-                        <li class="previous hidden"><a href="#">上一页</a></li>
-                        <li class="page selected"><span>1</span></li>
-                        <li class="page"><a href="#">2</a></li>
-                        <li class="page"><a href="#">3</a></li>
-                        <li class="page"><a href="#">4</a></li>
-                        <li class="next"><a href="#">下一页</a></li>
-                        <li class="last"><a href="#">末页</a></li>
-                    </ol>
-                </div>
-            </div>
+            <!--<div class="tab_deatil" id="con_one_2">-->
+            <!--<ul>-->
+            <!--<li th:each="info:${infoMatchList}">-->
+            <!--<div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img-->
+            <!--th:img-src="/image/204x108${info.titleImage}"/></a></div>-->
+            <!--<div class="d2">-->
+            <!--<p class="p1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"-->
+            <!--th:text="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>-->
+            <!--<p class="p2"><span><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"-->
+            <!--th:each="tagMatch:${info.tagMappingWebList}"-->
+            <!--th:text="${tagMatch.name}">电竞</a></span><em-->
+            <!--th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20 10:35</em></p>-->
+            <!--<p class="p3" th:text="${info.subTitle}">-->
+            <!--近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--&lt;!&ndash;页码&ndash;&gt;-->
+
+            <!--</div>-->
+            <!--<div class="tab_deatil" id="con_one_3">-->
+            <!--<ul>-->
+            <!--<li th:each="info:${infoAnchorList}">-->
+            <!--<div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img-->
+            <!--th:img-src="/image/204x108${info.titleImage}"/></a></div>-->
+            <!--<div class="d2">-->
+            <!--<p class="p1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"-->
+            <!--th:text="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>-->
+            <!--<p class="p2"><span><a href="#" th:href="/news/${info.id}.html"-->
+            <!--th:each="tagAnchor:${info.tagMappingWebList}"-->
+            <!--th:text="${tagAnchor.name}">电竞</a></span><em-->
+            <!--th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20 10:35</em></p>-->
+            <!--<p class="p3" th:text="${info.subTitle}">-->
+            <!--近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--&lt;!&ndash;&lt;!&ndash;页码&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="newyiiPager">&ndash;&gt;-->
+            <!--&lt;!&ndash;<ol id="yw0" class="yiiPager">&ndash;&gt;-->
+            <!--&lt;!&ndash;<li>共2页：</li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="page hidden"><a href="">首页</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="previous hidden"><a href="#">上一页</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="page selected"><span>1</span></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="page"><a href="#">2</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="page"><a href="#">3</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="page"><a href="#">4</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="next"><a href="#">下一页</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="last"><a href="#">末页</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;</ol>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
 
         </div>
     </div>

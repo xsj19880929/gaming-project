@@ -1,7 +1,9 @@
 package com.ygccw.website.pc.info.controller;
 
+import com.ygccw.website.database.FindResultToSale;
 import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.website.pc.info.service.InfoWebService;
+import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.tags.enums.TagZoneType;
 import org.springframework.stereotype.Controller;
@@ -21,15 +23,46 @@ public class InfoController {
     private InfoWebService infoWebService;
 
     @RequestMapping(value = "/news.html", method = RequestMethod.GET)
-    public String index(final ModelMap model) {
-        model.put("infoTradeList", infoWebService.infoList(null, InfoZoneType.trade, TagZoneType.trade, 0, 9));
-        model.put("infoMatchList", infoWebService.infoList(null, InfoZoneType.matchZone, TagZoneType.matchZone, 0, 9));
-        model.put("infoAnchorList", infoWebService.infoList(null, InfoZoneType.anchorZone, TagZoneType.anchorZone, 0, 9));
+    public String list(final ModelMap model) {
+        int currentPage = 1;
+        int fetchSize = 1;
+        model.put("infoList", new FindResultToSale(infoWebService.infoList(null, InfoZoneType.trade, TagZoneType.trade, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), infoWebService.infoListSize(null, InfoZoneType.trade), currentPage, fetchSize, "/news_trade"));
         model.put("newsTopList", infoWebService.newsListTop(0, 10));
         model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
         model.put("videoTopList", infoWebService.videoListTop(0, 4));
         return "/view/news/news-list.html";
     }
+
+    @RequestMapping(value = "/news_trade_{currentPage}.html", method = RequestMethod.GET)
+    public String tradeList(final ModelMap model, @PathVariable Integer currentPage) {
+        int fetchSize = 1;
+        model.put("infoList", new FindResultToSale(infoWebService.infoList(null, InfoZoneType.trade, TagZoneType.trade, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), infoWebService.infoListSize(null, InfoZoneType.trade), currentPage, fetchSize, "/news_trade"));
+        model.put("newsTopList", infoWebService.newsListTop(0, 10));
+        model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
+        model.put("videoTopList", infoWebService.videoListTop(0, 4));
+        return "/view/news/news-list.html";
+    }
+
+    @RequestMapping(value = "/news_match_{currentPage}.html", method = RequestMethod.GET)
+    public String matchList(final ModelMap model, @PathVariable Integer currentPage) {
+        int fetchSize = 1;
+        model.put("infoList", new FindResultToSale(infoWebService.infoList(null, InfoZoneType.matchZone, TagZoneType.matchZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), infoWebService.infoListSize(null, InfoZoneType.matchZone), currentPage, fetchSize, "/news_match"));
+        model.put("newsTopList", infoWebService.newsListTop(0, 10));
+        model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
+        model.put("videoTopList", infoWebService.videoListTop(0, 4));
+        return "/view/news/news-list.html";
+    }
+
+    @RequestMapping(value = "/news_anchor_{currentPage}.html", method = RequestMethod.GET)
+    public String anchorList(final ModelMap model, @PathVariable Integer currentPage) {
+        int fetchSize = 1;
+        model.put("infoList", new FindResultToSale(infoWebService.infoList(null, InfoZoneType.anchorZone, TagZoneType.anchorZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), infoWebService.infoListSize(null, InfoZoneType.anchorZone), currentPage, fetchSize, "/news_anchor"));
+        model.put("newsTopList", infoWebService.newsListTop(0, 10));
+        model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
+        model.put("videoTopList", infoWebService.videoListTop(0, 4));
+        return "/view/news/news-list.html";
+    }
+
 
     @RequestMapping(value = "/news/{id}.html", method = RequestMethod.GET)
     public String index(final ModelMap model, @PathVariable Long id) {
