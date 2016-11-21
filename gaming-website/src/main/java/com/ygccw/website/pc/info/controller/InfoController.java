@@ -25,7 +25,7 @@ public class InfoController {
     @RequestMapping(value = "/news.html", method = RequestMethod.GET)
     public String list(final ModelMap model) {
         int currentPage = 1;
-        int fetchSize = 1;
+        int fetchSize = 9;
         model.put("infoList", new FindResultToSale(infoWebService.infoList(null, InfoZoneType.trade, TagZoneType.trade, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), infoWebService.infoListSize(null, InfoZoneType.trade), currentPage, fetchSize, "/news_trade"));
         model.put("newsTopList", infoWebService.newsListTop(0, 10));
         model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
@@ -35,7 +35,7 @@ public class InfoController {
 
     @RequestMapping(value = "/news_trade_{currentPage}.html", method = RequestMethod.GET)
     public String tradeList(final ModelMap model, @PathVariable Integer currentPage) {
-        int fetchSize = 1;
+        int fetchSize = 9;
         model.put("infoList", new FindResultToSale(infoWebService.infoList(null, InfoZoneType.trade, TagZoneType.trade, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), infoWebService.infoListSize(null, InfoZoneType.trade), currentPage, fetchSize, "/news_trade"));
         model.put("newsTopList", infoWebService.newsListTop(0, 10));
         model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
@@ -45,7 +45,7 @@ public class InfoController {
 
     @RequestMapping(value = "/news_match_{currentPage}.html", method = RequestMethod.GET)
     public String matchList(final ModelMap model, @PathVariable Integer currentPage) {
-        int fetchSize = 1;
+        int fetchSize = 9;
         model.put("infoList", new FindResultToSale(infoWebService.infoList(null, InfoZoneType.matchZone, TagZoneType.matchZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), infoWebService.infoListSize(null, InfoZoneType.matchZone), currentPage, fetchSize, "/news_match"));
         model.put("newsTopList", infoWebService.newsListTop(0, 10));
         model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
@@ -55,7 +55,7 @@ public class InfoController {
 
     @RequestMapping(value = "/news_anchor_{currentPage}.html", method = RequestMethod.GET)
     public String anchorList(final ModelMap model, @PathVariable Integer currentPage) {
-        int fetchSize = 1;
+        int fetchSize = 9;
         model.put("infoList", new FindResultToSale(infoWebService.infoList(null, InfoZoneType.anchorZone, TagZoneType.anchorZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), infoWebService.infoListSize(null, InfoZoneType.anchorZone), currentPage, fetchSize, "/news_anchor"));
         model.put("newsTopList", infoWebService.newsListTop(0, 10));
         model.put("anchorTopList", infoWebService.anchorListTop(0, 6));

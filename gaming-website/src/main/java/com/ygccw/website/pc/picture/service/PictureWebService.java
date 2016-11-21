@@ -74,8 +74,8 @@ public class PictureWebService {
                 if (tags == null) continue;
                 List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId());
                 for (TagMapping tagMapping : tagMappingList) {
-                    Picture PictureNew = pictureService.findById(tagMapping.getEntityId());
-                    mappingMap.put(tagMapping.getEntityId(), PictureNew);
+                    Picture pictureNew = pictureService.findById(tagMapping.getEntityId());
+                    mappingMap.put(tagMapping.getEntityId(), pictureNew);
                     if (mappingMap.size() == fetchSize) {
                         break;
                     }

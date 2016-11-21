@@ -1,7 +1,9 @@
 package com.ygccw.website.pc.video.controller;
 
+import com.ygccw.website.database.FindResultToSale;
 import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.website.pc.video.service.VideoWebService;
+import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoVideoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
@@ -23,21 +25,43 @@ public class VideoController {
 
     @RequestMapping(value = "/video.html", method = RequestMethod.GET)
     public String videoList(final ModelMap model) {
+        int currentPage = 1;
+        int fetchSize = 16;
         Info info = new Info();
+        String url = "/video_new/all/all/0";
+        model.put("pageFlag", "new");
         model.put("anchorZoneList", videoWebService.anchorList(0, 8));
         model.put("matchZoneList", videoWebService.matchZoneList(0, 8));
         model.put("anchorZoneListMore", videoWebService.anchorList(8, 100));
         model.put("matchZoneListMore", videoWebService.matchZoneList(8, 100));
-        model.put("videoListNew", videoWebService.videoList(info, 0, 16));
-        model.put("videoListTop", videoWebService.videoListTop(info, 0, 16));
+        model.put("videoList", new FindResultToSale(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListSize(info), currentPage, fetchSize, url));
         model.put("infoZoneTypeSelected", "all");
         model.put("infoVideoTypeSelected", "all");
         model.put("zoneIdSelected", 0);
         return "/view/video/video-list.html";
     }
 
-    @RequestMapping(value = "/video/{infoVideoTypeStr}/{infoZoneTypeStr}/{zoneId}.html", method = RequestMethod.GET)
-    public String selectVideoList(final ModelMap model, @PathVariable String infoVideoTypeStr, @PathVariable String infoZoneTypeStr, @PathVariable Long zoneId) {
+    @RequestMapping(value = "/video_new/{infoVideoTypeStr}/{infoZoneTypeStr}/{zoneId}_{currentPage}.html", method = RequestMethod.GET)
+    public String selectVideoList(final ModelMap model, @PathVariable String infoVideoTypeStr, @PathVariable String infoZoneTypeStr, @PathVariable Long zoneId, @PathVariable Integer currentPage) {
+        Info info = common(model, infoVideoTypeStr, infoZoneTypeStr, zoneId);
+        int fetchSize = 16;
+        String url = "/video_new/" + infoVideoTypeStr + "/" + infoZoneTypeStr + "/" + zoneId;
+        model.put("pageFlag", "new");
+        model.put("videoList", new FindResultToSale(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListSize(info), currentPage, fetchSize, url));
+        return "/view/video/video-list.html";
+    }
+
+    @RequestMapping(value = "/video_top/{infoVideoTypeStr}/{infoZoneTypeStr}/{zoneId}_{currentPage}.html", method = RequestMethod.GET)
+    public String selectVideoListTop(final ModelMap model, @PathVariable String infoVideoTypeStr, @PathVariable String infoZoneTypeStr, @PathVariable Long zoneId, @PathVariable Integer currentPage) {
+        Info info = common(model, infoVideoTypeStr, infoZoneTypeStr, zoneId);
+        int fetchSize = 16;
+        String url = "/video_top/" + infoVideoTypeStr + "/" + infoZoneTypeStr + "/" + zoneId;
+        model.put("pageFlag", "top");
+        model.put("videoList", new FindResultToSale(videoWebService.videoListTop(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListTopSize(info), currentPage, fetchSize, url));
+        return "/view/video/video-list.html";
+    }
+
+    private Info common(ModelMap model, String infoVideoTypeStr, String infoZoneTypeStr, Long zoneId) {
         Info info = new Info();
         if (!"all".equals(infoVideoTypeStr)) {
             for (InfoVideoType infoVideoType : InfoVideoType.values()) {
@@ -68,9 +92,7 @@ public class VideoController {
         model.put("matchZoneList", videoWebService.matchZoneList(0, 8));
         model.put("anchorZoneListMore", videoWebService.anchorList(8, 100));
         model.put("matchZoneListMore", videoWebService.matchZoneList(8, 100));
-        model.put("videoListNew", videoWebService.videoList(info, 0, 16));
-        model.put("videoListTop", videoWebService.videoListTop(info, 0, 16));
-        return "/view/video/video-list.html";
+        return info;
     }
 
     @RequestMapping(value = "/video/{id}.html", method = RequestMethod.GET)

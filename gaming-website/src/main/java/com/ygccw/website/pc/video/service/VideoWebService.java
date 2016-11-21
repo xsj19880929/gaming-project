@@ -50,11 +50,23 @@ public class VideoWebService {
         return infoService.list(info, offset, fetchSize);
     }
 
+    public int videoListSize(Info info) {
+        info.setInfoType(InfoType.video);
+        return infoService.listSize(info);
+    }
+
     public List<Info> videoListTop(Info info, int offset, int fetchSize) {
         info.setSortIfDesc(true);
         info.setSortName("visitCount");
         info.setInfoType(InfoType.video);
         return infoService.list(info, offset, fetchSize);
+    }
+
+    public int videoListTopSize(Info info) {
+        info.setSortIfDesc(true);
+        info.setSortName("visitCount");
+        info.setInfoType(InfoType.video);
+        return infoService.listSize(info);
     }
 
     public InfoWeb findById(Long id) {
