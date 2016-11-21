@@ -1,7 +1,9 @@
 package com.ygccw.website.pc.game.controller;
 
+import com.ygccw.website.database.FindResultToSale;
 import com.ygccw.website.pc.game.service.GameWebService;
 import com.ygccw.website.pc.info.model.InfoWeb;
+import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import com.ygccw.wechat.common.zone.enums.MatchStatus;
 import org.springframework.stereotype.Controller;
@@ -23,8 +25,11 @@ public class GameController {
     @RequestMapping(value = "/game.html", method = RequestMethod.GET)
     public String gameList(final ModelMap model) {
         MatchZone matchZone = new MatchZone();
-        model.put("matchZoneListNew", gameWebService.findMatchZoneNew(matchZone, 0, 8));
-        model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 8));
+        int currentPage = 1;
+        int fetchSize = 16;
+        String url = "/game_new/0/0/all";
+        model.put("pageFlag", "new");
+        model.put("matchZoneList", new FindResultToSale(gameWebService.findMatchZoneNew(matchZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), gameWebService.findMatchZoneNewSize(matchZone), currentPage, fetchSize, url));
         model.put("matchZoneYearList", gameWebService.listMatchZoneYear());
         model.put("matchZoneAreaList", gameWebService.listMatchZoneArea());
         model.put("matchStatusList", gameWebService.listMatchStatus());
@@ -34,8 +39,27 @@ public class GameController {
         return "/view/game/game-list.html";
     }
 
-    @RequestMapping(value = "/game/{matchZoneYearId}/{matchZoneAreaId}/{matchStatusStr}.html", method = RequestMethod.GET)
-    public String selectGameList(final ModelMap model, @PathVariable Long matchZoneYearId, @PathVariable Long matchZoneAreaId, @PathVariable String matchStatusStr) {
+    @RequestMapping(value = "/game_new/{matchZoneYearId}/{matchZoneAreaId}/{matchStatusStr}_{currentPage}.html", method = RequestMethod.GET)
+    public String selectGameList(final ModelMap model, @PathVariable Long matchZoneYearId, @PathVariable Long matchZoneAreaId, @PathVariable String matchStatusStr, @PathVariable Integer currentPage) {
+        MatchZone matchZone = common(model, matchZoneYearId, matchZoneAreaId, matchStatusStr);
+        int fetchSize = 8;
+        model.put("pageFlag", "new");
+        String url = "/game_new/" + matchZoneYearId + "/" + matchZoneAreaId + "/" + matchStatusStr;
+        model.put("matchZoneList", new FindResultToSale(gameWebService.findMatchZoneNew(matchZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), gameWebService.findMatchZoneNewSize(matchZone), currentPage, fetchSize, url));
+        return "/view/game/game-list.html";
+    }
+
+    @RequestMapping(value = "/game_top/{matchZoneYearId}/{matchZoneAreaId}/{matchStatusStr}_{currentPage}.html", method = RequestMethod.GET)
+    public String selectGameListTop(final ModelMap model, @PathVariable Long matchZoneYearId, @PathVariable Long matchZoneAreaId, @PathVariable String matchStatusStr, @PathVariable Integer currentPage) {
+        MatchZone matchZone = common(model, matchZoneYearId, matchZoneAreaId, matchStatusStr);
+        int fetchSize = 8;
+        model.put("pageFlag", "top");
+        String url = "/game_top/" + matchZoneYearId + "/" + matchZoneAreaId + "/" + matchStatusStr;
+        model.put("matchZoneList", new FindResultToSale(gameWebService.findMatchZoneTop(matchZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), gameWebService.findMatchZoneTopSize(matchZone), currentPage, fetchSize, url));
+        return "/view/game/game-list.html";
+    }
+
+    private MatchZone common(ModelMap model, Long matchZoneYearId, Long matchZoneAreaId, String matchStatusStr) {
         MatchZone matchZone = new MatchZone();
         if (matchZoneYearId != 0) {
             matchZone.setMatchZoneYearId(matchZoneYearId);
@@ -55,12 +79,10 @@ public class GameController {
         }
         model.put("matchZoneAreaIdSelected", matchZoneAreaId);
         model.put("matchZoneYearIdSelected", matchZoneYearId);
-        model.put("matchZoneListNew", gameWebService.findMatchZoneNew(matchZone, 0, 8));
-        model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 8));
         model.put("matchZoneYearList", gameWebService.listMatchZoneYear());
         model.put("matchZoneAreaList", gameWebService.listMatchZoneArea());
         model.put("matchStatusList", gameWebService.listMatchStatus());
-        return "/view/game/game-list.html";
+        return matchZone;
     }
 
     @RequestMapping(value = "/game/{id}.html", method = RequestMethod.GET)

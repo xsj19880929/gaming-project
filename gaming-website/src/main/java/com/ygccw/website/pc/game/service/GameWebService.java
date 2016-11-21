@@ -63,10 +63,20 @@ public class GameWebService {
         return matchZoneService.list(matchZone, offset, fetchSize);
     }
 
+    public int findMatchZoneNewSize(MatchZone matchZone) {
+        return matchZoneService.listSize(matchZone);
+    }
+
     public List<MatchZone> findMatchZoneTop(MatchZone matchZone, int offset, int fetchSize) {
         matchZone.setSortName("visitCount");
         matchZone.setSortIfDesc(true);
         return matchZoneService.list(matchZone, offset, fetchSize);
+    }
+
+    public int findMatchZoneTopSize(MatchZone matchZone) {
+        matchZone.setSortName("visitCount");
+        matchZone.setSortIfDesc(true);
+        return matchZoneService.listSize(matchZone);
     }
 
     public List<MatchZoneYear> listMatchZoneYear() {

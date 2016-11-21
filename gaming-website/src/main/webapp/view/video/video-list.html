@@ -77,11 +77,11 @@
     <div class="list_tab_one">
         <div class="tab_two">
             <ul>
-                <li th:classappend="${#strings.startsWith(videoList.pageName,'/video_new')}?'hover'"><span><a
-                        href="/video_new/all/all/0_1.html">最新</a></span></li>
+                <li th:classappend="${#strings.startsWith(videoList.pageName,'/video_new')}?'hover'"><a
+                        href="/video_new/all/all/0_1.html"><span>最新</span></a></li>
                 <li th:classappend="${#strings.startsWith(videoList.pageName,'/video_top')}?'hover'">
-                    <span><a
-                            href="/video_top/all/all/0_1.html">最热</a></span></li>
+                    <a
+                            href="/video_top/all/all/0_1.html"><span>最热</span></a></li>
             </ul>
         </div>
         <div id="con_one_1" style="display:block">
