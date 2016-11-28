@@ -6,7 +6,6 @@ import java.util.List;
  * @author soldier
  */
 public class FindResultToSale<T> {
-
     private final List<T> list;
     private final int currentPage;
     private final int total;

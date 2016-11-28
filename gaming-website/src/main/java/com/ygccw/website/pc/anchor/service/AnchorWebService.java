@@ -56,10 +56,20 @@ public class AnchorWebService {
         return findAnchorZoneWeb(anchorZone, offset, fetchSize);
     }
 
+    public int findAnchorZoneNewSize(AnchorZone anchorZone) {
+        return anchorZoneService.listSize(anchorZone);
+    }
+
     public List<AnchorZoneWeb> findAnchorZoneTop(AnchorZone anchorZone, int offset, int fetchSize) {
         anchorZone.setSortName("visitCount");
         anchorZone.setSortIfDesc(true);
         return findAnchorZoneWeb(anchorZone, offset, fetchSize);
+    }
+
+    public int findAnchorZoneTopSize(AnchorZone anchorZone) {
+        anchorZone.setSortName("visitCount");
+        anchorZone.setSortIfDesc(true);
+        return anchorZoneService.listSize(anchorZone);
     }
 
     private List<AnchorZoneWeb> findAnchorZoneWeb(AnchorZone anchorZone, int offset, int fetchSize) {

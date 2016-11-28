@@ -1,7 +1,9 @@
 package com.ygccw.website.pc.anchor.controller;
 
+import com.ygccw.website.database.FindResultToSale;
 import com.ygccw.website.pc.anchor.service.AnchorWebService;
 import com.ygccw.website.pc.info.model.InfoWeb;
+import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author soldier
@@ -21,24 +24,43 @@ public class AnchorController {
     private AnchorWebService anchorWebService;
 
     @RequestMapping(value = "/anchor.html", method = RequestMethod.GET)
-    public String anchorList(final ModelMap model) {
+    public String anchorList(HttpServletRequest request, final ModelMap model) {
         AnchorZone anchorZone = new AnchorZone();
-        model.put("anchorZoneListNew", anchorWebService.findAnchorZoneNew(anchorZone, 0, 20));
-        model.put("anchorZoneListTop", anchorWebService.findAnchorZoneTop(anchorZone, 0, 20));
+        int currentPage = 1;
+        int fetchSize = 1;
+        String url = PageUtils.getPageUrl(request);
+        model.put("pageFlag", "new");
+        model.put("anchorZoneList", new FindResultToSale(anchorWebService.findAnchorZoneNew(anchorZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), anchorWebService.findAnchorZoneNewSize(anchorZone), currentPage, fetchSize, url));
         model.put("anchorZonePlatformList", anchorWebService.listAnchorZonePlatform());
         model.put("platformIdSelected", 0);
-
         return "/view/anchor/anchor-list.html";
     }
 
-    @RequestMapping(value = "/anchor/findPlatformId/{platformId}.html", method = RequestMethod.GET)
-    public String selectAnchorList(final ModelMap model, @PathVariable Long platformId) {
+    @RequestMapping(value = "/anchor_new/findPlatformId/{platformId}_{currentPage}.html", method = RequestMethod.GET)
+    public String selectAnchorList(HttpServletRequest request, final ModelMap model, @PathVariable Long platformId, @PathVariable Integer currentPage) {
         AnchorZone anchorZone = new AnchorZone();
         if (platformId != 0) {
             anchorZone.setPlatformId(platformId);
         }
-        model.put("anchorZoneListNew", anchorWebService.findAnchorZoneNew(anchorZone, 0, 20));
-        model.put("anchorZoneListTop", anchorWebService.findAnchorZoneTop(anchorZone, 0, 20));
+        int fetchSize = 1;
+        String url = PageUtils.getPageUrl(request);
+        model.put("pageFlag", "new");
+        model.put("anchorZoneList", new FindResultToSale(anchorWebService.findAnchorZoneNew(anchorZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), anchorWebService.findAnchorZoneNewSize(anchorZone), currentPage, fetchSize, url));
+        model.put("anchorZonePlatformList", anchorWebService.listAnchorZonePlatform());
+        model.put("platformIdSelected", platformId);
+        return "/view/anchor/anchor-list.html";
+    }
+
+    @RequestMapping(value = "/anchor_top/findPlatformId/{platformId}_{currentPage}.html", method = RequestMethod.GET)
+    public String selectAnchorListTop(HttpServletRequest request, final ModelMap model, @PathVariable Long platformId, @PathVariable Integer currentPage) {
+        AnchorZone anchorZone = new AnchorZone();
+        if (platformId != 0) {
+            anchorZone.setPlatformId(platformId);
+        }
+        int fetchSize = 1;
+        String url = PageUtils.getPageUrl(request);
+        model.put("pageFlag", "top");
+        model.put("anchorZoneList", new FindResultToSale(anchorWebService.findAnchorZoneTop(anchorZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), anchorWebService.findAnchorZoneTopSize(anchorZone), currentPage, fetchSize, url));
         model.put("anchorZonePlatformList", anchorWebService.listAnchorZonePlatform());
         model.put("platformIdSelected", platformId);
         return "/view/anchor/anchor-list.html";

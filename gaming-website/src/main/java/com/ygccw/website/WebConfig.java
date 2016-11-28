@@ -2,6 +2,7 @@ package com.ygccw.website;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
+import com.ygccw.website.interceptor.AccessInterceptor;
 import com.ygccw.website.thymeleaf.ImgSrcAttrProcessor;
 import com.ygccw.website.thymeleaf.MobileDialect;
 import core.api.file.FileServerSettings;
@@ -67,6 +68,7 @@ public class WebConfig extends DefaultSiteConfig {
         registry.addInterceptor(cookieInterceptor());
         registry.addInterceptor(sessionInterceptor());
         registry.addInterceptor(exceptionInterceptor());
+        registry.addInterceptor(accessInterceptor());
     }
 
     @Override
@@ -147,6 +149,11 @@ public class WebConfig extends DefaultSiteConfig {
     public ImgSrcAttrProcessor imgSrcAttrProcessor() {
         SiteSettings siteSettings = siteSettings();
         return new ImgSrcAttrProcessor(env.getProperty("out.image.downloadUrl"), env.getProperty("out.file.uploadServer"), siteSettings.baseCdnUrls());
+    }
+
+    @Bean
+    public AccessInterceptor accessInterceptor() {
+        return new AccessInterceptor();
     }
 
 
