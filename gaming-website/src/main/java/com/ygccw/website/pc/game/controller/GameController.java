@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author soldier
@@ -101,13 +102,28 @@ public class GameController {
 
     @RequestMapping(value = "/game/news-list/{matchZoneId}.html", method = RequestMethod.GET)
     public String gameNewsList(final ModelMap model, @PathVariable Long matchZoneId) {
+        int currentPage = 1;
+        int fetchSize = 8;
+        String url = "/game/news-list/" + matchZoneId;
+        gameNewsListCommon(model, matchZoneId, currentPage, fetchSize, url);
+        return "/view/game/game-news-list.html";
+    }
+
+    @RequestMapping(value = "/game/news-list/{matchZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
+    public String gameNewsList(HttpServletRequest request, final ModelMap model, @PathVariable Long matchZoneId, @PathVariable Integer currentPage) {
+        int fetchSize = 8;
+        String url = PageUtils.getPageUrl(request);
+        gameNewsListCommon(model, matchZoneId, currentPage, fetchSize, url);
+        return "/view/game/game-news-list.html";
+    }
+
+    private void gameNewsListCommon(ModelMap model, Long matchZoneId, int currentPage, int fetchSize, String url) {
         MatchZone matchZone = new MatchZone();
         model.put("matchZone", gameWebService.findById(matchZoneId));
-        model.put("newsList", gameWebService.listInfoNewsAndTag(matchZoneId, 0, 8));
+        model.put("newsList", new FindResultToSale(gameWebService.listInfoNewsAndTag(matchZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), gameWebService.listInfoNewsAndTagSize(matchZoneId), currentPage, fetchSize, url));
         model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
         model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
         model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 2));
-        return "/view/game/game-news-list.html";
     }
 
     @RequestMapping(value = "/game/news/{newsId}.html", method = RequestMethod.GET)

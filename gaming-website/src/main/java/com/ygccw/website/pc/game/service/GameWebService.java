@@ -158,6 +158,10 @@ public class GameWebService {
         return infoWebService.infoList(matchZoneId, InfoZoneType.matchZone, TagZoneType.matchZone, offset, fetchSize);
     }
 
+    public int listInfoNewsAndTagSize(Long matchZoneId) {
+        return infoWebService.infoListSize(matchZoneId, InfoZoneType.matchZone);
+    }
+
     public List<Info> listInfoNewsTop(int offset, int fetchSize) {
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.matchZone);

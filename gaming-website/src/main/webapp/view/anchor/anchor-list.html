@@ -48,9 +48,9 @@
     <div class="list_tab_one">
         <div class="tab_two">
             <ul>
-                <li th:classappend="${#strings.startsWith(anchorZoneList.pageName,'/anchor_new')}?'hover'"><a
+                <li th:classappend="${#strings.startsWith(pageFlag,'new')}?'hover'"><a
                         href="/anchor_new/findPlatformId/0_1.html"><span>最新</span></a></li>
-                <li th:classappend="${#strings.startsWith(anchorZoneList.pageName,'/anchor_top')}?'hover'">
+                <li th:classappend="${#strings.startsWith(pageFlag,'top')}?'hover'">
                     <a href="/anchor_top/findPlatformId/0_1.html"><span>最热</span></a></li>
             </ul>
         </div>

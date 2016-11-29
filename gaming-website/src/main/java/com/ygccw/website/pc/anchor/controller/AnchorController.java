@@ -24,11 +24,11 @@ public class AnchorController {
     private AnchorWebService anchorWebService;
 
     @RequestMapping(value = "/anchor.html", method = RequestMethod.GET)
-    public String anchorList(HttpServletRequest request, final ModelMap model) {
+    public String anchorList(final ModelMap model) {
         AnchorZone anchorZone = new AnchorZone();
         int currentPage = 1;
-        int fetchSize = 1;
-        String url = PageUtils.getPageUrl(request);
+        int fetchSize = 20;
+        String url = "/anchor_new/findPlatformId/0";
         model.put("pageFlag", "new");
         model.put("anchorZoneList", new FindResultToSale(anchorWebService.findAnchorZoneNew(anchorZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), anchorWebService.findAnchorZoneNewSize(anchorZone), currentPage, fetchSize, url));
         model.put("anchorZonePlatformList", anchorWebService.listAnchorZonePlatform());
@@ -42,7 +42,7 @@ public class AnchorController {
         if (platformId != 0) {
             anchorZone.setPlatformId(platformId);
         }
-        int fetchSize = 1;
+        int fetchSize = 20;
         String url = PageUtils.getPageUrl(request);
         model.put("pageFlag", "new");
         model.put("anchorZoneList", new FindResultToSale(anchorWebService.findAnchorZoneNew(anchorZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), anchorWebService.findAnchorZoneNewSize(anchorZone), currentPage, fetchSize, url));
@@ -57,7 +57,7 @@ public class AnchorController {
         if (platformId != 0) {
             anchorZone.setPlatformId(platformId);
         }
-        int fetchSize = 1;
+        int fetchSize = 20;
         String url = PageUtils.getPageUrl(request);
         model.put("pageFlag", "top");
         model.put("anchorZoneList", new FindResultToSale(anchorWebService.findAnchorZoneTop(anchorZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), anchorWebService.findAnchorZoneTopSize(anchorZone), currentPage, fetchSize, url));
@@ -81,13 +81,29 @@ public class AnchorController {
     }
 
     @RequestMapping(value = "/anchor/news-list/{anchorZoneId}.html", method = RequestMethod.GET)
-    public String anchorNewsList(final ModelMap model, @PathVariable Long anchorZoneId) {
+    public String anchorNewsListIndex(final ModelMap model, @PathVariable Long anchorZoneId) {
+        int currentPage = 1;
+        int fetchSize = 5;
+        String url = "/anchor/news-list/" + anchorZoneId + "/page";
+        anchorNewsListCommon(model, anchorZoneId, currentPage, fetchSize, url);
+        return "/view/anchor/anchor-news-list.html";
+    }
+
+    @RequestMapping(value = "/anchor/news-list/{anchorZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
+    public String anchorNewsList(HttpServletRequest request, final ModelMap model, @PathVariable Long anchorZoneId, @PathVariable Integer currentPage) {
+        int fetchSize = 5;
+        String url = PageUtils.getPageUrl(request);
+        anchorNewsListCommon(model, anchorZoneId, currentPage, fetchSize, url);
+        return "/view/anchor/anchor-news-list.html";
+    }
+
+    private void anchorNewsListCommon(ModelMap model, Long anchorZoneId, int currentPage, int fetchSize, String url) {
+
         model.put("anchorZone", anchorWebService.findAnchorById(anchorZoneId));
-        model.put("anchorNewsList", anchorWebService.listInfoNewsAndTagByAnchorZoneId(anchorZoneId, 0, 5));
+        model.put("anchorNewsList", new FindResultToSale(anchorWebService.listInfoNewsAndTagByAnchorZoneId(anchorZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), anchorWebService.listInfoNewsAndTagByAnchorZoneIdSize(anchorZoneId), currentPage, fetchSize, url));
         model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(anchorZoneId, 0, 10));
         model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
         model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
-        return "/view/anchor/anchor-news-list.html";
     }
 
     @RequestMapping(value = "/anchor/news/{id}.html", method = RequestMethod.GET)

@@ -117,6 +117,10 @@ public class AnchorWebService {
         return infoWebService.infoList(anchorZoneId, InfoZoneType.anchorZone, TagZoneType.anchorZone, offset, fetchSize);
     }
 
+    public int listInfoNewsAndTagByAnchorZoneIdSize(Long anchorZoneId) {
+        return infoWebService.infoListSize(anchorZoneId, InfoZoneType.anchorZone);
+    }
+
     public List<Info> listInfoVideoByAnchorZoneId(Long anchorZoneId, int offset, int fetchSize) {
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.anchorZone);

@@ -43,9 +43,9 @@
             <a href="#">图集</a>
         </div>
         <div class="zhubo_zixun02">
-            <div class="zhubo_news" th:each="news,iterStat:${anchorNewsList}"><span><a href="#"
-                                                                                       th:href="/anchor/news/${news.id}.html"
-                                                                                       th:title="${news.title}"><img
+            <div class="zhubo_news" th:each="news,iterStat:${anchorNewsList.list}"><span><a href="#"
+                                                                                            th:href="/anchor/news/${news.id}.html"
+                                                                                            th:title="${news.title}"><img
                     src="/static/temp/list03.jpg" th:img-src="/image/204x108${news.titleImage}"/></a></span>
                 <div class="zhubo_news_main"><a href="#" th:href="/anchor/news/${news.id}.html"
                                                 th:title="${news.title}">
@@ -66,19 +66,7 @@
                 <div class="clear"></div>
             </div>
             <!--页码-->
-            <div class="newyiiPager">
-                <ol id="yw0" class="yiiPager">
-                    <li>共2页：</li>
-                    <li class="page hidden"><a href="">首页</a></li>
-                    <li class="previous hidden"><a href="#">上一页</a></li>
-                    <li class="page selected"><span>1</span></li>
-                    <li class="page"><a href="#">2</a></li>
-                    <li class="page"><a href="#">3</a></li>
-                    <li class="page"><a href="#">4</a></li>
-                    <li class="next"><a href="#">下一页</a></li>
-                    <li class="last"><a href="#">末页</a></li>
-                </ol>
-            </div>
+            <div th:replace="/pager.html::page(${anchorNewsList.pageName},${anchorNewsList.currentPage},${anchorNewsList.totalPage})"></div>
         </div>
         <div class="game_pinglun">
             <div class="game_pinglun_title">
