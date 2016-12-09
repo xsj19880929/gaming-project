@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         import="com.ymc.sale.ue.web.ueditor.ActionEnter"
+         import="com.ygccw.wechat.ue.ueditor.ActionEnter"
          pageEncoding="UTF-8" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%
