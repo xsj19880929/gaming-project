@@ -2,7 +2,7 @@
 
     var app = angular.module('app', ['ui.router', 'ui.bootstrap', 'ui.grid.selection',
         'ui.grid', 'ui.grid.pagination', 'ui.grid.resizeColumns',
-        'validation', 'validation.rule', 'ui.bootstrap.datetimepicker',
+        'validation', 'validation.rule', 'angular-loading-bar', 'ui.bootstrap.datetimepicker',
         'angularFileUpload']);
 
 

@@ -1026,9 +1026,9 @@
                     }
                 } else {
                     val += ';' + name + ':' +
-                    (t == b && b == l && l == r ? t :
-                        t == b && l == r ? (t + ' ' + l) :
-                            l == r ? (t + ' ' + l + ' ' + b) : (t + ' ' + r + ' ' + b + ' ' + l)) + ';'
+                        (t == b && b == l && l == r ? t :
+                            t == b && l == r ? (t + ' ' + l) :
+                                l == r ? (t + ' ' + l + ' ' + b) : (t + ' ' + r + ' ' + b + ' ' + l)) + ';'
                 }
                 return val;
             }
@@ -1244,8 +1244,8 @@
         },
         sort: function (array, compareFn) {
             compareFn = compareFn || function (item1, item2) {
-                return item1.localeCompare(item2);
-            };
+                    return item1.localeCompare(item2);
+                };
             for (var i = 0, len = array.length; i < len; i++) {
                 for (var j = i, length = array.length; j < length; j++) {
                     if (compareFn(array[i], array[j]) > 0) {
@@ -1676,10 +1676,65 @@
             B = _({input: 1, button: 1, select: 1, textarea: 1, label: 1}),
             C = X(_({a: 1}), B),
             D = X({iframe: 1}, C),
-            E = _({hr: 1, ul: 1, menu: 1, div: 1, blockquote: 1, noscript: 1, table: 1, center: 1, address: 1, dir: 1, pre: 1, h5: 1, dl: 1, h4: 1, noframes: 1, h6: 1, ol: 1, h1: 1, h3: 1, h2: 1}),
+            E = _({
+                hr: 1,
+                ul: 1,
+                menu: 1,
+                div: 1,
+                blockquote: 1,
+                noscript: 1,
+                table: 1,
+                center: 1,
+                address: 1,
+                dir: 1,
+                pre: 1,
+                h5: 1,
+                dl: 1,
+                h4: 1,
+                noframes: 1,
+                h6: 1,
+                ol: 1,
+                h1: 1,
+                h3: 1,
+                h2: 1
+            }),
             F = _({ins: 1, del: 1, script: 1, style: 1}),
-            G = X(_({b: 1, acronym: 1, bdo: 1, 'var': 1, '#': 1, abbr: 1, code: 1, br: 1, i: 1, cite: 1, kbd: 1, u: 1, strike: 1, s: 1, tt: 1, strong: 1, q: 1, samp: 1, em: 1, dfn: 1, span: 1}), F),
-            H = X(_({sub: 1, img: 1, embed: 1, object: 1, sup: 1, basefont: 1, map: 1, applet: 1, font: 1, big: 1, small: 1}), G),
+            G = X(_({
+                b: 1,
+                acronym: 1,
+                bdo: 1,
+                'var': 1,
+                '#': 1,
+                abbr: 1,
+                code: 1,
+                br: 1,
+                i: 1,
+                cite: 1,
+                kbd: 1,
+                u: 1,
+                strike: 1,
+                s: 1,
+                tt: 1,
+                strong: 1,
+                q: 1,
+                samp: 1,
+                em: 1,
+                dfn: 1,
+                span: 1
+            }), F),
+            H = X(_({
+                sub: 1,
+                img: 1,
+                embed: 1,
+                object: 1,
+                sup: 1,
+                basefont: 1,
+                map: 1,
+                applet: 1,
+                font: 1,
+                big: 1,
+                small: 1
+            }), G),
             I = X(_({p: 1}), H),
             J = X(_({iframe: 1}), H, B),
             K = _({
@@ -1902,7 +1957,18 @@
             $removeEmptyBlock: _({'p': 1, 'div': 1}),
 
             //在table元素里的元素列表
-            $tableContent: _({caption: 1, col: 1, colgroup: 1, tbody: 1, td: 1, tfoot: 1, th: 1, thead: 1, tr: 1, table: 1}),
+            $tableContent: _({
+                caption: 1,
+                col: 1,
+                colgroup: 1,
+                tbody: 1,
+                td: 1,
+                tfoot: 1,
+                th: 1,
+                thead: 1,
+                tr: 1,
+                table: 1
+            }),
             //不转换的标签
             $notTransContent: _({pre: 1, script: 1, style: 1, textarea: 1}),
             html: U,
@@ -3912,8 +3978,8 @@
         getChildCount: function (node, fn) {
             var count = 0, first = node.firstChild;
             fn = fn || function () {
-                return 1;
-            };
+                    return 1;
+                };
             while (first) {
                 if (fn(first)) {
                     count++;
@@ -5932,9 +5998,9 @@
                         }
                         if (!(start.nodeType == 3 && this.startOffset) &&
                             (child ?
-                                (!child.previousSibling || child.previousSibling.nodeType != 3)
-                                :
-                                (!start.lastChild || start.lastChild.nodeType != 3)
+                                    (!child.previousSibling || child.previousSibling.nodeType != 3)
+                                    :
+                                    (!start.lastChild || start.lastChild.nodeType != 3)
                             )
                         ) {
                             txtNode = this.document.createTextNode(fillChar);
@@ -7350,8 +7416,8 @@
                             var key = ti[0], param = ti[1];
                             if (/^(ctrl)(\+shift)?\+(\d+)$/.test(key.toLowerCase()) || /^(\d+)$/.test(key)) {
                                 if (( (RegExp.$1 == 'ctrl' ? (e.ctrlKey || e.metaKey) : 0)
-                                    && (RegExp.$2 != "" ? e[RegExp.$2.slice(1) + "Key"] : 1)
-                                    && keyCode == RegExp.$3
+                                        && (RegExp.$2 != "" ? e[RegExp.$2.slice(1) + "Key"] : 1)
+                                        && keyCode == RegExp.$3
                                     ) ||
                                     keyCode == RegExp.$1
                                 ) {
@@ -7526,7 +7592,7 @@
                     var child = this.body.firstChild, tmpNode;
                     if (!child || child.nodeType == 1 &&
                         (dtd.$cdata[child.tagName] || isCdataDiv(child) ||
-                        domUtils.isCustomeNode(child)
+                            domUtils.isCustomeNode(child)
                         )
                         && child === this.body.lastChild) {
                         this.body.innerHTML = '<p>' + (browser.ie ? '&nbsp;' : '<br/>') + '</p>' + this.body.innerHTML;
@@ -8909,8 +8975,8 @@
                     //这里边的\"做转换，要不用innerHTML直接被截断了，属性src
                     //有可能做的不够
                     attrhtml.push(a + (attrs[a] !== undefined ? '="' + (notTransAttrs[a] ? utils.html(attrs[a]).replace(/["]/g, function (a) {
-                        return '&quot;'
-                    }) : utils.unhtml(attrs[a])) + '"' : ''))
+                            return '&quot;'
+                        }) : utils.unhtml(attrs[a])) + '"' : ''))
                 }
                 attrhtml = attrhtml.join(' ');
             }
@@ -10711,7 +10777,7 @@
                 }
 
                 return notEmpty ? !domUtils.isEmptyBlock(node) : domUtils.isEmptyBlock(node, new RegExp('[\\s' + domUtils.fillChar
-                + ']', 'g'));
+                    + ']', 'g'));
             }
         }
 
@@ -11333,14 +11399,14 @@
                 ci = opt[0];
                 if (opt.length == 1) {
                     str = '<img src="' + ci.src + '" ' + (ci._src ? ' _src="' + ci._src + '" ' : '') +
-                    (ci.width ? 'width="' + ci.width + '" ' : '') +
-                    (ci.height ? ' height="' + ci.height + '" ' : '') +
-                    (ci['floatStyle'] == 'left' || ci['floatStyle'] == 'right' ? ' style="float:' + ci['floatStyle'] + ';"' : '') +
-                    (ci.title && ci.title != "" ? ' title="' + ci.title + '"' : '') +
-                    (ci.border && ci.border != "0" ? ' border="' + ci.border + '"' : '') +
-                    (ci.alt && ci.alt != "" ? ' alt="' + ci.alt + '"' : '') +
-                    (ci.hspace && ci.hspace != "0" ? ' hspace = "' + ci.hspace + '"' : '') +
-                    (ci.vspace && ci.vspace != "0" ? ' vspace = "' + ci.vspace + '"' : '') + '/>';
+                        (ci.width ? 'width="' + ci.width + '" ' : '') +
+                        (ci.height ? ' height="' + ci.height + '" ' : '') +
+                        (ci['floatStyle'] == 'left' || ci['floatStyle'] == 'right' ? ' style="float:' + ci['floatStyle'] + ';"' : '') +
+                        (ci.title && ci.title != "" ? ' title="' + ci.title + '"' : '') +
+                        (ci.border && ci.border != "0" ? ' border="' + ci.border + '"' : '') +
+                        (ci.alt && ci.alt != "" ? ' alt="' + ci.alt + '"' : '') +
+                        (ci.hspace && ci.hspace != "0" ? ' hspace = "' + ci.hspace + '"' : '') +
+                        (ci.vspace && ci.vspace != "0" ? ' vspace = "' + ci.vspace + '"' : '') + '/>';
                     if (ci['floatStyle'] == 'center') {
                         str = '<p style="text-align: center">' + str + '</p>';
                     }
@@ -11350,11 +11416,11 @@
                     for (var i = 0; ci = opt[i++];) {
                         ci.src += "?raw=true";
                         str = '<p ' + (ci['floatStyle'] == 'center' ? 'style="text-align: center" ' : '') + '><img src="' + ci.src + '" ' +
-                        (ci.width ? 'width="' + ci.width + '" ' : '') + (ci._src ? ' _src="' + ci._src + '" ' : '') +
-                        (ci.height ? ' height="' + ci.height + '" ' : '') +
-                        ' style="' + (ci['floatStyle'] && ci['floatStyle'] != 'center' ? 'float:' + ci['floatStyle'] + ';' : '') +
-                        (ci.border || '') + '" ' +
-                        (ci.title ? ' title="' + ci.title + '"' : '') + ' /></p>';
+                            (ci.width ? 'width="' + ci.width + '" ' : '') + (ci._src ? ' _src="' + ci._src + '" ' : '') +
+                            (ci.height ? ' height="' + ci.height + '" ' : '') +
+                            ' style="' + (ci['floatStyle'] && ci['floatStyle'] != 'center' ? 'float:' + ci['floatStyle'] + ';' : '') +
+                            (ci.border || '') + '" ' +
+                            (ci.title ? ' title="' + ci.title + '"' : '') + ' /></p>';
                         html.push(str);
                     }
                 }
@@ -11759,15 +11825,15 @@
                         switch (p) {
                             case 'size':
                                 cssStyle.push('font-size:' +
-                                ({
-                                    '1': '10',
-                                    '2': '12',
-                                    '3': '16',
-                                    '4': '18',
-                                    '5': '24',
-                                    '6': '32',
-                                    '7': '48'
-                                }[node.attrs[p]] || node.attrs[p]) + 'px');
+                                    ({
+                                        '1': '10',
+                                        '2': '12',
+                                        '3': '16',
+                                        '4': '18',
+                                        '5': '24',
+                                        '6': '32',
+                                        '7': '48'
+                                    }[node.attrs[p]] || node.attrs[p]) + 'px');
                                 break;
                             case 'color':
                                 cssStyle.push('color:' + node.attrs[p]);
@@ -11845,8 +11911,8 @@
                 UE.commands[cmd] = {
                     execCommand: function (cmdName, value) {
                         value = value || (this.queryCommandState(cmdName) ? 'none' : cmdName == 'underline' ? 'underline' :
-                            cmdName == 'fontborder' ? '1px solid #000' :
-                                'line-through');
+                                cmdName == 'fontborder' ? '1px solid #000' :
+                                    'line-through');
                         var me = this,
                             range = this.selection.getRange(),
                             text;
@@ -12724,8 +12790,8 @@
                 d = w.document;
             d.open();
             d.write('<!DOCTYPE html><html><head><meta charset="utf-8"/><script src="' + this.options.UEDITOR_HOME_URL + 'ueditor.parse.js"></script><script>' +
-            "setTimeout(function(){uParse('div',{rootPath: '" + this.options.UEDITOR_HOME_URL + "'})},300)" +
-            '</script></head><body><div>' + this.getContent(null, null, true) + '</div></body></html>');
+                "setTimeout(function(){uParse('div',{rootPath: '" + this.options.UEDITOR_HOME_URL + "'})},300)" +
+                '</script></head><body><div>' + this.getContent(null, null, true) + '</div></body></html>');
             d.close();
         },
         notNeedUndo: 1
@@ -14724,8 +14790,8 @@
             //bk.start.innerHTML = '&nbsp;';
             bk.start.style.display = '';
             pastebin.style.cssText = "position:absolute;width:1px;height:1px;overflow:hidden;left:-1000px;white-space:nowrap;top:" +
-                //要在现在光标平行的位置加入，否则会出现跳动的问题
-            domUtils.getXY(bk.start).y + 'px';
+                    //要在现在光标平行的位置加入，否则会出现跳动的问题
+                domUtils.getXY(bk.start).y + 'px';
 
             range.selectNodeContents(pastebin).select(true);
 
@@ -17135,15 +17201,15 @@
                 },
                 initStyle: function () {
                     utils.cssRule('imagescale', '.edui-editor-imagescale{display:none;position:absolute;border:1px solid #38B2CE;cursor:hand;-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;}' +
-                    '.edui-editor-imagescale span{position:absolute;width:6px;height:6px;overflow:hidden;font-size:0px;display:block;background-color:#3C9DD0;}'
-                    + '.edui-editor-imagescale .edui-editor-imagescale-hand0{cursor:nw-resize;top:0;margin-top:-4px;left:0;margin-left:-4px;}'
-                    + '.edui-editor-imagescale .edui-editor-imagescale-hand1{cursor:n-resize;top:0;margin-top:-4px;left:50%;margin-left:-4px;}'
-                    + '.edui-editor-imagescale .edui-editor-imagescale-hand2{cursor:ne-resize;top:0;margin-top:-4px;left:100%;margin-left:-3px;}'
-                    + '.edui-editor-imagescale .edui-editor-imagescale-hand3{cursor:w-resize;top:50%;margin-top:-4px;left:0;margin-left:-4px;}'
-                    + '.edui-editor-imagescale .edui-editor-imagescale-hand4{cursor:e-resize;top:50%;margin-top:-4px;left:100%;margin-left:-3px;}'
-                    + '.edui-editor-imagescale .edui-editor-imagescale-hand5{cursor:sw-resize;top:100%;margin-top:-3px;left:0;margin-left:-4px;}'
-                    + '.edui-editor-imagescale .edui-editor-imagescale-hand6{cursor:s-resize;top:100%;margin-top:-3px;left:50%;margin-left:-4px;}'
-                    + '.edui-editor-imagescale .edui-editor-imagescale-hand7{cursor:se-resize;top:100%;margin-top:-3px;left:100%;margin-left:-3px;}');
+                        '.edui-editor-imagescale span{position:absolute;width:6px;height:6px;overflow:hidden;font-size:0px;display:block;background-color:#3C9DD0;}'
+                        + '.edui-editor-imagescale .edui-editor-imagescale-hand0{cursor:nw-resize;top:0;margin-top:-4px;left:0;margin-left:-4px;}'
+                        + '.edui-editor-imagescale .edui-editor-imagescale-hand1{cursor:n-resize;top:0;margin-top:-4px;left:50%;margin-left:-4px;}'
+                        + '.edui-editor-imagescale .edui-editor-imagescale-hand2{cursor:ne-resize;top:0;margin-top:-4px;left:100%;margin-left:-3px;}'
+                        + '.edui-editor-imagescale .edui-editor-imagescale-hand3{cursor:w-resize;top:50%;margin-top:-4px;left:0;margin-left:-4px;}'
+                        + '.edui-editor-imagescale .edui-editor-imagescale-hand4{cursor:e-resize;top:50%;margin-top:-4px;left:100%;margin-left:-3px;}'
+                        + '.edui-editor-imagescale .edui-editor-imagescale-hand5{cursor:sw-resize;top:100%;margin-top:-3px;left:0;margin-left:-4px;}'
+                        + '.edui-editor-imagescale .edui-editor-imagescale-hand6{cursor:s-resize;top:100%;margin-top:-3px;left:50%;margin-left:-4px;}'
+                        + '.edui-editor-imagescale .edui-editor-imagescale-hand7{cursor:se-resize;top:100%;margin-top:-3px;left:100%;margin-left:-3px;}');
                 },
                 initEvents: function () {
                     var me = this;
@@ -17165,7 +17231,10 @@
                             break;
                         case 'mousemove':
                             if (me.dragId != -1) {
-                                me.updateContainerStyle(me.dragId, {x: e.clientX - me.prePos.x, y: e.clientY - me.prePos.y});
+                                me.updateContainerStyle(me.dragId, {
+                                    x: e.clientX - me.prePos.x,
+                                    y: e.clientY - me.prePos.y
+                                });
                                 me.prePos.x = e.clientX;
                                 me.prePos.y = e.clientY;
                                 elementUpdated = true;
@@ -17175,7 +17244,10 @@
                             break;
                         case 'mouseup':
                             if (me.dragId != -1) {
-                                me.updateContainerStyle(me.dragId, {x: e.clientX - me.prePos.x, y: e.clientY - me.prePos.y});
+                                me.updateContainerStyle(me.dragId, {
+                                    x: e.clientX - me.prePos.x,
+                                    y: e.clientY - me.prePos.y
+                                });
                                 me.updateTargetElement();
                                 if (me.target.parentNode) me.attachTo(me.target);
                                 me.dragId = -1;
@@ -17854,19 +17926,19 @@
             switch (type) {
                 case 'image':
                     str = '<img ' + (id ? 'id="' + id + '"' : '') + ' width="' + width + '" height="' + height + '" _url="' + url + '" class="' + classname.replace(/\bvideo-js\b/, '') + '"' +
-                    ' src="' + me.options.UEDITOR_HOME_URL + 'themes/default/images/spacer.gif" style="background:url(' + me.options.UEDITOR_HOME_URL + 'themes/default/images/videologo.gif) no-repeat center center; border:1px solid gray;' + (align ? 'float:' + align + ';' : '') + '" />'
+                        ' src="' + me.options.UEDITOR_HOME_URL + 'themes/default/images/spacer.gif" style="background:url(' + me.options.UEDITOR_HOME_URL + 'themes/default/images/videologo.gif) no-repeat center center; border:1px solid gray;' + (align ? 'float:' + align + ';' : '') + '" />'
                     break;
                 case 'embed':
                     str = '<embed type="application/x-shockwave-flash" class="' + classname + '" pluginspage="http://www.macromedia.com/go/getflashplayer"' +
-                    ' src="' + utils.html(url) + '" width="' + width + '" height="' + height + '"' + (align ? ' style="float:' + align + '"' : '') +
-                    ' wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true" >';
+                        ' src="' + utils.html(url) + '" width="' + width + '" height="' + height + '"' + (align ? ' style="float:' + align + '"' : '') +
+                        ' wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true" >';
                     break;
                 case 'video':
                     var ext = url.substr(url.lastIndexOf('.') + 1);
                     if (ext == 'ogv') ext = 'ogg';
                     str = '<video' + (id ? ' id="' + id + '"' : '') + ' class="' + classname + ' video-js" ' + (align ? ' style="float:' + align + '"' : '') +
-                    ' controls preload="none" width="' + width + '" height="' + height + '" src="' + url + '" data-setup="{}">' +
-                    '<source src="' + url + '" type="video/' + ext + '" /></video>';
+                        ' controls preload="none" width="' + width + '" height="' + height + '" src="' + url + '" data-setup="{}">' +
+                        '<source src="' + url + '" type="video/' + ext + '" /></video>';
                     break;
             }
             return str;
@@ -20420,8 +20492,8 @@
                             width = me.body.offsetWidth -
                                 (needIEHack ? parseInt(domUtils.getComputedStyle(me.body, 'margin-left'), 10) * 2 : 0) - defaultValue.tableBorder * 2 - (me.options.offsetWidth || 0);
                         me.execCommand('insertHTML', '<table  ' +
-                        ( isFullCol && isFullRow ? 'width="' + width + '"' : '') +
-                        '>' + table.innerHTML.replace(/>\s*</g, '><').replace(/\bth\b/gi, "td") + '</table>')
+                            ( isFullCol && isFullRow ? 'width="' + width + '"' : '') +
+                            '>' + table.innerHTML.replace(/>\s*</g, '><').replace(/\bth\b/gi, "td") + '</table>')
                     }
                     me.fireEvent('contentchange');
                     me.fireEvent('saveScene');
@@ -22388,7 +22460,10 @@
                                 label: lang.threecolorgradient,
                                 cmdName: "settablebackground",
                                 exec: function () {
-                                    this.execCommand("settablebackground", {repeat: true, colorList: ["#aaa", "#bbb", "#ccc"]});
+                                    this.execCommand("settablebackground", {
+                                        repeat: true,
+                                        colorList: ["#aaa", "#bbb", "#ccc"]
+                                    });
                                 }
                             }
                         ]
@@ -23248,10 +23323,22 @@
         var me = this;
         me.setOpt({
             'customstyle': [
-                {tag: 'h1', name: 'tc', style: 'font-size:32px;font-weight:bold;border-bottom:#ccc 2px solid;padding:0 4px 0 0;text-align:center;margin:0 0 20px 0;'},
-                {tag: 'h1', name: 'tl', style: 'font-size:32px;font-weight:bold;border-bottom:#ccc 2px solid;padding:0 4px 0 0;text-align:left;margin:0 0 10px 0;'},
+                {
+                    tag: 'h1',
+                    name: 'tc',
+                    style: 'font-size:32px;font-weight:bold;border-bottom:#ccc 2px solid;padding:0 4px 0 0;text-align:center;margin:0 0 20px 0;'
+                },
+                {
+                    tag: 'h1',
+                    name: 'tl',
+                    style: 'font-size:32px;font-weight:bold;border-bottom:#ccc 2px solid;padding:0 4px 0 0;text-align:left;margin:0 0 10px 0;'
+                },
                 {tag: 'span', name: 'im', style: 'font-size:16px;font-style:italic;font-weight:bold;line-height:18px;'},
-                {tag: 'span', name: 'hi', style: 'font-size:16px;font-style:italic;font-weight:bold;color:rgb(51, 153, 204);line-height:18px;'}
+                {
+                    tag: 'span',
+                    name: 'hi',
+                    style: 'font-size:16px;font-style:italic;font-weight:bold;color:rgb(51, 153, 204);line-height:18px;'
+                }
             ]
         });
         me.commands['customstyle'] = {
@@ -23972,8 +24059,8 @@
 
             if (filetype == 'image') {
                 loadingHtml = '<img class="loadingclass" id="' + loadingId + '" src="' +
-                me.options.themePath + me.options.theme +
-                '/images/spacer.gif" title="' + (me.getLang('autoupload.loading') || '') + '" >';
+                    me.options.themePath + me.options.theme +
+                    '/images/spacer.gif" title="' + (me.getLang('autoupload.loading') || '') + '" >';
                 successHandler = function (data) {
                     var link = urlPrefix + data.url,
                         loader = me.document.getElementById(loadingId);
@@ -23988,10 +24075,10 @@
                 };
             } else {
                 loadingHtml = '<p>' +
-                '<img class="loadingclass" id="' + loadingId + '" src="' +
-                me.options.themePath + me.options.theme +
-                '/images/spacer.gif" title="' + (me.getLang('autoupload.loading') || '') + '" >' +
-                '</p>';
+                    '<img class="loadingclass" id="' + loadingId + '" src="' +
+                    me.options.themePath + me.options.theme +
+                    '/images/spacer.gif" title="' + (me.getLang('autoupload.loading') || '') + '" >' +
+                    '</p>';
                 successHandler = function (data) {
                     var link = urlPrefix + data.url,
                         loader = me.document.getElementById(loadingId);
@@ -24696,11 +24783,11 @@
                 wrapper = btnIframeDoc.createElement('div');
 
                 wrapper.innerHTML = '<form id="edui_form_' + timestrap + '" target="edui_iframe_' + timestrap + '" method="POST" enctype="multipart/form-data" action="' + me.getOpt('serverUrl') + '" ' +
-                'style="' + btnStyle + '">' +
-                '<input id="edui_input_' + timestrap + '" type="file" accept="image/*" name="' + me.options.imageFieldName + '" ' +
-                'style="' + btnStyle + '">' +
-                '</form>' +
-                '<iframe id="edui_iframe_' + timestrap + '" name="edui_iframe_' + timestrap + '" style="display:none;width:0;height:0;border:0;margin:0;padding:0;position:absolute;"></iframe>';
+                    'style="' + btnStyle + '">' +
+                    '<input id="edui_input_' + timestrap + '" type="file" accept="image/*" name="' + me.options.imageFieldName + '" ' +
+                    'style="' + btnStyle + '">' +
+                    '</form>' +
+                    '<iframe id="edui_iframe_' + timestrap + '" name="edui_iframe_' + timestrap + '" style="display:none;width:0;height:0;border:0;margin:0;padding:0;position:absolute;"></iframe>';
 
                 wrapper.className = 'edui-' + me.options.theme;
                 wrapper.id = me.ui.id + '_iframeupload';
@@ -25009,9 +25096,9 @@
                             icon = iconDir + getFileIcon(item.url);
                             title = item.title || item.url.substr(item.url.lastIndexOf('/') + 1);
                             html += '<p style="line-height: 16px;">' +
-                            '<img style="vertical-align: middle; margin-right: 2px;" src="' + icon + '" _src="' + icon + '" />' +
-                            '<a style="font-size:12px; color:#0066cc;" href="' + item.url + '" title="' + title + '">' + title + '</a>' +
-                            '</p>';
+                                '<img style="vertical-align: middle; margin-right: 2px;" src="' + icon + '" _src="' + icon + '" />' +
+                                '<a style="font-size:12px; color:#0066cc;" href="' + item.url + '" title="' + title + '">' + title + '</a>' +
+                                '</p>';
                         }
                         me.execCommand('insertHtml', html);
                     }
@@ -26108,8 +26195,8 @@
                 popup.addListener('postrender', utils.bind(function () {
                     popup.getDom('body').appendChild(
                         uiUtils.createElementByHtml('<div id="' +
-                        this.popup.id + '_bordereraser" class="edui-bordereraser edui-background" style="width:' +
-                        (uiUtils.getClientRect(this.getDom()).width + 20) + 'px"></div>')
+                            this.popup.id + '_bordereraser" class="edui-bordereraser edui-background" style="width:' +
+                            (uiUtils.getClientRect(this.getDom()).width + 20) + 'px"></div>')
                     );
                     popup.getDom().className += ' ' + this.className;
                 }, this));
@@ -27269,7 +27356,7 @@
                     contentHtml = this.content;
                 } else if (this.iframeUrl) {
                     contentHtml = '<span id="' + this.id + '_contmask" class="dialogcontmask"></span><iframe id="' + this.id +
-                    '_iframe" class="%%-iframe" height="100%" width="100%" frameborder="0" src="' + this.iframeUrl + '"></iframe>';
+                        '_iframe" class="%%-iframe" height="100%" width="100%" frameborder="0" src="' + this.iframeUrl + '"></iframe>';
                 }
                 return contentHtml;
             },
@@ -27282,8 +27369,8 @@
                         buff[i] = this.buttons[i].renderHtml();
                     }
                     footHtml = '<div class="%%-foot">' +
-                    '<div id="##_buttons" class="%%-buttons">' + buff.join('') + '</div>' +
-                    '</div>';
+                        '<div id="##_buttons" class="%%-buttons">' + buff.join('') + '</div>' +
+                        '</div>';
                 }
 
                 return '<div id="##" class="%%"><div ' + ( !this.fullscreen ? 'class="%%"' : 'class="%%-wrap edui-dialog-fullscreen-flag"' ) + '><div id="##_body" class="%%-body">' +
@@ -29049,11 +29136,11 @@
                                 return;
                             }
                             str = '<nobr>' + editor.getLang("property") + ': ' +
-                            '<span onclick=$$._onImgSetFloat("none") class="edui-clickable">' + editor.getLang("default") + '</span>&nbsp;&nbsp;' +
-                            '<span onclick=$$._onImgSetFloat("left") class="edui-clickable">' + editor.getLang("justifyleft") + '</span>&nbsp;&nbsp;' +
-                            '<span onclick=$$._onImgSetFloat("right") class="edui-clickable">' + editor.getLang("justifyright") + '</span>&nbsp;&nbsp;' +
-                            '<span onclick=$$._onImgSetFloat("center") class="edui-clickable">' + editor.getLang("justifycenter") + '</span>&nbsp;&nbsp;' +
-                            '<span onclick="$$._onImgEditButtonClick(\'' + dialogName + '\');" class="edui-clickable">' + editor.getLang("modify") + '</span></nobr>';
+                                '<span onclick=$$._onImgSetFloat("none") class="edui-clickable">' + editor.getLang("default") + '</span>&nbsp;&nbsp;' +
+                                '<span onclick=$$._onImgSetFloat("left") class="edui-clickable">' + editor.getLang("justifyleft") + '</span>&nbsp;&nbsp;' +
+                                '<span onclick=$$._onImgSetFloat("right") class="edui-clickable">' + editor.getLang("justifyright") + '</span>&nbsp;&nbsp;' +
+                                '<span onclick=$$._onImgSetFloat("center") class="edui-clickable">' + editor.getLang("justifycenter") + '</span>&nbsp;&nbsp;' +
+                                '<span onclick="$$._onImgEditButtonClick(\'' + dialogName + '\');" class="edui-clickable">' + editor.getLang("modify") + '</span></nobr>';
 
                             !html && (html = popup.formatHtml(str))
 
@@ -29336,7 +29423,7 @@
                     }
 
                     scalelayer.style.cssText = "position:absolute;left:0;display:;top:0;background-color:#41ABFF;opacity:0.4;filter: Alpha(opacity=40);width:" + editorHolder.offsetWidth + "px;height:"
-                    + editorHolder.offsetHeight + "px;z-index:" + (editor.options.zIndex + 1);
+                        + editorHolder.offsetHeight + "px;z-index:" + (editor.options.zIndex + 1);
 
                     domUtils.on(doc, "mousemove", move);
                     domUtils.on(editorDocument, "mouseup", up);
@@ -29472,7 +29559,7 @@
             var editor = new UE.Editor(options);
             editor.options.editor = editor;
             utils.loadFile(document, {
-                href: editor.options.themePath + editor.options.theme + "/css/ueditor.css",
+                href: editor.options.themePath + editor.options.theme + "/css/ueditor.min.css",
                 tag: "link",
                 type: "text/css",
                 rel: "stylesheet"
