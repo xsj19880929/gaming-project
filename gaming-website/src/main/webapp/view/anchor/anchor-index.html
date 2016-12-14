@@ -138,23 +138,7 @@
                 </a></li>
             </ul>
         </div>
-        <div class="game_pinglun">
-            <div class="game_pinglun_title">
-                <p>玩家评论</p>
-                <span>（已有<em>0</em>条评论）</span></div>
-            <div class="game_pinglun_box">
-                <dl>
-                    <dd>
-                        <textarea placeholder="请输入评论内容..." name="saytext" id="saytext"></textarea>
-                    </dd>
-                    <dt>
-                    <p class="ppw_face emotion">表情</p>
-                    <input type="submit" class="ppw_comment_bt" value="发表评论"/>
-                    </dt>
-                </dl>
-            </div>
-            <div class="game_more_comment" style="width:744px;">加载更多</div>
-        </div>
+        <div th:replace="/comment.html::comment(${anchorZone.id},${anchorZone.name},${currentUrl})"></div>
     </div>
     <div class="main_right">
         <div class="right_top">

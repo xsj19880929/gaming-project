@@ -38,6 +38,11 @@ public class PictureWebService {
         return pictureService.list(picture, offset, fetchSize);
     }
 
+    public int pictureListSize() {
+        Picture picture = new Picture();
+        return pictureService.listSize(picture);
+    }
+
     public List<Map<String, Object>> listHotTags() {
         TagMapping tagMapping = new TagMapping();
         tagMapping.setTagType(TagType.picture);

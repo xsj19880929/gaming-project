@@ -28,7 +28,7 @@
     <div class="pubu_list" id="wrapper">
         <div class="brand-list">
             <div class="brand-bd cle" id="brand-waterfall">
-                <div class="item" id="brand-a" th:each="picture:${pictureList}">
+                <div class="item" id="brand-a" th:each="picture:${pictureList.list}">
                     <p class="p1"><a href="#" th:href="/picture/${picture.id}.html"
                                      th:title="${picture.description}"><img th:img-src="${picture.image}"
                                                                             th:alt="${picture.description}"/></a></p>
@@ -41,19 +41,7 @@
         </div>
     </div>
     <!--页码-->
-    <div class="newyiiPager">
-        <ol id="yw0" class="yiiPager">
-            <li>共2页：</li>
-            <li class="page hidden"><a href="">首页</a></li>
-            <li class="previous hidden"><a href="#">上一页</a></li>
-            <li class="page selected"><span>1</span></li>
-            <li class="page"><a href="#">2</a></li>
-            <li class="page"><a href="#">3</a></li>
-            <li class="page"><a href="#">4</a></li>
-            <li class="next"><a href="#">下一页</a></li>
-            <li class="last"><a href="#">末页</a></li>
-        </ol>
-    </div>
+    <div th:replace="/pager.html::page(${pictureList.pageName},${pictureList.currentPage},${pictureList.totalPage})"></div>
 </div>
 <script>
     $(function () {

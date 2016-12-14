@@ -1,6 +1,8 @@
 package com.ygccw.website.pc.picture.controller;
 
+import com.ygccw.website.database.FindResultToSale;
 import com.ygccw.website.pc.picture.service.PictureWebService;
+import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.picture.entity.Picture;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author soldier
@@ -22,8 +25,20 @@ public class PictureController {
     Environment env;
 
     @RequestMapping(value = "/picture.html", method = RequestMethod.GET)
-    public String pictureList(final ModelMap model) {
-        model.put("pictureList", pictureWebService.pictureList(0, 15));
+    public String pictureList(HttpServletRequest request, final ModelMap model) {
+        int currentPage = 1;
+        int fetchSize = 15;
+        String url = PageUtils.getPageUrl(request);
+        model.put("pictureList", new FindResultToSale(pictureWebService.pictureList(PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), pictureWebService.pictureListSize(), currentPage, fetchSize, url));
+        model.put("tagList", pictureWebService.listHotTags());
+        return "/view/picture/picture-list.html";
+    }
+
+    @RequestMapping(value = "/picture_{currentPage}.html", method = RequestMethod.GET)
+    public String pictureListPage(HttpServletRequest request, final ModelMap model, @PathVariable Integer currentPage) {
+        String url = PageUtils.getPageUrl(request);
+        int fetchSize = 20;
+        model.put("pictureList", new FindResultToSale(pictureWebService.pictureList(PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), pictureWebService.pictureListSize(), currentPage, fetchSize, url));
         model.put("tagList", pictureWebService.listHotTags());
         return "/view/picture/picture-list.html";
     }
