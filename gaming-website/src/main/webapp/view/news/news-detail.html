@@ -46,7 +46,8 @@
             <!--</ol>-->
             <!--</div>-->
             <div class="detail_tag">
-                <p class="p1">标签：<a href="#" th:each="tagTrade:${info.tagMappingWebList}"
+                <p class="p1">标签：<a href="#" th:href="/news/tag/${tagTrade.tagsId}_1.html"
+                                    th:each="tagTrade:${info.tagMappingWebList}"
                                     th:text="${tagTrade.name}">电竞</a></p>
                 <div class="p2">
                     <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a>

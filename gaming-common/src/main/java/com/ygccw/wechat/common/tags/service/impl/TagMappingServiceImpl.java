@@ -74,4 +74,15 @@ public class TagMappingServiceImpl implements TagMappingService {
     public List<Map<String, Object>> listHotTags(TagMapping tagMapping, int offset, int fetchSize) {
         return tagMappingDao.listHotTags(tagMapping, offset, fetchSize);
     }
+
+    @Override
+    public List<TagMapping> listByTagsIdPaging(Long tagsId, int offset, int fetchSize) {
+        return tagMappingDao.listByTagsIdPaging(tagsId, offset, fetchSize);
+
+    }
+
+    @Override
+    public int listByTagsIdPagingSize(Long tagsId) {
+        return tagMappingDao.listByTagsIdPagingSize(tagsId);
+    }
 }

@@ -86,5 +86,18 @@ public class TagMappingDao {
         jpaAccess.update(query);
     }
 
+    public List<TagMapping> listByTagsIdPaging(Long tagsId, int offset, int fetchSize) {
+        QueryBuilder queryBuilder = QueryBuilder.query("from TagMapping").append("status", 1).append("tagsId", tagsId)
+                .skipEmptyFields().orderBy("createTime").desc();
+        Query query = queryBuilder.build().from(offset).fetch(fetchSize);
+        return jpaAccess.find(query);
+    }
+
+    public int listByTagsIdPagingSize(Long tagsId) {
+        QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from TagMapping").append("status", 1).append("tagsId", tagsId)
+                .skipEmptyFields().orderBy("createTime").desc();
+        return Integer.parseInt(jpaAccess.find(queryBuilder.build()).get(0).toString());
+    }
+
 
 }

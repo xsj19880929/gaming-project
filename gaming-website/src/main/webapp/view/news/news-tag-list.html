@@ -14,20 +14,12 @@
 <div th:replace="/head.html::top('news')"></div>
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="#">电竞首页</a>&gt;<a href="#">全部资讯</a>&gt;<em>行业新闻</em></div>
+    <div class="position"><a href="#">电竞首页</a>&gt;<a href="/news.html">全部资讯</a>&gt;<em
+            th:text="${tag.tagZoneType.label}+新闻">行业新闻</em>
+    </div>
     <!--全部资讯,左边-->
     <div class="all_zixun">
-        <div class="index_tit_two"><span class="text_left">全部资讯</span></div>
-        <div class="tab_three">
-            <ul>
-                <li th:classappend="${infoList.pageName}=='/news_trade'?'hover'"><a
-                        href="/news_trade_1.html">行业</a><em></em></li>
-                <li th:classappend="${infoList.pageName}=='/news_match'?'hover'"><a
-                        href="/news_match_1.html">赛事</a><em></em></li>
-                <li th:classappend="${infoList.pageName}=='/news_anchor'?'hover'"><a
-                        href="/news_anchor_1.html">主播</a><em></em></li>
-            </ul>
-        </div>
+        <div class="index_tit_two"><span class="text_left" th:text="${tag.name}">全部资讯</span></div>
         <!--tab内容-->
         <div class="tab_one_con2">
             <div class="tab_deatil" id="con_one_1" style="display:block">

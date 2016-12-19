@@ -6,6 +6,7 @@ import com.ygccw.website.pc.info.service.InfoWebService;
 import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.tags.enums.TagZoneType;
+import com.ygccw.wechat.common.tags.service.TagsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author soldier
@@ -21,6 +23,8 @@ import javax.inject.Inject;
 public class InfoController {
     @Inject
     private InfoWebService infoWebService;
+    @Inject
+    private TagsService tagsService;
 
     @RequestMapping(value = "/news.html", method = RequestMethod.GET)
     public String list(final ModelMap model) {
@@ -76,5 +80,16 @@ public class InfoController {
         model.put("nextInfo", infoWebService.nextInfo(infoWeb));
         model.put("lastInfo", infoWebService.lastInfo(infoWeb));
         return "/view/news/news-detail.html";
+    }
+
+    @RequestMapping(value = "/news/tag/{tagId}_{currentPage}.html", method = RequestMethod.GET)
+    public String tagList(HttpServletRequest request, final ModelMap model, @PathVariable Long tagId, @PathVariable Integer currentPage) {
+        int fetchSize = 9;
+        model.put("infoList", new FindResultToSale(infoWebService.infoListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), infoWebService.infoListByTagIdSize(tagId), currentPage, fetchSize, PageUtils.getPageUrl(request)));
+        model.put("newsTopList", infoWebService.newsListTop(0, 10));
+        model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
+        model.put("videoTopList", infoWebService.videoListTop(0, 4));
+        model.put("tag", tagsService.findById(tagId));
+        return "/view/news/news-tag-list.html";
     }
 }
