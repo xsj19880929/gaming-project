@@ -3,7 +3,9 @@ package com.ygccw.website.pc.anchor.controller;
 import com.ygccw.website.database.FindResultToSale;
 import com.ygccw.website.pc.anchor.service.AnchorWebService;
 import com.ygccw.website.pc.info.model.InfoWeb;
+import com.ygccw.website.pc.video.service.VideoWebService;
 import com.ygccw.website.utils.PageUtils;
+import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 public class AnchorController {
     @Inject
     private AnchorWebService anchorWebService;
+    @Inject
+    private VideoWebService videoWebService;
 
     @RequestMapping(value = "/anchor.html", method = RequestMethod.GET)
     public String anchorList(final ModelMap model) {
@@ -120,4 +124,34 @@ public class AnchorController {
         model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
         return "/view/anchor/anchor-news-detail.html";
     }
+
+    @RequestMapping(value = "/anchor/video-list/{anchorZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
+    public String anchorVideoList(HttpServletRequest request, final ModelMap model, @PathVariable Long anchorZoneId, @PathVariable Integer currentPage) {
+        int fetchSize = 9;
+        String url = PageUtils.getPageUrl(request);
+        Info info = new Info();
+        info.setZoneId(anchorZoneId);
+        model.put("anchorZone", anchorWebService.findAnchorById(anchorZoneId));
+        model.put("anchorVideoList", new FindResultToSale(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListSize(info), currentPage, fetchSize, url));
+        model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(anchorZoneId, 0, 10));
+        model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
+        model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
+        return "/view/anchor/anchor-video-list.html";
+    }
+
+    @RequestMapping(value = "/anchor/video/{id}.html", method = RequestMethod.GET)
+    public String findAnchorVideo(final ModelMap model, @PathVariable Long id) {
+        InfoWeb info = anchorWebService.findInfoById(id);
+        model.put("info", info);
+        model.put("anchorZone", anchorWebService.findAnchorById(info.getZoneId()));
+        model.put("pictureTopList", anchorWebService.pictureListTop(0, 6));
+        model.put("likeInfoList", anchorWebService.likeInfoList(info, 10));
+        model.put("nextInfo", anchorWebService.nextInfo(info));
+        model.put("lastInfo", anchorWebService.lastInfo(info));
+        model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(info.getZoneId(), 0, 10));
+        model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
+        model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
+        return "/view/anchor/anchor-video-detail.html";
+    }
+
 }

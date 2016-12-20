@@ -16,32 +16,27 @@
     <div class="home_page_left">
         <div class="position" style="margin-left:22px;"><a href="/">电竞首页</a>&gt;<a
                 th:href="/anchor/${anchorZone.id}.html" th:text="${anchorZone.name}">英雄联盟电竞专区</a>&gt;<em>赛事资讯</em></div>
-        <div style="margin-left:10px;" th:replace="/view/anchor/anchor-bar.html::bar('news',${anchorZone.id})"></div>
-        <div class="zhubo_zixun02">
-            <div class="zhubo_news" th:each="news,iterStat:${anchorNewsList.list}"><span><a href="#"
-                                                                                            th:href="/anchor/news/${news.id}.html"
-                                                                                            th:title="${news.title}"><img
-                    src="/static/temp/list03.jpg" th:img-src="/image/204x108${news.titleImage}"/></a></span>
-                <div class="zhubo_news_main"><a href="#" th:href="/anchor/news/${news.id}.html"
-                                                th:title="${news.title}">
-                    <h1 th:text="${news.title}">lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
-                </a>
-                    <dl>
-                        <dt><img src="/static/img/time.png"/> <span
-                                th:text="${#calendars.format(news.publishTime, 'MM-dd HH:mm')}">10-20 10:35</span></dt>
-                        <dd><img src="/static/img/bq.jpg"/>&nbsp;<a href="#"
-                                                                    th:each="tagTrade:${news.tagMappingWebList}"
-                                                                    th:text="${tagTrade.name}">电竞</a></dd>
-                        <div class="clear"></div>
-                    </dl>
-                    <ul th:text="${news.content}">
-                        近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。
-                    </ul>
-                </div>
-                <div class="clear"></div>
+        <div style="margin-left:10px;" th:replace="/view/anchor/anchor-bar.html::bar('video',${anchorZone.id})"></div>
+        <div id="con_one_1" style="display:block">
+            <div class="index_video_right zone_view_box">
+                <ul>
+                    <li th:each="video:${anchorVideoList.list}">
+                        <a href="#" class="img" th:title="${video.title}"
+                           th:href="/anchor/video/${video.id}.html">
+                            <img th:img-src="/image/170x160${video.titleImage}" th:alt="${video.title}"/>
+                            <p class="p1"><span></span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
+                           th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
+                        <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
+                        </p>
+                    </li>
+
+                </ul>
             </div>
             <!--页码-->
-            <div th:replace="/pager.html::page(${anchorNewsList.pageName},${anchorNewsList.currentPage},${anchorNewsList.totalPage})"></div>
+            <div th:replace="/pager.html::page(${anchorVideoList.pageName},${anchorVideoList.currentPage},${anchorVideoList.totalPage})"></div>
         </div>
         <!--<div class="game_pinglun">-->
         <!--<div class="game_pinglun_title">-->
@@ -65,7 +60,7 @@
         <div class="right_mid">
             <div class="index_tit_two"><span class="text_left">个人视频排行</span></div>
             <dl class="video_rank">
-                <dt th:each="anchorVideo,iterStat:${anchorVideoList}"
+                <dt th:each="anchorVideo,iterStat:${anchorVideoTopList}"
                     th:if="${iterStat.index==0||iterStat.index==1||iterStat.index==2}"><span
                         style="background:url(/static/img/zhubo/zhubo_shipin.png) no-repeat;"
                         th:text="${iterStat.index+1}">1</span><a href="#" th:text="${anchorVideo.title}"

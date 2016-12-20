@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<div th:fragment="top(anchorZone)">
+    <div style="height:41px; border-bottom:1px solid #ececec; width:100%; text-align:center;background:#fff"><img
+            src="/static/temp/top.png"/></div>
+    <div class="zhubo_con_box">
+        <div class="zhubo_data">
+            <div class="head_img"><span><img src="/static/img/circle_bg3.png"/></span><img
+                    src="/static/img/zhubo/zhubo.png" th:img-src="/image/120x120${anchorZone.icoImage}"/></div>
+            <div class="data">
+                <dl>
+                    <dt>
+                    <h1 th:text="${anchorZone.name}">小智脑残粉</h1>
+                    <h2>人气：<span th:text="${anchorZone.visitCount}">58621</span></h2>
+                    <a href="">
+                        <h3><span style="margin-left:15px;margin-top:10px;"><img
+                                src="/static/img/zhubo/tianjia.png"/></span><span
+                                style="margin-left:6px;margin-top:7px;color:#fff;font-size:14px;">收藏</span></h3>
+                    </a> </dt>
+                    <dd th:text="${anchorZone.introduction}"> LOL新晋视频集锦创作者，【秀逗时刻】、【最佳坑姿势】作者。以最搞笑的方式，为你带来欢乐。喜欢不要忘记点收藏。
+                    </dd>
+                </dl>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
