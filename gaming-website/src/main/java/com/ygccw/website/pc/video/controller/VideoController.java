@@ -7,6 +7,7 @@ import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoVideoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
+import com.ygccw.wechat.common.tags.service.TagsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author soldier
@@ -22,6 +24,8 @@ import javax.inject.Inject;
 public class VideoController {
     @Inject
     VideoWebService videoWebService;
+    @Inject
+    TagsService tagsService;
 
     @RequestMapping(value = "/video.html", method = RequestMethod.GET)
     public String videoList(final ModelMap model) {
@@ -105,5 +109,17 @@ public class VideoController {
         model.put("nextVideo", videoWebService.nextInfo(infoWeb));
         model.put("lastVideo", videoWebService.lastInfo(infoWeb));
         return "/view/video/video-detail.html";
+    }
+
+    @RequestMapping(value = "/video/tag/{tagId}_{currentPage}.html", method = RequestMethod.GET)
+    public String tagList(HttpServletRequest request, final ModelMap model, @PathVariable Long tagId, @PathVariable Integer currentPage) {
+        int fetchSize = 16;
+        model.put("anchorZoneList", videoWebService.anchorList(0, 8));
+        model.put("matchZoneList", videoWebService.matchZoneList(0, 8));
+        model.put("anchorZoneListMore", videoWebService.anchorList(8, 100));
+        model.put("matchZoneListMore", videoWebService.matchZoneList(8, 100));
+        model.put("videoList", new FindResultToSale(videoWebService.videoListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListByTagIdSize(tagId), currentPage, fetchSize, PageUtils.getPageUrl(request)));
+        model.put("tag", tagsService.findById(tagId));
+        return "/view/video/video-tag-list.html";
     }
 }

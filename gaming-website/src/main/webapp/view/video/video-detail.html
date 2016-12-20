@@ -7,7 +7,11 @@
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/wcg.js"></script>
     <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
-    <title>视频详细列表</title>
+    <title th:text="${#strings.isEmpty(video.seoTitle)==null?video.title:video.seoTitle}">电竞网</title>
+    <meta name="Keywords" content="电竞关键词"
+          th:attr="content=${#strings.isEmpty(video.seoKeywords)==null?video.title:video.seoKeywords}"/>
+    <meta name="description" content="电竞内容"
+          th:attr="content=${#strings.isEmpty(video.seoDescription)==null?video.title:video.seoDescription}"/>
 </head>
 
 <body>
@@ -16,7 +20,7 @@
 
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="#">电竞首页</a>&gt;<em>视频列表</em>&gt;<em
+    <div class="position"><a href="/">电竞首页</a>&gt;<a href="/video.html">视频列表</a>&gt;<em
             th:text="${video.title}">LSPL2016春季赛常规赛第三周INGvsMF</em></div>
 
     <!--主要内容区-->
@@ -56,8 +60,9 @@
             <div class="left_bottom">
                 <dl>
                     <dt>
-                    <h1>标签：<span th:each="tagTrade:${video.tagMappingWebList}"
-                                 th:text="${tagTrade.name}"><a href="#">电子竞技</a></span></h1>
+                    <h1>标签：<a th:each="tagTrade:${video.tagMappingWebList}"
+                              th:text="${tagTrade.name}" th:href="/video/tag/${tagTrade.tagsId}_1.html">电子竞技</a>
+                    </h1>
                     <h2>上一篇：<span><a href="###" class="a1" th:if="${lastVideo!=null}" th:text="${lastVideo.title}"
                                      th:href="/video/${lastVideo.id}.html">天天酷跑地狱熊爵熊队长极速5000米对比</a><span
                             th:if="${lastVideo==null}">没有了</span></span></h2>

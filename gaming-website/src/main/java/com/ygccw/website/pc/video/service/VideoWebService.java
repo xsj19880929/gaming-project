@@ -5,6 +5,7 @@ import com.ygccw.website.pc.info.service.InfoWebService;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.service.InfoService;
+import com.ygccw.wechat.common.tags.entity.TagMapping;
 import com.ygccw.wechat.common.tags.service.TagMappingService;
 import com.ygccw.wechat.common.tags.service.TagsService;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
@@ -14,6 +15,7 @@ import com.ygccw.wechat.common.zone.service.MatchZoneService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -92,5 +94,19 @@ public class VideoWebService {
 
     public Info nextInfo(InfoWeb infoWeb) {
         return infoWebService.nextInfo(infoWeb);
+    }
+
+    public List<Info> videoListByTagId(Long tagId, int offset, int fetchSize) {
+        List<Info> infoList = new ArrayList<>();
+        List<TagMapping> tagMappingList = tagMappingService.listByTagsIdPaging(tagId, offset, fetchSize);
+        for (TagMapping tagMapping : tagMappingList) {
+            Info info = infoService.findById(tagMapping.getEntityId());
+            infoList.add(info);
+        }
+        return infoList;
+    }
+
+    public int videoListByTagIdSize(Long tagId) {
+        return tagMappingService.listByTagsIdPagingSize(tagId);
     }
 }

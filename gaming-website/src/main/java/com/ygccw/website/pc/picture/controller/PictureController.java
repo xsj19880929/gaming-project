@@ -4,6 +4,7 @@ import com.ygccw.website.database.FindResultToSale;
 import com.ygccw.website.pc.picture.service.PictureWebService;
 import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.picture.entity.Picture;
+import com.ygccw.wechat.common.tags.service.TagsService;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,6 +24,8 @@ public class PictureController {
     PictureWebService pictureWebService;
     @Inject
     Environment env;
+    @Inject
+    TagsService tagsService;
 
     @RequestMapping(value = "/picture.html", method = RequestMethod.GET)
     public String pictureList(HttpServletRequest request, final ModelMap model) {
@@ -51,6 +54,14 @@ public class PictureController {
         model.put("pictureLikeList", pictureWebService.likePictureList(picture, 5));
         model.put("imageServer", env.getProperty("out.image.downloadUrl"));
         return "/view/picture/picture-detail.html";
+    }
+
+    @RequestMapping(value = "/picture/tag/{tagId}_{currentPage}.html", method = RequestMethod.GET)
+    public String tagList(HttpServletRequest request, final ModelMap model, @PathVariable Long tagId, @PathVariable Integer currentPage) {
+        int fetchSize = 20;
+        model.put("pictureList", new FindResultToSale(pictureWebService.pictureListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), pictureWebService.pictureListByTagIdSize(tagId), currentPage, fetchSize, PageUtils.getPageUrl(request)));
+        model.put("tagName", tagsService.findById(tagId).getName());
+        return "/view/picture/picture-tag-list.html";
     }
 
 

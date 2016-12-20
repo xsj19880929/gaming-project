@@ -13,6 +13,7 @@ import core.framework.util.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -94,5 +95,20 @@ public class PictureWebService {
         return pictureList;
 
     }
+
+    public List<Picture> pictureListByTagId(Long tagId, int offset, int fetchSize) {
+        List<Picture> pictureList = new ArrayList<>();
+        List<TagMapping> tagMappingList = tagMappingService.listByTagsIdPaging(tagId, offset, fetchSize);
+        for (TagMapping tagMapping : tagMappingList) {
+            Picture picture = pictureService.findById(tagMapping.getEntityId());
+            pictureList.add(picture);
+        }
+        return pictureList;
+    }
+
+    public int pictureListByTagIdSize(Long tagId) {
+        return tagMappingService.listByTagsIdPagingSize(tagId);
+    }
+
 
 }

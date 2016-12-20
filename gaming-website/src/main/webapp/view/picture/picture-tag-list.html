@@ -14,16 +14,7 @@
 <div th:replace="/head.html::top('picture')"></div>
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="#">电竞首页</a>&gt;<em>竞技美图</em></div>
-    <!--赛事筛选-->
-    <div class="list_choose">
-        <div class="list_choose_con">
-            <dl>
-                <dt>热门标签</dt>
-                <dd class="dd1"><a href="#" th:href="/picture/tag/${tag.id}_1.html" th:each="tag:${tagList}"
-                                   th:text="${tag.name}">ShowGirl</a></dd>
-            </dl>
-        </div>
+    <div class="position"><a href="/">电竞首页</a>&gt;<a href="/picture.html">竞技美图</a>&gt;<em th:text="${tagName}">美女</em>
     </div>
     <!--瀑布流-->
     <div class="pubu_list" id="wrapper">
