@@ -6,6 +6,7 @@ import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.website.pc.video.service.VideoWebService;
 import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.info.entity.Info;
+import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import org.springframework.stereotype.Controller;
@@ -130,6 +131,7 @@ public class AnchorController {
         int fetchSize = 9;
         String url = PageUtils.getPageUrl(request);
         Info info = new Info();
+        info.setInfoZoneType(InfoZoneType.anchorZone);
         info.setZoneId(anchorZoneId);
         model.put("anchorZone", anchorWebService.findAnchorById(anchorZoneId));
         model.put("anchorVideoList", new FindResultToSale(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListSize(info), currentPage, fetchSize, url));

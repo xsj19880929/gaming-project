@@ -197,5 +197,19 @@ public class GameWebService {
         return infoWebService.pictureListTop(offset, fetchSize);
     }
 
+    public List<Picture> gamePictureList(Long matchZoneId, int offset, int fetchSize) {
+        Picture picture = new Picture();
+        picture.setPictureZoneType(PictureZoneType.matchZone);
+        picture.setZoneId(matchZoneId);
+        return pictureService.list(picture, offset, fetchSize);
+    }
+
+    public int gamePictureListSize(Long matchZoneId) {
+        Picture picture = new Picture();
+        picture.setPictureZoneType(PictureZoneType.matchZone);
+        picture.setZoneId(matchZoneId);
+        return pictureService.listSize(picture);
+    }
+
 
 }

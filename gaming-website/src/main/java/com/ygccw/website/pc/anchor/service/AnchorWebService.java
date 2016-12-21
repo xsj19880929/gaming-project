@@ -191,12 +191,14 @@ public class AnchorWebService {
 
     public List<Picture> anchorPictureList(Long anchorZoneId, int offset, int fetchSize) {
         Picture picture = new Picture();
+        picture.setPictureZoneType(PictureZoneType.anchorZone);
         picture.setZoneId(anchorZoneId);
         return pictureService.list(picture, offset, fetchSize);
     }
 
     public int anchorPictureListSize(Long anchorZoneId) {
         Picture picture = new Picture();
+        picture.setPictureZoneType(PictureZoneType.anchorZone);
         picture.setZoneId(anchorZoneId);
         return pictureService.listSize(picture);
     }
