@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <title>新闻列表</title>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/view/anchor/anchor-head.html::top(${anchorZone})"></div>
+<div class="home_page">
+    <div class="home_page_left">
+        <div class="position" style="margin-left:22px;"><a href="/">电竞首页</a>&gt;<a
+                th:href="/anchor/${anchorZone.id}.html" th:text="${anchorZone.name}">英雄联盟电竞专区</a>&gt;<em>主播图集</em></div>
+        <div style="margin-left:10px;" th:replace="/view/anchor/anchor-bar.html::bar('picture',${anchorZone.id})"></div>
+        <!--瀑布流-->
+        <div class="pubu_list" id="wrapper">
+            <div class="zone-brand-list">
+                <div class="brand-bd cle" id="brand-waterfall">
+                    <div class="item" id="brand-a" th:each="picture:${anchorPictureList.list}">
+                        <p class="p1"><a href="#" th:href="/picture/${picture.id}.html"
+                                         th:title="${picture.description}"><img th:img-src="${picture.image}"
+                                                                                th:alt="${picture.description}"/></a>
+                        </p>
+                        <p class="p2"><a href="#" th:text="${picture.description}" th:href="/picture/${picture.id}.html"
+                                         th:title="${picture.description}">LOL国服主播排行榜TOP8：第一名小智你们服不服？</a></p>
+                        <p class="p3"><span class="time"
+                                            th:text="${#calendars.format(picture.createTime, 'yyyy-MM-dd')}">2016-05-02</span><span
+                                class="eye" th:text="${picture.visitCount}">214321</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--页码-->
+        <div th:replace="/pager.html::page(${anchorPictureList.pageName},${anchorPictureList.currentPage},${anchorPictureList.totalPage})"></div>
+
+    </div>
+    <div class="main_right">
+        <div class="right_mid">
+            <div class="index_tit_two"><span class="text_left">个人视频排行</span></div>
+            <dl class="video_rank">
+                <dt th:each="anchorVideo,iterStat:${anchorVideoTopList}"
+                    th:if="${iterStat.index==0||iterStat.index==1||iterStat.index==2}"><span
+                        style="background:url(/static/img/zhubo/zhubo_shipin.png) no-repeat;"
+                        th:text="${iterStat.index+1}">1</span><a href="#" th:text="${anchorVideo.title}"
+                                                                 th:href="/video/${anchorVideo.id}.html"
+                                                                 th:title="${anchorVideo.title}">驰骋野区的风暴骑手：新版本打野人攻略</a>
+                </dt>
+                <dt th:each="anchorVideo,iterStat:${anchorVideoTopList}"
+                    th:if="${iterStat.index!=0&&iterStat.index!=1&&iterStat.index!=2}"><span
+                        th:text="${iterStat.index+4}">4</span><a href="#" th:text="${anchorVideo.title}"
+                                                                 th:href="/video/${anchorVideo.id}.html"
+                                                                 th:title="${anchorVideo.title}">英雄联盟S6总决赛详情：举办地为北美</a>
+                </dt>
+            </dl>
+        </div>
+        <div class="right_mid">
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor.html"
+                                                                              class="more vider_more">更多</a>
+            </div>
+            <ul class="hot_zhubo">
+                <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}.html"
+                                                                 th:title="${anchorZone.name}">
+                    <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
+                    <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"/>
+                    </p>
+                    <p class="p3" th:text="${anchorZone.name}">拳头暴君</p>
+                </a></li>
+            </ul>
+        </div>
+        <div class="right_mid">
+            <div class="index_tit_two"><span class="text_left">热门游戏</span> <a href="/game.html" class="more vider_more">更多</a>
+            </div>
+            <ul class="hot_zixun">
+                <li th:each="matchZone:${matchZoneTopList}"><a href="#"
+                                                               th:text="${matchZone.name}"
+                                                               th:href="/game/${matchZone.id}.html"
+                                                               th:title="${matchZone.name}">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#brand-waterfall').waterfall();
+    });
+    // 瀑布流插件
+    // pannysp 2013.4.9
+    ;
+    (function ($) {
+        $.fn.waterfall = function (options) {
+            var df = {
+                item: '.item',
+                margin: 20,
+                addfooter: true
+            };
+            options = $.extend(df, options);
+            return this.each(function () {
+                var $box = $(this), pos = [],
+                        _box_width = $box.width(),
+                        $items = $box.find(options.item),
+                        _owidth = $items.eq(0).outerWidth() + options.margin,
+                        _oheight = $items.eq(0).outerHeight() + options.margin,
+                        _num = Math.floor(_box_width / _owidth);
+                (function () {
+                    var i = 0;
+                    for (; i < _num; i++) {
+                        pos.push([i * _owidth, 0]);
+                    }
+                })();
+                $items.each(function () {
+                    var _this = $(this),
+                            _temp = 0,
+                            _height = _this.outerHeight() + options.margin;
+
+                    _this.hover(function () {
+                        _this.addClass('hover');
+                    }, function () {
+                        _this.removeClass('hover');
+                    });
+
+                    for (var j = 0; j < _num; j++) {
+                        if (pos[j][1] < pos[_temp][1]) {
+                            //暂存top值最小那列的index
+                            _temp = j;
+                        }
+                    }
+                    this.style.cssText = 'left:' + pos[_temp][0] + 'px; top:' + pos[_temp][1] + 'px;';
+                    //插入后，更新下该列的top值
+                    pos[_temp][1] = pos[_temp][1] + _height;
+                });
+
+                // 计算top值最大的赋给外围div
+                (function () {
+                    var i = 0, tops = [];
+                    for (; i < _num; i++) {
+                        tops.push(pos[i][1]);
+                    }
+                    tops.sort(function (a, b) {
+                        return a - b;
+                    });
+                    $box.height(tops[_num - 1]);
+                    //增加尾部填充div
+                    if (options.addfooter) {
+                        addfooter(tops[_num - 1]);
+                    }
+                })();
+                function addfooter(max) {
+                    var addfooter = document.createElement('div');
+                    addfooter.className = 'item additem';
+                    for (var i = 0; i < _num; i++) {
+                        if (max != pos[i][1]) {
+                            var clone = addfooter.cloneNode(),
+                                    _height = max - pos[i][1] - options.margin;
+                            clone.style.cssText = 'left:' + pos[i][0] + 'px; top:' + pos[i][1] + 'px; height:' + _height + 'px;';
+                            $box[0].appendChild(clone);
+                        }
+                    }
+                }
+            });
+        }
+    })(jQuery);</script>
+<!--线上琵琶网首页的foot，这里只是截图-->
+<div style="width:100%; text-align:center; clear:both"><img src="/static/temp/foot.png"
+                                                            style="margin-top:20px;width:100%;"/></div>
+</body>
+</html>

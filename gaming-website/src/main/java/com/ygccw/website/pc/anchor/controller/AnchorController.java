@@ -154,4 +154,16 @@ public class AnchorController {
         return "/view/anchor/anchor-video-detail.html";
     }
 
+    @RequestMapping(value = "/anchor/picture-list/{anchorZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
+    public String anchorPictureList(HttpServletRequest request, final ModelMap model, @PathVariable Long anchorZoneId, @PathVariable Integer currentPage) {
+        int fetchSize = 9;
+        String url = PageUtils.getPageUrl(request);
+        model.put("anchorZone", anchorWebService.findAnchorById(anchorZoneId));
+        model.put("anchorPictureList", new FindResultToSale(anchorWebService.anchorPictureList(anchorZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), anchorWebService.anchorPictureListSize(anchorZoneId), currentPage, fetchSize, url));
+        model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(anchorZoneId, 0, 10));
+        model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
+        model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
+        return "/view/anchor/anchor-picture-list.html";
+    }
+
 }

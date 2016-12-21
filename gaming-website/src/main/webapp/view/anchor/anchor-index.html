@@ -84,7 +84,8 @@
                         <p class="p2"><em></em></p>
                     </a> <a href="#" class="text" th:text="${video.title}" th:href="/video/${video.id}.html"
                             th:title="${video.title}">电竞校园联赛炉石传说Top3</a></li>
-                    <li style="margin-left:15px;" th:each="video:${anchorVideoList}" th:if="${iterStat.index>2}"><a
+                    <li style="margin-left:15px;" th:each="video,iterStat:${anchorVideoList}"
+                        th:if="${iterStat.index>2}"><a
                             href="#" class="img" th:href="/video/${video.id}.html"
                             th:title="${video.title}"> <img
                             src="/static/temp/temp03.jpg"
@@ -133,16 +134,16 @@
         <div class="right_mid">
             <div class="index_tit_two"><span class="text_left">个人视频排行</span></div>
             <dl class="video_rank">
-                <dt th:each="anchorVideo,iterStat:${anchorVideoList}"
-                    th:if="${iterStat.index==0||iterStat.index==1||iterStat.index==2}"><span
+                <dt th:each="anchorVideo,iterStat:${anchorVideoTopList}"
+                    th:if="${iterStat.index<3}"><span
                         style="background:url(/static/img/zhubo/zhubo_shipin.png) no-repeat;"
                         th:text="${iterStat.index+1}">1</span><a href="#" th:text="${anchorVideo.title}"
                                                                  th:href="/video/${anchorVideo.id}.html"
                                                                  th:title="${anchorVideo.title}">驰骋野区的风暴骑手：新版本打野人攻略</a>
                 </dt>
-                <dt th:each="anchorVideo,iterStat:${anchorVideoList}"
-                    th:if="${iterStat.index!=0&&iterStat.index!=1&&iterStat.index!=2}"><span
-                        th:text="${iterStat.index+4}">4</span><a href="#" th:text="${anchorVideo.title}"
+                <dt th:each="anchorVideo,iterStat:${anchorVideoTopList}"
+                    th:if="${iterStat.index>2}"><span
+                        th:text="${iterStat.index+1}">4</span><a href="#" th:text="${anchorVideo.title}"
                                                                  th:href="/video/${anchorVideo.id}.html"
                                                                  th:title="${anchorVideo.title}">英雄联盟S6总决赛详情：举办地为北美</a>
                 </dt>

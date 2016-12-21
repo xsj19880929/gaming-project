@@ -3249,6 +3249,85 @@
     display: none
 }
 
+.zone-brand-list {
+    width: 780px;
+    margin-left: 8px;
+    overflow: hidden;
+}
+
+.zone-brand-list .brand-bd {
+    position: relative;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+.zone-brand-list .item {
+    position: absolute;
+    width: 230px;
+    background: #fff;
+    top: 0;
+    left: 40%;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.zone-brand-list .hover {
+    box-shadow: 0px 1px 8px rgba(200, 200, 200, .6);
+    border-color: #c8c8c8;
+}
+
+.zone-brand-list .item .p1, .zone-brand-list .item .p1 img {
+    width: 230px;
+}
+
+.zone-brand-list .item .p1 img:hover {
+    opacity: 0.9;
+}
+
+.zone-brand-list .item .p2 {
+    font-size: 12px;
+    margin: 10px;
+    line-height: 20px;
+}
+
+.zone-brand-list .item .p3 {
+    line-height: 40px;
+    height: 40px;
+    background: #fafafa;
+    border-top: 1px solid #f0f0f0;
+    color: #a6a6a6;
+}
+
+.zone-brand-list .item .p3 .time {
+    float: left;
+    width: 40%;
+    overflow: hidden;
+    background: url(../img/time.png) left center no-repeat;
+    padding-left: 20px;
+    margin-left: 10px;
+}
+
+.zone-brand-list .item .p3 .eye {
+    float: right;
+    background: url(../img/eye.png) left center no-repeat;
+    padding-left: 20px;
+    margin-right: 10px;
+}
+
+.zone-brand-list .item .p2 a:hover {
+    text-decoration: none;
+}
+
+.zone-brand-list .additem {
+    padding: 0;
+    width: 280px;
+    border: none;
+    display: none
+}
+
 .pic_detail_con {
     width: 100%;
     float: left;
