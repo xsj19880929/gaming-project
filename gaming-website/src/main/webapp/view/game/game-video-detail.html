@@ -15,7 +15,9 @@
 <div th:replace="/view/game/game-head.html::top('video',${info.zoneId})"></div>
 <!--面包屑-->
 <div class="position" style="margin-left:120px;height: 26px;line-height: 26px;"><a href="/">电竞首页</a>&gt;<a
-        th:href="/game/${matchZone.id}.html" th:text="${matchZone.name}">英雄联盟电竞专区</a>&gt;<em>赛事视频</em></div>
+        th:href="/game/${info.zoneId}.html">英雄联盟电竞专区</a>&gt;<a
+        th:href="/game/video-list/${info.zoneId}/page_1.html">赛事视频</a>&gt;<em th:text="${info.title}">赛事视频</em>
+</div>
 <div class="game_main_box">
     <div class="game_main_left">
         <div class="zixun_left_con clearfix game_gai">
@@ -99,7 +101,7 @@
                 <li th:each="picture:${pictureTopList}">
                     <a href="#" th:title="${picture.description}"
                        th:href="/picture/${picture.id}.html"><img src="/static/temp/girl1.jpg"
-                                                                  th:img-src="/image/234X148${picture.image}"
+                                                                  th:img-src="/image/234x148${picture.image}"
                                                                   th:alt="${picture.description}"/>
                         <p><span th:text="${picture.description}">最美拉克丝COS 水灵大眼神似小鹿斑比</span></p></a>
                 </li>

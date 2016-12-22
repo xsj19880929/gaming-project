@@ -185,6 +185,7 @@ public class GameController {
         model.put("nextInfo", gameWebService.nextInfo(infoWeb));
         model.put("lastInfo", gameWebService.lastInfo(infoWeb));
         model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 2));
-        return "/view/game/game-news-detail.html";
+        model.put("matchZone", gameWebService.findById(id));
+        return "/view/game/game-video-detail.html";
     }
 }

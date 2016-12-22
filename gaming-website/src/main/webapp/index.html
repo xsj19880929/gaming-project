@@ -100,7 +100,7 @@
     <ul class="wcg_list_two">
         <li th:each="matchZone,iterStat:${matchZoneNewList}" th:class="${iterStat.index==2?'no_margin':''}">
             <p class="p1"><a href="#" th:href="/game/${matchZone.id}.html" th:title="${matchZone.name}"><img
-                    th:img-src="/image/373X155${matchZone.icoImage}" th:alt="${matchZone.name}"/></a>
+                    th:img-src="/image/373x155${matchZone.icoImage}" th:alt="${matchZone.name}"/></a>
             </p>
             <p class="p2"><a href="#" th:text="${matchZone.name}" th:href="/game/${matchZone.id}.html"
                              th:title="${matchZone.name}">LPL2016英雄联盟职业联赛春季赛</a></p>
@@ -133,7 +133,7 @@
                 <ul>
                     <li th:each="info:${infoNewestList}">
                         <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
-                                th:img-src="/image/204X108${info.titleImage}"
+                                th:img-src="/image/204x108${info.titleImage}"
                                 th:alt="${info.title}"/></a>
                         </div>
                         <div class="d2">
@@ -155,7 +155,7 @@
                 <ul>
                     <li th:each="info:${infoTradeList}">
                         <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
-                                th:img-src="/image/204X108${info.titleImage}"
+                                th:img-src="/image/204x108${info.titleImage}"
                                 th:alt="${info.title}"/></a>
                         </div>
                         <div class="d2">
@@ -175,7 +175,7 @@
             <div class="tab_deatil" id="con_one_3">
                 <ul>
                     <li th:each="info:${infoMatchZoneList}">
-                        <div class="d1"><a href="#"><img th:img-src="/image/204X108${info.titleImage}"
+                        <div class="d1"><a href="#"><img th:img-src="/image/204x108${info.titleImage}"
                                                          th:alt="${info.title}"/></a>
                         </div>
                         <div class="d2">
@@ -303,7 +303,7 @@
                             th:if="${iterStat.index==0||iterStat.index==1}"
                             th:class="${iterStat.odd==true?'no_border':''}">
                             <p class="p1"><a href="#"><span></span><img
-                                    th:img-src="/image/106X106${matchTeam.icoImage}"/></a></p>
+                                    th:img-src="/image/106x106${matchTeam.icoImage}"/></a></p>
                             <p class="p2">
                                 <span class="span01"><a href="#" th:text="${matchTeam.name}">Absolute Legends</a></span>
                                 <span class="span02"><em>所属项目：</em><img th:img-src="/image/28x28${matchZone.icoImage}"
