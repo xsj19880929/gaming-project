@@ -2,30 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
 <div th:fragment="top(selectedMenuName,id)">
     <!--线上的top内容,这个仅放截图-->
-    <div style="position:absolute;top:0;left:0;height:42px;text-align:center;background:black;filter:Alpha(opacity=70);background:rgba(0,0,0,0.7);">
-        <img src="/static/img/game/game_nav.png" style="width:100%">
+
+
+    <div class="game_top">
+        <div class="game_poster">
+            <img src="/static/img/game/game_nav.png" width=100%>
+        </div>
+        <img src="/static/img/game/game_banner.png" title="" alt="" width="100%"/>
+        <div class="game_nav">
+            <ul class="clearfix" style="">
+                <li th:classappend="${selectedMenuName}=='index'?'change'"><a href="#"
+                                                                              th:href="/game/${id}.html"><span><img
+                        src="/static/img/game/game_home.png"/></span>电竞专区</a></li>
+                <li th:classappend="${selectedMenuName}=='news'?'change'"><a href="#"
+                                                                             th:href="/game/news-list/${id}.html"><span><img
+                        src="/static/img/game/game_data.png"/></span>赛事资讯</a></li>
+                <li th:classappend="${selectedMenuName}=='video'?'change'"><a href="#"
+                                                                              th:href="/game/video-list/${id}/page_1.html"><span><img
+                        src="/static/img/game/game_video.png"/></span>精彩视频</a></li>
+                <li th:classappend="${selectedMenuName}=='team'?'change'"><a href="#"><span><img
+                        src="/static/img/game/game_team.png"/></span>参赛战队</a></li>
+                <li th:classappend="${selectedMenuName}=='picture'?'change'"><a href="#"
+                                                                                th:href="/game/picture-list/${id}/page_1.html"><span><img
+                        src="/static/img/game/game_pic.png"/></span>赛事图锦</a></li>
+                <li th:classappend="${selectedMenuName}=='website'?'change'"><a href="#"><span><img
+                        src="/static/img/game/game_over.png"/></span>攻略网站</a></li>
+            </ul>
+        </div>
     </div>
 
-    <div class="game_banner"></div>
 
-    <div class="game_nav" style="margin-bottom:46px;">
-        <ul>
-            <li th:classappend="${selectedMenuName}=='index'?'change'"><a href="#"
-                                                                          th:href="/game/${id}.html"><span><img
-                    src="/static/img/game/game_home.png"/></span>电竞专区</a></li>
-            <li th:classappend="${selectedMenuName}=='news'?'change'"><a href="#"
-                                                                         th:href="/game/news-list/${id}.html"><span><img
-                    src="/static/img/game/game_data.png"/></span>赛事资讯</a></li>
-            <li th:classappend="${selectedMenuName}=='video'?'change'"><a href="#"
-                                                                          th:href="/game/video-list/${id}/page_1.html"><span><img
-                    src="/static/img/game/game_video.png"/></span>精彩视频</a></li>
-            <li th:classappend="${selectedMenuName}=='team'?'change'"><a href="#"><span><img
-                    src="/static/img/game/game_team.png"/></span>参赛战队</a></li>
-            <li th:classappend="${selectedMenuName}=='picture'?'change'"><a href="#"
-                                                                            th:href="/game/picture-list/${id}/page_1.html"><span><img
-                    src="/static/img/game/game_pic.png"/></span>赛事图锦</a></li>
-            <li th:classappend="${selectedMenuName}=='website'?'change'"><a href="#"><span><img
-                    src="/static/img/game/game_over.png"/></span>攻略网站</a></li>
-        </ul>
-    </div>
 </div>

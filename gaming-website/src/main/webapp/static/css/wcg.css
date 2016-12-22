@@ -2417,12 +2417,34 @@
     height: 388px;
 }
 
+.game_top {
+    position: relative;
+}
+
+.game_poster {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 42px;
+    text-align: center;
+    background: black;
+    filter: Alpha(opacity=70);
+    background: rgba(0, 0, 0, 0.7);
+}
+
 .game_nav {
-    width: 1184px;
     height: 50px;
     margin-left: auto;
     margin-right: auto;
     margin-top: -50px;
+    position: absolute;
+    width: 100%;
+    bottom: 3px;
+}
+
+.game_nav ul {
+    margin: 0px auto;
+    width: 1182px;
 }
 
 .game_nav li {
@@ -2436,9 +2458,14 @@
 
 .game_nav li span {
     float: left;
-    margin-top: 13px;
+    /*margin-top: 13px;*/
     margin-left: 30px;
     width: 6px;
+}
+
+.game_nav li span img {
+    float: left;
+    margin-top: 13px;
 }
 
 .game_nav li a {
@@ -3587,12 +3614,13 @@
     text-align: left
 }
 
-
-
-
-
-
-
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+}
 
 
 
