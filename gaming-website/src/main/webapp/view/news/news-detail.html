@@ -15,7 +15,10 @@
 <div th:replace="/head.html::top('news')"></div>
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="#">电竞首页</a>&gt;<a href="#">全部资讯</a>&gt;<a href="#">行业新闻</a>&gt;<em
+    <div class="position"><a href="#">电竞首页</a>&gt;<a href="/news.html">全部资讯</a>&gt;<a
+            th:if="${info.infoZoneType.name}=='trade'" href="/news_trade_1.html">行业新闻</a><a
+            th:if="${info.infoZoneType.name}=='matchZone'" href="/news_game_1.html">赛事新闻</a><a
+            th:if="${info.infoZoneType.name}=='anchorZone'" href="/news_anchor_1.html">主播新闻</a>&gt;<em
             th:text="${info.title}">正文</em></div>
     <!--资讯详情,左边-->
     <div class="zixun_left">

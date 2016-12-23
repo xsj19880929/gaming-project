@@ -14,7 +14,10 @@
 <div th:replace="/head.html::top('news')"></div>
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="#">电竞首页</a>&gt;<a href="#">全部资讯</a>&gt;<em>行业新闻</em></div>
+    <div class="position"><a href="/">电竞首页</a>&gt;<a href="/news.html">全部资讯</a>&gt;<em
+            th:if="${infoList.pageName}=='/news_trade'">行业新闻</em><em
+            th:if="${infoList.pageName}=='/news_match'">赛事新闻</em><em
+            th:if="${infoList.pageName}=='/news_anchor'">主播新闻</em></div>
     <!--全部资讯,左边-->
     <div class="all_zixun">
         <div class="index_tit_two"><span class="text_left">全部资讯</span></div>

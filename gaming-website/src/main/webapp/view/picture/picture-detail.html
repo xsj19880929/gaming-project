@@ -29,6 +29,8 @@
 		</div>
 	</div>
 
+
+
     </script>
     <title>竞技美图详情页</title>
 </head>
@@ -38,7 +40,8 @@
 <div th:replace="/head.html::top('picture')"></div>
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="#">电竞首页</a>&gt;<a href="#">竞技美图</a>&gt;<em th:text="${picture.description}">不惧走光！韩国美女主播超短裙直播蹲起训练</em>
+    <div class="position"><a href="/">电竞首页</a>&gt;<a href="/picture.html">竞技美图</a>&gt;<em
+            th:text="${picture.description}">不惧走光！韩国美女主播超短裙直播蹲起训练</em>
     </div>
     <!--图片展示-->
     <div class="pic_detail_con">
