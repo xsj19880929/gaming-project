@@ -22,10 +22,10 @@
     <div class="game_main_left">
         <div class="all_zixun">
             <div class="index_tit_two" style="margin-left:10px;"><span class="text_left"
-                                                                       th:text="${matchZone.name}+'电竞资讯'">英雄联盟电竞资讯</span>
+                                                                       th:text="${matchZone.name}+'图集'">英雄联盟电竞资讯</span>
             </div>
             <!--瀑布流-->
-            <div class="pubu_list" id="wrapper">
+            <div class="pubu_list" id="wrapper" style="border-bottom:0px;">
                 <div class="zone-brand-list">
                     <div class="brand-bd cle" id="brand-waterfall">
                         <div class="item" id="brand-a" th:each="picture:${matchPictureList.list}">

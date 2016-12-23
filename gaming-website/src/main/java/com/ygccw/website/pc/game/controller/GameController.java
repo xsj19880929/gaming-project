@@ -143,12 +143,13 @@ public class GameController {
         model.put("nextInfo", gameWebService.nextInfo(infoWeb));
         model.put("lastInfo", gameWebService.lastInfo(infoWeb));
         model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 2));
+        model.put("matchZone", gameWebService.findById(infoWeb.getZoneId()));
         return "/view/game/game-news-detail.html";
     }
 
     @RequestMapping(value = "/game/video-list/{matchZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
     public String gameVideoList(HttpServletRequest request, final ModelMap model, @PathVariable Long matchZoneId, @PathVariable Integer currentPage) {
-        int fetchSize = 8;
+        int fetchSize = 12;
         String url = PageUtils.getPageUrl(request);
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.matchZone);
@@ -163,7 +164,7 @@ public class GameController {
 
     @RequestMapping(value = "/game/picture-list/{matchZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
     public String gamePictureList(HttpServletRequest request, final ModelMap model, @PathVariable Long matchZoneId, @PathVariable Integer currentPage) {
-        int fetchSize = 8;
+        int fetchSize = 9;
         String url = PageUtils.getPageUrl(request);
         model.put("matchZone", gameWebService.findById(matchZoneId));
         model.put("matchPictureList", new FindResultToSale(gameWebService.gamePictureList(matchZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), gameWebService.gamePictureListSize(matchZoneId), currentPage, fetchSize, url));
@@ -185,7 +186,7 @@ public class GameController {
         model.put("nextInfo", gameWebService.nextInfo(infoWeb));
         model.put("lastInfo", gameWebService.lastInfo(infoWeb));
         model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 2));
-        model.put("matchZone", gameWebService.findById(id));
+        model.put("matchZone", gameWebService.findById(infoWeb.getZoneId()));
         return "/view/game/game-video-detail.html";
     }
 }
