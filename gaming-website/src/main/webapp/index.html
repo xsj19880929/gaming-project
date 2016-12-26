@@ -84,11 +84,11 @@
         <!--</ul>-->
         <!--</div>-->
         <div class="index_con">
-            <ul class="clearfix">
-                <li class="hover" th:each="advWord:${advWordList}">
-                    <span th:id="${advWord.id}">21</span>
-                    <a th:href="${advWord.url}" class="a1" th:text="${advWord.name}">举手投足偶像范 阿狸粉红Party</a>
-                    <a th:href="${advWord.url}" th:text="${advWord.name}">《秀你一脸》精确制导 弹无虚发</a>
+            <ul class="clearfix" style="">
+
+                <li class="hover" th:each="info:${recommendInfoList}" style="">
+                    <a th:href="/news/${info.id}.html" class="a1" th:title="${info.title}" th:text="${info.title}">举手投足偶像范
+                        阿狸粉红Party</a>
                 </li>
 
             </ul>
@@ -123,8 +123,6 @@
                 <li onMouseOver="setTab('one',1,5)" id="one1" class="hover">推荐资讯</li>
                 <li onMouseOver="setTab('one',2,5)" id="one2">行业</li>
                 <li onMouseOver="setTab('one',3,5)" id="one3">赛事</li>
-                <!--<li onMouseOver="setTab('one',4,5)" id="one4">活动</li>-->
-                <!--<li onMouseOver="setTab('one',5,5)" id="one5">人物</li>-->
             </ul>
         </div>
         <!--tab内容-->
@@ -139,7 +137,8 @@
                         <div class="d2">
                             <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
                                              th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}">行业新闻</a><em
+                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}" target="_blank"
+                                             th:href="${info.infoZoneType.name=='matchZone'?'/news_match_1.html':info.infoZoneType.name=='anchorZone'?'/news_anchor_1.html':info.infoZoneType.name=='trade'?'/news_trade_1.html':''}">行业新闻</a><em
                                     th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
                                 10:35</em>
                             </p>
@@ -148,7 +147,7 @@
                         </div>
                     </li>
                 </ul>
-                <p class="add_more"><a href="#">查看更多</a></p>
+                <p class="add_more"><a href="/news.html" target="_blank">查看更多</a></p>
             </div>
 
             <div class="tab_deatil" id="con_one_2">
@@ -161,7 +160,7 @@
                         <div class="d2">
                             <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
                                              th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}">行业新闻</a><em
+                            <p class="p2"><a href="/news_trade_1.html" th:text="${info.infoZoneType.label}">行业新闻</a><em
                                     th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
                                 10:35</em>
                             </p>
@@ -170,7 +169,7 @@
                         </div>
                     </li>
                 </ul>
-                <p class="add_more"><a href="#">查看更多</a></p>
+                <p class="add_more"><a href="/news_trade_1.html" target="_blank">查看更多</a></p>
             </div>
             <div class="tab_deatil" id="con_one_3">
                 <ul>
@@ -181,8 +180,8 @@
                         <div class="d2">
                             <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
                                              th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}"
-                                             th:href="/news/${info.id}.html" th:title="${info.title}">行业新闻</a><em
+                            <p class="p2"><a href="/news_match_1.html" th:text="${info.infoZoneType.label}"
+                                             th:title="${info.title}">行业新闻</a><em
                                     th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
                                 10:35</em>
                             </p>
@@ -191,98 +190,8 @@
                         </div>
                     </li>
                 </ul>
-                <p class="add_more"><a href="#">查看更多</a></p>
+                <p class="add_more"><a href="/news_match_1.html" target="_blank">查看更多</a></p>
             </div>
-            <!--<div class="tab_deatil" id="con_one_4">-->
-            <!--<ul>-->
-            <!--<li>-->
-            <!--<div class="d1"><a href="#"><img src="static/temp/list04.jpg"/></a></div>-->
-            <!--<div class="d2">-->
-            <!--<p class="p1"><a href="#">444《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>-->
-            <!--<p class="p2"><a href="#">行业新闻</a><em>10-20 10:35</em></p>-->
-            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>-->
-            <!--<div class="d2">-->
-            <!--<p class="p1"><a href="#">《英雄联盟》主播55开直播提车 引大量玩家围观</a></p>-->
-            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
-            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<div class="d1"><a href="#"><img src="static/temp/list05.jpg"/></a></div>-->
-            <!--<div class="d2">-->
-            <!--<p class="p1"><a href="#">DOTA2冬季赛小蓝本彩蛋：新英雄深渊领主到来？</a></p>-->
-            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
-            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>-->
-            <!--<div class="d2">-->
-            <!--<p class="p1"><a href="#">电竞火爆催生千万身价网红主播 娱乐明星也入局</a></p>-->
-            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
-            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--<li class="no_border">-->
-            <!--<div class="d1"><a href="#"><img src="static/temp/list03.jpg"/></a></div>-->
-            <!--<div class="d2">-->
-            <!--<p class="p1"><a href="#">《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>-->
-            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
-            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--</ul>-->
-            <!--<p class="add_more"><a href="#">查看更多</a></p>-->
-            <!--</div>-->
-            <!--<div class="tab_deatil" id="con_one_5">-->
-            <!--<ul>-->
-            <!--<li>-->
-            <!--<div class="d1"><a href="#"><img src="static/temp/list02.jpg"/></a></div>-->
-            <!--<div class="d2">-->
-            <!--<p class="p1"><a href="#">55555《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>-->
-            <!--<p class="p2"><a href="#">行业新闻</a><em>10-20 10:35</em></p>-->
-            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<div class="d1"><a href="#"><img src="static/temp/list03.jpg"/></a></div>-->
-            <!--<div class="d2">-->
-            <!--<p class="p1"><a href="#">《英雄联盟》主播55开直播提车 引大量玩家围观</a></p>-->
-            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
-            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<div class="d1"><a href="#"><img src="static/temp/list05.jpg"/></a></div>-->
-            <!--<div class="d2">-->
-            <!--<p class="p1"><a href="#">DOTA2冬季赛小蓝本彩蛋：新英雄深渊领主到来？</a></p>-->
-            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
-            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<div class="d1"><a href="#"><img src="static/temp/list01.jpg"/></a></div>-->
-            <!--<div class="d2">-->
-            <!--<p class="p1"><a href="#">电竞火爆催生千万身价网红主播 娱乐明星也入局</a></p>-->
-            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
-            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--<li class="no_border">-->
-            <!--<div class="d1"><a href="#"><img src="static/temp/list03.jpg"/></a></div>-->
-            <!--<div class="d2">-->
-            <!--<p class="p1"><a href="#">《英雄联盟》选手UZI谈首秀：重归赛场后很开心</a></p>-->
-            <!--<p class="p2"><a href="#">主播资讯</a><em>10-20 10:35</em></p>-->
-            <!--<p class="p3">近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--</ul>-->
-            <!--<p class="add_more"><a href="#">查看更多</a></p>-->
-            <!--</div>-->
         </div>
     </div>
     <!--right-->
@@ -335,7 +244,7 @@
         <div class="index_zhubo">
             <div class="index_tit_two">
                 <span class="text_right">主播专题</span>
-                <a href="#" class="more">更多</a>
+                <a href="/anchor.html" target="_blank" class="more">更多</a>
             </div>
             <ul class="zhubo_list">
                 <li th:each="anchorZone:${anchorZoneList}">
@@ -498,7 +407,7 @@
 
 
 <!--线上琵琶网首页的foot，这里只是截图-->
-<div style="width:100%; text-align:center"><img src="static/temp/foot.png" style="width:100%;"/></div>
+<div th:replace="/bottom.html::bottom"></div>
 
 </body>
 </html>

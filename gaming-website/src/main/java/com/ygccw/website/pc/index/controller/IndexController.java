@@ -37,6 +37,7 @@ public class IndexController {
         model.put("infoPlayerVideoInfoList", indexWebService.findPlayerVideoInfoList());
         model.put("matchZoneTopList", indexWebService.findTopMatchZoneList());
         model.put("pictureList", indexWebService.findNewestPictureList());
+        model.put("recommendInfoList", indexWebService.findRecommendInfo());
         return "/index.html";
     }
 }

@@ -325,11 +325,13 @@
 }
 
 .index_con ul {
-    background: url(../img/ul_bg.jpg) repeat-y left;
+    list-style: none;
+    width: 420px;
+    overflow: hidden;
+    height: 355px;
 }
 
 .index_con li {
-    width: 100%;
     float: left;
     line-height: 18px;
     height: 18px;
@@ -338,6 +340,7 @@
     background-position: 7px 10px;
     position: relative;
     margin-bottom: 18px;
+    width: 210px;
 }
 
 .index_con li a {
@@ -1112,6 +1115,7 @@
     position: relative;
     padding: 0 10px;
     margin-bottom: 15px;
+    height: 1033px;
 }
 
 .tab_three {
@@ -3621,6 +3625,28 @@
     overflow: hidden;
     clear: both;
 }
+
+.copy_box {
+    height: 45px;
+    line-height: 45px;
+    width: 100%;
+}
+
+.copy_box p {
+    color: #737373;
+    font-size: 12px;
+    margin: 0 auto;
+    width: 1180px;
+}
+
+.copy_box p .left {
+    float: left;
+}
+
+.copy_box p .right {
+    float: right;
+}
+
 
 
 

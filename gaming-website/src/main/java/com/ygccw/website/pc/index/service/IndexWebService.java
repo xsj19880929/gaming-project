@@ -177,5 +177,16 @@ public class IndexWebService {
         return pictureService.list(picture, 0, 6);
     }
 
+    //首页新闻推荐内容
+    public List<Info> findRecommendInfo() {
+        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.index, RecommendType.news, 0, 20);
+        List<Info> infoWebList = new ArrayList<>();
+        for (RecommendMapping recommendMapping : recommendMappingList) {
+            Info info = infoService.findById(recommendMapping.getEntityId());
+            infoWebList.add(info);
+        }
+        return infoWebList;
+    }
+
 
 }

@@ -64,7 +64,8 @@
         </div>
         <!--热门主播-->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor.html" class="more">更多</a>
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor.html" target="_blank"
+                                                                              class="more">更多</a>
             </div>
             <ul class="hot_zhubo">
                 <li th:each="anchor:${anchorTopList}">
@@ -79,7 +80,7 @@
         </div>
         <!--热门资讯 -->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="/news.html"
+            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="/news.html" target="_blank"
                                                                               class="more">更多</a>
             </div>
             <ul class="hot_zixun">
@@ -92,6 +93,6 @@
 </div>
 
 <!--线上琵琶网首页的foot，这里只是截图-->
-<div style="width:100%; text-align:center; clear:both"><img src="/static/temp/foot.png" style="width:100%;"/></div>
+<div th:replace="/bottom.html::bottom"></div>
 </body>
 </html>

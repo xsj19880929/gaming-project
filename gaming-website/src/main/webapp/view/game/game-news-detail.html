@@ -96,7 +96,9 @@
         </div>
         <!--精选美图 -->
         <div class="about_pic clearfix">
-            <div class="index_tit_two"><span class="text_left padding1">精选美图</span><a href="#" class="more">更多</a></div>
+            <div class="index_tit_two"><span class="text_left padding1">精选美图</span><a href="/picture.html"
+                                                                                      target="_blank"
+                                                                                      class="more">更多</a></div>
             <ul>
                 <li th:each="picture:${pictureTopList}">
                     <a href="#" th:title="${picture.description}"
@@ -117,7 +119,7 @@
 
         <div class="index_tit_two" style="height:320px;">
             <span class="text_left padding1">热门赛事</span>
-            <a href="#" class="more">更多</a>
+            <a href="/game.html" target="_blank" class="more">更多</a>
             <div class="game_hot">
                 <dl style="margin-top:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
                     th:if="${iterStat.index==0}">
@@ -139,7 +141,7 @@
         </div>
         <div class="index_tit_two" style="height:442px;">
             <span class="text_left padding1">热门资讯</span>
-            <a href="#" class="more">更多</a>
+            <a href="/news.html" target="_blank" class="more">更多</a>
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="newsTop:${topNewsList}"><a href="#" th:text="${newsTop.title}"
@@ -151,7 +153,7 @@
         </div>
         <div class="index_tit_two">
             <span class="text_left padding1" style="margin-top:20px;">最新资讯</span>
-            <a href="#" class="more" style="margin-top:24px;">更多</a>
+            <a href="/news.html" target="_blank" class="more" style="margin-top:24px;">更多</a>
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="news:${newestNewsList}"><a href="#" th:text="${news.title}" th:title="${news.title}"
@@ -166,7 +168,7 @@
 
 
 <!--线上琵琶网首页的foot，这里只是截图-->
-<div style="width:100%; text-align:center"><img src="/static/temp/foot.png" style="width:100%;"/></div>
+<div th:replace="/bottom.html::bottom"></div>
 
 </body>
 </html>

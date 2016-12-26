@@ -77,48 +77,12 @@
             </div>
             <div th:replace="/pager.html::page(${anchorZoneList.pageName},${anchorZoneList.currentPage},${anchorZoneList.totalPage})"></div>
         </div>
-        <!--<div id="con_one_2" style="display:none">-->
-        <!--<div class="zhubo_main_box">-->
-        <!--<dl style="margin-left:19px;" th:each="anchorZone:${anchorZoneListTop}">-->
-        <!--<dt>-->
-        <!--<a href="">-->
-        <!--<p class="zhubo_p1"><span><img src="/static/img/circle_bg.png"/></span><img-->
-        <!--th:img-src="/image/120x120${anchorZone.icoImage}"/></p>-->
-        <!--<p class="zhubo_p2" th:text="${anchorZone.username}">小学生院长</p>-->
-        <!--<p style="margin-bottom:11px;"><span style="margin-right:14px;"-->
-        <!--th:each="matchZone:${anchorZone.matchZoneList}"><img-->
-        <!--th:img-src="/image/24x24${matchZone.icoImage}"/></span></p>-->
-        <!--</a>-->
-        <!--</dt>-->
-        <!--<dd>人气：<span th:text="${anchorZone.visitCount}">432432</span></dd>-->
-        <!--<div class="change_border">-->
-        <!--<span><a href="">点击查看</a></span>-->
-        <!--</div>-->
-        <!--</dl>-->
-        <!--<div class="clear"></div>-->
-        <!--</div>-->
-        <!--&lt;!&ndash;页码&ndash;&gt;-->
-        <!--<div class="newyiiPager">-->
-        <!--<ol id="yw0" class="yiiPager">-->
-        <!--<li>共2页：</li>-->
-        <!--<li class="page hidden"><a href="">首页</a></li>-->
-        <!--<li class="previous hidden"><a href="#">上一页</a></li>-->
-        <!--<li class="page selected"><span>1</span></li>-->
-        <!--<li class="page"><a href="#">2</a></li>-->
-        <!--<li class="page"><a href="#">3</a></li>-->
-        <!--<li class="page"><a href="#">4</a></li>-->
-        <!--<li class="next"><a href="#">下一页</a></li>-->
-        <!--<li class="last"><a href="#">末页</a></li>-->
-        <!--</ol>-->
-        <!--</div>-->
-        <!--</div>-->
     </div>
 </div>
 
 
 <!--线上琵琶网首页的foot，这里只是截图-->
-<div style="width:100%; text-align:center; clear:both"><img src="/static/temp/foot.png"
-                                                            style="margin-top:20px;width:100%;"/></div>
+<div th:replace="/bottom.html::bottom"></div>
 
 </body>
 </html>

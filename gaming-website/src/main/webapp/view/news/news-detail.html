@@ -94,7 +94,8 @@
         </div>
         <!--精选美图 -->
         <div class="about_pic clearfix">
-            <div class="index_tit_two"><span class="text_left">精选美图</span><a href="#" class="more">更多</a></div>
+            <div class="index_tit_two"><span class="text_left">精选美图</span><a href="/picture.html" target="_blank"
+                                                                             class="more">更多</a></div>
             <ul>
                 <li th:each="picture:${pictureTopList}">
                     <a href="#" th:title="${picture.description}" th:href="/picture/${picture.id}.html"><img
@@ -111,7 +112,8 @@
     <div class="zixun_right">
         <!--精选视频-->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">精选视频</span> <a href="#" class="more">更多</a></div>
+            <div class="index_tit_two"><span class="text_left">精选视频</span> <a href="/video.html" target="_blank"
+                                                                              class="more">更多</a></div>
             <div class="index_video_right game_user_con small">
                 <ul>
                     <li th:each="video:${videoTopList}"><a href="#" class="img" th:title="${video.title}"
@@ -126,7 +128,9 @@
         </div>
         <!--热门主播-->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="#" class="more">更多</a></div>
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor.html" target="_blank"
+                                                                              class="more">更多</a>
+            </div>
             <ul class="hot_zhubo">
                 <li th:each="anchor:${anchorTopList}">
                     <a href="#" th:title="${anchor.name}"
@@ -140,7 +144,8 @@
         </div>
         <!--热门资讯 -->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="#" class="more">更多</a></div>
+            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="/news/html" target="_blank"
+                                                                              class="more">更多</a></div>
             <ul class="hot_zixun">
                 <li th:each="news:${newsTopList}"><a href="#" th:text="${news.title}" th:title="${news.title}"
                                                      th:href="/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
@@ -151,6 +156,6 @@
 </div>
 
 <!--线上琵琶网首页的foot，这里只是截图-->
-<div style="width:100%; text-align:center; clear:both"><img src="/static/temp/foot.png" style="width:100%;"/></div>
+<div th:replace="/bottom.html::bottom"></div>
 </body>
 </html>

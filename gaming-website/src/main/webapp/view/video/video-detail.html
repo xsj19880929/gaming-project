@@ -92,7 +92,7 @@
                 </dl>
             </div>
             <div class="right_mid">
-                <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="#"
+                <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor.html" target="_blank"
                                                                                   class="more vider_more">更多</a></div>
                 <ul class="hot_zhubo">
                     <li th:each="anchor:${anchorTopList}">
@@ -105,7 +105,7 @@
                 </ul>
             </div>
             <div class="right_mid">
-                <div class="index_tit_two"><span class="text_left">热门游戏</span> <a href="#"
+                <div class="index_tit_two"><span class="text_left">热门游戏</span> <a href="/game.html"
                                                                                   class="more vider_more">更多</a></div>
                 <ul class="hot_zixun">
                     <li th:each="matchZone:${matchZoneTopList}"><a href="#" th:text="${matchZone.name}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
@@ -122,6 +122,6 @@
 
 
 <!--线上琵琶网首页的foot，这里只是截图-->
-<div style="width:100%; text-align:center"><img src="/static/temp/foot.png" style="width:100%;"></div>
+<div th:replace="/bottom.html::bottom"></div>
 </body>
 </html>

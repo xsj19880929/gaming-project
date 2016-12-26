@@ -43,34 +43,12 @@
             <!--页码-->
             <div th:replace="/pager.html::page(${videoList.pageName},${videoList.currentPage},${videoList.totalPage})"></div>
         </div>
-        <!--<div id="con_one_2" style="display:none">-->
-        <!--<div class="index_video_right view_box">-->
-        <!--<ul>-->
-        <!--<li th:each="video:${videoListTop}">-->
-        <!--<a href="#" class="img" th:title="${video.title}"-->
-        <!--th:href="/video/${video.id}.html">-->
-        <!--<img th:img-src="/image/270x160${video.titleImage}" th:alt="${video.title}"/>-->
-        <!--<p class="p1"><span>42:15</span></p>-->
-        <!--<p class="p2"><em></em></p>-->
-        <!--</a>-->
-        <!--<a href="#" class="text" th:title="${video.title}"-->
-        <!--th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>-->
-        <!--<p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265-->
-        <!--</p>-->
-        <!--</li>-->
-
-        <!--</ul>-->
-        <!--</div>-->
-
-        <!--<div th:replace="/pager.html::page(${infoList.pageName},${infoList.currentPage},${infoList.totalPage})"></div>-->
-        <!--</div>-->
     </div>
 </div>
 
 
 <!--线上琵琶网首页的foot，这里只是截图-->
-<div style="width:100%; text-align:center; clear:both"><img src="/static/temp/foot.png"
-                                                            style="margin-top:20px;width:100%;"/></div>
+<div th:replace="/bottom.html::bottom"></div>
 
 </body>
 </html>
