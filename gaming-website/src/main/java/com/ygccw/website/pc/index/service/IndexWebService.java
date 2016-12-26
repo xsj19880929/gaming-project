@@ -2,9 +2,12 @@ package com.ygccw.website.pc.index.service;
 
 import com.ygccw.website.pc.index.model.MatchTeamWeb;
 import com.ygccw.website.pc.index.model.MatchZoneWeb;
+import com.ygccw.website.pc.info.model.InfoWeb;
+import com.ygccw.website.pc.info.model.TagMappingWeb;
 import com.ygccw.wechat.common.advertising.entity.Advertising;
 import com.ygccw.wechat.common.advertising.service.AdvertisingService;
 import com.ygccw.wechat.common.info.entity.Info;
+import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.enums.InfoVideoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
@@ -14,6 +17,12 @@ import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
 import com.ygccw.wechat.common.recommend.enums.RecommendLocal;
 import com.ygccw.wechat.common.recommend.enums.RecommendType;
 import com.ygccw.wechat.common.recommend.service.RecommendMappingService;
+import com.ygccw.wechat.common.tags.entity.TagMapping;
+import com.ygccw.wechat.common.tags.entity.Tags;
+import com.ygccw.wechat.common.tags.enums.TagType;
+import com.ygccw.wechat.common.tags.enums.TagZoneType;
+import com.ygccw.wechat.common.tags.service.TagMappingService;
+import com.ygccw.wechat.common.tags.service.TagsService;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
 import com.ygccw.wechat.common.zone.entity.MatchTeam;
 import com.ygccw.wechat.common.zone.entity.MatchTeamMapping;
@@ -50,6 +59,10 @@ public class IndexWebService {
     private AnchorZoneService anchorZoneService;
     @Inject
     private PictureService pictureService;
+    @Inject
+    private TagMappingService tagMappingService;
+    @Inject
+    private TagsService tagsService;
 
     public List<MatchZoneWeb> findRecommendMatchZone() {
         List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.index, RecommendType.matchZone, 0, 4);
@@ -186,6 +199,97 @@ public class IndexWebService {
             infoWebList.add(info);
         }
         return infoWebList;
+    }
+
+    public List<InfoWeb> searchInfo(String keywords, int offset, int fetchSize) {
+        Info infoRequest = new Info();
+        infoRequest.setVerify(1);
+        infoRequest.setTitle(keywords);
+        infoRequest.setInfoType(InfoType.news);
+        List<Info> infoList = infoService.list(infoRequest, offset, fetchSize);
+        List<InfoWeb> infoWebList = new ArrayList<>();
+        for (Info info : infoList) {
+            InfoWeb infoWeb = new InfoWeb();
+            BeanUtils.copyProperties(info, infoWeb);
+            TagMapping tagMappingRequest = new TagMapping();
+            tagMappingRequest.setTagType(TagType.news);
+            tagMappingRequest.setTagZoneType(TagZoneType.valueOf(info.getInfoZoneType().name()));
+            tagMappingRequest.setEntityId(info.getId());
+            List<TagMapping> tagMappingList = tagMappingService.list(tagMappingRequest, 0, 10);
+            List<TagMappingWeb> tagMappingWebList = new ArrayList<>();
+            for (TagMapping tagMapping : tagMappingList) {
+                TagMappingWeb tagMappingWeb = new TagMappingWeb();
+                BeanUtils.copyProperties(tagMapping, tagMappingWeb);
+                Tags tags = tagsService.findById(tagMappingWeb.getTagsId());
+                tagMappingWeb.setName(tags.getName());
+                tagMappingWebList.add(tagMappingWeb);
+            }
+            if (!tagMappingWebList.isEmpty()) {
+                infoWeb.setTagMappingWebList(tagMappingWebList);
+            }
+            infoWebList.add(infoWeb);
+        }
+        return infoWebList;
+    }
+
+    public int searchInfoSize(String keywords) {
+        Info infoRequest = new Info();
+        infoRequest.setVerify(1);
+        infoRequest.setTitle(keywords);
+        infoRequest.setInfoType(InfoType.news);
+        return infoService.listSize(infoRequest);
+    }
+
+    public List<Info> searchVideo(String keywords, int offset, int fetchSize) {
+        Info infoRequest = new Info();
+        infoRequest.setVerify(1);
+        infoRequest.setTitle(keywords);
+        infoRequest.setInfoType(InfoType.video);
+        return infoService.list(infoRequest, offset, fetchSize);
+    }
+
+    public int searchVideoSize(String keywords) {
+        Info infoRequest = new Info();
+        infoRequest.setVerify(1);
+        infoRequest.setTitle(keywords);
+        infoRequest.setInfoType(InfoType.video);
+        return infoService.listSize(infoRequest);
+    }
+
+    public List<MatchZone> searchMatchZone(String keywords, int offset, int fetchSize) {
+        MatchZone matchZone = new MatchZone();
+        matchZone.setName(keywords);
+        return matchZoneService.list(matchZone, offset, fetchSize);
+    }
+
+    public int searchMatchZoneSize(String keywords) {
+        MatchZone matchZone = new MatchZone();
+        matchZone.setName(keywords);
+        return matchZoneService.listSize(matchZone);
+    }
+
+    public List<AnchorZone> searchAnchorZone(String keywords, int offset, int fetchSize) {
+        AnchorZone anchorZone = new AnchorZone();
+        anchorZone.setName(keywords);
+        return anchorZoneService.list(anchorZone, offset, fetchSize);
+    }
+
+    public int searchAnchorZoneSize(String keywords) {
+        AnchorZone anchorZone = new AnchorZone();
+        anchorZone.setName(keywords);
+        return anchorZoneService.listSize(anchorZone);
+    }
+
+    public List<Picture> searchPicture(String keywords, int offset, int fetchSize) {
+        Picture picture = new Picture();
+        picture.setDescription(keywords);
+        return pictureService.list(picture, offset, fetchSize);
+    }
+
+    public int searchPictureSize(String keywords) {
+        Picture picture = new Picture();
+        picture.setDescription(keywords);
+        return pictureService.listSize(picture);
     }
 
 
