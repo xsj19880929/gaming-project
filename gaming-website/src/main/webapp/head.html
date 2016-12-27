@@ -15,10 +15,16 @@
             <dl>
                 <dt>
                 <div class="search_change">全部</div>
-                <div class="search_option"><span>网游</span> <span>单机</span> <span>礼包</span> <span>资讯</span></div>
+                <div class="search_option">
+                    <span>资讯</span>
+                    <span>视频</span>
+                    <span>赛事</span>
+                    <span>主播</span>
+                    <span>图集</span>
+                </div>
                 <input type="text" class="ppw_tx new_ppw_tx" onfocus="if(this.value=='请输入您要搜索的关键字'){this.value=''}"
-                       onblur="if(this.value==''){this.value='请输入您要搜索的关键字'}" value="请输入您要搜索的关键字"/>
-                <input type="button" class="ppw_bt" value="搜索"/>
+                       name="keywords" onblur="if(this.value==''){this.value='请输入您要搜索的关键字'}" value="请输入您要搜索的关键字"/>
+                <input type="button" class="ppw_bt" name="searchSubmit" value="搜索"/>
                 </dt>
                 <dd><a href="###">WCA</a> <a href="###">LSPL</a> <a href="###">小苍</a> <a href="###">小智</a> <a
                         href="###">LPL</a> <a href="###">德玛西亚杯</a> <a href="###">徐老师来巡山</a></dd>
@@ -36,4 +42,29 @@
             <li th:classappend="${selectedMenuName}=='picture'?'sel'"><a href="/picture.html">竞技美图</a></li>
         </ul>
     </div>
+    <script>
+        $(function () {
+            $("input[name='searchSubmit']").click(function () {
+                var keywords = $("input[name='keywords']").val();
+                if (keywords == "" || keywords == "请输入您要搜索的关键字") {
+                    alert("请输入关键字");
+                    return;
+                }
+                var typeName = $(".search_change").text();
+                var type = "all";
+                if (typeName == "资讯") {
+                    type = "news";
+                } else if (typeName == "视频") {
+                    type = "video";
+                } else if (typeName == "赛事") {
+                    type = "match";
+                } else if (typeName == "主播") {
+                    type = "anchor";
+                } else if (typeName == "图集") {
+                    type = "picture";
+                }
+                window.location.href = "/search_" + keywords + "_" + type + "_1.html";
+            })
+        });
+    </script>
 </div>
