@@ -1115,7 +1115,6 @@
     position: relative;
     padding: 0 10px;
     margin-bottom: 15px;
-    height: 1033px;
 }
 
 .tab_three {
@@ -3645,6 +3644,93 @@
 
 .copy_box p .right {
     float: right;
+}
+
+/*game-list*/
+.search_game_report {
+    height: 100%;
+    background: #fff;
+}
+
+.search_game_report .report_logo {
+    width: 87px;
+    height: 59px;
+    background: url(../img/game/game_list1.png) no-repeat;
+    float: left;
+    margin-top: 20px;
+    margin-left: -4px;
+}
+
+.search_game_report .report_logo span {
+    width: 34px;
+    height: 38px;
+    font-size: 16px;
+    color: #fff;
+    display: block;
+    margin-left: 42px;
+    margin-top: 7px;
+}
+
+.search_game_report_main {
+    height: 100%;
+    float: left;
+}
+
+.search_game_report_main h1 {
+    font-size: 24px;
+    margin: 21px 20px 22px 20px;
+}
+
+.search_game_report_main dl {
+    margin-left: 20px;
+    color: #5a5a5a;
+}
+
+.search_game_report_main dl dt {
+    float: left;
+    display: block;
+    margin-bottom: 22px;
+}
+
+.search_game_report_main dl dt em {
+    color: blue;
+}
+
+.search_game_report_main dl span {
+    width: 20px;
+    margin-left: 42px;
+}
+
+.search_game_report_main ul {
+    clear: left;
+    color: #5a5a5a;
+    margin-left: 20px;
+}
+
+.search_game_report .line {
+    width: 740px;
+    border-top: 1px dotted #a7a7a7;
+    margin-top: 26px;
+    float: left;
+    margin-left: 16px;
+}
+
+.search_game_report .goin {
+    float: right;
+    width: 138px;
+    height: 40px;
+    border: 1px solid #0077ff;
+    font-size: 18px;
+    color: #0077ff;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 60px;
+    margin-right: 4px;
+}
+
+.search_game_report a:hover .goin {
+    background: #0077ff;
+    color: #fff;
 }
 
 

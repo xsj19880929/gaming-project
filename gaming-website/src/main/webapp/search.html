@@ -15,9 +15,9 @@
 <div th:replace="/head.html::top('search')"></div>
 <div class="general">
     <div class="all_zixun">
-        <div class="index_tit_two"><span class="text_left">全部资讯</span></div>
+        <div class="index_tit_two"><span class="text_left">资讯</span></div>
         <!--tab内容-->
-        <div class="tab_deatil" id="con_one_1" style="display:block">
+        <div class="tab_deatil" style="display:block">
             <ul>
                 <li th:each="info:${infoList.list}">
                     <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
@@ -39,6 +39,71 @@
             </ul>
             <p class="add_more"><a href="/news.html" target="_blank">查看更多</a></p>
         </div>
+        <div class="index_video_right zone_view_box">
+            <div class="index_tit_two"><span class="text_left">视频</span></div>
+            <ul>
+                <li th:each="video:${videoList.list}">
+                    <a href="#" class="img" th:title="${video.title}"
+                       th:href="/game/video/${video.id}.html">
+                        <img th:img-src="/image/170x160${video.titleImage}" th:alt="${video.title}"/>
+                        <p class="p1"><span></span></p>
+                        <p class="p2"><em></em></p>
+                    </a>
+                    <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
+                       th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
+                    <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <div class="search_game_report" th:each="matchZone:${matchZoneList.list}">
+                <div class="search_game_report_main">
+                    <a href="#" th:href="/game/${matchZone.id}.html" th:title="${matchZone.name}"><h1
+                            th:text="${matchZone.name}">LPL第七周末日综述
+                        VG.Endless狂暴五杀</h1></a>
+                    <dl>
+                        <dt>赛区：<em th:text="${matchZone.matchZoneAreaName}">全球</em></dt>
+                        <span th:text="${'时间：'+#calendars.format(matchZone.startTime, 'yyyy-MM-dd')+' - '+#calendars.format(matchZone.endTime, 'yyyy-MM-dd')}">时间：2016.01.14-2016.04.10</span>
+                    </dl>
+                    <ul th:text="${matchZone.introduction}">
+                        本赛季LPL春季赛将采用全新的分组赛制进行比赛，12支LPL队伍被平分到A、B两个组别中进行常规赛。每周将进行十场BO3，共十周，<br/>
+                        其中有四个周日首场轮空，共96场BO3。
+                    </ul>
+
+                </div>
+                <a href="#" th:href="/game/${matchZone.id}.html" th:title="${matchZone.name}">
+                    <div class="goin">进入专区</div>
+                </a>
+                <div class="line"></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <div>
+            <div class="zhubo_main_box">
+                <dl style="margin-left:19px;" th:each="anchorZone:${anchorZoneList.list}">
+                    <dt>
+                        <a href="" th:href="/anchor/${anchorZone.id}.html">
+                            <p class="zhubo_p1"><span><img src="/static/img/circle_bg.png"/></span><img
+                                    th:img-src="/image/120x120${anchorZone.icoImage}"/></p>
+                            <p class="zhubo_p2" th:text="${anchorZone.username}">小学生院长</p>
+                            <p style="margin-bottom:11px;"><span style="margin-right:14px;"
+                                                                 th:each="matchZone:${anchorZone.matchZoneList}"><img
+                                    th:img-src="/image/24x24${matchZone.icoImage}"/></span></p>
+                        </a>
+                    </dt>
+                    <dd>人气：<span th:text="${anchorZone.visitCount}">432432</span></dd>
+                    <div class="change_border">
+                        <span><a href="" th:href="/anchor/${anchorZone.id}.html">点击查看</a></span>
+                    </div>
+                </dl>
+
+                <div class="clear"></div>
+            </div>
+            <div th:replace="/pager.html::page(${anchorZoneList.pageName},${anchorZoneList.currentPage},${anchorZoneList.totalPage})"></div>
+        </div>
+
     </div>
     <!--资讯列表右边-->
     <div class="zixun_right">
@@ -69,7 +134,7 @@
                        th:title="${anchor.name}">
                         <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
                         <p class="p2"><img th:img-src="/image/120x120${anchor.icoImage}"/></p>
-                        <p class="p3" th:content="${anchor.username}">拳头暴君</p>
+                        <p class="p3" th:text="${anchor.username}">拳头暴君</p>
                     </a>
                 </li>
             </ul>
