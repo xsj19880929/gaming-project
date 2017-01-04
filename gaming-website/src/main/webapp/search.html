@@ -14,49 +14,73 @@
 <!--head-->
 <div th:replace="/head.html::top('search')"></div>
 <div class="general">
-    <div class="all_zixun">
-        <div class="index_tit_two"><span class="text_left">资讯</span></div>
-        <!--tab内容-->
-        <div class="tab_deatil" style="display:block">
-            <ul>
-                <li th:each="info:${infoList.list}">
-                    <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
-                            th:img-src="/image/204x108${info.titleImage}"
-                            th:alt="${info.title}"/></a>
-                    </div>
-                    <div class="d2">
-                        <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
-                                         th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                        <p class="p2"><a href="#" th:text="${info.infoZoneType.label}" target="_blank"
-                                         th:href="${info.infoZoneType.name=='matchZone'?'/news_match_1.html':info.infoZoneType.name=='anchorZone'?'/news_anchor_1.html':info.infoZoneType.name=='trade'?'/news_trade_1.html':''}">行业新闻</a><em
-                                th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
-                            10:35</em>
+    <div class="search_all_zixun">
+        <div class="search_main_left_div" th:if="${type=='all'||type=='news'}">
+            <div class="search_title">
+                <span class="span01">资讯</span>
+                <p>为您找到的结果约为<b th:text="${infoList.total}">4</b>个</p>
+            </div>
+            <!--tab内容-->
+            <div class="tab_deatil" style="display:block">
+                <ul style="margin-left: 20px">
+                    <li th:each="info:${infoList.list}">
+                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
+                                th:img-src="/image/204x108${info.titleImage}"
+                                th:alt="${info.title}"/></a>
+                        </div>
+                        <div class="d2">
+                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
+                                             th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
+                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}" target="_blank"
+                                             th:href="${info.infoZoneType.name=='matchZone'?'/news_match_1.html':info.infoZoneType.name=='anchorZone'?'/news_anchor_1.html':info.infoZoneType.name=='trade'?'/news_trade_1.html':''}">行业新闻</a><em
+                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
+                                10:35</em>
+                            </p>
+                            <p class="p3" th:text="${info.subTitle}">
+                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                        </div>
+                    </li>
+                </ul>
+                <div th:if="${type=='news'}"
+                     th:replace="/pager.html::page(${infoList.pageName},${infoList.currentPage},${infoList.totalPage})"></div>
+            </div>
+        </div>
+        <p class="search_more" th:if="${type=='all'}"><a target="_blank"
+                                                         href="#" th:href="/search_${keywords}_news_1.html">查看更多</a>
+        </p>
+        <div class="search_main_left_div" th:if="${type=='all'||type=='video'}">
+            <div class="index_video_right zone_view_box">
+                <div class="search_title">
+                    <span class="span01">视频</span>
+                    <p>为您找到的结果约为<b th:text="${videoList.total}">4</b>个</p>
+                </div>
+                <ul>
+                    <li th:each="video:${videoList.list}">
+                        <a href="#" class="img" th:title="${video.title}"
+                           th:href="/game/video/${video.id}.html">
+                            <img th:img-src="/image/230x160${video.titleImage}" th:alt="${video.title}"/>
+                            <p class="p1"><span></span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
+                           th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
+                        <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
                         </p>
-                        <p class="p3" th:text="${info.subTitle}">
-                            近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                    </div>
-                </li>
-            </ul>
-            <p class="add_more"><a href="/news.html" target="_blank">查看更多</a></p>
+                    </li>
+                </ul>
+                <p class="search_more" th:if="${type=='all'}"><a target="_blank"
+                                                                 href="#"
+                                                                 th:href="/search_${keywords}_video_1.html">查看更多</a>
+                </p>
+            </div>
+            <div th:if="${type=='video'}"
+                 th:replace="/pager.html::page(${videoList.pageName},${videoList.currentPage},${videoList.totalPage})"></div>
         </div>
-        <div class="index_video_right zone_view_box">
-            <div class="index_tit_two"><span class="text_left">视频</span></div>
-            <ul>
-                <li th:each="video:${videoList.list}">
-                    <a href="#" class="img" th:title="${video.title}"
-                       th:href="/game/video/${video.id}.html">
-                        <img th:img-src="/image/170x160${video.titleImage}" th:alt="${video.title}"/>
-                        <p class="p1"><span></span></p>
-                        <p class="p2"><em></em></p>
-                    </a>
-                    <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
-                       th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
-                    <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
-                    </p>
-                </li>
-            </ul>
-        </div>
-        <div>
+        <div class="search_main_left_div" th:if="${type=='all'||type=='match'}">
+            <div class="search_title">
+                <span class="span01">赛事</span>
+                <p>为您找到的结果约为<b th:text="${matchZoneList.total}">4</b>个</p>
+            </div>
             <div class="search_game_report" th:each="matchZone:${matchZoneList.list}">
                 <div class="search_game_report_main">
                     <a href="#" th:href="/game/${matchZone.id}.html" th:title="${matchZone.name}"><h1
@@ -78,9 +102,20 @@
                 <div class="line"></div>
                 <div class="clear"></div>
             </div>
+
+            <div th:if="${type=='match'}"
+                 th:replace="/pager.html::page(${matchZoneList.pageName},${matchZoneList.currentPage},${matchZoneList.totalPage})"></div>
+            <p class="search_more" th:if="${type=='all'}"><a target="_blank"
+                                                             href="#"
+                                                             th:href="/search_${keywords}_match_1.html">查看更多</a>
+            </p>
         </div>
 
-        <div>
+        <div class="search_main_left_div" th:if="${type=='all'||type=='anchor'}">
+            <div class="search_title">
+                <span class="span01">主播</span>
+                <p>为您找到的结果约为<b th:text="${anchorZoneList.total}">4</b>个</p>
+            </div>
             <div class="zhubo_main_box">
                 <dl style="margin-left:19px;" th:each="anchorZone:${anchorZoneList.list}">
                     <dt>
@@ -88,9 +123,9 @@
                             <p class="zhubo_p1"><span><img src="/static/img/circle_bg.png"/></span><img
                                     th:img-src="/image/120x120${anchorZone.icoImage}"/></p>
                             <p class="zhubo_p2" th:text="${anchorZone.username}">小学生院长</p>
-                            <p style="margin-bottom:11px;"><span style="margin-right:14px;"
-                                                                 th:each="matchZone:${anchorZone.matchZoneList}"><img
-                                    th:img-src="/image/24x24${matchZone.icoImage}"/></span></p>
+                            <!--<p style="margin-bottom:11px;"><span style="margin-right:14px;"-->
+                            <!--th:each="matchZone:${anchorZone.matchZoneList}"><img-->
+                            <!--th:img-src="/image/24x24${matchZone.icoImage}"/></span></p>-->
                         </a>
                     </dt>
                     <dd>人气：<span th:text="${anchorZone.visitCount}">432432</span></dd>
@@ -101,12 +136,45 @@
 
                 <div class="clear"></div>
             </div>
-            <div th:replace="/pager.html::page(${anchorZoneList.pageName},${anchorZoneList.currentPage},${anchorZoneList.totalPage})"></div>
+
+            <div th:if="${type=='anchor'}"
+                 th:replace="/pager.html::page(${anchorZoneList.pageName},${anchorZoneList.currentPage},${anchorZoneList.totalPage})"></div>
+            <p class="search_more" th:if="${type=='all'}"><a target="_blank"
+                                                             href="#"
+                                                             th:href="/search_${keywords}_anchor_1.html">查看更多</a>
+            </p>
+        </div>
+
+        <div class="index_video_right zone_view_box search_main_left_div"
+             th:if="${type=='all'||type=='picture'}">
+            <div class="search_title">
+                <span class="span01">图集</span>
+                <p>为您找到的结果约为<b th:text="${pictureList.total }">4</b>个</p>
+            </div>
+            <ul>
+                <li th:each="picture:${pictureList.list}">
+                    <a href="#" class="img" th:title="${picture.description}"
+                       th:href="/picture/${picture.id}.html">
+                        <img th:img-src="/image/230x160${picture.image}" th:alt="${picture.description}"/>
+
+                    </a>
+                    <a href="#" class="text" th:text="${picture.description}" th:title="${picture.description}"
+                       th:href="/picture/${picture.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
+                    <p class="p3" th:text="${picture.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
+                    </p>
+                </li>
+            </ul>
+            <div th:if="${type=='picture'}"
+                 th:replace="/pager.html::page(${pictureList.pageName},${pictureList.currentPage},${pictureList.totalPage})"></div>
+            <p class="search_more" th:if="${type=='all'}"><a target="_blank"
+                                                             href="#"
+                                                             th:href="/search_${keywords}_picture_1.html">查看更多</a>
+            </p>
         </div>
 
     </div>
     <!--资讯列表右边-->
-    <div class="zixun_right">
+    <div class="search_zixun_right">
         <!--精选视频-->
         <div class="list2_right_box">
             <div class="index_tit_two"><span class="text_left">精选视频</span> <a href="/video.html" class="more">更多</a>

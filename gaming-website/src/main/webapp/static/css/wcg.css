@@ -3677,7 +3677,8 @@
 }
 
 .search_game_report_main h1 {
-    font-size: 24px;
+    font-weight: normal;
+    font-size: 18px;
     margin: 21px 20px 22px 20px;
 }
 
@@ -3731,6 +3732,79 @@
 .search_game_report a:hover .goin {
     background: #0077ff;
     color: #fff;
+}
+
+.search_title {
+    height: 30px;
+    line-height: 30px;
+    position: relative;
+    margin-left: -20px;
+}
+
+.search_title span {
+    color: #333;
+    display: inline-block;
+    font-size: 25px;
+    font-weight: bold;
+    padding-left: 41px;
+}
+
+.search_title span.span01 {
+    background-position: 0 0;
+}
+
+.search_title p {
+    border-bottom: 1px solid #e3e3e3;
+    bottom: 0px;
+    color: #808080;
+    font-size: 12px;
+    left: 100px;
+    position: absolute;
+    right: 0;
+}
+
+.search_title p b {
+    color: #fe0000;
+}
+
+.search_more {
+    clear: both;
+    height: 20px;
+    line-height: 20px;
+    padding-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.search_more a {
+    background: rgba(0, 0, 0, 0) url("/static/img/arrow.png") no-repeat scroll right 6px;
+    display: inline-block;
+    padding-right: 20px;
+}
+
+.search_more a:hover {
+    background-position: right -23px;
+    text-decoration: underline;
+}
+
+.search_main_left_div {
+    clear: both;
+    margin-top: 18px;
+}
+
+.search_all_zixun {
+    background: #FFF;
+    width: 764px;
+    float: left;
+    position: relative;
+    margin-top: 15px;
+    padding-bottom: 25px;
+}
+
+.search_zixun_right {
+    float: right;
+    width: 380px;
+    margin-top: 15px;
 }
 
 
