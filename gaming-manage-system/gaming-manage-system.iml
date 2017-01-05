@@ -38,7 +38,6 @@
     </orderEntry>
     <orderEntry type="library" scope="PROVIDED" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: core.framework:core-enum:2.0.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: com.ygccw:job-scheduler-api:1.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: core.framework:core:2.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.hsqldb:hsqldb:2.3.2" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-fileupload:commons-fileupload:1.3.1" level="project" />
@@ -114,5 +113,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.objenesis:objenesis:1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: net.minidev:json-smart:1.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.jsoup:jsoup:1.8.1" level="project" />
   </component>
 </module>

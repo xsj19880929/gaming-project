@@ -23,6 +23,9 @@ import com.ygccw.wechat.info.model.InfoModel;
 import com.ygccw.wechat.recommend.model.RecommendMappingModel;
 import com.ygccw.wechat.recommend.service.RecommendMappingModelService;
 import core.framework.util.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +62,9 @@ public class InfoModelService {
     public void save(InfoModel infoModel) {
         Info info = new Info();
         BeanUtils.copyProperties(infoModel, info);
+        if (!StringUtils.hasText(info.getTitleImage())) {
+            info.setTitleImage(getContentImageFirst(info.getContent()));
+        }
         infoService.save(info);
         if (infoModel.getRecommendMappingModelList() != null) {
             for (RecommendMappingModel recommendMappingModel : infoModel.getRecommendMappingModelList()) {
@@ -78,6 +84,9 @@ public class InfoModelService {
     public void update(InfoModel infoModel) {
         Info info = new Info();
         BeanUtils.copyProperties(infoModel, info);
+        if (!StringUtils.hasText(info.getTitleImage())) {
+            info.setTitleImage(getContentImageFirst(info.getContent()));
+        }
         infoService.update(info);
         if (infoModel.getRecommendMappingModelList() != null) {
             saveOrUpdateRecommendMapping(infoModel.getRecommendMappingModelList());
@@ -155,7 +164,7 @@ public class InfoModelService {
 
     private void saveTags(String tags, Long entityId, TagType tagType, TagZoneType tagZoneType) {
         if (StringUtils.hasText(tags)) {
-            String[] tagArray = tags.split(" ");
+            String[] tagArray = tags.split(",| ");
             List<String> tagList = Arrays.asList(tagArray);
             tagMappingService.deleteByEntityIdAndType(entityId, tagType, tagZoneType);
             for (String tag : tagList) {
@@ -195,5 +204,17 @@ public class InfoModelService {
             infoModelList.add(infoModel);
         }
         return infoModelList;
+    }
+
+    private String getContentImageFirst(String content) {
+        Document document = Jsoup.parse(content);
+        Element element = document.select("img").first();
+        if (element == null) {
+            return null;
+        }
+        String imagePath = element.attr("src");
+        List<String> list = Arrays.asList(imagePath.split("/file"));
+        return "/file" + list.get(1);
+
     }
 }

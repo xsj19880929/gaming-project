@@ -7,6 +7,7 @@ import com.ygccw.wechat.info.service.InfoModelService;
 import com.ygccw.wechat.sys.Menu;
 import core.framework.database.FindResult;
 import core.framework.web.site.session.RequireSession;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author soldier
@@ -27,6 +30,8 @@ public class InfoController {
     InfoService infoService;
     @Inject
     InfoModelService infoModelService;
+    @Inject
+    Environment env;
 
     @RequireSession
     @RequestMapping(value = "info/list", method = RequestMethod.POST)
@@ -62,6 +67,15 @@ public class InfoController {
     @ResponseBody
     public void save(@RequestBody InfoModel infoModel) {
         infoModelService.save(infoModel);
+    }
+
+    @RequireSession
+    @RequestMapping(value = "info/website", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> website() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("website", env.getRequiredProperty("gaming.website.url"));
+        return map;
     }
 
 
