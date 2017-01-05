@@ -12,7 +12,7 @@
 
 <body>
 <!--线上的top内容,这个仅放截图-->
-<div th:replace="/view/game/game-head.html::top('news',${info.zoneId})"></div>
+<div th:replace="/view/game/game-head.html::top('news',${matchZone})"></div>
 <!--面包屑-->
 <div class="position" style="margin-left:120px;height: 26px;line-height: 26px;"><a href="/">电竞首页</a>&gt;<a
         th:href="/game/${info.zoneId}.html" th:text="${matchZone.name}">英雄联盟电竞专区</a>&gt;<a

@@ -112,6 +112,14 @@ public class IndexWebService {
         return infoService.list(info, 0, 5);
     }
 
+    public List<Info> findAnchorZoneInfo() {
+        Info info = new Info();
+        info.setInfoZoneType(InfoZoneType.anchorZone);
+        info.setVerify(1);
+        return infoService.list(info, 0, 5);
+    }
+
+
     public List<MatchTeamWeb> findStarMatchTeam() {
         MatchTeam matchTeamRequest = new MatchTeam();
         List<MatchTeam> matchTeamList = matchTeamService.list(matchTeamRequest, 0, 100);

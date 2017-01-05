@@ -2481,6 +2481,10 @@
     text-decoration: none;
 }
 
+.game_nav li a h1 {
+    font-size: 20px;
+}
+
 .game_nav li.change a {
     background: #e0ab0e;
     line-height: 50px;

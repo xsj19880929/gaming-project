@@ -35,6 +35,7 @@ public class IndexController {
         model.put("infoTradeList", indexWebService.findTradeInfo());
         model.put("infoNewestList", indexWebService.findNewestInfo());
         model.put("infoMatchZoneList", indexWebService.findMatchZoneInfo());
+        model.put("infoAnchorZoneList", indexWebService.findAnchorZoneInfo());
         model.put("starMatchTeamList", indexWebService.findStarMatchTeam());
         model.put("anchorZoneList", indexWebService.findAnchorZone());
         model.put("matchZoneVideoList", indexWebService.findMatchZoneVideo());
