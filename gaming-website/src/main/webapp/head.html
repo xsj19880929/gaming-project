@@ -26,8 +26,8 @@
                        name="keywords" onblur="if(this.value==''){this.value='请输入您要搜索的关键字'}" value="请输入您要搜索的关键字"/>
                 <input type="button" class="ppw_bt" name="searchSubmit" value="搜索"/>
                 </dt>
-                <dd><a href="###">WCA</a> <a href="###">LSPL</a> <a href="###">小苍</a> <a href="###">小智</a> <a
-                        href="###">LPL</a> <a href="###">德玛西亚杯</a> <a href="###">徐老师来巡山</a></dd>
+                <dd><a href="###" th:each="hotKeywords:${hotKeywordsList}" th:text="${hotKeywords.keyword}"
+                       th:href="${hotKeywords.url}" target="_blank">WCA</a></dd>
             </dl>
         </div>
     </div>

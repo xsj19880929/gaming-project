@@ -2,14 +2,14 @@
     <ol class="breadcrumb">
         <li><a href="#" ui-sref="index">首页</a></li>
         <li><a href="#" ui-sref="recommend.advertising.list">广告位管理</a></li>
-        <li><a href="#" ui-sref="recommend.advertising.list">热搜词管理</a></li>
+        <li><a href="#" ui-sref="recommend.hot-keywords.list">热搜词管理</a></li>
     </ol>
 
     <h2 class="page-header">编辑热搜词</h2>
 
     <form name="form" class="form-horizontal">
         <div class="well">
-            <button class="btn btn-primary" validation-submit="form" ng-click="updateHotKeyWords()">保存</button>
+            <button class="btn btn-primary" validation-submit="form" ng-click="updateHotKeywords()">保存</button>
         </div>
         <div class="section form-horizontal">
             <table class="table">
@@ -18,7 +18,7 @@
                     <td width="10%">热搜词：</td>
                     <td width="40%">
                         <div class="col-sm-7">
-                            <input class="form-control" type="text" ng-model="hotKeyWords.keyword"
+                            <input class="form-control" type="text" ng-model="hotKeywords.keyword"
                                    placeholder="" validator="required" name="keyword"/>
                         </div>
                     </td>
@@ -29,7 +29,7 @@
                     <td width="10%">链接：</td>
                     <td width="40%">
                         <div class="col-sm-7">
-                            <input class="form-control" type="text" ng-model="hotKeyWords.url"
+                            <input class="form-control" type="text" ng-model="hotKeywords.url"
                                    placeholder="" validator="required" name="url"/>
                         </div>
                     </td>
@@ -39,8 +39,9 @@
                     <td width="10%">次数：</td>
                     <td width="40%">
                         <div class="col-sm-7">
-                            <input class="form-control" type="text" ng-model="hotKeyWords.visitCount"
-                                   placeholder="" validator="required" name="visitCount"/>
+                            <input class="form-control" type="text" ng-model="hotKeywords.visitCount"
+                                   placeholder="" validator="required" name="visitCount"
+                                   ng-init="hotKeywords.visitCount=1"/>
                         </div>
                     </td>
                 </tr>

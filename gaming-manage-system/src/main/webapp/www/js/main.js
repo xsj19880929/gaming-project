@@ -263,15 +263,19 @@
                 templateUrl: "www/view/info/update.html",
                 controller: 'InfoUpdateController'
             })
-            .state('recommend.advertising.list', {
-                url: "/",
-                templateUrl: "www/view/recommend/advertising/list.html",
-                controller: 'AdvertisingListController'
+            .state('recommend.hot-keywords', {
+                url: "/hot-keywords",
+                templateUrl: "www/view/recommend/hot-keywords/index.html"
             })
-            .state('recommend.advertising.update', {
+            .state('recommend.hot-keywords.list', {
+                url: "/",
+                templateUrl: "www/view/recommend/hot-keywords/list.html",
+                controller: 'HotKeywordsListController'
+            })
+            .state('recommend.hot-keywords.update', {
                 url: "/update",
-                templateUrl: "www/view/recommend/advertising/update.html",
-                controller: 'AdvertisingUpdateController'
+                templateUrl: "www/view/recommend/hot-keywords/update.html",
+                controller: 'HotKeywordsUpdateController'
             })
 
 

@@ -32,7 +32,7 @@
                 },
                 {
                     name: '次数',
-                    field: 'url'
+                    field: 'visitCount'
                 },
                 {name: '创建时间', field: 'createTime', type: 'date', cellFilter: 'date:"yyyy-MM-dd HH:mm:ss"'},
                 {

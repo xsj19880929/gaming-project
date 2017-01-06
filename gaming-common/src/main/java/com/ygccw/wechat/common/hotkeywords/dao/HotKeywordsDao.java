@@ -21,7 +21,7 @@ public class HotKeywordsDao {
 
     public List<HotKeywords> list(HotKeywords hotKeywords, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from HotKeywords").append("status", 1)
-                .skipEmptyFields().orderBy("createTime").desc();
+                .skipEmptyFields().orderBy("visitCount").desc();
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
     }

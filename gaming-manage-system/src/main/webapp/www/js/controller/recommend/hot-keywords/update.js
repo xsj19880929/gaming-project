@@ -13,22 +13,17 @@
             $http.get('hotKeywords/' + $location.search().id).success(function (data) {
                 $scope.hotKeywords = data;
             });
-        } else {
-            $http.get('hotKeywords/match-team-mapping-list').success(function (data) {
-                $scope.hotKeywords.hotKeywordsMappingModelList = data;
-            });
-
         }
         $scope.updateHotKeywords = function () {
             if ($scope.id) {
                 $http.put("/hotKeywords", $scope.hotKeywords).success(function () {
                     alert('更新成功');
-                    $state.go("recommend.hotKeywords.list");
+                    $state.go("recommend.hot-keywords.list");
                 });
             } else {
                 $http.post("/hotKeywords", $scope.hotKeywords).success(function (data) {
                     alert('保存成功');
-                    $state.go("recommend.hotKeywords.list");
+                    $state.go("recommend.hot-keywords.list");
                 });
             }
         };
