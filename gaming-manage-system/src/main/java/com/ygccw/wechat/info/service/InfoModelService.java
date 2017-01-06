@@ -162,7 +162,8 @@ public class InfoModelService {
 
     }
 
-    private void saveTags(String tags, Long entityId, TagType tagType, TagZoneType tagZoneType) {
+    private List<Tags> saveTags(String tags, Long entityId, TagType tagType, TagZoneType tagZoneType) {
+        List<Tags> tagsList = new ArrayList<>();
         if (StringUtils.hasText(tags)) {
             String[] tagArray = tags.split(",| ");
             List<String> tagList = Arrays.asList(tagArray);
@@ -176,6 +177,7 @@ public class InfoModelService {
                     tagsEntity.setTagZoneType(tagZoneType);
                     tagsService.save(tagsEntity);
                 }
+                tagsList.add(tagsEntity);
                 TagMapping tagMapping = new TagMapping();
                 tagMapping.setEntityId(entityId);
                 tagMapping.setTagsId(tagsEntity.getId());
@@ -185,6 +187,7 @@ public class InfoModelService {
             }
 
         }
+        return tagsList;
 
     }
 
@@ -217,4 +220,5 @@ public class InfoModelService {
         return "/file" + list.get(1);
 
     }
+
 }
