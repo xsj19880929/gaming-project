@@ -263,6 +263,16 @@
                 templateUrl: "www/view/info/update.html",
                 controller: 'InfoUpdateController'
             })
+            .state('recommend.advertising.list', {
+                url: "/",
+                templateUrl: "www/view/recommend/advertising/list.html",
+                controller: 'AdvertisingListController'
+            })
+            .state('recommend.advertising.update', {
+                url: "/update",
+                templateUrl: "www/view/recommend/advertising/update.html",
+                controller: 'AdvertisingUpdateController'
+            })
 
 
     }).config(
