@@ -29,7 +29,6 @@
     <orderEntry type="module" module-name="gaming-common" exported="" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: core.framework:core:2.0.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: com.ygccw:job-scheduler-api:1.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.hsqldb:hsqldb:2.3.2" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-dbcp:commons-dbcp:1.4" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.ymc:file-api:1.0.0" level="project" />

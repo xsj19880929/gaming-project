@@ -121,8 +121,9 @@
         <div class="tab_one">
             <ul>
                 <li onMouseOver="setTab('one',1,5)" id="one1" class="hover">推荐资讯</li>
-                <li onMouseOver="setTab('one',2,5)" id="one2">行业</li>
-                <li onMouseOver="setTab('one',3,5)" id="one3">赛事</li>
+                <li onMouseOver="setTab('one',2,5)" id="one2">行业资讯</li>
+                <li onMouseOver="setTab('one',3,5)" id="one3">赛事资讯</li>
+                <li onMouseOver="setTab('one',4,5)" id="one4">主播资讯</li>
             </ul>
         </div>
         <!--tab内容-->
@@ -191,6 +192,28 @@
                     </li>
                 </ul>
                 <p class="add_more"><a href="/news_match_1.html" target="_blank">查看更多</a></p>
+            </div>
+
+            <div class="tab_deatil" id="con_one_4">
+                <ul>
+                    <li th:each="info:${infoAnchorZoneList}">
+                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
+                                th:img-src="/image/204x108${info.titleImage}"
+                                th:alt="${info.title}"/></a>
+                        </div>
+                        <div class="d2">
+                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
+                                             th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
+                            <p class="p2"><a href="/news_trade_1.html" th:text="${info.infoZoneType.label}">行业新闻</a><em
+                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
+                                10:35</em>
+                            </p>
+                            <p class="p3" th:text="${info.subTitle}">
+                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                        </div>
+                    </li>
+                </ul>
+                <p class="add_more"><a href="/news_anchor_1.html" target="_blank">查看更多</a></p>
             </div>
         </div>
     </div>

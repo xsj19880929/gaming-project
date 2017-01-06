@@ -1,11 +1,15 @@
 (function (angular) {
     var module = angular.module('app');
 
-    module.controller('InfoListController', ['$scope', '$http', '$location', '$rootScope', function ($scope, $http, $location, $rootScope) {
+    module.controller('InfoListController', ['$scope', '$http', '$location', '$rootScope', '$window', function ($scope, $http, $location, $rootScope, $window) {
         $scope.offset = 0;
         $scope.fetchSize = 25;
         $scope.params = {};
         $scope.params.verify = 1;
+        $scope.websiteData = {};
+        $http.get("info/website").success(function (data) {
+            $scope.websiteData = data;
+        });
 
         var loadData = function (offset, fetchSize) {
             var url = "info/list?offset=" + offset + "&fetchSize=" + fetchSize;
@@ -49,7 +53,8 @@
                 {
                     name: '操作',
                     cellTemplate: '<button class="btn btn-primary btn-sm" ng-click="grid.appScope.updateInfo(row.entity.id);">编辑</button>' +
-                    '<button class="btn btn-danger btn-sm" ng-click="grid.appScope.deleteInfo(row.entity.id);">删除</button>'
+                    '<button class="btn btn-danger btn-sm" ng-click="grid.appScope.deleteInfo(row.entity.id);">删除</button>' +
+                    '<button class="btn btn-info btn-sm" ng-click="grid.appScope.lookInfo(row.entity.infoType.name,row.entity.id);">预览</button>'
                 }
             ],
             onRegisterApi: function (gridApi) {
@@ -71,6 +76,16 @@
                     loadData($scope.offset, $scope.fetchSize);
                 });
             }
+        }
+
+        $scope.lookInfo = function (infoType, id) {
+            var url = "";
+            if (infoType == 'news') {
+                url = "news/" + id + ".html";
+            } else if (infoType == 'video') {
+                url = "video/" + id + ".html";
+            }
+            $window.open($scope.websiteData.website + url);
         }
 
         $scope.search = function () {

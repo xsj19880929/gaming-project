@@ -140,7 +140,7 @@ public class PictureModelService {
 
     private void saveTags(String tags, Long entityId) {
         if (StringUtils.hasText(tags)) {
-            String[] tagArray = tags.split(" ");
+            String[] tagArray = tags.split(",| ");
             List<String> tagList = Arrays.asList(tagArray);
             tagMappingService.deleteByEntityIdAndType(entityId, TagType.picture, null);
             for (String tag : tagList) {

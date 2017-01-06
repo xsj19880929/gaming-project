@@ -35,6 +35,7 @@ public class IndexController {
         model.put("infoTradeList", indexWebService.findTradeInfo());
         model.put("infoNewestList", indexWebService.findNewestInfo());
         model.put("infoMatchZoneList", indexWebService.findMatchZoneInfo());
+        model.put("infoAnchorZoneList", indexWebService.findAnchorZoneInfo());
         model.put("starMatchTeamList", indexWebService.findStarMatchTeam());
         model.put("anchorZoneList", indexWebService.findAnchorZone());
         model.put("matchZoneVideoList", indexWebService.findMatchZoneVideo());
@@ -59,7 +60,7 @@ public class IndexController {
             model.put("videoList", new FindResultToSale(indexWebService.searchVideo(keywords, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), indexWebService.searchVideoSize(keywords), currentPage, fetchSize, PageUtils.getPageUrl(request)));
             model.put("pictureList", new FindResultToSale(indexWebService.searchPicture(keywords, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), indexWebService.searchPictureSize(keywords), currentPage, fetchSize, PageUtils.getPageUrl(request)));
         } else if ("news".equals(type)) {
-            model.put("newsList", new FindResultToSale(indexWebService.searchInfo(keywords, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), indexWebService.searchInfoSize(keywords), currentPage, fetchSize, PageUtils.getPageUrl(request)));
+            model.put("infoList", new FindResultToSale(indexWebService.searchInfo(keywords, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), indexWebService.searchInfoSize(keywords), currentPage, fetchSize, PageUtils.getPageUrl(request)));
         } else if ("video".equals(type)) {
             model.put("videoList", new FindResultToSale(indexWebService.searchVideo(keywords, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), indexWebService.searchVideoSize(keywords), currentPage, fetchSize, PageUtils.getPageUrl(request)));
         } else if ("match".equals(type)) {
@@ -72,6 +73,8 @@ public class IndexController {
         model.put("newsTopList", infoWebService.newsListTop(0, 10));
         model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
         model.put("videoTopList", infoWebService.videoListTop(0, 4));
+        model.put("type", type);
+        model.put("keywords", keywords);
         return "/search.html";
     }
 }
