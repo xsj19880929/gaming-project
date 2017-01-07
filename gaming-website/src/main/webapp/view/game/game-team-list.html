@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <title>赛事专区首页</title>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/view/game/game-head.html::top('team',${matchZone})"></div>
+<!--面包屑-->
+<div class="position" style="margin-left:83px;height: 26px;line-height: 26px;"><a href="/">电竞首页</a>&gt;<a
+        th:href="/game/${matchZone.id}.html" th:text="${matchZone.name}">英雄联盟电竞专区</a>&gt;<em>参赛战队</em></div>
+
+
+<div class="game_main_box">
+    <div class="team-bd">
+        <ul>
+            <li th:each="matchTeam:${matchTeamList}"><a> <img
+                    src="http://static.a.carry6.com/img/team/15.png" th:alt="${matchTeam.name}"
+                    th:title="${matchTeam.name}" th:img-src="/image/130x130${matchTeam.icoImage}"> <span
+                    th:text="${matchTeam.name}">SKT</span>
+            </a></li>
+
+        </ul>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+<div th:replace="/bottom.html::bottom"></div>
+</body>
+</html>

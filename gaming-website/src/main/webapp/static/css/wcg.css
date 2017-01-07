@@ -2459,7 +2459,7 @@
     margin-top: -50px;
     position: absolute;
     width: 100%;
-    bottom: 3px;
+    bottom: 4px;
 }
 
 .game_nav ul {
@@ -2513,7 +2513,7 @@
     margin-left: auto;
     margin-right: auto;
     background: #fff;
-    margin-top: 20px;
+    margin-top: 7px;
 }
 
 .game_main_left {
@@ -3826,6 +3826,72 @@
     float: right;
     width: 380px;
     margin-top: 15px;
+}
+
+.team-bd {
+    padding-left: 15px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.team-bd ul {
+    overflow: hidden;
+    zoom: 1;
+    position: relative;
+
+}
+
+.team-bd li {
+    width: 205px;
+    height: 180px;
+    float: left;
+    padding: 0 12px 30px;
+    position: relative;
+}
+
+.team-bd li a {
+    width: 203px;
+    height: 178px;
+    overflow: hidden;
+    zoom: 1;
+    position: relative;
+    border: 1px solid #384352;
+    display: block;
+    text-decoration: none;
+}
+
+.team-bd li a:hover {
+    border-color: #222830;
+    background: #222830;
+    box-shadow: 0 0 21px rgba(15, 5, 9, .35);
+}
+
+.team-bd li.has-black a {
+    background-color: #292d3c;
+}
+
+.team-bd li.has-black a:hover {
+    background: #292d3c url(images/bg.png) center bottom no-repeat;
+}
+
+.team-bd li img {
+    width: 130px;
+    height: 130px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 8px;
+}
+
+.team-bd li span {
+    text-align: center;
+    font-size: 14px;
+    color: #000000;
+    display: block;
+    line-height: 30px;
+}
+
+.team-bd li a:hover span {
+    color: #dae5f1;
 }
 
 

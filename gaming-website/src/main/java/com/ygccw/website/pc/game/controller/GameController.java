@@ -189,4 +189,11 @@ public class GameController {
         model.put("matchZone", gameWebService.findById(infoWeb.getZoneId()));
         return "/view/game/game-video-detail.html";
     }
+
+    @RequestMapping(value = "/game/team/{matchZoneId}.html", method = RequestMethod.GET)
+    public String gameTeamList(HttpServletRequest request, final ModelMap model, @PathVariable Long matchZoneId) {
+        model.put("matchZone", gameWebService.findById(matchZoneId));
+        model.put("matchTeamList", gameWebService.listMatchTeamByMatchZoneId(matchZoneId));
+        return "/view/game/game-team-list.html";
+    }
 }

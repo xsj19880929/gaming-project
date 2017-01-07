@@ -21,7 +21,8 @@
                 <li th:classappend="${selectedMenuName}=='video'?'change'"><a href="#"
                                                                               th:href="/game/video-list/${matchZone.id}/page_1.html"><span><img
                         src="/static/img/game/game_video.png"/></span>精彩视频</a></li>
-                <li th:classappend="${selectedMenuName}=='team'?'change'"><a href="#"><span><img
+                <li th:classappend="${selectedMenuName}=='team'?'change'"><a
+                        th:href="/game/team/${matchZone.id}.html"><span><img
                         src="/static/img/game/game_team.png"/></span>参赛战队</a></li>
                 <li th:classappend="${selectedMenuName}=='picture'?'change'"><a href="#"
                                                                                 th:href="/game/picture-list/${matchZone.id}/page_1.html"><span><img
