@@ -7,7 +7,11 @@
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/wcg.js"></script>
     <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
-    <title>赛事专区首页</title>
+    <title th:text="${matchZone.name}+'赛事资讯_'+${matchZone.name}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${matchZone.name}+'赛事报道,攻略资讯,'+${matchZone.name}"/>
+    <meta name="description"
+          content="描述"
+          th:attr="content=${matchZone.name}+'提供最新最全的'+${matchZone.name}+'赛事直播、赛事报道、赛事资讯，'+${matchZone.name}+'资讯攻略，更多'+${matchZone.name}+'赛事资讯尽在'+${siteName}+'（55djw.com）'+${matchZone.name}+'专区。'"/>
 </head>
 
 <body>

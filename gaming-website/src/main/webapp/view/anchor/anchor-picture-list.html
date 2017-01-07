@@ -6,7 +6,11 @@
     <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/wcg.js"></script>
-    <title>新闻列表</title>
+    <title th:text="${anchorZone.name}+'美图_'+${anchorZone.name}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${anchorZone.name}+'美图,性感图片,'+${anchorZone.name}"/>
+    <meta name="description"
+          content="描述"
+          th:attr="content=${anchorZone.name}+'提供最新最全的'+${anchorZone.name}+'美图、图集、性感图片、游戏图片，赛事图片，更多有关'+${anchorZone.name}+'美图尽在'+${siteName}+'（55djw.com）'+${anchorZone.name}+'专区。'"/>
 </head>
 
 <body>

@@ -225,6 +225,7 @@ public class InfoModelService {
     }
 
     private String setContentTag(String content, List<Tags> tagList, String type) {
+        String contentNew = content;
         String urlPrefix = "";
         if (type.equals(InfoType.news.getName())) {
             urlPrefix = "/news/tag/";
@@ -234,9 +235,9 @@ public class InfoModelService {
         for (Tags tags : tagList) {
             String url = urlPrefix + tags.getId() + "_1.html";
             String aTag = "<a href=\"" + url + "\"  target=\"_blank\">" + tags.getName() + "</a>";
-            content = content.replace(tags.getName(), aTag);
+            contentNew = contentNew.replace(tags.getName(), aTag);
         }
-        return content;
+        return contentNew;
     }
 
 }

@@ -5,6 +5,7 @@ import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.website.pc.info.service.InfoWebService;
 import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
+import com.ygccw.wechat.common.tags.entity.Tags;
 import com.ygccw.wechat.common.tags.enums.TagZoneType;
 import com.ygccw.wechat.common.tags.service.TagsService;
 import org.springframework.stereotype.Controller;
@@ -89,7 +90,8 @@ public class InfoController {
         model.put("newsTopList", infoWebService.newsListTop(0, 10));
         model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
         model.put("videoTopList", infoWebService.videoListTop(0, 4));
-        model.put("tag", tagsService.findById(tagId));
+        Tags tags = tagsService.findById(tagId);
+        model.put("tags", tags);
         return "/view/news/news-tag-list.html";
     }
 }

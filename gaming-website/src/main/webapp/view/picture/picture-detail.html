@@ -6,34 +6,10 @@
     <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/wcg.js"></script>
-    <noscript>
-        <style>
-            .es-carousel ul {
-                display: block;
-            }
-        </style>
-    </noscript>
-    <script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">
-	<div class="rg-image-wrapper">
-		{{if itemsCount > 1}}
-			<div class="rg-image-nav">
-				<a href="#" class="rg-image-nav-prev"></a>
-				<a href="#" class="rg-image-nav-next"></a>
-			</div>
-		{{/if}}
-		<div class="rg-image"></div>
-		<div class="rg-caption-wrapper">
-			<div class="rg-caption" style="display:none;">
-				<p></p>
-			</div>
-		</div>
-	</div>
-
-
-
-
-    </script>
-    <title>竞技美图详情页</title>
+    <title th:text="${picture.seoTitle}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${picture.seoKeywords}"/>
+    <meta name="description"
+          content="描述" th:attr="content=${picture.seoDescription}"/>
 </head>
 
 <body>
@@ -140,7 +116,37 @@
     <div th:replace="/comment.html::comment(${picture.id},${picture.description},${currentUrl})"></div>
 
 </div>
-<!--线上琵琶网首页的foot，这里只是截图-->
+<noscript>
+    <style>
+        .es-carousel ul {
+            display: block;
+        }
+    </style>
+</noscript>
+<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">
+	<div class="rg-image-wrapper">
+		{{if itemsCount > 1}}
+			<div class="rg-image-nav">
+				<a href="#" class="rg-image-nav-prev"></a>
+				<a href="#" class="rg-image-nav-next"></a>
+			</div>
+		{{/if}}
+		<div class="rg-image"></div>
+		<div class="rg-caption-wrapper">
+			<div class="rg-caption" style="display:none;">
+				<p></p>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+</script>
 <div th:replace="/bottom.html::bottom"></div>
 </body>
 </html>

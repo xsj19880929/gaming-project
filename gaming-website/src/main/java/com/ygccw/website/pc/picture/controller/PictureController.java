@@ -60,7 +60,7 @@ public class PictureController {
     public String tagList(HttpServletRequest request, final ModelMap model, @PathVariable Long tagId, @PathVariable Integer currentPage) {
         int fetchSize = 20;
         model.put("pictureList", new FindResultToSale(pictureWebService.pictureListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), pictureWebService.pictureListByTagIdSize(tagId), currentPage, fetchSize, PageUtils.getPageUrl(request)));
-        model.put("tagName", tagsService.findById(tagId).getName());
+        model.put("tags", tagsService.findById(tagId));
         return "/view/picture/picture-tag-list.html";
     }
 

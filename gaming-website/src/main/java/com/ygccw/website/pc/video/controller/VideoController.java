@@ -119,7 +119,7 @@ public class VideoController {
         model.put("anchorZoneListMore", videoWebService.anchorList(8, 100));
         model.put("matchZoneListMore", videoWebService.matchZoneList(8, 100));
         model.put("videoList", new FindResultToSale(videoWebService.videoListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListByTagIdSize(tagId), currentPage, fetchSize, PageUtils.getPageUrl(request)));
-        model.put("tag", tagsService.findById(tagId));
+        model.put("tags", tagsService.findById(tagId));
         return "/view/video/video-tag-list.html";
     }
 }

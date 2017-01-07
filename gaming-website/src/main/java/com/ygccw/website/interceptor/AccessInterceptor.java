@@ -20,5 +20,6 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         request.setAttribute("currentUrl", siteSettings.baseUrl() + request.getRequestURI());
         request.setAttribute("hotKeywordsList", hotKeywordsService.list(new HotKeywords(), 0, 10));
+        request.setAttribute("siteName", "55电竞游戏网");
     }
 }

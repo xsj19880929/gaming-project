@@ -7,7 +7,12 @@
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/wcg.js"></script>
     <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
-    <title>赛事专区首页</title>
+    <title th:text="${siteName}+'|战队列表_'+${matchZone.name}+'赛事数据中心'">标题</title>
+    <meta name="keywords" content="关键字"
+          th:attr="content=${matchZone.name}+','+${matchZone.name}+'赛事,'+${matchZone.name}+'战队,星竞界数据中心'"/>
+    <meta name="description"
+          content="描述"
+          th:attr="content=${siteName}+${matchZone.name}+'是针对'+${matchZone.name}+'赛事定制开发的数据分析系统。通过收录全球'+${matchZone.name}+'赛事数据，'+${matchZone.name}+'战队信息，配合科学高效的算法机制，为用户提供准确，有效的数据化信息与分析。'"/>
 </head>
 
 <body>

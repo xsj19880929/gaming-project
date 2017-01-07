@@ -7,11 +7,10 @@
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/wcg.js"></script>
     <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
-    <title th:text="${#strings.isEmpty(video.seoTitle)==null?video.title:video.seoTitle}">电竞网</title>
-    <meta name="Keywords" content="电竞关键词"
-          th:attr="content=${#strings.isEmpty(video.seoKeywords)==null?video.title:video.seoKeywords}"/>
-    <meta name="description" content="电竞内容"
-          th:attr="content=${#strings.isEmpty(video.seoDescription)==null?video.title:video.seoDescription}"/>
+    <title th:text="${video.seoTitle}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${video.seoKeywords}"/>
+    <meta name="description"
+          content="描述" th:attr="content=${video.seoDescription}"/>
 </head>
 
 <body>

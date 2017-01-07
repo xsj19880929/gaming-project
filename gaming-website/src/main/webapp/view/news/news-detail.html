@@ -7,7 +7,10 @@
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/wcg.js"></script>
     <script type="text/javascript" src="/static/js/comment.js"></script>
-    <title>资讯详情页</title>
+    <title th:text="${info.seoTitle}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${info.seoKeywords}"/>
+    <meta name="description"
+          content="描述" th:attr="content=${info.seoDescription}"/>
 </head>
 
 <body>
