@@ -36,7 +36,7 @@
                                                th:title="${news.title}"><img
                                     src="/static/temp/list01.jpg"
                                     th:img-src="/image/204x108${news.titleImage}"
-                                    th:alt="${news.title}"/></a></div>
+                                    th:alt="${news.title}" th:title="${news.title}"/></a></div>
                             <div class="d2">
                                 <p class="p1"><a href="#" th:text="${news.title}" th:href="/game/news/${news.id}.html"
                                                  th:title="${news.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
@@ -68,14 +68,16 @@
                 <dl style="margin-top:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
                     th:if="${iterStat.index==0}">
                     <a href="#" th:href="/game/${matchZoneTop.id}.html" th:title="${matchZoneTop.name}">
-                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.icoImage}"/>
+                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.icoImage}"
+                             th:alt="${matchZoneTop.name}" th:title="${matchZoneTop.name}"/>
                         <dt th:text="${matchZoneTop.name}">LPL2016英雄联盟职业联赛春季赛</dt>
                     </a>
                 </dl>
                 <dl style="margin-top:20px;margin-bottom:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
                     th:if="${iterStat.index==1}">
                     <a href="#" th:href="/game/${matchZoneTop.id}.html" th:title="${matchZoneTop.name}">
-                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.icoImage}"/>
+                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.icoImage}"
+                             th:alt="${matchZoneTop.name}" th:title="${matchZoneTop.name}"/>
                         <dt th:text="${matchZoneTop.name}">LPL2016英雄联盟职业联赛春季赛</dt>
                     </a>
                 </dl>

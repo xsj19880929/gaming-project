@@ -33,7 +33,9 @@
                         </a>
                         <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
                            th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
-                        <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
+                        <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"
+                                                                         th:alt="${video.title}"
+                                                                         th:title="${video.title}"/>43265
                         </p>
                     </li>
 
@@ -86,8 +88,10 @@
             <ul class="hot_zhubo">
                 <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}.html"
                                                                  th:title="${anchorZone.name}">
-                    <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                    <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"/>
+                    <p class="p1"><img src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
+                                       th:title="${anchorZone.name}"/></p>
+                    <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"
+                                       th:alt="${anchorZone.name}" th:title="${anchorZone.name}"/>
                     </p>
                     <p class="p3" th:text="${anchorZone.name}">拳头暴君</p>
                 </a></li>

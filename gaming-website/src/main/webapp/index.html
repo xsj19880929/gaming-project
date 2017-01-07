@@ -27,11 +27,13 @@
                 <dl class="d1">
                     <dt><img th:if="${iterStat.index==0}"
                              th:each="matchTeam,iterStat:${matchZone.matchTeamList}"
-                             th:img-src="/image/66x66${matchTeam.icoImage}"/></dt>
+                             th:img-src="/image/66x66${matchTeam.icoImage}" th:alt="${matchZone.name}"
+                             th:title="${matchZone.name}"/></dt>
                     <dd>
                         <p class="p2"><img th:if="${iterStat.index!=0}"
                                            th:each="matchTeam,iterStat:${matchZone.matchTeamList}"
-                                           th:img-src="/image/28x28${matchTeam.icoImage}"/>
+                                           th:img-src="/image/28x28${matchTeam.icoImage}" th:alt="${matchTeam.name}"
+                                           th:title="${matchTeam.name}"/>
                         <p class="p3"><em class="over" th:text="${matchZone.matchStatus.label}">已结束</em></p>
                     </dd>
                 </dl>
@@ -45,7 +47,8 @@
         <div class="big_pic bd">
             <ul>
                 <li th:each="advImage:${advImageList}"><a th:href="${advImage.url}" href="#"><img
-                        th:img-src="/image/698x370${advImage.image}" th:alt="${advImage.name}"/><span><em
+                        th:img-src="/image/698x370${advImage.image}" th:alt="${advImage.name}"
+                        th:title="${advImage.name}"/><span><em
                         th:text="${advImage.name}">韩国《英雄联盟》代练爆料：Riot韩国公司受贿行为</em></span></a>
                 </li>
             </ul>
@@ -103,7 +106,8 @@
     <ul class="wcg_list_two">
         <li th:each="matchZone,iterStat:${matchZoneNewList}" th:class="${iterStat.index==2?'no_margin':''}">
             <p class="p1"><a href="#" th:href="/game/${matchZone.id}.html" th:title="${matchZone.name}"><img
-                    th:img-src="/image/373x155${matchZone.icoImage}" th:alt="${matchZone.name}"/></a>
+                    th:img-src="/image/373x155${matchZone.icoImage}" th:alt="${matchZone.name}"
+                    th:title="${matchZone.name}"/></a>
             </p>
             <p class="p2"><a href="#" th:text="${matchZone.name}" th:href="/game/${matchZone.id}.html"
                              th:title="${matchZone.name}">LPL2016英雄联盟职业联赛春季赛</a></p>
@@ -136,7 +140,7 @@
                     <li th:each="info:${infoNewestList}">
                         <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
                                 th:img-src="/image/204x108${info.titleImage}"
-                                th:alt="${info.title}"/></a>
+                                th:alt="${info.title}" th:title="${info.title}"/></a>
                         </div>
                         <div class="d2">
                             <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
@@ -159,7 +163,7 @@
                     <li th:each="info:${infoTradeList}">
                         <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
                                 th:img-src="/image/204x108${info.titleImage}"
-                                th:alt="${info.title}"/></a>
+                                th:alt="${info.title}" th:title="${info.title}"/></a>
                         </div>
                         <div class="d2">
                             <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
@@ -179,7 +183,7 @@
                 <ul>
                     <li th:each="info:${infoMatchZoneList}">
                         <div class="d1"><a href="#"><img th:img-src="/image/204x108${info.titleImage}"
-                                                         th:alt="${info.title}"/></a>
+                                                         th:alt="${info.title}" th:title="${info.title}"/></a>
                         </div>
                         <div class="d2">
                             <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
@@ -202,7 +206,7 @@
                     <li th:each="info:${infoAnchorZoneList}">
                         <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
                                 th:img-src="/image/204x108${info.titleImage}"
-                                th:alt="${info.title}"/></a>
+                                th:alt="${info.title}" th:title="${info.title}"/></a>
                         </div>
                         <div class="d2">
                             <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
@@ -238,11 +242,14 @@
                             th:if="${iterStat.index==0||iterStat.index==1}"
                             th:class="${iterStat.odd==true?'no_border':''}">
                             <p class="p1"><a href="#"><span></span><img
-                                    th:img-src="/image/106x106${matchTeam.icoImage}"/></a></p>
+                                    th:img-src="/image/106x106${matchTeam.icoImage}" th:alt="${matchTeam.name}"
+                                    th:title="${matchTeam.name}"/></a></p>
                             <p class="p2">
                                 <span class="span01"><a href="#" th:text="${matchTeam.name}">Absolute Legends</a></span>
                                 <span class="span02"><em>所属项目：</em><img th:img-src="/image/28x28${matchZone.icoImage}"
-                                                                        th:each="matchZone:${matchTeam.matchZoneList}"/></span>
+                                                                        th:each="matchZone:${matchTeam.matchZoneList}"
+                                                                        th:alt="${matchZone.name}"
+                                                                        th:title="${matchZone.name}"/></span>
                                 <span class="span02"><em
                                         th:text="${'成立时间：'+#calendars.format(matchTeam.createTime, 'yyyy年MM月dd日')}">成立时间：2014年11月20日</em></span>
                             </p>
@@ -253,11 +260,14 @@
                             th:if="${iterStat.index==2||iterStat.index==3}"
                             th:class="${iterStat.odd==true?'no_border':''}">
                             <p class="p1"><a href="#"><span></span><img
-                                    th:img-src="/image/106x106${matchTeam.icoImage}"/></a></p>
+                                    th:img-src="/image/106x106${matchTeam.icoImage}" th:alt="${matchTeam.name}"
+                                    th:title="${matchTeam.name}"/></a></p>
                             <p class="p2">
                                 <span class="span01"><a href="#" th:text="${matchTeam.name}">Absolute Legends</a></span>
                                 <span class="span02"><em>所属项目：</em><img th:img-src="/image/28x28${matchZone.icoImage}"
-                                                                        th:each="matchZone:${matchTeam.matchZoneList}"/></span>
+                                                                        th:each="matchZone:${matchTeam.matchZoneList}"
+                                                                        th:alt="${matchZone.name}"
+                                                                        th:title="${matchZone.name}"/></span>
                                 <span class="span02"><em
                                         th:text="${'成立时间：'+#calendars.format(matchTeam.createTime, 'yyyy年MM月dd日')}">成立时间：2014年11月20日</em></span>
                             </p>
@@ -275,7 +285,9 @@
             <ul class="zhubo_list">
                 <li th:each="anchorZone:${anchorZoneList}">
                     <a href="#" th:href="/anchor/${anchorZone.id}.html"
-                       th:title="${anchorZone.name}"><img th:img-src="/image/340x160${anchorZone.recommendImage}"/>
+                       th:title="${anchorZone.name}"><img th:img-src="/image/340x160${anchorZone.recommendImage}"
+                                                          th:alt="${anchorZone.name}"
+                                                          th:title="${anchorZone.name}"/>
                         <p class="p1" th:text="${anchorZone.name}">LOL代练MOBA大神 美萌老鼠mayuyu</p></a>
                     <p class="p2">
                         <span>主播：<a href="#" th:text="${anchorZone.username}" th:href="/news/${anchorZone.id}.html"
@@ -303,14 +315,16 @@
         <p class="index_video_left"><a href="#" th:each="info,iterStat:${infoMatchZoneVideoList}"
                                        th:if="${iterStat.index==0}" th:href="/video/${info.id}.html"
                                        th:title="${info.title}"><img
-                th:img-src="/image/486x360${info.titleImage}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
+                th:img-src="/image/486x360${info.titleImage}" th:alt="${info.title}"
+                th:title="${info.title}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
         </p>
         <div class="index_video_right">
             <ul>
                 <li th:each="info,iterStat:${infoMatchZoneVideoList}" th:if="${iterStat.index!=0}">
                     <a href="#" class="img" th:href="/video/${info.id}.html"
                        th:title="${info.title}">
-                        <img th:img-src="/image/200x118${info.titleImage}"/>
+                        <img th:img-src="/image/200x118${info.titleImage}" th:alt="${info.title}"
+                             th:title="${info.title}"/>
                         <p class="p1"><span></span></p>
                         <p class="p2"><em></em></p>
                     </a>
@@ -342,7 +356,8 @@
             <ul>
                 <li th:each="info,iterStat:${infoMatchZoneVideoList}" th:if="${iterStat.index!=0}">
                     <a href="#" class="img" th:href="/video/${info.id}.html" th:title="${info.title}">
-                        <img th:img-src="/image/200x118${info.titleImage}"/>
+                        <img th:img-src="/image/200x118${info.titleImage}" th:alt="${info.title}"
+                             th:title="${info.title}"/>
                         <p class="p1"><span></span></p>
                         <p class="p2"><em></em></p>
                     </a>
@@ -364,7 +379,8 @@
             <li th:each="info:${infoPlayerVideoInfoList}">
                 <a href="#" class="img" th:href="/video/${info.id}.html"
                    th:title="${info.title}">
-                    <img th:img-src="/image/200x118${info.titleImage}"/>
+                    <img th:img-src="/image/200x118${info.titleImage}" th:alt="${info.title}"
+                         th:title="${info.title}"/>
                     <p class="p1"><span>42:15</span></p>
                     <p class="p2"><em></em></p>
                 </a>
@@ -383,7 +399,8 @@
         <li th:each="matchZone:${matchZoneTopList}">
             <p class="p1"><a href="#" th:href="/game/${matchZone.id}.html"
                              th:title="${matchZone.name}"><span></span><img
-                    th:img-src="/image/106x106/${matchZone.icoImage}"/></a></p>
+                    th:img-src="/image/106x106/${matchZone.icoImage}" th:alt="${matchZone.name}"
+                    th:title="${matchZone.name}"/></a></p>
             <p class="p2">
                 <span class="span01"><a href="#" th:text="${matchZone.name}" th:href="/game/${matchZone.id}.html"
                                         th:title="${matchZone.name}">风暴英雄</a></span>
@@ -404,28 +421,32 @@
             <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==0||iterStat.index==1}"><a href="#"
                                                                                                              th:href="/picture/${picture.id}.html"
                                                                                                              th:title="${picture.description}"><img
-                    th:img-src="/image/280x178${picture.image}" th:alt="${picture.description}"/>
+                    th:img-src="/image/280x178${picture.image}" th:alt="${picture.description}"
+                    th:title="${picture.description}"/>
                 <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
         </ul>
         <ul class="ul2">
             <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==2}"><a href="#"
                                                                                           th:href="/picture/${picture.id}.html"
                                                                                           th:title="${picture.description}"><img
-                    th:img-src="/image/280x362${picture.image}"/>
+                    th:img-src="/image/280x362${picture.image}" th:alt="${picture.description}"
+                    th:title="${picture.description}"/>
                 <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
         </ul>
         <ul class="ul1">
             <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==3||iterStat.index==4}"><a href="#"
                                                                                                              th:href="/picture/${picture.id}.html"
                                                                                                              th:title="${picture.description}"><img
-                    th:img-src="/image/280x178${picture.image}"/>
+                    th:img-src="/image/280x178${picture.image}" th:alt="${picture.description}"
+                    th:title="${picture.description}"/>
                 <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
         </ul>
         <ul class="ul2">
             <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==5}"><a href="#"
                                                                                           th:href="/picture/${picture.id}.html"
                                                                                           th:title="${picture.description}"><img
-                    th:img-src="/image/280x362${picture.image}"/>
+                    th:img-src="/image/280x362${picture.image}" th:alt="${picture.description}"
+                    th:title="${picture.description}"/>
                 <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
         </ul>
     </div>

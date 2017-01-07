@@ -25,17 +25,19 @@
             <div class="zhubo_news" th:each="news,iterStat:${anchorNewsList.list}"><span><a href="#"
                                                                                             th:href="/anchor/news/${news.id}.html"
                                                                                             th:title="${news.title}"><img
-                    src="/static/temp/list03.jpg" th:img-src="/image/204x108${news.titleImage}"/></a></span>
+                    src="/static/temp/list03.jpg" th:img-src="/image/204x108${news.titleImage}" th:alt="${news.title}"
+                    th:title="${news.title}"/></a></span>
                 <div class="zhubo_news_main"><a href="#" th:href="/anchor/news/${news.id}.html"
                                                 th:title="${news.title}">
                     <h1 th:text="${news.title}">lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
                 </a>
                     <dl>
-                        <dt><img src="/static/img/time.png"/> <span
+                        <dt><img src="/static/img/time.png" th:alt="${news.title}" th:title="${news.title}"/> <span
                                 th:text="${#calendars.format(news.publishTime, 'MM-dd HH:mm')}">10-20 10:35</span></dt>
-                        <dd><img src="/static/img/bq.jpg"/>&nbsp;<a href="#"
-                                                                    th:each="tagTrade:${news.tagMappingWebList}"
-                                                                    th:text="${tagTrade.name}">电竞</a></dd>
+                        <dd><img src="/static/img/bq.jpg" th:alt="${news.title}" th:title="${news.title}"/>&nbsp;<a
+                                href="#"
+                                th:each="tagTrade:${news.tagMappingWebList}"
+                                th:text="${tagTrade.name}">电竞</a></dd>
                         <div class="clear"></div>
                     </dl>
                     <ul th:text="${news.content}">
@@ -74,8 +76,10 @@
             <ul class="hot_zhubo">
                 <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}.html"
                                                                  th:title="${anchorZone.name}">
-                    <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                    <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"/>
+                    <p class="p1"><img src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
+                                       th:title="${anchorZone.name}"/></p>
+                    <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"
+                                       th:alt="${anchorZone.name}" th:title="${anchorZone.name}"/>
                     </p>
                     <p class="p3" th:text="${anchorZone.name}">拳头暴君</p>
                 </a></li>

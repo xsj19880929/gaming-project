@@ -32,13 +32,16 @@
                         <li th:each="video:${matchVideoList.list}">
                             <a href="#" class="img" th:title="${video.title}"
                                th:href="/game/video/${video.id}.html">
-                                <img th:img-src="/image/230x160${video.titleImage}" th:alt="${video.title}"/>
+                                <img th:img-src="/image/230x160${video.titleImage}" th:alt="${video.title}"
+                                     th:title="${video.title}"/>
                                 <p class="p1"><span></span></p>
                                 <p class="p2"><em></em></p>
                             </a>
                             <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
                                th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
-                            <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
+                            <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"
+                                                                             th:alt="${video.title}"
+                                                                             th:title="${video.title}"/>43265
                             </p>
                         </li>
 
@@ -61,14 +64,16 @@
                 <dl style="margin-top:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
                     th:if="${iterStat.index==0}">
                     <a href="#" th:href="/game/${matchZoneTop.id}.html" th:title="${matchZoneTop.name}">
-                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.icoImage}"/>
+                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.icoImage}"
+                             th:alt="${matchZoneTop.name}" th:title="${matchZoneTop.name}"/>
                         <dt th:text="${matchZoneTop.name}">LPL2016英雄联盟职业联赛春季赛</dt>
                     </a>
                 </dl>
                 <dl style="margin-top:20px;margin-bottom:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
                     th:if="${iterStat.index==1}">
                     <a href="#" th:href="/game/${matchZoneTop.id}.html" th:title="${matchZoneTop.name}">
-                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.icoImage}"/>
+                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.icoImage}"
+                             th:alt="${matchZoneTop.name}" th:title="${matchZoneTop.name}"/>
                         <dt th:text="${matchZoneTop.name}">LPL2016英雄联盟职业联赛春季赛</dt>
                     </a>
                 </dl>

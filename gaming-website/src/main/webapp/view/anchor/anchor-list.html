@@ -62,12 +62,15 @@
                 <dl style="margin-left:19px;" th:each="anchorZone:${anchorZoneList.list}">
                     <dt>
                         <a href="" th:href="/anchor/${anchorZone.id}.html">
-                            <p class="zhubo_p1"><span><img src="/static/img/circle_bg.png"/></span><img
-                                    th:img-src="/image/120x120${anchorZone.icoImage}"/></p>
+                            <p class="zhubo_p1"><span><img src="/static/img/circle_bg.png" th:alt="${anchorZone.name}"
+                                                           th:title="${anchorZone.name}"/></span><img
+                                    th:img-src="/image/120x120${anchorZone.icoImage}" th:alt="${anchorZone.name}"
+                                    th:title="${anchorZone.name}"/></p>
                             <p class="zhubo_p2" th:text="${anchorZone.username}">小学生院长</p>
                             <p style="margin-bottom:11px;"><span style="margin-right:14px;"
                                                                  th:each="matchZone:${anchorZone.matchZoneList}"><img
-                                    th:img-src="/image/24x24${matchZone.icoImage}"/></span></p>
+                                    th:img-src="/image/24x24${matchZone.icoImage}" th:alt="${matchZone.name}"
+                                    th:title="${matchZone.name}"/></span></p>
                         </a>
                     </dt>
                     <dd>人气：<span th:text="${anchorZone.visitCount}">432432</span></dd>

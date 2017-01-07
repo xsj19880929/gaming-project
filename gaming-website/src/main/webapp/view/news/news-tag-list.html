@@ -30,7 +30,8 @@
                 <ul>
                     <li th:each="info:${infoList.list}">
                         <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
-                                th:img-src="/image/204x108${info.titleImage}" th:alt="${info.title}"/></a></div>
+                                th:img-src="/image/204x108${info.titleImage}" th:alt="${info.title}"
+                                th:title="${info.title}"/></a></div>
                         <div class="d2">
                             <p class="p1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
                                              th:text="${info.title}">iGirls战队处罚相关人员
@@ -58,7 +59,8 @@
                 <ul>
                     <li th:each="video:${videoTopList}"><a href="#" class="img" th:href="/video/${video.id}.html"
                                                            th:title="${video.title}"> <img
-                            th:img-src="/image/154x90${video.titleImage}"/>
+                            th:img-src="/image/154x90${video.titleImage}" th:alt="${video.title}"
+                            th:title="${video.title}"/>
                         <p class="p1"><span>42:15</span></p>
                         <p class="p2"><em></em></p>
                     </a> <a href="#" class="text" th:text="${video.title}" th:href="/video/${video.id}.html"
@@ -76,7 +78,8 @@
                     <a href="#" th:href="/anchor/${anchor.id}.html"
                        th:title="${anchor.name}">
                         <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                        <p class="p2"><img th:img-src="/image/120x120${anchor.icoImage}"/></p>
+                        <p class="p2"><img th:img-src="/image/120x120${anchor.icoImage}" th:alt="${anchor.name}"
+                                           th:title="${anchor.name}/></p>
                         <p class="p3" th:content="${anchor.username}">拳头暴君</p>
                     </a>
                 </li>

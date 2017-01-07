@@ -109,7 +109,8 @@
                             <a href="#" th:title="${picture.description}"
                                th:href="/picture/${picture.id}.html"><img src="/static/temp/girl1.jpg"
                                                                           th:img-src="/image/234x148${picture.image}"
-                                                                          th:alt="${picture.description}"/>
+                                                                          th:alt="${picture.description}"
+                                                                          th:title="${picture.description}"/>
                                 <p><span th:text="${picture.description}">最美拉克丝COS 水灵大眼神似小鹿斑比</span></p></a>
                         </li>
                     </ul>
@@ -147,8 +148,10 @@
             <ul class="hot_zhubo">
                 <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}.html"
                                                                  th:title="${anchorZone.name}">
-                    <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                    <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"/>
+                    <p class="p1"><img src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
+                                       th:title="${anchorZone.name}"/></p>
+                    <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"
+                                       th:alt="${anchorZone.name}" th:title="${anchorZone.name}"/>
                     </p>
                     <p class="p3" th:text="${anchorZone.name}">拳头暴君</p>
                 </a></li>

@@ -35,7 +35,8 @@
                 <div class="item" id="brand-a" th:each="picture:${pictureList.list}">
                     <p class="p1"><a href="#" th:href="/picture/${picture.id}.html"
                                      th:title="${picture.description}"><img th:img-src="${picture.image}"
-                                                                            th:alt="${picture.description}"/></a></p>
+                                                                            th:alt="${picture.description}"
+                                                                            th:title="${picture.description}"/></a></p>
                     <p class="p2"><a href="#" th:text="${picture.description}" th:href="/picture/${picture.id}.html"
                                      th:title="${picture.description}">LOL国服主播排行榜TOP8：第一名小智你们服不服？</a></p>
                     <p class="p3"><span class="time" th:text="${#calendars.format(picture.createTime, 'yyyy-MM-dd')}">2016-05-02</span><span

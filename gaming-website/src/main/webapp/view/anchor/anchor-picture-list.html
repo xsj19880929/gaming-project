@@ -28,7 +28,8 @@
                     <div class="item" id="brand-a" th:each="picture:${anchorPictureList.list}">
                         <p class="p1"><a href="#" th:href="/picture/${picture.id}.html"
                                          th:title="${picture.description}"><img th:img-src="${picture.image}"
-                                                                                th:alt="${picture.description}"/></a>
+                                                                                th:alt="${picture.description}"
+                                                                                th:title="${picture.description}"/></a>
                         </p>
                         <p class="p2"><a href="#" th:text="${picture.description}" th:href="/picture/${picture.id}.html"
                                          th:title="${picture.description}">LOL国服主播排行榜TOP8：第一名小智你们服不服？</a></p>
@@ -69,8 +70,10 @@
             <ul class="hot_zhubo">
                 <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}.html"
                                                                  th:title="${anchorZone.name}">
-                    <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                    <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"/>
+                    <p class="p1"><img src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
+                                       th:title="${anchorZone.name}"/></p>
+                    <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"
+                                       th:alt="${anchorZone.name}" th:title="${anchorZone.name}"/>
                     </p>
                     <p class="p3" th:text="${anchorZone.name}">拳头暴君</p>
                 </a></li>

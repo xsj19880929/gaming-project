@@ -92,7 +92,7 @@
             <li th:each="pictureLike:${pictureLikeList}">
                 <a href="#">
                     <p class="p1"><img src="/static/temp/girl1.jpg" th:img-src="/image/280x178${pictureLike.image}"
-                                       th:alt="${pictureLike.description}"/>
+                                       th:alt="${pictureLike.description}" th:title="${pictureLike.description}"/>
                     </p>
                     <p class="p2" th:text="${pictureLike.description}">LOL日服配音CV表 满满都是回忆你认识几个？</p>
                 </a>
@@ -106,7 +106,7 @@
             <li th:each="pictureTop:${pictureTopList}">
                 <a href="#">
                     <p class="p1"><img src="/static/temp/girl1.jpg" th:img-src="/image/280x178${pictureTop.image}"
-                                       th:alt="${pictureTop.description}"/>
+                                       th:alt="${pictureTop.description}" th:title="${pictureTop.description}"/>
                     </p>
                     <p class="p2" th:text="${pictureTop.description}">LOL日服配音CV表 满满都是回忆你认识几个？</p>
                 </a>
@@ -138,6 +138,8 @@
 			</div>
 		</div>
 	</div>
+
+
 
 
 
