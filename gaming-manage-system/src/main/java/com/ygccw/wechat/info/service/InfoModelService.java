@@ -77,7 +77,9 @@ public class InfoModelService {
             }
         }
 
-        saveTags(infoModel.getTags(), info.getId(), changeTagType(info.getInfoType()), changeTagZoneType(info.getInfoZoneType()));
+        List<Tags> tagList = saveTags(infoModel.getTags(), info.getId(), changeTagType(info.getInfoType()), changeTagZoneType(info.getInfoZoneType()));
+        info.setContent(setContentTag(info.getContent(), tagList, info.getInfoType().getName()));
+        infoService.update(info);
     }
 
     @Transactional
@@ -92,6 +94,7 @@ public class InfoModelService {
             saveOrUpdateRecommendMapping(infoModel.getRecommendMappingModelList());
         }
         saveTags(infoModel.getTags(), info.getId(), changeTagType(info.getInfoType()), changeTagZoneType(info.getInfoZoneType()));
+
     }
 
     private TagType changeTagType(InfoType infoType) {
@@ -219,6 +222,21 @@ public class InfoModelService {
         List<String> list = Arrays.asList(imagePath.split("/file"));
         return "/file" + list.get(1);
 
+    }
+
+    private String setContentTag(String content, List<Tags> tagList, String type) {
+        String urlPrefix = "";
+        if (type.equals(InfoType.news.getName())) {
+            urlPrefix = "/news/tag/";
+        } else if (type.equals(InfoType.news.getName())) {
+            urlPrefix = "/video/tag/";
+        }
+        for (Tags tags : tagList) {
+            String url = urlPrefix + tags.getId() + "_1.html";
+            String aTag = "<a href=\"" + url + "\"  target=\"_blank\">" + tags.getName() + "</a>";
+            content = content.replace(tags.getName(), aTag);
+        }
+        return content;
     }
 
 }

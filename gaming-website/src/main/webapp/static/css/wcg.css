@@ -1382,6 +1382,23 @@
     margin-top: 15px
 }
 
+.new_d_font a:link {
+    color: #FF0000;
+    text-decoration: underline;
+
+}
+
+.new_d_font a:link {
+    color: #3b8eff;
+    text-decoration: none;
+
+}
+
+.new_d_font a:hover {
+    color: #e89f00;
+    text-decoration: underline;
+}
+
 .detail_tag {
     width: 100%;
     float: left;
