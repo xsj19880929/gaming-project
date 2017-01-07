@@ -37,8 +37,9 @@
                 常规赛和季后赛。《英雄联盟》职业联赛第五赛季世界总决赛，将在欧洲四座城市进行。参加战队有16只，包括中国大陆、韩国、北美、欧洲各3个名额，台港澳赛区的2个名额，其他地区两个名额。</p>
             <div class="clear"></div>
         </div>
-        <div class="zhandui clearfix">
-            <div class="index_tit_two"><span class="text_left padding1">参赛战队</span><a href="#" class="more">更多</a></div>
+        <div class="zhandui clearfix" th:unless="${#lists.isEmpty(matchTeamList)}">
+            <div class="index_tit_two"><span
+                    class="text_left padding1">参赛战队</span><a href="#" class="more">更多</a></div>
             <div class="general slideBox icon_game02">
                 <div class="game_list02 bd">
                     <ul>
@@ -63,7 +64,7 @@
                 })
             </script>
         </div>
-        <div class="about_pic clearfix">
+        <div class="about_pic clearfix" th:unless="${#lists.isEmpty(newsList)}">
             <div class="index_tit_two"><span class="text_left padding1">赛事资讯</span><a href="#" class="more">更多</a></div>
             <div class="game_zixun_left">
                 <dl th:each="news,iterStat:${newsList}" th:if="${iterStat.index==0}">
@@ -103,7 +104,7 @@
             <div class="clear"></div>
         </div>
         <!--比赛视频-->
-        <div class="bisai_video">
+        <div class="bisai_video" th:unless="${#lists.isEmpty(videoList)}">
             <div class="index_tit_two">
                 <span class="text_left padding1">比赛视频</span>
                 <a href="#" class="more vider_more">更多</a>
@@ -124,7 +125,7 @@
                 </ul>
             </div>
         </div>
-        <div class="about_pic clearfix">
+        <div class="about_pic clearfix" th:unless="${#lists.isEmpty(pictureList)}">
             <div class="index_tit_two"><span class="text_left padding1">赛事图集</span><a href="/picture.html" class="more">更多</a>
             </div>
             <div class="slideBox saishi_pic">

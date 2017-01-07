@@ -40,7 +40,7 @@
             </div>
             <div class="clear"></div>
         </div>
-        <div class="zhubo_zixun02">
+        <div class="zhubo_zixun02" th:unless="${#lists.isEmpty(anchorNewsList)}">
             <dl>
                 <dt>主播资讯</dt>
                 <dd><a href="/anchor.html" target="_blank">更多<img src="/static/img/more.png" style="margin-left:4px;"/></a>
@@ -67,7 +67,7 @@
                 <div class="clear"></div>
             </div>
         </div>
-        <div class="zhubo_zixun02">
+        <div class="zhubo_zixun02" th:unless="${#lists.isEmpty(anchorVideoList)}">
             <dl>
                 <dt>主播视频</dt>
                 <dd><a href="/video.html" target="_blank">更多<img src="/static/img/more.png"/></a></dd>
@@ -100,7 +100,7 @@
             </div>
         </div>
         <!--精选美图 -->
-        <div class="about_pic clearfix" style="clear:both;">
+        <div class="about_pic clearfix" style="clear:both;" th:unless="${#lists.isEmpty(anchorPictureList)}">
             <div class="index_tit_two"><span class="text_left padding1" style="margin-top:20px;">精选美图</span><a
                     href="/picture.html" target="_blank"
                     class="more"
