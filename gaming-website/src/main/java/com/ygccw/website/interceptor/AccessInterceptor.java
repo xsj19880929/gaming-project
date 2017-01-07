@@ -21,5 +21,6 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
         request.setAttribute("currentUrl", siteSettings.baseUrl() + request.getRequestURI());
         request.setAttribute("hotKeywordsList", hotKeywordsService.list(new HotKeywords(), 0, 10));
         request.setAttribute("siteName", "55电竞游戏网");
+        request.setAttribute("baseUrl", siteSettings.baseUrl());
     }
 }

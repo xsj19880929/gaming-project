@@ -26,7 +26,7 @@
         <div class="pic_detail_writer">
             <dl>
                 <dd><span th:text="${#calendars.format(picture.createTime, 'yyyy-MM-dd HH:mm')}">2015-02-03 10:23</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来源：<a
-                        href="#"
+                        th:href="${baseUrl}" href="http://www.55djw.com"
                         th:text="${picture.source}">琵琶网</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </dd>
                 <dt><span>分享到：</span>
@@ -138,6 +138,7 @@
 			</div>
 		</div>
 	</div>
+
 
 
 

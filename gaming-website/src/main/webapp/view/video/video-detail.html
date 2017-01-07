@@ -30,7 +30,7 @@
                     <h1 th:text="${video.title}">LSPL2016春季赛常规赛第三周 ING vs MF</h1>
                     <h2>
                         <a th:text="${#calendars.format(video.publishTime, 'yyyy-MM-dd HH:mm')}">2016-10-20 10:25</a>
-                        <a th:text="'来源:'+${video.source}">来源:琵琶网</a>
+                        <a th:text="'来源:'+${video.source}" th:href="${baseUrl}" href="http://www.55djw.com">来源:琵琶网</a>
                         <a th:text="'作者:'+${video.author}">作者:编辑人员</a>
                         <a style="color:blue;">评论:（0）</a>
                     </h2>
