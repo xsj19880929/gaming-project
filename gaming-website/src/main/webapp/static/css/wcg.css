@@ -2446,10 +2446,10 @@
     top: 0;
     left: 0;
     height: 42px;
-    text-align: center;
     background: black;
     filter: Alpha(opacity=70);
     background: rgba(0, 0, 0, 0.7);
+    width: 100%;
 }
 
 .game_nav {
@@ -3892,6 +3892,66 @@
 
 .team-bd li a:hover span {
     color: #dae5f1;
+}
+
+.djw_top {
+    height: 41px;
+    border-bottom: 1px solid #ececec;
+    width: 100%;
+    background: #fff
+}
+
+.djw_top_general_o {
+    margin: 0 auto;
+    width: 1180px !important;
+}
+
+.djw_top_left {
+    float: left;
+    width: 600px;
+    height: 41px;
+    font-size: 14px;
+    line-height: 39px;
+
+}
+
+.djw_top_left a {
+    margin-right: 18px;
+    color: #666;
+}
+
+.djw_top_left a:hover {
+    color: #ff0505;
+    text-decoration: none;
+}
+
+.djw_top_right {
+    float: right;
+    height: 41px;
+    font-size: 14px;
+    line-height: 39px;
+}
+
+.djw_top_right a {
+    margin-left: 15px;
+    color: #666;
+}
+
+.djw_top_right a:hover {
+    color: #ff0505;
+    text-decoration: none;
+}
+
+.top_menu {
+    background: rgba(0, 0, 0, 0) url("/static/img/top_ico1.png") no-repeat scroll left 60%;
+    cursor: pointer;
+    padding-left: 21px;
+}
+
+.top_phone {
+    background: rgba(0, 0, 0, 0) url("/static/img/top_ico8.png") no-repeat scroll left center;
+    display: inline;
+    padding-left: 15px;
 }
 
 
