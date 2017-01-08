@@ -3933,7 +3933,12 @@
 }
 
 .djw_top_right a {
-    margin-left: 15px;
+    margin-left: 5px;
+    color: #666;
+}
+
+.djw_top_right span {
+    margin-left: 8px;
     color: #666;
 }
 
@@ -3952,6 +3957,127 @@
     background: rgba(0, 0, 0, 0) url("/static/img/top_ico8.png") no-repeat scroll left center;
     display: inline;
     padding-left: 15px;
+}
+
+.map_main {
+    background: #fff none repeat scroll 0 0;
+    float: left;
+    padding-bottom: 25px;
+    position: relative;
+    width: 1180px;
+}
+
+.map_main_content {
+    color: #595959;
+    float: left;
+    font-size: 16px;
+    line-height: 27px;
+    margin-bottom: 40px;
+    padding: 20px 40px 0;
+    width: 1180px;
+}
+
+.channel, .look_for {
+    display: inline;
+    float: left;
+    width: 1100px;
+}
+
+.channel p, .look_for p {
+    color: #de4200;
+    font-size: 20px;
+}
+
+.channel p a, .look_for p a {
+    color: #de4200;
+    display: inline;
+    font-size: 20px;
+}
+
+.channel ul {
+    float: left;
+    padding: 15px 0 0;
+    width: 850px;
+}
+
+.channel ul li {
+    float: left;
+    padding-bottom: 16px;
+    padding-right: 30px;
+}
+
+.channel ul li a, .fa ul li a {
+    color: #333333;
+    font-size: 16px;
+}
+
+.channel ul li a:hover, .fa ul li a:hover, .look_for ul li a:hover {
+    color: #de4200;
+}
+
+.map_line {
+    border-bottom: 1px dashed #cccccc;
+    display: inline;
+    float: left;
+    margin: 15px 0 0;
+    padding-bottom: 35px;
+    width: 1100px;
+}
+
+.map_zixun {
+    float: left;
+    width: 1100px;
+}
+
+.new_mg {
+    float: left;
+    margin-top: 40px;
+    width: 550px;
+}
+
+.new_mg p {
+    background: rgba(0, 0, 0, 0) url("/static/img/juxing.png") no-repeat scroll 0 4px;
+    color: #333333;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.new_mg ul {
+}
+
+.new_mg ul li {
+    background: rgba(0, 0, 0, 0) url("/static/img/li.png") no-repeat scroll 3px 30px;
+    height: 21px;
+    overflow: hidden;
+    padding-left: 15px;
+    padding-top: 20px;
+}
+
+.new_mg ul li a {
+    color: #666666;
+    font-size: 16px;
+}
+
+.new_mg ul li a:hover {
+    color: #de4200;
+}
+
+.game_position {
+    margin: 0 auto;
+    width: 1172px !important;
+    line-height: 30px;
+    height: 30px;
+    background: url(../img/home.png) left center no-repeat;
+    padding-left: 10px;
+    clear: both;
+    font-family: "宋体";
+    color: #404040;
+}
+
+.game_position a, .game_position em {
+    padding: 0 10px;
+    font-family: Microsoft YaHei;
 }
 
 

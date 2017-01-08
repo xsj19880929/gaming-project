@@ -3,13 +3,13 @@
 <div th:fragment="top(anchorZone)">
     <div class="djw_top">
         <div class="djw_top_general_o">
-            <div class="djw_top_left"><a href="#">55电竞游戏网</a><a
-                    href="#" class="top_menu">全站导航</a><a
+            <div class="djw_top_left"><a href="/">55电竞游戏网</a><a
+                    href="/sitemap.html" class="top_menu" target="_blank">全站导航</a><a
                     href="javascript:void(0)" class="top_phone">手机版</a>
             </div>
             <div class="djw_top_right">
-                <a href="javascript:;">设为主页</a>
-                <a href="javascript:;">收藏网站</a>
+                <a href="javascript:;" onclick="setHome(this,'http://www.55djw.com');">设为主页</a><span>|</span>
+                <a href="javascript:;" onclick="addFavorite('55电竞游戏网',location.href)">收藏网站</a>
             </div>
         </div>
     </div>

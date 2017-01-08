@@ -61,7 +61,7 @@
             <div class="zhubo_main_box">
                 <dl style="margin-left:19px;" th:each="anchorZone:${anchorZoneList.list}">
                     <dt>
-                        <a href="" th:href="/anchor/${anchorZone.id}.html">
+                        <a href="" th:href="/anchor/${anchorZone.id}.html" target="_blank">
                             <p class="zhubo_p1"><span><img src="/static/img/circle_bg.png" th:alt="${anchorZone.name}"
                                                            th:title="${anchorZone.name}"/></span><img
                                     th:img-src="/image/120x120${anchorZone.icoImage}" th:alt="${anchorZone.name}"
@@ -75,7 +75,7 @@
                     </dt>
                     <dd>人气：<span th:text="${anchorZone.visitCount}">432432</span></dd>
                     <div class="change_border">
-                        <span><a href="" th:href="/anchor/${anchorZone.id}.html">点击查看</a></span>
+                        <span><a href="" th:href="/anchor/${anchorZone.id}.html" target="_blank">点击查看</a></span>
                     </div>
                 </dl>
 

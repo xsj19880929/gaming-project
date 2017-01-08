@@ -37,6 +37,7 @@ import org.springframework.stereotype.Controller;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author soldier
@@ -298,6 +299,39 @@ public class IndexWebService {
         Picture picture = new Picture();
         picture.setDescription(keywords);
         return pictureService.listSize(picture);
+    }
+
+    public List<MatchZone> findSiteMapMatchZone(int offset, int fetchSize) {
+        MatchZone matchZone = new MatchZone();
+        matchZone.setSortIfDesc(true);
+        matchZone.setSortName("visitCount");
+        return matchZoneService.list(matchZone, offset, fetchSize);
+    }
+
+    public List<Map<String, Object>> listSiteMapHotTags(int offset, int fetchSize) {
+        TagMapping tagMapping = new TagMapping();
+        tagMapping.setTagType(TagType.picture);
+        return tagMappingService.listHotTags(tagMapping, offset, fetchSize);
+    }
+
+    public List<Info> findSiteMapNewestInfo(InfoType infoType, int offset, int fetchSize) {
+        Info info = new Info();
+        info.setVerify(1);
+        info.setInfoType(infoType);
+        return infoService.list(info, offset, fetchSize);
+    }
+
+    public List<MatchZone> findSiteMapNewestMatchZone(int offset, int fetchSize) {
+        MatchZone matchZone = new MatchZone();
+        return matchZoneService.list(matchZone, offset, fetchSize);
+    }
+
+    public List<AnchorZone> findSiteMapNewestAnchorZone(int offset, int fetchSize) {
+        return anchorZoneService.list(new AnchorZone(), offset, fetchSize);
+    }
+
+    public List<Picture> findSiteMapNewestPicture(int offset, int fetchSize) {
+        return pictureService.list(new Picture(), offset, fetchSize);
     }
 
 

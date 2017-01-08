@@ -4,6 +4,7 @@ import com.ygccw.website.database.FindResultToSale;
 import com.ygccw.website.pc.index.service.IndexWebService;
 import com.ygccw.website.pc.info.service.InfoWebService;
 import com.ygccw.website.utils.PageUtils;
+import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.enums.InfoVideoType;
 import com.ygccw.wechat.common.recommend.enums.RecommendLocal;
 import com.ygccw.wechat.common.recommend.enums.RecommendType;
@@ -76,5 +77,17 @@ public class IndexController {
         model.put("type", type);
         model.put("keywords", keywords);
         return "/search.html";
+    }
+
+    @RequestMapping(value = "/sitemap.html", method = RequestMethod.GET)
+    public String siteMap(final ModelMap model) {
+        model.put("matchZoneList", indexWebService.findSiteMapMatchZone(0, 30));
+        model.put("tagList", indexWebService.listSiteMapHotTags(0, 10));
+        model.put("newsList", indexWebService.findSiteMapNewestInfo(InfoType.news, 0, 10));
+        model.put("videoList", indexWebService.findSiteMapNewestInfo(InfoType.video, 0, 10));
+        model.put("matchZoneNewestList", indexWebService.findSiteMapNewestMatchZone(0, 10));
+        model.put("anchorZoneNewestList", indexWebService.findSiteMapNewestAnchorZone(0, 10));
+        model.put("pictureNewestList", indexWebService.findSiteMapNewestPicture(0, 10));
+        return "/sitemap.html";
     }
 }

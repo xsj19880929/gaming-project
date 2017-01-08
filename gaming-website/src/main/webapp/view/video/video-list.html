@@ -94,14 +94,14 @@
                 <ul>
                     <li th:each="video:${videoList.list}">
                         <a href="#" class="img" th:title="${video.title}"
-                           th:href="/video/${video.id}.html">
+                           th:href="/video/${video.id}.html" target="_blank">
                             <img th:img-src="/image/270x160${video.titleImage}" th:alt="${video.title}"
                                  th:title="${video.title}"/>
                             <p class="p1"><span>42:15</span></p>
                             <p class="p2"><em></em></p>
                         </a>
                         <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
-                           th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
+                           th:href="/video/${video.id}.html" target="_blank">MISS排位日记263期 中单阿狸大杀四方</a>
                         <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
                         </p>
                     </li>

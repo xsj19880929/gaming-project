@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="static/css/wcg.css"/>
+    <script type="text/javascript" src="static/js/jquery.js"></script>
+    <script type="text/javascript" src="static/js/wcg.js"></script>
+    <script type="text/javascript" src="static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <title>网站地图</title>
+</head>
+
+<body>
+<!--head-->
+<div th:replace="/head.html::top('sitemap')"></div>
+
+<div class="general">
+    <!--面包屑-->
+    <div class="position"><a href="/">电竞首页</a>&gt;<em>网站地图</em></div>
+    <div class="map_main">
+        <div class="index_tit_two title"><span class="text_left">网站地图</span></div>
+        <div class="map_main_content">
+            <div class="channel">
+                <p>
+                    <a href="/">主要栏目</a>
+                </p>
+                <ul>
+                    <li>
+                        <a href="#">手机版</a>
+                    </li>
+                    <li>
+                        <a href="/news.html">资讯</a>
+                    </li>
+                    <li>
+                        <a href="/video.html">视频</a>
+                    </li>
+                    <li>
+                        <a href="/game.html">赛事专区</a>
+                    </li>
+                    <li>
+                        <a href="/anchor.html">主播专区</a>
+                    </li>
+                    <li>
+                        <a href="/picture.html">竞技美图</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="channel">
+                <p>
+                    <a href="/video.html">视频</a>
+                </p>
+                <ul>
+                    <li>
+                        <a href="/video_new/matchVideo/all/0_1.html">比赛视频</a>
+                    </li>
+                    <li>
+                        <a href="/video_new/anchorVideo/all/0_1.html">主播视频</a>
+                    </li>
+                    <li>
+                        <a href="/video_new/playerVideo/all/0_1.html">玩家视频</a>
+                    </li>
+                    <li>
+                        <a href="/video_new/funVideo/all/0_1.html">娱乐视频</a>
+                    </li>
+                    <li>
+                        <a href="/video_new/originalVideo/all/0_1.html">原创视频</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="channel">
+                <p>
+                    <a href="/game.html">赛事专区</a>
+                </p>
+                <ul>
+                    <li th:each="matchZone:${matchZoneList}">
+                        <a href="http://wy.pipaw.com/gamelist-all-1.html" th:text="${matchZone.name}"
+                           th:href="/game/${matchZone.id}.html">手机网游专区</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="channel">
+                <p>
+                    <a href="/anchor.html">主播专区</a>
+                </p>
+                <ul>
+                    <li>
+                        <a href="/anchor_new/findPlatformId/3_1.html">熊猫TV</a>
+                    </li>
+                    <li>
+                        <a href="/anchor_new/findPlatformId/2_1.html">斗鱼</a>
+                    </li>
+                    <li>
+                        <a href="/anchor_new/findPlatformId/1_1.html">虎牙视频</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="channel">
+                <p>
+                    <a href="/picture.html">竞技美图</a>
+                </p>
+                <ul>
+                    <li th:each="tags:${tagList}">
+                        <a href="http://wy.pipaw.com/gamelist-all-1.html" th:text="${tags.name}"
+                           th:href="/picture/tag/${tags.id}_1.html">手机网游专区</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="map_line"></div>
+            <div class="map_zixun">
+
+                <div class="new_mg">
+                    <p>最新新闻资讯</p>
+                    <ul>
+                        <li th:each="news:${newsList}"><a target="_blank" th:text="${news.title}"
+                                                          th:title="${news.title}" th:href="/news/${news.id}.html">三周年新宠物昂科拉的宣传语：“昂首克敌”的下一句是什么全民飞机大战1.8每日一题 </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="new_mg">
+                    <p>最新视频资讯</p>
+                    <ul>
+
+                        <li th:each="video:${videoList}"><a target="_blank" th:text="${video.title}"
+                                                            th:title="${video.title}" th:href="/video/${video.id}.html">三周年新宠物昂科拉的宣传语：“昂首克敌”的下一句是什么全民飞机大战1.8每日一题 </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="new_mg">
+                    <p>最新赛事专区</p>
+                    <ul>
+                        <li th:each="matchZone:${matchZoneNewestList}"><a target="_blank" th:text="${matchZone.name}"
+                                                                          th:title="${matchZone.name}"
+                                                                          th:href="/game/${matchZone.id}.html">三周年新宠物昂科拉的宣传语：“昂首克敌”的下一句是什么全民飞机大战1.8每日一题 </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="new_mg">
+                    <p>最新主播专区</p>
+                    <ul>
+                        <li th:each="anchorZone:${anchorZoneNewestList}"><a target="_blank" th:text="${anchorZone.name}"
+                                                                            th:title="${anchorZone.name}"
+                                                                            th:href="/anchor/${anchorZone.id}.html">三周年新宠物昂科拉的宣传语：“昂首克敌”的下一句是什么全民飞机大战1.8每日一题 </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="new_mg">
+                    <p>最新美图资讯</p>
+                    <ul>
+                        <li th:each="picture:${pictureNewestList}"><a target="_blank" th:text="${picture.description}"
+                                                                      th:title="${picture.description}"
+                                                                      th:href="/picture/${picture.id}.html">三周年新宠物昂科拉的宣传语：“昂首克敌”的下一句是什么全民飞机大战1.8每日一题 </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div th:replace="/bottom.html::bottom"></div>
+
+</body>
+</html>

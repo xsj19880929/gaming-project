@@ -39,16 +39,17 @@
             <div class="tab_deatil" id="con_one_1" style="display:block">
                 <ul>
                     <li th:each="info:${infoList.list}">
-                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
+                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
+                                           target="_blank"><img
                                 th:img-src="/image/204x108${info.titleImage}" th:alt="${info.title}"
                                 th:title="${info.title}"/></a></div>
                         <div class="d2">
                             <p class="p1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
-                                             th:text="${info.title}">iGirls战队处罚相关人员
+                                             th:text="${info.title}" target="_blank">iGirls战队处罚相关人员
                                 恶意煽动队员离队将予以起诉</a></p>
                             <p class="p2"><span><a href="#" th:href="/news/tag/${tagTrade.tagsId}_1.html"
                                                    th:each="tagTrade:${info.tagMappingWebList}"
-                                                   th:text="${tagTrade.name}">电竞</a></span><em
+                                                   th:text="${tagTrade.name}" target="_blank">电竞</a></span><em
                                     th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20 10:35</em></p>
                             <p class="p3" th:text="${info.subTitle}">
                                 近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
@@ -68,13 +69,13 @@
             <div class="index_video_right game_user_con small">
                 <ul>
                     <li th:each="video:${videoTopList}"><a href="#" class="img" th:href="/video/${video.id}.html"
-                                                           th:title="${video.title}"> <img
+                                                           th:title="${video.title}" target="_blank"> <img
                             th:img-src="/image/154x90${video.titleImage}" th:alt="${video.title}"
                             th:title="${video.title}"/>
                         <p class="p1"><span>42:15</span></p>
                         <p class="p2"><em></em></p>
                     </a> <a href="#" class="text" th:text="${video.title}" th:href="/video/${video.id}.html"
-                            th:title="${video.title}">电竞校园联赛炉石传说Top3</a></li>
+                            th:title="${video.title}" target="_blank">电竞校园联赛炉石传说Top3</a></li>
                 </ul>
             </div>
         </div>
@@ -86,7 +87,7 @@
             <ul class="hot_zhubo">
                 <li th:each="anchor:${anchorTopList}">
                     <a href="#" th:href="/anchor/${anchor.id}.html"
-                       th:title="${anchor.name}">
+                       th:title="${anchor.name}" target="_blank">
                         <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
                         <p class="p2"><img th:img-src="/image/120x120${anchor.icoImage}" th:alt="${anchor.name}"
                                            th:title="${anchor.name}"/></p>
@@ -102,7 +103,8 @@
             </div>
             <ul class="hot_zixun">
                 <li th:each="news:${newsTopList}"><a href="#" th:text="${news.title}"
-                                                     th:href="/news/${news.id}.html" th:title="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                                                     th:href="/news/${news.id}.html" th:title="${news.title}"
+                                                     target="_blank">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                 </li>
             </ul>
         </div>
