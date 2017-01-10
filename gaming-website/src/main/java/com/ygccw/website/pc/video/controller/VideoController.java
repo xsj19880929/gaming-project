@@ -7,6 +7,7 @@ import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoVideoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
+import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.tags.service.TagsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,6 +27,8 @@ public class VideoController {
     VideoWebService videoWebService;
     @Inject
     TagsService tagsService;
+    @Inject
+    InfoService infoService;
 
     @RequestMapping(value = "/video.html", method = RequestMethod.GET)
     public String videoList(final ModelMap model) {
@@ -108,6 +111,7 @@ public class VideoController {
         model.put("matchZoneTopList", videoWebService.findTopMatchZoneList(0, 10));
         model.put("nextVideo", videoWebService.nextInfo(infoWeb));
         model.put("lastVideo", videoWebService.lastInfo(infoWeb));
+        infoService.updateVisitCount(id);
         return "/view/video/video-detail.html";
     }
 

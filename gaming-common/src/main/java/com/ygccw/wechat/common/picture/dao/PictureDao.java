@@ -76,4 +76,9 @@ public class PictureDao {
         return jpaAccess.findOne(QueryBuilder.query("from Picture").append("id", id).append("status", 1).build());
     }
 
+    @Transactional
+    public void updateVisitCount(Long id) {
+        jpaAccess.update(Query.create("update Picture set visitCount=visitCount+1 where id=:id").param("id", id));
+    }
+
 }

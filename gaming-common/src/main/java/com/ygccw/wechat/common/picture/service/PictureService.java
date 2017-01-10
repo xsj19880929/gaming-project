@@ -23,4 +23,6 @@ public interface PictureService {
 
     int listSize(Picture picture);
 
+    void updateVisitCount(Long id);
+
 }

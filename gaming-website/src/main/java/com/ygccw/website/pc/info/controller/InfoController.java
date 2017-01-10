@@ -5,6 +5,7 @@ import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.website.pc.info.service.InfoWebService;
 import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
+import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.tags.entity.Tags;
 import com.ygccw.wechat.common.tags.enums.TagZoneType;
 import com.ygccw.wechat.common.tags.service.TagsService;
@@ -26,6 +27,8 @@ public class InfoController {
     private InfoWebService infoWebService;
     @Inject
     private TagsService tagsService;
+    @Inject
+    private InfoService infoService;
 
     @RequestMapping(value = "/news.html", method = RequestMethod.GET)
     public String list(final ModelMap model) {
@@ -80,6 +83,7 @@ public class InfoController {
         model.put("likeInfoList", infoWebService.likeInfoList(infoWeb, 10));
         model.put("nextInfo", infoWebService.nextInfo(infoWeb));
         model.put("lastInfo", infoWebService.lastInfo(infoWeb));
+        infoService.updateVisitCount(id); // 点击量
         return "/view/news/news-detail.html";
     }
 

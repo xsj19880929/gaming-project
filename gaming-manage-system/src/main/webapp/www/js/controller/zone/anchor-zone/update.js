@@ -12,7 +12,6 @@
         $scope.anchorZonePlatformList = [];
         $scope.anchorZoneHonor = {};
         $scope.anchorZoneHonorList = [];
-        $scope.ue = UE.getEditor('container');
 
         $http.get('zone/anchor-zone/anchor-zone-platform/list').success(function (data) {
             $scope.anchorZonePlatformList = data;
@@ -22,9 +21,6 @@
             $http.get('zone/anchor-zone/' + $location.search().id).success(function (data) {
                 $scope.anchorZone = data;
                 $scope.anchorZoneHonorList = $scope.anchorZone.anchorZoneHonorList;
-                $scope.ue.ready(function () {
-                    $scope.ue.setContent($scope.anchorZone.introduction);
-                });
             });
         } else {
             $http.get('recommend/listRecommendMapping?recommendType=anchorZone').success(function (data) {
@@ -70,7 +66,6 @@
         };
 
         $scope.updateAnchorZone = function () {
-            $scope.anchorZone.introduction = $scope.ue.getContent();
             if ($scope.id) {
                 $http.put("/zone/anchor-zone", $scope.anchorZone).success(function () {
                     alert('更新成功');

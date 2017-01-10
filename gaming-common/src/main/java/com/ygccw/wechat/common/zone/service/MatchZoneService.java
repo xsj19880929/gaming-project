@@ -28,4 +28,6 @@ public interface MatchZoneService {
     List<MatchZone> listByIfAnchorMatch();
 
     List<MatchZone> listOrderByVisit(int offset, int fetchSize);
+
+    void updateVisitCount(Long id);
 }

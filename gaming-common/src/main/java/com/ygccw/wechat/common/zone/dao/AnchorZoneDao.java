@@ -80,4 +80,9 @@ public class AnchorZoneDao {
         return jpaAccess.find(query);
     }
 
+    @Transactional
+    public void updateVisitCount(Long id) {
+        jpaAccess.update(Query.create("update AnchorZone set visitCount=visitCount+1 where id=:id").param("id", id));
+    }
+
 }

@@ -95,4 +95,9 @@ public class MatchZoneDao {
         return jpaAccess.find(query);
     }
 
+    @Transactional
+    public void updateVisitCount(Long id) {
+        jpaAccess.update(Query.create("update MatchZone set visitCount=visitCount+1 where id=:id").param("id", id));
+    }
+
 }

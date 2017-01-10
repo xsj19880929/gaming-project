@@ -9,6 +9,8 @@ import java.util.List;
  * @author soldier
  */
 public interface AnchorZoneService {
+    void updateVisitCount(Long id);
+
     void save(AnchorZone anchorZone);
 
     void update(AnchorZone anchorZone);

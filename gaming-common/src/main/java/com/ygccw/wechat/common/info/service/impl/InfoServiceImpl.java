@@ -68,4 +68,9 @@ public class InfoServiceImpl implements InfoService {
     public Info nextInfo(Info info) {
         return infoDao.nextInfo(info);
     }
+
+    @Override
+    public void updateVisitCount(Long id) {
+        infoDao.updateVisitCount(id);
+    }
 }

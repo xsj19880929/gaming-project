@@ -18,8 +18,6 @@
         $scope.matchZoneCalendar = {};
         $scope.matchZoneCalendarList = [];
 
-        $scope.ue = UE.getEditor('container');
-
         $http.get('zone/match-zone/match-zone-area/list').success(function (data) {
             $scope.matchZoneAreaList = data;
         });
@@ -39,9 +37,6 @@
                 $scope.matchZone = data;
                 $scope.matchZoneBonusList = $scope.matchZone.matchZoneBonusList;
                 $scope.matchZoneCalendarList = $scope.matchZone.matchZoneCalendarList;
-                $scope.ue.ready(function () {
-                    $scope.ue.setContent($scope.matchZone.introduction);
-                });
             });
         } else {
             $http.get('recommend/listRecommendMapping?recommendType=matchZone').success(function (data) {
@@ -83,7 +78,6 @@
         };
 
         $scope.updateMatchZone = function () {
-            $scope.matchZone.introduction = $scope.ue.getContent();
             if ($scope.id) {
                 $http.put("/zone/match-zone", $scope.matchZone).success(function () {
                     alert('更新成功');

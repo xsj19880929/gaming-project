@@ -1,6 +1,6 @@
 <!-- 实例化编辑器 -->
-<script src="ue/ueditor.config.js"></script>
-<script src="ue/ueditor.all.min.js"></script>
+<!--<script src="ue/ueditor.config.js"></script>-->
+<!--<script src="ue/ueditor.all.min.js"></script>-->
 <div class="container-fluid">
     <ol class="breadcrumb">
         <li><a href="#" ui-sref="index">首页</a></li>
@@ -238,8 +238,7 @@
                     <td width="10%">专区介绍：</td>
 
                     <td width="70%">
-                        <script id="container" name="content" type="text/plain">
-                        </script>
+                        <textarea class="form-control" name="introduction" ng-model="matchZone.introduction"></textarea>
                     </td>
                 </tr>
 

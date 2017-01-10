@@ -7,8 +7,10 @@ import com.ygccw.website.pc.video.service.VideoWebService;
 import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
+import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
+import com.ygccw.wechat.common.zone.service.AnchorZoneService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +29,10 @@ public class AnchorController {
     private AnchorWebService anchorWebService;
     @Inject
     private VideoWebService videoWebService;
+    @Inject
+    private AnchorZoneService anchorZoneService;
+    @Inject
+    private InfoService infoService;
 
     @RequestMapping(value = "/anchor.html", method = RequestMethod.GET)
     public String anchorList(final ModelMap model) {
@@ -82,6 +88,7 @@ public class AnchorController {
         model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(id, 0, 10));
         model.put("newsTopList", anchorWebService.listInfoNewsTop(0, 10));
         model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
+        anchorZoneService.updateVisitCount(id);
         return "/view/anchor/anchor-index.html";
     }
 
@@ -123,6 +130,7 @@ public class AnchorController {
         model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(info.getZoneId(), 0, 10));
         model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
         model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
+        infoService.updateVisitCount(id);
         return "/view/anchor/anchor-news-detail.html";
     }
 
@@ -153,6 +161,7 @@ public class AnchorController {
         model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(info.getZoneId(), 0, 10));
         model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
         model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
+        infoService.updateVisitCount(id);
         return "/view/anchor/anchor-video-detail.html";
     }
 

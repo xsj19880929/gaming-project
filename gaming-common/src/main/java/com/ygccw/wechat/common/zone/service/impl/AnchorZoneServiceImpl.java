@@ -72,4 +72,9 @@ public class AnchorZoneServiceImpl implements AnchorZoneService {
     public List<AnchorZone> listAll() {
         return anchorZoneDao.listAll();
     }
+
+    @Override
+    public void updateVisitCount(Long id) {
+        anchorZoneDao.updateVisitCount(id);
+    }
 }

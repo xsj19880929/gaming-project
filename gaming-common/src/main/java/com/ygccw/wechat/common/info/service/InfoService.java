@@ -27,4 +27,6 @@ public interface InfoService {
 
     Info nextInfo(Info info);
 
+    void updateVisitCount(Long id);
+
 }

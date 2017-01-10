@@ -7,8 +7,10 @@ import com.ygccw.website.pc.video.service.VideoWebService;
 import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
+import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import com.ygccw.wechat.common.zone.enums.MatchStatus;
+import com.ygccw.wechat.common.zone.service.MatchZoneService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +29,10 @@ public class GameController {
     private GameWebService gameWebService;
     @Inject
     private VideoWebService videoWebService;
+    @Inject
+    private MatchZoneService matchZoneService;
+    @Inject
+    private InfoService infoService;
 
     @RequestMapping(value = "/game.html", method = RequestMethod.GET)
     public String gameList(final ModelMap model) {
@@ -102,6 +108,7 @@ public class GameController {
         model.put("pictureList", gameWebService.listPictureByMatchZoneId(id, 0, 10));
         model.put("recommendVideoList", gameWebService.listInfoVideo(0, 2));
         model.put("recommendNewsList", gameWebService.listInfoNews(0, 10));
+        matchZoneService.updateVisitCount(id);
         return "/view/game/game-index.html";
     }
 
@@ -144,6 +151,7 @@ public class GameController {
         model.put("lastInfo", gameWebService.lastInfo(infoWeb));
         model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 2));
         model.put("matchZone", gameWebService.findById(infoWeb.getZoneId()));
+        infoService.updateVisitCount(newsId);
         return "/view/game/game-news-detail.html";
     }
 
@@ -187,6 +195,7 @@ public class GameController {
         model.put("lastInfo", gameWebService.lastInfo(infoWeb));
         model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 2));
         model.put("matchZone", gameWebService.findById(infoWeb.getZoneId()));
+        infoService.updateVisitCount(id);
         return "/view/game/game-video-detail.html";
     }
 

@@ -58,4 +58,8 @@ public class PictureServiceImpl implements PictureService {
         return pictureDao.listSize(picture);
     }
 
+    @Override
+    public void updateVisitCount(Long id) {
+        pictureDao.updateVisitCount(id);
+    }
 }

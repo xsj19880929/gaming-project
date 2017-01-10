@@ -4,6 +4,7 @@ import com.ygccw.website.database.FindResultToSale;
 import com.ygccw.website.pc.picture.service.PictureWebService;
 import com.ygccw.website.utils.PageUtils;
 import com.ygccw.wechat.common.picture.entity.Picture;
+import com.ygccw.wechat.common.picture.service.PictureService;
 import com.ygccw.wechat.common.tags.service.TagsService;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,8 @@ public class PictureController {
     Environment env;
     @Inject
     TagsService tagsService;
+    @Inject
+    PictureService pictureService;
 
     @RequestMapping(value = "/picture.html", method = RequestMethod.GET)
     public String pictureList(HttpServletRequest request, final ModelMap model) {
@@ -53,6 +56,7 @@ public class PictureController {
         model.put("pictureTopList", pictureWebService.pictureListTop(0, 10));
         model.put("pictureLikeList", pictureWebService.likePictureList(picture, 5));
         model.put("imageServer", env.getProperty("out.image.downloadUrl"));
+        pictureService.updateVisitCount(id); //点击
         return "/view/picture/picture-detail.html";
     }
 

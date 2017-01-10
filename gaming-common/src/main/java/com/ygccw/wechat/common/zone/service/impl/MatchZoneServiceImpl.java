@@ -93,4 +93,9 @@ public class MatchZoneServiceImpl implements MatchZoneService {
     public List<MatchZone> listOrderByVisit(int offset, int fetchSize) {
         return matchZoneDao.listOrderByVisit(offset, fetchSize);
     }
+
+    @Override
+    public void updateVisitCount(Long id) {
+        matchZoneDao.updateVisitCount(id);
+    }
 }

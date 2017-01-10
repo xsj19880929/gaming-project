@@ -113,5 +113,10 @@ public class InfoDao {
         return jpaAccess.findOne(query);
     }
 
+    @Transactional
+    public void updateVisitCount(Long id) {
+        jpaAccess.update(Query.create("update Info set visitCount=visitCount+1 where id=:id").param("id", id));
+    }
+
 
 }
