@@ -94,7 +94,9 @@
 </div>
 <script>
     $(function () {
-        $('#brand-waterfall').waterfall();
+        $('#brand-waterfall img').load(function () {
+            $('#brand-waterfall').waterfall();
+        });
     });
     // 瀑布流插件
     // pannysp 2013.4.9
