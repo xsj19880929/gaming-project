@@ -29,29 +29,12 @@
                 来源：<a href="http://www.55djw.com" th:href="${baseUrl}" th:text="${info.source}">www.pipaw.com</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 时间：<span th:text="${#calendars.format(info.publishTime, 'yyyy-MM-dd')}">2015-04-28</span> &nbsp;&nbsp;&nbsp;&nbsp;
                 作者：<span th:text="${info.author}">晨落</span>&nbsp;&nbsp;&nbsp;&nbsp; <span>评论：0条</span></div>
-            <!--<div class="news_d_link"><a href="#"> <em>NO1.</em>天赋符文推荐： 极限追求伤害</a> <a href="#"> <em>NO2.</em>打法剖析：你好，我的名字叫猥琐</a>-->
-            <!--<a href="#"> <em>NO3.</em>出装顺序：回声+传送门，带线天下无敌</a> <a href="#"> <em>NO4.</em>提升熟练度的方法：猥琐也需要练习</a> <a-->
-            <!--href="#"> <em>NO5.</em>英雄克制与阵容选择：能拖能跑最适合</a> <a href="#"> <em>NO6.</em>英雄克制与阵容选择：能拖能跑最适合</a>-->
-            <!--</div>-->
             <div class="new_d_font" th:utext="${info.content}">
             </div>
-            <!--页码-->
-            <!--<div class="newyiiPager">-->
-            <!--<ol id="yw0" class="yiiPager">-->
-            <!--<li>共2页：</li>-->
-            <!--<li class="page hidden"><a href="">首页</a></li>-->
-            <!--<li class="previous hidden"><a href="#">上一页</a></li>-->
-            <!--<li class="page selected"><span>1</span></li>-->
-            <!--<li class="page"><a href="#">2</a></li>-->
-            <!--<li class="page"><a href="#">3</a></li>-->
-            <!--<li class="page"><a href="#">4</a></li>-->
-            <!--<li class="next"><a href="#">下一页</a></li>-->
-            <!--<li class="last"><a href="#">末页</a></li>-->
-            <!--</ol>-->
-            <!--</div>-->
             <div class="detail_tag">
                 <p class="p1">标签：<a href="#" th:each="tagTrade:${info.tagMappingWebList}"
-                                    th:text="${tagTrade.name}">电竞</a></p>
+                                    th:text="${tagTrade.name}" th:href="/news/tag/${tagTrade.tagsId}_1.html"
+                                    target="_blank">电竞</a></p>
                 <div class="p2" style="width:400px;">
                     <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a> <a title="分享到QQ空间"
                                                                                                        href="#"
@@ -151,7 +134,7 @@
                 <ul class="hot_zixun">
                     <li th:each="newsTop:${topNewsList}"><a href="#" th:text="${newsTop.title}"
                                                             th:title="${newsTop.title}"
-                                                            th:href="/game/news/${newsTop.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                                                            th:href="/news/${newsTop.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>
             </div>
@@ -162,7 +145,7 @@
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="news:${newestNewsList}"><a href="#" th:text="${news.title}" th:title="${news.title}"
-                                                            th:href="/game/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                                                            th:href="/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>
             </div>

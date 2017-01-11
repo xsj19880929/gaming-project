@@ -102,6 +102,12 @@ public class InfoWebService {
         return infoService.list(infoRequest, offset, fetchSize);
     }
 
+    public List<Info> newsListNewest(int offset, int fetchSize) {
+        Info infoRequest = new Info();
+        infoRequest.setInfoType(InfoType.news);
+        return infoService.list(infoRequest, offset, fetchSize);
+    }
+
     public List<AnchorZone> anchorListTop(int offset, int fetchSize) {
         AnchorZone anchorZone = new AnchorZone();
         anchorZone.setSortIfDesc(true);

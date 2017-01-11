@@ -46,6 +46,7 @@ public class RecommendMappingModelService {
             recommendMappingModelNew.setRecommendName(recommend.getName());
             recommendMappingModelNew.setRecommendId(recommend.getId());
             recommendMappingModelNew.setRecommendType(recommendType);
+            recommendMappingModelNew.setRecommendLocal(recommend.getRecommendLocal());
             recommendMappingModelListNew.add(recommendMappingModelNew);
         }
         return recommendMappingModelListNew;

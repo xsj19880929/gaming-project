@@ -74,38 +74,38 @@
             <div class="game_zixun_left">
                 <dl th:each="news,iterStat:${newsList}" th:if="${iterStat.index==0}">
                     <dt><a href="" th:title="${news.title}"
-                           th:href="/game/news/${news.id}.html"><img src="/static/temp/list01.jpg"
+                           th:href="/news/${news.id}.html"><img src="/static/temp/list01.jpg"
                                                                      th:img-src="/image/204x108${news.titleImage}"
                                                                      th:alt="${news.title}"
                                                                      th:title="${news.title}"/></a>
                     </dt>
                     <dd><a href="" th:text="${news.title}" th:title="${news.title}"
-                           th:href="/game/news/${news.id}.html">iGirls战队处罚相关人员恶意<br/>煽动队员离队将予以追究相关责任。</a></dd>
+                           th:href="/news/${news.id}.html">iGirls战队处罚相关人员恶意<br/>煽动队员离队将予以追究相关责任。</a></dd>
                 </dl>
                 <ul>
                     <li th:each="news,iterStat:${newsList}" th:if="${iterStat.index>0&&iterStat.index<10}"><a href="#"
                                                                                                               th:text="${news.title}"
                                                                                                               th:title="${news.title}"
-                                                                                                              th:href="/game/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                                                                                                              th:href="/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>
             </div>
             <div class="game_zixun_right">
                 <dl th:each="news,iterStat:${newsList}" th:if="${iterStat.index==10}">
                     <dt><a href="" th:title="${news.title}"
-                           th:href="/game/news/${news.id}.html"><img src="/static/temp/list01.jpg"
+                           th:href="/news/${news.id}.html"><img src="/static/temp/list01.jpg"
                                                                      th:img-src="/image/204x108${news.titleImage}"
                                                                      th:alt="${news.title}"
                                                                      th:title="${news.title}"/></a>
                     </dt>
                     <dd><a href="" th:text="${news.title}" th:title="${news.title}"
-                           th:href="/game/news/${news.id}.html">iGirls战队处罚相关人员恶意<br/>煽动队员离队将予以追究相关责任。</a></dd>
+                           th:href="/news/${news.id}.html">iGirls战队处罚相关人员恶意<br/>煽动队员离队将予以追究相关责任。</a></dd>
                 </dl>
                 <ul>
                     <li th:each="news,iterStat:${newsList}" th:if="${iterStat.index>10&&iterStat.index<20}"><a href="#"
                                                                                                                th:text="${news.title}"
                                                                                                                th:title="${news.title}"
-                                                                                                               th:href="/game/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                                                                                                               th:href="/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>
             </div>
@@ -197,7 +197,8 @@
             <dl>比赛日程表</dl>
             <ul th:each="matchZoneCalendar:${matchZoneCalendarList}">
                 <!--<span>今日</span>-->
-                <li><font th:text="${#calendars.format(matchZoneCalendar.startTime, 'yyyy-MM-dd HH:mm')}">17:00</font><a
+                <li><font th:if="${matchZoneCalendar.startTime}"
+                          th:text="${#calendars.format(matchZoneCalendar.startTime, 'yyyy-MM-dd HH:mm')}">17:00</font><a
                         href="#" style="margin-left:5px;"
                         th:text="${matchZoneCalendar.matchTeamOneName}">Snake</a>VS<a
                         href="#" th:text="${matchZoneCalendar.matchTeamTwoName}">EMF</a></li>
@@ -243,7 +244,7 @@
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="news:${recommendNewsList}"><a href="#" th:text="${news.title}" th:title="${news.title}"
-                                                               th:href="/game/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                                                               th:href="/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>
             </div>

@@ -33,15 +33,15 @@
                 <div class="tab_deatil" id="con_one_1" style="display:block">
                     <ul>
                         <li th:each="news:${newsList.list}">
-                            <div class="d1"><a href="#" th:href="/game/news/${news.id}.html"
+                            <div class="d1"><a href="#" th:href="/news/${news.id}.html"
                                                th:title="${news.title}"><img
                                     src="/static/temp/list01.jpg"
                                     th:img-src="/image/204x108${news.titleImage}"
                                     th:alt="${news.title}" th:title="${news.title}"/></a></div>
                             <div class="d2">
-                                <p class="p1"><a href="#" th:text="${news.title}" th:href="/game/news/${news.id}.html"
+                                <p class="p1"><a href="#" th:text="${news.title}" th:href="/news/${news.id}.html"
                                                  th:title="${news.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                                <p class="p2"><span><a href="#" th:href="/game/news/${news.id}.html"
+                                <p class="p2"><span><a href="#" th:href="/news/${news.id}.html"
                                                        th:each="tag:${news.tagMappingWebList}"
                                                        th:text="${tag.name}">电竞</a></span><em
                                         th:text="${#calendars.format(news.publishTime, 'MM-dd HH:mm')}">10-20 10:35</em>
@@ -90,7 +90,7 @@
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="newsTop:${topNewsList}"><a href="#" th:text="${newsTop.title}"
-                                                            th:href="/game/news/${newsTop.id}.html"
+                                                            th:href="/news/${newsTop.id}.html"
                                                             th:title="${newsTop.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>
@@ -102,7 +102,7 @@
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="news:${newestNewsList}"><a href="#" th:text="${news.title}"
-                                                            th:href="/game/news/${news.id}.html"
+                                                            th:href="/news/${news.id}.html"
                                                             th:title="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>

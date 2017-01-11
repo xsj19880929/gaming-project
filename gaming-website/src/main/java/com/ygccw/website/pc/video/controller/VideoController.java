@@ -1,6 +1,8 @@
 package com.ygccw.website.pc.video.controller;
 
 import com.ygccw.website.database.FindResultToSale;
+import com.ygccw.website.pc.anchor.service.AnchorWebService;
+import com.ygccw.website.pc.game.service.GameWebService;
 import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.website.pc.video.service.VideoWebService;
 import com.ygccw.website.utils.PageUtils;
@@ -9,6 +11,8 @@ import com.ygccw.wechat.common.info.enums.InfoVideoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.tags.service.TagsService;
+import com.ygccw.wechat.common.zone.entity.AnchorZone;
+import com.ygccw.wechat.common.zone.entity.MatchZone;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +33,10 @@ public class VideoController {
     TagsService tagsService;
     @Inject
     InfoService infoService;
+    @Inject
+    GameWebService gameWebService;
+    @Inject
+    AnchorWebService anchorWebService;
 
     @RequestMapping(value = "/video.html", method = RequestMethod.GET)
     public String videoList(final ModelMap model) {
@@ -105,13 +113,38 @@ public class VideoController {
     @RequestMapping(value = "/video/{id}.html", method = RequestMethod.GET)
     public String videoList(final ModelMap model, @PathVariable Long id) {
         InfoWeb infoWeb = videoWebService.findById(id);
-        model.put("video", infoWeb);
-        model.put("videoTopList", videoWebService.videoListTop(new Info(), 0, 10));
-        model.put("anchorTopList", videoWebService.anchorListTop(0, 6));
-        model.put("matchZoneTopList", videoWebService.findTopMatchZoneList(0, 10));
-        model.put("nextVideo", videoWebService.nextInfo(infoWeb));
-        model.put("lastVideo", videoWebService.lastInfo(infoWeb));
         infoService.updateVisitCount(id);
+        if (infoWeb.getInfoZoneType() == InfoZoneType.trade) {
+            model.put("video", infoWeb);
+            model.put("videoTopList", videoWebService.videoListTop(new Info(), 0, 10));
+            model.put("anchorTopList", videoWebService.anchorListTop(0, 6));
+            model.put("matchZoneTopList", videoWebService.findTopMatchZoneList(0, 10));
+            model.put("nextVideo", videoWebService.nextInfo(infoWeb));
+            model.put("lastVideo", videoWebService.lastInfo(infoWeb));
+            return "/view/video/video-detail.html";
+        } else if (infoWeb.getInfoZoneType() == InfoZoneType.matchZone) {
+            model.put("info", infoWeb);
+            model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
+            model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
+            model.put("pictureTopList", gameWebService.pictureListTop(0, 6));
+            model.put("likeInfoList", gameWebService.likeInfoList(infoWeb, 10));
+            model.put("nextInfo", gameWebService.nextInfo(infoWeb));
+            model.put("lastInfo", gameWebService.lastInfo(infoWeb));
+            model.put("matchZoneListTop", gameWebService.findMatchZoneTop(new MatchZone(), 0, 2));
+            model.put("matchZone", gameWebService.findById(infoWeb.getZoneId()));
+            return "/view/game/game-video-detail.html";
+        } else if (infoWeb.getInfoZoneType() == InfoZoneType.anchorZone) {
+            model.put("info", infoWeb);
+            model.put("anchorZone", anchorWebService.findAnchorById(infoWeb.getZoneId()));
+            model.put("pictureTopList", anchorWebService.pictureListTop(0, 6));
+            model.put("likeInfoList", anchorWebService.likeInfoList(infoWeb, 10));
+            model.put("nextInfo", anchorWebService.nextInfo(infoWeb));
+            model.put("lastInfo", anchorWebService.lastInfo(infoWeb));
+            model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(infoWeb.getZoneId(), 0, 10));
+            model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
+            model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
+            return "/view/anchor/anchor-video-detail.html";
+        }
         return "/view/video/video-detail.html";
     }
 

@@ -152,6 +152,7 @@ public class InfoModelService {
             recommendMappingModelNew.setEntityId(id);
             recommendMappingModelNew.setRecommendId(recommend.getId());
             recommendMappingModelNew.setRecommendType(RecommendType.news);
+            recommendMappingModelNew.setRecommendLocal(recommend.getRecommendLocal());
             for (RecommendMappingModel recommendMappingModel : recommendMappingModelList) {
                 if (recommendMappingModel.getRecommendId().compareTo(recommend.getId()) == 0) {
                     BeanUtils.copyProperties(recommendMappingModel, recommendMappingModelNew);

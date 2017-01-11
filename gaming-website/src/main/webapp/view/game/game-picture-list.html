@@ -86,7 +86,7 @@
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="newsTop:${topNewsList}"><a href="#" th:text="${newsTop.title}"
-                                                            th:href="/game/news/${newsTop.id}.html"
+                                                            th:href="/news/${newsTop.id}.html"
                                                             th:title="${newsTop.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>
@@ -98,7 +98,7 @@
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="news:${newestNewsList}"><a href="#" th:text="${news.title}"
-                                                            th:href="/game/news/${news.id}.html"
+                                                            th:href="/news/${news.id}.html"
                                                             th:title="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                     </li>
                 </ul>

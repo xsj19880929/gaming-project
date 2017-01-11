@@ -57,7 +57,7 @@
                 <ul>
                     <li th:each="video:${videoList.list}">
                         <a href="#" class="img" th:title="${video.title}"
-                           th:href="/game/video/${video.id}.html">
+                           th:href="/video/${video.id}.html">
                             <img th:img-src="/image/230x160${video.titleImage}" th:alt="${video.title}"/>
                             <p class="p1"><span></span></p>
                             <p class="p2"><em></em></p>

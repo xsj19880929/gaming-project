@@ -23,11 +23,11 @@
         <div style="margin-left:10px;" th:replace="/view/anchor/anchor-bar.html::bar('news',${anchorZone.id})"></div>
         <div class="zhubo_zixun02">
             <div class="zhubo_news" th:each="news,iterStat:${anchorNewsList.list}"><span><a href="#"
-                                                                                            th:href="/anchor/news/${news.id}.html"
+                                                                                            th:href="/news/${news.id}.html"
                                                                                             th:title="${news.title}"><img
                     src="/static/temp/list03.jpg" th:img-src="/image/204x108${news.titleImage}" th:alt="${news.title}"
                     th:title="${news.title}"/></a></span>
-                <div class="zhubo_news_main"><a href="#" th:href="/anchor/news/${news.id}.html"
+                <div class="zhubo_news_main"><a href="#" th:href="/news/${news.id}.html"
                                                 th:title="${news.title}">
                     <h1 th:text="${news.title}">lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
                 </a>

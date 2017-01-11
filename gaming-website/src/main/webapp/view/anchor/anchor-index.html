@@ -20,12 +20,12 @@
         <div th:replace="/view/anchor/anchor-bar.html::bar('index',${anchorZone.id})"></div>
         <div class="zhubo_video">
             <div class="img_box" th:each="news,iterStat:${anchorNewsList}" th:if="${iterStat.index==0}"><a href="#"
-                                                                                                           th:href="/anchor/news/${news.id}.html"
+                                                                                                           th:href="/news/${news.id}.html"
                                                                                                            th:title="${news.title}"><img
                     src="/static/img/zhubo/zhubo_pic1.png" th:img-src="/image/495x290${news.titleImage}"
                     th:alt="${news.title}"
                     th:title="${news.title}"/></a> <span><a
-                    href="#" th:text="${news.title}" th:href="/anchor/news/${news.id}.html" th:title="${news.title}">《LOL》知名主播Miss签约金2000万
+                    href="#" th:text="${news.title}" th:href="/news/${news.id}.html" th:title="${news.title}">《LOL》知名主播Miss签约金2000万
                 收入超刘翔</a></span></div>
             <div class="video_right">
                 <div class="index_video_right right_video zhubo_video01 zhubo_video02">

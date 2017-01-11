@@ -1,6 +1,8 @@
 package com.ygccw.website.pc.info.controller;
 
 import com.ygccw.website.database.FindResultToSale;
+import com.ygccw.website.pc.anchor.service.AnchorWebService;
+import com.ygccw.website.pc.game.service.GameWebService;
 import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.website.pc.info.service.InfoWebService;
 import com.ygccw.website.utils.PageUtils;
@@ -9,6 +11,8 @@ import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.tags.entity.Tags;
 import com.ygccw.wechat.common.tags.enums.TagZoneType;
 import com.ygccw.wechat.common.tags.service.TagsService;
+import com.ygccw.wechat.common.zone.entity.AnchorZone;
+import com.ygccw.wechat.common.zone.entity.MatchZone;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +33,10 @@ public class InfoController {
     private TagsService tagsService;
     @Inject
     private InfoService infoService;
+    @Inject
+    private GameWebService gameWebService;
+    @Inject
+    private AnchorWebService anchorWebService;
 
     @RequestMapping(value = "/news.html", method = RequestMethod.GET)
     public String list(final ModelMap model) {
@@ -75,16 +83,43 @@ public class InfoController {
     @RequestMapping(value = "/news/{id}.html", method = RequestMethod.GET)
     public String index(final ModelMap model, @PathVariable Long id) {
         InfoWeb infoWeb = infoWebService.findById(id);
-        model.put("info", infoWeb);
-        model.put("newsTopList", infoWebService.newsListTop(0, 10));
-        model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
-        model.put("videoTopList", infoWebService.videoListTop(0, 4));
-        model.put("pictureTopList", infoWebService.pictureListTop(0, 6));
-        model.put("likeInfoList", infoWebService.likeInfoList(infoWeb, 10));
-        model.put("nextInfo", infoWebService.nextInfo(infoWeb));
-        model.put("lastInfo", infoWebService.lastInfo(infoWeb));
         infoService.updateVisitCount(id); // 点击量
+        model.put("info", infoWeb);
+        if (infoWeb.getInfoZoneType() == InfoZoneType.trade) {
+            model.put("newsTopList", infoWebService.newsListTop(0, 10));
+            model.put("newsNewestList", infoWebService.newsListNewest(0, 10));
+            model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
+            model.put("videoTopList", infoWebService.videoListTop(0, 4));
+            model.put("pictureTopList", infoWebService.pictureListTop(0, 6));
+            model.put("likeInfoList", infoWebService.likeInfoList(infoWeb, 10));
+            model.put("nextInfo", infoWebService.nextInfo(infoWeb));
+            model.put("lastInfo", infoWebService.lastInfo(infoWeb));
+            return "/view/news/news-detail.html";
+        } else if (infoWeb.getInfoZoneType() == InfoZoneType.matchZone) {
+            model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
+            model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
+            model.put("pictureTopList", gameWebService.pictureListTop(0, 6));
+            model.put("likeInfoList", gameWebService.likeInfoList(infoWeb, 10));
+            model.put("nextInfo", gameWebService.nextInfo(infoWeb));
+            model.put("lastInfo", gameWebService.lastInfo(infoWeb));
+            model.put("matchZoneListTop", gameWebService.findMatchZoneTop(new MatchZone(), 0, 2));
+            model.put("matchZone", gameWebService.findById(infoWeb.getZoneId()));
+            return "/view/game/game-news-detail.html";
+        } else if (infoWeb.getInfoZoneType() == InfoZoneType.anchorZone) {
+            model.put("anchorZone", anchorWebService.findAnchorById(infoWeb.getZoneId()));
+            model.put("pictureTopList", anchorWebService.pictureListTop(0, 6));
+            model.put("likeInfoList", anchorWebService.likeInfoList(infoWeb, 10));
+            model.put("nextInfo", anchorWebService.nextInfo(infoWeb));
+            model.put("lastInfo", anchorWebService.lastInfo(infoWeb));
+            model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(infoWeb.getZoneId(), 0, 10));
+            model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
+            model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
+            return "/view/anchor/anchor-news-detail.html";
+        }
+
         return "/view/news/news-detail.html";
+
+
     }
 
     @RequestMapping(value = "/news/tag/{tagId}_{currentPage}.html", method = RequestMethod.GET)
