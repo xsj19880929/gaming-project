@@ -19,7 +19,7 @@
 <div class="home_page">
     <div class="home_page_left">
         <div class="position" style="margin-left:22px;"><a href="/">电竞首页</a>&gt;<a
-                th:href="/anchor/${anchorZone.id}.html" th:text="${anchorZone.name}">英雄联盟电竞专区</a>&gt;<a
+                th:href="/anchor/${anchorZone.id}/" th:text="${anchorZone.name}">英雄联盟电竞专区</a>&gt;<a
                 th:href="/anchor/video-list/${anchorZone.id}.html">主播视频</a>&gt;<em
                 th:text="${info.title}"></em></div>
         <div style="margin-left:10px;" th:replace="/view/anchor/anchor-bar.html::bar('video',${anchorZone.id})"></div>
@@ -147,7 +147,7 @@
                                                                               class="more vider_more">更多</a>
             </div>
             <ul class="hot_zhubo">
-                <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}.html"
+                <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}/"
                                                                  th:title="${anchorZone.name}">
                     <p class="p1"><img src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
                                        th:title="${anchorZone.name}"/></p>
@@ -164,7 +164,7 @@
             <ul class="hot_zixun">
                 <li th:each="matchZone:${matchZoneTopList}"><a href="#"
                                                                th:text="${matchZone.name}"
-                                                               th:href="/game/${matchZone.id}.html"
+                                                               th:href="/game/${matchZone.id}/"
                                                                th:title="${matchZone.name}">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
             </ul>
         </div>

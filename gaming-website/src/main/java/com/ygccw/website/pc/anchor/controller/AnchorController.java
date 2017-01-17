@@ -77,7 +77,7 @@ public class AnchorController {
         return "/view/anchor/anchor-list.html";
     }
 
-    @RequestMapping(value = "/anchor/{id}.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/anchor/{id}/", method = RequestMethod.GET)
     public String findById(final ModelMap model, @PathVariable Long id) {
         model.put("anchorZone", anchorWebService.findAnchorById(id));
         model.put("anchorMatchZoneList", anchorWebService.listMatchZoneListByAnchorZoneId(id));

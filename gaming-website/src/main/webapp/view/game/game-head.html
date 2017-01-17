@@ -18,12 +18,11 @@
             </div>
         </div>
         <img src="/static/img/game/game_banner.png" th:alt="${matchZone.name}" th:title="${matchZone.name}"
-             th:img-src="/image/${matchZone.backgroundImage}"
-             width="100%"/>
+             th:img-src="/image/1920x400/${matchZone.backgroundImage}"/>
         <div class="game_nav">
             <ul class="clearfix" style="">
                 <li th:classappend="${selectedMenuName}=='index'?'change'"><a href="#"
-                                                                              th:href="/game/${matchZone.id}.html"><span><img
+                                                                              th:href="/game/${matchZone.id}/"><span><img
                         src="/static/img/game/game_home.png" th:alt="${matchZone.name}"
                         th:title="${matchZone.name}"/></span>
                     <h1 th:text="${matchZone.name}+'官网'">电竞专区</h1></a></li>

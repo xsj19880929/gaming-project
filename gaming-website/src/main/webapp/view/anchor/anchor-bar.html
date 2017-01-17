@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
 <div th:fragment="bar(selectedMenuName,id)">
     <div class="zhubo_nav">
-        <a href="#" th:classappend="${selectedMenuName}=='index'?'hover'" th:href="/anchor/${id}.html">主页</a>
+        <a href="#" th:classappend="${selectedMenuName}=='index'?'hover'" th:href="/anchor/${id}/">主页</a>
         <a href="#" th:classappend="${selectedMenuName}=='news'?'hover'" th:href="/anchor/news-list/${id}.html">资讯</a>
         <a href="#" th:classappend="${selectedMenuName}=='video'?'hover'"
            th:href="/anchor/video-list/${id}/page_1.html">视频</a>

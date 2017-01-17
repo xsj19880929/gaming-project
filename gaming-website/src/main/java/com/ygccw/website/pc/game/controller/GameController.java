@@ -97,7 +97,7 @@ public class GameController {
         return matchZone;
     }
 
-    @RequestMapping(value = "/game/{id}.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/game/{id}/", method = RequestMethod.GET)
     public String gameList(final ModelMap model, @PathVariable Long id) {
         model.put("matchZone", gameWebService.findById(id));
         model.put("matchTeamList", gameWebService.listMatchTeamByMatchZoneId(id));
