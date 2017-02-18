@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="ch168series">
+    <uielements objectName="beforeSemantic">
+        <uiobject fieldName="tidyDom">
+            <expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="nextTask">
+        <rows><![CDATA[$ROWS(tidyDom,"//div[@class='sx_tiaojian cyxx_div_ull']/div/ul/li/a")]]></rows>
+        <uiobject fieldName="url" nullAble="false">
+            <expression>
+                <![CDATA[$XPATHCOLS(tidyDom,"//div[@class='sx_tiaojian cyxx_div_ull']/div/ul/li/a/@href",row)]]></expression>
+        </uiobject>
+        <uiobject fieldName="templeName" nullAble="false">
+            <expression><![CDATA["ch168cartype"]]></expression>
+        </uiobject>
+        <uiobject fieldName="brandName" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"brandName")]]></expression>
+        </uiobject>
+        <uiobject fieldName="carSeriesName" nullAble="false">
+            <expression>
+                <![CDATA[$XPATHCOLS(tidyDom,"//div[@class='sx_tiaojian cyxx_div_ull']/div/ul/li/a",row)]]></expression>
+        </uiobject>
+    </uielements>
+</page>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="category">
+	<uielements objectName="beforeSemantic">
+		<uiobject fieldName="tidyDom">
+			<expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_car_series">
+		<rows><![CDATA[$ROWS(tidyDom,"//div[@class='uibox']/div/dl/dd/ul/li/h4")]]></rows>
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_name" nullAble="false">
+			<expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='uibox']/div/dl/dd/ul/li/h4",row)]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_sn" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATHCOLS(tidyDom,"//div[@class='uibox']/div/dl/dd/ul/li/h4/a/@href",row),"(\\d{1,5})")]]></expression>
+		</uiobject>
+		<uiobject fieldName="category_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"categorySn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="level" nullAble="false">
+			<expression><![CDATA[0]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="md5" nullAble="false"> 
+			<expression><![CDATA[$MD5($KEYVAL(map,"car_series_name")+$KEYVAL(map,"car_series_sn")+$KEYVAL(map,"category_sn"))]]></expression> 
+		</uiobject> 
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["car_series_sn"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATHCOLS(tidyDom,"//div[@class='uibox']/div/dl/dd/ul/li/h4/a/@href",row),"(\\d{1,5})")]]></expression>
+		</uiobject>
+		<uiobject fieldName="jumpData" nullAble="false">
+			<expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='uibox']/div/dl/dd/ul/li",row)=="指导价：暂无"?"YES":"NO"]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_brand">
+		<rows><![CDATA[$ROWS(tidyDom,"//div[@class='uibox']/div/dl/dt")]]></rows>
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="brand_name" nullAble="false">
+			<expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='uibox']/div/dl/dd/div/a",row)]]></expression>
+		</uiobject>
+		<uiobject fieldName="brand_sn" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATHCOLS(tidyDom,"//div[@class='uibox']/div/dl/dd/div/a/@href",row),"(\\d{1,5})")]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="pic_url" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='uibox']/div/dl/dt/a/img/@data-original",row),"/50/","/100/")]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+		<expression><![CDATA["brand_sn"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATHCOLS(tidyDom,"//div[@class='uibox']/div/dl/dd/div/a/@href",row),"(\\d{1,5})")]]></expression>
+		</uiobject>
+	</uielements>
+</page>

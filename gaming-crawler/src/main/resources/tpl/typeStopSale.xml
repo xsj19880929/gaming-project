@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="typeStopSale">
+	<uielements objectName="beforeSemantic">
+		<uiobject fieldName="jsonArr">
+			<expression><![CDATA[$KEYVAL(html,"Spec")]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_car_type">
+		<rows><![CDATA[$ROWSARRAY(jsonArr)]]></rows>
+		<uiobject fieldName="rowjsonSemantic">
+			<expression><![CDATA[$ARRAY(jsonArr,row)]]></expression>
+		</uiobject>
+		<uiobject fieldName="is_sale" nullAble="false">
+			<expression><![CDATA[1]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["car_type_sn"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$KEYVAL(rowjsonSemantic,"Id")]]></expression>
+		</uiobject>
+	</uielements>
+	
+</page>

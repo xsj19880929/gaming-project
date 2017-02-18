@@ -1,0 +1,46 @@
+package com.ygccw.crawler.common;
+
+public class Constants {
+    public static final int CONNECTION_TIMEOUT = 50000;
+    public static final int SO_TIMEOUT = 50000;
+    public static final String TPL_PAGE = "page";
+    public static final String TPL_UIELEMENTS = "uielements";
+    public static final String TPL_UIOBJECT = "uiobject";
+    public static final String TPL_NULLABLE = "nullAble";
+    public static final String TPL_EXPRESSION = "expression";
+    public static final String TPL_FIELD_NAME = "fieldName";
+    public static final String TPL_OBJECT_NAME = "objectName";
+    public static final String TPL_FLAG = "flag";
+    public static final String TPL_ROWS = "rows";
+    public static final String TPL_BEFORE_SEMANTIC = "beforeSemantic";
+    public static final String TYPE_CATEGORY = "category";
+    public static final String TYPE_PIC = "pic";
+    public static final String TYPE_CONFIG = "config";
+    public static final String TYPE_PRICE = "price";
+    public static final String TYPE_BRANDSN = "brandsn";
+    public static final String TYPE_COVER = "cover";
+    public static final String TYPE_TYPE_COVER = "typeCover";
+    public static final String TYPE_TYPE_PIC = "typePic";
+    public static final String TYPE_ARTICLE_LIST = "articlelist";
+    public static final String TYPE_ARTICLE_NEW = "articleNew";
+    public static final String TYPE_ARTICLE_TEST = "articleTest";
+    public static final String TYPE_TYPE_STOP_SALE = "typeStopSale";
+    public static final String TYPE_SALES_CAR_LIST = "salescarlist";
+    public static final String TYPE_SALES_CAR_DETAIL = "salescardetail";
+    public static final String TYPE_CH168_BRAND = "ch168brand";
+    public static final String TYPE_CH168_DETAIL = "ch168detail";
+    public static final String URL_PIC = "http://car.autohome.com.cn/pic/series/${1}.html";
+    public static final String URL_CONFIG = "http://car.autohome.com.cn/config/series/${1}.html";
+    public static final String URL_PRICE = "http://www.autohome.com.cn/${1}/price.html";
+    public static final String URL_BRANDSN = "http://car.autohome.com.cn/pic/series/${1}.html";
+    public static final String URL_COVER = "http://www.autohome.com.cn/${1}";
+    public static final String URL_TYPE_COVER = "http://www.autohome.com.cn/spec/${1}";
+    public static final String URL_TYPE_PIC = "http://car.autohome.com.cn/pic/series-s${1}/${2}.html";
+    public static final String URL_TYPE_ARTICLE_NEW = "http://www.autohome.com.cn/${1}/1/0-0-1-0/";
+    public static final String URL_TYPE_ARTICLE_TEST = "http://www.autohome.com.cn/${1}/3/0-0-1-0/";
+    public static final String TPLNAME = "templeName";
+    public static final String URL = "url";
+    public static String JAVA_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static String DATE_FORMAT_YMD = "yyyyMMdd";
+    public static String NOYEAR_DATE_FORMAT = "MM-dd HH:mm:ss";
+}

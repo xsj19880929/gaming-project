@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="typePic">
+	<uielements objectName="beforeSemantic">
+		<uiobject fieldName="tidyDom">
+			<expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_car_type_pic_1_sametable">
+		<rows><![CDATA[($CONTAINS($XPATH(tidyDom,"//div[@class='uibox'][1]/div[@class='uibox-title']/a[1]"),"车身外观")||$CONTAINS($REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]"),"中控方向盘")||$CONTAINS($REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]"),"车厢座椅")||$CONTAINS($REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]"),"其它细节"))?1:0]]></rows>
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_type_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carTypeSn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_type_name" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carTypeName")]]></expression>
+		</uiobject>
+		<uiobject fieldName="source_url" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='uibox'][1]/div[@class='uibox-con carpic-list03']/ul/li[1]/a/img/@src",row),"/t_","/u_")]]></expression>
+		</uiobject>
+		<uiobject fieldName="type" nullAble="false">
+			<expression><![CDATA[$XPATH(tidyDom,"//div[@class='uibox'][1]/div[@class='uibox-title']/a[1]")]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["source_url"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='uibox'][2]/div[@class='uibox-con carpic-list03']/ul/li[1]/a/img/@src",row),"/t_","/u_")]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_car_type_pic_2_sametable">
+		<rows><![CDATA[($CONTAINS($XPATH(tidyDom,"//div[@class='uibox'][1]/div[@class='uibox-title']/a[1]"),"车身外观")||$CONTAINS($REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]"),"中控方向盘")||$CONTAINS($REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]"),"车厢座椅")||$CONTAINS($REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]"),"其它细节"))?1:0]]></rows>
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_type_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carTypeSn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_type_name" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carTypeName")]]></expression>
+		</uiobject>
+		<uiobject fieldName="source_url" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='uibox'][2]/div[@class='uibox-con carpic-list03']/ul/li[1]/a/img/@src",row),"/t_","/u_")]]></expression>
+		</uiobject>
+		<uiobject fieldName="type" nullAble="false">
+			<expression><![CDATA[$XPATH(tidyDom,"//div[@class='uibox'][2]/div[@class='uibox-title']/a[1]")]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["source_url"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='uibox'][2]/div[@class='uibox-con carpic-list03']/ul/li[1]/a/img/@src",row),"/t_","/u_")]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_car_type_pic_3_sametable">
+		<rows><![CDATA[($CONTAINS($XPATH(tidyDom,"//div[@class='uibox'][3]/div[@class='uibox-title']/a[1]"),"车身外观")||$CONTAINS($REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]"),"中控方向盘")||$CONTAINS($REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]"),"车厢座椅")||$CONTAINS($REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]"),"其它细节"))?1:0]]></rows>
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_type_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carTypeSn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_type_name" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carTypeName")]]></expression>
+		</uiobject>
+		<uiobject fieldName="source_url" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='uibox'][3]/div[@class='uibox-con carpic-list03']/ul/li[1]/a/img/@src",row),"/t_","/u_")]]></expression>
+		</uiobject>
+		<uiobject fieldName="type" nullAble="false">
+			<expression><![CDATA[$XPATH(tidyDom,"//div[@class='uibox'][3]/div[@class='uibox-title']/a[1]")]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["source_url"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='uibox'][3]/div[@class='uibox-con carpic-list03']/ul/li[1]/a/img/@src",row),"/t_","/u_")]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_car_type_pic_4_sametable">
+		<rows><![CDATA[($CONTAINS($XPATH(tidyDom,"//div[@class='uibox'][4]/div[@class='uibox-title']/a[1]"),"车身外观")||$CONTAINS($REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]"),"中控方向盘")||$CONTAINS($REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]"),"车厢座椅")||$CONTAINS($REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]"),"其它细节"))?1:0]]></rows>
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_type_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carTypeSn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_type_name" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carTypeName")]]></expression>
+		</uiobject>
+		<uiobject fieldName="source_url" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='uibox'][4]/div[@class='uibox-con carpic-list03']/ul/li[1]/a/img/@src",row),"/t_","/u_")]]></expression>
+		</uiobject>
+		<uiobject fieldName="type" nullAble="false">
+			<expression><![CDATA[$XPATH(tidyDom,"//div[@class='uibox'][4]/div[@class='uibox-title']/a[1]")]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["source_url"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='uibox'][4]/div[@class='uibox-con carpic-list03']/ul/li[1]/a/img/@src",row),"/t_","/u_")]]></expression>
+		</uiobject>
+	</uielements>
+</page>

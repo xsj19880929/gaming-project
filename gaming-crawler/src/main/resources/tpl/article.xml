@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="article">
+	<uielements objectName="beforeSemantic">
+		<uiobject fieldName="tidyDom">
+			<expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_article">
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="title" nullAble="false">
+			<expression><![CDATA[$XPATHROWS(tidyDom,"//div[@id='articlewrap']/h1")]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$DATEFMT($XPATHROWS(tidyDom,"//div[@class='article-info']/span[1]"),"yyyy年MM月dd日 HH:mm")]]></expression>
+		</uiobject>
+		<uiobject fieldName="source" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATHROWS(tidyDom,"//div[@class='article-info']/span[2]"),"来源：(.*)")]]></expression>
+		</uiobject>
+		<uiobject fieldName="author" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATHROWS(tidyDom,"//div[@class='article-info']/span[4]"),"编辑：(.*)")]]></expression>
+		</uiobject>
+		<uiobject fieldName="content" nullAble="false">
+			<expression><![CDATA[$JSOUPHTML(html,"div[id=articleContent]")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_name" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesName")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesSn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="type" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"classify")]]></expression>
+		</uiobject>
+		<uiobject fieldName="crawl_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="url" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"url")]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["url"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"url")]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="nextTask">
+		<rows><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")==""?0:1]]></rows>
+		<uiobject fieldName="url" nullAble="false">
+			<expression><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")]]></expression>
+		</uiobject>
+		<uiobject fieldName="templeName" nullAble="false">
+			<expression><![CDATA["article_content"]]></expression>
+		</uiobject>
+	</uielements>
+</page>

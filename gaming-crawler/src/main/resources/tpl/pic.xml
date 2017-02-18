@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="pic">
+	<uielements objectName="beforeSemantic">
+		<uiobject fieldName="tidyDom">
+			<expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_car_series_pic_1_sametable">
+		<rows><![CDATA[$ROWS(tidyDom,"//div[@class='r_tit'][1]/div[@class='r_img']")]]></rows>
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesSn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_name" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesName")]]></expression>
+		</uiobject>
+		<uiobject fieldName="source_url" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='r_tit'][1]/div[@class='r_img']/div/a/img/@src",row),"/s_","/u_")]]></expression>
+		</uiobject>
+		<uiobject fieldName="type" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][1]/a[2]"),"(.*)[(]")]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["source_url"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='r_tit'][1]/div[@class='r_img']/div/a/img/@src",row),"/s_","/u_")]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_car_series_pic_2_sametable">
+		<rows><![CDATA[$ROWS(tidyDom,"//div[@class='r_tit'][2]/div[@class='r_img']")]]></rows>
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesSn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_name" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesName")]]></expression>
+		</uiobject>
+		<uiobject fieldName="source_url" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='r_tit'][2]/div[@class='r_img']/div/a/img/@src",row),"/s_","/u_")]]></expression>
+		</uiobject>
+		<uiobject fieldName="type" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][2]/a[2]"),"(.*)[(]")]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["source_url"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='r_tit'][2]/div[@class='r_img']/div/a/img/@src",row),"/s_","/u_")]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_car_series_pic_3_sametable">
+		<rows><![CDATA[$ROWS(tidyDom,"//div[@class='r_tit'][3]/div[@class='r_img']")]]></rows>
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesSn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_name" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesName")]]></expression>
+		</uiobject>
+		<uiobject fieldName="source_url" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='r_tit'][3]/div[@class='r_img']/div/a/img/@src",row),"/s_","/u_")]]></expression>
+		</uiobject>
+		<uiobject fieldName="type" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][3]/a[2]"),"(.*)[(]")]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["source_url"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='r_tit'][3]/div[@class='r_img']/div/a/img/@src",row),"/s_","/u_")]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_car_series_pic_4_sametable">
+		<rows><![CDATA[$ROWS(tidyDom,"//div[@class='r_tit'][4]/div[@class='r_img']")]]></rows>
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesSn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_name" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesName")]]></expression>
+		</uiobject>
+		<uiobject fieldName="source_url" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='r_tit'][4]/div[@class='r_img']/div/a/img/@src",row),"/s_","/u_")]]></expression>
+		</uiobject>
+		<uiobject fieldName="type" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATH(tidyDom,"//div[@class='OptionDesc_2'][4]/a[2]"),"(.*)[(]")]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["source_url"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($XPATHCOLS(tidyDom,"//div[@class='r_tit'][4]/div[@class='r_img']/div/a/img/@src",row),"/s_","/u_")]]></expression>
+		</uiobject>
+	</uielements>
+</page>

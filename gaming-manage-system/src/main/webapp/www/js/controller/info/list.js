@@ -81,9 +81,9 @@
         $scope.lookInfo = function (infoType, id) {
             var url = "";
             if (infoType == 'news') {
-                url = "news/" + id + ".html";
+                url = "/news/" + id + ".html";
             } else if (infoType == 'video') {
-                url = "video/" + id + ".html";
+                url = "/video/" + id + ".html";
             }
             $window.open($scope.websiteData.website + url);
         }

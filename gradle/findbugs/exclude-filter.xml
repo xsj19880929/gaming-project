@@ -19,4 +19,25 @@
         <Method name="callback"/>
         <Bug pattern="XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER"/>
     </Match>
+    <Match>
+        <Class name="com.ygccw.crawler.common.IKFunction"/>
+    </Match>
+    <Match>
+        <Class name="com.ygccw.crawler.common.MyParser"/>
+    </Match>
+    <Match>
+        <Class name="com.ygccw.crawler.common.NativeDao"/>
+    </Match>
+    <Match>
+        <Class name="com.ygccw.crawler.common.Semantic"/>
+    </Match>
+    <Match>
+        <Class name="com.ygccw.crawler.common.CrawlerBase"/>
+    </Match>
+    <Match>
+        <Class name="com.ygccw.crawler.common.TemplateUtil"/>
+    </Match>
+    <Match>
+        <Class name="com.ygccw.crawler.common.Constants"/>
+    </Match>
 </FindBugsFilter>

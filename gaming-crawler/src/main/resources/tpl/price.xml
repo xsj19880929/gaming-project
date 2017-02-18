@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="price">
+	<uielements objectName="beforeSemantic">
+		<uiobject fieldName="tidyDom">
+			<expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_car_type">
+		<rows><![CDATA[$ROWS(tidyDom,"//ul[@class='interval01-list']/li")]]></rows>
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesSn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_series_name" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesName")]]></expression>
+		</uiobject>
+		<uiobject fieldName="category_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"categorySn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_type_sn" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATHCOLS(tidyDom,"//ul[@class='interval01-list']/li/div/div/p[1]/a[1]/@href",row),"(\\d{1,7})")]]></expression>
+		</uiobject>
+		<uiobject fieldName="car_type_name" nullAble="false">
+			<expression><![CDATA[$XPATHCOLS(tidyDom,"//ul[@class='interval01-list']/li/div/div/p[1]/a[1]",row)]]></expression>
+		</uiobject>
+		<uiobject fieldName="years" nullAble="false">
+			<expression><![CDATA[$SUBSTR($KEYVAL(map,"car_type_name"),0,4)]]></expression>
+		</uiobject>
+		<uiobject fieldName="brand_sn" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"brandSn")]]></expression>
+		</uiobject>
+		<uiobject fieldName="guide_price" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATHCOLS(tidyDom,"//ul[@class='interval01-list']/li/div[@class='interval01-list-guidance']/div",row),"(\\d*[.]\\d*[万])")]]></expression>
+		</uiobject>
+		<uiobject fieldName="lowest_price" nullAble="false">
+			<expression><![CDATA["0"]]></expression>
+		</uiobject>
+		<uiobject fieldName="fz_lowest_price" nullAble="false">
+			<expression><![CDATA["0"]]></expression>
+		</uiobject>
+		<uiobject fieldName="guide_price_double" nullAble="false">
+			<expression><![CDATA[$STRING2DOUBLE($REGEXP($KEYVAL(map,"guide_price"),"(\\d*[.]\\d*)"))*10000]]></expression>
+		</uiobject>
+		<uiobject fieldName="lowest_price_double" nullAble="false">
+			<expression><![CDATA["0"]]></expression>
+		</uiobject>
+		<uiobject fieldName="fz_lowest_price_double" nullAble="false">
+			<expression><![CDATA["0"]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="md5" nullAble="true"> 
+			<expression><![CDATA[""]]></expression> 
+		</uiobject> 
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["car_type_sn"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATHCOLS(tidyDom,"//ul[@class='interval01-list']/li/div/div/p[1]/a[1]/@href",row),"(\\d{1,7})")]]></expression>
+		</uiobject>
+		<uiobject fieldName="is_sale" nullAble="false">
+			<expression><![CDATA[0]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_crawl_task">
+		<rows><![CDATA[$ROWS(tidyDom,"//div[@class='dropdown-content']/ul/li/a/@data")]]></rows>
+		<uiobject fieldName="id" nullAble="false">
+			<expression><![CDATA[$UUID()]]></expression>
+		</uiobject>
+		<uiobject fieldName="url" nullAble="false">
+			<expression><![CDATA["http://www.autohome.com.cn/ashx/series_allspec.ashx?s="+$KEYVAL(task,"carSeriesSn")+"&y="+$XPATHCOLS(tidyDom,"//div[@class='dropdown-content']/ul/li/a/@data",row)]]></expression>
+		</uiobject>
+		<uiobject fieldName="temple_name" nullAble="false">
+			<expression><![CDATA["typeStopSale"]]></expression> 
+		</uiobject>
+		<uiobject fieldName="type" nullAble="false">
+			<expression><![CDATA["typeStopSale"]]></expression>
+		</uiobject>
+		<uiobject fieldName="created_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["url"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA["http://www.autohome.com.cn/ashx/series_allspec.ashx?s="+$KEYVAL(task,"carSeriesSn")+"&y="+$XPATHCOLS(tidyDom,"//div[@class='dropdown-content']/ul/li/a/@data",row)]]></expression>
+		</uiobject>
+		
+	</uielements>
+</page>

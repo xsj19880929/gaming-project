@@ -75,9 +75,9 @@
                 <dl th:each="news,iterStat:${newsList}" th:if="${iterStat.index==0}">
                     <dt><a href="" th:title="${news.title}"
                            th:href="/news/${news.id}.html"><img src="/static/temp/list01.jpg"
-                                                                     th:img-src="/image/204x108${news.titleImage}"
-                                                                     th:alt="${news.title}"
-                                                                     th:title="${news.title}"/></a>
+                                                                th:img-src="/image/204x108${news.titleImage}"
+                                                                th:alt="${news.title}"
+                                                                th:title="${news.title}"/></a>
                     </dt>
                     <dd><a href="" th:text="${news.title}" th:title="${news.title}"
                            th:href="/news/${news.id}.html">iGirls战队处罚相关人员恶意<br/>煽动队员离队将予以追究相关责任。</a></dd>
@@ -94,9 +94,9 @@
                 <dl th:each="news,iterStat:${newsList}" th:if="${iterStat.index==10}">
                     <dt><a href="" th:title="${news.title}"
                            th:href="/news/${news.id}.html"><img src="/static/temp/list01.jpg"
-                                                                     th:img-src="/image/204x108${news.titleImage}"
-                                                                     th:alt="${news.title}"
-                                                                     th:title="${news.title}"/></a>
+                                                                th:img-src="/image/204x108${news.titleImage}"
+                                                                th:alt="${news.title}"
+                                                                th:title="${news.title}"/></a>
                     </dt>
                     <dd><a href="" th:text="${news.title}" th:title="${news.title}"
                            th:href="/news/${news.id}.html">iGirls战队处罚相关人员恶意<br/>煽动队员离队将予以追究相关责任。</a></dd>
@@ -173,7 +173,7 @@
 
 
     <div class="game_main_right">
-        <div class="game_money">
+        <div class="game_money" th:unless="${#lists.isEmpty(matchZoneBonusList)}">
             <dl style="height:62px;font-size:24px;line-height:62px;">
                 比赛奖金
             </dl>
@@ -193,7 +193,7 @@
                 <div class="clear"></div>
             </dl>
         </div>
-        <div class="game_data">
+        <div class="game_data" th:unless="${#lists.isEmpty(matchZoneCalendarList)}">
             <dl>比赛日程表</dl>
             <ul th:each="matchZoneCalendar:${matchZoneCalendarList}">
                 <!--<span>今日</span>-->

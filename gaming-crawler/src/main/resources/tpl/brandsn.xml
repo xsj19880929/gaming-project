@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="brandsn">
+	<uielements objectName="beforeSemantic">
+		<uiobject fieldName="tidyDom">
+			<expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+		</uiobject>
+	</uielements>
+	<uielements objectName="cr_car_series">
+		<uiobject fieldName="brand_sn" nullAble="false">
+			<expression><![CDATA[$REGEXP($XPATH(tidyDom,"//div[@class='breadnav']/a[3]/@href"),"(\\d{1,5})")]]></expression>
+		</uiobject>
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["car_series_sn"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesSn")]]></expression>
+		</uiobject>
+	</uielements>
+</page>

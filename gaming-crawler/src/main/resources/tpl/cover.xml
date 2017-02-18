@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="cover">
+	<uielements objectName="beforeSemantic">
+		<uiobject fieldName="tidyDom">
+			<expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+		</uiobject>
+	</uielements>
+	
+	<uielements objectName="cr_car_series">
+		
+	
+		<uiobject fieldName="pic_url" nullAble="false">
+			<expression><![CDATA[$REPLACESTR($REPLACESTR($XPATH(tidyDom,"//div[@class='autoseries-pic'][1]/div[@class='autoseries-pic-img1']/a/img/@src|//div[@class='car_detail'][1]//dl[@class='models_pics']/dt/a/img/@src"),"/t_","/u_"),"http://www","http://car0")]]></expression>
+		</uiobject>
+		
+		<uiobject fieldName="updated_time" nullAble="false">
+			<expression><![CDATA[$SYSDATESTR()]]></expression>
+		</uiobject>
+		
+		<uiobject fieldName="keyName" nullAble="false">
+			<expression><![CDATA["car_series_sn"]]></expression>
+		</uiobject>
+		<uiobject fieldName="keyValue" nullAble="false">
+			<expression><![CDATA[$KEYVAL(task,"carSeriesSn")]]></expression>
+		</uiobject>
+	</uielements>
+	
+</page>

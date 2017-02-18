@@ -1,10 +1,14 @@
 (function (angular) {
     var module = angular.module('app');
 
-    module.controller('MatchZoneListController', ['$scope', '$http', '$location', '$rootScope', function ($scope, $http, $location, $rootScope) {
+    module.controller('MatchZoneListController', ['$scope', '$http', '$location', '$rootScope', '$window', function ($scope, $http, $location, $rootScope, $window) {
         $scope.offset = 0;
         $scope.fetchSize = 25;
         $scope.params = {};
+        $scope.websiteData = {};
+        $http.get("info/website").success(function (data) {
+            $scope.websiteData = data;
+        });
 
         var loadData = function (offset, fetchSize) {
             var url = "/zone/match-zone/list?offset=" + offset + "&fetchSize=" + fetchSize;
@@ -47,7 +51,8 @@
                 {
                     name: '操作',
                     cellTemplate: '<button class="btn btn-primary btn-sm" ng-click="grid.appScope.updateMatchZone(row.entity.id);">编辑</button>' +
-                    '<button class="btn btn-danger btn-sm" ng-click="grid.appScope.deleteMatchZone(row.entity.id);">删除</button>'
+                    '<button class="btn btn-danger btn-sm" ng-click="grid.appScope.deleteMatchZone(row.entity.id);">删除</button>' +
+                    '<button class="btn btn-info btn-sm" ng-click="grid.appScope.lookInfo(row.entity.id);">预览</button>'
                 }
             ],
             onRegisterApi: function (gridApi) {
@@ -57,7 +62,10 @@
                 });
             }
         };
-
+        $scope.lookInfo = function (id) {
+            var url = "/game/" + id + "/";
+            $window.open($scope.websiteData.website + url);
+        }
 
         $scope.updateMatchZone = function (id) {
             $location.search('id', id);

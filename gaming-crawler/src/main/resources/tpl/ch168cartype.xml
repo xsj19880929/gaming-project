@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="ch168cartype">
+    <uielements objectName="beforeSemantic">
+        <uiobject fieldName="tidyDom">
+            <expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="nextTask">
+        <rows><![CDATA[$ROWS(tidyDom,"//ul[@class='sx_adiv o_cf']/li[@class='second_menu_li']/div/div/p/a")]]></rows>
+        <uiobject fieldName="url" nullAble="false">
+            <expression>
+                <![CDATA[$XPATHCOLS(tidyDom,"//ul[@class='sx_adiv o_cf']/li[@class='second_menu_li']/div/div/p/a/@href",row)]]></expression>
+        </uiobject>
+        <uiobject fieldName="templeName" nullAble="false">
+            <expression><![CDATA["ch168list"]]></expression>
+        </uiobject>
+        <uiobject fieldName="brandName" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"brandName")]]></expression>
+        </uiobject>
+        <uiobject fieldName="carSeriesName" nullAble="false">
+            <expression>
+                <![CDATA[$KEYVAL(task,"carSeriesName")]]></expression>
+        </uiobject>
+        <uiobject fieldName="carTypeName" nullAble="false">
+            <expression>
+                <![CDATA[$MYCONTAINS($XPATHCOLS(tidyDom,"//ul[@class='sx_adiv o_cf']/li[@class='second_menu_li']/div/div/p/a/text()",row),"全部")==true?"":$XPATHCOLS(tidyDom,"//ul[@class='sx_adiv o_cf']/li[@class='second_menu_li']/div/div/p/a/text()",row)]]></expression>
+        </uiobject>
+    </uielements>
+</page>

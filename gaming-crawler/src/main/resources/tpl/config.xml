@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="config">
+    <uielements objectName="beforeSemantic">
+        <uiobject fieldName="tidyDom">
+            <expression><![CDATA[$TIDYDOMFMT(html)]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="cr_car_type_config">
+        <uiobject fieldName="configJson">
+            <expression>
+                <![CDATA[$KEYVAL($KEYVAL($REGEXP($REGEXP($XPATH(tidyDom,"//script[7]"),"(var config = [\\s\\S]*;)"), "([{][\\s\\S]*[}])"),"result"),"paramtypeitems")]]></expression>
+        </uiobject>
+        <uiobject fieldName="optionJson">
+            <expression>
+                <![CDATA[$KEYVAL($KEYVAL($REGEXP($REGEXP($XPATH(tidyDom,"//script[7]"),"(var option = [\\s\\S]*;)"), "([{][\\s\\S]*[}])"),"result"),"configtypeitems")]]></expression>
+        </uiobject>
+        <uiobject fieldName="colorJson">
+            <expression>
+                <![CDATA[$KEYVAL($KEYVAL($REGEXP($REGEXP($XPATH(tidyDom,"//script[7]"),"(var color = [\\s\\S]*;)"), "([{][\\s\\S]*[}])"),"result"),"specitems")]]></expression>
+        </uiobject>
+        <uiobject fieldName="innerColorJson">
+            <expression>
+                <![CDATA[$KEYVAL($KEYVAL($REGEXP($REGEXP($XPATH(tidyDom,"//script[7]"),"(var innerColor=[\\s\\S]*;)"), "([{][\\s\\S]*[}])"),"result"),"specitems")]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="temp">
+        <uiobject fieldName="carSeriesSn">
+            <expression><![CDATA[$KEYVAL(task,"carSeriesSn")]]></expression>
+        </uiobject>
+    </uielements>
+
+</page>

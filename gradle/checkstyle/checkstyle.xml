@@ -161,3 +161,4 @@
         <property name="file" value="${configDir}/suppressions.xml"/>
     </module>
 </module>
+

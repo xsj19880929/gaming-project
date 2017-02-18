@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="ch168detail">
+    <uielements objectName="beforeSemantic">
+        <uiobject fieldName="tidyDom">
+            <expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="cr_sxb_car_car_sale">
+        <uiobject fieldName="id" nullAble="false">
+            <expression><![CDATA[$UUID()]]></expression>
+        </uiobject>
+        <uiobject fieldName="car_number" nullAble="false">
+            <expression><![CDATA[$REGEXP($KEYVAL(task,"url"),"&id=(.*)")]]></expression>
+        </uiobject>
+        <uiobject fieldName="car_brand_name" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"brandName")]]></expression>
+        </uiobject>
+        <uiobject fieldName="car_series_name">
+            <expression><![CDATA[$KEYVAL(task,"carSeriesName")]]></expression>
+        </uiobject>
+        <uiobject fieldName="car_type_name" nullAble="false">
+            <expression>
+                <![CDATA["20"+($MYCONTAINS($KEYVAL(task,"carTypeName"),"款")==true?"":$REGEXP($XPATHROWS(tidyDom,"//div[@class='v3_carinfo _bor']/h3"),"(\\d{2}款)"))+" "+$KEYVAL(task,"carTypeName")]]></expression>
+        </uiobject>
+        <uiobject fieldName="sale_price" nullAble="false">
+            <expression>
+                <![CDATA[$REGEXP($XPATHROWS(tidyDom,"//li[@class='npr']/b"),"(\\d*[.]\\d*)")]]></expression>
+        </uiobject>
+        <uiobject fieldName="dis_count_price">
+            <expression>
+                <![CDATA[$REGEXP($XPATHROWS(tidyDom,"//div[@class='v3_carinfo _bor']/h3/span[@class='pr']"),"/[\\u4E00-\\u9FA5]{1}(\\d*[.]\\d*|\\d*)")]]></expression>
+        </uiobject>
+        <uiobject fieldName="guide_price">
+            <expression>
+                <![CDATA[$REGEXP($XPATHROWS(tidyDom,"//div[@class='v3_carinfo _bor']/h3/span[@class='pr']"),"指导价:(.*)万/")]]></expression>
+        </uiobject>
+        <uiobject fieldName="dis_count_price_type">
+            <expression>
+                <![CDATA[$SUBSTR($REGEXP($XPATHROWS(tidyDom,"//div[@class='v3_carinfo _bor']/h3/span[@class='pr']"),"/(.*)"),0,1)]]></expression>
+        </uiobject>
+        <uiobject fieldName="dis_count_price_unit">
+            <expression>
+                <![CDATA[$REGEXP($XPATHROWS(tidyDom,"//div[@class='v3_carinfo _bor']/h3/span[@class='pr']"),"/[\\u4E00-\\u9FA5]{1}(\\d*[.]\\d*|\\d*)(.*)")]]></expression>
+        </uiobject>
+        <uiobject fieldName="out_color" nullAble="false">
+            <expression>
+                <![CDATA[$REGEXP($XPATHROWS(tidyDom,"//div[@class='v3_carinfo _bor']//ul/li[2]/text()"),"(.*)/")]]></expression>
+        </uiobject>
+        <uiobject fieldName="interior_color" nullAble="false">
+            <expression>
+                <![CDATA[$REGEXP($XPATHROWS(tidyDom,"//div[@class='v3_carinfo _bor']//ul/li[2]/text()"),"/(.*)")]]></expression>
+        </uiobject>
+        <uiobject fieldName="sale_area" nullAble="false">
+            <expression>
+                <![CDATA[$XPATHROWS(tidyDom,"//div[@class='v3_carinfo _bor']/ul/li[4]/text()")==""?$REGEXP($XPATHROWS(tidyDom,"//div[@class='v3_carinfo _bor']//ul"),"销售区域(.*)"):$XPATHROWS(tidyDom,"//div[@class='v3_carinfo _bor']/ul/li[4]/text()")]]></expression>
+        </uiobject>
+        <uiobject fieldName="supply_day" nullAble="false">
+            <expression>
+                <![CDATA["4"]]></expression>
+        </uiobject>
+        <uiobject fieldName="seller_name" nullAble="false">
+            <expression>
+                <![CDATA[$XPATHROWS(tidyDom,"//ul[@class='v27user']/li[4]/p/i")==""?$XPATHROWS(tidyDom,"//ul[@class='v27user']/li[1]/a/b"):$XPATHROWS(tidyDom,"//ul[@class='v27user']/li[4]/p/i")]]></expression>
+        </uiobject>
+        <uiobject fieldName="seller_phone" nullAble="false">
+            <expression>
+                <![CDATA[$XPATHROWS(tidyDom,"//ul[@class='v27user']/li[4]/p/text()")]]></expression>
+        </uiobject>
+        <uiobject fieldName="publish_time" nullAble="false">
+            <expression>
+                <![CDATA[$DATEFMT($XPATHROWS(tidyDom,"//div[@class='v3_carinfo _bor']/h3/span[@class='time']"),"yyyy-MM-dd HH:mm")]]></expression>
+        </uiobject>
+        <uiobject fieldName="source_type" nullAble="false">
+            <expression>
+                <![CDATA[$REGEXP($XPATHROWS(tidyDom,"//div[@class='v3_carinfo _bor']//ul/li[3]/text()"),"-(.*)")]]></expression>
+        </uiobject>
+        <uiobject fieldName="created_time" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="updated_time" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="web_site" nullAble="false">
+            <expression><![CDATA["ch168"]]></expression>
+        </uiobject>
+        <uiobject fieldName="md5" nullAble="false">
+            <expression>
+                <![CDATA[$MD5($KEYVAL(map,"web_site")+$KEYVAL(map,"car_number")+$KEYVAL(map,"publish_time"))]]></expression>
+        </uiobject>
+        <uiobject fieldName="keyName" nullAble="false">
+            <expression><![CDATA["car_number"]]></expression>
+        </uiobject>
+        <uiobject fieldName="keyValue" nullAble="false">
+            <expression><![CDATA[$KEYVAL(map,"car_number")]]></expression>
+        </uiobject>
+    </uielements>
+</page>

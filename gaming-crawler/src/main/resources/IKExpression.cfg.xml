@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<function-configuration>
+    <!-- 系统函数默认配置 -->
+    <bean class="org.wltea.expression.function.SystemFunctions">
+        <function name="CONTAINS" method="contains">
+            <parameter-type>java.lang.String</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="STARTSWITH" method="startsWith">
+            <parameter-type>java.lang.String</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="ENDSWITH" method="endsWith">
+            <parameter-type>java.lang.String</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="CALCDATE" method="calcDate">
+            <parameter-type>java.util.Date</parameter-type>
+            <parameter-type>int</parameter-type>
+            <parameter-type>int</parameter-type>
+            <parameter-type>int</parameter-type>
+            <parameter-type>int</parameter-type>
+            <parameter-type>int</parameter-type>
+            <parameter-type>int</parameter-type>
+        </function>
+        <function name="SYSDATE" method="sysDate"/>
+        <function name="DAYEQUALS" method="dayEquals">
+            <parameter-type>java.util.Date</parameter-type>
+            <parameter-type>java.util.Date</parameter-type>
+        </function>
+    </bean>
+
+    <!-- 用户函数配置  请在这里定制您自己的函数-->
+    <bean class="com.ygccw.crawler.common.IKFunction">
+        <function name="TIDYDOMFMT" method="tidyDomFmt">
+            <parameter-type>java.lang.Object</parameter-type>
+        </function>
+        <function name="JSONFMT" method="jsonFmt">
+            <parameter-type>java.lang.Object</parameter-type>
+        </function>
+        <function name="ARRAYFMT" method="arrayFmt">
+            <parameter-type>java.lang.Object</parameter-type>
+        </function>
+        <function name="URLFMT" method="urlFmt">
+            <parameter-type>java.lang.Object</parameter-type>
+        </function>
+        <function name="DATEFMT" method="dateFmt">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="CLEAN" method="clean">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.Object</parameter-type>
+        </function>
+        <function name="ROWS" method="rows">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="ROWSARRAY" method="rowsArray">
+            <parameter-type>java.lang.Object</parameter-type>
+        </function>
+        <function name="XPATH" method="xPath">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="XPATHROWS" method="xPathRows">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="XPATHCOLS" method="xPathCols">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+            <parameter-type>int</parameter-type>
+        </function>
+        <function name="XPATHCOMMENTROWS" method="xPathCommentRows">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="XPATHCOMMENTCOLS" method="xPathCommentCols">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+            <parameter-type>int</parameter-type>
+        </function>
+        <function name="JSOUPROWS" method="jsoupRows">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="JSOUPHTML" method="jsoupHtml">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="JSOUP" method="jsoup">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="ARRAY" method="array">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>int</parameter-type>
+        </function>
+        <function name="REGEXP" method="regexp">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="KEYVAL" method="keyVal">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="SPLIT" method="split">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="SUBSTR" method="subStr">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>int</parameter-type>
+            <parameter-type>int</parameter-type>
+        </function>
+        <function name="DIVIDED" method="divided">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.Object</parameter-type>
+        </function>
+        <function name="DEFVAL" method="defval">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="SYSDATESTR" method="sysDateStr">
+        </function>
+        <function name="SYSDATELONG" method="sysDateLong">
+        </function>
+        <function name="SYSDATEYMD" method="sysDateYmd">
+        </function>
+        <function name="UUID" method="uuid">
+        </function>
+        <function name="NUMFORMAT" method="numFormat">
+            <parameter-type>java.lang.Object</parameter-type>
+        </function>
+        <function name="ARRAY2STR" method="array2Str">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+            <parameter-type>int</parameter-type>
+        </function>
+        <function name="MYCONTAINS" method="myContains">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="OBJSUBSTR" method="objSubStr">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="SUBTIME" method="subTime">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="LONG2FORMATDATE" method="Long2FormatDate">
+            <parameter-type>java.lang.String</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="REPLACESTR" method="replaceStr">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="MD5" method="md5">
+            <parameter-type>java.lang.Object</parameter-type>
+        </function>
+        <function name="STRING2DOUBLE" method="string2Double">
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+    </bean>
+</function-configuration>

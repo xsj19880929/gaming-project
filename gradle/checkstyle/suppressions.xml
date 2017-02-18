@@ -4,4 +4,24 @@
 <suppressions>
     <suppress checks="ParameterNumber" files="DateUtils.java"/>
     <suppress checks="UncommentedMain" files="Main.java"/>
+    <suppress checks="StaticVariableNameCheck" files="Constants.java"/>
+    <suppress checks="FileLengthCheck" files="IKFunction.java"/>
+    <suppress checks="EqualsAvoidNullCheck" files="IKFunction.java"/>
+    <suppress checks="MethodLengthCheck" files="IKFunction.java"/>
+    <suppress checks="ExecutableStatementCountCheck" files="IKFunction.java"/>
+    <suppress checks="UnnecessaryParenthesesCheck" files="IKFunction.java"/>
+    <suppress checks="MethodNameCheck" files="IKFunction.java"/>
+    <suppress checks="ParameterNameCheck" files="IKFunction.java"/>
+    <suppress checks="UncommentedMainCheck" files="IKFunction.java"/>
+    <suppress checks="MethodNameCheck" files="MyParser.java"/>
+    <suppress checks="UnnecessaryParenthesesCheck" files="MyParser.java"/>
+    <suppress checks="IndentationCheck" files="NativeDao.java"/>
+    <suppress checks="FileTabCharacterCheck" files="NativeDao.java"/>
+    <suppress checks="IndentationCheck" files="NativeDao.java"/>
+    <suppress checks="ExecutableStatementCountCheck" files="Semantic.java"/>
+    <suppress checks="MethodLengthCheck" files="Semantic.java"/>
+    <suppress checks="EqualsAvoidNullCheck" files="Semantic.java"/>
+    <suppress checks="MethodNameCheck" files="TemplateUtil.java"/>
+    <suppress checks="NestedIfDepthCheck" files="TemplateUtil.java"/>
+    <suppress checks="NestedForDepthCheck" files="TemplateUtil.java"/>
 </suppressions>
