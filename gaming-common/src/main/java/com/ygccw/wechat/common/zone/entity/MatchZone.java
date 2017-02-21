@@ -45,10 +45,19 @@ public class MatchZone {
     private String hostParty;
     private Boolean ifAnchorMatch;
     private Boolean ifStart;
+    private String indexImage;
     @Transient
     private String sortName;
     @Transient
     private Boolean sortIfDesc;
+
+    public String getIndexImage() {
+        return indexImage;
+    }
+
+    public void setIndexImage(String indexImage) {
+        this.indexImage = indexImage;
+    }
 
     public String getSortName() {
         return sortName;

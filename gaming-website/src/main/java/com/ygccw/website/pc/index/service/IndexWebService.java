@@ -162,15 +162,12 @@ public class IndexWebService {
     }
 
     public List<Info> findZoneVideoInfoByRecommendLocal(RecommendLocal recommendLocal, RecommendType recommendType, InfoVideoType infoVideoType) {
-        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(recommendLocal, recommendType, 0, 4);
-        List<Long> zoneIdList = new ArrayList<>();
+        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(recommendLocal, recommendType, 0, 7);
+        List<Info> infoList = new ArrayList<>();
         for (RecommendMapping recommendMapping : recommendMappingList) {
-            zoneIdList.add(recommendMapping.getEntityId());
+            infoList.add(infoService.findById(recommendMapping.getEntityId()));
         }
-        Info info = new Info();
-        info.setZoneIdList(zoneIdList);
-        info.setInfoVideoType(infoVideoType);
-        return infoService.list(info, 0, 7);
+        return infoList;
     }
 
     public List<AnchorZone> findAnchorZoneVideo() {

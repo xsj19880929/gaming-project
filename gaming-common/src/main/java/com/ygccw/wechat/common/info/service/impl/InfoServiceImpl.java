@@ -4,9 +4,13 @@ package com.ygccw.wechat.common.info.service.impl;
 import com.ygccw.wechat.common.info.dao.InfoDao;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.service.InfoService;
+import com.ygccw.wechat.common.recommend.dao.RecommendMappingDao;
+import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
+import com.ygccw.wechat.common.recommend.enums.RecommendType;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +21,8 @@ import java.util.List;
 public class InfoServiceImpl implements InfoService {
     @Inject
     private InfoDao infoDao;
+    @Inject
+    private RecommendMappingDao recommendMappingDao;
 
     @Override
     public void save(Info info) {
@@ -45,8 +51,13 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
+    @Transactional
     public void deleteStatus(Long id) {
         infoDao.deleteStatus(id);
+        List<RecommendMapping> recommendMappingList = recommendMappingDao.listByEntityIdAndType(id, RecommendType.news);
+        for (RecommendMapping recommendMapping : recommendMappingList) {
+            recommendMappingDao.deleteStatus(recommendMapping.getId());
+        }
     }
 
     @Override

@@ -140,7 +140,16 @@
                     <td width="40%">
                         <img img-src="{{matchZone.icoImage}}" alt=""/>
                         <div class="btn btn-primary" ng-file-select ng-file-change="uploadIcoImage($files)">上传</div>
-                        (支持格式：jpg,jpeg,png,bmp, 建议像素为500*500)
+                        (支持格式：jpg,jpeg,png,bmp, 建议像素为120*120)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">首页专区图片：</td>
+                    <td width="40%">
+                        <img img-src="{{matchZone.indexImage}}" alt=""/>
+                        <div class="btn btn-primary" ng-file-select ng-file-change="uploadIndexImage($files)">上传</div>
+                        (支持格式：jpg,jpeg,png,bmp, 建议像素为373*155)
                     </td>
                 </tr>
 

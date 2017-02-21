@@ -93,7 +93,7 @@
     <ul class="wcg_list_two">
         <li th:each="matchZone,iterStat:${matchZoneNewList}" th:class="${iterStat.index==2?'no_margin':''}">
             <p class="p1"><a href="#" th:href="/game/${matchZone.id}/" th:title="${matchZone.name}" target="_blank"><img
-                    th:img-src="/image/373x155${matchZone.icoImage}" th:alt="${matchZone.name}"
+                    th:img-src="/image/373x155${matchZone.indexImage}" th:alt="${matchZone.name}"
                     th:title="${matchZone.name}"/></a>
             </p>
             <p class="p2"><a href="#" th:text="${matchZone.name}" th:href="/game/${matchZone.id}/"

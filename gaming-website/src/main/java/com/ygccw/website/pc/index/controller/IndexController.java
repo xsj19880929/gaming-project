@@ -40,8 +40,8 @@ public class IndexController {
         model.put("starMatchTeamList", indexWebService.findStarMatchTeam());
         model.put("anchorZoneList", indexWebService.findAnchorZone());
         model.put("matchZoneVideoList", indexWebService.findMatchZoneVideo());
-        model.put("infoMatchZoneVideoList", indexWebService.findZoneVideoInfoByRecommendLocal(RecommendLocal.matchZoneVideo, RecommendType.matchZone, InfoVideoType.matchVideo));
-        model.put("infoAnchorZoneVideoList", indexWebService.findZoneVideoInfoByRecommendLocal(RecommendLocal.anchorZoneVideo, RecommendType.anchorZone, InfoVideoType.anchorVideo));
+        model.put("infoMatchZoneVideoList", indexWebService.findZoneVideoInfoByRecommendLocal(RecommendLocal.matchZoneVideo, RecommendType.news, InfoVideoType.matchVideo));
+        model.put("infoAnchorZoneVideoList", indexWebService.findZoneVideoInfoByRecommendLocal(RecommendLocal.anchorZoneVideo, RecommendType.news, InfoVideoType.anchorVideo));
         model.put("anchorZoneVideoList", indexWebService.findAnchorZoneVideo());
         model.put("infoPlayerVideoInfoList", indexWebService.findPlayerVideoInfoList());
         model.put("matchZoneTopList", indexWebService.findTopMatchZoneList());

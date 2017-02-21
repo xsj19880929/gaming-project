@@ -2,11 +2,16 @@ package com.ygccw.wechat.common.picture.service.impl;
 
 
 import com.ygccw.wechat.common.picture.dao.PictureDao;
+import com.ygccw.wechat.common.picture.dao.PictureDetailDao;
 import com.ygccw.wechat.common.picture.entity.Picture;
 import com.ygccw.wechat.common.picture.service.PictureService;
+import com.ygccw.wechat.common.recommend.dao.RecommendMappingDao;
+import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
+import com.ygccw.wechat.common.recommend.enums.RecommendType;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +22,10 @@ import java.util.List;
 public class PictureServiceImpl implements PictureService {
     @Inject
     private PictureDao pictureDao;
+    @Inject
+    private RecommendMappingDao recommendMappingDao;
+    @Inject
+    private PictureDetailDao pictureDetailDao;
 
     @Override
     public void save(Picture picture) {
@@ -44,8 +53,14 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
+    @Transactional
     public void deleteStatus(Long id) {
         pictureDao.deleteStatus(id);
+        pictureDetailDao.deleteByPictureId(id);
+        List<RecommendMapping> recommendMappingList = recommendMappingDao.listByEntityIdAndType(id, RecommendType.anchorZone);
+        for (RecommendMapping recommendMapping : recommendMappingList) {
+            recommendMappingDao.deleteStatus(recommendMapping.getId());
+        }
     }
 
     @Override

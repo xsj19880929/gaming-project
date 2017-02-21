@@ -106,6 +106,21 @@
             }
         };
 
+        $scope.uploadIndexImage = function (files) {
+            if (files && files.length) {
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    $upload.upload({
+                        url: 'image/upload',
+                        file: file
+                    }).progress(function (evt) {
+                    }).success(function (data) {
+                        $scope.matchZone.indexImage = data.path;
+                    });
+                }
+            }
+        };
+
         $scope.uploadBackgroundImage = function (files) {
             if (files && files.length) {
                 for (var i = 0; i < files.length; i++) {
