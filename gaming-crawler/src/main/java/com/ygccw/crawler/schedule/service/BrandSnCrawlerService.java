@@ -39,7 +39,11 @@ public class BrandSnCrawlerService {
 
     private void startWork() {
         CrCrawlTask crCrawlTask = new CrCrawlTask();
+        crCrawlTask.setTempleName("15warticle");
+        crCrawlTask.setUrl("http://www.15w.com/bagua/5606820885.html");
         JSONObject task = JSONObject.fromObject(crCrawlTask);
+        task.put("infoZoneType", "trade");
+        task.put("infoType", "news");
         logger.info("当前任务： {} ", task.toString());
         try {
             // 获取数据

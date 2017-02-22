@@ -319,58 +319,59 @@
 }
 
 .index_con {
-    width: 100%;
     float: left;
     padding-top: 14px;
-}
-
-.index_con ul {
-    list-style: none;
-    width: 420px;
-    overflow: hidden;
-    height: 355px;
+    width: 100%;
 }
 
 .index_con li {
     float: left;
-    line-height: 18px;
     height: 18px;
+    line-height: 18px;
+    margin-bottom: 16px;
     overflow: hidden;
-    background: url(../img/li_bg.jpg) no-repeat;
-    background-position: 7px 10px;
     position: relative;
-    margin-bottom: 18px;
-    width: 210px;
+    width: 100%;
 }
 
 .index_con li a {
-    padding-left: 12px;
     font-size: 14px;
 }
 
+.index_con li a:hover {
+    color: #f00;
+}
+
 .index_con li .a1 {
-    margin-left: 10px;
+    color: #0077ff;
+    display: block;
+    float: left;
+}
+
+.index_con li .a2 {
+    color: #434343;
+    display: block;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 320px;
 }
 
 .index_con li span {
-    position: absolute;
-    left: 0;
-    width: 16px;
+    color: #b6b6b6;
     height: 16px;
-    top: 0;
-    background: #e43c4c;
-    color: #fff;
-    text-align: center;
     line-height: 16px;
-    display: none
+    position: absolute;
+    right: 6px;
+    top: 3px;
+    width: 36px;
 }
 
 .index_con li.no_margin {
     margin: 0;
-}
-
-.index_con li.hover span {
-    display: block;
 }
 
 .wcg_list_two {

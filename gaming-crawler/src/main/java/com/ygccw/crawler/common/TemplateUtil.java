@@ -51,7 +51,7 @@ public class TemplateUtil {
                 path = "/" + path;
             }
             // System.out.println("模板路径：" + path + "classes/tpl");
-            File dir = new File(path + "classes/tpl");
+            File dir = new File(path + "resources/main/tpl");
             if (dir.exists()) {
                 File[] files = dir.listFiles();
                 for (File file : files) {
@@ -62,7 +62,7 @@ public class TemplateUtil {
                             String id = root.attributeValue("pageType");
                             JSONObject job = new JSONObject();
 
-                            for (Iterator<?> i = root.elementIterator(); i.hasNext();) {
+                            for (Iterator<?> i = root.elementIterator(); i.hasNext(); ) {
                                 Element rows = (Element) i.next();
                                 JSONObject jobi = new JSONObject();
                                 jobi.put("objectName", rows.attributeValue("objectName"));
@@ -74,7 +74,7 @@ public class TemplateUtil {
                                 }
                                 JSONArray arry = new JSONArray();
 
-                                for (Iterator<?> j = rows.elementIterator("uiobject"); j.hasNext();) {
+                                for (Iterator<?> j = rows.elementIterator("uiobject"); j.hasNext(); ) {
                                     Element row = (Element) j.next();
                                     JSONObject jobj = new JSONObject();
                                     jobj.put("fieldName", row.attributeValue("fieldName"));

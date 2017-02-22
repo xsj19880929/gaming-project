@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="15wlist">
+    <uielements objectName="beforeSemantic">
+        <uiobject fieldName="tidyDom">
+            <expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="articleTask">
+        <rows><![CDATA[$ROWS(tidyDom,"//div[@class='artlist mode-box']")]]></rows>
+        <uiobject fieldName="url" nullAble="false">
+            <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='artlist mode-box']/a/@href",row)]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoZoneType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
+        </uiobject>
+
+        <uiobject fieldName="templeName" nullAble="false">
+            <expression><![CDATA["15warticle"]]></expression>
+        </uiobject>
+    </uielements>
+    <!--<uielements objectName="nextTask">-->
+    <!--<rows><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")==""?0:1]]></rows>-->
+    <!--<uiobject fieldName="url" nullAble="false">-->
+    <!--<expression><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")]]></expression>-->
+    <!--</uiobject>-->
+    <!--<uiobject fieldName="templeName" nullAble="false">-->
+    <!--<expression><![CDATA["15wlist"]]></expression>-->
+    <!--</uiobject>-->
+    <!--</uielements>-->
+</page>
