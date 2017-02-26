@@ -9,6 +9,7 @@ import com.ygccw.wechat.common.picture.service.PictureService;
 import com.ygccw.wechat.common.recommend.dao.RecommendMappingDao;
 import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
 import com.ygccw.wechat.common.recommend.enums.RecommendType;
+import com.ygccw.wechat.common.zone.dao.AnchorZoneMatchZoneMappingDao;
 import com.ygccw.wechat.common.zone.dao.MatchTeamMappingDao;
 import com.ygccw.wechat.common.zone.dao.MatchZoneAreaDao;
 import com.ygccw.wechat.common.zone.dao.MatchZoneDao;
@@ -42,6 +43,8 @@ public class MatchZoneServiceImpl implements MatchZoneService {
     private PictureService pictureService;
     @Inject
     private MatchTeamMappingDao matchTeamMappingDao;
+    @Inject
+    private AnchorZoneMatchZoneMappingDao anchorZoneMatchZoneMappingDao;
 
     @Override
     public void save(MatchZone matchZone) {
@@ -119,6 +122,7 @@ public class MatchZoneServiceImpl implements MatchZoneService {
         for (MatchTeamMapping matchTeamMapping : matchTeamMappingList) {
             matchTeamMappingDao.delete(matchTeamMapping.getId());
         }
+        anchorZoneMatchZoneMappingDao.deleteByMatchZoneId(id);
 
     }
 
@@ -149,5 +153,10 @@ public class MatchZoneServiceImpl implements MatchZoneService {
     @Override
     public void updateVisitCount(Long id) {
         matchZoneDao.updateVisitCount(id);
+    }
+
+    @Override
+    public MatchZone findByUuid(String uuid) {
+        return matchZoneDao.findByUuid(uuid);
     }
 }

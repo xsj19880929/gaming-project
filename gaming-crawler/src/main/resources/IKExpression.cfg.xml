@@ -89,6 +89,10 @@
             <parameter-type>java.lang.Object</parameter-type>
             <parameter-type>java.lang.String</parameter-type>
         </function>
+        <function name="JSOUPHTMLDOWNIMAGE" method="jsoupHtmlDownImage">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
         <function name="JSOUP" method="jsoup">
             <parameter-type>java.lang.Object</parameter-type>
             <parameter-type>java.lang.String</parameter-type>
@@ -165,6 +169,9 @@
             <parameter-type>java.lang.Object</parameter-type>
         </function>
         <function name="STRING2DOUBLE" method="string2Double">
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="URL2LOCALIMAGE" method="url2LocalImage">
             <parameter-type>java.lang.String</parameter-type>
         </function>
     </bean>

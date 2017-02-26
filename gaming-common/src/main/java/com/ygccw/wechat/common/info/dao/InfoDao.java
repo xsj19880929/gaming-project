@@ -118,5 +118,9 @@ public class InfoDao {
         jpaAccess.update(Query.create("update Info set visitCount=visitCount+1 where id=:id").param("id", id));
     }
 
+    public Info findByUuid(String uuid) {
+        return jpaAccess.findOne(QueryBuilder.query("from Info").append("uuid", uuid).append("status", 1).build());
+    }
+
 
 }

@@ -29,4 +29,6 @@ public interface InfoService {
 
     void updateVisitCount(Long id);
 
+    Info findByUuid(String uuid);
+
 }

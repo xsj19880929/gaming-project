@@ -50,7 +50,24 @@ public class Info {
     private String sortName;
     @Transient
     private Boolean sortIfDesc;
+    private String zoneUuid;
+    private String uuid;
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getZoneUuid() {
+        return zoneUuid;
+    }
+
+    public void setZoneUuid(String zoneUuid) {
+        this.zoneUuid = zoneUuid;
+    }
 
     public String getSortName() {
         return sortName;

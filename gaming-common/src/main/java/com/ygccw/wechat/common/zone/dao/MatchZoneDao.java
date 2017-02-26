@@ -100,4 +100,8 @@ public class MatchZoneDao {
         jpaAccess.update(Query.create("update MatchZone set visitCount=visitCount+1 where id=:id").param("id", id));
     }
 
+    public MatchZone findByUuid(String uuid) {
+        return jpaAccess.findOne(QueryBuilder.query("from MatchZone").append("uuid", uuid).append("status", 1).build());
+    }
+
 }

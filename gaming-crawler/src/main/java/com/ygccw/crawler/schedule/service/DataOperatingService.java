@@ -149,6 +149,10 @@ public class DataOperatingService {
         return sql.toString();
     }
 
+    public void insertDate(HashMap<String, String> map, String table) {
+        this.nativeDao.getJdbcTemplate().execute(insertData(map, table));
+    }
+
     public boolean selectData(String keyName, String keyValue, String table) {
         String sql = "select count(id) from " + table + " where " + keyName + "='" + keyValue + "'";
         int count = this.nativeDao.getJdbcTemplate().queryForInt(sql);

@@ -84,4 +84,9 @@ public class InfoServiceImpl implements InfoService {
     public void updateVisitCount(Long id) {
         infoDao.updateVisitCount(id);
     }
+
+    @Override
+    public Info findByUuid(String uuid) {
+        return infoDao.findByUuid(uuid);
+    }
 }

@@ -27,6 +27,33 @@ public class TagMapping {
     @Enumerated(EnumType.STRING)
     private TagZoneType tagZoneType;
     private Long tagsId;
+    private String tagsUuid;
+    private String entityUuid;
+    private String uuid;
+
+    public String getTagsUuid() {
+        return tagsUuid;
+    }
+
+    public void setTagsUuid(String tagsUuid) {
+        this.tagsUuid = tagsUuid;
+    }
+
+    public String getEntityUuid() {
+        return entityUuid;
+    }
+
+    public void setEntityUuid(String entityUuid) {
+        this.entityUuid = entityUuid;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public Long getTagsId() {
         return tagsId;

@@ -30,4 +30,6 @@ public interface MatchZoneService {
     List<MatchZone> listOrderByVisit(int offset, int fetchSize);
 
     void updateVisitCount(Long id);
+
+    MatchZone findByUuid(String uuid);
 }

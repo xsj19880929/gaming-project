@@ -24,4 +24,8 @@ public interface AnchorZoneMatchZoneMappingService {
     int listSize(AnchorZoneMatchZoneMapping anchorZoneMatchZoneMapping);
 
     List<AnchorZoneMatchZoneMapping> listByAnchorZoneId(Long anchorZoneId);
+
+    void deleteByMatchZoneId(Long matchZoneId);
+
+    void deleteByAnchorZoneId(Long anchorZoneId);
 }

@@ -10,6 +10,7 @@ import com.ygccw.wechat.common.recommend.dao.RecommendMappingDao;
 import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
 import com.ygccw.wechat.common.recommend.enums.RecommendType;
 import com.ygccw.wechat.common.zone.dao.AnchorZoneDao;
+import com.ygccw.wechat.common.zone.dao.AnchorZoneMatchZoneMappingDao;
 import com.ygccw.wechat.common.zone.dao.AnchorZonePlatformDao;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
 import com.ygccw.wechat.common.zone.service.AnchorZoneService;
@@ -35,6 +36,8 @@ public class AnchorZoneServiceImpl implements AnchorZoneService {
     private InfoDao infoDao;
     @Inject
     private PictureService pictureService;
+    @Inject
+    private AnchorZoneMatchZoneMappingDao anchorZoneMatchZoneMappingDao;
 
     @Override
     public void save(AnchorZone anchorZone) {
@@ -99,6 +102,8 @@ public class AnchorZoneServiceImpl implements AnchorZoneService {
                 recommendMappingDao.deleteStatus(recommendMapping.getId());
             }
         }
+        anchorZoneMatchZoneMappingDao.deleteByAnchorZoneId(id);
+
     }
 
     @Override

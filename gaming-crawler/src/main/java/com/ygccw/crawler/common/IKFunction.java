@@ -3,8 +3,15 @@ package com.ygccw.crawler.common;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.safety.Whitelist;
+import org.jsoup.select.Elements;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -38,6 +45,9 @@ public class IKFunction {
         XPathFactory factory = XPathFactory.newInstance();
         xpath = factory.newXPath();
     }
+
+    private final String imageServer = "http://image.55djw.com/image/url/upload?url=";
+    private final String downServer = "http://image.55djw.com";
 
     // 格式化为数组对象
     public static Object arrayFmt(Object obj) {
@@ -170,7 +180,7 @@ public class IKFunction {
 
     // uuid生成器
     public static String uuid() {
-        return UUID.randomUUID().toString();
+        return UUID.randomUUID().toString().replace("-", "");
     }
 
     // 退还字符串
@@ -524,6 +534,28 @@ public class IKFunction {
         }
     }
 
+    // jsoup过滤标签解析
+    public String jsoupHtmlDownImage(Object html, String jsoup) {
+        org.jsoup.nodes.Document soup = Jsoup.parse(html.toString());
+        org.jsoup.select.Elements newHtml = soup.select(jsoup);
+        if (newHtml != null) {
+            Whitelist tags = new Whitelist();
+            tags.addTags("div", "table", "tbody", "tr", "td", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
+            tags.addAttributes("img", "src");
+            String content = Jsoup.clean(newHtml.html(), tags);
+            Document document = Jsoup.parse(content);
+            Elements elements = document.select("img");
+            for (Element element : elements) {
+                String imagePath = element.attr("src");
+                String imageLocalPath = url2LocalImage(imagePath);
+                content = content.replace(imagePath, downServer + imageLocalPath);
+            }
+            return content;
+        } else {
+            return "";
+        }
+    }
+
     // jsoup解析
     public String jsoup(Object html, String jsoup) {
         org.jsoup.nodes.Document soup = Jsoup.parse(html.toString());
@@ -633,5 +665,20 @@ public class IKFunction {
         SimpleDateFormat df = new SimpleDateFormat(format);
         gc.setTimeInMillis(longDate.longValue());
         return df.format(gc.getTime());
+    }
+
+    public String url2LocalImage(String urlString) {
+        try {
+            CHttpClient cHttpClient = new CHttpClient();
+            HttpUriRequest request = RequestBuilder.get().setUri(imageServer + urlString).build();
+            HttpResponse httpResponse = cHttpClient.execute(request);
+            String result = EntityUtils.toString(httpResponse.getEntity());
+            JSONObject jsonObject = JSONObject.fromObject(result);
+            return jsonObject.getString("path");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 }

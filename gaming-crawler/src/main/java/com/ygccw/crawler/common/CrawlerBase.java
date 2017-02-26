@@ -32,13 +32,15 @@ public class CrawlerBase {
     private HashMap<String, List<HashMap<String, String>>> crawlerCommon(JSONObject task, List<JSONObject> nextTasks) throws Exception {
         HashMap<String, List<HashMap<String, String>>> results = new HashMap<String, List<HashMap<String, String>>>();
         String pageType = task.getString(Constants.TPLNAME);
-        HttpUriRequest request = RequestBuilder.get().setUri(task.getString(Constants.URL)).build();
-        HttpResponse httpResponse = cHttpClient.execute(request);
-        String html = EntityUtils.toString(httpResponse.getEntity());
-        // 简易公式赋值变量对象集合
         List<Variable> variables = new ArrayList<Variable>();
         variables.add(Variable.createVariable("task", task.toString()));
-        variables.add(Variable.createVariable("html", html));
+        if (task.get(Constants.URL) != null) {
+            HttpUriRequest request = RequestBuilder.get().setUri(task.getString(Constants.URL)).build();
+            HttpResponse httpResponse = cHttpClient.execute(request);
+            String html = EntityUtils.toString(httpResponse.getEntity());
+            // 简易公式赋值变量对象集合
+            variables.add(Variable.createVariable("html", html));
+        }
         // 解析工具
         Semantic semantic = new Semantic();
         results = semantic.semanticPage(pageType, variables, nextTasks);

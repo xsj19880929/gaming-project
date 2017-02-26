@@ -6,6 +6,9 @@
         </uiobject>
     </uielements>
     <uielements objectName="info">
+        <uiobject fieldName="uuid" nullAble="false">
+            <expression><![CDATA[$MD5($KEYVAL(task,"url"))]]></expression>
+        </uiobject>
         <uiobject fieldName="status" nullAble="false">
             <expression><![CDATA[1]]></expression>
         </uiobject>
@@ -21,8 +24,8 @@
         <uiobject fieldName="infoType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
         </uiobject>
-        <uiobject fieldName="infoVideoType" nullAble="false">
-            <expression><![CDATA[1]]></expression>
+        <uiobject fieldName="infoVideoType">
+            <expression><![CDATA[$KEYVAL(task,"infoVideoType")]]></expression>
         </uiobject>
         <uiobject fieldName="title" nullAble="false">
             <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='headline-box']/p[@class='hdline']")]]></expression>
@@ -34,14 +37,17 @@
             <expression><![CDATA[1]]></expression>
         </uiobject>
         <uiobject fieldName="titleImage">
-            <expression><![CDATA[$KEYVAL(task,"titleImage")]]></expression>
+            <expression><![CDATA[$URL2LOCALIMAGE($KEYVAL(task,"titleImage")+"")]]></expression>
+        </uiobject>
+        <uiobject fieldName="zoneUuid">
+            <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>
         </uiobject>
         <uiobject fieldName="content" nullAble="false">
             <expression>
-                <![CDATA[$XPATHROWS(tidyDom,"//div[@id='fix-pos-left']/div[@class='newscon'][2]")]]></expression>
+                <![CDATA[$JSOUPHTMLDOWNIMAGE(html,"div[id=fix-pos-left]>div[class=newscon]:gt(1)")]]></expression>
         </uiobject>
         <uiobject fieldName="seoTitle" nullAble="false">
-            <expression><![CDATA[$XPATHROWS(tidyDom,"//title")]]></expression>
+            <expression><![CDATA[$REPLACESTR($XPATHROWS(tidyDom,"//title"),"_要我玩电竞门户www.15w.com","")]]></expression>
         </uiobject>
         <uiobject fieldName="seoKeywords" nullAble="false">
             <expression><![CDATA[$XPATHROWS(tidyDom,"//meta[@name='keywords']/@content")]]></expression>
@@ -50,17 +56,44 @@
             <expression><![CDATA[$XPATHROWS(tidyDom,"//meta[@name='description']/@content")]]></expression>
         </uiobject>
         <uiobject fieldName="tags" nullAble="false">
-            <expression><![CDATA[0]]></expression>
+            <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='news-lable']")]]></expression>
         </uiobject>
         <uiobject fieldName="verify" nullAble="false">
             <expression><![CDATA[1]]></expression>
         </uiobject>
         <uiobject fieldName="source" nullAble="false">
-            <expression><![CDATA["55djw.com"]]></expression>
+            <expression><![CDATA["www.55djw.com"]]></expression>
         </uiobject>
         <uiobject fieldName="publishTime" nullAble="false">
             <expression>
                 <![CDATA[$DATEFMT($XPATHROWS(tidyDom,"//span[@class='date']"),"yyyy-MM-dd HH:mm")]]></expression>
+        </uiobject>
+        <uiobject fieldName="author" nullAble="false">
+            <expression><![CDATA["55电竞网"]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="tags">
+        <rows><![CDATA[$ROWS(tidyDom,"//div[@class='news-lable']/a")]]></rows>
+        <uiobject fieldName="name" nullAble="false">
+            <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='news-lable']/a",row)]]></expression>
+        </uiobject>
+        <uiobject fieldName="tagType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="tagZoneType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="uuid" nullAble="false">
+            <expression><![CDATA[$UUID()]]></expression>
+        </uiobject>
+        <uiobject fieldName="status" nullAble="false">
+            <expression><![CDATA[1]]></expression>
+        </uiobject>
+        <uiobject fieldName="createTime" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="updateTime" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
         </uiobject>
     </uielements>
 </page>

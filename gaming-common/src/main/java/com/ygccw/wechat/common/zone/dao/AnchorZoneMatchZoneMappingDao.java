@@ -63,4 +63,15 @@ public class AnchorZoneMatchZoneMappingDao {
         return jpaAccess.findOne(QueryBuilder.query("from AnchorZoneMatchZoneMapping").append("id", id).append("status", 1).build());
     }
 
+    @Transactional
+    public void deleteByMatchZoneId(Long matchZoneId) {
+        jpaAccess.update(Query.create("delete AnchorZoneMatchZoneMapping where matchZoneId=:matchZoneId").param("matchZoneId", matchZoneId));
+    }
+
+    @Transactional
+    public void deleteByAnchorZoneId(Long anchorZoneId) {
+        jpaAccess.update(Query.create("delete AnchorZoneMatchZoneMapping where anchorZoneId=:anchorZoneId").param("anchorZoneId", anchorZoneId));
+    }
+
+
 }

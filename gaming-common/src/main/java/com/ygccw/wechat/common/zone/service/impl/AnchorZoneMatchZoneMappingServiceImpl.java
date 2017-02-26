@@ -61,4 +61,14 @@ public class AnchorZoneMatchZoneMappingServiceImpl implements AnchorZoneMatchZon
     public List<AnchorZoneMatchZoneMapping> listByAnchorZoneId(Long anchorZoneId) {
         return anchorZoneMatchZoneMappingDao.listByAnchorZoneId(anchorZoneId);
     }
+
+    @Override
+    public void deleteByMatchZoneId(Long matchZoneId) {
+        anchorZoneMatchZoneMappingDao.deleteByMatchZoneId(matchZoneId);
+    }
+
+    @Override
+    public void deleteByAnchorZoneId(Long anchorZoneId) {
+        anchorZoneMatchZoneMappingDao.deleteByAnchorZoneId(anchorZoneId);
+    }
 }

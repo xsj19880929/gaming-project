@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageType="15warticletag">
+    <uielements objectName="tags">
+        <uiobject fieldName="uuid" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"uuid")]]></expression>
+        </uiobject>
+        <uiobject fieldName="status" nullAble="false">
+            <expression><![CDATA[1]]></expression>
+        </uiobject>
+        <uiobject fieldName="create_time" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="update_time" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="tag_type" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"tagType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="tag_zone_type" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"tagZoneType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="name" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"name")]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="tag_mapping">
+        <uiobject fieldName="uuid" nullAble="false">
+            <expression><![CDATA[$UUID()]]></expression>
+        </uiobject>
+        <uiobject fieldName="status" nullAble="false">
+            <expression><![CDATA[1]]></expression>
+        </uiobject>
+        <uiobject fieldName="create_time" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="update_time" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="tag_type" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"tagType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="tag_zone_type" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"tagZoneType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="name" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"name")]]></expression>
+        </uiobject>
+        <uiobject fieldName="tags_uuid" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"uuid")]]></expression>
+        </uiobject>
+        <uiobject fieldName="entity_uuid" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoUuId")]]></expression>
+        </uiobject>
+        <uiobject fieldName="keyName" nullAble="false">
+            <expression><![CDATA["entity_uuid"]]></expression>
+        </uiobject>
+        <uiobject fieldName="keyValue" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoUuId")]]></expression>
+        </uiobject>
+    </uielements>
+</page>

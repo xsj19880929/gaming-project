@@ -170,6 +170,12 @@ public class IndexWebService {
         return infoList;
     }
 
+    public List<Info> findVideoInfoList(InfoVideoType infoVideoType) {
+        Info info = new Info();
+        info.setInfoVideoType(infoVideoType);
+        return infoService.list(info, 0, 5);
+    }
+
     public List<AnchorZone> findAnchorZoneVideo() {
         List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.anchorZoneVideo, RecommendType.anchorZone, 0, 4);
         List<AnchorZone> anchorZoneList = new ArrayList<>();
@@ -180,11 +186,6 @@ public class IndexWebService {
         return anchorZoneList;
     }
 
-    public List<Info> findPlayerVideoInfoList() {
-        Info info = new Info();
-        info.setInfoVideoType(InfoVideoType.playerVideo);
-        return infoService.list(info, 0, 5);
-    }
 
     public List<MatchZone> findTopMatchZoneList() {
         return matchZoneService.listOrderByVisit(0, 10);

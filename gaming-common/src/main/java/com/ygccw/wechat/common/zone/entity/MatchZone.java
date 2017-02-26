@@ -46,10 +46,20 @@ public class MatchZone {
     private Boolean ifAnchorMatch;
     private Boolean ifStart;
     private String indexImage;
+    private String uuid;
     @Transient
     private String sortName;
     @Transient
     private Boolean sortIfDesc;
+
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public String getIndexImage() {
         return indexImage;
