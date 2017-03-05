@@ -116,7 +116,7 @@ public class GameController {
     public String gameNewsList(final ModelMap model, @PathVariable Long matchZoneId) {
         int currentPage = 1;
         int fetchSize = 8;
-        String url = "/game/news-list/" + matchZoneId;
+        String url = "/game/news-list/" + matchZoneId + "/page";
         gameNewsListCommon(model, matchZoneId, currentPage, fetchSize, url);
         return "/view/game/game-news-list.html";
     }

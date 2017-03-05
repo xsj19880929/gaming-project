@@ -8,12 +8,12 @@ import javax.inject.Inject;
 /**
  * @author soldier
  */
-public class InfoCrawlerServiceTest extends SpringTest {
+public class ImageCrawlerServiceTest extends SpringTest {
     @Inject
-    InfoCrawlerService infoCrawlerService;
+    ImageCrawlerService imageCrawlerService;
 
     @Test
     public void testStartTread() throws Exception {
-//        infoCrawlerService.startTread(20);
+//        imageCrawlerService.startTread(20);
     }
 }

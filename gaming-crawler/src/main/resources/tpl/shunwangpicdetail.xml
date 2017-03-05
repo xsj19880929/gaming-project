@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="gbk"?>
-<page pageType="15warticle">
+<page pageType="shunwangpicdetail">
     <uielements objectName="beforeSemantic">
         <uiobject fieldName="tidyDom">
             <expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
         </uiobject>
     </uielements>
-    <uielements objectName="info">
+    <uielements objectName="picture">
         <uiobject fieldName="uuid" nullAble="false">
             <expression><![CDATA[$MD5($KEYVAL(task,"url"))]]></expression>
         </uiobject>
@@ -18,45 +18,31 @@
         <uiobject fieldName="updateTime" nullAble="false">
             <expression><![CDATA[$SYSDATESTR()]]></expression>
         </uiobject>
-        <uiobject fieldName="infoZoneType" nullAble="false">
-            <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
+        <uiobject fieldName="pictureZoneType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"pictureZoneType")]]></expression>
         </uiobject>
-        <uiobject fieldName="infoType" nullAble="false">
-            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
-        </uiobject>
-        <uiobject fieldName="infoVideoType">
-            <expression><![CDATA[$KEYVAL(task,"infoVideoType")]]></expression>
-        </uiobject>
-        <uiobject fieldName="title" nullAble="false">
-            <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='headline-box']/p[@class='hdline']")]]></expression>
-        </uiobject>
-        <uiobject fieldName="subTitle">
-            <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='leadbox cl6']")]]></expression>
+        <uiobject fieldName="description" nullAble="false">
+            <expression>
+                <![CDATA[$KEYVAL(task,"description")]]></expression>
         </uiobject>
         <uiobject fieldName="visitCount" nullAble="false">
             <expression><![CDATA[1]]></expression>
         </uiobject>
-        <uiobject fieldName="titleImage">
-            <expression><![CDATA[$URL2LOCALIMAGE($KEYVAL(task,"titleImage")+"")]]></expression>
-        </uiobject>
         <uiobject fieldName="zoneUuid">
             <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>
         </uiobject>
-        <uiobject fieldName="content" nullAble="false">
+        <uiobject fieldName="image" nullAble="false">
             <expression>
-                <![CDATA[$JSOUPHTMLDOWNIMAGE(html,"div[id=fix-pos-left]>div[class=newscon]:gt(1)")]]></expression>
+                <![CDATA[$URL2LOCALIMAGE($REPLACESTR($KEYVAL(task,"image"),"https","http")+"")]]></expression>
         </uiobject>
         <uiobject fieldName="seoTitle" nullAble="false">
-            <expression><![CDATA[$REPLACESTR($XPATHROWS(tidyDom,"//title"),"_要我玩电竞门户www.15w.com","")]]></expression>
+            <expression><![CDATA[$REPLACESTR($XPATHROWS(tidyDom,"//title"),"_顺网图库","")]]></expression>
         </uiobject>
-        <uiobject fieldName="seoKeywords" nullAble="false">
+        <uiobject fieldName="seoKeywords">
             <expression><![CDATA[$XPATHROWS(tidyDom,"//meta[@name='keywords']/@content")]]></expression>
         </uiobject>
-        <uiobject fieldName="seoDescription" nullAble="false">
+        <uiobject fieldName="seoDescription">
             <expression><![CDATA[$XPATHROWS(tidyDom,"//meta[@name='description']/@content")]]></expression>
-        </uiobject>
-        <uiobject fieldName="tags" nullAble="false">
-            <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='news-lable']")]]></expression>
         </uiobject>
         <uiobject fieldName="verify" nullAble="false">
             <expression><![CDATA[1]]></expression>
@@ -66,25 +52,20 @@
         </uiobject>
         <uiobject fieldName="publishTime" nullAble="false">
             <expression>
-                <![CDATA[$DATEFMT($XPATHROWS(tidyDom,"//span[@class='date']"),"yyyy-MM-dd HH:mm")]]></expression>
-        </uiobject>
-        <uiobject fieldName="author" nullAble="false">
-            <expression><![CDATA["55电竞网"]]></expression>
+                <![CDATA[$SYSDATESTR()]]></expression>
         </uiobject>
     </uielements>
-    <uielements objectName="tags">
-        <rows><![CDATA[$ROWS(tidyDom,"//div[@class='news-lable']/a")]]></rows>
-        <uiobject fieldName="name" nullAble="false">
-            <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='news-lable']/a",row)]]></expression>
-        </uiobject>
-        <uiobject fieldName="tagType" nullAble="false">
-            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
-        </uiobject>
-        <uiobject fieldName="tagZoneType" nullAble="false">
-            <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
+    <uielements objectName="pictureDetail">
+        <rows><![CDATA[$ROWREGEXP(html,"orig: '(.*?)', big")]]></rows>
+        <uiobject fieldName="image" nullAble="false">
+            <expression>
+                <![CDATA[$URL2LOCALIMAGE($REPLACESTR($REGEXPROWS(html,"orig: '(.*?)', big",row),"https","http")+"")]]></expression>
         </uiobject>
         <uiobject fieldName="uuid" nullAble="false">
             <expression><![CDATA[$UUID()]]></expression>
+        </uiobject>
+        <uiobject fieldName="sort" nullAble="false">
+            <expression><![CDATA[row]]></expression>
         </uiobject>
         <uiobject fieldName="status" nullAble="false">
             <expression><![CDATA[1]]></expression>

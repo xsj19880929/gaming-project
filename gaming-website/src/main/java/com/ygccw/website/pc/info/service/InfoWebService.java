@@ -168,7 +168,7 @@ public class InfoWebService {
             for (String tagName : tagArray) {
                 Tags tags = tagsService.findByName(tagName, getTagTypeByString(infoWeb.getInfoType().getName()), tagZoneTypeRequest);
                 if (tags == null) continue;
-                List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId());
+                List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId(), 0, fetchSize);
                 for (TagMapping tagMapping : tagMappingList) {
                     Info info = infoService.findById(tagMapping.getEntityId());
                     mappingMap.put(tagMapping.getEntityId(), info);

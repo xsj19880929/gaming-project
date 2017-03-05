@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * 解析组件
@@ -29,7 +30,7 @@ public class Semantic {
     private final Logger logger = LoggerFactory.getLogger(Semantic.class);
 
     @SuppressWarnings("rawtypes")
-    public HashMap<String, List<HashMap<String, String>>> semanticPage(String pageType, List<Variable> variables, List<JSONObject> nextTasks) throws Exception {
+    public HashMap<String, List<HashMap<String, String>>> semanticPage(String pageType, List<Variable> variables, BlockingQueue<JSONObject> nextTasks) throws Exception {
         // logger.info("开始");
         long startRulePage = System.currentTimeMillis();
         HashMap<String, List<HashMap<String, String>>> results = new HashMap<String, List<HashMap<String, String>>>();
@@ -88,7 +89,7 @@ public class Semantic {
                     }
                 }
                 if (!checkResult(pageType, jsonRule.getString(Constants.TPL_OBJECT_NAME), fieldRules, map) && jsonRule.getString(Constants.TPL_OBJECT_NAME).equals("nextTask") && nextTasks != null) {
-                    nextTasks.add(JSONObject.fromObject(JSONObject.fromObject(map)));
+                    nextTasks.put(JSONObject.fromObject(map));
                     continue;
                 }
                 // 验证数据完整性
@@ -128,8 +129,6 @@ public class Semantic {
      * 验证数据完整性
      *
      * @param pageType
-     * @param jsonRules
-     * @param results
      * @return
      */
     public boolean checkResult(String pageType, String objectName, JSONArray arrayRules, HashMap<String, String> map) {

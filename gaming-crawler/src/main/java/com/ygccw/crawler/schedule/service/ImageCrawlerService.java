@@ -6,11 +6,11 @@ import com.ygccw.crawler.common.CrawlerBase;
 import com.ygccw.crawler.common.IKFunction;
 import com.ygccw.wechat.common.crawler.entity.CrCrawlTask;
 import com.ygccw.wechat.common.crawler.service.CrCrawlTaskService;
-import com.ygccw.wechat.common.info.entity.Info;
-import com.ygccw.wechat.common.info.enums.InfoType;
-import com.ygccw.wechat.common.info.enums.InfoVideoType;
-import com.ygccw.wechat.common.info.enums.InfoZoneType;
-import com.ygccw.wechat.common.info.service.InfoService;
+import com.ygccw.wechat.common.picture.entity.Picture;
+import com.ygccw.wechat.common.picture.entity.PictureDetail;
+import com.ygccw.wechat.common.picture.enums.PictureZoneType;
+import com.ygccw.wechat.common.picture.service.PictureDetailService;
+import com.ygccw.wechat.common.picture.service.PictureService;
 import com.ygccw.wechat.common.tags.entity.TagMapping;
 import com.ygccw.wechat.common.tags.entity.Tags;
 import com.ygccw.wechat.common.tags.enums.TagType;
@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.inject.Inject;
@@ -36,9 +37,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 @Service
-public class InfoCrawlerService {
+public class ImageCrawlerService {
     private static final BlockingQueue<JSONObject> TASK_LIST = new LinkedBlockingQueue<>();
-    private final Logger logger = LoggerFactory.getLogger(InfoCrawlerService.class);
+    private final Logger logger = LoggerFactory.getLogger(ImageCrawlerService.class);
     @Inject
     private CrawlerBase crawlerBase;
     @Inject
@@ -46,15 +47,17 @@ public class InfoCrawlerService {
     @Inject
     private TagMappingService tagMappingService;
     @Inject
-    private InfoService infoService;
+    private PictureService pictureService;
     @Inject
     private MatchZoneService matchZoneService;
     @Inject
     private CrCrawlTaskService crCrawlTaskService;
+    @Inject
+    private PictureDetailService pictureDetailService;
 
     public void startTread(int threadNum) {
         // 生成任务
-        List<CrCrawlTask> crCrawlTaskList = crCrawlTaskService.list("info");
+        List<CrCrawlTask> crCrawlTaskList = crCrawlTaskService.list("image");
         for (CrCrawlTask crCrawlTask : crCrawlTaskList) {
             try {
                 TASK_LIST.put(JSONObject.fromObject(crCrawlTask));
@@ -91,24 +94,58 @@ public class InfoCrawlerService {
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
             }
+
+
         }
     }
 
+    @Transactional
     private void mergeData(HashMap<String, List<HashMap<String, String>>> results) {
-        List<HashMap<String, String>> infoList = results.get("info");
-        List<HashMap<String, String>> tagList = results.get("tags");
-        if (infoList == null) {
+        List<HashMap<String, String>> pictureList = results.get("picture");
+        List<HashMap<String, String>> pictureDetailList = results.get("pictureDetail");
+        List<HashMap<String, String>> tagsList = results.get("tags");
+        if (pictureList == null) {
             return;
         }
-        HashMap<String, String> infoMap = infoList.get(0);
-        Info info = setInfo(infoMap);
-//            if (!dataOperatingService.selectData("uuid", infoMap.get("uuid"), "info")) {
-//                dataOperatingService.insertDate(infoMap, "info");
-//            }
-        Info infoSelect = infoService.findByUuid(infoMap.get("uuid"));
-        if (tagList != null && infoSelect == null) {
-            infoService.save(info);
-            for (HashMap<String, String> tagMap : tagList) {
+        HashMap<String, String> pictureMap = pictureList.get(0);
+        Picture picture = setPicture(pictureMap);
+        Picture pictureSelect = pictureService.findByUuid(pictureMap.get("uuid"));
+        if (pictureDetailList != null && pictureSelect == null) {
+            pictureService.save(picture);
+            saveTag(tagsList, picture);
+            savePictureDetail(pictureDetailList, picture);
+        }
+
+    }
+
+    private Picture setPicture(HashMap<String, String> pictureMap) {
+        Picture picture = new Picture();
+        picture.setStatus(1);
+        picture.setCreateTime(new Date());
+        picture.setUpdateTime(new Date());
+        picture.setUuid(pictureMap.get("uuid"));
+        if (StringUtils.hasText(pictureMap.get("zoneUuid"))) {
+            picture.setZoneUuid(pictureMap.get("zoneUuid"));
+            MatchZone matchZone = matchZoneService.findByUuid(pictureMap.get("zoneUuid"));
+            picture.setZoneId(matchZone.getId());
+        }
+        picture.setPictureZoneType(PictureZoneType.valueOf(pictureMap.get("pictureZoneType")));
+        picture.setImage(pictureMap.get("image"));
+        picture.setDescription(pictureMap.get("description"));
+        picture.setVisitCount(1);
+        picture.setSeoTitle(pictureMap.get("seoTitle"));
+        picture.setTags(pictureMap.get("tags"));
+        picture.setVerify(1);
+        picture.setSource(pictureMap.get("source"));
+        picture.setPublishTime(CalendarUtils.parse(pictureMap.get("publishTime"), "yyyy-MM-dd HH:mm:ss"));
+        picture.setSeoKeywords(pictureMap.get("seoKeywords"));
+        picture.setSeoDescription(pictureMap.get("seoDescription"));
+        return picture;
+    }
+
+    private void saveTag(List<HashMap<String, String>> tagsList, Picture picture) {
+        if (tagsList != null) {
+            for (HashMap<String, String> tagMap : tagsList) {
                 Tags tags = new Tags();
                 tags.setStatus(1);
                 tags.setName(tagMap.get("name"));
@@ -126,49 +163,29 @@ public class InfoCrawlerService {
                 tagMapping.setUpdateTime(new Date());
                 tagMapping.setTagType(tags.getTagType());
                 tagMapping.setTagZoneType(tags.getTagZoneType());
-                tagMapping.setEntityId(info.getId());
+                tagMapping.setEntityId(picture.getId());
                 tagMapping.setStatus(1);
                 tagMapping.setTagsUuid(tags.getUuid());
                 tagMapping.setTagsId(tags.getId());
                 tagMapping.setUuid(IKFunction.uuid());
-                tagMapping.setEntityUuid(info.getUuid());
+                tagMapping.setEntityUuid(picture.getUuid());
                 tagMappingService.save(tagMapping);
             }
-
         }
-
     }
 
-    private Info setInfo(HashMap<String, String> infoMap) {
-        Info info = new Info();
-        info.setStatus(1);
-        info.setCreateTime(new Date());
-        info.setUpdateTime(new Date());
-        info.setUuid(infoMap.get("uuid"));
-        if (StringUtils.hasText(infoMap.get("zoneUuid"))) {
-            info.setZoneUuid(infoMap.get("zoneUuid"));
-            MatchZone matchZone = matchZoneService.findByUuid(infoMap.get("zoneUuid"));
-            info.setZoneId(matchZone.getId());
+    private void savePictureDetail(List<HashMap<String, String>> pictureDetailList, Picture picture) {
+        for (HashMap<String, String> pictureDetailMap : pictureDetailList) {
+            PictureDetail pictureDetail = new PictureDetail();
+            pictureDetail.setUuid(pictureDetailMap.get("uuid"));
+            pictureDetail.setDescription(pictureDetailMap.get("description"));
+            pictureDetail.setImage(pictureDetailMap.get("image"));
+            pictureDetail.setStatus(1);
+            pictureDetail.setPictureId(picture.getId());
+            pictureDetail.setPictureUuid(picture.getUuid());
+            pictureDetail.setSort(Integer.parseInt(pictureDetailMap.get("sort")));
+            pictureDetailService.save(pictureDetail);
         }
-        info.setInfoZoneType(InfoZoneType.valueOf(infoMap.get("infoZoneType")));
-        info.setInfoType(InfoType.valueOf(infoMap.get("infoType")));
-        if (StringUtils.hasText(infoMap.get("infoVideoType"))) {
-            info.setInfoVideoType(InfoVideoType.valueOf(infoMap.get("infoVideoType")));
-        }
-        info.setTitle(infoMap.get("title"));
-        info.setSubTitle(infoMap.get("subTitle"));
-        info.setVisitCount(1);
-        info.setTitleImage(infoMap.get("titleImage"));
-        info.setContent(infoMap.get("content"));
-        info.setSeoTitle(infoMap.get("seoTitle"));
-        info.setTags(infoMap.get("tags"));
-        info.setVerify(1);
-        info.setSource(infoMap.get("source"));
-        info.setPublishTime(CalendarUtils.parse(infoMap.get("publishTime"), "yyyy-MM-dd HH:mm:ss"));
-        info.setAuthor(infoMap.get("author"));
-        info.setSeoKeywords(infoMap.get("seoKeywords"));
-        info.setSeoDescription(infoMap.get("seoDescription"));
-        return info;
     }
 
 }

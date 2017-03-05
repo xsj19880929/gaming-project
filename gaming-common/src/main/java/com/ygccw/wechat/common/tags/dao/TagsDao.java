@@ -72,7 +72,11 @@ public class TagsDao {
                 .append("status", 1).append("name", name).append("tagType", tagType).append("tagZoneType", tagZoneType)
                 .skipEmptyFields().orderBy("updateTime").desc();
         Query query = queryBuilder.build();
-        return jpaAccess.findOne(query);
+        List tagList = jpaAccess.find(query);
+        if (tagList != null && !tagList.isEmpty()) {
+            return (Tags) tagList.get(0);
+        }
+        return null;
     }
 
 }

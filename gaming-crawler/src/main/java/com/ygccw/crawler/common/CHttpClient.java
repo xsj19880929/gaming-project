@@ -46,7 +46,7 @@ public class CHttpClient {
                             .loadTrustMaterial(null, new TrustSelfSignedStrategy())
                             .build());
             int cpuNum = Runtime.getRuntime().availableProcessors();
-            builder.setMaxConnPerRoute(cpuNum * 3).setMaxConnTotal(cpuNum * 10);
+            builder.setMaxConnPerRoute(cpuNum * 30).setMaxConnTotal(cpuNum * 100);
             builder.setDefaultSocketConfig(SocketConfig.custom()
                     .setSoKeepAlive(true).build());
             builder.setDefaultRequestConfig(RequestConfig.custom()

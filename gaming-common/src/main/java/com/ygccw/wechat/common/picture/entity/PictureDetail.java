@@ -20,6 +20,24 @@ public class PictureDetail {
     private String description;
     private String image;
     private Integer sort;
+    private String uuid;
+    private String pictureUuid;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getPictureUuid() {
+        return pictureUuid;
+    }
+
+    public void setPictureUuid(String pictureUuid) {
+        this.pictureUuid = pictureUuid;
+    }
 
     public Integer getSort() {
         return sort;

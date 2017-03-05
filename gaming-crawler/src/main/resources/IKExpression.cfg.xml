@@ -105,6 +105,15 @@
             <parameter-type>java.lang.Object</parameter-type>
             <parameter-type>java.lang.String</parameter-type>
         </function>
+        <function name="ROWREGEXP" method="rowRegexp">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="REGEXPROWS" method="regexpRows">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+            <parameter-type>int</parameter-type>
+        </function>
         <function name="KEYVAL" method="keyVal">
             <parameter-type>java.lang.Object</parameter-type>
             <parameter-type>java.lang.String</parameter-type>

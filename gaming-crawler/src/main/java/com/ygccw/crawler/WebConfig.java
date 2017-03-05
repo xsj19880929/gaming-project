@@ -91,7 +91,6 @@ public class WebConfig extends DefaultSiteConfig {
     public FileServerSettings fileServerSettings() {
         FileServerSettings fileServerSettings = new FileServerSettings();
         fileServerSettings.setServerUrl(env.getRequiredProperty("out.file.uploadServer"));
-        fileServerSettings.setImageUrl(env.getRequiredProperty("out.image.downloadUrl"));
         return fileServerSettings;
     }
 }

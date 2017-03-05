@@ -279,11 +279,11 @@
                         <li th:each="matchTeam,iterStat:${starMatchTeamList}"
                             th:if="${iterStat.index==0||iterStat.index==1}"
                             th:class="${iterStat.odd==true?'no_border':''}">
-                            <p class="p1"><a href="#"><span></span><img
+                            <p class="p1"><a><span></span><img
                                     th:img-src="/image/106x106${matchTeam.icoImage}" th:alt="${matchTeam.name}"
                                     th:title="${matchTeam.name}"/></a></p>
                             <p class="p2">
-                                <span class="span01"><a href="#" th:text="${matchTeam.name}">Absolute Legends</a></span>
+                                <span class="span01"><a th:text="${matchTeam.name}">Absolute Legends</a></span>
                                 <span class="span02"><em>所属项目：</em><img th:img-src="/image/28x28${matchZone.icoImage}"
                                                                         th:each="matchZone:${matchTeam.matchZoneList}"
                                                                         th:alt="${matchZone.name}"

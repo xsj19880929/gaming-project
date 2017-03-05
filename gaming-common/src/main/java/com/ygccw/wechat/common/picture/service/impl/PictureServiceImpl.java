@@ -77,4 +77,9 @@ public class PictureServiceImpl implements PictureService {
     public void updateVisitCount(Long id) {
         pictureDao.updateVisitCount(id);
     }
+
+    @Override
+    public Picture findByUuid(String uuid) {
+        return pictureDao.findByUuid(uuid);
+    }
 }

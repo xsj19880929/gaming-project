@@ -29,19 +29,37 @@ public class Picture {
     private String seoTitle;
     private String seoKeywords;
     private String seoDescription;
-    private String publishTime;
+    private Date publishTime;
     private Integer visitCount;
     private String tags;
     private Integer verify;
     private Long zoneId;
     @Enumerated(EnumType.STRING)
     private PictureZoneType pictureZoneType;
+    private String uuid;
+    private String zoneUuid;
     @Transient
     private String sortName;
     @Transient
     private Boolean sortIfDesc;
     @Transient
     private List<PictureDetail> pictureDetailList;
+
+    public String getZoneUuid() {
+        return zoneUuid;
+    }
+
+    public void setZoneUuid(String zoneUuid) {
+        this.zoneUuid = zoneUuid;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public List<PictureDetail> getPictureDetailList() {
         return pictureDetailList;
@@ -148,11 +166,11 @@ public class Picture {
         this.seoDescription = seoDescription;
     }
 
-    public String getPublishTime() {
+    public Date getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(String publishTime) {
+    public void setPublishTime(Date publishTime) {
         this.publishTime = publishTime;
     }
 

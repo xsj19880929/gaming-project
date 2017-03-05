@@ -12,6 +12,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.safety.Whitelist;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -46,7 +48,8 @@ public class IKFunction {
         xpath = factory.newXPath();
     }
 
-    private final String imageServer = "http://image.55djw.com/image/url/upload?url=";
+    private final Logger logger = LoggerFactory.getLogger(IKFunction.class);
+    private final String imageServer = "http://localhost:9018/image/url/upload?url=";
     private final String downServer = "http://image.55djw.com";
 
     // 格式化为数组对象
@@ -98,6 +101,47 @@ public class IKFunction {
         } else {
             return "";
         }
+    }
+
+    // 正则解析
+    public static int rowRegexp(Object value, String regexp) {
+        if (regexp == null || regexp.toString().isEmpty()) {
+            return 0;
+        }
+        Pattern p = patterns.get(regexp);
+        if (p == null) {
+            p = Pattern.compile(regexp);
+            patterns.put(regexp, p);
+        }
+        Matcher m = p.matcher(value.toString().replace("\n", ""));
+        List<String> list = new ArrayList<>();
+        while (m.find()) {
+            list.add(m.group(1));
+        }
+        return list.size();
+    }
+
+    // 正则解析
+    public static String regexpRows(Object value, String regexp, int row) {
+        if (regexp == null || regexp.toString().isEmpty()) {
+            return "";
+        }
+        Pattern p = patterns.get(regexp);
+        if (p == null) {
+            p = Pattern.compile(regexp);
+            patterns.put(regexp, p);
+        }
+        Matcher m = p.matcher(value.toString().replace("\n", ""));
+        List<String> list = new ArrayList<>();
+        while (m.find()) {
+            list.add(m.group(1));
+        }
+        if (list.isEmpty()) {
+            return "";
+        } else {
+            return list.get(row - 1);
+        }
+
     }
 
     // 字符串截取
@@ -258,6 +302,10 @@ public class IKFunction {
 ////        ikFunction.array(ikFunction.split(g, "|"), 2);
 //        String h = regexp(ikFunction.array(ikFunction.split(g, "\\|"), 2), "(.*)");
 //        System.out.println(h);
+
+//        String html = "photos.push({ orig: 'https://upload.shunwang.com/2016/0627/1467032515821.jpg', big: 'https://upload.shunwang.com/2016/0627/1467032515821.jpg', thumb: 'https://upload.shunwang.com/2016/0627/thumb_100_75_1467032515821.jpg', note: \"0dadf3718991d7bb1218443c2be665c9\" });\n" +
+//                "                    photos.push({ orig: 'https://upload.shunwang.com/2016/0627/1467032515275.jpg', big: 'https://upload.shunwang.com/2016/0627/1467032515275.jpg', thumb: 'https://upload.shunwang.com/2016/0627/thumb_100_75_1467032515275.jpg', note: \"23715edc549f6611a62f6b6116827fc3\" });";
+//        System.out.println(regexpRows(html, "orig: '(.*?)', big", 1));
     }
 
     // 格式化为tidyDom对象（org.w3c.dom.Document）

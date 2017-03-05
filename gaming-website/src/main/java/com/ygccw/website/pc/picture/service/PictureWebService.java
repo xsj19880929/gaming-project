@@ -78,7 +78,7 @@ public class PictureWebService {
             for (String tagName : tagArray) {
                 Tags tags = tagsService.findByName(tagName, TagType.picture, tagZoneTypeRequest);
                 if (tags == null) continue;
-                List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId());
+                List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId(), 0, fetchSize);
                 for (TagMapping tagMapping : tagMappingList) {
                     Picture pictureNew = pictureService.findById(tagMapping.getEntityId());
                     mappingMap.put(tagMapping.getEntityId(), pictureNew);

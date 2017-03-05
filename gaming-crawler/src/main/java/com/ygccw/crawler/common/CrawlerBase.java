@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 @Component
 public class CrawlerBase {
@@ -25,17 +26,18 @@ public class CrawlerBase {
         return crawlerCommon(task, null);
     }
 
-    public HashMap<String, List<HashMap<String, String>>> crawler(JSONObject task, List<JSONObject> nextTasks) throws Exception {
+    public HashMap<String, List<HashMap<String, String>>> crawler(JSONObject task, BlockingQueue<JSONObject> nextTasks) throws Exception {
         return crawlerCommon(task, nextTasks);
     }
 
-    private HashMap<String, List<HashMap<String, String>>> crawlerCommon(JSONObject task, List<JSONObject> nextTasks) throws Exception {
+    private HashMap<String, List<HashMap<String, String>>> crawlerCommon(JSONObject task, BlockingQueue<JSONObject> nextTasks) throws Exception {
         HashMap<String, List<HashMap<String, String>>> results = new HashMap<String, List<HashMap<String, String>>>();
         String pageType = task.getString(Constants.TPLNAME);
         List<Variable> variables = new ArrayList<Variable>();
         variables.add(Variable.createVariable("task", task.toString()));
         if (task.get(Constants.URL) != null) {
-            HttpUriRequest request = RequestBuilder.get().setUri(task.getString(Constants.URL)).build();
+            HttpUriRequest request = RequestBuilder.get().setUri(task.getString(Constants.URL))
+                    .setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0").build();
             HttpResponse httpResponse = cHttpClient.execute(request);
             String html = EntityUtils.toString(httpResponse.getEntity());
             // 简易公式赋值变量对象集合

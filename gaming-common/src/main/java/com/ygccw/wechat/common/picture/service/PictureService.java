@@ -25,4 +25,7 @@ public interface PictureService {
 
     void updateVisitCount(Long id);
 
+
+    Picture findByUuid(String uuid);
+
 }

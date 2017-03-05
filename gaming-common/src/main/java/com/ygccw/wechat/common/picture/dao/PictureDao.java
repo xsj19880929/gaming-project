@@ -81,4 +81,8 @@ public class PictureDao {
         jpaAccess.update(Query.create("update Picture set visitCount=visitCount+1 where id=:id").param("id", id));
     }
 
+    public Picture findByUuid(String uuid) {
+        return jpaAccess.findOne(QueryBuilder.query("from Picture").append("uuid", uuid).append("status", 1).build());
+    }
+
 }

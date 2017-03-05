@@ -28,7 +28,7 @@ public interface TagMappingService {
 
     int listSize(TagMapping tagMapping);
 
-    List<TagMapping> listByTagsId(Long tagsId);
+    List<TagMapping> listByTagsId(Long tagsId, int offset, int fetchSize);
 
     List<Map<String, Object>> listHotTags(TagMapping tagMapping, int offset, int fetchSize);
 

@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="gbk"?>
-<page pageType="15wlist">
+<page pageType="5asjlist">
     <uielements objectName="beforeSemantic">
         <uiobject fieldName="tidyDom">
             <expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
         </uiobject>
     </uielements>
     <uielements objectName="nextTask">
-        <rows><![CDATA[$ROWS(tidyDom,"//div[@class='artlist mode-box']")]]></rows>
+        <rows><![CDATA[$ROWS(tidyDom,"//li[@class='media']/a[@class='media-left']/@href")]]></rows>
         <uiobject fieldName="url" nullAble="false">
-            <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='artlist mode-box']/a/@href",row)]]></expression>
+            <expression>
+                <![CDATA[$XPATHCOLS(tidyDom,"//li[@class='media']/a[@class='media-left']/@href",row)]]></expression>
         </uiobject>
         <uiobject fieldName="titleImage" nullAble="false">
-            <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='indexcon']/div/a/img/@src",row)]]></expression>
+            <expression>
+                <![CDATA[$XPATHCOLS(tidyDom,"//li[@class='media']/a[@class='media-left']/img/@src",row)]]></expression>
+        </uiobject>
+        <uiobject fieldName="subTitle" nullAble="false">
+            <expression>
+                <![CDATA[$XPATHCOLS(tidyDom,"//div[@class='media-body-content']/a",row)]]></expression>
         </uiobject>
         <uiobject fieldName="infoZoneType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
@@ -19,8 +25,11 @@
         <uiobject fieldName="infoType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
         </uiobject>
+        <uiobject fieldName="zoneUuid" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>
+        </uiobject>
         <uiobject fieldName="templeName" nullAble="false">
-            <expression><![CDATA["15warticle"]]></expression>
+            <expression><![CDATA["5asjarticle"]]></expression>
         </uiobject>
     </uielements>
 
@@ -30,13 +39,16 @@
             <expression><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")]]></expression>
         </uiobject>
         <uiobject fieldName="templeName" nullAble="false">
-            <expression><![CDATA["15wlist"]]></expression>
+            <expression><![CDATA["5asjlist"]]></expression>
         </uiobject>
         <uiobject fieldName="infoZoneType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
         </uiobject>
         <uiobject fieldName="infoType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="zoneUuid" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>
         </uiobject>
     </uielements>
 

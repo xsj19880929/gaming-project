@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="gbk"?>
-<page pageType="15warticle">
+<page pageType="5asjarticle">
     <uielements objectName="beforeSemantic">
         <uiobject fieldName="tidyDom">
             <expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
@@ -28,10 +28,12 @@
             <expression><![CDATA[$KEYVAL(task,"infoVideoType")]]></expression>
         </uiobject>
         <uiobject fieldName="title" nullAble="false">
-            <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='headline-box']/p[@class='hdline']")]]></expression>
+            <expression>
+                <![CDATA[$XPATHROWS(tidyDom,"//div[@class='news_top']/h1")]]></expression>
         </uiobject>
         <uiobject fieldName="subTitle">
-            <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='leadbox cl6']")]]></expression>
+            <expression>
+                <![CDATA[$KEYVAL(task,"subTitle")]]></expression>
         </uiobject>
         <uiobject fieldName="visitCount" nullAble="false">
             <expression><![CDATA[1]]></expression>
@@ -44,10 +46,10 @@
         </uiobject>
         <uiobject fieldName="content" nullAble="false">
             <expression>
-                <![CDATA[$JSOUPHTMLDOWNIMAGE(html,"div[id=fix-pos-left]>div[class=newscon]:gt(1)")]]></expression>
+                <![CDATA[$REPLACESTR($JSOUPHTMLDOWNIMAGE(html,"div[class=art_info]"),"声明：中国电竞网登载此文出于传递更多信息之目的，并不意味着赞同其观点或证实其描述。","")]]></expression>
         </uiobject>
         <uiobject fieldName="seoTitle" nullAble="false">
-            <expression><![CDATA[$REPLACESTR($XPATHROWS(tidyDom,"//title"),"_要我玩电竞门户www.15w.com","")]]></expression>
+            <expression><![CDATA[$REPLACESTR($XPATHROWS(tidyDom,"//title"),"- 中国电竞网","")]]></expression>
         </uiobject>
         <uiobject fieldName="seoKeywords" nullAble="false">
             <expression><![CDATA[$XPATHROWS(tidyDom,"//meta[@name='keywords']/@content")]]></expression>
@@ -56,7 +58,8 @@
             <expression><![CDATA[$XPATHROWS(tidyDom,"//meta[@name='description']/@content")]]></expression>
         </uiobject>
         <uiobject fieldName="tags" nullAble="false">
-            <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='news-lable']")]]></expression>
+            <expression>
+                <![CDATA[$XPATHROWS(tidyDom,"//meta[@name='keywords']/@content")]]></expression>
         </uiobject>
         <uiobject fieldName="verify" nullAble="false">
             <expression><![CDATA[1]]></expression>
@@ -66,16 +69,17 @@
         </uiobject>
         <uiobject fieldName="publishTime" nullAble="false">
             <expression>
-                <![CDATA[$DATEFMT($XPATHROWS(tidyDom,"//span[@class='date']"),"yyyy-MM-dd HH:mm")]]></expression>
+                <![CDATA[$SYSDATESTR()]]></expression>
         </uiobject>
         <uiobject fieldName="author" nullAble="false">
             <expression><![CDATA["55电竞网"]]></expression>
         </uiobject>
     </uielements>
     <uielements objectName="tags">
-        <rows><![CDATA[$ROWS(tidyDom,"//div[@class='news-lable']/a")]]></rows>
+        <rows><![CDATA[$ROWS(tidyDom,"//div[@class='article-tag clearfix']/a")]]></rows>
         <uiobject fieldName="name" nullAble="false">
-            <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='news-lable']/a",row)]]></expression>
+            <expression>
+                <![CDATA[$XPATHCOLS(tidyDom,"//div[@class='article-tag clearfix']/a",row)]]></expression>
         </uiobject>
         <uiobject fieldName="tagType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>

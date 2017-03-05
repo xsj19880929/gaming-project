@@ -27,10 +27,10 @@ public class TagMappingDao {
     JdbcTemplate jdbcTemplate;
 
 
-    public List<TagMapping> listByTagsId(Long tagsId) {
+    public List<TagMapping> listByTagsId(Long tagsId, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from TagMapping").append("status", 1).append("tagsId", tagsId)
                 .skipEmptyFields().orderBy("createTime").desc();
-        Query query = queryBuilder.build();
+        Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
     }
 

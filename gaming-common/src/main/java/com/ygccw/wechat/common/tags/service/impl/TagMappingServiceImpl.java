@@ -61,8 +61,8 @@ public class TagMappingServiceImpl implements TagMappingService {
     }
 
     @Override
-    public List<TagMapping> listByTagsId(Long tagsId) {
-        return tagMappingDao.listByTagsId(tagsId);
+    public List<TagMapping> listByTagsId(Long tagsId, int offset, int fetchSize) {
+        return tagMappingDao.listByTagsId(tagsId, offset, fetchSize);
     }
 
     @Override
