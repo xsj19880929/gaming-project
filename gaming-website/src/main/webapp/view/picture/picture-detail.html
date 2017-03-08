@@ -104,7 +104,7 @@
         <div class="index_tit_two title"><span class="text_left">热门美图</span></div>
         <ul class="pic_like_con">
             <li th:each="pictureTop:${pictureTopList}">
-                <a href="#">
+                <a href="#" th:href="/picture/${pictureTop.id}.html" th:title="${pictureTop.description}">
                     <p class="p1"><img src="/static/temp/girl1.jpg" th:img-src="/image/280x178${pictureTop.image}"
                                        th:alt="${pictureTop.description}" th:title="${pictureTop.description}"/>
                     </p>
@@ -138,6 +138,9 @@
 			</div>
 		</div>
 	</div>
+
+
+
 
 
 

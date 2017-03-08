@@ -12,6 +12,7 @@ import com.ygccw.wechat.common.recommend.enums.RecommendType;
 import com.ygccw.wechat.common.zone.dao.AnchorZoneDao;
 import com.ygccw.wechat.common.zone.dao.AnchorZoneMatchZoneMappingDao;
 import com.ygccw.wechat.common.zone.dao.AnchorZonePlatformDao;
+import com.ygccw.wechat.common.zone.dao.MatchTeamDao;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
 import com.ygccw.wechat.common.zone.service.AnchorZoneService;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,8 @@ public class AnchorZoneServiceImpl implements AnchorZoneService {
     private PictureService pictureService;
     @Inject
     private AnchorZoneMatchZoneMappingDao anchorZoneMatchZoneMappingDao;
+    @Inject
+    private MatchTeamDao matchTeamDao;
 
     @Override
     public void save(AnchorZone anchorZone) {
@@ -58,6 +61,9 @@ public class AnchorZoneServiceImpl implements AnchorZoneService {
     private void saveAndUpdateSetDate(AnchorZone anchorZone) {
         if (anchorZone.getPlatformId() != null) {
             anchorZone.setPlatformName(anchorZonePlatformDao.findById(anchorZone.getPlatformId()).getName());
+        }
+        if (anchorZone.getMatchTeamId() != null) {
+            anchorZone.setMatchTeamName(matchTeamDao.findById(anchorZone.getMatchTeamId()).getName());
         }
 
     }

@@ -78,6 +78,27 @@
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td width="10%">战队：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <select class="form-control" ng-model="anchorZone.matchTeamId"
+                                    ng-options="m.id as m.name for m in matchTeamList"
+                                    name="matchTeamId">
+                                <option value="">请选择战队</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">国籍：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="anchorZone.country"
+                                   placeholder=""/>
+                        </div>
+                    </td>
+                </tr>
 
                 <tr>
                     <td width="10%">SEO标题：</td>

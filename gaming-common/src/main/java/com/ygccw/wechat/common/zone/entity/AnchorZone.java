@@ -34,10 +34,37 @@ public class AnchorZone {
     private String otherUsername;
     private Long platformId;
     private String platformName;
+    private Long matchTeamId;
+    private String matchTeamName;
+    private String country;
     @Transient
     private String sortName;
     @Transient
     private Boolean sortIfDesc;
+
+    public Long getMatchTeamId() {
+        return matchTeamId;
+    }
+
+    public void setMatchTeamId(Long matchTeamId) {
+        this.matchTeamId = matchTeamId;
+    }
+
+    public String getMatchTeamName() {
+        return matchTeamName;
+    }
+
+    public void setMatchTeamName(String matchTeamName) {
+        this.matchTeamName = matchTeamName;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public String getSortName() {
         return sortName;

@@ -71,7 +71,7 @@
                                                                     th:text="${tagTrade.name}">电竞</a></dd>
                         <div class="clear"></div>
                     </dl>
-                    <ul th:text="${news.content}">
+                    <ul th:text="${news.subTitle}">
                         近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。
                     </ul>
                 </div>
@@ -134,17 +134,21 @@
     <div class="main_right">
         <div class="right_top">
             <div class="index_tit_two"><span class="text_right">基本资料</span></div>
-            <div class="ziliao"><span>姓名：<a href="#" th:text="${anchorZone.username}">韩懿莹</a></span> <span>别名：<a
-                    href="#" th:text="${anchorZone.otherUsername}">Miss</a></span> <span>平台：<a
-                    href="#" th:text="${platformName}">斗鱼</a>，<a href="#">虎牙TV</a></span> <span>游戏：<a href="#">
-                <img src="/static/img/zhubo/game_logo1.png" th:each="matchZone:${anchorMatchZoneList}"
-                     th:img-src="/image/24x24${matchZone.icoImage}" th:alt="${matchZone.name}"
-                     th:title="${matchZone.name}"/></a></span>
+            <div class="ziliao">
+                <span>姓名：<em th:text="${anchorZone.username}">韩懿莹</em></span>
+                <span>别名：<em th:text="${anchorZone.otherUsername}">Miss</em></span>
+                <span>国籍：<em th:text="${anchorZone.country}">Miss</em></span>
+                <span>战队：<em th:text="${anchorZone.matchTeamName}">Miss</em></span>
+                <span>平台：<em th:text="${anchorZone.platformName}">斗鱼</em></span>
+                <span>游戏：<em><img src="/static/img/zhubo/game_logo1.png"
+                                  th:each="matchZone:${anchorMatchZoneList}"
+                                  th:img-src="/image/24x24${matchZone.icoImage}" th:alt="${matchZone.name}"
+                                  th:title="${matchZone.name}"/></em></span>
                 <span>荣誉：</span>
                 <span style="border-left:1px solid #e6e6e6;" th:each="honor:${anchorZoneHonorList}">
                     <span style="margin-left:-3px;"
                           th:utext="'•&nbsp;&nbsp;'+${#calendars.format(honor.honorTime, 'yyyy-MM')}">•&nbsp;&nbsp;2015-11</span>
-                    <span th:text="${honor.name}">2015英雄联盟最受欢迎解说</span>
+                    <span th:text="${honor.name}" class="content">2015英雄联盟最受欢迎解说</span>
                     <div class="clear"></div>
                 </span></div>
         </div>

@@ -16,6 +16,9 @@
         $http.get('zone/anchor-zone/anchor-zone-platform/list').success(function (data) {
             $scope.anchorZonePlatformList = data;
         });
+        $http.get('/zone/match-zone/match-team/list').success(function (data) {
+            $scope.matchTeamList = data;
+        });
 
         if ($location.search().id) {
             $http.get('zone/anchor-zone/' + $location.search().id).success(function (data) {

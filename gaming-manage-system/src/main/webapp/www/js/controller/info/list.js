@@ -26,6 +26,7 @@
             paginationPageSizes: [$scope.fetchSize, $scope.fetchSize * 2, $scope.fetchSize * 3],
             paginationPageSize: $scope.fetchSize,
             useExternalPagination: true,
+            enableColumnResizing: true,
             columnDefs: [
                 {
                     name: 'id',
@@ -60,7 +61,7 @@
             onRegisterApi: function (gridApi) {
                 $scope.gridApi = gridApi;
                 gridApi.pagination.on.paginationChanged($scope, function (page, fetchSize) {
-                    loadData((page - 1) * fetchSize, fetchSize, _params);
+                    loadData((page - 1) * fetchSize, fetchSize);
                 });
             }
         };

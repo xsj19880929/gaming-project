@@ -20,7 +20,7 @@ public class AnchorZoneHonorDao {
 
     public List<AnchorZoneHonor> listByAnchorZoneId(Long anchorZoneId) {
         QueryBuilder queryBuilder = QueryBuilder.query("from AnchorZoneHonor").append("status", 1).append("anchorZoneId", anchorZoneId)
-                .skipEmptyFields().orderBy("createTime").desc();
+                .skipEmptyFields().orderBy("honorTime").desc();
         Query query = queryBuilder.build();
         return jpaAccess.find(query);
     }

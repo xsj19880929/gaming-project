@@ -44,7 +44,7 @@
             onRegisterApi: function (gridApi) {
                 $scope.gridApi = gridApi;
                 gridApi.pagination.on.paginationChanged($scope, function (page, fetchSize) {
-                    loadData((page - 1) * fetchSize, fetchSize, _params);
+                    loadData((page - 1) * fetchSize, fetchSize);
                 });
             }
         };
