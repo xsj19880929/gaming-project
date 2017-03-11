@@ -29,11 +29,12 @@
                 收入超刘翔</a></span></div>
             <div class="video_right">
                 <div class="index_video_right right_video zhubo_video01 zhubo_video02">
-                    <ul>
-                        <li th:each="video,iterStat:${anchorVideoList}" th:if="${iterStat.index<2}"><a href="#"
-                                                                                                       class="img"
-                                                                                                       th:href="/video/${video.id}.html"
-                                                                                                       th:title="${video.title}">
+                    <ul style="margin-left: 15px">
+                        <li th:each="video,iterStat:${anchorVideoList}" th:if="${iterStat.index<2}"
+                            th:style="${iterStat.index}==1?'margin-top:14px'"><a href="#"
+                                                                                 class="img"
+                                                                                 th:href="/video/${video.id}.html"
+                                                                                 th:title="${video.title}">
                             <img
                                     src="/static/img/zhubo/zhubo_pic2.png"
                                     th:img-src="/image/237x140/${video.titleImage}" th:alt="${video.title}"
@@ -55,10 +56,10 @@
                 </dd>
             </dl>
             <div class="zhubo_news" th:each="news,iterStat:${anchorNewsList}" th:if="${iterStat.index>0}"><span><a
-                    href="#"><img
+                    href="#" th:href="/news/${news.id}.html" target="_blank"><img
                     src="/static/temp/list03.jpg" th:img-src="/image/204x108${news.titleImage}" th:alt="${news.title}"
                     th:title="${news.title}"/></a></span>
-                <div class="zhubo_news_main"><a href="#">
+                <div class="zhubo_news_main"><a href="#" th:href="/news/${news.id}.html" target="_blank">
                     <h1 th:text="${news.title}">lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
                 </a>
                     <dl>
@@ -86,20 +87,7 @@
             </dl>
             <div class="index_video_right right_video zhubo_video01">
                 <ul>
-                    <li th:each="video,iterStat:${anchorVideoList}" th:if="${iterStat.index==2}"><a href="#"
-                                                                                                    class="img"
-                                                                                                    th:href="/video/${video.id}.html"
-                                                                                                    th:title="${video.title}">
-                        <img
-                                src="/static/temp/temp03.jpg"
-                                th:img-src="/image/200x118/${video.titleImage}" th:alt="${video.title}"
-                                th:title="${video.title}"/>
-                        <p class="p1"><span></span></p>
-                        <p class="p2"><em></em></p>
-                    </a> <a href="#" class="text" th:text="${video.title}" th:href="/video/${video.id}.html"
-                            th:title="${video.title}">电竞校园联赛炉石传说Top3</a></li>
-                    <li style="margin-left:15px;" th:each="video,iterStat:${anchorVideoList}"
-                        th:if="${iterStat.index>2}"><a
+                    <li th:each="video,iterStat:${anchorVideoList}"><a
                             href="#" class="img" th:href="/video/${video.id}.html"
                             th:title="${video.title}"> <img
                             src="/static/temp/temp03.jpg"
@@ -147,7 +135,8 @@
                 <span>荣誉：</span>
                 <span style="border-left:1px solid #e6e6e6;" th:each="honor:${anchorZoneHonorList}">
                     <span style="margin-left:-3px;"
-                          th:utext="'•&nbsp;&nbsp;'+${#calendars.format(honor.honorTime, 'yyyy-MM')}">•&nbsp;&nbsp;2015-11</span>
+                          th:utext="'•&nbsp;&nbsp;'+${#calendars.format(honor.honorTime, 'yyyy-MM')}"
+                          th:if="${honor.honorTime!=null}">•&nbsp;&nbsp;2015-11</span>
                     <span th:text="${honor.name}" class="content">2015英雄联盟最受欢迎解说</span>
                     <div class="clear"></div>
                 </span></div>

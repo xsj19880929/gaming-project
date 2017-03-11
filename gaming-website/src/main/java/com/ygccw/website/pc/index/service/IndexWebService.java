@@ -173,7 +173,7 @@ public class IndexWebService {
     public List<Info> findVideoInfoList(InfoVideoType infoVideoType) {
         Info info = new Info();
         info.setInfoVideoType(infoVideoType);
-        return infoService.list(info, 0, 5);
+        return infoService.list(info, 0, 7);
     }
 
     public List<AnchorZone> findAnchorZoneVideo() {

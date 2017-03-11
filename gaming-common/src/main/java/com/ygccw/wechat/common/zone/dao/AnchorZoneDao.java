@@ -85,4 +85,8 @@ public class AnchorZoneDao {
         jpaAccess.update(Query.create("update AnchorZone set visitCount=visitCount+1 where id=:id").param("id", id));
     }
 
+    public AnchorZone findByUuid(String uuid) {
+        return jpaAccess.findOne(QueryBuilder.query("from AnchorZone").append("uuid", uuid).append("status", 1).build());
+    }
+
 }

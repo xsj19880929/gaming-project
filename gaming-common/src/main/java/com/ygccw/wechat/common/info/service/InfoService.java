@@ -11,6 +11,8 @@ import java.util.List;
 public interface InfoService {
     void save(Info info);
 
+    void saveOnly(Info info);
+
     void update(Info info);
 
     void delete(Long id);

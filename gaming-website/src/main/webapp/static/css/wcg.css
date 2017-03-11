@@ -638,10 +638,6 @@
     font-size: 24px;
     line-height: 30px;
     padding-left: 20px;
-    width: 270px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .index_tit_two .text_right {
@@ -2325,14 +2321,14 @@
 }
 
 .zhubo_video01 {
-    width: 740px;
+    width: 760px;
 }
 
 .zhubo_video01 li {
     float: left;
     width: 173px;
     height: 130px;
-    margin: 0;
+    margin-right: 15px;
     padding-top: 14px;
     overflow: hidden;
 }
@@ -4094,6 +4090,12 @@
 .game_position a, .game_position em {
     padding: 0 10px;
     font-family: Microsoft YaHei;
+}
+
+.no-found-page {
+    float: left;
+    margin: 16px 0;
+    width: 100%;
 }
 
 

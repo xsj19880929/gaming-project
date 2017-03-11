@@ -17,6 +17,7 @@
                 $scope.ue.ready(function () {
                     $scope.ue.setContent($scope.info.content);
                 });
+                $scope.getInfoVideoTypeList();
             });
         } else {
             $http.get('recommend/listRecommendMapping?recommendType=news').success(function (data) {

@@ -25,7 +25,7 @@ public class IndexController {
     @Inject
     private InfoWebService infoWebService;
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(final ModelMap model) {
         model.put("matchZoneList", indexWebService.findRecommendMatchZone());
         model.put("advImageList", indexWebService.findAdvertising(5));

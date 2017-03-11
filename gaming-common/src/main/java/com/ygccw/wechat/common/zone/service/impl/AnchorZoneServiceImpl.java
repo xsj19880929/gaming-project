@@ -131,4 +131,9 @@ public class AnchorZoneServiceImpl implements AnchorZoneService {
     public void updateVisitCount(Long id) {
         anchorZoneDao.updateVisitCount(id);
     }
+
+    @Override
+    public AnchorZone findByUuId(String uuid) {
+        return anchorZoneDao.findByUuid(uuid);
+    }
 }

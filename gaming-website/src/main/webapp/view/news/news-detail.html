@@ -135,7 +135,7 @@
             <ul class="hot_zhubo">
                 <li th:each="anchor:${anchorTopList}">
                     <a href="#" th:title="${anchor.name}"
-                       th:href="/anchor/${anchor.id}.html">
+                       th:href="/anchor/${anchor.id}/">
                         <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
                         <p class="p2"><img th:img-src="/image/120x120${anchor.icoImage}" th:alt="${anchor.name}"
                                            th:title="${anchor.name}"/></p>

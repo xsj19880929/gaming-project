@@ -35,6 +35,11 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
+    public void saveOnly(Info info) {
+        infoDao.save(info);
+    }
+
+    @Override
     public void update(Info info) {
         info.setUpdateTime(new Date());
         infoDao.update(info);

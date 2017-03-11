@@ -83,7 +83,7 @@ public class AnchorController {
         model.put("anchorMatchZoneList", anchorWebService.listMatchZoneListByAnchorZoneId(id));
         model.put("anchorZoneHonorList", anchorWebService.listAnchorZoneHonorByAnchorZoneId(id));
         model.put("anchorNewsList", anchorWebService.listInfoNewsAndTagByAnchorZoneId(id, 0, 5));
-        model.put("anchorVideoList", anchorWebService.listInfoVideoByAnchorZoneId(id, 0, 8));
+        model.put("anchorVideoList", anchorWebService.listInfoVideoByAnchorZoneId(id, 0, 12));
         model.put("anchorPictureList", anchorWebService.listPictureByAnchorZoneId(id, 0, 6));
         model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(id, 0, 10));
         model.put("newsTopList", anchorWebService.listInfoNewsTop(0, 10));

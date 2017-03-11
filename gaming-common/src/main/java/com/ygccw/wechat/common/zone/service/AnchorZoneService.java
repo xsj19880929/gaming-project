@@ -26,4 +26,6 @@ public interface AnchorZoneService {
     int listSize(AnchorZone anchorZone);
 
     List<AnchorZone> listAll();
+
+    AnchorZone findByUuId(String uuid);
 }

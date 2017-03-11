@@ -37,10 +37,19 @@ public class AnchorZone {
     private Long matchTeamId;
     private String matchTeamName;
     private String country;
+    private String uuid;
     @Transient
     private String sortName;
     @Transient
     private Boolean sortIfDesc;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public Long getMatchTeamId() {
         return matchTeamId;
