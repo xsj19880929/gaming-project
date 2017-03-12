@@ -60,7 +60,7 @@
     <div class="game_main_right">
         <div class="index_tit_two" style="height:320px;">
             <span class="text_left padding1">热门赛事</span>
-            <a href="/game.html" target="_blank" class="more">更多</a>
+            <a href="/game/" target="_blank" class="more">更多</a>
             <div class="game_hot">
                 <dl style="margin-top:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
                     th:if="${iterStat.index==0}">
@@ -82,7 +82,7 @@
         </div>
         <div class="index_tit_two" style="height:440px;">
             <span class="text_left padding1">热门资讯</span>
-            <a href="/news.html" target="_blank" class="more">更多</a>
+            <a href="/news/" target="_blank" class="more">更多</a>
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="newsTop:${topNewsList}"><a href="#" th:text="${newsTop.title}"
@@ -94,7 +94,7 @@
         </div>
         <div class="index_tit_two">
             <span class="text_left padding1" style="margin-top:20px;">最新资讯</span>
-            <a href="/news.html" target="_blank" class="more" style="margin-top:24px;">更多</a>
+            <a href="/news/" target="_blank" class="more" style="margin-top:24px;">更多</a>
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="news:${newestNewsList}"><a href="#" th:text="${news.title}"

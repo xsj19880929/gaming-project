@@ -34,7 +34,7 @@ public class AnchorController {
     @Inject
     private InfoService infoService;
 
-    @RequestMapping(value = "/anchor.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/anchor/", method = RequestMethod.GET)
     public String anchorList(final ModelMap model) {
         AnchorZone anchorZone = new AnchorZone();
         int currentPage = 1;

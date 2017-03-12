@@ -17,7 +17,7 @@
 <div th:replace="/head.html::top('news')"></div>
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="/">电竞首页</a>&gt;<a href="/news.html">全部资讯</a>&gt;<em
+    <div class="position"><a href="/">电竞首页</a>&gt;<a href="/news/">全部资讯</a>&gt;<em
             th:if="${infoList.pageName}=='/news_trade'">行业新闻</em><em
             th:if="${infoList.pageName}=='/news_match'">赛事新闻</em><em
             th:if="${infoList.pageName}=='/news_anchor'">主播新闻</em></div>
@@ -64,7 +64,7 @@
     <div class="zixun_right">
         <!--精选视频-->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">精选视频</span> <a href="/video.html" class="more">更多</a>
+            <div class="index_tit_two"><span class="text_left">精选视频</span> <a href="/video/" class="more">更多</a>
             </div>
             <div class="index_video_right game_user_con small">
                 <ul>
@@ -81,7 +81,7 @@
         </div>
         <!--热门主播-->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor.html" target="_blank"
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor/" target="_blank"
                                                                               class="more">更多</a>
             </div>
             <ul class="hot_zhubo">
@@ -98,7 +98,7 @@
         </div>
         <!--热门资讯 -->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="/news.html" target="_blank"
+            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="/news/" target="_blank"
                                                                               class="more">更多</a>
             </div>
             <ul class="hot_zixun">

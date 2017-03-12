@@ -39,7 +39,7 @@ public class CrawlerBase {
             HttpUriRequest request = RequestBuilder.get().setUri(task.getString(Constants.URL))
                     .setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0").build();
             HttpResponse httpResponse = cHttpClient.execute(request);
-            String html = EntityUtils.toString(httpResponse.getEntity());
+            String html = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
             // 简易公式赋值变量对象集合
             variables.add(Variable.createVariable("html", html));
         }

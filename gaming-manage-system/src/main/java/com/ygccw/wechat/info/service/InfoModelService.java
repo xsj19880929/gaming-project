@@ -25,7 +25,7 @@ import com.ygccw.wechat.recommend.service.RecommendMappingModelService;
 import core.framework.util.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -215,11 +215,11 @@ public class InfoModelService {
 
     private String getContentImageFirst(String content) {
         Document document = Jsoup.parse(content);
-        Element element = document.select("img").first();
-        if (element == null) {
+        Elements elements = document.select("img");
+        if (elements == null) {
             return null;
         }
-        String imagePath = element.attr("src");
+        String imagePath = elements.first().attr("src");
         List<String> list = Arrays.asList(imagePath.split("/file"));
         return "/file" + list.get(1);
 

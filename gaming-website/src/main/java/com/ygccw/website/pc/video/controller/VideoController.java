@@ -38,7 +38,7 @@ public class VideoController {
     @Inject
     AnchorWebService anchorWebService;
 
-    @RequestMapping(value = "/video.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/video/", method = RequestMethod.GET)
     public String videoList(final ModelMap model) {
         int currentPage = 1;
         int fetchSize = 16;

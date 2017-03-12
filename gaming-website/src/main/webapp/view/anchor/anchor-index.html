@@ -50,7 +50,7 @@
         <div class="zhubo_zixun02" th:unless="${#lists.isEmpty(anchorNewsList)}">
             <dl>
                 <dt>主播资讯</dt>
-                <dd><a href="/anchor.html" target="_blank">更多<img src="/static/img/more.png" style="margin-left:4px;"
+                <dd><a href="/anchor/" target="_blank">更多<img src="/static/img/more.png" style="margin-left:4px;"
                                                                   th:alt="${anchorZone.name}"
                                                                   th:title="${anchorZone.name}"/></a>
                 </dd>
@@ -82,7 +82,7 @@
         <div class="zhubo_zixun02" th:unless="${#lists.isEmpty(anchorVideoList)}">
             <dl>
                 <dt>主播视频</dt>
-                <dd><a href="/video.html" target="_blank">更多<img src="/static/img/more.png" th:alt="${anchorZone.name}"
+                <dd><a href="/video/" target="_blank">更多<img src="/static/img/more.png" th:alt="${anchorZone.name}"
                                                                  th:title="${anchorZone.name}"/></a></dd>
             </dl>
             <div class="index_video_right right_video zhubo_video01">
@@ -104,7 +104,7 @@
         <!--精选美图 -->
         <div class="about_pic clearfix" style="clear:both;" th:unless="${#lists.isEmpty(anchorPictureList)}">
             <div class="index_tit_two"><span class="text_left padding1" style="margin-top:20px;">精选美图</span><a
-                    href="/picture.html" target="_blank"
+                    href="/picture/" target="_blank"
                     class="more"
                     style="margin-top:10px;">更多</a>
             </div>
@@ -161,7 +161,7 @@
 
         </div>
         <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor.html" target="_blank"
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor/" target="_blank"
                                                                               class="more vider_more">更多</a>
             </div>
             <ul class="hot_zhubo">
@@ -179,7 +179,7 @@
 
         </div>
         <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="/news.html" target="_blank"
+            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="/news/" target="_blank"
                                                                               class="more vider_more">更多</a>
             </div>
             <ul class="hot_zixun">

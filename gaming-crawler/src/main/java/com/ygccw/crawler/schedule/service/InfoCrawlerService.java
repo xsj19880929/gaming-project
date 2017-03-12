@@ -17,7 +17,9 @@ import com.ygccw.wechat.common.tags.enums.TagType;
 import com.ygccw.wechat.common.tags.enums.TagZoneType;
 import com.ygccw.wechat.common.tags.service.TagMappingService;
 import com.ygccw.wechat.common.tags.service.TagsService;
+import com.ygccw.wechat.common.zone.entity.AnchorZone;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
+import com.ygccw.wechat.common.zone.service.AnchorZoneService;
 import com.ygccw.wechat.common.zone.service.MatchZoneService;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -51,6 +53,8 @@ public class InfoCrawlerService {
     private MatchZoneService matchZoneService;
     @Inject
     private CrCrawlTaskService crCrawlTaskService;
+    @Inject
+    private AnchorZoneService anchorZoneService;
 
     public void startTread(int threadNum) {
         // 生成任务
@@ -106,8 +110,11 @@ public class InfoCrawlerService {
 //                dataOperatingService.insertDate(infoMap, "info");
 //            }
         Info infoSelect = infoService.findByUuid(infoMap.get("uuid"));
-        if (tagList != null && infoSelect == null) {
-            infoService.save(info);
+        if (infoSelect == null) {
+            infoService.saveOnly(info);
+        }
+        if (tagList != null) {
+
             for (HashMap<String, String> tagMap : tagList) {
                 Tags tags = new Tags();
                 tags.setStatus(1);
@@ -143,12 +150,17 @@ public class InfoCrawlerService {
         Info info = new Info();
         info.setStatus(1);
         info.setCreateTime(new Date());
-        info.setUpdateTime(new Date());
+        info.setUpdateTime(CalendarUtils.parse(infoMap.get("updateTime"), "yyyy-MM-dd HH:mm:ss"));
         info.setUuid(infoMap.get("uuid"));
         if (StringUtils.hasText(infoMap.get("zoneUuid"))) {
             info.setZoneUuid(infoMap.get("zoneUuid"));
-            MatchZone matchZone = matchZoneService.findByUuid(infoMap.get("zoneUuid"));
-            info.setZoneId(matchZone.getId());
+            if (InfoZoneType.matchZone == InfoZoneType.valueOf(infoMap.get("infoZoneType"))) {
+                MatchZone matchZone = matchZoneService.findByUuid(infoMap.get("zoneUuid"));
+                info.setZoneId(matchZone.getId());
+            } else if (InfoZoneType.anchorZone == InfoZoneType.valueOf(infoMap.get("infoZoneType"))) {
+                AnchorZone anchorZone = anchorZoneService.findByUuId(infoMap.get("zoneUuid"));
+                info.setZoneId(anchorZone.getId());
+            }
         }
         info.setInfoZoneType(InfoZoneType.valueOf(infoMap.get("infoZoneType")));
         info.setInfoType(InfoType.valueOf(infoMap.get("infoType")));

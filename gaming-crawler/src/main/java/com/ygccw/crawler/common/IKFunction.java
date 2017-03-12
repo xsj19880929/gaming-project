@@ -49,7 +49,7 @@ public class IKFunction {
     }
 
     private final Logger logger = LoggerFactory.getLogger(IKFunction.class);
-    private final String imageServer = "http://localhost:9018/image/url/upload?url=";
+    private final String imageServer = "http://image.55djw.com/image/url/upload?url=";
     private final String downServer = "http://image.55djw.com";
 
     // 格式化为数组对象
@@ -591,6 +591,25 @@ public class IKFunction {
             tags.addTags("div", "table", "tbody", "tr", "td", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
             tags.addAttributes("img", "src");
             String content = Jsoup.clean(newHtml.html(), tags);
+            Document document = Jsoup.parse(content);
+            Elements elements = document.select("img");
+            for (Element element : elements) {
+                String imagePath = element.attr("src");
+                String imageLocalPath = url2LocalImage(imagePath);
+                content = content.replace(imagePath, downServer + imageLocalPath);
+            }
+            return content;
+        } else {
+            return "";
+        }
+    }
+
+    // jsoup过滤标签解析
+    public String jsoupHtmlDownImageAllTag(Object html, String jsoup) {
+        org.jsoup.nodes.Document soup = Jsoup.parse(html.toString());
+        org.jsoup.select.Elements newHtml = soup.select(jsoup);
+        if (newHtml != null) {
+            String content = newHtml.html();
             Document document = Jsoup.parse(content);
             Elements elements = document.select("img");
             for (Element element : elements) {

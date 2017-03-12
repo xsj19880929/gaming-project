@@ -10,11 +10,9 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 
@@ -31,7 +29,7 @@ public class TestEnvironmentConfig {
     }
 
 
-//    @Bean
+    //    @Bean
 //    public DataSource dataSource() {
 //        BasicDataSource dataSource = new BasicDataSource();
 //        dataSource.setDriverClassName(env.getRequiredProperty("jdbc.driverClassName"));
@@ -46,13 +44,13 @@ public class TestEnvironmentConfig {
         return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).build();
     }
 
-
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setDataSource(dataSource());
-        return transactionManager;
-    }
+//
+//    @Bean
+//    public PlatformTransactionManager transactionManager() {
+//        JpaTransactionManager transactionManager = new JpaTransactionManager();
+//        transactionManager.setDataSource(dataSource());
+//        return transactionManager;
+//    }
 
 //    @Bean
 //    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {

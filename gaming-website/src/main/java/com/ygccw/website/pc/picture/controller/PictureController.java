@@ -30,7 +30,7 @@ public class PictureController {
     @Inject
     PictureService pictureService;
 
-    @RequestMapping(value = "/picture.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/picture/", method = RequestMethod.GET)
     public String pictureList(HttpServletRequest request, final ModelMap model) {
         int currentPage = 1;
         int fetchSize = 15;

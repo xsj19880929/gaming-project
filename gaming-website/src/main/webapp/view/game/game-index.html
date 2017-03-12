@@ -137,7 +137,7 @@
             </div>
         </div>
         <div class="about_pic clearfix" th:unless="${#lists.isEmpty(pictureList)}">
-            <div class="index_tit_two"><span class="text_left padding1">赛事图集</span><a href="/picture.html" class="more">更多</a>
+            <div class="index_tit_two"><span class="text_left padding1">赛事图集</span><a href="/picture/" class="more">更多</a>
             </div>
             <div class="slideBox saishi_pic">
                 <div class="game_pic_box bd">
@@ -207,7 +207,7 @@
         </div>
         <div class="index_tit_two" style="height:320px;">
             <span class="text_left padding1">精选视频</span>
-            <a href="/video.html" class="more">更多</a>
+            <a href="/video/" class="more">更多</a>
             <div class="game_hot">
                 <dl style="margin-top:20px;margin-bottom:20px;" th:each="video:${recommendVideoList}">
                     <a href="#" th:title="${video.title}"

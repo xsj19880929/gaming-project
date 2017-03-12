@@ -14,6 +14,6 @@ public class InfoCrawlerServiceTest extends SpringTest {
 
     @Test
     public void testStartTread() throws Exception {
-//        infoCrawlerService.startTread(20);
+//        infoCrawlerService.startTread(1);
     }
 }

@@ -38,7 +38,7 @@ public class InfoController {
     @Inject
     private AnchorWebService anchorWebService;
 
-    @RequestMapping(value = "/news.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/news/", method = RequestMethod.GET)
     public String list(final ModelMap model) {
         int currentPage = 1;
         int fetchSize = 9;

@@ -34,7 +34,7 @@ public class GameController {
     @Inject
     private InfoService infoService;
 
-    @RequestMapping(value = "/game.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/game/", method = RequestMethod.GET)
     public String gameList(final ModelMap model) {
         MatchZone matchZone = new MatchZone();
         int currentPage = 1;
