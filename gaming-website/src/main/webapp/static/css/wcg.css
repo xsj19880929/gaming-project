@@ -1400,6 +1400,10 @@
     text-decoration: underline;
 }
 
+.new_d_font img {
+    max-width: 740px
+}
+
 .detail_tag {
     width: 100%;
     float: left;

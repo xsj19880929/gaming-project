@@ -8,10 +8,11 @@
         </li>
         <li class="page" th:each="pageNo:${#numbers.sequence(1,totalPage)}"
             th:classappend="${pageNo}==${currentPage}?'selected'"
-            th:if="${(pageNo<currentPage+3&&pageNo+3>currentPage)}">
+            th:if="${(currentPage<=3&&pageNo<6&&pageNo+5>currentPage)||(currentPage>3&&pageNo<currentPage+3&&pageNo+3>currentPage)}">
             <span th:text="${pageNo}" th:if="${pageNo}==${currentPage}">1</span>
             <a href="#" th:if="${pageNo}!=${currentPage}" th:text="${pageNo}"
                th:href="${url}_${pageNo}.html">2</a></li>
+        <span th:if="${currentPage!=totalPage}" style="color: #888;">...</span>
         <li class="next" th:if="${currentPage!=totalPage}"><a href="#" th:href="${url}_${currentPage+1}.html">下一页</a>
         </li>
         <li class="last"><a href="#" th:if="${currentPage!=totalPage}" th:href="${url}_${totalPage}.html">末页</a></li>

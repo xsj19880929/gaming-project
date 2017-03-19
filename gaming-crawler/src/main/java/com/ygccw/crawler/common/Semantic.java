@@ -37,12 +37,14 @@ public class Semantic {
         JSONObject jsonRules = TemplateUtil.getExtractionRules(pageType);
         // logger.info("模板是否为空");
         if (jsonRules == null || jsonRules.size() == 0) {
+            logger.info("获取不到模板数据");
             return results;
         }
         // logger.info("模板不为空");
         // 循环模板数据块
 
         Iterator iteRule = jsonRules.entrySet().iterator();
+        boolean checkRepeat = false;
         while (iteRule.hasNext()) {
             List<HashMap<String, String>> listMap = new ArrayList<HashMap<String, String>>();
             ListOrderedMap.Entry entryRule = (Entry) iteRule.next();
@@ -89,7 +91,13 @@ public class Semantic {
                     }
                 }
                 if (!checkResult(pageType, jsonRule.getString(Constants.TPL_OBJECT_NAME), fieldRules, map) && jsonRule.getString(Constants.TPL_OBJECT_NAME).equals("nextTask") && nextTasks != null) {
-                    nextTasks.put(JSONObject.fromObject(map));
+                    Object lastUrl = ExpressionEvaluator.evaluate("$KEYVAL(task,\"lastUrl\")", variables);
+                    if (map.get("url").toString().equals(lastUrl.toString())) {
+                        checkRepeat = true;
+                    }
+                    if (!checkRepeat) {
+                        nextTasks.put(JSONObject.fromObject(map));
+                    }
                     continue;
                 }
                 // 验证数据完整性

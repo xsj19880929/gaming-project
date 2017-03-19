@@ -19,6 +19,7 @@ import com.ygccw.wechat.common.tags.service.TagMappingService;
 import com.ygccw.wechat.common.tags.service.TagsService;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import com.ygccw.wechat.common.zone.service.MatchZoneService;
+import core.framework.util.JSONBinder;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -39,6 +41,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Service
 public class ImageCrawlerService {
     private static final BlockingQueue<JSONObject> TASK_LIST = new LinkedBlockingQueue<>();
+    private static final ConcurrentHashMap<String, Boolean> TASK_LAST = new ConcurrentHashMap<>();
     private final Logger logger = LoggerFactory.getLogger(ImageCrawlerService.class);
     @Inject
     private CrawlerBase crawlerBase;
@@ -58,6 +61,7 @@ public class ImageCrawlerService {
     public void startTread(int threadNum) {
         // 生成任务
         List<CrCrawlTask> crCrawlTaskList = crCrawlTaskService.list("image");
+        TASK_LAST.clear();
         for (CrCrawlTask crCrawlTask : crCrawlTaskList) {
             try {
                 TASK_LIST.put(JSONObject.fromObject(crCrawlTask));
@@ -81,15 +85,15 @@ public class ImageCrawlerService {
     }
 
     private void startWork() {
-        while (true) {
+        while (TASK_LIST.size() > 0) {
             logger.info("剩余任务数 {} ", TASK_LIST.size());
             try {
                 JSONObject task = TASK_LIST.take();
                 logger.info("当前任务： {} ", task.toString());
                 HashMap<String, List<HashMap<String, String>>> results = crawlerBase.crawler(task, TASK_LIST);
-                System.out.println(results);
+                logger.info("解析数据:" + JSONBinder.toJSON(results));
                 if (!results.isEmpty()) {
-                    mergeData(results);
+                    mergeData(results, TASK_LAST);
                 }
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
@@ -99,8 +103,9 @@ public class ImageCrawlerService {
         }
     }
 
+
     @Transactional
-    private void mergeData(HashMap<String, List<HashMap<String, String>>> results) {
+    private void mergeData(HashMap<String, List<HashMap<String, String>>> results, ConcurrentHashMap<String, Boolean> taskLast) {
         List<HashMap<String, String>> pictureList = results.get("picture");
         List<HashMap<String, String>> pictureDetailList = results.get("pictureDetail");
         List<HashMap<String, String>> tagsList = results.get("tags");
@@ -111,10 +116,12 @@ public class ImageCrawlerService {
         Picture picture = setPicture(pictureMap);
         Picture pictureSelect = pictureService.findByUuid(pictureMap.get("uuid"));
         if (pictureDetailList != null && pictureSelect == null) {
-            pictureService.save(picture);
+            updateTask(pictureMap, taskLast);
+            pictureService.saveOnly(picture);
             saveTag(tagsList, picture);
             savePictureDetail(pictureDetailList, picture);
         }
+
 
     }
 
@@ -122,7 +129,7 @@ public class ImageCrawlerService {
         Picture picture = new Picture();
         picture.setStatus(1);
         picture.setCreateTime(new Date());
-        picture.setUpdateTime(new Date());
+        picture.setUpdateTime(CalendarUtils.parse(pictureMap.get("publishTime"), "yyyy-MM-dd HH:mm:ss"));
         picture.setUuid(pictureMap.get("uuid"));
         if (StringUtils.hasText(pictureMap.get("zoneUuid"))) {
             picture.setZoneUuid(pictureMap.get("zoneUuid"));
@@ -135,7 +142,7 @@ public class ImageCrawlerService {
         picture.setVisitCount(1);
         picture.setSeoTitle(pictureMap.get("seoTitle"));
         picture.setTags(pictureMap.get("tags"));
-        picture.setVerify(1);
+        picture.setVerify(0);
         picture.setSource(pictureMap.get("source"));
         picture.setPublishTime(CalendarUtils.parse(pictureMap.get("publishTime"), "yyyy-MM-dd HH:mm:ss"));
         picture.setSeoKeywords(pictureMap.get("seoKeywords"));
@@ -185,6 +192,17 @@ public class ImageCrawlerService {
             pictureDetail.setPictureUuid(picture.getUuid());
             pictureDetail.setSort(Integer.parseInt(pictureDetailMap.get("sort")));
             pictureDetailService.save(pictureDetail);
+        }
+    }
+
+    private void updateTask(HashMap<String, String> infoMap, ConcurrentHashMap<String, Boolean> taskLast) {
+        if (infoMap.get("taskId") != null) {
+            if (taskLast.get(infoMap.get("taskId")) == null || !taskLast.get(infoMap.get("taskId"))) {
+                CrCrawlTask crCrawlTask = crCrawlTaskService.findById(Long.parseLong(infoMap.get("taskId")));
+                crCrawlTask.setLastUrl(infoMap.get("url").toString());
+                crCrawlTaskService.update(crCrawlTask);
+                taskLast.put(infoMap.get("taskId"), true);
+            }
         }
     }
 

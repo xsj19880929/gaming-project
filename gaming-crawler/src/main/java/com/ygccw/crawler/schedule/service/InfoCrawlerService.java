@@ -21,6 +21,7 @@ import com.ygccw.wechat.common.zone.entity.AnchorZone;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import com.ygccw.wechat.common.zone.service.AnchorZoneService;
 import com.ygccw.wechat.common.zone.service.MatchZoneService;
+import core.framework.util.JSONBinder;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -40,6 +42,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Service
 public class InfoCrawlerService {
     private static final BlockingQueue<JSONObject> TASK_LIST = new LinkedBlockingQueue<>();
+    private static final ConcurrentHashMap<String, Boolean> LAST_TASK = new ConcurrentHashMap<>();
     private final Logger logger = LoggerFactory.getLogger(InfoCrawlerService.class);
     @Inject
     private CrawlerBase crawlerBase;
@@ -59,6 +62,7 @@ public class InfoCrawlerService {
     public void startTread(int threadNum) {
         // 生成任务
         List<CrCrawlTask> crCrawlTaskList = crCrawlTaskService.list("info");
+        LAST_TASK.clear();
         for (CrCrawlTask crCrawlTask : crCrawlTaskList) {
             try {
                 TASK_LIST.put(JSONObject.fromObject(crCrawlTask));
@@ -82,15 +86,15 @@ public class InfoCrawlerService {
     }
 
     private void startWork() {
-        while (true) {
+        while (TASK_LIST.size() > 0) {
             logger.info("剩余任务数 {} ", TASK_LIST.size());
             try {
                 JSONObject task = TASK_LIST.take();
                 logger.info("当前任务： {} ", task.toString());
                 HashMap<String, List<HashMap<String, String>>> results = crawlerBase.crawler(task, TASK_LIST);
-                System.out.println(results);
+                logger.info("解析数据:" + JSONBinder.toJSON(results));
                 if (!results.isEmpty()) {
-                    mergeData(results);
+                    mergeData(results, LAST_TASK);
                 }
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
@@ -98,7 +102,7 @@ public class InfoCrawlerService {
         }
     }
 
-    private void mergeData(HashMap<String, List<HashMap<String, String>>> results) {
+    private void mergeData(HashMap<String, List<HashMap<String, String>>> results, ConcurrentHashMap<String, Boolean> taskLast) {
         List<HashMap<String, String>> infoList = results.get("info");
         List<HashMap<String, String>> tagList = results.get("tags");
         if (infoList == null) {
@@ -111,10 +115,15 @@ public class InfoCrawlerService {
 //            }
         Info infoSelect = infoService.findByUuid(infoMap.get("uuid"));
         if (infoSelect == null) {
+            updateTask(infoMap, taskLast);
             infoService.saveOnly(info);
+            setTag(tagList, info);
         }
-        if (tagList != null) {
 
+    }
+
+    private void setTag(List<HashMap<String, String>> tagList, Info info) {
+        if (tagList != null) {
             for (HashMap<String, String> tagMap : tagList) {
                 Tags tags = new Tags();
                 tags.setStatus(1);
@@ -141,9 +150,7 @@ public class InfoCrawlerService {
                 tagMapping.setEntityUuid(info.getUuid());
                 tagMappingService.save(tagMapping);
             }
-
         }
-
     }
 
     private Info setInfo(HashMap<String, String> infoMap) {
@@ -174,13 +181,24 @@ public class InfoCrawlerService {
         info.setContent(infoMap.get("content"));
         info.setSeoTitle(infoMap.get("seoTitle"));
         info.setTags(infoMap.get("tags"));
-        info.setVerify(1);
+        info.setVerify(0);
         info.setSource(infoMap.get("source"));
         info.setPublishTime(CalendarUtils.parse(infoMap.get("publishTime"), "yyyy-MM-dd HH:mm:ss"));
         info.setAuthor(infoMap.get("author"));
         info.setSeoKeywords(infoMap.get("seoKeywords"));
         info.setSeoDescription(infoMap.get("seoDescription"));
         return info;
+    }
+
+    private void updateTask(HashMap<String, String> infoMap, ConcurrentHashMap<String, Boolean> taskLast) {
+        if (infoMap.get("taskId") != null) {
+            if (taskLast.get(infoMap.get("taskId")) == null || !taskLast.get(infoMap.get("taskId"))) {
+                CrCrawlTask crCrawlTask = crCrawlTaskService.findById(Long.parseLong(infoMap.get("taskId")));
+                crCrawlTask.setLastUrl(infoMap.get("url").toString());
+                crCrawlTaskService.update(crCrawlTask);
+                taskLast.put(infoMap.get("taskId"), true);
+            }
+        }
     }
 
 }

@@ -1,22 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
 <div th:fragment="comment(dataThreadKey,dataTitle,dataUrl)" class="ppw_comment dianjing_com">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"
-         th:attr="data-thread-key=${dataThreadKey},data-title=${dataTitle},data-url=${dataUrl}"></div>
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-        var duoshuoQuery = {short_name: "djpd"};
-        (function () {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';
-            ds.async = true;
-            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-            ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-    </script>
-    <!-- 多说公共JS代码 end -->
+    <!-- 畅言评论框 start -->
+    <div id="SOHUCS" sid="请将此处替换为配置SourceID的语句" th:attr="sid=${dataUrl}"></div>
+    <script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js"></script>
+    <script type="text/javascript"> window.changyan.api.config({
+        appid: 'cysU2HRuV',
+        conf: 'prod_ec413d0354c7c5cbab4e3fa6175351b6'
+    }); </script>
+    <script id="cy_cmt_num"
+            src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cysU2HRuV"></script>
+    <!-- 畅言评论框 end -->
 </div>

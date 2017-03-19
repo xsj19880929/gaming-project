@@ -27,19 +27,19 @@
                         th:title="${matchZone.name}"/></span>
                     <h1 th:text="${matchZone.name}+'官网'">电竞专区</h1></a></li>
                 <li th:classappend="${selectedMenuName}=='news'?'change'"><a href="#"
-                                                                             th:href="/game/news-list/${matchZone.id}.html"><span><img
+                                                                             th:href="/game/news/${matchZone.id}/"><span><img
                         src="/static/img/game/game_data.png" th:alt="${matchZone.name}"
                         th:title="${matchZone.name}"/></span>赛事资讯</a></li>
                 <li th:classappend="${selectedMenuName}=='video'?'change'"><a href="#"
-                                                                              th:href="/game/video-list/${matchZone.id}/page_1.html"><span><img
+                                                                              th:href="/game/video/${matchZone.id}/"><span><img
                         src="/static/img/game/game_video.png" th:alt="${matchZone.name}" th:title="${matchZone.name}"/></span>精彩视频</a>
                 </li>
                 <li th:classappend="${selectedMenuName}=='team'?'change'"><a
-                        th:href="/game/team/${matchZone.id}.html"><span><img
+                        th:href="/game/team/${matchZone.id}/"><span><img
                         src="/static/img/game/game_team.png" th:alt="${matchZone.name}"
                         th:title="${matchZone.name}"/></span>参赛战队</a></li>
                 <li th:classappend="${selectedMenuName}=='picture'?'change'"><a href="#"
-                                                                                th:href="/game/picture-list/${matchZone.id}/page_1.html"><span><img
+                                                                                th:href="/game/picture/${matchZone.id}/"><span><img
                         src="/static/img/game/game_pic.png" th:alt="${matchZone.name}"
                         th:title="${matchZone.name}"/></span>赛事图锦</a></li>
                 <li th:classappend="${selectedMenuName}=='website'?'change'"><a href="/"><span><img

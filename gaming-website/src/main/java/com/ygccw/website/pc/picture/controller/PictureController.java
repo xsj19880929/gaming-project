@@ -31,10 +31,10 @@ public class PictureController {
     PictureService pictureService;
 
     @RequestMapping(value = "/picture/", method = RequestMethod.GET)
-    public String pictureList(HttpServletRequest request, final ModelMap model) {
+    public String pictureList(final ModelMap model) {
         int currentPage = 1;
         int fetchSize = 15;
-        String url = PageUtils.getPageUrl(request);
+        String url = "/picture";
         model.put("pictureList", new FindResultToSale(pictureWebService.pictureList(PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), pictureWebService.pictureListSize(), currentPage, fetchSize, url));
         model.put("tagList", pictureWebService.listHotTags());
         return "/view/picture/picture-list.html";
@@ -43,7 +43,7 @@ public class PictureController {
     @RequestMapping(value = "/picture_{currentPage}.html", method = RequestMethod.GET)
     public String pictureListPage(HttpServletRequest request, final ModelMap model, @PathVariable Integer currentPage) {
         String url = PageUtils.getPageUrl(request);
-        int fetchSize = 20;
+        int fetchSize = 15;
         model.put("pictureList", new FindResultToSale(pictureWebService.pictureList(PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), pictureWebService.pictureListSize(), currentPage, fetchSize, url));
         model.put("tagList", pictureWebService.listHotTags());
         return "/view/picture/picture-list.html";

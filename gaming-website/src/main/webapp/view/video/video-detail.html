@@ -32,29 +32,14 @@
                         <a th:text="${#calendars.format(video.publishTime, 'yyyy-MM-dd HH:mm')}">2016-10-20 10:25</a>
                         <a th:text="'来源:'+${video.source}" th:href="${baseUrl}" href="http://www.55djw.com">来源:琵琶网</a>
                         <a th:text="'作者:'+${video.author}">作者:编辑人员</a>
-                        <a style="color:blue;">评论:（0）</a>
+                        <a>评论数：<span
+                                id="sourceId::此处替换为配置SourceID的语句" class="cy_cmt_count"
+                                th:attr="id='sourceId::'+${currentUrl}"></span></a>
                     </h2>
                 </ul>
             </div>
-            <!--<div class="video_img">-->
-            <!--<img src="/static/img/view/video_pic1.png"/>-->
-            <!--</div>-->
             <div class="left_mid" th:utext="${video.content}">
             </div>
-            <!--页码-->
-            <!--<div class="newyiiPager">-->
-            <!--<ol id="yw0" class="yiiPager">-->
-            <!--<li>共104页：</li>-->
-            <!--<li class="page hidden"><a href="">首页</a></li>-->
-            <!--<li class="previous hidden"><a href="#">上一页</a></li>-->
-            <!--<li class="page selected"><span>1</span></li>-->
-            <!--<li class="page"><a href="#">2</a></li>-->
-            <!--<li class="page"><a href="#">3</a></li>-->
-            <!--<li class="page"><a href="#">4</a></li>-->
-            <!--<li class="next"><a href="#">下一页</a></li>-->
-            <!--<li class="last"><a href="#">末页</a></li>-->
-            <!--</ol>-->
-            <!--</div>-->
 
             <div class="left_bottom">
                 <dl>
@@ -119,9 +104,6 @@
 </div>
 
 </div>
-
-
-<!--线上琵琶网首页的foot，这里只是截图-->
 <div th:replace="/bottom.html::bottom"></div>
 </body>
 </html>

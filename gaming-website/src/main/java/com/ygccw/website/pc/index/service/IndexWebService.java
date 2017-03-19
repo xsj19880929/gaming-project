@@ -173,6 +173,7 @@ public class IndexWebService {
     public List<Info> findVideoInfoList(InfoVideoType infoVideoType) {
         Info info = new Info();
         info.setInfoVideoType(infoVideoType);
+        info.setVerify(1);
         return infoService.list(info, 0, 7);
     }
 
@@ -194,6 +195,7 @@ public class IndexWebService {
 
     public List<Picture> findNewestPictureList() {
         Picture picture = new Picture();
+        picture.setVerify(1);
         return pictureService.list(picture, 0, 6);
     }
 
@@ -290,12 +292,14 @@ public class IndexWebService {
     public List<Picture> searchPicture(String keywords, int offset, int fetchSize) {
         Picture picture = new Picture();
         picture.setDescription(keywords);
+        picture.setVerify(1);
         return pictureService.list(picture, offset, fetchSize);
     }
 
     public int searchPictureSize(String keywords) {
         Picture picture = new Picture();
         picture.setDescription(keywords);
+        picture.setVerify(1);
         return pictureService.listSize(picture);
     }
 
@@ -329,7 +333,9 @@ public class IndexWebService {
     }
 
     public List<Picture> findSiteMapNewestPicture(int offset, int fetchSize) {
-        return pictureService.list(new Picture(), offset, fetchSize);
+        Picture picture = new Picture();
+        picture.setVerify(1);
+        return pictureService.list(picture, offset, fetchSize);
     }
 
 

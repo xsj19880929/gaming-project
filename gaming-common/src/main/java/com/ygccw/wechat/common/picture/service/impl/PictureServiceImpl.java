@@ -37,6 +37,11 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
+    public void saveOnly(Picture picture) {
+        pictureDao.save(picture);
+    }
+
+    @Override
     public void update(Picture picture) {
         picture.setUpdateTime(new Date());
         pictureDao.update(picture);

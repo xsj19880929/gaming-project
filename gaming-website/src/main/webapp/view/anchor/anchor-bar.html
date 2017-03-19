@@ -3,10 +3,10 @@
 <div th:fragment="bar(selectedMenuName,id)">
     <div class="zhubo_nav">
         <a href="#" th:classappend="${selectedMenuName}=='index'?'hover'" th:href="/anchor/${id}/">主页</a>
-        <a href="#" th:classappend="${selectedMenuName}=='news'?'hover'" th:href="/anchor/news-list/${id}.html">资讯</a>
+        <a href="#" th:classappend="${selectedMenuName}=='news'?'hover'" th:href="/anchor/news/${id}/">资讯</a>
         <a href="#" th:classappend="${selectedMenuName}=='video'?'hover'"
-           th:href="/anchor/video-list/${id}/page_1.html">视频</a>
+           th:href="/anchor/video/${id}/">视频</a>
         <a href="#" th:classappend="${selectedMenuName}=='picture'?'hover'"
-           th:href="/anchor/picture-list/${id}/page_1.html">图集</a>
+           th:href="/anchor/picture/${id}/">图集</a>
     </div>
 </div>

@@ -22,6 +22,12 @@
         <uiobject fieldName="templeName" nullAble="false">
             <expression><![CDATA["15warticle"]]></expression>
         </uiobject>
+        <uiobject fieldName="lastUrl">
+            <expression><![CDATA[$KEYVAL(task,"lastUrl")]]></expression>
+        </uiobject>
+        <uiobject fieldName="taskId">
+            <expression><![CDATA[$KEYVAL(task,"id")]]></expression>
+        </uiobject>
     </uielements>
 
     <uielements objectName="nextTask">
@@ -37,6 +43,12 @@
         </uiobject>
         <uiobject fieldName="infoType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="lastUrl">
+            <expression><![CDATA[$KEYVAL(task,"lastUrl")]]></expression>
+        </uiobject>
+        <uiobject fieldName="id">
+            <expression><![CDATA[$KEYVAL(task,"id")]]></expression>
         </uiobject>
     </uielements>
 

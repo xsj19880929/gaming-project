@@ -19,7 +19,7 @@
 <!--面包屑-->
 <div class="game_position"><a href="/">电竞首页</a>&gt;<a
         th:href="/game/${info.zoneId}/" th:text="${matchZone.name}">英雄联盟电竞专区</a>&gt;<a
-        th:href="/game/video-list/${info.zoneId}/page_1.html">赛事视频</a>&gt;<em th:text="${info.title}">赛事视频</em>
+        th:href="/game/video/${info.zoneId}/">赛事视频</a>&gt;<em th:text="${info.title}">赛事视频</em>
 </div>
 <div class="game_main_box">
     <div class="game_main_left">
@@ -28,11 +28,10 @@
                 <h1 th:text="${info.title}">梦幻西游手游大唐修炼怎么点 大唐修炼选择优先顺序</h1>
                 来源：<a href="http://www.55djw.com" th:href="${baseUrl}" th:text="${info.source}">www.pipaw.com</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 时间：<span th:text="${#calendars.format(info.publishTime, 'yyyy-MM-dd')}">2015-04-28</span> &nbsp;&nbsp;&nbsp;&nbsp;
-                作者：<span th:text="${info.author}">晨落</span>&nbsp;&nbsp;&nbsp;&nbsp; <span>评论：0条</span></div>
-            <!--<div class="news_d_link"><a href="#"> <em>NO1.</em>天赋符文推荐： 极限追求伤害</a> <a href="#"> <em>NO2.</em>打法剖析：你好，我的名字叫猥琐</a>-->
-            <!--<a href="#"> <em>NO3.</em>出装顺序：回声+传送门，带线天下无敌</a> <a href="#"> <em>NO4.</em>提升熟练度的方法：猥琐也需要练习</a> <a-->
-            <!--href="#"> <em>NO5.</em>英雄克制与阵容选择：能拖能跑最适合</a> <a href="#"> <em>NO6.</em>英雄克制与阵容选择：能拖能跑最适合</a>-->
-            <!--</div>-->
+                作者：<span th:text="${info.author}">晨落</span>&nbsp;&nbsp;&nbsp;&nbsp; 评论数：<span
+                    id="sourceId::此处替换为配置SourceID的语句" class="cy_cmt_count"
+                    th:attr="id='sourceId::'+${currentUrl}"></span></div>
+  
             <div class="new_d_font" th:utext="${info.content}">
             </div>
             <!--页码-->

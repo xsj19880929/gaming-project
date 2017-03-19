@@ -5,6 +5,7 @@
         $scope.offset = 0;
         $scope.fetchSize = 25;
         $scope.params = {};
+        $scope.params.verify = 1;
 
         var loadData = function (offset, fetchSize) {
             var url = "picture/list?offset=" + offset + "&fetchSize=" + fetchSize;

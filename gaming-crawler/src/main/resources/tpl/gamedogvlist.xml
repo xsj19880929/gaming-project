@@ -28,6 +28,12 @@
         <uiobject fieldName="templeName" nullAble="false">
             <expression><![CDATA["gamedogvarticle"]]></expression>
         </uiobject>
+        <uiobject fieldName="lastUrl">
+            <expression><![CDATA[$KEYVAL(task,"lastUrl")]]></expression>
+        </uiobject>
+        <uiobject fieldName="taskId">
+            <expression><![CDATA[$KEYVAL(task,"id")]]></expression>
+        </uiobject>
     </uielements>
 
     <uielements objectName="nextTask">
@@ -49,6 +55,12 @@
         </uiobject>
         <uiobject fieldName="zoneUuid" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>
+        </uiobject>
+        <uiobject fieldName="lastUrl">
+            <expression><![CDATA[$KEYVAL(task,"lastUrl")]]></expression>
+        </uiobject>
+        <uiobject fieldName="id">
+            <expression><![CDATA[$KEYVAL(task,"id")]]></expression>
         </uiobject>
     </uielements>
 

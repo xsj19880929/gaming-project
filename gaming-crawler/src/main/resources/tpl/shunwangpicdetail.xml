@@ -54,6 +54,12 @@
             <expression>
                 <![CDATA[$SYSDATESTR()]]></expression>
         </uiobject>
+        <uiobject fieldName="taskId">
+            <expression><![CDATA[$KEYVAL(task,"taskId")]]></expression>
+        </uiobject>
+        <uiobject fieldName="url" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"url")]]></expression>
+        </uiobject>
     </uielements>
     <uielements objectName="pictureDetail">
         <rows><![CDATA[$ROWREGEXP(html,"orig: '(.*?)', big")]]></rows>

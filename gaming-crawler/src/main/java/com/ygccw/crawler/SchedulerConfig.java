@@ -1,5 +1,8 @@
 package com.ygccw.crawler;
 
+import com.ygccw.crawler.schedule.job.ImageCrawlerJob;
+import com.ygccw.crawler.schedule.job.InfoCrawlerJob;
+import com.ygccw.crawler.schedule.job.SyncDataJob;
 import core.framework.scheduler.DefaultSchedulerConfig;
 import core.framework.scheduler.JobRegistry;
 import org.springframework.context.annotation.Configuration;
@@ -18,9 +21,9 @@ public class SchedulerConfig extends DefaultSchedulerConfig {
     @Override
     protected void configure(JobRegistry registry) throws Exception {
         if (!env.getRequiredProperty("job.enable", Boolean.class)) return;
-//        registry.triggerByCronExpression(refreshCarTypeExpiredScheduler(), env.getRequiredProperty("job.refreshCarTypeExpired"));
-//        registry.triggerByCronExpression(new QuotationTaskQueJob(), "0 10 * * * ?");
-//        registry.triggerByCronExpression(new SyncInsuranceGiftFromJNJob(), "0 0 4 * * ?");
+        registry.triggerByCronExpression(new ImageCrawlerJob(), env.getRequiredProperty("job.imageCrawler"));
+        registry.triggerByCronExpression(new InfoCrawlerJob(), env.getRequiredProperty("job.infoCrawler"));
+        registry.triggerByCronExpression(new SyncDataJob(), env.getRequiredProperty("job.syncData"));
     }
 
 

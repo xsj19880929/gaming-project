@@ -137,7 +137,8 @@
             </div>
         </div>
         <div class="about_pic clearfix" th:unless="${#lists.isEmpty(pictureList)}">
-            <div class="index_tit_two"><span class="text_left padding1">赛事图集</span><a href="/picture/" class="more">更多</a>
+            <div class="index_tit_two"><span class="text_left padding1">赛事图集</span><a href="/picture/"
+                                                                                      class="more">更多</a>
             </div>
             <div class="slideBox saishi_pic">
                 <div class="game_pic_box bd">
@@ -223,7 +224,7 @@
         </div>
         <div class="index_tit_two">
             <span class="text_left padding1">精选资讯</span>
-            <a href="#" class="more" th:href="/game/news-list/${matchZone.id}.html">更多</a>
+            <a href="#" class="more" th:href="/game/news/${matchZone.id}/">更多</a>
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="news:${recommendNewsList}"><a href="#" th:text="${news.title}" th:title="${news.title}"

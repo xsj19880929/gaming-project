@@ -24,6 +24,12 @@
         <uiobject fieldName="templeName" nullAble="false">
             <expression><![CDATA["shunwangpicdetail"]]></expression>
         </uiobject>
+        <uiobject fieldName="taskId">
+            <expression><![CDATA[$KEYVAL(task,"taskId")]]></expression>
+        </uiobject>
+        <uiobject fieldName="lastUrl" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"url")]]></expression>
+        </uiobject>
     </uielements>
 
     <uielements objectName="nextTask">
@@ -36,6 +42,12 @@
         </uiobject>
         <uiobject fieldName="infoZoneType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="lastUrl">
+            <expression><![CDATA[$KEYVAL(task,"lastUrl")]]></expression>
+        </uiobject>
+        <uiobject fieldName="id">
+            <expression><![CDATA[$KEYVAL(task,"id")]]></expression>
         </uiobject>
 
     </uielements>

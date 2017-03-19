@@ -1,38 +1,29 @@
 <?xml version="1.0" encoding="gbk"?>
-<page pageType="5asjlist">
+<page pageType="chinazpiclist">
     <uielements objectName="beforeSemantic">
         <uiobject fieldName="tidyDom">
             <expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
         </uiobject>
     </uielements>
     <uielements objectName="nextTask">
-        <rows><![CDATA[$ROWS(tidyDom,"//li[@class='media']/a[@class='media-left']/@href")]]></rows>
+        <rows><![CDATA[$ROWS(tidyDom,"//div[@id='GamesListPic']/div")]]></rows>
         <uiobject fieldName="url" nullAble="false">
             <expression>
-                <![CDATA[$XPATHCOLS(tidyDom,"//li[@class='media']/a[@class='media-left']/@href",row)]]></expression>
+                <![CDATA[$XPATHCOLS(tidyDom,"//div[@id='GamesListPic']/div/a[@class='p-title2']/@href",row)]]></expression>
         </uiobject>
-        <uiobject fieldName="titleImage" nullAble="false">
+        <uiobject fieldName="description" nullAble="false">
             <expression>
-                <![CDATA[$XPATHCOLS(tidyDom,"//li[@class='media']/a[@class='media-left']/img/@src",row)]]></expression>
+                <![CDATA[$XPATHCOLS(tidyDom,"//div[@id='GamesListPic']/div/a[@class='p-title2']",row)]]></expression>
         </uiobject>
-        <uiobject fieldName="subTitle" nullAble="false">
+        <uiobject fieldName="image" nullAble="false">
             <expression>
-                <![CDATA[$XPATHCOLS(tidyDom,"//div[@class='media-body-content']/a",row)]]></expression>
+                <![CDATA[$XPATHCOLS(tidyDom,"//div[@id='GamesListPic']/div/a[1]/img/@xsrc",row)]]></expression>
         </uiobject>
-        <uiobject fieldName="infoZoneType" nullAble="false">
+        <uiobject fieldName="pictureZoneType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
         </uiobject>
-        <uiobject fieldName="infoType" nullAble="false">
-            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
-        </uiobject>
-        <uiobject fieldName="zoneUuid" nullAble="false">
-            <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>
-        </uiobject>
         <uiobject fieldName="templeName" nullAble="false">
-            <expression><![CDATA["5asjarticle"]]></expression>
-        </uiobject>
-        <uiobject fieldName="htmlCharset">
-            <expression><![CDATA[$KEYVAL(task,"htmlCharset")]]></expression>
+            <expression><![CDATA["chinazpicdetail"]]></expression>
         </uiobject>
         <uiobject fieldName="lastUrl">
             <expression><![CDATA[$KEYVAL(task,"lastUrl")]]></expression>
@@ -48,16 +39,10 @@
             <expression><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")]]></expression>
         </uiobject>
         <uiobject fieldName="templeName" nullAble="false">
-            <expression><![CDATA["5asjlist"]]></expression>
+            <expression><![CDATA["chinazpiclist"]]></expression>
         </uiobject>
         <uiobject fieldName="infoZoneType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
-        </uiobject>
-        <uiobject fieldName="infoType" nullAble="false">
-            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
-        </uiobject>
-        <uiobject fieldName="zoneUuid" nullAble="false">
-            <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>
         </uiobject>
         <uiobject fieldName="lastUrl">
             <expression><![CDATA[$KEYVAL(task,"lastUrl")]]></expression>
@@ -65,9 +50,7 @@
         <uiobject fieldName="id">
             <expression><![CDATA[$KEYVAL(task,"id")]]></expression>
         </uiobject>
-        <uiobject fieldName="htmlCharset">
-            <expression><![CDATA[$KEYVAL(task,"htmlCharset")]]></expression>
-        </uiobject>
+
     </uielements>
 
 </page>

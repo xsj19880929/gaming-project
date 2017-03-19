@@ -11,6 +11,9 @@ import java.util.List;
 public interface PictureService {
     void save(Picture picture);
 
+    void saveOnly(Picture picture);
+
+
     void update(Picture picture);
 
     void delete(Long id);

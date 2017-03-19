@@ -28,7 +28,9 @@
                 <h1 th:text="${info.title}">梦幻西游手游大唐修炼怎么点 大唐修炼选择优先顺序</h1>
                 来源：<a href="http://www.55djw.com" th:href="${baseUrl}" th:text="${info.source}">www.pipaw.com</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 时间：<span th:text="${#calendars.format(info.publishTime, 'yyyy-MM-dd')}">2015-04-28</span> &nbsp;&nbsp;&nbsp;&nbsp;
-                作者：<span th:text="${info.author}">晨落</span>&nbsp;&nbsp;&nbsp;&nbsp; <span>评论：0条</span></div>
+                作者：<span th:text="${info.author}">晨落</span>&nbsp;&nbsp;&nbsp;&nbsp; 评论数：<span
+                    id="sourceId::此处替换为配置SourceID的语句" class="cy_cmt_count"
+                    th:attr="id='sourceId::'+${currentUrl}"></span></div>
             <div class="new_d_font" th:utext="${info.content}">
             </div>
             <div class="detail_tag">

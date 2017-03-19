@@ -31,22 +31,11 @@
                 来源：<a th:text="${info.source}" th:href="${baseUrl}" href="http://www.55djw.com">www.pipaw.com</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 时间：<span th:text="${#calendars.format(info.publishTime, 'yyyy-MM-dd')}">2015-04-28</span>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                作者：<span th:text="${info.author}">晨落</span>&nbsp;&nbsp;&nbsp;&nbsp; <span>评论：0条</span></div>
+                作者：<span th:text="${info.author}">晨落</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                评论数：<span id="sourceId::此处替换为配置SourceID的语句" class="cy_cmt_count"
+                          th:attr="id='sourceId::'+${currentUrl}"></span>
+            </div>
             <div class="new_d_font" th:utext="${info.content}"></div>
-            <!--页码-->
-            <!--<div class="newyiiPager">-->
-            <!--<ol id="yw0" class="yiiPager">-->
-            <!--<li>共2页：</li>-->
-            <!--<li class="page hidden"><a href="">首页</a></li>-->
-            <!--<li class="previous hidden"><a href="#">上一页</a></li>-->
-            <!--<li class="page selected"><span>1</span></li>-->
-            <!--<li class="page"><a href="#">2</a></li>-->
-            <!--<li class="page"><a href="#">3</a></li>-->
-            <!--<li class="page"><a href="#">4</a></li>-->
-            <!--<li class="next"><a href="#">下一页</a></li>-->
-            <!--<li class="last"><a href="#">末页</a></li>-->
-            <!--</ol>-->
-            <!--</div>-->
             <div class="detail_tag">
                 <p class="p1">标签：<a href="#" th:href="/news/tag/${tagTrade.tagsId}_1.html"
                                     th:each="tagTrade:${info.tagMappingWebList}"

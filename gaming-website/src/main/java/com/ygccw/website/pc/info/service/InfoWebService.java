@@ -91,6 +91,7 @@ public class InfoWebService {
         infoRequest.setInfoType(InfoType.video);
         infoRequest.setSortName("visitCount");
         infoRequest.setSortIfDesc(true);
+        infoRequest.setVerify(1);
         return infoService.list(infoRequest, offset, fetchSize);
     }
 
@@ -99,12 +100,14 @@ public class InfoWebService {
         infoRequest.setInfoType(InfoType.news);
         infoRequest.setSortName("visitCount");
         infoRequest.setSortIfDesc(true);
+        infoRequest.setVerify(1);
         return infoService.list(infoRequest, offset, fetchSize);
     }
 
     public List<Info> newsListNewest(int offset, int fetchSize) {
         Info infoRequest = new Info();
         infoRequest.setInfoType(InfoType.news);
+        infoRequest.setVerify(1);
         return infoService.list(infoRequest, offset, fetchSize);
     }
 
@@ -151,6 +154,7 @@ public class InfoWebService {
         Picture picture = new Picture();
         picture.setSortName("visitCount");
         picture.setSortIfDesc(true);
+        picture.setVerify(1);
         return pictureService.list(picture, offset, fetchSize);
     }
 
@@ -188,11 +192,13 @@ public class InfoWebService {
 
     public Info lastInfo(InfoWeb infoWeb) {
         infoWeb.setZoneId(null);
+        infoWeb.setVerify(1);
         return infoService.lastInfo(infoWeb);
     }
 
     public Info nextInfo(InfoWeb infoWeb) {
         infoWeb.setZoneId(null);
+        infoWeb.setVerify(1);
         return infoService.nextInfo(infoWeb);
     }
 

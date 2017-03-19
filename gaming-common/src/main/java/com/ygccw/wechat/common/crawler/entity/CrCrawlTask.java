@@ -7,7 +7,7 @@ import java.util.Date;
 @Entity
 public class CrCrawlTask {
     @Id
-    private String id;
+    private Long id;
     private String url;
     private String templeName;
     private Integer level;
@@ -20,6 +20,24 @@ public class CrCrawlTask {
     private String infoType;
     private String zoneUuid;
     private String infoVideoType;
+    private String lastUrl;
+    private String htmlCharset;
+
+    public String getHtmlCharset() {
+        return htmlCharset;
+    }
+
+    public void setHtmlCharset(String htmlCharset) {
+        this.htmlCharset = htmlCharset;
+    }
+
+    public String getLastUrl() {
+        return lastUrl;
+    }
+
+    public void setLastUrl(String lastUrl) {
+        this.lastUrl = lastUrl;
+    }
 
     public String getInfoZoneType() {
         return infoZoneType;
@@ -53,11 +71,11 @@ public class CrCrawlTask {
         this.infoVideoType = infoVideoType;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

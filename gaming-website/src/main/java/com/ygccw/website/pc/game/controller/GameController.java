@@ -112,16 +112,16 @@ public class GameController {
         return "/view/game/game-index.html";
     }
 
-    @RequestMapping(value = "/game/news-list/{matchZoneId}.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/game/news/{matchZoneId}/", method = RequestMethod.GET)
     public String gameNewsList(final ModelMap model, @PathVariable Long matchZoneId) {
         int currentPage = 1;
         int fetchSize = 8;
-        String url = "/game/news-list/" + matchZoneId + "/page";
+        String url = "/game/news/" + matchZoneId + "/page";
         gameNewsListCommon(model, matchZoneId, currentPage, fetchSize, url);
         return "/view/game/game-news-list.html";
     }
 
-    @RequestMapping(value = "/game/news-list/{matchZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/game/news/{matchZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
     public String gameNewsList(HttpServletRequest request, final ModelMap model, @PathVariable Long matchZoneId, @PathVariable Integer currentPage) {
         int fetchSize = 8;
         String url = PageUtils.getPageUrl(request);
@@ -155,10 +155,24 @@ public class GameController {
         return "/view/game/game-news-detail.html";
     }
 
-    @RequestMapping(value = "/game/video-list/{matchZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/game/video/{matchZoneId}/", method = RequestMethod.GET)
+    public String gameVideoList(final ModelMap model, @PathVariable Long matchZoneId) {
+        int currentPage = 1;
+        int fetchSize = 12;
+        String url = "/game/video/" + matchZoneId + "/page";
+        gameVideoListCommon(model, matchZoneId, currentPage, fetchSize, url);
+        return "/view/game/game-video-list.html";
+    }
+
+    @RequestMapping(value = "/game/video/{matchZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
     public String gameVideoList(HttpServletRequest request, final ModelMap model, @PathVariable Long matchZoneId, @PathVariable Integer currentPage) {
         int fetchSize = 12;
         String url = PageUtils.getPageUrl(request);
+        gameVideoListCommon(model, matchZoneId, currentPage, fetchSize, url);
+        return "/view/game/game-video-list.html";
+    }
+
+    private void gameVideoListCommon(ModelMap model, Long matchZoneId, int currentPage, int fetchSize, String url) {
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.matchZone);
         info.setZoneId(matchZoneId);
@@ -167,19 +181,31 @@ public class GameController {
         model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
         model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
         model.put("matchZoneListTop", gameWebService.findMatchZoneTop(new MatchZone(), 0, 2));
-        return "/view/game/game-video-list.html";
     }
 
-    @RequestMapping(value = "/game/picture-list/{matchZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/game/picture/{matchZoneId}/", method = RequestMethod.GET)
+    public String gamePictureList(final ModelMap model, @PathVariable Long matchZoneId) {
+        int currentPage = 1;
+        int fetchSize = 9;
+        String url = "/game/picture/" + matchZoneId + "/page";
+        gamePictureListCommon(model, matchZoneId, currentPage, fetchSize, url);
+        return "/view/game/game-picture-list.html";
+    }
+
+    @RequestMapping(value = "/game/picture/{matchZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
     public String gamePictureList(HttpServletRequest request, final ModelMap model, @PathVariable Long matchZoneId, @PathVariable Integer currentPage) {
         int fetchSize = 9;
         String url = PageUtils.getPageUrl(request);
+        gamePictureListCommon(model, matchZoneId, currentPage, fetchSize, url);
+        return "/view/game/game-picture-list.html";
+    }
+
+    private void gamePictureListCommon(ModelMap model, Long matchZoneId, int currentPage, int fetchSize, String url) {
         model.put("matchZone", gameWebService.findById(matchZoneId));
         model.put("matchPictureList", new FindResultToSale(gameWebService.gamePictureList(matchZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), gameWebService.gamePictureListSize(matchZoneId), currentPage, fetchSize, url));
         model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
         model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
         model.put("matchZoneListTop", gameWebService.findMatchZoneTop(new MatchZone(), 0, 2));
-        return "/view/game/game-picture-list.html";
     }
 
     @RequestMapping(value = "/game/video/{id}.html", method = RequestMethod.GET)
@@ -199,7 +225,7 @@ public class GameController {
         return "/view/game/game-video-detail.html";
     }
 
-    @RequestMapping(value = "/game/team/{matchZoneId}.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/game/team/{matchZoneId}/", method = RequestMethod.GET)
     public String gameTeamList(HttpServletRequest request, final ModelMap model, @PathVariable Long matchZoneId) {
         model.put("matchZone", gameWebService.findById(matchZoneId));
         model.put("matchTeamList", gameWebService.listMatchTeamByMatchZoneId(matchZoneId));
