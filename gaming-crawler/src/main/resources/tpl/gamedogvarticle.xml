@@ -75,5 +75,8 @@
         <uiobject fieldName="url" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"url")]]></expression>
         </uiobject>
+        <uiobject fieldName="webSite" nullAble="false">
+            <expression><![CDATA["ÓÎÏ·¹·"]]></expression>
+        </uiobject>
     </uielements>
 </page>

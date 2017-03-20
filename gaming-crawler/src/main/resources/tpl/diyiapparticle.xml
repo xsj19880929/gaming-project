@@ -44,7 +44,7 @@
         </uiobject>
         <uiobject fieldName="content" nullAble="false">
             <expression>
-                <![CDATA[$JSOUPHTMLDOWNIMAGE(html,"cite")]]></expression>
+                <![CDATA[$REPLACESTR($JSOUPHTMLDOWNIMAGETAG(html,"cite","data-src"),"第一应用","55电竞网")]]></expression>
         </uiobject>
         <uiobject fieldName="seoTitle" nullAble="false">
             <expression><![CDATA[$REPLACESTR($XPATHROWS(tidyDom,"//title"),"-第一应用","")]]></expression>
@@ -73,6 +73,9 @@
         </uiobject>
         <uiobject fieldName="url" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"url")]]></expression>
+        </uiobject>
+        <uiobject fieldName="webSite" nullAble="false">
+            <expression><![CDATA["第一应用"]]></expression>
         </uiobject>
     </uielements>
 </page>

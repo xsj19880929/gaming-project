@@ -93,6 +93,11 @@
             <parameter-type>java.lang.Object</parameter-type>
             <parameter-type>java.lang.String</parameter-type>
         </function>
+        <function name="JSOUPHTMLDOWNIMAGETAG" method="jsoupHtmlDownImageTag">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
         <function name="JSOUPHTMLDOWNIMAGEALLTAG" method="jsoupHtmlDownImageAllTag">
             <parameter-type>java.lang.Object</parameter-type>
             <parameter-type>java.lang.String</parameter-type>

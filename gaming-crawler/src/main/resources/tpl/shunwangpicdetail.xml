@@ -60,6 +60,9 @@
         <uiobject fieldName="url" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"url")]]></expression>
         </uiobject>
+        <uiobject fieldName="webSite" nullAble="false">
+            <expression><![CDATA["Ë³ÍøÍ¼¿â"]]></expression>
+        </uiobject>
     </uielements>
     <uielements objectName="pictureDetail">
         <rows><![CDATA[$ROWREGEXP(html,"orig: '(.*?)', big")]]></rows>

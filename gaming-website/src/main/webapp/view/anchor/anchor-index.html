@@ -50,9 +50,10 @@
         <div class="zhubo_zixun02" th:unless="${#lists.isEmpty(anchorNewsList)}">
             <dl>
                 <dt>主播资讯</dt>
-                <dd><a href="/anchor/" target="_blank">更多<img src="/static/img/more.png" style="margin-left:4px;"
-                                                                  th:alt="${anchorZone.name}"
-                                                                  th:title="${anchorZone.name}"/></a>
+                <dd><a href="/anchor/" th:href="/anchor/news/${anchorZone.id}/" target="_blank">更多<img
+                        src="/static/img/more.png" style="margin-left:4px;"
+                        th:alt="${anchorZone.name}"
+                        th:title="${anchorZone.name}"/></a>
                 </dd>
             </dl>
             <div class="zhubo_news" th:each="news,iterStat:${anchorNewsList}" th:if="${iterStat.index>0}"><span><a
@@ -82,8 +83,8 @@
         <div class="zhubo_zixun02" th:unless="${#lists.isEmpty(anchorVideoList)}">
             <dl>
                 <dt>主播视频</dt>
-                <dd><a href="/video/" target="_blank">更多<img src="/static/img/more.png" th:alt="${anchorZone.name}"
-                                                                 th:title="${anchorZone.name}"/></a></dd>
+                <dd><a href="/video/" th:href="/anchor/video/${anchorZone.id}/"  target="_blank">更多<img src="/static/img/more.png" th:alt="${anchorZone.name}"
+                                                             th:title="${anchorZone.name}"/></a></dd>
             </dl>
             <div class="index_video_right right_video zhubo_video01">
                 <ul>

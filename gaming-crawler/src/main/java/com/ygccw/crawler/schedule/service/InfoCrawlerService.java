@@ -187,6 +187,7 @@ public class InfoCrawlerService {
         info.setAuthor(infoMap.get("author"));
         info.setSeoKeywords(infoMap.get("seoKeywords"));
         info.setSeoDescription(infoMap.get("seoDescription"));
+        info.setWebSite(infoMap.get("webSite"));
         return info;
     }
 

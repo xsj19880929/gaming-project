@@ -74,7 +74,8 @@
         <div class="about_read clearfix">
             <div class="index_tit_two"><span class="text_left">相关文章</span></div>
             <ul class="hot_zixun read_text">
-                <li th:each="likeInfo:${likeInfoList}"><a href="#" th:text="${likeInfo.title}"
+                <li th:each="likeInfo:${likeInfoList}"><a href="#"
+                                                          th:text="${likeInfo.title}"
                                                           th:title="${likeInfo.title}"
                                                           th:href="/news/${likeInfo.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
                 </li>

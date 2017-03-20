@@ -24,7 +24,8 @@
     <div class="pubu_list" id="wrapper">
         <div class="brand-list">
             <div class="brand-bd cle" id="brand-waterfall">
-                <div class="item" id="brand-a" th:each="picture:${pictureList.list}">
+                <div class="item" id="brand-a" th:each="picture:${pictureList.list}"
+                     th:if="${picture!=null&&picture.id!=null}">
                     <p class="p1"><a href="#" th:href="/picture/${picture.id}.html"
                                      th:title="${picture.description}"><img th:img-src="${picture.image}"
                                                                             th:alt="${picture.description}"
@@ -42,11 +43,12 @@
 </div>
 <script>
     $(function () {
-        $('#brand-waterfall').waterfall();
+        $('#brand-waterfall img').load(function () {
+            $('#brand-waterfall').waterfall();
+        });
     });
     // 瀑布流插件
     // pannysp 2013.4.9
-    ;
     (function ($) {
         $.fn.waterfall = function (options) {
             var df = {
@@ -120,7 +122,6 @@
             });
         }
     })(jQuery);</script>
-<!--线上琵琶网首页的foot，这里只是截图-->
 <div th:replace="/bottom.html::bottom"></div>
 </body>
 </html>

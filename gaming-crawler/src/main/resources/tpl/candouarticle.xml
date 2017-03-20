@@ -53,7 +53,8 @@
                 <![CDATA[$REGEXP($KEYVAL(map,"contentTemp"),"(.*)<h3>—”…Ï‘ƒ∂¡")==""?$KEYVAL(map,"contentTemp")+"":$REGEXP($KEYVAL(map,"contentTemp"),"(.*)<h3>—”…Ï‘ƒ∂¡")]]></expression>
         </uiobject>
         <uiobject fieldName="seoTitle" nullAble="false">
-            <expression><![CDATA[$REPLACESTR($XPATHROWS(tidyDom,"//title"),"_≤œ∂πÕ¯µÁæ∫”Œœ∑","")]]></expression>
+            <expression>
+                <![CDATA[$XPATHROWS(tidyDom,"//div[@class='article']/h1|//div[@class='article mtop16']/h1")]]></expression>
         </uiobject>
         <uiobject fieldName="seoKeywords" nullAble="false">
             <expression><![CDATA[$XPATHROWS(tidyDom,"//meta[@name='keywords']/@content")]]></expression>
@@ -83,6 +84,9 @@
         </uiobject>
         <uiobject fieldName="url" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"url")]]></expression>
+        </uiobject>
+        <uiobject fieldName="webSite" nullAble="false">
+            <expression><![CDATA["≤œ∂πÕ¯"]]></expression>
         </uiobject>
     </uielements>
     <uielements objectName="tags">

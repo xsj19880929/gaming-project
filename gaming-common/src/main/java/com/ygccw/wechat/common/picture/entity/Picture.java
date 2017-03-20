@@ -38,12 +38,21 @@ public class Picture {
     private PictureZoneType pictureZoneType;
     private String uuid;
     private String zoneUuid;
+    private String webSite;
     @Transient
     private String sortName;
     @Transient
     private Boolean sortIfDesc;
     @Transient
     private List<PictureDetail> pictureDetailList;
+
+    public String getWebSite() {
+        return webSite;
+    }
+
+    public void setWebSite(String webSite) {
+        this.webSite = webSite;
+    }
 
     public String getZoneUuid() {
         return zoneUuid;

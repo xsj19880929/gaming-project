@@ -6,12 +6,13 @@
         </uiobject>
     </uielements>
     <uielements objectName="nextTask">
-        <rows><![CDATA[$ROWS(tidyDom,"//div[@class='linet']/ul/li")]]></rows>
+        <rows><![CDATA[$ROWS(tidyDom,"//div[@class='linet']/ul/li/div/a")]]></rows>
         <uiobject fieldName="url" nullAble="false">
-            <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='linet']/ul/li/a/@href",row)]]></expression>
+            <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='linet']/ul/li/div/a/@href",row)]]></expression>
         </uiobject>
         <uiobject fieldName="titleImage" nullAble="false">
-            <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='linet']/ul/li/div/a/img/@data-u",row)]]></expression>
+            <expression>
+                <![CDATA[$XPATHCOLS(tidyDom,"//div[@class='linet']/ul/li/div/a[@class='fl']/img/@data-u",row)]]></expression>
         </uiobject>
         <uiobject fieldName="infoZoneType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>

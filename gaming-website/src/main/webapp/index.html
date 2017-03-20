@@ -19,7 +19,8 @@
 <!--赛事列表-->
 <div class="general">
     <ul class="wcg_list">
-        <li th:each="matchZone,iterStat:${matchZoneList}" th:class="${iterStat.index==3?'no_margin':''}">
+        <li th:each="matchZone,iterStat:${matchZoneList}" th:if="${matchZone!=null}"
+            th:class="${iterStat.index==3?'no_margin':''}">
             <div class="bg"></div>
             <div class="con">
                 <p class="p1"><a href="#" th:text="${matchZone.name}"
@@ -79,24 +80,26 @@
             <ul>
                 <li>
                     <p class="p1"><a target="_blank"
-                                     th:each="info,iterStat:${recommendInfoList}" th:if="${iterStat.index==0}"
+                                     th:each="info,iterStat:${recommendInfoList}"
+                                     th:if="${info!=null&&iterStat.index==0}"
                                      th:href="/news/${info.id}.html" th:title="${info.title}" th:text="${info.title}">S7总决赛举办地出炉
                         S7赛制改革说明</a></p>
                     <p class="p2">
                         <a target="_blank" href="/xinwen/news305890.html" th:each="info,iterStat:${recommendInfoList}"
-                           th:if="${iterStat.index>0&&iterStat.index<4}" th:href="/news/${info.id}.html"
+                           th:if="${info!=null&&iterStat.index>0&&iterStat.index<4}" th:href="/news/${info.id}.html"
                            th:title="${info.title}" th:text="${'['+info.title+']'}">[原OMG战队教练Dgc加盟LDG担任主教练]</a>
 
                     </p>
                 </li>
                 <li>
                     <p class="p1"><a target="_blank"
-                                     th:each="info,iterStat:${recommendInfoList}" th:if="${iterStat.index==4}"
+                                     th:each="info,iterStat:${recommendInfoList}"
+                                     th:if="${info!=null&&iterStat.index==4}"
                                      th:href="/news/${info.id}.html" th:title="${info.title}" th:text="${info.title}">S7总决赛举办地出炉
                         S7赛制改革说明</a></p>
                     <p class="p2">
                         <a target="_blank" href="/xinwen/news305890.html" th:each="info,iterStat:${recommendInfoList}"
-                           th:if="${iterStat.index>4&&iterStat.index<8}" th:href="/news/${info.id}.html"
+                           th:if="${info!=null&&iterStat.index>4&&iterStat.index<8}" th:href="/news/${info.id}.html"
                            th:title="${info.title}" th:text="${'['+info.title+']'}">[原OMG战队教练Dgc加盟LDG担任主教练]</a>
 
                     </p>
@@ -106,7 +109,7 @@
         <div class="index_con">
             <ul>
                 <li class="clearfix" th:each="info,iterStat:${recommendInfoList}"
-                    th:if="${iterStat.index>7&&iterStat.index<14}">
+                    th:if="${info!=null&&iterStat.index>7&&iterStat.index<14}">
                     <a target="_blank" class="a1" href="/xinwen-1.html" th:text="${'【'+info.infoType.label+'】'}"
                        th:title="${info.infoType.label}">【新闻】</a>
                     <a target="_blank" class="a2" href="/xinwen/news308826.html" th:href="/news/${info.id}.html"
@@ -121,7 +124,8 @@
 <!--赛事列表2-->
 <div class="general">
     <ul class="wcg_list_two">
-        <li th:each="matchZone,iterStat:${matchZoneNewList}" th:class="${iterStat.index==2?'no_margin':''}">
+        <li th:each="matchZone,iterStat:${matchZoneNewList}" th:class="${iterStat.index==2?'no_margin':''}"
+            th:if="${matchZone!=null}">
             <p class="p1"><a href="#" th:href="/game/${matchZone.id}/" th:title="${matchZone.name}" target="_blank"><img
                     th:img-src="/image/373x155${matchZone.indexImage}" th:alt="${matchZone.name}"
                     th:title="${matchZone.name}"/></a>
@@ -152,7 +156,7 @@
         <div class="tab_one_con">
             <div class="tab_deatil" id="con_one_1" style="display:block">
                 <ul>
-                    <li th:each="info:${infoNewestList}">
+                    <li th:each="info:${infoNewestList}" th:if="${info!=null}">
                         <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
                                            target="_blank"><img
                                 th:img-src="/image/204x108${info.titleImage}"
@@ -177,7 +181,7 @@
 
             <div class="tab_deatil" id="con_one_2">
                 <ul>
-                    <li th:each="info:${infoTradeList}">
+                    <li th:each="info:${infoTradeList}" th:if="${info!=null}">
                         <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
                                            target="_blank"><img
                                 th:img-src="/image/204x108${info.titleImage}"
@@ -201,7 +205,7 @@
             </div>
             <div class="tab_deatil" id="con_one_3">
                 <ul>
-                    <li th:each="info:${infoMatchZoneList}">
+                    <li th:each="info:${infoMatchZoneList}" th:if="${info!=null}">
                         <div class="d1"><a href="#"><img th:img-src="/image/204x108${info.titleImage}"
                                                          th:alt="${info.title}" th:title="${info.title}"/></a>
                         </div>
@@ -223,7 +227,7 @@
 
             <div class="tab_deatil" id="con_one_4">
                 <ul>
-                    <li th:each="info:${infoAnchorZoneList}">
+                    <li th:each="info:${infoAnchorZoneList}" th:if="${info!=null}">
                         <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
                                            target="_blank"><img
                                 th:img-src="/image/204x108${info.titleImage}"

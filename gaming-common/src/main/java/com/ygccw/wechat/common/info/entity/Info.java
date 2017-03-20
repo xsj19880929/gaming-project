@@ -52,6 +52,15 @@ public class Info {
     private Boolean sortIfDesc;
     private String zoneUuid;
     private String uuid;
+    private String webSite;
+
+    public String getWebSite() {
+        return webSite;
+    }
+
+    public void setWebSite(String webSite) {
+        this.webSite = webSite;
+    }
 
     public String getUuid() {
         return uuid;

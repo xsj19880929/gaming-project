@@ -80,6 +80,9 @@
         <uiobject fieldName="url" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"url")]]></expression>
         </uiobject>
+        <uiobject fieldName="webSite" nullAble="false">
+            <expression><![CDATA["ÖÐ¹úµç¾ºÍø"]]></expression>
+        </uiobject>
     </uielements>
     <uielements objectName="tags">
         <rows><![CDATA[$ROWS(tidyDom,"//div[@class='article-tag clearfix']/a")]]></rows>

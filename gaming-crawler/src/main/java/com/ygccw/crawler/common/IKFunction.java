@@ -605,6 +605,31 @@ public class IKFunction {
     }
 
     // jsoup过滤标签解析
+    public String jsoupHtmlDownImageTag(Object html, String jsoup, String imageTag) {
+        org.jsoup.nodes.Document soup = Jsoup.parse(html.toString());
+        org.jsoup.select.Elements newHtml = soup.select(jsoup);
+        if (newHtml != null) {
+            Whitelist tags = new Whitelist();
+            tags.addTags("div", "table", "tbody", "tr", "td", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
+            tags.addAttributes("img", "src", imageTag);
+            String content = Jsoup.clean(newHtml.html(), tags);
+            Document document = Jsoup.parse(content);
+            Elements elements = document.select("img");
+            for (Element element : elements) {
+                String imageSrc = element.attr("src");
+                String imagePath = element.attr(imageTag);
+                String imageLocalPath = url2LocalImage(imagePath);
+                content = content.replace(imageSrc, downServer + imageLocalPath);
+                content = content.replace(imagePath, downServer + imageLocalPath);
+            }
+            return content;
+        } else {
+            return "";
+        }
+    }
+
+
+    // jsoup过滤标签解析
     public String jsoupHtmlDownImageAllTag(Object html, String jsoup) {
         org.jsoup.nodes.Document soup = Jsoup.parse(html.toString());
         org.jsoup.select.Elements newHtml = soup.select(jsoup);
@@ -622,6 +647,7 @@ public class IKFunction {
             return "";
         }
     }
+
 
     // jsoup解析
     public String jsoup(Object html, String jsoup) {
