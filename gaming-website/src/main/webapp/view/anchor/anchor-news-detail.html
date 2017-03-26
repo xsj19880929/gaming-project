@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <!--相关文章-->
-                <div class="about_read clearfix">
+                <div class="about_read clearfix" th:unless="${#lists.isEmpty(likeInfoList)}">
                     <div class="index_tit_two"><span class="text_left padding1">相关文章</span></div>
                     <ul class="hot_zixun read_text">
                         <li th:each="likeInfo:${likeInfoList}"><a href="#" th:text="${likeInfo.title}"
@@ -86,7 +86,7 @@
                     </ul>
                 </div>
                 <!--精选美图 -->
-                <div class="about_pic clearfix">
+                <div class="about_pic clearfix" th:unless="${#lists.isEmpty(pictureTopList)}">
                     <div class="index_tit_two"><span class="text_left padding1">精选美图</span><a href="#"
                                                                                               class="more">更多</a>
                     </div>
