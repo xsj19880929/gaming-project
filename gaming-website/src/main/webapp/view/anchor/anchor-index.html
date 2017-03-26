@@ -83,8 +83,9 @@
         <div class="zhubo_zixun02" th:unless="${#lists.isEmpty(anchorVideoList)}">
             <dl>
                 <dt>主播视频</dt>
-                <dd><a href="/video/" th:href="/anchor/video/${anchorZone.id}/"  target="_blank">更多<img src="/static/img/more.png" th:alt="${anchorZone.name}"
-                                                             th:title="${anchorZone.name}"/></a></dd>
+                <dd><a href="/video/" th:href="/anchor/video/${anchorZone.id}/" target="_blank">更多<img
+                        src="/static/img/more.png" th:alt="${anchorZone.name}"
+                        th:title="${anchorZone.name}"/></a></dd>
             </dl>
             <div class="index_video_right right_video zhubo_video01">
                 <ul>

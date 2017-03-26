@@ -35,6 +35,7 @@ public class Info {
     private String subTitle;
     private Integer visitCount;
     private String titleImage;
+    @Transient
     private String content;
     private String seoTitle;
     private String seoKeywords;
