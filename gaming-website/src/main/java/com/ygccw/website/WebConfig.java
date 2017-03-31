@@ -81,6 +81,8 @@ public class WebConfig extends DefaultSiteConfig {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
         registry.addResourceHandler("favicon.ico").addResourceLocations("/");
         registry.addResourceHandler("index").addResourceLocations("/");
+        registry.addResourceHandler("baidu_verify_MZA58sj9Pc.html").addResourceLocations("/");
+        registry.addResourceHandler("sogousiteverification.txt").addResourceLocations("/");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 

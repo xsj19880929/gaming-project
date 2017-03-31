@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="gbk"?>
+<page pageType="candouarticle_add">
+    <uielements objectName="beforeSemantic">
+        <uiobject fieldName="tidyDom">
+            <expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="infoContent_add">
+        <uiobject fieldName="uuid" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"uuid")]]></expression>
+        </uiobject>
+        <uiobject fieldName="contentTemp" nullAble="false">
+            <expression>
+                <![CDATA[$REPLACESTR($REGEXP($JSOUPHTML(html,"div[class=article-txt]")==""?$JSOUPHTMLDOWNIMAGE(html,"div[class=articleBox mtop]"):$JSOUPHTMLDOWNIMAGE(html,"div[class=article-txt]"),"(.*)<p>（责任编辑"),"<p>蚕豆网LOL交流群：148788322(点击加入)</p>","")]]></expression>
+        </uiobject>
+        <uiobject fieldName="content" nullAble="false">
+            <expression>
+                <![CDATA[$REGEXP($KEYVAL(map,"contentTemp"),"</div>(.*)")]]></expression>
+        </uiobject>
+
+    </uielements>
+    <uielements objectName="nextTask">
+        <rows><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")==""?0:1]]></rows>
+        <uiobject fieldName="url" nullAble="false">
+            <expression><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")]]></expression>
+        </uiobject>
+        <uiobject fieldName="templeName" nullAble="false">
+            <expression><![CDATA["candouarticle_add"]]></expression>
+        </uiobject>
+        <uiobject fieldName="uuid" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"uuid")]]></expression>
+        </uiobject>
+    </uielements>
+</page>

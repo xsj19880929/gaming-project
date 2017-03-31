@@ -6,11 +6,11 @@
     <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/wcg.js"></script>
-    <title th:text="${tags.name}+'_'+${siteName}">标题</title>
-    <meta name="keywords" content="关键字" th:attr="content=${tags.name}"/>
+    <title th:text="${tags!=null?tags.name:''}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${tags!=null?tags.name:''}"/>
     <meta name="description"
           content="描述"
-          th:attr="content=${siteName}+'（55djw.com）提供最新最全最专业的'+${tags.name}+'，电竞游戏资讯，手机游戏行业新闻，游戏攻略，游戏评测等，更多手游产业动态、行业新闻、游戏资讯尽在'+${siteName}+'。'"/>
+          th:attr="content=${siteName}+'（55djw.com）提供最新最全最专业的'+${tags!=null?tags.name:''}+'，电竞游戏资讯，手机游戏行业新闻，游戏攻略，游戏评测等，更多手游产业动态、行业新闻、游戏资讯尽在'+${siteName}+'。'"/>
 </head>
 
 <body>

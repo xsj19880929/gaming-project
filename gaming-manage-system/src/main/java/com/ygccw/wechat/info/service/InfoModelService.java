@@ -89,6 +89,7 @@ public class InfoModelService {
         if (!StringUtils.hasText(info.getTitleImage())) {
             info.setTitleImage(getContentImageFirst(info.getContent()));
         }
+        info.setVerify(1);
         infoService.update(info);
         if (infoModel.getRecommendMappingModelList() != null) {
             saveOrUpdateRecommendMapping(infoModel.getRecommendMappingModelList());

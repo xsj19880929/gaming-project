@@ -6,11 +6,11 @@
     <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/wcg.js"></script>
-    <title th:text="${tags.name}+'_'+${siteName}">标题</title>
-    <meta name="keywords" content="关键字" th:attr="content=${tags.name}"/>
+    <title th:text="${tags!=null?tags.name:''}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${tags!=null?tags.name:''}"/>
     <meta name="description"
           content="描述"
-          th:attr="content=${siteName}+'（55djw.com）提供最新最全最专业的'+${tags.name}+'，电竞游戏资讯，手机游戏行业新闻，游戏攻略，游戏评测等，更多手游产业动态、行业新闻、游戏资讯尽在'+${siteName}+'。'"/>
+          th:attr="content=${siteName}+'（55djw.com）提供最新最全最专业的'+${tags!=null?tags.name:''}+'，电竞游戏资讯，手机游戏行业新闻，游戏攻略，游戏评测等，更多手游产业动态、行业新闻、游戏资讯尽在'+${siteName}+'。'"/>
 </head>
 
 <body>
@@ -19,11 +19,11 @@
 <div class="general">
     <!--面包屑-->
     <div class="position"><a href="/">电竞首页</a>&gt;<a href="/news/">全部资讯</a>&gt;<em
-            th:text="${tags.tagZoneType.label}+新闻">行业新闻</em>
+            th:text="${tags!=null?tags.tagZoneType.label:''}+新闻">行业新闻</em>
     </div>
     <!--全部资讯,左边-->
     <div class="all_zixun">
-        <div class="index_tit_two"><span class="text_left" th:text="${tags.name}">全部资讯</span></div>
+        <div class="index_tit_two"><span class="text_left" th:text="${tags!=null?tags.name:''}">全部资讯</span></div>
         <!--tab内容-->
         <div class="tab_one_con2">
             <div class="tab_deatil" id="con_one_1" style="display:block">

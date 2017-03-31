@@ -7,9 +7,11 @@ import com.ygccw.crawler.common.IKFunction;
 import com.ygccw.wechat.common.crawler.entity.CrCrawlTask;
 import com.ygccw.wechat.common.crawler.service.CrCrawlTaskService;
 import com.ygccw.wechat.common.info.entity.Info;
+import com.ygccw.wechat.common.info.entity.InfoContent;
 import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.enums.InfoVideoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
+import com.ygccw.wechat.common.info.service.InfoContentService;
 import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.tags.entity.TagMapping;
 import com.ygccw.wechat.common.tags.entity.Tags;
@@ -58,6 +60,8 @@ public class InfoCrawlerService {
     private CrCrawlTaskService crCrawlTaskService;
     @Inject
     private AnchorZoneService anchorZoneService;
+    @Inject
+    private InfoContentService infoContentService;
 
     public void startTread(int threadNum) {
         // 生成任务
@@ -105,6 +109,8 @@ public class InfoCrawlerService {
     private void mergeData(HashMap<String, List<HashMap<String, String>>> results, ConcurrentHashMap<String, Boolean> taskLast) {
         List<HashMap<String, String>> infoList = results.get("info");
         List<HashMap<String, String>> tagList = results.get("tags");
+        List<HashMap<String, String>> infoContentAddList = results.get("infoContent_add");
+        addInfoContent(infoContentAddList);
         if (infoList == null) {
             return;
         }
@@ -118,6 +124,7 @@ public class InfoCrawlerService {
             updateTask(infoMap, taskLast);
             infoService.saveOnly(info);
             setTag(tagList, info);
+
         }
 
     }
@@ -200,6 +207,18 @@ public class InfoCrawlerService {
                 taskLast.put(infoMap.get("taskId"), true);
             }
         }
+    }
+
+    private void addInfoContent(List<HashMap<String, String>> infoContentAddList) {
+        if (infoContentAddList != null) {
+            HashMap<String, String> infoMap = infoContentAddList.get(0);
+            InfoContent infoContent = infoContentService.findByUuid(infoMap.get("uuid"));
+            if (infoContent != null) {
+                infoContent.setContent(infoContent.getContent() + infoMap.get("content"));
+                infoContentService.update(infoContent);
+            }
+        }
+
     }
 
 }

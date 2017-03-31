@@ -71,9 +71,11 @@ public class InfoServiceImpl implements InfoService {
             infoContent.setStatus(1);
             infoContentDao.save(infoContent);
         } else {
-            infoContent.setContent(info.getContent());
-            infoContent.setUuid(info.getUuid());
-            infoContentDao.update(infoContent);
+            if (core.framework.util.StringUtils.hasText(info.getContent())) {
+                infoContent.setContent(info.getContent());
+                infoContent.setUuid(info.getUuid());
+                infoContentDao.update(infoContent);
+            }
         }
 
 
