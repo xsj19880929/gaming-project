@@ -164,6 +164,29 @@
                         </div>
                     </td>
                 </tr>
+
+                <tr>
+                    <td width="10%">自动发布时间：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <a class="dropdown-toggle" id="startTime" role="button" data-toggle="dropdown"
+                               data-target="#" href="#">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="autoPublishTime"
+                                           ng-model="info.autoPublishTime | date:'yyyy-MM-dd HH:mm:ss'"
+                                           placeholder="发布时间">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="info.autoPublishTime"
+                                                datetimepicker-config="{ dropdownSelector: '#autoPublishTime' }"/>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
                 <tr>
                     <td width="10%">内容：</td>
 

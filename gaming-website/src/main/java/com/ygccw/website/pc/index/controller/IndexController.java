@@ -32,7 +32,7 @@ public class IndexController {
         model.put("advWordList", indexWebService.findAdvertising(10));
         model.put("matchZoneNewList", indexWebService.findMatchZone());
         model.put("infoTradeList", indexWebService.findTradeInfo());
-        model.put("infoNewestList", indexWebService.findNewestInfo());
+        model.put("infoNewestList", indexWebService.findNewestInfoByInfoType(InfoType.news, 5));
         model.put("infoMatchZoneList", indexWebService.findMatchZoneInfo());
         model.put("infoAnchorZoneList", indexWebService.findAnchorZoneInfo());
         model.put("starMatchTeamList", indexWebService.findStarMatchTeam());
@@ -45,6 +45,8 @@ public class IndexController {
         model.put("matchZoneTopList", indexWebService.findTopMatchZoneList());
         model.put("pictureList", indexWebService.findNewestPictureList());
         model.put("recommendInfoList", indexWebService.findRecommendInfo());
+        model.put("recommendInfoList", indexWebService.findRecommendInfo());
+        model.put("infoAllList", indexWebService.findNewestInfo(6));
         return "/index.html";
     }
 

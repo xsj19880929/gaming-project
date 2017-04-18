@@ -3,6 +3,9 @@
 
     module.controller('InfoListController', ['$scope', '$http', '$location', '$rootScope', '$window', function ($scope, $http, $location, $rootScope, $window) {
         $scope.offset = 0;
+        if ($location.search().offset) {
+            $scope.offset = $location.search().offset;
+        }
         $scope.fetchSize = 25;
         $scope.params = {};
         $scope.params.verify = 1;
@@ -16,6 +19,7 @@
             $http.post(url, $scope.params).success(function (data) {
                 $scope.gridOptions.data = data.list;
                 $scope.gridOptions.totalItems = data.total;
+                $scope.gridOptions.paginationCurrentPage = (offset / fetchSize) + 1;
                 $scope.offset = offset;
                 $scope.fetchSize = fetchSize;
             });
@@ -69,6 +73,7 @@
 
         $scope.updateInfo = function (id) {
             $location.search('id', id);
+            $location.search('offset', $scope.offset);
             $location.path('info/update');
         };
         $scope.deleteInfo = function (id) {

@@ -33,4 +33,6 @@ public interface InfoService {
 
     Info findByUuid(String uuid);
 
+    Info findInfoById(Long id);
+
 }

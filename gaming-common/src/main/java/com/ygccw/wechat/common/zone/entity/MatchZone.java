@@ -51,7 +51,26 @@ public class MatchZone {
     private String sortName;
     @Transient
     private Boolean sortIfDesc;
+    @Transient
+    private Date createStartTime;
+    @Transient
+    private Date createEndTime;
 
+    public Date getCreateStartTime() {
+        return createStartTime;
+    }
+
+    public void setCreateStartTime(Date createStartTime) {
+        this.createStartTime = createStartTime;
+    }
+
+    public Date getCreateEndTime() {
+        return createEndTime;
+    }
+
+    public void setCreateEndTime(Date createEndTime) {
+        this.createEndTime = createEndTime;
+    }
 
     public String getUuid() {
         return uuid;

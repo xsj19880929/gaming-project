@@ -112,9 +112,8 @@
         </div>
         <div class="index_con">
             <ul>
-                <li class="clearfix" th:each="info,iterStat:${recommendInfoList}"
-                    th:if="${info!=null&&iterStat.index>7&&iterStat.index<14}">
-                    <a target="_blank" class="a1" href="/xinwen-1.html" th:text="${'【'+info.infoType.label+'】'}"
+                <li class="clearfix" th:each="info,iterStat:${infoAllList}">
+                    <a target="_blank" class="a1" href="/news/" th:text="${'【'+info.infoType.label+'】'}"
                        th:title="${info.infoType.label}">【新闻】</a>
                     <a target="_blank" class="a2" href="/xinwen/news308826.html" th:href="/news/${info.id}.html"
                        th:title="${info.title}" th:text="${info.title}">lol10元抽奖活动网址 2月黑龙瞎等你来拿</a>
@@ -322,7 +321,7 @@
                             th:title="${anchorZone.name}"/>
                         <p class="p1" th:text="${anchorZone.name}">LOL代练MOBA大神 美萌老鼠mayuyu</p></a>
                     <p class="p2">
-                        <span>主播：<a href="#" th:text="${anchorZone.username}" th:href="/news/${anchorZone.id}.html"
+                        <span>主播：<a href="#" th:text="${anchorZone.username}" th:href="/anchor/${anchorZone.id}/"
                                     th:title="${anchorZone.username}" target="_blank">小智脑残粉</a></span>
                         <span>人气：<em th:text="${anchorZone.visitCount}">58621032</em></span>
                     </p>

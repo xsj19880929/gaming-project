@@ -183,6 +183,11 @@
             <parameter-type>java.lang.String</parameter-type>
             <parameter-type>java.lang.String</parameter-type>
         </function>
+        <function name="REPLACEALLSTR" method="replaceAllStr">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
         <function name="MD5" method="md5">
             <parameter-type>java.lang.Object</parameter-type>
         </function>
@@ -190,6 +195,10 @@
             <parameter-type>java.lang.String</parameter-type>
         </function>
         <function name="URL2LOCALIMAGE" method="url2LocalImage">
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
+        <function name="ADD" method="add">
+            <parameter-type>java.lang.String</parameter-type>
             <parameter-type>java.lang.String</parameter-type>
         </function>
     </bean>

@@ -92,7 +92,7 @@ public class InfoServiceImpl implements InfoService {
     public Info findById(Long id) {
         Info info = infoDao.findById(id);
         InfoContent infoContent = infoContentDao.findByInfoId(id);
-        if (infoContent != null) {
+        if (infoContent != null && infoContent.getContent() != null) {
             info.setContent(infoContent.getContent());
         }
         return info;
@@ -137,5 +137,10 @@ public class InfoServiceImpl implements InfoService {
     @Override
     public Info findByUuid(String uuid) {
         return infoDao.findByUuid(uuid);
+    }
+
+    @Override
+    public Info findInfoById(Long id) {
+        return infoDao.findById(id);
     }
 }

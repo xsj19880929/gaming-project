@@ -93,15 +93,16 @@ public class IndexWebService {
         return matchZoneService.list(matchZone, 0, 3);
     }
 
-    public List<Info> findNewestInfo() {
+    public List<Info> findNewestInfo(int number) {
         Info info = new Info();
         info.setVerify(1);
-        return infoService.list(info, 0, 5);
+        return infoService.list(info, 0, number);
     }
 
     public List<Info> findTradeInfo() {
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.trade);
+        info.setInfoType(InfoType.news);
         info.setVerify(1);
         return infoService.list(info, 0, 5);
     }
@@ -109,6 +110,7 @@ public class IndexWebService {
     public List<Info> findMatchZoneInfo() {
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.matchZone);
+        info.setInfoType(InfoType.news);
         info.setVerify(1);
         return infoService.list(info, 0, 5);
     }
@@ -116,6 +118,7 @@ public class IndexWebService {
     public List<Info> findAnchorZoneInfo() {
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.anchorZone);
+        info.setInfoType(InfoType.news);
         info.setVerify(1);
         return infoService.list(info, 0, 5);
     }
@@ -165,7 +168,7 @@ public class IndexWebService {
         List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(recommendLocal, recommendType, 0, 7);
         List<Info> infoList = new ArrayList<>();
         for (RecommendMapping recommendMapping : recommendMappingList) {
-            infoList.add(infoService.findById(recommendMapping.getEntityId()));
+            infoList.add(infoService.findInfoById(recommendMapping.getEntityId()));
         }
         return infoList;
     }
@@ -204,7 +207,7 @@ public class IndexWebService {
         List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.index, RecommendType.news, 0, 20);
         List<Info> infoWebList = new ArrayList<>();
         for (RecommendMapping recommendMapping : recommendMappingList) {
-            Info info = infoService.findById(recommendMapping.getEntityId());
+            Info info = infoService.findInfoById(recommendMapping.getEntityId());
             infoWebList.add(info);
         }
         return infoWebList;
@@ -336,6 +339,13 @@ public class IndexWebService {
         Picture picture = new Picture();
         picture.setVerify(1);
         return pictureService.list(picture, offset, fetchSize);
+    }
+
+    public List<Info> findNewestInfoByInfoType(InfoType infoType, int number) {
+        Info info = new Info();
+        info.setVerify(1);
+        info.setInfoType(infoType);
+        return infoService.list(info, 0, number);
     }
 
 

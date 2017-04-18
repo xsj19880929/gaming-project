@@ -29,6 +29,10 @@ public class InfoDao {
                 .append("infoVideoType", info.getInfoVideoType())
                 .append("verify", info.getVerify())
                 .append("zoneId", info.getZoneIdList(), "zoneId", "=", "or")
+                .append("autoPublishTime", info.getAutoPublishTime(), "autoPublishTime", "<=")
+                .append("createTime", info.getStartTime(), "startCreateTime", ">")
+                .append("createTime", info.getEndTime(), "endCreateTime", "<=")
+                .append("ifAutoPublish", info.getIfAutoPublish())
                 .skipEmptyFields();
         if (StringUtils.hasText(info.getTitle())) {
             queryBuilder.append("title", "%" + info.getTitle() + "%", "like");
@@ -38,6 +42,7 @@ public class InfoDao {
         } else {
             queryBuilder.orderBy("updateTime", true);
         }
+
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
     }

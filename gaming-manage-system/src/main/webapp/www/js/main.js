@@ -278,6 +278,20 @@
                 controller: 'HotKeywordsUpdateController'
             })
 
+            .state('site', {
+                url: "/site",
+                templateUrl: "www/view/module.view.html"
+            })
+            .state('site.commit-url-search', {
+                url: "/commit-url-search",
+                templateUrl: "www/view/site/commit-url-search/index.html"
+            })
+            .state('site.commit-url-search.list', {
+                url: "/",
+                templateUrl: "www/view/site/commit-url-search/list.html",
+                controller: 'CommitUrlSearchListController'
+            })
+
 
     }).config(
         ['$httpProvider', function ($httpProvider) {

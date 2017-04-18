@@ -174,7 +174,7 @@ public class InfoWebService {
                 if (tags == null) continue;
                 List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId(), 0, fetchSize);
                 for (TagMapping tagMapping : tagMappingList) {
-                    Info info = infoService.findById(tagMapping.getEntityId());
+                    Info info = infoService.findInfoById(tagMapping.getEntityId());
                     mappingMap.put(tagMapping.getEntityId(), info);
                     if (mappingMap.size() == fetchSize) {
                         break;
@@ -206,7 +206,10 @@ public class InfoWebService {
         List<InfoWeb> infoWebList = new ArrayList<>();
         List<TagMapping> tagMappingListPaging = tagMappingService.listByTagsIdPaging(tagId, offset, fetchSize);
         for (TagMapping tagMappingPaging : tagMappingListPaging) {
-            Info info = infoService.findById(tagMappingPaging.getEntityId());
+            Info info = infoService.findInfoById(tagMappingPaging.getEntityId());
+            if (info == null) {
+                continue;
+            }
             InfoWeb infoWeb = new InfoWeb();
             BeanUtils.copyProperties(info, infoWeb);
             TagMapping tagMappingRequest = new TagMapping();

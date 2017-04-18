@@ -1,6 +1,10 @@
 package com.ygccw.wechat.common.crawler.entity;
 
+import com.ygccw.wechat.common.crawler.enums.JobType;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import java.util.Date;
 
@@ -17,11 +21,30 @@ public class CrJob {
     private Integer status;
     private String templateName;
     private Integer threadNum;
-    private Date createdTime;
-    private Date updatedTime;
+    private Date createTime;
+    private Date updateTime;
     private String lastUrl;
     private Date lastTime;
     private Long waitTime;
+    private String lastException;
+    @Enumerated(EnumType.STRING)
+    private JobType type;
+
+    public JobType getType() {
+        return type;
+    }
+
+    public void setType(JobType type) {
+        this.type = type;
+    }
+
+    public String getLastException() {
+        return lastException;
+    }
+
+    public void setLastException(String lastException) {
+        this.lastException = lastException;
+    }
 
     public Long getWaitTime() {
         return waitTime;
@@ -103,20 +126,19 @@ public class CrJob {
         this.threadNum = threadNum;
     }
 
-    public Date getCreatedTime() {
-        return createdTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdatedTime() {
-        return updatedTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatedTime(Date updatedTime) {
-        this.updatedTime = updatedTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
-
 }

@@ -112,14 +112,14 @@
         <div class="right_mid">
             <div class="index_tit_two"><span class="text_left">个人视频排行</span></div>
             <dl class="video_rank">
-                <dt th:each="anchorVideo,iterStat:${anchorVideoList}"
+                <dt th:each="anchorVideo,iterStat:${anchorVideoTopList}"
                     th:if="${iterStat.index==0||iterStat.index==1||iterStat.index==2}"><span
                         style="background:url(/static/img/zhubo/zhubo_shipin.png) no-repeat;"
                         th:text="${iterStat.index+1}">1</span><a href="#" th:text="${anchorVideo.title}"
                                                                  th:href="/video/${anchorVideo.id}.html"
                                                                  th:title="${anchorVideo.title}">驰骋野区的风暴骑手：新版本打野人攻略</a>
                 </dt>
-                <dt th:each="anchorVideo,iterStat:${anchorVideoList}"
+                <dt th:each="anchorVideo,iterStat:${anchorVideoTopList}"
                     th:if="${iterStat.index!=0&&iterStat.index!=1&&iterStat.index!=2}"><span
                         th:text="${iterStat.index+4}">4</span><a href="#" th:text="${anchorVideo.title}"
                                                                  th:href="/video/${anchorVideo.id}.html"

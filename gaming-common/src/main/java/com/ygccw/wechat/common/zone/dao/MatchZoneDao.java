@@ -28,6 +28,8 @@ public class MatchZoneDao {
 
     public List<MatchZone> list(MatchZone matchZone, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from MatchZone").append("status", 1)
+                .append("createTime", matchZone.getCreateStartTime(), "startCreateTime", ">")
+                .append("createTime", matchZone.getCreateEndTime(), "endCreateTime", "<=")
                 .skipEmptyFields();
         if (StringUtils.hasText(matchZone.getName())) {
             queryBuilder.append("name", "%" + matchZone.getName() + "%", "like");

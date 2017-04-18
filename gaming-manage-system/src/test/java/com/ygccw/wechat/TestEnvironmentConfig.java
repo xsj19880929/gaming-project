@@ -20,6 +20,8 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan(basePackageClasses = WebConfig.class)
 public class TestEnvironmentConfig {
+//    @Autowired
+//    private Environment env;
 
     @Bean
     JPAAccess jpaAccess() {
@@ -28,22 +30,47 @@ public class TestEnvironmentConfig {
 
 
     @Bean
-    public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).build();
-    }
-
-    @Bean
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setDataSource(dataSource());
         return transactionManager;
     }
 
+    //数据库配置开始
+//    @Bean
+//    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+//        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+//        factoryBean.setDataSource(dataSource());
+//        factoryBean.setPackagesToScan("com.ygccw", SystemEnum.class.getPackage().getName());
+//        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+//        vendorAdapter.setDatabasePlatform(MySQLDialect.class.getName());
+//        vendorAdapter.setShowSql(true);
+//        vendorAdapter.setGenerateDdl(true);
+//        factoryBean.setJpaVendorAdapter(vendorAdapter);
+//        Properties jpaProperties = new Properties();
+//        jpaProperties.setProperty("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
+//        factoryBean.setJpaProperties(jpaProperties);
+//        return factoryBean;
+//    }
+//
+//    @Bean
+//    public DataSource dataSource() {
+//        BasicDataSource dataSource = new BasicDataSource();
+//        dataSource.setDriverClassName(env.getRequiredProperty("jdbc.driverClassName"));
+//        dataSource.setUrl(env.getRequiredProperty("jdbc.url"));
+//        dataSource.setUsername(env.getRequiredProperty("jdbc.username"));
+//        dataSource.setPassword(env.getRequiredProperty("jdbc.password"));
+//        dataSource.setValidationQuery("select 1");
+//        return dataSource;
+//    }
+//数据库配置结束
+    //内存数据库配置开始
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource());
-        factoryBean.setPackagesToScan("com.ygccw", SystemEnum.class.getPackage().getName());
+        factoryBean.setPackagesToScan(AppConfig.class.getPackage().getName(), SystemEnum.class.getPackage().getName());
+
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabase(Database.HSQL);
         vendorAdapter.setShowSql(true);
@@ -51,6 +78,12 @@ public class TestEnvironmentConfig {
         factoryBean.setJpaVendorAdapter(vendorAdapter);
         return factoryBean;
     }
+
+    @Bean
+    public DataSource dataSource() {
+        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).build();
+    }
+//内存数据库配置结束
 
 
     @Bean

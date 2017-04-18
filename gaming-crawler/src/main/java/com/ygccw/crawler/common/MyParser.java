@@ -26,18 +26,17 @@ import java.util.regex.Pattern;
 
 /**
  * 数据标准化工具
- * 
+ *
  * @author wangyz
- * 
  */
 public class MyParser {
+    public static Map<String, Pattern> patterns = new WeakHashMap<String, Pattern>();
     private static Tidy jtidy = null;
     private static int counter = 0;
-    public static Map<String, Pattern> patterns = new WeakHashMap<String, Pattern>();
 
     /**
      * 获取tidy对象
-     * 
+     *
      * @return
      */
     public static Tidy getTidy() {
@@ -61,7 +60,7 @@ public class MyParser {
 
     /**
      * 提取第n个匹配项
-     * 
+     *
      * @param value
      * @param regexp
      * @param g
@@ -90,7 +89,7 @@ public class MyParser {
 
     /**
      * 提取所有匹配项
-     * 
+     *
      * @param value
      * @param regexp
      * @return
@@ -117,7 +116,7 @@ public class MyParser {
 
     /**
      * html标准化清理
-     * 
+     *
      * @param url
      * @param html
      * @return
@@ -144,7 +143,7 @@ public class MyParser {
 
     /**
      * url编码处理
-     * 
+     *
      * @param url
      * @return
      */
@@ -172,7 +171,7 @@ public class MyParser {
     }
 
     private static String byte2HexString(byte b) {
-        char[] hex = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+        char[] hex = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
         char[] newChar = new char[2];
         newChar[0] = hex[(b & 0xf0) >> 4];
         newChar[1] = hex[b & 0xf];
@@ -182,7 +181,7 @@ public class MyParser {
 
     /**
      * url全路径拼接
-     * 
+     *
      * @param site
      * @param part
      * @return
@@ -211,7 +210,7 @@ public class MyParser {
 
     /**
      * 根据网页类型转化html->tidyDom
-     * 
+     *
      * @param html
      * @return
      */
@@ -236,7 +235,7 @@ public class MyParser {
                 // FileOutputStream fs = new FileOutputStream(file);
                 // jtidy.pprint(tidyDom, fs);
                 // fs.close();
-                // writerData(toStringFromDoc(tidyDom), "d:\\tidy111.xml");
+//                writerData(toStringFromDoc(tidyDom), "d:\\tidy111.xml");
 
             }
         } catch (Exception e) {
@@ -292,7 +291,7 @@ public class MyParser {
 
     /**
      * xml判断
-     * 
+     *
      * @param s
      * @return
      */
@@ -302,7 +301,7 @@ public class MyParser {
 
     /**
      * html->tidyDom转化
-     * 
+     *
      * @param html
      * @return
      */

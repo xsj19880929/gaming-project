@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="gbk"?>
+<page pageType="diyiyoulist">
+    <uielements objectName="beforeSemantic">
+        <uiobject fieldName="json" nullAble="false">
+            <expression><![CDATA[$JSONFMT(html)]]></expression>
+        </uiobject>
+        <uiobject fieldName="jsonArr" nullAble="false">
+            <expression><![CDATA[$KEYVAL(json,"getRaider")]]></expression>
+        </uiobject>
+        <uiobject fieldName="offset" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"offset")+""==""?"100":$KEYVAL(task,"offset")+""]]></expression>
+        </uiobject>
+        <uiobject fieldName="fetchSize" nullAble="false">
+            <expression><![CDATA[100]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="nextTask">
+        <rows><![CDATA[$ROWSARRAY(jsonArr)]]></rows>
+        <uiobject fieldName="url" nullAble="false">
+            <expression>
+                <![CDATA["http://m.diyiyou.com/"+$KEYVAL($JSONFMT($ARRAY(jsonArr,row)),"lm")+"/"+$KEYVAL($JSONFMT($ARRAY(jsonArr,row)),"id")+".html"]]>
+            </expression>
+        </uiobject>
+        <uiobject fieldName="uuid" nullAble="false">
+            <expression><![CDATA[$MD5($KEYVAL(map,"url"))]]></expression>
+        </uiobject>
+        <uiobject fieldName="status" nullAble="false">
+            <expression><![CDATA[1]]></expression>
+        </uiobject>
+        <uiobject fieldName="createTime" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="updateTime" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoZoneType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoVideoType">
+            <expression><![CDATA[$KEYVAL(task,"infoVideoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="title" nullAble="false">
+            <expression><![CDATA[$KEYVAL($JSONFMT($ARRAY(jsonArr,row)),"title")]]></expression>
+        </uiobject>
+        <uiobject fieldName="subTitle">
+            <expression><![CDATA[$KEYVAL($JSONFMT($ARRAY(jsonArr,row)),"description")]]></expression>
+        </uiobject>
+        <uiobject fieldName="visitCount" nullAble="false">
+            <expression><![CDATA[1]]></expression>
+        </uiobject>
+        <uiobject fieldName="titleImage">
+            <expression>
+                <![CDATA["http://image.diyiyou.com/"+$KEYVAL($JSONFMT($ARRAY(jsonArr,row)),"img")]]></expression>
+        </uiobject>
+        <uiobject fieldName="zoneUuid">
+            <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>
+        </uiobject>
+        <uiobject fieldName="seoTitle" nullAble="false">
+            <expression><![CDATA[$KEYVAL($JSONFMT($ARRAY(jsonArr,row)),"title")]]></expression>
+        </uiobject>
+        <uiobject fieldName="seoKeywords" nullAble="false">
+            <expression><![CDATA[$KEYVAL($JSONFMT($ARRAY(jsonArr,row)),"keywords")]]></expression>
+        </uiobject>
+        <uiobject fieldName="seoDescription" nullAble="false">
+            <expression><![CDATA[$KEYVAL($JSONFMT($ARRAY(jsonArr,row)),"description")]]></expression>
+        </uiobject>
+        <uiobject fieldName="verify" nullAble="false">
+            <expression><![CDATA[0]]></expression>
+        </uiobject>
+        <uiobject fieldName="source" nullAble="false">
+            <expression><![CDATA["www.55djw.com"]]></expression>
+        </uiobject>
+        <uiobject fieldName="publishTime" nullAble="false">
+            <expression>
+                <![CDATA[$DATEFMT($KEYVAL($JSONFMT($ARRAY(jsonArr,row)),"addtime"),"yyyy-MM-dd HH:mm:ss")]]></expression>
+        </uiobject>
+        <uiobject fieldName="author" nullAble="false">
+            <expression><![CDATA["55电竞网"]]></expression>
+        </uiobject>
+        <uiobject fieldName="taskId">
+            <expression><![CDATA[$KEYVAL(task,"taskId")]]></expression>
+        </uiobject>
+        <uiobject fieldName="webSite" nullAble="false">
+            <expression><![CDATA["第一手游"]]></expression>
+        </uiobject>
+        <uiobject fieldName="pageType" nullAble="false">
+            <expression><![CDATA["diyiyouarticle"]]></expression>
+        </uiobject>
+        <uiobject fieldName="lastUrl">
+            <expression><![CDATA[$KEYVAL(task,"lastUrl")]]></expression>
+        </uiobject>
+        <uiobject fieldName="taskId">
+            <expression><![CDATA[$KEYVAL(task,"id")]]></expression>
+        </uiobject>
+        <uiobject fieldName="templeName" nullAble="false">
+            <expression><![CDATA["diyiyouarticle"]]></expression>
+        </uiobject>
+    </uielements>
+
+    <uielements objectName="nextTask">
+        <rows><![CDATA[$ROWSARRAY(jsonArr)==0?0:1]]></rows>
+        <uiobject fieldName="url" nullAble="false">
+            <expression>
+                <![CDATA["http://m.diyiyou.com/index.php?module=raider&method=getRaider&ajax=1&path=gl&gid=NaN&offset="+offset+"&length="+fetchSize]]></expression>
+        </uiobject>
+        <uiobject fieldName="templeName" nullAble="false">
+            <expression><![CDATA["diyiyoulist"]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoZoneType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="lastUrl">
+            <expression><![CDATA[$KEYVAL(task,"lastUrl")]]></expression>
+        </uiobject>
+        <uiobject fieldName="id">
+            <expression><![CDATA[$KEYVAL(task,"id")]]></expression>
+        </uiobject>
+        <uiobject fieldName="offset">
+            <expression><![CDATA[$ADD(offset+"",fetchSize+"")]]></expression>
+        </uiobject>
+    </uielements>
+
+</page>

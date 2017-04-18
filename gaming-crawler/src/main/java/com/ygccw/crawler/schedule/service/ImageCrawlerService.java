@@ -142,7 +142,7 @@ public class ImageCrawlerService {
         picture.setVisitCount(1);
         picture.setSeoTitle(pictureMap.get("seoTitle"));
         picture.setTags(pictureMap.get("tags"));
-        picture.setVerify(0);
+        picture.setVerify(Integer.parseInt(pictureMap.get("verify")));
         picture.setSource(pictureMap.get("source"));
         picture.setPublishTime(CalendarUtils.parse(pictureMap.get("publishTime"), "yyyy-MM-dd HH:mm:ss"));
         picture.setSeoKeywords(pictureMap.get("seoKeywords"));

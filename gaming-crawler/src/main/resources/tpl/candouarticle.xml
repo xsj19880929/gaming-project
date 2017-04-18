@@ -46,11 +46,11 @@
         </uiobject>
         <uiobject fieldName="contentTemp" nullAble="false">
             <expression>
-                <![CDATA[$REPLACESTR($REGEXP($JSOUPHTML(html,"div[class=article-txt]")==""?$JSOUPHTMLDOWNIMAGE(html,"div[class=articleBox mtop]"):$JSOUPHTMLDOWNIMAGE(html,"div[class=article-txt]"),"(.*)<p>（责任编辑"),"<p>蚕豆网LOL交流群：148788322(点击加入)</p>","")]]></expression>
+                <![CDATA[$REPLACESTR($REPLACEALLSTR($REGEXP($JSOUPHTML(html,"div[class=article-txt]")==""?$JSOUPHTMLDOWNIMAGE(html,"div[class=articleBox mtop]"):$JSOUPHTMLDOWNIMAGE(html,"div[class=article-txt]"),"(.*)<p>（责任编辑"),"<p>蚕豆网([\\u4E00-\\u9FA5]|\\w)+?交流群：\\d+?\\(点击加入\\)</p>",""),"蚕豆网","55电竞网")]]></expression>
         </uiobject>
         <uiobject fieldName="content" nullAble="false">
             <expression>
-                <![CDATA[$REPLACESTR($REGEXP($KEYVAL(map,"contentTemp"),"(</div>(.*)<h3>延伸阅读)|(</div>(.*))|((.*)<h3>延伸阅读)|(.*)"),"<div>","")]]></expression>
+                <![CDATA[$REPLACESTR($REGEXP($KEYVAL(map,"contentTemp"),"</div>(.*)<h3>延伸阅读")!=""?$REGEXP($KEYVAL(map,"contentTemp"),"</div>(.*)<h3>延伸阅读"):$REGEXP($KEYVAL(map,"contentTemp"),"(.*)<h3>延伸阅读")!=""?$REGEXP($KEYVAL(map,"contentTemp"),"(.*)<h3>延伸阅读"):$REGEXP($KEYVAL(map,"contentTemp"),"</div>(.*)")!=""?$REGEXP($KEYVAL(map,"contentTemp"),"</div>(.*)"):$REGEXP($KEYVAL(map,"contentTemp"),"(.*)"),"<div>","")]]></expression>
         </uiobject>
         <uiobject fieldName="seoTitle" nullAble="false">
             <expression>

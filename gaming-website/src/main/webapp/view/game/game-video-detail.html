@@ -31,23 +31,9 @@
                 作者：<span th:text="${info.author}">晨落</span>&nbsp;&nbsp;&nbsp;&nbsp; 评论数：<span
                     id="sourceId::此处替换为配置SourceID的语句" class="cy_cmt_count"
                     th:attr="id='sourceId::'+${currentUrl}"></span></div>
-  
+
             <div class="new_d_font" th:utext="${info.content}">
             </div>
-            <!--页码-->
-            <!--<div class="newyiiPager">-->
-            <!--<ol id="yw0" class="yiiPager">-->
-            <!--<li>共2页：</li>-->
-            <!--<li class="page hidden"><a href="">首页</a></li>-->
-            <!--<li class="previous hidden"><a href="#">上一页</a></li>-->
-            <!--<li class="page selected"><span>1</span></li>-->
-            <!--<li class="page"><a href="#">2</a></li>-->
-            <!--<li class="page"><a href="#">3</a></li>-->
-            <!--<li class="page"><a href="#">4</a></li>-->
-            <!--<li class="next"><a href="#">下一页</a></li>-->
-            <!--<li class="last"><a href="#">末页</a></li>-->
-            <!--</ol>-->
-            <!--</div>-->
             <div class="detail_tag">
                 <p class="p1">标签：<a href="#" th:each="tagTrade:${info.tagMappingWebList}"
                                     th:text="${tagTrade.name}">电竞</a></p>
@@ -122,7 +108,7 @@
 
         <div class="index_tit_two" style="height:320px;">
             <span class="text_left padding1">热门赛事</span>
-            <a href="game/" target="_blank" class="more">更多</a>
+            <a href="/game/" target="_blank" class="more">更多</a>
             <div class="game_hot">
                 <dl style="margin-top:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
                     th:if="${iterStat.index==0}">

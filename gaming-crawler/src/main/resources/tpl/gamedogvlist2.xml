@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="gbk"?>
+<page pageType="gamedogvlist2">
+    <uielements objectName="beforeSemantic">
+        <uiobject fieldName="tidyDom">
+            <expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="nextTask">
+        <rows><![CDATA[$ROWS(tidyDom,"//div[@class='vlist']/ul/li")]]></rows>
+        <uiobject fieldName="url" nullAble="false">
+            <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='vlist']/ul/li/a/@href",row)]]></expression>
+        </uiobject>
+        <uiobject fieldName="titleImage" nullAble="false">
+            <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='vlist']/ul/li/a/img/@src",row)]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoZoneType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoVideoType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoVideoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="zoneUuid" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>
+        </uiobject>
+        <uiobject fieldName="templeName" nullAble="false">
+            <expression><![CDATA["gamedogvarticle2"]]></expression>
+        </uiobject>
+        <uiobject fieldName="lastUrl">
+            <expression><![CDATA[$KEYVAL(task,"lastUrl")]]></expression>
+        </uiobject>
+        <uiobject fieldName="taskId">
+            <expression><![CDATA[$KEYVAL(task,"id")]]></expression>
+        </uiobject>
+    </uielements>
+
+    <uielements objectName="nextTask">
+        <rows><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")==""?0:1]]></rows>
+        <uiobject fieldName="url" nullAble="false">
+            <expression><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")]]></expression>
+        </uiobject>
+        <uiobject fieldName="templeName" nullAble="false">
+            <expression><![CDATA["gamedogvlist2"]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoZoneType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoVideoType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoVideoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="zoneUuid" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>
+        </uiobject>
+        <uiobject fieldName="lastUrl">
+            <expression><![CDATA[$KEYVAL(task,"lastUrl")]]></expression>
+        </uiobject>
+        <uiobject fieldName="id">
+            <expression><![CDATA[$KEYVAL(task,"id")]]></expression>
+        </uiobject>
+    </uielements>
+
+</page>

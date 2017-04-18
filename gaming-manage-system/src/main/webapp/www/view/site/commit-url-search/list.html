@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#" ui-sref="index">首页</a></li>
+        <li class="active">站点管理</li>
+    </ol>
+
+    <h2 class="page-header">提交链接</h2>
+    <div class="well form-inline">
+        <select class="form-control" ng-model="params.ifCommit"
+                name="ifCommit">
+            <option value="">提交状态</option>
+            <option value="0">已提交</option>
+            <option value="1">没提交</option>
+        </select>
+        <select class="form-control" ng-model="params.webType.name"
+                ng-options="m.name as m.label for m in webTypeList"
+                name="webType">
+            <option value="">请选择网站类型</option>
+        </select>
+        <button class="btn btn-primary" ng-click="search()">搜索</button>
+    </div>
+
+    <div class="table-responsive">
+        <div ui-grid="gridOptions" ui-grid-pagination class="grid" style="height: 500px;"></div>
+    </div>
+</div>
+

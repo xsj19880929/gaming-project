@@ -32,6 +32,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -123,13 +124,18 @@ public class InfoCrawlerService {
         if (infoSelect == null) {
             updateTask(infoMap, taskLast);
             infoService.saveOnly(info);
-            setTag(tagList, info);
+            List<Tags> tagListData = setTag(tagList, info);
+            if (!tagListData.isEmpty()) {
+                info.setContent(setContentTag(info.getContent(), tagListData, info.getInfoType().getName()));
+                infoService.update(info);
+            }
 
         }
 
     }
 
-    private void setTag(List<HashMap<String, String>> tagList, Info info) {
+    private List<Tags> setTag(List<HashMap<String, String>> tagList, Info info) {
+        List<Tags> tagsList = new ArrayList<>();
         if (tagList != null) {
             for (HashMap<String, String> tagMap : tagList) {
                 Tags tags = new Tags();
@@ -144,6 +150,7 @@ public class InfoCrawlerService {
                 } else {
                     tagsService.save(tags);
                 }
+                tagsList.add(tags);
                 TagMapping tagMapping = new TagMapping();
                 tagMapping.setCreateTime(new Date());
                 tagMapping.setUpdateTime(new Date());
@@ -158,6 +165,7 @@ public class InfoCrawlerService {
                 tagMappingService.save(tagMapping);
             }
         }
+        return tagsList;
     }
 
     private Info setInfo(HashMap<String, String> infoMap) {
@@ -188,7 +196,7 @@ public class InfoCrawlerService {
         info.setContent(infoMap.get("content"));
         info.setSeoTitle(infoMap.get("seoTitle"));
         info.setTags(infoMap.get("tags"));
-        info.setVerify(0);
+        info.setVerify(Integer.parseInt(infoMap.get("verify")));
         info.setSource(infoMap.get("source"));
         info.setPublishTime(CalendarUtils.parse(infoMap.get("publishTime"), "yyyy-MM-dd HH:mm:ss"));
         info.setAuthor(infoMap.get("author"));
@@ -213,12 +221,28 @@ public class InfoCrawlerService {
         if (infoContentAddList != null) {
             HashMap<String, String> infoMap = infoContentAddList.get(0);
             InfoContent infoContent = infoContentService.findByUuid(infoMap.get("uuid"));
-            if (infoContent != null) {
+            if (infoContent != null && !infoContent.getContent().contains(infoMap.get("content").trim())) {
                 infoContent.setContent(infoContent.getContent() + infoMap.get("content"));
                 infoContentService.update(infoContent);
             }
         }
 
+    }
+
+    private String setContentTag(String content, List<Tags> tagList, String type) {
+        String contentNew = content;
+        String urlPrefix = "";
+        if (type.equals(InfoType.news.getName())) {
+            urlPrefix = "/news/tag/";
+        } else if (type.equals(InfoType.news.getName())) {
+            urlPrefix = "/video/tag/";
+        }
+        for (Tags tags : tagList) {
+            String url = urlPrefix + tags.getId() + "_1.html";
+            String aTag = "<a href=\"" + url + "\"  target=\"_blank\">" + tags.getName() + "</a>";
+            contentNew = contentNew.replaceFirst(tags.getName(), aTag);
+        }
+        return contentNew;
     }
 
 }

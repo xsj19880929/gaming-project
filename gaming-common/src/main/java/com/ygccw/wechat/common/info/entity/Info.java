@@ -54,6 +54,44 @@ public class Info {
     private String zoneUuid;
     private String uuid;
     private String webSite;
+    private Date autoPublishTime;
+    private Integer ifAutoPublish;
+    @Transient
+    private Date startTime;
+    @Transient
+    private Date endTime;
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public Integer getIfAutoPublish() {
+        return ifAutoPublish;
+    }
+
+    public void setIfAutoPublish(Integer ifAutoPublish) {
+        this.ifAutoPublish = ifAutoPublish;
+    }
+
+    public Date getAutoPublishTime() {
+        return autoPublishTime;
+    }
+
+    public void setAutoPublishTime(Date autoPublishTime) {
+        this.autoPublishTime = autoPublishTime;
+    }
 
     public String getWebSite() {
         return webSite;

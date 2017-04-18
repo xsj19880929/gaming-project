@@ -56,7 +56,7 @@
             <expression><![CDATA[$XPATHROWS(tidyDom,"//meta[@name='description']/@content")]]></expression>
         </uiobject>
         <uiobject fieldName="verify" nullAble="false">
-            <expression><![CDATA[0]]></expression>
+            <expression><![CDATA[1]]></expression>
         </uiobject>
         <uiobject fieldName="source" nullAble="false">
             <expression><![CDATA["www.55djw.com"]]></expression>

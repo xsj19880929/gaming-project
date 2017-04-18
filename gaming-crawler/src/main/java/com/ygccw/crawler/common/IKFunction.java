@@ -238,6 +238,17 @@ public class IKFunction {
         }
     }
 
+    // 退还字符串
+    public static String replaceAllStr(Object obj, String oldChar, String newChar) {
+        try {
+            String str = obj.toString();
+            str = str.replaceAll(oldChar, newChar);
+            return str;
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     // 字符串类型转double类型
     public static double string2Double(String value) {
         if (value == null || "".equals(value)) {
@@ -590,6 +601,7 @@ public class IKFunction {
             Whitelist tags = new Whitelist();
             tags.addTags("div", "table", "tbody", "tr", "td", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
             tags.addAttributes("img", "src");
+            tags.addAttributes("p", "style");
             String content = Jsoup.clean(newHtml.html(), tags);
             Document document = Jsoup.parse(content);
             Elements elements = document.select("img");
@@ -771,7 +783,12 @@ public class IKFunction {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return "";
+
+    }
+
+    public int add(String var1, String var2) {
+        return Integer.parseInt(var1) + Integer.parseInt(var2);
 
     }
 }

@@ -65,6 +65,9 @@ public class InfoModelService {
         if (!StringUtils.hasText(info.getTitleImage())) {
             info.setTitleImage(getContentImageFirst(info.getContent()));
         }
+        if (infoModel.getAutoPublishTime() != null) {
+            info.setIfAutoPublish(1);
+        }
         infoService.save(info);
         if (infoModel.getRecommendMappingModelList() != null) {
             for (RecommendMappingModel recommendMappingModel : infoModel.getRecommendMappingModelList()) {
@@ -78,8 +81,10 @@ public class InfoModelService {
         }
 
         List<Tags> tagList = saveTags(infoModel.getTags(), info.getId(), changeTagType(info.getInfoType()), changeTagZoneType(info.getInfoZoneType()));
-        info.setContent(setContentTag(info.getContent(), tagList, info.getInfoType().getName()));
-        infoService.update(info);
+        if (!tagList.isEmpty()) {
+            info.setContent(setContentTag(info.getContent(), tagList, info.getInfoType().getName()));
+            infoService.update(info);
+        }
     }
 
     @Transactional
@@ -89,7 +94,14 @@ public class InfoModelService {
         if (!StringUtils.hasText(info.getTitleImage())) {
             info.setTitleImage(getContentImageFirst(info.getContent()));
         }
-        info.setVerify(1);
+        if (infoModel.getVerify() == 2) {
+            info.setVerify(0);
+        } else if (infoModel.getVerify() == 0) {
+            info.setVerify(1);
+        }
+        if (infoModel.getAutoPublishTime() != null) {
+            info.setIfAutoPublish(1);
+        }
         infoService.update(info);
         if (infoModel.getRecommendMappingModelList() != null) {
             saveOrUpdateRecommendMapping(infoModel.getRecommendMappingModelList());
@@ -237,7 +249,7 @@ public class InfoModelService {
         for (Tags tags : tagList) {
             String url = urlPrefix + tags.getId() + "_1.html";
             String aTag = "<a href=\"" + url + "\"  target=\"_blank\">" + tags.getName() + "</a>";
-            contentNew = contentNew.replace(tags.getName(), aTag);
+            contentNew = contentNew.replaceFirst(tags.getName(), aTag);
         }
         return contentNew;
     }

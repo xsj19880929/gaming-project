@@ -20,12 +20,20 @@ class Records {
     public List<String> values = new ArrayList<String>();
 }
 
+
 /**
  * 模板装载与测试
  */
 public class TemplateUtil {
-
     private static HashMap<String, JSONObject> extractionRules = new HashMap<String, JSONObject>();
+
+//    public static void main(String[] args) {
+//        String a = "<p>蚕豆网LOL交流群：148788322(点击加入)</p>";
+//
+//        a = a.replaceAll("<p>蚕豆网([\\u4E00-\\u9FA5]|\\w)+?交流群：\\d+?\\(点击加入\\)</p>", "11");
+//
+//        System.out.println(a);
+//    }
 
     public static JSONObject getExtractionRules(String pageType) {
         if (extractionRules == null || extractionRules.isEmpty()) {
