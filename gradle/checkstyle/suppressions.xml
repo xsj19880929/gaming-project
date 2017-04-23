@@ -24,4 +24,5 @@
     <suppress checks="MethodNameCheck" files="TemplateUtil.java"/>
     <suppress checks="NestedIfDepthCheck" files="TemplateUtil.java"/>
     <suppress checks="NestedForDepthCheck" files="TemplateUtil.java"/>
+    <suppress checks="NestedTryDepthCheck" files="BaiDuPostService.java"/>
 </suppressions>
