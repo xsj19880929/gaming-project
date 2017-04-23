@@ -9,6 +9,7 @@
 
         $scope.id = $location.search().id;
         $scope.offset = $location.search().offset;
+        $scope.verify = $location.search().verify;
         $scope.files = [];
         $scope.ue = UE.getEditor('container');
         if ($location.search().id) {
@@ -96,12 +97,14 @@
                 $http.put("/info", $scope.info).success(function () {
                     alert('更新成功');
                     $location.search('offset', $scope.offset);
+                    $location.search('verify', $scope.verify);
                     $location.path('info/');
                 });
             } else {
                 $http.post("/info", $scope.info).success(function (data) {
                     alert('保存成功');
                     $location.search('offset', $scope.offset);
+                    $location.search('verify', $scope.verify);
                     $location.path('info/');
                 });
             }

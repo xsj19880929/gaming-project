@@ -30,7 +30,7 @@ public class InfoDao {
                 .append("verify", info.getVerify())
                 .append("zoneId", info.getZoneIdList(), "zoneId", "=", "or")
                 .append("autoPublishTime", info.getAutoPublishTime(), "autoPublishTime", "<=")
-                .append("createTime", info.getStartTime(), "startCreateTime", ">")
+                .append("createTime", info.getStartTime(), "startCreateTime", ">=")
                 .append("createTime", info.getEndTime(), "endCreateTime", "<=")
                 .append("ifAutoPublish", info.getIfAutoPublish())
                 .skipEmptyFields();

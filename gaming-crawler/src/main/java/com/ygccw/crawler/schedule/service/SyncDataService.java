@@ -48,13 +48,14 @@ public class SyncDataService {
         info.setSortIfDesc(false);
         info.setInfoZoneType(infoZoneType);
         info.setVerify(0);
+        info.setIfAutoPublish(0);
         List<Info> tradeInfoList = infoService.list(info, 0, 1);
         if (tradeInfoList != null && !tradeInfoList.isEmpty()) {
             Info infoUpdate = tradeInfoList.get(0);
             infoUpdate.setVerify(1);
             infoUpdate.setPublishTime(new Date());
             infoService.update(infoUpdate);
-            logger.info("发布一条{}的{}", infoZoneType.getLabel(), infoType.getLabel());
+            logger.info("自动发布一条{}的{}", infoZoneType.getLabel(), infoType.getLabel());
         }
     }
 
@@ -70,7 +71,7 @@ public class SyncDataService {
             pictureUpdate.setVerify(1);
             pictureUpdate.setPublishTime(new Date());
             pictureService.update(pictureUpdate);
-            logger.info("发布一条{}的图集", pictureZoneType);
+            logger.info("自动发布一条{}的图集", pictureZoneType);
         }
     }
 }

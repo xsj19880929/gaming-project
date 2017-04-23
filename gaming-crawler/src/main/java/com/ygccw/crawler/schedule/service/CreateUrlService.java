@@ -1,4 +1,4 @@
-package com.ygccw.wechat.scheduler.service;
+package com.ygccw.crawler.schedule.service;
 
 import com.ygccw.wechat.common.commiturlsearch.entity.CommitUrlSearch;
 import com.ygccw.wechat.common.commiturlsearch.enums.WebType;
@@ -51,7 +51,7 @@ public class CreateUrlService {
      */
     private void createNewVideoUrl(Date lastTime) {
         Info info = new Info();
-        info.setEndTime(lastTime);
+        info.setStartTime(lastTime);
         info.setStatus(1);
         info.setVerify(1);
         int offset = 0;
@@ -82,7 +82,7 @@ public class CreateUrlService {
      */
     private void createPictureUrl(Date lastTime) {
         Picture picture = new Picture();
-        picture.setEndTime(lastTime);
+        picture.setStartTime(lastTime);
         picture.setStatus(1);
         picture.setVerify(1);
         int offset = 0;
@@ -105,7 +105,7 @@ public class CreateUrlService {
      */
     private void createMatchZoneUrl(Date lastTime) {
         MatchZone matchZone = new MatchZone();
-        matchZone.setCreateEndTime(lastTime);
+        matchZone.setCreateStartTime(lastTime);
         matchZone.setStatus(1);
         List<MatchZone> matchZoneList = matchZoneService.list(matchZone, 0, Integer.MAX_VALUE);
         for (MatchZone matchZone1 : matchZoneList) {
@@ -123,7 +123,7 @@ public class CreateUrlService {
      */
     private void createAnchorZoneUrl(Date lastTime) {
         AnchorZone anchorZone = new AnchorZone();
-        anchorZone.setCreateEndTime(lastTime);
+        anchorZone.setCreateStartTime(lastTime);
         anchorZone.setStatus(1);
         List<AnchorZone> anchorZoneList = anchorZoneService.list(anchorZone, 0, Integer.MAX_VALUE);
         for (AnchorZone anchorZone1 : anchorZoneList) {

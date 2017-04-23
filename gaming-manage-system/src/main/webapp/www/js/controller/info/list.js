@@ -6,9 +6,13 @@
         if ($location.search().offset) {
             $scope.offset = $location.search().offset;
         }
+
         $scope.fetchSize = 25;
         $scope.params = {};
         $scope.params.verify = 1;
+        if ($location.search().verify) {
+            $scope.params.verify = $location.search().verify;
+        }
         $scope.websiteData = {};
         $http.get("info/website").success(function (data) {
             $scope.websiteData = data;
@@ -34,7 +38,8 @@
             columnDefs: [
                 {
                     name: 'id',
-                    field: 'id'
+                    field: 'id',
+                    cellTemplate: '<span ng-if="row.entity.ifAutoPublish==1"><font color="red">{{row.entity.id}}</font></span><span ng-if="row.entity.ifAutoPublish!=1">{{row.entity.id}}</span>'
                 },
                 {
                     name: '标题',
@@ -53,6 +58,14 @@
                 {
                     name: '专区名称',
                     field: 'zoneName'
+                },
+                {
+                    name: '访问次数',
+                    field: 'visitCount'
+                },
+                {
+                    name: '采集网站',
+                    field: 'webSite'
                 },
                 {name: '更新时间', field: 'updateTime', type: 'date', cellFilter: 'date:"yyyy-MM-dd HH:mm:ss"'},
                 {
@@ -74,6 +87,7 @@
         $scope.updateInfo = function (id) {
             $location.search('id', id);
             $location.search('offset', $scope.offset);
+            $location.search('verify', $scope.params.verify);
             $location.path('info/update');
         };
         $scope.deleteInfo = function (id) {

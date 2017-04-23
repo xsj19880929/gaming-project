@@ -10,17 +10,17 @@
     </div>
     <div class="well">
         <ul id="myTab" class="nav nav-tabs">
-            <li class="active">
+            <li ng-class="{active:params.verify==1}">
                 <a href="javascript:void(0)" data-toggle="tab" ng-click="tab(1)">
                     已审核
                 </a>
             </li>
-            <li>
+            <li ng-class="{active:params.verify==0}">
                 <a href="javascript:void(0)" data-toggle="tab" ng-click="tab(0)">
                     待发布
                 </a>
             </li>
-            <li>
+            <li ng-class="{active:params.verify==2}">
                 <a href="javascript:void(0)" data-toggle="tab" ng-click="tab(2)">
                     待伪原创
                 </a>

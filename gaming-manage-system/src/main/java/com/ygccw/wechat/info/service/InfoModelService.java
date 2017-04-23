@@ -94,13 +94,12 @@ public class InfoModelService {
         if (!StringUtils.hasText(info.getTitleImage())) {
             info.setTitleImage(getContentImageFirst(info.getContent()));
         }
-        if (infoModel.getVerify() == 2) {
-            info.setVerify(0);
-        } else if (infoModel.getVerify() == 0) {
-            info.setVerify(1);
-        }
         if (infoModel.getAutoPublishTime() != null) {
             info.setIfAutoPublish(1);
+            info.setVerify(0);
+
+        } else {
+            info.setVerify(1);
         }
         infoService.update(info);
         if (infoModel.getRecommendMappingModelList() != null) {

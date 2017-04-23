@@ -21,7 +21,7 @@ public class AnchorZoneDao {
 
     public List<AnchorZone> list(AnchorZone anchorZone, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from AnchorZone").append("status", 1)
-                .append("createTime", anchorZone.getCreateStartTime(), "startCreateTime", ">")
+                .append("createTime", anchorZone.getCreateStartTime(), "startCreateTime", ">=")
                 .append("createTime", anchorZone.getCreateEndTime(), "endCreateTime", "<=")
                 .skipEmptyFields().append("platformId", anchorZone.getPlatformId());
         if (StringUtils.hasText(anchorZone.getName())) {

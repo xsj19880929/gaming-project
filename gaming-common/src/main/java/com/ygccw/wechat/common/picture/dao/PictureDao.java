@@ -25,7 +25,7 @@ public class PictureDao {
                 .append("zoneId", picture.getZoneId())
                 .append("pictureZoneType", picture.getPictureZoneType())
                 .append("verify", picture.getVerify())
-                .append("createTime", picture.getStartTime(), "startCreateTime", ">")
+                .append("createTime", picture.getStartTime(), "startCreateTime", ">=")
                 .append("createTime", picture.getEndTime(), "endCreateTime", "<=")
                 .skipEmptyFields();
         if (StringUtils.hasText(picture.getDescription())) {

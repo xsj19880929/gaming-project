@@ -33,7 +33,7 @@
         </uiobject>
         <uiobject fieldName="subTitle">
             <expression>
-                <![CDATA[$XPATHROWS(tidyDom,"//div[@class='article-txt']/p[2]|//div[@class='articleBox mtop']/p[1]")]]></expression>
+                <![CDATA[$REPLACESTR($XPATHROWS(tidyDom,"//div[@class='article-txt']/p[2]|//div[@class='articleBox mtop']/p[1]"),"蚕豆网","55电竞网")]]></expression>
         </uiobject>
         <uiobject fieldName="visitCount" nullAble="false">
             <expression><![CDATA[1]]></expression>
@@ -46,7 +46,7 @@
         </uiobject>
         <uiobject fieldName="contentTemp" nullAble="false">
             <expression>
-                <![CDATA[$REPLACESTR($REPLACEALLSTR($REGEXP($JSOUPHTML(html,"div[class=article-txt]")==""?$JSOUPHTMLDOWNIMAGE(html,"div[class=articleBox mtop]"):$JSOUPHTMLDOWNIMAGE(html,"div[class=article-txt]"),"(.*)<p>（责任编辑"),"<p>蚕豆网([\\u4E00-\\u9FA5]|\\w)+?交流群：\\d+?\\(点击加入\\)</p>",""),"蚕豆网","55电竞网")]]></expression>
+                <![CDATA[$REPLACESTR($REPLACEALLSTR($REGEXP($JSOUPHTML(html,"div[class=article-txt]")==""?$JSOUPHTMLDOWNIMAGE(html,"div[class=articleBox mtop]"):$JSOUPHTMLDOWNIMAGE(html,"div[class=article-txt]"),"(.*)（责任编辑"),"蚕豆网([\\u4E00-\\u9FA5]|\\w)+?交流群：\\d+?\\(点击加入\\)</p>",""),"蚕豆网","55电竞网")]]></expression>
         </uiobject>
         <uiobject fieldName="content" nullAble="false">
             <expression>
