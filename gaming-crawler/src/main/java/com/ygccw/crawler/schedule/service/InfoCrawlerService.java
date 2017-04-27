@@ -64,9 +64,10 @@ public class InfoCrawlerService {
     @Inject
     private InfoContentService infoContentService;
 
-    public void startTread(int threadNum) {
+    public void startTread(int threadNum, String type) {
         // 生成任务
-        List<CrCrawlTask> crCrawlTaskList = crCrawlTaskService.list("info");
+        List<CrCrawlTask> crCrawlTaskList = crCrawlTaskService.list(type);
+        logger.info("列表任务数量{}", LAST_TASK.size());
         LAST_TASK.clear();
         for (CrCrawlTask crCrawlTask : crCrawlTaskList) {
             try {
@@ -91,7 +92,7 @@ public class InfoCrawlerService {
     }
 
     private void startWork() {
-        while (TASK_LIST.size() > 0) {
+        while (true) {
             logger.info("剩余任务数 {} ", TASK_LIST.size());
             try {
                 JSONObject task = TASK_LIST.take();

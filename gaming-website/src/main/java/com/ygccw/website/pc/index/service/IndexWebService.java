@@ -96,6 +96,8 @@ public class IndexWebService {
     public List<Info> findNewestInfo(int number) {
         Info info = new Info();
         info.setVerify(1);
+        info.setSortIfDesc(true);
+        info.setSortName("publishTime");
         return infoService.list(info, 0, number);
     }
 
@@ -104,6 +106,8 @@ public class IndexWebService {
         info.setInfoZoneType(InfoZoneType.trade);
         info.setInfoType(InfoType.news);
         info.setVerify(1);
+        info.setSortIfDesc(true);
+        info.setSortName("publishTime");
         return infoService.list(info, 0, 5);
     }
 
@@ -112,6 +116,8 @@ public class IndexWebService {
         info.setInfoZoneType(InfoZoneType.matchZone);
         info.setInfoType(InfoType.news);
         info.setVerify(1);
+        info.setSortIfDesc(true);
+        info.setSortName("publishTime");
         return infoService.list(info, 0, 5);
     }
 
@@ -120,6 +126,8 @@ public class IndexWebService {
         info.setInfoZoneType(InfoZoneType.anchorZone);
         info.setInfoType(InfoType.news);
         info.setVerify(1);
+        info.setSortIfDesc(true);
+        info.setSortName("publishTime");
         return infoService.list(info, 0, 5);
     }
 
@@ -177,6 +185,8 @@ public class IndexWebService {
         Info info = new Info();
         info.setInfoVideoType(infoVideoType);
         info.setVerify(1);
+        info.setSortIfDesc(true);
+        info.setSortName("publishTime");
         return infoService.list(info, 0, 7);
     }
 
@@ -218,6 +228,8 @@ public class IndexWebService {
         infoRequest.setVerify(1);
         infoRequest.setTitle(keywords);
         infoRequest.setInfoType(InfoType.news);
+        infoRequest.setSortIfDesc(true);
+        infoRequest.setSortName("publishTime");
         List<Info> infoList = infoService.list(infoRequest, offset, fetchSize);
         List<InfoWeb> infoWebList = new ArrayList<>();
         for (Info info : infoList) {
@@ -257,6 +269,8 @@ public class IndexWebService {
         infoRequest.setVerify(1);
         infoRequest.setTitle(keywords);
         infoRequest.setInfoType(InfoType.video);
+        infoRequest.setSortIfDesc(true);
+        infoRequest.setSortName("publishTime");
         return infoService.list(infoRequest, offset, fetchSize);
     }
 
@@ -323,6 +337,8 @@ public class IndexWebService {
         Info info = new Info();
         info.setVerify(1);
         info.setInfoType(infoType);
+        info.setSortIfDesc(true);
+        info.setSortName("publishTime");
         return infoService.list(info, offset, fetchSize);
     }
 
@@ -345,6 +361,8 @@ public class IndexWebService {
         Info info = new Info();
         info.setVerify(1);
         info.setInfoType(infoType);
+        info.setSortIfDesc(true);
+        info.setSortName("publishTime");
         return infoService.list(info, 0, number);
     }
 

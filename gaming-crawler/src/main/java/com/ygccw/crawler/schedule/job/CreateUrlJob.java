@@ -4,6 +4,7 @@ import com.ygccw.crawler.schedule.service.CreateUrlService;
 import com.ygccw.wechat.common.crawler.entity.CrJob;
 import com.ygccw.wechat.common.crawler.service.CrJobService;
 import core.framework.scheduler.Job;
+import core.framework.util.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,9 @@ public class CreateUrlJob implements Job {
 
     @Override
     public void execute() throws Throwable {
+        StopWatch stopWatch = new StopWatch();
         CrJob crJob = crJobService.findByClassName(this.getClass().getName());
+        logger.info("{}任务开始", crJob.getJobName());
         Date lastTime = crJob.getLastTime();
         crJob.setLastTime(new Date());
         crJobService.update(crJob);
@@ -33,5 +36,6 @@ public class CreateUrlJob implements Job {
             crJob.setLastException(e.getMessage());
         }
         crJobService.update(crJob);
+        logger.info("{}任务结束,耗时{}分钟", crJob.getJobName(), stopWatch.elapsedTime() / (1000 * 60));
     }
 }

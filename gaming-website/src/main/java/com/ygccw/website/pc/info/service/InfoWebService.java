@@ -50,6 +50,8 @@ public class InfoWebService {
         infoRequest.setZoneId(zoneId);
         infoRequest.setVerify(1);
         infoRequest.setInfoType(InfoType.news);
+        infoRequest.setSortIfDesc(true);
+        infoRequest.setSortName("publishTime");
         List<Info> infoList = infoService.list(infoRequest, offset, fetchSize);
         List<InfoWeb> infoWebList = new ArrayList<>();
         for (Info info : infoList) {
@@ -108,6 +110,8 @@ public class InfoWebService {
         Info infoRequest = new Info();
         infoRequest.setInfoType(InfoType.news);
         infoRequest.setVerify(1);
+        infoRequest.setSortIfDesc(true);
+        infoRequest.setSortName("publishTime");
         return infoService.list(infoRequest, offset, fetchSize);
     }
 

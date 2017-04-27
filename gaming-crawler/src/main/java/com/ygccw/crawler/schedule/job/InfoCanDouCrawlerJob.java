@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * @author soldier
  */
-public class InfoCrawlerJob implements Job {
+public class InfoCanDouCrawlerJob implements Job {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Inject
     InfoCrawlerService infoCrawlerService;
@@ -28,7 +28,7 @@ public class InfoCrawlerJob implements Job {
         logger.info("{}任务开始", crJob.getJobName());
         Date lastTime = new Date();
         crJob.setLastTime(lastTime);
-        infoCrawlerService.startTread(crJob.getThreadNum(), "info");
+        infoCrawlerService.startTread(crJob.getThreadNum(), "infoCanDou");
         crJobService.update(crJob);
         logger.info("{}任务结束,耗时{}分钟", crJob.getJobName(), stopWatch.elapsedTime() / (1000 * 60));
     }

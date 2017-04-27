@@ -49,6 +49,8 @@ public class VideoWebService {
 
     public List<Info> videoList(Info info, int offset, int fetchSize) {
         info.setInfoType(InfoType.video);
+        info.setSortIfDesc(true);
+        info.setSortName("publishTime");
         return infoService.list(info, offset, fetchSize);
     }
 

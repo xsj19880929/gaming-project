@@ -95,6 +95,7 @@ public class CreateUrlService {
                 String url = "http://www.55djw.com/picture/" + picture1.getId() + ".html";
                 saveCommitUrl(url);
             }
+            offset = offset + fetchSize;
         } while (!pictureList.isEmpty());
     }
 
