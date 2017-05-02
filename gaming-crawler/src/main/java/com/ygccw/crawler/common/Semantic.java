@@ -90,15 +90,16 @@ public class Semantic {
                         }
                     }
                 }
-                if (!checkResult(pageType, jsonRule.getString(Constants.TPL_OBJECT_NAME), fieldRules, map) && jsonRule.getString(Constants.TPL_OBJECT_NAME).equals("nextTask") && nextTasks != null) {
+                //增量
+                if (jsonRule.getString(Constants.TPL_OBJECT_NAME).equals("nextTask") && nextTasks != null) {
                     Object lastUrl = ExpressionEvaluator.evaluate("$KEYVAL(task,\"lastUrl\")", variables);
                     if (map.get("url").toString().equals(lastUrl.toString())) {
                         checkRepeat = true;
+                        logger.info("数据重复{}", JSONObject.fromObject(map));
                     }
                     if (!checkRepeat) {
                         nextTasks.put(JSONObject.fromObject(map));
                     }
-                    continue;
                 }
                 // 验证数据完整性
                 if (!checkResult(pageType, jsonRule.getString(Constants.TPL_OBJECT_NAME), fieldRules, map) && !jumpData) {

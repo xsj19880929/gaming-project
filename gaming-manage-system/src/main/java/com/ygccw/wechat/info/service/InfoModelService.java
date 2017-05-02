@@ -67,6 +67,8 @@ public class InfoModelService {
         }
         if (infoModel.getAutoPublishTime() != null) {
             info.setIfAutoPublish(1);
+        } else {
+            info.setIfAutoPublish(0);
         }
         infoService.save(info);
         if (infoModel.getRecommendMappingModelList() != null) {
@@ -99,6 +101,7 @@ public class InfoModelService {
             info.setVerify(0);
 
         } else {
+            info.setIfAutoPublish(0);
             info.setVerify(1);
         }
         infoService.update(info);

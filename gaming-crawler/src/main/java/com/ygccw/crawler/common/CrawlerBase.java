@@ -54,6 +54,7 @@ public class CrawlerBase {
                 charset = task.getString("htmlCharset");
             }
             String html = EntityUtils.toString(httpResponse.getEntity(), charset);
+            request.abort();
             // 简易公式赋值变量对象集合
             variables.add(Variable.createVariable("html", html));
         }

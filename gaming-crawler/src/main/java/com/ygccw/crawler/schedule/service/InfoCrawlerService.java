@@ -41,6 +41,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class InfoCrawlerService {
@@ -95,12 +96,18 @@ public class InfoCrawlerService {
         while (true) {
             logger.info("剩余任务数 {} ", TASK_LIST.size());
             try {
-                JSONObject task = TASK_LIST.take();
-                logger.info("当前任务： {} ", task.toString());
-                HashMap<String, List<HashMap<String, String>>> results = crawlerBase.crawler(task, TASK_LIST);
-                logger.info("解析数据:" + JSONBinder.toJSON(results));
-                if (!results.isEmpty()) {
-                    mergeData(results, LAST_TASK);
+                JSONObject task = TASK_LIST.poll(50, TimeUnit.SECONDS);//没有数据等待最长50秒
+                if (task != null) {
+                    logger.info("当前任务： {} ", task.toString());
+                    HashMap<String, List<HashMap<String, String>>> results = crawlerBase.crawler(task, TASK_LIST);
+                    logger.info("解析数据:" + JSONBinder.toJSON(results));
+                    if (!results.isEmpty()) {
+                        mergeData(results, LAST_TASK);
+                    }
+                }
+                if (TASK_LIST.size() == 0) {
+                    logger.info("========{}任务已经跑完了", Thread.currentThread().getName());
+                    break;
                 }
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
@@ -204,6 +211,7 @@ public class InfoCrawlerService {
         info.setSeoKeywords(infoMap.get("seoKeywords"));
         info.setSeoDescription(infoMap.get("seoDescription"));
         info.setWebSite(infoMap.get("webSite"));
+        info.setIfAutoPublish(0);
         return info;
     }
 
@@ -245,5 +253,6 @@ public class InfoCrawlerService {
         }
         return contentNew;
     }
+
 
 }
