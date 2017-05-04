@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -81,15 +83,15 @@ public class InfoController {
     @RequireSession
     @RequestMapping(value = "info/batchVerify", method = RequestMethod.POST)
     @ResponseBody
-    public void batchVerify(@RequestBody InfoModel infoModel) {
-        infoModelService.batchVerify(infoModel);
+    public void batchVerify(@Valid @RequestBody List<Long> ids) {
+        infoModelService.batchVerify(ids);
     }
 
     @RequireSession
-    @RequestMapping(value = "info/deleteVerify", method = RequestMethod.POST)
+    @RequestMapping(value = "info/batchDelete", method = RequestMethod.POST)
     @ResponseBody
-    public void deleteVerify(@RequestBody InfoModel infoModel) {
-        infoModelService.batchDelete(infoModel);
+    public void deleteVerify(@Valid @RequestBody List<Long> ids) {
+        infoModelService.batchDelete(ids);
     }
 
 

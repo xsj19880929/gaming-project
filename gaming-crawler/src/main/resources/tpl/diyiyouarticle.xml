@@ -42,17 +42,21 @@
         <uiobject fieldName="zoneUuid">
             <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>
         </uiobject>
+        <!--<uiobject fieldName="content" nullAble="false">-->
+        <!--<expression>-->
+        <!--<![CDATA[$REPLACESTR($JSOUPHTMLDOWNIMAGE(html,"div[id=logPanel2]"),"第一手游网","55电竞网")]]></expression>-->
+        <!--</uiobject>-->
         <uiobject fieldName="contentTemp" nullAble="false">
             <expression>
                 <![CDATA[$REPLACESTR($JSOUPHTMLDOWNIMAGE(html,"div[id=logPanel]"),"第一手游网","55电竞网")]]></expression>
         </uiobject>
         <uiobject fieldName="contentTemp2" nullAble="false">
             <expression>
-                <![CDATA[$REGEXP($KEYVAL(map,"contentTemp")+"","(.*)<table")==""?$KEYVAL(map,"contentTemp")+"":$REGEXP($KEYVAL(map,"contentTemp")+"","(.*)<table")]]></expression>
+                <![CDATA[$REGEXP($KEYVAL(map,"contentTemp")+"","</table>(.*)")==""?$KEYVAL(map,"contentTemp")+"":$REGEXP($KEYVAL(map,"contentTemp")+"","</table>(.*)")]]></expression>
         </uiobject>
         <uiobject fieldName="content" nullAble="false">
             <expression>
-                <![CDATA[$REGEXP($KEYVAL(map,"contentTemp2")+"","</table>(.*)")==""?$KEYVAL(map,"contentTemp2")+"":$REGEXP($KEYVAL(map,"contentTemp2")+"","</table>(.*)")]]></expression>
+                <![CDATA[$REPLACESTR($REGEXP($KEYVAL(map,"contentTemp2")+"","(.*)<table")==""?$KEYVAL(map,"contentTemp2")+"":$REGEXP($KEYVAL(map,"contentTemp2")+"","(.*)<table"),"</div> 点击查看更多+","")]]></expression>
         </uiobject>
         <uiobject fieldName="seoTitle" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"seoTitle")]]></expression>

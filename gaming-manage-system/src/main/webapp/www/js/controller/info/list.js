@@ -35,7 +35,6 @@
             paginationPageSize: $scope.fetchSize,
             useExternalPagination: true,
             enableColumnResizing: true,
-            multiSelect: true,
             columnDefs: [
                 {
                     name: 'id',
@@ -88,11 +87,13 @@
             $scope.selectedIDs = [];
             $scope.info = {}
             var rows = $scope.gridApi.selection.getSelectedRows();
-            for (var i = 0; i < rows.length; i++) {
-                $scope.selectedIDs.push(rows.id)
+            if (rows.length == 0) {
+                $window.alert("请选择操作条目");
             }
-            $scope.info.ids = selectedIDs;
-            $http.post("/info/batchVerify", $scope.info).success(function (data) {
+            for (var i = 0; i < rows.length; i++) {
+                $scope.selectedIDs.push(rows[i].id)
+            }
+            $http.post("/info/batchVerify", $scope.selectedIDs).success(function (data) {
                 loadData($scope.offset, $scope.fetchSize);
             });
         };
@@ -101,11 +102,13 @@
             $scope.selectedIDs = [];
             $scope.info = {}
             var rows = $scope.gridApi.selection.getSelectedRows();
-            for (var i = 0; i < rows.length; i++) {
-                $scope.selectedIDs.push(rows.id)
+            if (rows.length == 0) {
+                $window.alert("请选择操作条目");
             }
-            $scope.info.ids = selectedIDs;
-            $http.post("/info/batchDelete", $scope.info).success(function (data) {
+            for (var i = 0; i < rows.length; i++) {
+                $scope.selectedIDs.push(rows[i].id)
+            }
+            $http.post("/info/batchDelete", $scope.selectedIDs).success(function (data) {
                 loadData($scope.offset, $scope.fetchSize);
             });
         };

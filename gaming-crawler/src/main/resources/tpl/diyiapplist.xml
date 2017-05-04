@@ -4,6 +4,9 @@
         <uiobject fieldName="tidyDom">
             <expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
         </uiobject>
+        <uiobject fieldName="currentPage" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"currentPage")+""==""?"1":$KEYVAL(task,"currentPage")+""]]></expression>
+        </uiobject>
     </uielements>
     <uielements objectName="nextTask">
         <rows><![CDATA[$ROWS(tidyDom,"//div[@class='linet']/ul/li/div/a")]]></rows>
@@ -32,7 +35,7 @@
     </uielements>
 
     <uielements objectName="nextTask">
-        <rows><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")==""?0:1]]></rows>
+        <rows><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")==""?0:$ADD(currentPage+"",0+"")<3?1:0]]></rows>
         <uiobject fieldName="url" nullAble="false">
             <expression><![CDATA[$XPATHROWS(tidyDom,"//a[(text()='下一页')]/@href")]]></expression>
         </uiobject>
@@ -50,6 +53,9 @@
         </uiobject>
         <uiobject fieldName="id">
             <expression><![CDATA[$KEYVAL(task,"id")]]></expression>
+        </uiobject>
+        <uiobject fieldName="currentPage">
+            <expression><![CDATA[$ADD(currentPage+"",1+"")]]></expression>
         </uiobject>
     </uielements>
 

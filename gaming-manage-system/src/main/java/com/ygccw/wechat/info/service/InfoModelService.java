@@ -33,6 +33,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -258,24 +259,26 @@ public class InfoModelService {
 
     /**
      * 批量审批
-     * @param infoModel
+     *
+     * @param
      */
     @Transactional
-    public void batchVerify(InfoModel infoModel) {
-        List<Long> ids = infoModel.getIds();
+    public void batchVerify(List<Long> ids) {
         for (Long id : ids) {
             Info info = infoService.findById(id);
             info.setVerify(1);
+            info.setPublishTime(new Date());
             infoService.update(info);
         }
     }
+
     /**
      * 批量删除
-     * @param infoModel
+     *
+     * @param
      */
     @Transactional
-    public void batchDelete(InfoModel infoModel) {
-        List<Long> ids = infoModel.getIds();
+    public void batchDelete(List<Long> ids) {
         for (Long id : ids) {
             infoService.deleteStatus(id);
         }
