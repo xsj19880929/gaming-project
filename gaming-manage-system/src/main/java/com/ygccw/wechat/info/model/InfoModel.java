@@ -9,8 +9,17 @@ import java.util.List;
  * @author soldier
  */
 public class InfoModel extends Info {
+    private List<Long> ids;
     private List<RecommendMappingModel> recommendMappingModelList;
     private String zoneName;
+
+    public List<Long> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Long> ids) {
+        this.ids = ids;
+    }
 
     public String getZoneName() {
         return zoneName;

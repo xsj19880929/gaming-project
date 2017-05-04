@@ -78,5 +78,19 @@ public class InfoController {
         return map;
     }
 
+    @RequireSession
+    @RequestMapping(value = "info/batchVerify", method = RequestMethod.POST)
+    @ResponseBody
+    public void batchVerify(@RequestBody InfoModel infoModel) {
+        infoModelService.batchVerify(infoModel);
+    }
+
+    @RequireSession
+    @RequestMapping(value = "info/deleteVerify", method = RequestMethod.POST)
+    @ResponseBody
+    public void deleteVerify(@RequestBody InfoModel infoModel) {
+        infoModelService.batchDelete(infoModel);
+    }
+
 
 }

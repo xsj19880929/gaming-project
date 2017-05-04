@@ -35,6 +35,7 @@
             paginationPageSize: $scope.fetchSize,
             useExternalPagination: true,
             enableColumnResizing: true,
+            multiSelect: true,
             columnDefs: [
                 {
                     name: 'id',
@@ -81,6 +82,32 @@
                     loadData((page - 1) * fetchSize, fetchSize);
                 });
             }
+        };
+
+        $scope.batchVerify = function () {
+            $scope.selectedIDs = [];
+            $scope.info = {}
+            var rows = $scope.gridApi.selection.getSelectedRows();
+            for (var i = 0; i < rows.length; i++) {
+                $scope.selectedIDs.push(rows.id)
+            }
+            $scope.info.ids = selectedIDs;
+            $http.post("/info/batchVerify", $scope.info).success(function (data) {
+                loadData($scope.offset, $scope.fetchSize);
+            });
+        };
+
+        $scope.batchDelete = function () {
+            $scope.selectedIDs = [];
+            $scope.info = {}
+            var rows = $scope.gridApi.selection.getSelectedRows();
+            for (var i = 0; i < rows.length; i++) {
+                $scope.selectedIDs.push(rows.id)
+            }
+            $scope.info.ids = selectedIDs;
+            $http.post("/info/batchDelete", $scope.info).success(function (data) {
+                loadData($scope.offset, $scope.fetchSize);
+            });
         };
 
 

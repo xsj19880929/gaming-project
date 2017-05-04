@@ -256,4 +256,29 @@ public class InfoModelService {
         return contentNew;
     }
 
+    /**
+     * 批量审批
+     * @param infoModel
+     */
+    @Transactional
+    public void batchVerify(InfoModel infoModel) {
+        List<Long> ids = infoModel.getIds();
+        for (Long id : ids) {
+            Info info = infoService.findById(id);
+            info.setVerify(1);
+            infoService.update(info);
+        }
+    }
+    /**
+     * 批量删除
+     * @param infoModel
+     */
+    @Transactional
+    public void batchDelete(InfoModel infoModel) {
+        List<Long> ids = infoModel.getIds();
+        for (Long id : ids) {
+            infoService.deleteStatus(id);
+        }
+    }
+
 }
