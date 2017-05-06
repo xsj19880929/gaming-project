@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
     <title>电竞赛事游戏视频_55电竞游戏网</title>
     <meta name="keywords" content="网游视频资讯,游戏视频,游戏视频,原创视频,英雄联盟视频,55游戏视频"/>
     <meta name="description"
@@ -18,7 +18,7 @@
 
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="/">电竞首页</a>&gt;<a href="/video/">视频列表</a>&gt;<em
+    <div class="position"><a th:href="">电竞首页</a>&gt;<a th:href="/video/">视频列表</a>&gt;<em
             th:if="${#strings.startsWith(videoList.pageName,'/video_new')}">最新视频</em><em
             th:if="${#strings.startsWith(videoList.pageName,'/video_top')}">最热视频</em></div>
     <!--赛事筛选-->
@@ -83,10 +83,10 @@
         <div class="tab_two">
             <ul>
                 <li th:classappend="${#strings.startsWith(videoList.pageName,'/video_new')}?'hover'"><a
-                        href="/video_new/all/all/0_1.html"><span>最新</span></a></li>
+                        th:href="/video_new/all/all/0_1.html"><span>最新</span></a></li>
                 <li th:classappend="${#strings.startsWith(videoList.pageName,'/video_top')}?'hover'">
                     <a
-                            href="/video_top/all/all/0_1.html"><span>最热</span></a></li>
+                            th:href="/video_top/all/all/0_1.html"><span>最热</span></a></li>
             </ul>
         </div>
         <div id="con_one_1" style="display:block">

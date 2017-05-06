@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
     <title th:text="${anchorZone.seoTitle}+'_'+${siteName}">标题</title>
     <meta name="keywords" content="关键字" th:attr="content=${anchorZone.seoKeywords}"/>
     <meta name="description"
@@ -50,8 +50,8 @@
         <div class="zhubo_zixun02" th:unless="${#lists.isEmpty(anchorNewsList)}">
             <dl>
                 <dt>主播资讯</dt>
-                <dd><a href="/anchor/" th:href="/anchor/news/${anchorZone.id}/" target="_blank">更多<img
-                        src="/static/img/more.png" style="margin-left:4px;"
+                <dd><a th:href="/anchor/" th:href="/anchor/news/${anchorZone.id}/" target="_blank">更多<img
+                        th:src="/static/img/more.png" style="margin-left:4px;"
                         th:alt="${anchorZone.name}"
                         th:title="${anchorZone.name}"/></a>
                 </dd>
@@ -64,10 +64,10 @@
                     <h1 th:text="${news.title}">lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
                 </a>
                     <dl>
-                        <dt><img src="/static/img/time.png" th:alt="${news.title}"
+                        <dt><img th:src="/static/img/time.png" th:alt="${news.title}"
                                  th:title="${news.title}"/> <span
                                 th:text="${#calendars.format(news.publishTime, 'MM-dd HH:mm')}">10-20 10:35</span></dt>
-                        <dd><img src="/static/img/bq.jpg" th:alt="${news.title}"
+                        <dd><img th:src="/static/img/bq.jpg" th:alt="${news.title}"
                                  th:title="${news.title}"/>&nbsp;<a href="#"
                                                                     th:each="tagTrade:${news.tagMappingWebList}"
                                                                     th:text="${tagTrade.name}">电竞</a></dd>
@@ -83,8 +83,8 @@
         <div class="zhubo_zixun02" th:unless="${#lists.isEmpty(anchorVideoList)}">
             <dl>
                 <dt>主播视频</dt>
-                <dd><a href="/video/" th:href="/anchor/video/${anchorZone.id}/" target="_blank">更多<img
-                        src="/static/img/more.png" th:alt="${anchorZone.name}"
+                <dd><a th:href="/video/" th:href="/anchor/video/${anchorZone.id}/" target="_blank">更多<img
+                        th:src="/static/img/more.png" th:alt="${anchorZone.name}"
                         th:title="${anchorZone.name}"/></a></dd>
             </dl>
             <div class="index_video_right right_video zhubo_video01">
@@ -92,7 +92,7 @@
                     <li th:each="video,iterStat:${anchorVideoList}"><a
                             href="#" class="img" th:href="/video/${video.id}.html"
                             th:title="${video.title}"> <img
-                            src="/static/temp/temp03.jpg"
+                            th:src="/static/temp/temp03.jpg"
                             th:img-src="/image/200x118/${video.titleImage}" th:alt="${video.title}"
                             th:title="${video.title}"/>
                         <p class="p1"><span></span></p>
@@ -106,7 +106,7 @@
         <!--精选美图 -->
         <div class="about_pic clearfix" style="clear:both;" th:unless="${#lists.isEmpty(anchorPictureList)}">
             <div class="index_tit_two"><span class="text_left padding1" style="margin-top:20px;">精选美图</span><a
-                    href="/picture/" target="_blank"
+                    th:href="/picture/" target="_blank"
                     class="more"
                     style="margin-top:10px;">更多</a>
             </div>
@@ -163,13 +163,13 @@
 
         </div>
         <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor/" target="_blank"
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a th:href="/anchor/" target="_blank"
                                                                               class="more vider_more">更多</a>
             </div>
             <ul class="hot_zhubo">
                 <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}/"
                                                                  th:title="${anchorZone.name}">
-                    <p class="p1"><img src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
+                    <p class="p1"><img th:src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
                                        th:title="${anchorZone.name}"/></p>
                     <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"
                                        th:alt="${anchorZone.name}"
@@ -181,7 +181,7 @@
 
         </div>
         <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="/news/" target="_blank"
+            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a th:href="/news/" target="_blank"
                                                                               class="more vider_more">更多</a>
             </div>
             <ul class="hot_zixun">

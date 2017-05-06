@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script type="text/javascript" src="/static/js/wcg.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
+    <script type="text/javascript" th:src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
     <title th:text="${siteName}+'|战队列表_'+${matchZone.name}+'赛事数据中心'">标题</title>
     <meta name="keywords" content="关键字"
           th:attr="content=${matchZone.name}+','+${matchZone.name}+'赛事,'+${matchZone.name}+'战队,星竞界数据中心'"/>
@@ -19,7 +19,7 @@
 <!--线上的top内容,这个仅放截图-->
 <div th:replace="/view/game/game-head.html::top('team',${matchZone})"></div>
 <!--面包屑-->
-<div class="game_position"><a href="/">电竞首页</a>&gt;<a
+<div class="game_position"><a th:href="/">电竞首页</a>&gt;<a
         th:href="/game/${matchZone.id}/" th:text="${matchZone.name}">英雄联盟电竞专区</a>&gt;<em>参赛战队</em></div>
 
 

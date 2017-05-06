@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="static/css/wcg.css"/>
-    <script type="text/javascript" src="static/js/jquery.js"></script>
-    <script type="text/javascript" src="static/js/wcg.js"></script>
-    <script type="text/javascript" src="static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="static/css/wcg.css"/>
+    <script type="text/javascript" th:src="static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="static/js/wcg.js"></script>
+    <script type="text/javascript" th:src="static/js/jquery.SuperSlide.2.1.1.js"></script>
     <title>55电竞游戏网_电竞赛事综合门户网站_移动电竞游戏网</title>
     <meta name="keywords" content="55电竞游戏网,电竞,电子竞技,游戏,电竞游戏,电竞资讯,电竞赛事,电竞攻略,电竞战队,电竞人物"/>
     <meta name="description"
@@ -113,7 +113,7 @@
         <div class="index_con">
             <ul>
                 <li class="clearfix" th:each="info,iterStat:${infoAllList}">
-                    <a target="_blank" class="a1" href="/news/" th:text="${'【'+info.infoType.label+'】'}"
+                    <a target="_blank" class="a1" th:href="/news/" th:text="${'【'+info.infoType.label+'】'}"
                        th:title="${info.infoType.label}">【新闻】</a>
                     <a target="_blank" class="a2" href="/xinwen/news308826.html" th:href="/news/${info.id}.html"
                        th:title="${info.title}" th:text="${info.title}">lol10元抽奖活动网址 2月黑龙瞎等你来拿</a>
@@ -179,7 +179,7 @@
                         </div>
                     </li>
                 </ul>
-                <p class="add_more"><a href="/news/" target="_blank">查看更多</a></p>
+                <p class="add_more"><a th:href="/news/" target="_blank">查看更多</a></p>
             </div>
 
             <div class="tab_deatil" id="con_one_2">
@@ -194,7 +194,7 @@
                             <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
                                              th:title="${info.title}" target="_blank">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a>
                             </p>
-                            <p class="p2"><a href="/news_trade_1.html" th:text="${info.infoZoneType.label}"
+                            <p class="p2"><a th:href="/news_trade_1.html" th:text="${info.infoZoneType.label}"
                                              target="_blank">行业新闻</a><em
                                     th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
                                 10:35</em>
@@ -204,18 +204,19 @@
                         </div>
                     </li>
                 </ul>
-                <p class="add_more"><a href="/news_trade_1.html" target="_blank">查看更多</a></p>
+                <p class="add_more"><a th:href="/news_trade_1.html" target="_blank">查看更多</a></p>
             </div>
             <div class="tab_deatil" id="con_one_3">
                 <ul>
                     <li th:each="info:${infoMatchZoneList}" th:if="${info!=null}">
-                        <div class="d1"><a href="#"><img th:img-src="/image/204x108${info.titleImage}"
-                                                         th:alt="${info.title}" th:title="${info.title}"/></a>
+                        <div class="d1"><a href="#" th:href="/news/${info.id}.html"><img
+                                th:img-src="/image/204x108${info.titleImage}"
+                                th:alt="${info.title}" th:title="${info.title}"/></a>
                         </div>
                         <div class="d2">
                             <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
                                              th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                            <p class="p2"><a href="/news_match_1.html" th:text="${info.infoZoneType.label}"
+                            <p class="p2"><a th:href="/news_match_1.html" th:text="${info.infoZoneType.label}"
                                              th:title="${info.title}" target="_blank">行业新闻</a><em
                                     th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
                                 10:35</em>
@@ -225,7 +226,7 @@
                         </div>
                     </li>
                 </ul>
-                <p class="add_more"><a href="/news_match_1.html" target="_blank">查看更多</a></p>
+                <p class="add_more"><a th:href="/news_match_1.html" target="_blank">查看更多</a></p>
             </div>
 
             <div class="tab_deatil" id="con_one_4">
@@ -240,7 +241,7 @@
                             <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
                                              th:title="${info.title}" target="_blank">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a>
                             </p>
-                            <p class="p2"><a href="/news_trade_1.html" th:text="${info.infoZoneType.label}"
+                            <p class="p2"><a th:href="/news_trade_1.html" th:text="${info.infoZoneType.label}"
                                              target="_blank">行业新闻</a><em
                                     th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
                                 10:35</em>
@@ -250,7 +251,7 @@
                         </div>
                     </li>
                 </ul>
-                <p class="add_more"><a href="/news_anchor_1.html" target="_blank">查看更多</a></p>
+                <p class="add_more"><a th:href="/news_anchor_1.html" target="_blank">查看更多</a></p>
             </div>
         </div>
     </div>
@@ -310,7 +311,7 @@
         <div class="index_zhubo">
             <div class="index_tit_two">
                 <span class="text_right">电竞主播推荐</span>
-                <a href="/anchor/" target="_blank" class="more">更多</a>
+                <a th:href="/anchor/" target="_blank" class="more">更多</a>
             </div>
             <ul class="zhubo_list">
                 <li th:each="anchorZone:${anchorZoneList}">
@@ -341,7 +342,7 @@
                                                                                th:title="${matchZone.name}"
                                                                                target="_blank">炉石传说</a>|</span>
         </p>
-        <a href="/video_new/matchVideo/all/0_1.html" class="more" target="_blank">更多</a>
+        <a th:href="/video_new/matchVideo/all/0_1.html" class="more" target="_blank">更多</a>
     </div>
     <div class="index_video clearfix">
         <p class="index_video_left"><a href="#" th:each="info,iterStat:${infoMatchZoneVideoList}"
@@ -377,7 +378,7 @@
                                                                                  th:title="${anchorZone.name}"
                                                                                  target="_blank">炉石传说</a>|</span>
         </p>
-        <a href="/video_new/anchorVideo/all/0_1.html" class="more" target="_blank">更多</a>
+        <a th:href="/video_new/anchorVideo/all/0_1.html" class="more" target="_blank">更多</a>
     </div>
     <div class="index_video clearfix">
         <p class="index_video_left"><a href="#" th:each="info,iterStat:${infoAnchorZoneVideoList}"
@@ -405,7 +406,7 @@
 <div class="general game_user clearfix" th:unless="${#lists.isEmpty(infoPlayerVideoInfoList)}">
     <div class="index_tit_two title">
         <span class="text_left">玩家游戏直播</span>
-        <a href="/video_new/playerVideo/all/0_1.html" class="more" target="_blank">更多</a>
+        <a th:href="/video_new/playerVideo/all/0_1.html" class="more" target="_blank">更多</a>
     </div>
     <div class="index_video_right game_user_con">
         <ul>
@@ -447,7 +448,7 @@
 <div class="general index_pic clearfix">
     <div class="index_tit_two title">
         <span class="text_left">电竞美图</span>
-        <a href="/picture/" class="more" target="_blank">更多</a>
+        <a th:href="/picture/" class="more" target="_blank">更多</a>
     </div>
     <div class="index_pic_con">
         <ul class="ul1">

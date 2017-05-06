@@ -7,8 +7,8 @@
     <div class="game_top">
         <div class="game_poster">
             <div class="djw_top_general_o">
-                <div class="djw_top_left"><a href="/">55电竞游戏网</a><a
-                        href="/sitemap.html" class="top_menu" target="_blank">全站导航</a><a
+                <div class="djw_top_left"><a th:href="/">55电竞游戏网</a><a
+                        th:href="/sitemap.html" class="top_menu" target="_blank">全站导航</a><a
                         href="javascript:void(0)" class="top_phone">手机版</a>
                 </div>
                 <div class="djw_top_right">
@@ -23,27 +23,27 @@
             <ul class="clearfix" style="">
                 <li th:classappend="${selectedMenuName}=='index'?'change'"><a href="#"
                                                                               th:href="/game/${matchZone.id}/"><span><img
-                        src="/static/img/game/game_home.png" th:alt="${matchZone.name}"
+                        th:src="/static/img/game/game_home.png" th:alt="${matchZone.name}"
                         th:title="${matchZone.name}"/></span>
                     <h1 th:text="${matchZone.name}+'官网'">电竞专区</h1></a></li>
                 <li th:classappend="${selectedMenuName}=='news'?'change'"><a href="#"
                                                                              th:href="/game/news/${matchZone.id}/"><span><img
-                        src="/static/img/game/game_data.png" th:alt="${matchZone.name}"
+                        th:src="/static/img/game/game_data.png" th:alt="${matchZone.name}"
                         th:title="${matchZone.name}"/></span>赛事资讯</a></li>
                 <li th:classappend="${selectedMenuName}=='video'?'change'"><a href="#"
                                                                               th:href="/game/video/${matchZone.id}/"><span><img
-                        src="/static/img/game/game_video.png" th:alt="${matchZone.name}" th:title="${matchZone.name}"/></span>精彩视频</a>
+                        th:src="/static/img/game/game_video.png" th:alt="${matchZone.name}" th:title="${matchZone.name}"/></span>精彩视频</a>
                 </li>
                 <li th:classappend="${selectedMenuName}=='team'?'change'"><a
                         th:href="/game/team/${matchZone.id}/"><span><img
-                        src="/static/img/game/game_team.png" th:alt="${matchZone.name}"
+                        th:src="/static/img/game/game_team.png" th:alt="${matchZone.name}"
                         th:title="${matchZone.name}"/></span>参赛战队</a></li>
                 <li th:classappend="${selectedMenuName}=='picture'?'change'"><a href="#"
                                                                                 th:href="/game/picture/${matchZone.id}/"><span><img
-                        src="/static/img/game/game_pic.png" th:alt="${matchZone.name}"
+                        th:src="/static/img/game/game_pic.png" th:alt="${matchZone.name}"
                         th:title="${matchZone.name}"/></span>赛事图锦</a></li>
-                <li th:classappend="${selectedMenuName}=='website'?'change'"><a href="/"><span><img
-                        src="/static/img/game/game_over.png" th:alt="${matchZone.name}"
+                <li th:classappend="${selectedMenuName}=='website'?'change'"><a th:href="/"><span><img
+                        th:src="/static/img/game/game_over.png" th:alt="${matchZone.name}"
                         th:title="${matchZone.name}"/></span>电竞首页</a></li>
             </ul>
         </div>

@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
     <title>电竞美图_游戏图片_美女图片_COS图片_55电竞游戏网</title>
     <meta name="keywords" content="游戏图片,美女图片,COS图片,美女主播图片,游戏美女图片"/>
     <meta name="description"
@@ -17,7 +17,7 @@
 <div th:replace="/head.html::top('picture')"></div>
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="/">电竞首页</a>&gt;<em>竞技美图</em></div>
+    <div class="position"><a th:href="/">电竞首页</a>&gt;<em>竞技美图</em></div>
     <!--赛事筛选-->
     <div class="list_choose">
         <div class="list_choose_con">

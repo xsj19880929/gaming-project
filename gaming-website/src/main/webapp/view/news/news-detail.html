@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
     <script type="text/javascript" src="/static/js/comment.js"></script>
     <title th:text="${info.seoTitle}+'_'+${siteName}">标题</title>
     <meta name="keywords" content="关键字" th:attr="content=${info.seoKeywords}"/>
@@ -18,10 +18,10 @@
 <div th:replace="/head.html::top('news')"></div>
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="#">电竞首页</a>&gt;<a href="/news/">全部资讯</a>&gt;<a
-            th:if="${info.infoZoneType.name}=='trade'" href="/news_trade_1.html">行业新闻</a><a
-            th:if="${info.infoZoneType.name}=='matchZone'" href="/news_game_1.html">赛事新闻</a><a
-            th:if="${info.infoZoneType.name}=='anchorZone'" href="/news_anchor_1.html">主播新闻</a>&gt;<em
+    <div class="position"><a th:href="">电竞首页</a>&gt;<a th:href="/news/">全部资讯</a>&gt;<a
+            th:if="${info.infoZoneType.name}=='trade'" th:href="/news_trade_1.html">行业新闻</a><a
+            th:if="${info.infoZoneType.name}=='matchZone'" th:href="/news_game_1.html">赛事新闻</a><a
+            th:if="${info.infoZoneType.name}=='anchorZone'" th:href="/news_anchor_1.html">主播新闻</a>&gt;<em
             th:text="${info.title}">正文</em></div>
     <!--资讯详情,左边-->
     <div class="zixun_left">
@@ -83,7 +83,7 @@
         </div>
         <!--精选美图 -->
         <div class="about_pic clearfix">
-            <div class="index_tit_two"><span class="text_left">精选美图</span><a href="/picture/" target="_blank"
+            <div class="index_tit_two"><span class="text_left">精选美图</span><a th:href="/picture/" target="_blank"
                                                                              class="more">更多</a></div>
             <ul>
                 <li th:each="picture:${pictureTopList}">
@@ -102,7 +102,7 @@
     <div class="zixun_right">
         <!--精选视频-->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">精选视频</span> <a href="/video/" target="_blank"
+            <div class="index_tit_two"><span class="text_left">精选视频</span> <a th:href="/video/" target="_blank"
                                                                               class="more">更多</a></div>
             <div class="index_video_right game_user_con small">
                 <ul>
@@ -119,7 +119,7 @@
         </div>
         <!--热门主播-->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor/" target="_blank"
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a th:href="/anchor/" target="_blank"
                                                                               class="more">更多</a>
             </div>
             <ul class="hot_zhubo">
@@ -136,7 +136,7 @@
         </div>
         <!--热门资讯 -->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a href="/news/" target="_blank"
+            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a th:href="/news/" target="_blank"
                                                                               class="more">更多</a></div>
             <ul class="hot_zixun">
                 <li th:each="news:${newsTopList}"><a href="#" th:text="${news.title}" th:title="${news.title}"
@@ -145,7 +145,7 @@
         </div>
         <!--最新资讯 -->
         <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">最新资讯</span> <a href="/news/" target="_blank"
+            <div class="index_tit_two"><span class="text_left">最新资讯</span> <a th:href="/news/" target="_blank"
                                                                               class="more">更多</a></div>
             <ul class="hot_zixun">
                 <li th:each="news:${newsNewestList}"><a href="#" th:text="${news.title}" th:title="${news.title}"

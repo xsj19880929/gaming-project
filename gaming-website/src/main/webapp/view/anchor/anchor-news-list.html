@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
     <title th:text="${anchorZone.name}+'资讯_'+${anchorZone.name}+'_'+${siteName}">标题</title>
     <meta name="keywords" content="关键字" th:attr="content=${anchorZone.name}+'新闻资讯,'+${anchorZone.name}"/>
     <meta name="description"
@@ -18,7 +18,7 @@
 <div th:replace="/view/anchor/anchor-head.html::top(${anchorZone})"></div>
 <div class="home_page">
     <div class="home_page_left">
-        <div class="position" style="margin-left:22px;"><a href="/">电竞首页</a>&gt;<a
+        <div class="position" style="margin-left:22px;"><a th:href="/">电竞首页</a>&gt;<a
                 th:href="/anchor/${anchorZone.id}/" th:text="${anchorZone.name}">英雄联盟电竞专区</a>&gt;<em>赛事资讯</em></div>
         <div style="margin-left:10px;" th:replace="/view/anchor/anchor-bar.html::bar('news',${anchorZone.id})"></div>
         <div class="zhubo_zixun02">
@@ -32,10 +32,10 @@
                     <h1 th:text="${news.title}">lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
                 </a>
                     <dl>
-                        <dt><img src="/static/img/time.png" th:alt="${news.title}" th:title="${news.title}"/> <span
+                        <dt><img th:src="/static/img/time.png" th:alt="${news.title}" th:title="${news.title}"/> <span
                                 th:text="${#calendars.format(news.publishTime, 'MM-dd HH:mm')}">10-20 10:35</span></dt>
-                        <dd><img src="/static/img/bq.jpg" th:alt="${news.title}" th:title="${news.title}"/>&nbsp;<a
-                                href="#"
+                        <dd><img th:src="/static/img/bq.jpg" th:alt="${news.title}" th:title="${news.title}"/>&nbsp;<a
+                                href="#" th:href="/news/tag/${tagTrade.id}_1.html"
                                 th:each="tagTrade:${news.tagMappingWebList}"
                                 th:text="${tagTrade.name}">电竞</a></dd>
                         <div class="clear"></div>
@@ -70,13 +70,13 @@
             </dl>
         </div>
         <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor/"
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a th:href="/anchor/"
                                                                               class="more vider_more">更多</a>
             </div>
             <ul class="hot_zhubo">
                 <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}/"
                                                                  th:title="${anchorZone.name}">
-                    <p class="p1"><img src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
+                    <p class="p1"><img th:src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
                                        th:title="${anchorZone.name}"/></p>
                     <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"
                                        th:alt="${anchorZone.name}" th:title="${anchorZone.name}"/>
@@ -86,7 +86,7 @@
             </ul>
         </div>
         <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">热门游戏</span> <a href="/game/"
+            <div class="index_tit_two"><span class="text_left">热门游戏</span> <a th:href="/game/"
                                                                               class="more vider_more">更多</a>
             </div>
             <ul class="hot_zixun">

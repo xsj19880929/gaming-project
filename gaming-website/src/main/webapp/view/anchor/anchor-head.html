@@ -3,8 +3,8 @@
 <div th:fragment="top(anchorZone)">
     <div class="djw_top">
         <div class="djw_top_general_o">
-            <div class="djw_top_left"><a href="/">55电竞游戏网</a><a
-                    href="/sitemap.html" class="top_menu" target="_blank">全站导航</a><a
+            <div class="djw_top_left"><a th:href="/">55电竞游戏网</a><a
+                    th:href="/sitemap.html" class="top_menu" target="_blank">全站导航</a><a
                     href="javascript:void(0)" class="top_phone">手机版</a>
             </div>
             <div class="djw_top_right">
@@ -15,7 +15,7 @@
     </div>
     <div class="zhubo_con_box">
         <div class="zhubo_data">
-            <div class="head_img"><span><img src="/static/img/circle_bg3.png" th:alt="${anchorZone.name}"
+            <div class="head_img"><span><img th:src="/static/img/circle_bg3.png" th:alt="${anchorZone.name}"
                                              th:title="${anchorZone.name}"/></span><img
                     src="/static/img/zhubo/zhubo.png" th:img-src="/image/120x120${anchorZone.icoImage}"
                     th:alt="${anchorZone.name}"
@@ -27,7 +27,7 @@
                     <h2>人气：<span th:text="${anchorZone.visitCount}">58621</span></h2>
                     <a href="javascript:;">
                         <h3><span style="margin-left:15px;margin-top:10px;"><img
-                                src="/static/img/zhubo/tianjia.png"/></span><span
+                                th:src="/static/img/zhubo/tianjia.png"/></span><span
                                 style="margin-left:6px;margin-top:7px;color:#fff;font-size:14px;"
                                 th:alt="${anchorZone.name}"
                                 th:title="${anchorZone.name}">收藏</span></h3>

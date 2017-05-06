@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script type="text/javascript" src="/static/js/wcg.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
+    <script type="text/javascript" th:src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
     <title th:text="${matchZone.name}+'赛事资讯_'+${matchZone.name}+'_'+${siteName}">标题</title>
     <meta name="keywords" content="关键字" th:attr="content=${matchZone.name}+'赛事报道,攻略资讯,'+${matchZone.name}"/>
     <meta name="description"
@@ -18,7 +18,7 @@
 <!--线上的top内容,这个仅放截图-->
 <div th:replace="/view/game/game-head.html::top('news',${matchZone})"></div>
 <!--面包屑-->
-<div class="game_position"><a href="/">电竞首页</a>&gt;<a
+<div class="game_position"><a th:href="/">电竞首页</a>&gt;<a
         th:href="/game/${matchZone.id}/" th:text="${matchZone.name}">英雄联盟电竞专区</a>&gt;<em>赛事资讯</em>
 
 </div>
@@ -64,7 +64,7 @@
     <div class="game_main_right">
         <div class="index_tit_two" style="height:320px;">
             <span class="text_left padding1">热门赛事</span>
-            <a href="/game/" class="more" target="_blank">更多</a>
+            <a th:href="/game/" class="more" target="_blank">更多</a>
             <div class="game_hot">
                 <dl style="margin-top:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
                     th:if="${iterStat.index==0}">
@@ -86,7 +86,7 @@
         </div>
         <div class="index_tit_two" style="height:440px;">
             <span class="text_left padding1">热门资讯</span>
-            <a href="/news/" target="_blank" class="more">更多</a>
+            <a th:href="/news/" target="_blank" class="more">更多</a>
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="newsTop:${topNewsList}"><a href="#" th:text="${newsTop.title}"
@@ -98,7 +98,7 @@
         </div>
         <div class="index_tit_two">
             <span class="text_left padding1" style="margin-top:20px;">最新资讯</span>
-            <a href="/news/" class="more" style="margin-top:24px;" target="_blank">更多</a>
+            <a th:href="/news/" class="more" style="margin-top:24px;" target="_blank">更多</a>
             <div class="game_zixun2">
                 <ul class="hot_zixun">
                     <li th:each="news:${newestNewsList}"><a href="#" th:text="${news.title}"

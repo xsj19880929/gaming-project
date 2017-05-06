@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
     <title>电竞赛事专区_游戏电竞赛事汇总_手游赛事专区_55电竞游戏网</title>
     <meta name="keywords" content="电竞,电子竞技,电竞比赛,电竞赛事,lol比赛,dota2比赛,炉石比赛,风暴英雄比赛"/>
     <meta name="description"
@@ -18,23 +18,11 @@
 
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="/">电竞首页</a>&gt;<em>赛事列表</em></div>
+    <div class="position"><a th:href="/">电竞首页</a>&gt;<em>赛事列表</em></div>
     <!--赛事筛选-->
     <div class="list_choose">
         <div class="index_tit_two title"><span class="text_left">赛事筛选</span></div>
         <div class="list_choose_con">
-            <!--<dl>-->
-            <!--<dt>游戏</dt>-->
-            <!--<dd class="dd1"><a href="#" class="hover">全部</a><a href="#">英雄联盟</a><a href="#">DOTA2</a><a href="#">炉石传说</a><a-->
-            <!--href="#">风暴英雄</a><a href="#">自由之战</a><a href="#">王者荣耀</a><a href="#">全民枪战</a><a-->
-            <!--href="#">虚荣</a><a href="#">自由之战</a><span>More</span></dd>-->
-            <!--<dd class="dd2">-->
-            <!--<a href="#">Raven掠夺者</a><a href="#">大话西游手游</a><a href="#">炉石传说</a><a href="#">风暴英雄</a><a href="#">自由之战</a><a-->
-            <!--href="#">王者荣耀</a><a href="#">全民枪战</a><a href="#">虚荣</a><a href="#">自由之战</a><a-->
-            <!--href="#">炉石传说</a><a href="#">风暴英雄</a><a href="#">自由之战</a><a href="#">王者荣耀</a><a-->
-            <!--href="#">全民枪战</a>-->
-            <!--</dd>-->
-            <!--</dl>-->
             <dl>
                 <dt>地区</dt>
                 <dd class="dd1"><a
@@ -74,10 +62,10 @@
         <div class="tab_two">
             <ul>
                 <li th:classappend="${#strings.startsWith(matchZoneList.pageName,'/game_new')}?'hover'"><a
-                        href="/game_new/0/0/all_1.html"><span>最新</span></a></li>
+                        th:href="/game_new/0/0/all_1.html"><span>最新</span></a></li>
                 <li th:classappend="${#strings.startsWith(matchZoneList.pageName,'/game_top')}?'hover'">
                     <a
-                            href="/game_top/0/0/all_1.html"><span>最热</span></a></li>
+                            th:href="/game_top/0/0/all_1.html"><span>最热</span></a></li>
             </ul>
         </div>
         <div id="con_one_1" style="display:block">

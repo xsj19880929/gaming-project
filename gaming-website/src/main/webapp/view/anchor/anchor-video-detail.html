@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
     <title th:text="${info.seoTitle}+'_'+${siteName}">标题</title>
     <meta name="keywords" content="关键字" th:attr="content=${info.seoKeywords}"/>
     <meta name="description"
@@ -18,7 +18,7 @@
 
 <div class="home_page">
     <div class="home_page_left">
-        <div class="position" style="margin-left:22px;"><a href="/">电竞首页</a>&gt;<a
+        <div class="position" style="margin-left:22px;"><a th:href="/">电竞首页</a>&gt;<a
                 th:href="/anchor/${anchorZone.id}/" th:text="${anchorZone.name}">英雄联盟电竞专区</a>&gt;<a
                 th:href="/anchor/video/${anchorZone.id}/">主播视频</a>&gt;<em
                 th:text="${info.title}"></em></div>
@@ -36,26 +36,8 @@
                         作者：<span th:text="${info.author}">晨落</span>&nbsp;&nbsp;&nbsp;&nbsp; 评论数：<span
                             id="sourceId::此处替换为配置SourceID的语句" class="cy_cmt_count"
                             th:attr="id='sourceId::'+${currentUrl}"></span></div>
-                    <!--<div class="news_d_link"><a href="#"> <em>NO1.</em>天赋符文推荐： 极限追求伤害</a> <a href="#"> <em>NO2.</em>打法剖析：你好，我的名字叫猥琐</a>-->
-                    <!--<a href="#"> <em>NO3.</em>出装顺序：回声+传送门，带线天下无敌</a> <a href="#"> <em>NO4.</em>提升熟练度的方法：猥琐也需要练习</a> <a-->
-                    <!--href="#"> <em>NO5.</em>英雄克制与阵容选择：能拖能跑最适合</a> <a href="#"> <em>NO6.</em>英雄克制与阵容选择：能拖能跑最适合</a>-->
-                    <!--</div>-->
                     <div class="new_d_font" th:utext="${info.content}">
                     </div>
-                    <!--页码-->
-                    <!--<div class="newyiiPager">-->
-                    <!--<ol id="yw0" class="yiiPager">-->
-                    <!--<li>共2页：</li>-->
-                    <!--<li class="page hidden"><a href="">首页</a></li>-->
-                    <!--<li class="previous hidden"><a href="#">上一页</a></li>-->
-                    <!--<li class="page selected"><span>1</span></li>-->
-                    <!--<li class="page"><a href="#">2</a></li>-->
-                    <!--<li class="page"><a href="#">3</a></li>-->
-                    <!--<li class="page"><a href="#">4</a></li>-->
-                    <!--<li class="next"><a href="#">下一页</a></li>-->
-                    <!--<li class="last"><a href="#">末页</a></li>-->
-                    <!--</ol>-->
-                    <!--</div>-->
                     <div class="detail_tag">
                         <p class="p1">标签：<a href="#" th:each="tagTrade:${info.tagMappingWebList}"
                                             th:text="${tagTrade.name}">电竞</a></p>
@@ -104,7 +86,7 @@
                 </div>
                 <!--精选美图 -->
                 <div class="about_pic clearfix">
-                    <div class="index_tit_two"><span class="text_left padding1">精选美图</span><a href="#"
+                    <div class="index_tit_two"><span class="text_left padding1">精选美图</span><a th:href="/picture/"
                                                                                               class="more">更多</a>
                     </div>
                     <ul>
@@ -145,13 +127,13 @@
             </dl>
         </div>
         <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">热门主播</span> <a href="/anchor/"
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a th:href="/anchor/"
                                                                               class="more vider_more">更多</a>
             </div>
             <ul class="hot_zhubo">
                 <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}/"
                                                                  th:title="${anchorZone.name}">
-                    <p class="p1"><img src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
+                    <p class="p1"><img th:src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
                                        th:title="${anchorZone.name}"/></p>
                     <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"
                                        th:alt="${anchorZone.name}" th:title="${anchorZone.name}"/>
@@ -161,7 +143,7 @@
             </ul>
         </div>
         <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">热门游戏</span> <a href="/game/"
+            <div class="index_tit_two"><span class="text_left">热门游戏</span> <a th:href="/game/"
                                                                               class="more vider_more">更多</a>
             </div>
             <ul class="hot_zixun">

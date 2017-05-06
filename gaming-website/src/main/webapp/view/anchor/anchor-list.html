@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/wcg.css"/>
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script type="text/javascript" src="/static/js/wcg.js"></script>
+    <link rel="stylesheet" type="text/css" th:th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:th:src="/static/js/wcg.js"></script>
     <title>主播频道_游戏主播_美女主播八卦_55电竞游戏网</title>
     <meta name="keywords" content="游戏主播,网络主播,现场主播,韩国主播,斗鱼直播"/>
     <meta name="description"
@@ -18,7 +18,7 @@
 
 <div class="general">
     <!--面包屑-->
-    <div class="position"><a href="/">电竞首页</a>&gt;<em>主播列表</em></div>
+    <div class="position"><a th:href="/">电竞首页</a>&gt;<em>主播列表</em></div>
     <!--赛事筛选-->
     <div class="list_choose">
         <div class="index_tit_two title"><span class="text_left">电竞主播筛选</span></div>
@@ -40,17 +40,17 @@
         <div class="tab_two">
             <ul>
                 <li th:classappend="${#strings.startsWith(pageFlag,'new')}?'hover'"><a
-                        href="/anchor_new/findPlatformId/0_1.html"><span>最新</span></a></li>
+                        th:href="/anchor_new/findPlatformId/0_1.html"><span>最新</span></a></li>
                 <li th:classappend="${#strings.startsWith(pageFlag,'top')}?'hover'">
-                    <a href="/anchor_top/findPlatformId/0_1.html"><span>最热</span></a></li>
+                    <a th:href="/anchor_top/findPlatformId/0_1.html"><span>最热</span></a></li>
             </ul>
         </div>
         <div id="con_one_1" style="display:block">
             <div class="zhubo_main_box">
                 <dl style="margin-left:19px;" th:each="anchorZone:${anchorZoneList.list}">
                     <dt>
-                        <a href="" th:href="/anchor/${anchorZone.id}/" target="_blank">
-                            <p class="zhubo_p1"><span><img src="/static/img/circle_bg.png" th:alt="${anchorZone.name}"
+                        <a href="#" th:href="/anchor/${anchorZone.id}/" target="_blank">
+                            <p class="zhubo_p1"><span><img th:src="/static/img/circle_bg.png" th:alt="${anchorZone.name}"
                                                            th:title="${anchorZone.name}"/></span><img
                                     th:img-src="/image/120x120${anchorZone.icoImage}" th:alt="${anchorZone.name}"
                                     th:title="${anchorZone.name}"/></p>
@@ -63,7 +63,7 @@
                     </dt>
                     <dd>人气：<span th:text="${anchorZone.visitCount}">432432</span></dd>
                     <div class="change_border">
-                        <span><a href="" th:href="/anchor/${anchorZone.id}/" target="_blank">点击查看</a></span>
+                        <span><a href="#" th:href="/anchor/${anchorZone.id}/" target="_blank">点击查看</a></span>
                     </div>
                 </dl>
 
