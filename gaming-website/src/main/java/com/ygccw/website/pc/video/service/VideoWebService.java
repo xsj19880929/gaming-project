@@ -51,11 +51,13 @@ public class VideoWebService {
         info.setInfoType(InfoType.video);
         info.setSortIfDesc(true);
         info.setSortName("publishTime");
+        info.setVerify(1);
         return infoService.list(info, offset, fetchSize);
     }
 
     public int videoListSize(Info info) {
         info.setInfoType(InfoType.video);
+        info.setVerify(1);
         return infoService.listSize(info);
     }
 

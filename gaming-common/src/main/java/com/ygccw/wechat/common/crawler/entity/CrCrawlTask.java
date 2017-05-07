@@ -22,6 +22,15 @@ public class CrCrawlTask {
     private String infoVideoType;
     private String lastUrl;
     private String htmlCharset;
+    private String pageUrl;
+
+    public String getPageUrl() {
+        return pageUrl;
+    }
+
+    public void setPageUrl(String pageUrl) {
+        this.pageUrl = pageUrl;
+    }
 
     public String getHtmlCharset() {
         return htmlCharset;

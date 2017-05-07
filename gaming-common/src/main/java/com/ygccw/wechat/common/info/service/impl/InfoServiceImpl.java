@@ -143,4 +143,14 @@ public class InfoServiceImpl implements InfoService {
     public Info findInfoById(Long id) {
         return infoDao.findById(id);
     }
+
+    @Override
+    @Transactional
+    public void updateOnly(Info info) {
+        info.setUpdateTime(new Date());
+        info.setPublishTime(new Date());
+        infoDao.update(info);
+
+
+    }
 }

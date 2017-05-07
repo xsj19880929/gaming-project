@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="gbk"?>
+<page pageType="diyiyouarticlev">
+    <uielements objectName="beforeSemantic">
+        <uiobject fieldName="tidyDom">
+            <expression><![CDATA[$TIDYDOMFMT($CLEAN(html,$KEYVAL(task,"url")))]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="info">
+        <uiobject fieldName="uuid" nullAble="false">
+            <expression><![CDATA[$MD5($KEYVAL(task,"url"))]]></expression>
+        </uiobject>
+        <uiobject fieldName="status" nullAble="false">
+            <expression><![CDATA[1]]></expression>
+        </uiobject>
+        <uiobject fieldName="createTime" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="updateTime" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoZoneType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="infoVideoType">
+            <expression><![CDATA[$KEYVAL(task,"infoVideoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="title" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"title")]]></expression>
+        </uiobject>
+        <uiobject fieldName="subTitle">
+            <expression><![CDATA[$KEYVAL(task,"subTitle")]]></expression>
+        </uiobject>
+        <uiobject fieldName="visitCount" nullAble="false">
+            <expression><![CDATA[1]]></expression>
+        </uiobject>
+        <uiobject fieldName="titleImage">
+            <expression><![CDATA[$URL2LOCALIMAGE($KEYVAL(task,"titleImage")+"")]]></expression>
+        </uiobject>
+        <uiobject fieldName="zoneUuid">
+            <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>
+        </uiobject>
+        <uiobject fieldName="contentTemp" nullAble="false">
+            <expression>
+                <![CDATA[$REPLACESTR($JSOUPHTMLDOWNIMAGEIFRAME(html,"div[id=logPanel]"),"第一手游网","55电竞网")]]></expression>
+        </uiobject>
+        <uiobject fieldName="contentTemp2" nullAble="false">
+            <expression>
+                <![CDATA[$REGEXP($KEYVAL(map,"contentTemp")+"","</table>(.*)")==""?$KEYVAL(map,"contentTemp")+"":$REGEXP($KEYVAL(map,"contentTemp")+"","</table>(.*)")]]></expression>
+        </uiobject>
+        <uiobject fieldName="content" nullAble="false">
+            <expression>
+                <![CDATA[$REPLACESTR($REGEXP($KEYVAL(map,"contentTemp2")+"","(.*)<table")==""?$KEYVAL(map,"contentTemp2")+"":$REGEXP($KEYVAL(map,"contentTemp2")+"","(.*)<table"),"</div> 点击查看更多+","")]]></expression>
+        </uiobject>
+        <uiobject fieldName="seoTitle" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"seoTitle")]]></expression>
+        </uiobject>
+        <uiobject fieldName="seoKeywords" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"seoKeywords")]]></expression>
+        </uiobject>
+        <uiobject fieldName="seoDescription" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"seoDescription")]]></expression>
+        </uiobject>
+        <uiobject fieldName="verify" nullAble="false">
+            <expression><![CDATA[0]]></expression>
+        </uiobject>
+        <uiobject fieldName="source" nullAble="false">
+            <expression><![CDATA["www.55djw.com"]]></expression>
+        </uiobject>
+        <uiobject fieldName="publishTime" nullAble="false">
+            <expression>
+                <![CDATA[$KEYVAL(task,"publishTime")]]></expression>
+        </uiobject>
+        <uiobject fieldName="author" nullAble="false">
+            <expression><![CDATA["55电竞网"]]></expression>
+        </uiobject>
+        <uiobject fieldName="taskId">
+            <expression><![CDATA[$KEYVAL(task,"taskId")]]></expression>
+        </uiobject>
+        <uiobject fieldName="url" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"url")]]></expression>
+        </uiobject>
+        <uiobject fieldName="webSite" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"webSite")]]></expression>
+        </uiobject>
+    </uielements>
+</page>

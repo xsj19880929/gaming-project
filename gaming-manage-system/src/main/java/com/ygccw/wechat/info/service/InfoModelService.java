@@ -268,7 +268,7 @@ public class InfoModelService {
             Info info = infoService.findById(id);
             info.setVerify(1);
             info.setPublishTime(new Date());
-            infoService.update(info);
+            infoService.updateOnly(info);
         }
     }
 

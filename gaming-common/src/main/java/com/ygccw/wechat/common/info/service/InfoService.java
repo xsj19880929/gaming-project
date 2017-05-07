@@ -35,4 +35,6 @@ public interface InfoService {
 
     Info findInfoById(Long id);
 
+    void updateOnly(Info info);
+
 }

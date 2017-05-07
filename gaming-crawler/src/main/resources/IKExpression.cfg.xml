@@ -102,6 +102,11 @@
             <parameter-type>java.lang.Object</parameter-type>
             <parameter-type>java.lang.String</parameter-type>
         </function>
+
+        <function name="JSOUPHTMLDOWNIMAGEIFRAME" method="jsoupHtmlDownImageIframe">
+            <parameter-type>java.lang.Object</parameter-type>
+            <parameter-type>java.lang.String</parameter-type>
+        </function>
         <function name="JSOUP" method="jsoup">
             <parameter-type>java.lang.Object</parameter-type>
             <parameter-type>java.lang.String</parameter-type>

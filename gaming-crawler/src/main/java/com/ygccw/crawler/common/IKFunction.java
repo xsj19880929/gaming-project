@@ -617,6 +617,30 @@ public class IKFunction {
     }
 
     // jsoup过滤标签解析
+    public String jsoupHtmlDownImageIframe(Object html, String jsoup) {
+        org.jsoup.nodes.Document soup = Jsoup.parse(html.toString());
+        org.jsoup.select.Elements newHtml = soup.select(jsoup);
+        if (newHtml != null) {
+            Whitelist tags = new Whitelist();
+            tags.addTags("div", "table", "tbody", "tr", "td", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
+            tags.addAttributes("img", "src");
+            tags.addAttributes("p", "style");
+            tags.addAttributes("iframe", "frameborder", "width", "height", "src");
+            String content = Jsoup.clean(newHtml.html(), tags);
+            Document document = Jsoup.parse(content);
+            Elements elements = document.select("img");
+            for (Element element : elements) {
+                String imagePath = element.attr("src");
+                String imageLocalPath = url2LocalImage(imagePath);
+                content = content.replace(imagePath, downServer + imageLocalPath);
+            }
+            return content;
+        } else {
+            return "";
+        }
+    }
+
+    // jsoup过滤标签解析
     public String jsoupHtmlDownImageTag(Object html, String jsoup, String imageTag) {
         org.jsoup.nodes.Document soup = Jsoup.parse(html.toString());
         org.jsoup.select.Elements newHtml = soup.select(jsoup);

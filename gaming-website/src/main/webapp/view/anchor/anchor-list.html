@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" th:th:href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" th:th:href="/static/css/wcg.css"/>
-    <script type="text/javascript" th:th:src="/static/js/jquery.js"></script>
-    <script type="text/javascript" th:th:src="/static/js/wcg.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
     <title>主播频道_游戏主播_美女主播八卦_55电竞游戏网</title>
     <meta name="keywords" content="游戏主播,网络主播,现场主播,韩国主播,斗鱼直播"/>
     <meta name="description"
@@ -50,7 +50,8 @@
                 <dl style="margin-left:19px;" th:each="anchorZone:${anchorZoneList.list}">
                     <dt>
                         <a href="#" th:href="/anchor/${anchorZone.id}/" target="_blank">
-                            <p class="zhubo_p1"><span><img th:src="/static/img/circle_bg.png" th:alt="${anchorZone.name}"
+                            <p class="zhubo_p1"><span><img th:src="/static/img/circle_bg.png"
+                                                           th:alt="${anchorZone.name}"
                                                            th:title="${anchorZone.name}"/></span><img
                                     th:img-src="/image/120x120${anchorZone.icoImage}" th:alt="${anchorZone.name}"
                                     th:title="${anchorZone.name}"/></p>
