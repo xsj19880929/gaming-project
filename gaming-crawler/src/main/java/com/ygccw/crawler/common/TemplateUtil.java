@@ -59,8 +59,8 @@ public class TemplateUtil {
                 path = "/" + path;
             }
             // System.out.println("模板路径：" + path + "classes/tpl");
-//            File dir = new File(path + "resources/main/tpl");
-            File dir = new File(path + "classes/tpl");
+            File dir = new File(path + "resources/main/tpl");
+//            File dir = new File(path + "classes/tpl");
             if (dir.exists()) {
                 File[] files = dir.listFiles();
                 for (File file : files) {

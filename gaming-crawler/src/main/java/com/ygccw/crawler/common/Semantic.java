@@ -148,7 +148,7 @@ public class Semantic {
                 String fieldName = myRule.getString(Constants.TPL_FIELD_NAME);
                 String value = map.get(fieldName);
                 if (value == null || value.isEmpty()) {
-                    String error = objectName + "\n\t" + fieldName + "字段为空";
+                    String error = objectName + "\n\t" + fieldName + "字段为空" + "\n\t" + map.get("url");
                     logger.info("{} ", error);
                     return true;
                 }
