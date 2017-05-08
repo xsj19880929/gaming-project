@@ -76,7 +76,7 @@ public class InfoController {
     @ResponseBody
     public Map<String, Object> website() {
         Map<String, Object> map = new HashMap<>();
-        map.put("website", env.getRequiredProperty("gaming.website.url"));
+        map.put("msite", env.getRequiredProperty("gaming.website.url"));
         return map;
     }
 

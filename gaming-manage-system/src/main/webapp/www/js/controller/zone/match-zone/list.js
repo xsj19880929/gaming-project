@@ -6,7 +6,7 @@
         $scope.fetchSize = 25;
         $scope.params = {};
         $scope.websiteData = {};
-        $http.get("info/website").success(function (data) {
+        $http.get("info/msite").success(function (data) {
             $scope.websiteData = data;
         });
 

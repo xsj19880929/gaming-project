@@ -14,7 +14,7 @@
             $scope.params.verify = $location.search().verify;
         }
         $scope.websiteData = {};
-        $http.get("info/website").success(function (data) {
+        $http.get("info/msite").success(function (data) {
             $scope.websiteData = data;
         });
 

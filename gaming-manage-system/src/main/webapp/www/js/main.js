@@ -39,8 +39,8 @@
                 controller: 'IndexController'
             })
 
-            .state('website', {
-                url: "/website",
+            .state('msite', {
+                url: "/msite",
                 templateUrl: "www/view/module.view.html"
                 //controller: 'IndexController'
             })
