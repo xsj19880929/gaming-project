@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
+    <script type="text/javascript" th:src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <title th:text="${matchZone.seoTitle}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${matchZone.seoKeywords}"/>
+    <meta name="description"
+          content="描述" th:attr="content=${matchZone.seoDescription}"/>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/view/game/game-head.html::top('index',${matchZone})"></div>
+<div class="game_main_box">
+    <div class="game_main_left">
+        <div class="game_tit">
+            <img src="/static/img/game/game_logo.png" th:img-src="/image/120x120${matchZone.icoImage}"
+                 th:alt="${matchZone.name}" th:title="${matchZone.name}"/>
+            <dl>
+                <dt th:text="${matchZone.name}">LPL2016英雄联盟职业联赛春季赛</dt>
+                <dd>
+                    <h1><span>举办方：</span><span th:text="${matchZone.hostParty}">银川圣地国际游戏投资有限公司</span></h1>
+                    <h1><span>比赛区域：</span><span th:text="${matchZone.matchZoneAreaName}">全球</span></h1>
+                    <h1><span>服务器：</span><span th:text="${matchZone.matchZoneAreaName}">中国</span></h1>
+                    <h1 style="margin-top:18px;"><span>比赛类型：</span><span th:text="${matchZone.matchType}">线下赛</span>
+                    </h1>
+                    <h1 style="margin-top:18px;"><span>开始时间：</span><span
+                            th:text="${#calendars.format(matchZone.startTime, 'yyyy年MM月dd日')}">2016年1月14日</span></h1>
+                    <h1 style="margin-top:18px;"><span>结束时间：</span><span
+                            th:text="${#calendars.format(matchZone.endTime, 'yyyy年MM月dd日')}">2016年4月28日</span></h1>
+
+                </dd>
+            </dl>
+            <p th:text="${matchZone.introduction}">《英雄联盟》职业联赛（LOL Professional
+                League）是由腾讯举办的中国LOL赛事体系，每年由春季赛和夏季赛组成，每季赛事又分为
+                常规赛和季后赛。《英雄联盟》职业联赛第五赛季世界总决赛，将在欧洲四座城市进行。参加战队有16只，包括中国大陆、韩国、北美、欧洲各3个名额，台港澳赛区的2个名额，其他地区两个名额。</p>
+            <div class="clear"></div>
+        </div>
+        <div class="zhandui clearfix" th:unless="${#lists.isEmpty(matchTeamList)}">
+            <div class="index_tit_two"><span
+                    class="text_left padding1">参赛战队</span><a href="#" th:href="/game/team/${matchZone.id}/"
+                                                             class="more" target="_blank">更多</a></div>
+            <div class="general slideBox icon_game02">
+                <div class="game_list02 bd">
+                    <ul>
+                        <li th:each="matchTeam:${matchTeamList}">
+                            <a th:href="/game/team/${matchZone.id}/"><img src="/static/temp/dj02.jpg"
+                                                                          th:img-src="/image/131x131${matchTeam.icoImage}"
+                                                                          th:alt="${matchZone.name}"
+                                                                          th:title="${matchZone.name}"/><span></span>
+                                <p th:text="${matchTeam.name}">DOTA</p></a></li>
+                    </ul>
+                </div>
+                <div class="ppw_pr_bt ppw_pr_prev prev"></div>
+                <div class="ppw_pr_bt ppw_pr_next next"></div>
+            </div>
+            <script type="text/javascript">
+                jQuery(".slideBox").slide({
+                    mainCell: "ul",
+                    autoPlay: false,
+                    effect: "left",
+                    vis: 6,
+                    scroll: 1,
+                    autoPage: true,
+                    pnLoop: true
+                })
+            </script>
+        </div>
+        <div class="about_pic clearfix" th:unless="${#lists.isEmpty(newsList)}">
+            <div class="index_tit_two"><span class="text_left padding1">赛事资讯</span><a href="#" class="more"
+                                                                                      th:href="/game/news/${matchZone.id}/"
+                                                                                      target="_blank">更多</a>
+            </div>
+            <div class="game_zixun_left">
+                <dl th:each="news,iterStat:${newsList}" th:if="${iterStat.index==0}">
+                    <dt><a href="" th:title="${news.title}"
+                           th:href="/news/${news.id}.html"><img src="/static/temp/list01.jpg"
+                                                                th:img-src="/image/204x108${news.titleImage}"
+                                                                th:alt="${news.title}"
+                                                                th:title="${news.title}"/></a>
+                    </dt>
+                    <dd><a href="" th:text="${news.title}" th:title="${news.title}"
+                           th:href="/news/${news.id}.html">iGirls战队处罚相关人员恶意<br/>煽动队员离队将予以追究相关责任。</a></dd>
+                </dl>
+                <ul>
+                    <li th:each="news,iterStat:${newsList}" th:if="${iterStat.index>0&&iterStat.index<10}"><a href="#"
+                                                                                                              th:text="${news.title}"
+                                                                                                              th:title="${news.title}"
+                                                                                                              th:href="/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="game_zixun_right">
+                <dl th:each="news,iterStat:${newsList}" th:if="${iterStat.index==10}">
+                    <dt><a href="" th:title="${news.title}"
+                           th:href="/news/${news.id}.html"><img src="/static/temp/list01.jpg"
+                                                                th:img-src="/image/204x108${news.titleImage}"
+                                                                th:alt="${news.title}"
+                                                                th:title="${news.title}"/></a>
+                    </dt>
+                    <dd><a href="" th:text="${news.title}" th:title="${news.title}"
+                           th:href="/news/${news.id}.html">iGirls战队处罚相关人员恶意<br/>煽动队员离队将予以追究相关责任。</a></dd>
+                </dl>
+                <ul>
+                    <li th:each="news,iterStat:${newsList}" th:if="${iterStat.index>10&&iterStat.index<20}"><a href="#"
+                                                                                                               th:text="${news.title}"
+                                                                                                               th:title="${news.title}"
+                                                                                                               th:href="/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+        <!--比赛视频-->
+        <div class="bisai_video" th:unless="${#lists.isEmpty(videoList)}">
+            <div class="index_tit_two">
+                <span class="text_left padding1">比赛视频</span>
+                <a href="#" class="more vider_more" th:href="/game/video/${matchZone.id}/"
+                   target="_blank">更多</a>
+            </div>
+            <div class="index_video_right right_video game_video1">
+                <ul>
+                    <li th:each="video:${videoList}">
+                        <a href="#" class="img" th:title="${video.title}"
+                           th:href="/video/${video.id}.html">
+                            <img src="/static/temp/temp03.jpg" th:img-src="/image/200x118${video.titleImage}"
+                                 th:alt="${video.title}"
+                                 th:title="${video.title}"/>
+                            <p class="p1"><span></span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
+                           th:href="/video/${video.id}.html">电竞校园联赛炉石传说Top3</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="about_pic clearfix" th:unless="${#lists.isEmpty(pictureList)}">
+            <div class="index_tit_two"><span class="text_left padding1">赛事图集</span><a href="#"
+                                                                                      th:href="/game/picture/${matchZone.id}/"
+                                                                                      target="_blank"
+                                                                                      class="more">更多</a>
+            </div>
+            <div class="slideBox saishi_pic">
+                <div class="game_pic_box bd">
+                    <ol>
+                        <li th:each="picture:${pictureList}">
+                            <a href="#" th:title="${picture.description}"
+                               th:href="/picture/${picture.id}.html">
+                                <img src="/static/temp/detail05.jpg" th:img-src="/image/640x960${picture.image}"
+                                     th:alt="${picture.description}" th:title="${picture.description}"/>
+                                <p><span th:text="${picture.description}">最美拉克丝COS 水灵大眼神似小鹿斑比</span></p>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+                <div class="prev"></div>
+                <div class="next"></div>
+            </div>
+            <script type="text/javascript">
+                jQuery(".slideBox").slide({
+                    mainCell: "ol",
+                    autoPlay: false,
+                    effect: "left",
+                    vis: 3,
+                    scroll: 1,
+                    autoPage: true,
+                    pnLoop: true
+                })
+            </script>
+        </div>
+        <!--用户评论-->
+        <div th:replace="/comment.html::comment(${matchZone.id},${matchZone.name},${currentUrl})"></div>
+    </div>
+
+
+    <div class="game_main_right">
+        <div class="game_money" th:unless="${#lists.isEmpty(matchZoneBonusList)}">
+            <dl style="height:62px;font-size:24px;line-height:62px;">
+                比赛奖金
+            </dl>
+            <dl>
+                <dt>名次</dt>
+                <dd>奖金</dd>
+                <div class="clear"></div>
+            </dl>
+            <dl style="border-bottom:1px dotted #e6e6e6;" th:each="matchZoneBonus,iterStat:${matchZoneBonusList}">
+                <dt style="color:#ff0000" th:text="${matchZoneBonus.ranking}"
+                    th:if="${iterStat.index==0||iterStat.index==1||iterStat.index==2}">冠军
+                </dt>
+                <dt style="color:#ff0000" th:text="${matchZoneBonus.ranking}"
+                    th:unless="${iterStat.index==0||iterStat.index==1||iterStat.index==2}">冠军
+                </dt>
+                <dd th:text="${matchZoneBonus.bonusFee}+'人民币'">1,500,000人民币</dd>
+                <div class="clear"></div>
+            </dl>
+        </div>
+        <div class="game_data" th:unless="${#lists.isEmpty(matchZoneCalendarList)}">
+            <dl>比赛日程表</dl>
+            <ul th:each="matchZoneCalendar:${matchZoneCalendarList}">
+                <!--<span>今日</span>-->
+                <li><font th:if="${matchZoneCalendar.startTime}"
+                          th:text="${#calendars.format(matchZoneCalendar.startTime, 'yyyy-MM-dd HH:mm')}">17:00</font><a
+                        href="#" style="margin-left:5px;"
+                        th:text="${matchZoneCalendar.matchTeamOneName}">Snake</a>VS<a
+                        href="#" th:text="${matchZoneCalendar.matchTeamTwoName}">EMF</a></li>
+
+            </ul>
+        </div>
+        <div class="index_tit_two" style="height:320px;">
+            <span class="text_left padding1">精选视频</span>
+            <a th:href="/video/" class="more">更多</a>
+            <div class="game_hot">
+                <dl style="margin-top:20px;margin-bottom:20px;" th:each="video:${recommendVideoList}">
+                    <a href="#" th:title="${video.title}"
+                       th:href="/video/${video.id}.html">
+                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${video.titleImage}"
+                             th:alt="${video.title}" th:title="${video.title}"/>
+                        <p class="p1"><span></span></p>
+                        <p class="p2"><em></em></p>
+                        <dt th:text="${video.title}">LPL2016英雄联盟职业联赛春季赛</dt>
+                    </a>
+                </dl>
+            </div>
+        </div>
+        <div class="index_tit_two">
+            <span class="text_left padding1">精选资讯</span>
+            <a href="#" class="more" th:href="/news/" target="_blank">更多</a>
+            <div class="game_zixun2">
+                <ul class="hot_zixun">
+                    <li th:each="news:${recommendNewsList}"><a href="#" th:text="${news.title}" th:title="${news.title}"
+                                                               th:href="/news/${news.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<!--线上琵琶网首页的foot，这里只是截图-->
+<div th:replace="/bottom.html::bottom"></div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
+    <title th:text="${tags.name}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${tags.name}"/>
+    <meta name="description"
+          content="描述"
+          th:attr="content=${siteName}+'（55djw.com）提供最新最全最专业的'+${tags.name}+'，电竞游戏资讯，手机游戏行业新闻，游戏攻略，游戏评测等，更多手游产业动态、行业新闻、游戏资讯尽在'+${siteName}+'。'"/>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/head.html::top('video')"></div>
+
+<div class="general">
+    <!--面包屑-->
+    <div class="position"><a th:href="">电竞首页</a>&gt;<a th:href="/video/">视频列表</a>&gt;<em
+            th:text="${tags.tagZoneType.label}+视频">视频列表</em>
+    </div>
+
+    <!--最新最热-->
+    <div class="list_tab_one">
+        <div id="con_one_1" style="display:block">
+            <div class="index_tit_two"><span class="text_left" th:text="${tags.name}">全部资讯</span></div>
+            <div class="index_video_right view_box">
+                <ul>
+                    <li th:each="video:${videoList.list}">
+                        <a href="#" class="img" th:title="${video.title}"
+                           th:href="/video/${video.id}.html">
+                            <img th:img-src="/image/270x160${video.titleImage}" th:alt="${video.title}"
+                                 th:title="${video.title}"/>
+                            <p class="p1"><span></span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
+                           th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
+                        <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
+                        </p>
+                    </li>
+
+                </ul>
+            </div>
+            <!--页码-->
+            <div th:replace="/pager.html::page(${videoList.pageName},${videoList.currentPage},${videoList.totalPage})"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--线上琵琶网首页的foot，这里只是截图-->
+<div th:replace="/bottom.html::bottom"></div>
+
+</body>
+</html>

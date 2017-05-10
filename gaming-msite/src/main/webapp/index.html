@@ -1,0 +1,498 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" th:href="static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="static/css/wcg.css"/>
+    <script type="text/javascript" th:src="static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="static/js/wcg.js"></script>
+    <script type="text/javascript" th:src="static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <title>55电竞游戏网_电竞赛事综合门户网站_移动电竞游戏网</title>
+    <meta name="keywords" content="55电竞游戏网,电竞,电子竞技,游戏,电竞游戏,电竞资讯,电竞赛事,电竞攻略,电竞战队,电竞人物"/>
+    <meta name="description"
+          content="55电竞游戏网提供电竞游戏及移动电竞赛事资讯，提供王者荣耀直播、球球大作战直播、阴阳师直播及英雄联盟lol等赛事新闻、电竞赛事报道、赛事视频在线直播、赛事战报点评及手游相关攻略资讯内容，最专业的电竞游戏资讯门户网站。"/>
+    <meta name="baidu-site-verification" content="MZA58sj9Pc"/>
+    <meta name="360-site-verification" content="ec9805e6a681450e24a4d3a9da55be68"/>
+    <meta name="sogou_site_verification" content="vyfhmHbwzB"/>
+    <meta name="shenma-site-verification" content="e386e657fb6dda21cce7b1780f1bed2d_1490707954">
+</head>
+
+<body>
+<!--head-->
+<div th:replace="/head.html::top('index')"></div>
+<!--赛事列表-->
+<div class="general">
+    <ul class="wcg_list">
+        <li th:each="matchZone,iterStat:${matchZoneList}" th:if="${matchZone!=null}"
+            th:class="${iterStat.index==3?'no_margin':''}">
+            <div class="bg"></div>
+            <div class="con">
+                <p class="p1"><a href="#" th:text="${matchZone.name}"
+                                 th:href="/game/${matchZone.id}/" th:title="${matchZone.name}" target="_blank">2015风暴英雄总决赛</a>
+                </p>
+                <dl class="d1">
+                    <dt><img th:if="${iterStat.index==0}"
+                             th:each="matchTeam,iterStat:${matchZone.matchTeamList}"
+                             th:img-src="/image/66x66${matchTeam.icoImage}" th:alt="${matchZone.name}"
+                             th:title="${matchZone.name}"/></dt>
+                    <dd>
+                        <p class="p2"><img th:if="${iterStat.index!=0&&iterStat.index<7}"
+                                           th:each="matchTeam,iterStat:${matchZone.matchTeamList}"
+                                           th:img-src="/image/28x28${matchTeam.icoImage}" th:alt="${matchTeam.name}"
+                                           th:title="${matchTeam.name}"/>
+                        <p class="p3"><em class="over" th:text="${matchZone.matchStatus.label}">已结束</em></p>
+                    </dd>
+                </dl>
+            </div>
+        </li>
+    </ul>
+</div>
+<!--第三栏-->
+<div class="general white clearfix">
+    <div class="wcg_banner slideBox2">
+        <div class="big_pic bd">
+            <ul>
+                <li th:each="advImage:${advImageList}"><a th:href="${advImage.url}" href="#" target="_blank"><img
+                        th:img-src="/image/698x370${advImage.image}" th:alt="${advImage.name}"
+                        th:title="${advImage.name}"/><span><em
+                        th:text="${advImage.name}">韩国《英雄联盟》代练爆料：Riot韩国公司受贿行为</em></span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="wcg_force hd">
+            <ul>
+                <li class="on"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+        jQuery(".slideBox2").slide({
+            mainCell: ".bd ul",
+            effect: "leftLoop",
+            autoPlay: true,
+            delayTime: 1000,
+            interTime: 3000
+        });
+    </script>
+    <!--右边-->
+    <div class="index_right">
+        <div class="index_tit">
+            <ul>
+                <li>
+                    <p class="p1"><a target="_blank"
+                                     th:each="info,iterStat:${recommendInfoList}"
+                                     th:if="${info!=null&&iterStat.index==0}"
+                                     th:href="/news/${info.id}.html" th:title="${info.title}" th:text="${info.title}">S7总决赛举办地出炉
+                        S7赛制改革说明</a></p>
+                    <p class="p2">
+                        <a target="_blank" href="/xinwen/news305890.html" th:each="info,iterStat:${recommendInfoList}"
+                           th:if="${info!=null&&iterStat.index>0&&iterStat.index<4}" th:href="/news/${info.id}.html"
+                           th:title="${info.title}" th:text="${'['+info.title+']'}">[原OMG战队教练Dgc加盟LDG担任主教练]</a>
+
+                    </p>
+                </li>
+                <li>
+                    <p class="p1"><a target="_blank"
+                                     th:each="info,iterStat:${recommendInfoList}"
+                                     th:if="${info!=null&&iterStat.index==4}"
+                                     th:href="/news/${info.id}.html" th:title="${info.title}" th:text="${info.title}">S7总决赛举办地出炉
+                        S7赛制改革说明</a></p>
+                    <p class="p2">
+                        <a target="_blank" href="/xinwen/news305890.html" th:each="info,iterStat:${recommendInfoList}"
+                           th:if="${info!=null&&iterStat.index>4&&iterStat.index<8}" th:href="/news/${info.id}.html"
+                           th:title="${info.title}" th:text="${'['+info.title+']'}">[原OMG战队教练Dgc加盟LDG担任主教练]</a>
+
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="index_con">
+            <ul>
+                <li class="clearfix" th:each="info,iterStat:${infoAllList}">
+                    <a target="_blank" class="a1" th:href="/news/" th:text="${'【'+info.infoType.label+'】'}"
+                       th:title="${info.infoType.label}">【新闻】</a>
+                    <a target="_blank" class="a2" href="/xinwen/news308826.html" th:href="/news/${info.id}.html"
+                       th:title="${info.title}" th:text="${info.title}">lol10元抽奖活动网址 2月黑龙瞎等你来拿</a>
+                    <span th:text="${#calendars.format(info.publishTime, 'MM-dd')}">02-22</span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!--赛事列表2-->
+<div class="general">
+    <ul class="wcg_list_two">
+        <li th:each="matchZone,iterStat:${matchZoneNewList}" th:class="${iterStat.index==2?'no_margin':''}"
+            th:if="${matchZone!=null}">
+            <p class="p1"><a href="#" th:href="/game/${matchZone.id}/" th:title="${matchZone.name}" target="_blank"><img
+                    th:img-src="/image/373x155${matchZone.indexImage}" th:alt="${matchZone.name}"
+                    th:title="${matchZone.name}"/></a>
+            </p>
+            <p class="p2"><a href="#" th:text="${matchZone.name}" th:href="/game/${matchZone.id}/"
+                             th:title="${matchZone.name}" target="_blank">LPL2016英雄联盟职业联赛春季赛</a></p>
+            <p class="p3"
+               th:text="${'时间：'+#calendars.format(matchZone.startTime, 'yyyy-MM-dd')+' - '+#calendars.format(matchZone.endTime, 'yyyy-MM-dd')}">
+                时间：2016.01.14 - 2016.04.10</p>
+            <p class="p3"><span class="zt">状态：<em class="ing" th:text="${matchZone.matchStatus.label}">赛事进行中</em></span><span
+                    th:text="${'赛区：'+matchZone.matchZoneAreaName}">赛区：全球</span>
+            </p>
+        </li>
+    </ul>
+</div>
+<div class="general clearfix">
+    <div class="index_tab_one">
+        <!--推荐资讯tab-->
+        <div class="tab_one">
+            <ul>
+                <li onMouseOver="setTab('one',1,5)" id="one1" class="hover">推荐资讯</li>
+                <li onMouseOver="setTab('one',2,5)" id="one2">行业资讯</li>
+                <li onMouseOver="setTab('one',3,5)" id="one3">赛事资讯</li>
+                <li onMouseOver="setTab('one',4,5)" id="one4">主播资讯</li>
+            </ul>
+        </div>
+        <!--tab内容-->
+        <div class="tab_one_con">
+            <div class="tab_deatil" id="con_one_1" style="display:block">
+                <ul>
+                    <li th:each="info:${infoNewestList}" th:if="${info!=null}">
+                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
+                                           target="_blank"><img
+                                th:img-src="/image/204x108${info.titleImage}"
+                                th:alt="${info.title}" th:title="${info.title}"/></a>
+                        </div>
+                        <div class="d2">
+                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
+                                             th:title="${info.title}" target="_blank">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a>
+                            </p>
+                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}" target="_blank"
+                                             th:href="${info.infoZoneType.name=='matchZone'?'/news_match_1.html':info.infoZoneType.name=='anchorZone'?'/news_anchor_1.html':info.infoZoneType.name=='trade'?'/news_trade_1.html':''}">行业新闻</a><em
+                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
+                                10:35</em>
+                            </p>
+                            <p class="p3" th:text="${info.subTitle}">
+                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                        </div>
+                    </li>
+                </ul>
+                <p class="add_more"><a th:href="/news/" target="_blank">查看更多</a></p>
+            </div>
+
+            <div class="tab_deatil" id="con_one_2">
+                <ul>
+                    <li th:each="info:${infoTradeList}" th:if="${info!=null}">
+                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
+                                           target="_blank"><img
+                                th:img-src="/image/204x108${info.titleImage}"
+                                th:alt="${info.title}" th:title="${info.title}"/></a>
+                        </div>
+                        <div class="d2">
+                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
+                                             th:title="${info.title}" target="_blank">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a>
+                            </p>
+                            <p class="p2"><a th:href="/news_trade_1.html" th:text="${info.infoZoneType.label}"
+                                             target="_blank">行业新闻</a><em
+                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
+                                10:35</em>
+                            </p>
+                            <p class="p3" th:text="${info.subTitle}">
+                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                        </div>
+                    </li>
+                </ul>
+                <p class="add_more"><a th:href="/news_trade_1.html" target="_blank">查看更多</a></p>
+            </div>
+            <div class="tab_deatil" id="con_one_3">
+                <ul>
+                    <li th:each="info:${infoMatchZoneList}" th:if="${info!=null}">
+                        <div class="d1"><a href="#" th:href="/news/${info.id}.html"><img
+                                th:img-src="/image/204x108${info.titleImage}"
+                                th:alt="${info.title}" th:title="${info.title}"/></a>
+                        </div>
+                        <div class="d2">
+                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
+                                             th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
+                            <p class="p2"><a th:href="/news_match_1.html" th:text="${info.infoZoneType.label}"
+                                             th:title="${info.title}" target="_blank">行业新闻</a><em
+                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
+                                10:35</em>
+                            </p>
+                            <p class="p3" th:text="${info.subTitle}">
+                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                        </div>
+                    </li>
+                </ul>
+                <p class="add_more"><a th:href="/news_match_1.html" target="_blank">查看更多</a></p>
+            </div>
+
+            <div class="tab_deatil" id="con_one_4">
+                <ul>
+                    <li th:each="info:${infoAnchorZoneList}" th:if="${info!=null}">
+                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
+                                           target="_blank"><img
+                                th:img-src="/image/204x108${info.titleImage}"
+                                th:alt="${info.title}" th:title="${info.title}"/></a>
+                        </div>
+                        <div class="d2">
+                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
+                                             th:title="${info.title}" target="_blank">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a>
+                            </p>
+                            <p class="p2"><a th:href="/news_trade_1.html" th:text="${info.infoZoneType.label}"
+                                             target="_blank">行业新闻</a><em
+                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
+                                10:35</em>
+                            </p>
+                            <p class="p3" th:text="${info.subTitle}">
+                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                        </div>
+                    </li>
+                </ul>
+                <p class="add_more"><a th:href="/news_anchor_1.html" target="_blank">查看更多</a></p>
+            </div>
+        </div>
+    </div>
+    <!--right-->
+    <div class="index_right_two">
+        <!--电竞明星战队 -->
+        <div class="index_star">
+            <div class="index_tit_two">
+                <span class="text_right">电竞明星战队</span>
+                <ul class="arrow">
+                    <li><a href="javascript:void(0)" class="prev"></a></li>
+                    <li><a href="javascript:void(0)" class="next"></a></li>
+                </ul>
+            </div>
+            <div class="qiehuan">
+                <div class="inner">
+                    <ul class="list_01">
+                        <li th:each="matchTeam,iterStat:${starMatchTeamList}"
+                            th:if="${iterStat.index==0||iterStat.index==1}"
+                            th:class="${iterStat.odd==true?'no_border':''}">
+                            <p class="p1"><a><span></span><img
+                                    th:img-src="/image/106x106${matchTeam.icoImage}" th:alt="${matchTeam.name}"
+                                    th:title="${matchTeam.name}"/></a></p>
+                            <p class="p2">
+                                <span class="span01"><a th:text="${matchTeam.name}">Absolute Legends</a></span>
+                                <span class="span02"><em>所属项目：</em><img th:img-src="/image/28x28${matchZone.icoImage}"
+                                                                        th:each="matchZone:${matchTeam.matchZoneList}"
+                                                                        th:alt="${matchZone.name}"
+                                                                        th:title="${matchZone.name}"/></span>
+                                <span class="span02"><em
+                                        th:text="${'成立时间：'+#calendars.format(matchTeam.createTime, 'yyyy年MM月dd日')}">成立时间：2014年11月20日</em></span>
+                            </p>
+                        </li>
+                    </ul>
+                    <ul class=" list_01">
+                        <li th:each="matchTeam,iterStat:${starMatchTeamList}"
+                            th:if="${iterStat.index==2||iterStat.index==3}"
+                            th:class="${iterStat.odd==true?'no_border':''}">
+                            <p class="p1"><span></span><img
+                                    th:img-src="/image/106x106${matchTeam.icoImage}" th:alt="${matchTeam.name}"
+                                    th:title="${matchTeam.name}"/></p>
+                            <p class="p2">
+                                <span class="span01"><a th:text="${matchTeam.name}">Absolute Legends</a></span>
+                                <span class="span02"><em>所属项目：</em><img th:img-src="/image/28x28${matchZone.icoImage}"
+                                                                        th:each="matchZone:${matchTeam.matchZoneList}"
+                                                                        th:alt="${matchZone.name}"
+                                                                        th:title="${matchZone.name}"/></span>
+                                <span class="span02"><em
+                                        th:text="${'成立时间：'+#calendars.format(matchTeam.createTime, 'yyyy年MM月dd日')}">成立时间：2014年11月20日</em></span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--电竞主播推荐-->
+        <div class="index_zhubo">
+            <div class="index_tit_two">
+                <span class="text_right">电竞主播推荐</span>
+                <a th:href="/anchor/" target="_blank" class="more">更多</a>
+            </div>
+            <ul class="zhubo_list">
+                <li th:each="anchorZone:${anchorZoneList}">
+                    <a href="#" th:href="/anchor/${anchorZone.id}/"
+                       th:title="${anchorZone.name}" target="_blank"><img
+                            th:img-src="/image/340x160${anchorZone.recommendImage}"
+                            th:alt="${anchorZone.name}"
+                            th:title="${anchorZone.name}"/>
+                        <p class="p1" th:text="${anchorZone.name}">LOL代练MOBA大神 美萌老鼠mayuyu</p></a>
+                    <p class="p2">
+                        <span>主播：<a href="#" th:text="${anchorZone.username}" th:href="/anchor/${anchorZone.id}/"
+                                    th:title="${anchorZone.username}" target="_blank">小智脑残粉</a></span>
+                        <span>人气：<em th:text="${anchorZone.visitCount}">58621032</em></span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<!--电竞比赛视频-->
+<div class="general white clearfix">
+    <div class="index_tit_two title">
+        <span class="text_left">电竞比赛视频</span>
+        <p class="link_nav"><span th:each="matchZone:${matchZoneVideoList}"><a href="#"
+                                                                               th:text="${matchZone.name}"
+                                                                               th:href="/game/${matchZone.id}/"
+                                                                               th:title="${matchZone.name}"
+                                                                               target="_blank">炉石传说</a>|</span>
+        </p>
+        <a th:href="/video_new/matchVideo/all/0_1.html" class="more" target="_blank">更多</a>
+    </div>
+    <div class="index_video clearfix">
+        <p class="index_video_left"><a href="#" th:each="info,iterStat:${infoMatchZoneVideoList}"
+                                       th:if="${iterStat.index==0}" th:href="/video/${info.id}.html"
+                                       th:title="${info.title}" target="_blank"><img
+                th:img-src="/image/486x360${info.titleImage}" th:alt="${info.title}"
+                th:title="${info.title}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
+        </p>
+        <div class="index_video_right">
+            <ul>
+                <li th:each="info,iterStat:${infoMatchZoneVideoList}" th:if="${iterStat.index!=0}">
+                    <a href="#" class="img" th:href="/video/${info.id}.html"
+                       th:title="${info.title}" target="_blank">
+                        <img th:img-src="/image/200x118${info.titleImage}" th:alt="${info.title}"
+                             th:title="${info.title}"/>
+                        <p class="p1"><span></span></p>
+                        <p class="p2"><em></em></p>
+                    </a>
+                    <a href="#" class="text" th:text="${info.title}" th:href="/video/${info.id}.html"
+                       th:title="${info.title}" target="_blank">电竞校园联赛炉石传说Top3</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--电竞主播解说-->
+<div class="general white clearfix">
+    <div class="index_tit_two title">
+        <span class="text_left">电竞主播解说</span>
+        <p class="link_nav"><span th:each="anchorZone:${anchorZoneVideoList}"><a href="#"
+                                                                                 th:text="${anchorZone.name}"
+                                                                                 th:href="/anchor/${anchorZone.id}/"
+                                                                                 th:title="${anchorZone.name}"
+                                                                                 target="_blank">炉石传说</a>|</span>
+        </p>
+        <a th:href="/video_new/anchorVideo/all/0_1.html" class="more" target="_blank">更多</a>
+    </div>
+    <div class="index_video clearfix">
+        <p class="index_video_left"><a href="#" th:each="info,iterStat:${infoAnchorZoneVideoList}"
+                                       th:if="${iterStat.index==0}" th:href="/video/${info.id}.html"
+                                       th:title="${info.title}" target="_blank"><img
+                th:img-src="/image/486x360${info.titleImage}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
+        </p>
+        <div class="index_video_right">
+            <ul>
+                <li th:each="info,iterStat:${infoAnchorZoneVideoList}" th:if="${iterStat.index!=0}">
+                    <a href="#" class="img" th:href="/video/${info.id}.html" th:title="${info.title}" target="_blank">
+                        <img th:img-src="/image/200x118${info.titleImage}" th:alt="${info.title}"
+                             th:title="${info.title}"/>
+                        <p class="p1"><span></span></p>
+                        <p class="p2"><em></em></p>
+                    </a>
+                    <a href="#" class="text" th:text="${info.title}" th:href="/video/${info.id}.html"
+                       th:title="${info.title}" target="_blank">电竞校园联赛炉石传说Top3</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--玩家游戏直播-->
+<div class="general game_user clearfix" th:unless="${#lists.isEmpty(infoPlayerVideoInfoList)}">
+    <div class="index_tit_two title">
+        <span class="text_left">玩家游戏直播</span>
+        <a th:href="/video_new/playerVideo/all/0_1.html" class="more" target="_blank">更多</a>
+    </div>
+    <div class="index_video_right game_user_con">
+        <ul>
+            <li th:each="info:${infoPlayerVideoInfoList}">
+                <a href="#" class="img" th:href="/video/${info.id}.html"
+                   th:title="${info.title}" target="_blank">
+                    <img th:img-src="/image/200x118${info.titleImage}" th:alt="${info.title}"
+                         th:title="${info.title}"/>
+                    <p class="p1"><span></span></p>
+                    <p class="p2"><em></em></p>
+                </a>
+                <a href="#" class="text" th:text="${info.title}" th:href="/video/${info.id}.html"
+                   th:title="${info.title}" target="_blank">电竞校园联赛炉石传说Top3</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--横条广告2-->
+<!--<div class="general"><a href="#" class="ad_heng"><img src="static/temp/banner1180.jpg"/></a></div>-->
+<!--电竞游戏排行榜-->
+<div class="general index_rank">
+    <div class="index_tit_two title"><span class="text_left">电竞游戏排行榜</span></div>
+    <ul class="index_rank_con clearfix">
+        <li th:each="matchZone:${matchZoneTopList}">
+            <p class="p1"><a href="#" th:href="/game/${matchZone.id}/"
+                             th:title="${matchZone.name}" target="_blank"><span></span><img
+                    th:img-src="/image/106x106/${matchZone.icoImage}" th:alt="${matchZone.name}"
+                    th:title="${matchZone.name}"/></a></p>
+            <p class="p2">
+                <span class="span01"><a href="#" th:text="${matchZone.name}" th:href="/game/${matchZone.id}/"
+                                        th:title="${matchZone.name}" target="_blank">风暴英雄</a></span>
+                <span class="span02">人气：<em th:text="${matchZone.visitCount}">41987</em></span>
+            </p>
+        </li>
+
+    </ul>
+</div>
+<!--电竞美图 -->
+<div class="general index_pic clearfix">
+    <div class="index_tit_two title">
+        <span class="text_left">电竞美图</span>
+        <a th:href="/picture/" class="more" target="_blank">更多</a>
+    </div>
+    <div class="index_pic_con">
+        <ul class="ul1">
+            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==0||iterStat.index==1}"><a href="#"
+                                                                                                             th:href="/picture/${picture.id}.html"
+                                                                                                             th:title="${picture.description}"
+                                                                                                             target="_blank"><img
+                    th:img-src="/image/280x178${picture.image}" th:alt="${picture.description}"
+                    th:title="${picture.description}"/>
+                <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
+        </ul>
+        <ul class="ul2">
+            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==2}"><a href="#"
+                                                                                          th:href="/picture/${picture.id}.html"
+                                                                                          th:title="${picture.description}"
+                                                                                          target="_blank"><img
+                    th:img-src="/image/280x362${picture.image}" th:alt="${picture.description}"
+                    th:title="${picture.description}"/>
+                <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
+        </ul>
+        <ul class="ul1">
+            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==3||iterStat.index==4}"><a href="#"
+                                                                                                             th:href="/picture/${picture.id}.html"
+                                                                                                             th:title="${picture.description}"
+                                                                                                             target="_blank"><img
+                    th:img-src="/image/280x178${picture.image}" th:alt="${picture.description}"
+                    th:title="${picture.description}"/>
+                <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
+        </ul>
+        <ul class="ul2">
+            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==5}"><a href="#"
+                                                                                          th:href="/picture/${picture.id}.html"
+                                                                                          th:title="${picture.description}"
+                                                                                          target="_blank"><img
+                    th:img-src="/image/280x362${picture.image}" th:alt="${picture.description}"
+                    th:title="${picture.description}"/>
+                <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
+        </ul>
+    </div>
+</div>
+
+
+<!--线上琵琶网首页的foot，这里只是截图-->
+<div th:replace="/bottom.html::bottom"></div>
+
+</body>
+</html>

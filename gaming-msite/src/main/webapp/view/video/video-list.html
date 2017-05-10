@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
+    <title>电竞赛事游戏视频_55电竞游戏网</title>
+    <meta name="keywords" content="网游视频资讯,游戏视频,游戏视频,原创视频,英雄联盟视频,55游戏视频"/>
+    <meta name="description"
+          content="55电竞游戏网游戏视频频道，为您第一时间发布国内外最新最有价值的游戏视频资讯内容，同时提供王者荣耀直播视频、球球大作战直播视频、阴阳师直播视频及英雄联盟lol等视频内容，更多精彩内容请关注55电竞游戏网。"/>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/head.html::top('video')"></div>
+
+<div class="general">
+    <!--面包屑-->
+    <div class="position"><a th:href="">电竞首页</a>&gt;<a th:href="/video/">视频列表</a>&gt;<em
+            th:if="${#strings.startsWith(videoList.pageName,'/video_new')}">最新视频</em><em
+            th:if="${#strings.startsWith(videoList.pageName,'/video_top')}">最热视频</em></div>
+    <!--赛事筛选-->
+    <div class="list_choose">
+        <div class="index_tit_two title"><span class="text_left">视频筛选</span></div>
+        <div class="list_choose_con">
+            <dl>
+                <dt>类型</dt>
+                <dd class="dd1"><a
+                        th:href="/video_${pageFlag}/all/${infoZoneTypeSelected}/${zoneIdSelected}_${videoList.currentPage}.html"
+                        th:classappend="${infoVideoTypeSelected}=='all'?'hover'">全部</a>
+                    <a th:href="/video_${pageFlag}/matchVideo/${infoZoneTypeSelected}/${zoneIdSelected}_${videoList.currentPage}.html"
+                       th:classappend="${infoVideoTypeSelected}=='matchVideo'?'hover'">比赛视频</a>
+                    <a th:href="/video_${pageFlag}/anchorVideo/${infoZoneTypeSelected}/${zoneIdSelected}_${videoList.currentPage}.html"
+                       th:classappend="${infoVideoTypeSelected}=='anchorVideo'?'hover'">主播视频</a>
+                    <a th:href="/video_${pageFlag}/playerVideo/${infoZoneTypeSelected}/${zoneIdSelected}_${videoList.currentPage}.html"
+                       th:classappend="${infoVideoTypeSelected}=='playerVideo'?'hover'">玩家视频</a>
+                    <a th:href="/video_${pageFlag}/funVideo/${infoZoneTypeSelected}/${zoneIdSelected}_${videoList.currentPage}.html"
+                       th:classappend="${infoVideoTypeSelected}=='funVideo'?'hover'">娱乐视频</a>
+                    <a th:href="/video_${pageFlag}/originalVideo/${infoZoneTypeSelected}/${zoneIdSelected}_${videoList.currentPage}.html"
+                       th:classappend="${infoVideoTypeSelected}=='originalVideo'?'hover'">原创视频</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt>游戏</dt>
+                <dd class="dd1">
+                    <a th:href="/video_${pageFlag}/${infoVideoTypeSelected}/all/0_${videoList.currentPage}.html"
+                       th:class="${infoZoneTypeSelected}=='all'?'hover':(${infoZoneTypeSelected}=='anchorZone'?'hover':'')">全部</a>
+                    <a th:each="matchZone:${matchZoneList}"
+                       th:href="/video_${pageFlag}/${infoVideoTypeSelected}/matchZone/${matchZone.id}_${videoList.currentPage}.html"
+                       th:text="${matchZone.name}" th:classappend="${zoneIdSelected}==${matchZone.id}?'hover'">英雄联盟</a>
+                    <span>More</span>
+                </dd>
+
+                <dd class="dd2">
+                    <a th:each="matchZone:${matchZoneListMore}"
+                       th:href="/video_${pageFlag}/${infoVideoTypeSelected}/matchZone/${matchZone.id}_${videoList.currentPage}.html"
+                       th:text="${matchZone.name}" th:classappend="${zoneIdSelected}==${matchZone.id}?'hover'">英雄联盟</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt>主播</dt>
+                <dd class="dd1"><a
+                        th:href="/video_${pageFlag}/${infoVideoTypeSelected}/all/0_${videoList.currentPage}.html"
+                        th:class="${infoZoneTypeSelected}=='all'?'hover':(${infoZoneTypeSelected}=='matchZone'?'hover':'')">全部</a><a
+                        th:each="anchorZone:${anchorZoneList}"
+                        th:href="/video_${pageFlag}/${infoVideoTypeSelected}/anchorZone/${anchorZone.id}_${videoList.currentPage}.html"
+                        th:text="${anchorZone.name}"
+                        th:classappend="${zoneIdSelected}==${anchorZone.id}?'hover'">英雄联盟</a><span>More</span>
+                </dd>
+                <dd class="dd2">
+                    <a th:each="anchorZone:${anchorZoneListMore}"
+                       th:href="/video_${pageFlag}/${infoVideoTypeSelected}/anchorZone/${anchorZone.id}_${videoList.currentPage}.html"
+                       th:text="${anchorZone.name}"
+                       th:classappend="${zoneIdSelected}==${anchorZone.id}?'hover'">英雄联盟</a>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <!--最新最热-->
+    <div class="list_tab_one">
+        <div class="tab_two">
+            <ul>
+                <li th:classappend="${#strings.startsWith(videoList.pageName,'/video_new')}?'hover'"><a
+                        th:href="/video_new/all/all/0_1.html"><span>最新</span></a></li>
+                <li th:classappend="${#strings.startsWith(videoList.pageName,'/video_top')}?'hover'">
+                    <a
+                            th:href="/video_top/all/all/0_1.html"><span>最热</span></a></li>
+            </ul>
+        </div>
+        <div id="con_one_1" style="display:block">
+            <div class="index_video_right view_box">
+                <ul>
+                    <li th:each="video:${videoList.list}">
+                        <a href="#" class="img" th:title="${video.title}"
+                           th:href="/video/${video.id}.html" target="_blank">
+                            <img th:img-src="/image/270x160${video.titleImage}" th:alt="${video.title}"
+                                 th:title="${video.title}"/>
+                            <p class="p1"><span></span></p>
+                            <p class="p2"><em></em></p>
+                        </a>
+                        <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
+                           th:href="/video/${video.id}.html" target="_blank">MISS排位日记263期 中单阿狸大杀四方</a>
+                        <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
+                        </p>
+                    </li>
+
+                </ul>
+            </div>
+            <!--页码-->
+            <div th:replace="/pager.html::page(${videoList.pageName},${videoList.currentPage},${videoList.totalPage})"></div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="/bottom.html::bottom"></div>
+
+</body>
+</html>

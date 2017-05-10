@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
+    <title th:text="${info.seoTitle}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${info.seoKeywords}"/>
+    <meta name="description"
+          content="描述" th:attr="content=${info.seoDescription}"/>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/view/anchor/anchor-head.html::top(${anchorZone})"></div>
+
+<div class="home_page">
+    <div class="home_page_left">
+        <div class="position" style="margin-left:22px;"><a th:href="/">电竞首页</a>&gt;<a
+                th:href="/anchor/${anchorZone.id}/" th:text="${anchorZone.name}">英雄联盟电竞专区</a>&gt;<a
+                th:href="/anchor/video/${anchorZone.id}/">主播视频</a>&gt;<em
+                th:text="${info.title}"></em></div>
+        <div style="margin-left:10px;" th:replace="/view/anchor/anchor-bar.html::bar('video',${anchorZone.id})"></div>
+
+        <div class="general">
+            <!--资讯详情,左边-->
+            <div class="zixun_left">
+                <div class="zixun_left_con clearfix">
+                    <div class="news_d_top">
+                        <h1 th:text="${info.title}">梦幻西游手游大唐修炼怎么点 大唐修炼选择优先顺序</h1>
+                        来源：<a href="http://www.55djw.com" th:href="${baseUrl}"
+                              th:text="${info.source}">www.pipaw.com</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        时间：<span th:text="${#calendars.format(info.publishTime, 'yyyy-MM-dd')}">2015-04-28</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                        作者：<span th:text="${info.author}">晨落</span>&nbsp;&nbsp;&nbsp;&nbsp; 评论数：<span
+                            id="sourceId::此处替换为配置SourceID的语句" class="cy_cmt_count"
+                            th:attr="id='sourceId::'+${currentUrl}"></span></div>
+                    <div class="new_d_font" th:utext="${info.content}">
+                    </div>
+                    <div class="detail_tag">
+                        <p class="p1">标签：<a href="#" th:each="tagTrade:${info.tagMappingWebList}"
+                                            th:text="${tagTrade.name}">电竞</a></p>
+                        <div class="p2">
+                            <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a> <a
+                                    title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a> <a title="分享到新浪微博"
+                                                                                                        href="#"
+                                                                                                        class="bds_tsina"
+                                                                                                        data-cmd="tsina"></a>
+                                <a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a> <a title="分享到人人网"
+                                                                                                   href="#"
+                                                                                                   class="bds_renren"
+                                                                                                   data-cmd="renren"></a>
+                                <a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                            <script>
+                                window._bd_share_config = {
+                                    "common": {
+                                        "bdSnsKey": {},
+                                        "bdText": "",
+                                        "bdMini": "2",
+                                        "bdPic": "",
+                                        "bdStyle": "0",
+                                        "bdSize": "16"
+                                    }, "share": {}
+                                };
+                                with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+                            </script>
+                            <span>分享到：</span></div>
+                        <p class="p1">上一篇：<a href="###" class="a1" th:if="${lastInfo!=null}" th:text="${lastInfo.title}"
+                                             th:href="/news/${lastInfo.id}.html">天天酷跑地狱熊爵熊队长极速5000米对比</a><span
+                                th:if="${lastInfo==null}">没有了</span></p>
+                        <p class="p3">下一篇：<a href="###" th:if="${nextInfo!=null}" th:text="${nextInfo.title}"
+                                             th:href="/news/${nextInfo.id}.html">天天传奇战士搭配什么伙伴好战士阵容搭配推荐</a><span
+                                th:if="${nextInfo==null}">没有了</span></p>
+                    </div>
+                </div>
+                <!--相关文章-->
+                <div class="about_read clearfix">
+                    <div class="index_tit_two"><span class="text_left padding1">相关文章</span></div>
+                    <ul class="hot_zixun read_text">
+                        <li th:each="likeInfo:${likeInfoList}"><a href="#" th:text="${likeInfo.title}"
+                                                                  th:title="${likeInfo.title}"
+                                                                  th:href="/news/${likeInfo.id}.html">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--精选美图 -->
+                <div class="about_pic clearfix">
+                    <div class="index_tit_two"><span class="text_left padding1">精选美图</span><a th:href="/picture/"
+                                                                                              class="more">更多</a>
+                    </div>
+                    <ul>
+                        <li th:each="picture:${pictureTopList}">
+                            <a href="#" th:title="${picture.description}"
+                               th:href="/picture/${picture.id}.html"><img src="/static/temp/girl1.jpg"
+                                                                          th:img-src="/image/234x148${picture.image}"
+                                                                          th:alt="${picture.description}"
+                                                                          th:title="${picture.description}"/>
+                                <p><span th:text="${picture.description}">最美拉克丝COS 水灵大眼神似小鹿斑比</span></p></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="game_pinglun" style="width: 744px;">
+                <div th:replace="/comment.html::comment(${info.id},${info.title},${currentUrl})"></div>
+            </div>
+        </div>
+    </div>
+    <div class="main_right">
+        <div class="right_mid">
+            <div class="index_tit_two"><span class="text_left">个人视频排行</span></div>
+            <dl class="video_rank">
+                <dt th:each="anchorVideo,iterStat:${anchorVideoTopList}"
+                    th:if="${iterStat.index==0||iterStat.index==1||iterStat.index==2}"><span
+                        style="background:url(/static/img/zhubo/zhubo_shipin.png) no-repeat;"
+                        th:text="${iterStat.index+1}">1</span><a href="#" th:text="${anchorVideo.title}"
+                                                                 th:href="/video/${anchorVideo.id}.html"
+                                                                 th:title="${anchorVideo.title}">驰骋野区的风暴骑手：新版本打野人攻略</a>
+                </dt>
+                <dt th:each="anchorVideo,iterStat:${anchorVideoTopList}"
+                    th:if="${iterStat.index!=0&&iterStat.index!=1&&iterStat.index!=2}"><span
+                        th:text="${iterStat.index+4}">4</span><a href="#" th:text="${anchorVideo.title}"
+                                                                 th:href="/video/${anchorVideo.id}.html"
+                                                                 th:title="${anchorVideo.title}">英雄联盟S6总决赛详情：举办地为北美</a>
+                </dt>
+            </dl>
+        </div>
+        <div class="right_mid">
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a th:href="/anchor/"
+                                                                              class="more vider_more">更多</a>
+            </div>
+            <ul class="hot_zhubo">
+                <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}/"
+                                                                 th:title="${anchorZone.name}">
+                    <p class="p1"><img th:src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
+                                       th:title="${anchorZone.name}"/></p>
+                    <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"
+                                       th:alt="${anchorZone.name}" th:title="${anchorZone.name}"/>
+                    </p>
+                    <p class="p3" th:text="${anchorZone.name}">拳头暴君</p>
+                </a></li>
+            </ul>
+        </div>
+        <div class="right_mid">
+            <div class="index_tit_two"><span class="text_left">热门游戏</span> <a th:href="/game/"
+                                                                              class="more vider_more">更多</a>
+            </div>
+            <ul class="hot_zixun">
+                <li th:each="matchZone:${matchZoneTopList}"><a href="#"
+                                                               th:text="${matchZone.name}"
+                                                               th:href="/game/${matchZone.id}/"
+                                                               th:title="${matchZone.name}">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!--线上琵琶网首页的foot，这里只是截图-->
+<div th:replace="/bottom.html::bottom"></div>
+
+</body>
+</html>

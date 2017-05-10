@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
+    <title>游戏新闻资讯_55电竞游戏网</title>
+    <meta name="keywords" content="网游资讯,游戏新闻,网游活动,热门网游,55电竞游戏网"/>
+    <meta name="description"
+          content="55电竞游戏网新闻资讯栏目，为您第一时间发布国内外最新最有价值的游戏新闻，包括王者荣耀直播、球球大作战直播、阴阳师直播及英雄联盟lol等赛事新闻，热门网游活动和游戏周边八卦等，更多精彩内容请关注55电竞游戏网。"/>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/head.html::top('news')"></div>
+<div class="general">
+    <!--面包屑-->
+    <div class="position"><a th:href="/">电竞首页</a>&gt;<a th:href="/news/">全部资讯</a>&gt;<em
+            th:if="${infoList.pageName}=='/news_trade'">行业新闻</em><em
+            th:if="${infoList.pageName}=='/news_match'">赛事新闻</em><em
+            th:if="${infoList.pageName}=='/news_anchor'">主播新闻</em></div>
+    <!--全部资讯,左边-->
+    <div class="all_zixun">
+        <div class="index_tit_two"><span class="text_left">全部资讯</span></div>
+        <div class="tab_three">
+            <ul>
+                <li th:classappend="${infoList.pageName}=='/news_trade'?'hover'"><a
+                        th:href="/news_trade_1.html">行业</a><em></em></li>
+                <li th:classappend="${infoList.pageName}=='/news_match'?'hover'"><a
+                        th:href="/news_match_1.html">赛事</a><em></em></li>
+                <li th:classappend="${infoList.pageName}=='/news_anchor'?'hover'"><a
+                        th:href="/news_anchor_1.html">主播</a><em></em></li>
+            </ul>
+        </div>
+        <!--tab内容-->
+        <div class="tab_one_con2">
+            <div class="tab_deatil" id="con_one_1" style="display:block">
+                <ul>
+                    <li th:each="info:${infoList.list}">
+                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
+                                           target="_blank"><img
+                                th:img-src="/image/204x108${info.titleImage}" th:alt="${info.title}"
+                                th:title="${info.title}"/></a></div>
+                        <div class="d2">
+                            <p class="p1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
+                                             th:text="${info.title}" target="_blank">iGirls战队处罚相关人员
+                                恶意煽动队员离队将予以起诉</a></p>
+                            <p class="p2"><span><a href="#" th:href="/news/tag/${tagTrade.tagsId}_1.html"
+                                                   th:each="tagTrade:${info.tagMappingWebList}"
+                                                   th:text="${tagTrade.name}" target="_blank">电竞</a></span><em
+                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20 10:35</em></p>
+                            <p class="p3" th:text="${info.subTitle}">
+                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
+                        </div>
+                    </li>
+                </ul>
+                <div th:replace="/pager.html::page(${infoList.pageName},${infoList.currentPage},${infoList.totalPage})"></div>
+            </div>
+        </div>
+    </div>
+    <!--资讯列表右边-->
+    <div class="zixun_right">
+        <!--精选视频-->
+        <div class="list2_right_box">
+            <div class="index_tit_two"><span class="text_left">精选视频</span> <a th:href="/video/" class="more">更多</a>
+            </div>
+            <div class="index_video_right game_user_con small">
+                <ul>
+                    <li th:each="video:${videoTopList}"><a href="#" class="img" th:href="/video/${video.id}.html"
+                                                           th:title="${video.title}" target="_blank"> <img
+                            th:img-src="/image/154x90${video.titleImage}" th:alt="${video.title}"
+                            th:title="${video.title}"/>
+                        <p class="p1"><span></span></p>
+                        <p class="p2"><em></em></p>
+                    </a> <a href="#" class="text" th:text="${video.title}" th:href="/video/${video.id}.html"
+                            th:title="${video.title}" target="_blank">电竞校园联赛炉石传说Top3</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--热门主播-->
+        <div class="list2_right_box">
+            <div class="index_tit_two"><span class="text_left">热门主播</span> <a th:href="/anchor/" target="_blank"
+                                                                              class="more">更多</a>
+            </div>
+            <ul class="hot_zhubo">
+                <li th:each="anchor:${anchorTopList}">
+                    <a href="#" th:href="/anchor/${anchor.id}/"
+                       th:title="${anchor.name}" target="_blank">
+                        <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
+                        <p class="p2"><img th:img-src="/image/120x120${anchor.icoImage}" th:alt="${anchor.name}"
+                                           th:title="${anchor.name}"/></p>
+                        <p class="p3" th:text="${anchor.username}">拳头暴君</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--热门资讯 -->
+        <div class="list2_right_box">
+            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a th:href="/news/" target="_blank"
+                                                                              class="more">更多</a>
+            </div>
+            <ul class="hot_zixun">
+                <li th:each="news:${newsTopList}"><a href="#" th:text="${news.title}"
+                                                     th:href="/news/${news.id}.html" th:title="${news.title}"
+                                                     target="_blank">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--线上琵琶网首页的foot，这里只是截图-->
+<div th:replace="/bottom.html::bottom"></div>
+</body>
+</html>

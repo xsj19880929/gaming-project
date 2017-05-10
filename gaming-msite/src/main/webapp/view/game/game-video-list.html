@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
+    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
+    <script type="text/javascript" th:src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <title th:text="${matchZone.name}+'视频_'+${matchZone.name}+'赛事视频_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${matchZone.name}+'视频,'+${matchZone.name}"/>
+    <meta name="description"
+          content="描述"
+          th:attr="content=${matchZone.name}+'提供最新最全的'+${matchZone.name}+'视频，攻略视频，赛事视频，赛事直播视频，精彩赛事视频等，更多有关'+${matchZone.name}+'视频尽在'+${siteName}+'（55djw.com）'+${matchZone.name}+'专区。'"/>
+</head>
+
+<body>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/view/game/game-head.html::top('video',${matchZone})"></div>
+<!--面包屑-->
+<div class="game_position"><a th:href="/">电竞首页</a>&gt;<a
+        th:href="/game/${matchZone.id}/" th:text="${matchZone.name}">英雄联盟电竞专区</a>&gt;<em>赛事视频</em></div>
+<div class="game_main_box">
+    <div class="game_main_left">
+        <div class="all_zixun">
+            <div class="index_tit_two" style="margin-left:10px;"><span class="text_left"
+                                                                       th:text="${matchZone.name}+'视频'">英雄联盟视频</span>
+            </div>
+            <div id="con_one_1" style="display:block">
+                <div class="index_video_right zone_view_box">
+                    <ul>
+                        <li th:each="video:${matchVideoList.list}">
+                            <a href="#" class="img" th:title="${video.title}"
+                               th:href="/video/${video.id}.html">
+                                <img th:img-src="/image/230x160${video.titleImage}" th:alt="${video.title}"
+                                     th:title="${video.title}"/>
+                                <p class="p1"><span></span></p>
+                                <p class="p2"><em></em></p>
+                            </a>
+                            <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
+                               th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
+                            <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"
+                                                                             th:alt="${video.title}"
+                                                                             th:title="${video.title}"/>43265
+                            </p>
+                        </li>
+
+                    </ul>
+                </div>
+                <!--页码-->
+                <div th:replace="/pager.html::page(${matchVideoList.pageName},${matchVideoList.currentPage},${matchVideoList.totalPage})"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="game_main_right">
+        <div class="index_tit_two" style="height:320px;">
+            <span class="text_left padding1">热门赛事</span>
+            <a th:href="/game/" target="_blank" class="more">更多</a>
+            <div class="game_hot">
+                <dl style="margin-top:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
+                    th:if="${iterStat.index==0}">
+                    <a href="#" th:href="/game/${matchZoneTop.id}/" th:title="${matchZoneTop.name}">
+                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.indexImage}"
+                             th:alt="${matchZoneTop.name}" th:title="${matchZoneTop.name}"/>
+                        <dt th:text="${matchZoneTop.name}">LPL2016英雄联盟职业联赛春季赛</dt>
+                    </a>
+                </dl>
+                <dl style="margin-top:20px;margin-bottom:20px;" th:each="matchZoneTop,iterStat:${matchZoneListTop}"
+                    th:if="${iterStat.index==1}">
+                    <a href="#" th:href="/game/${matchZoneTop.id}/" th:title="${matchZoneTop.name}">
+                        <img src="/static/img/game/ls01.jpg" th:img-src="/image/373x155${matchZoneTop.indexImage}"
+                             th:alt="${matchZoneTop.name}" th:title="${matchZoneTop.name}"/>
+                        <dt th:text="${matchZoneTop.name}">LPL2016英雄联盟职业联赛春季赛</dt>
+                    </a>
+                </dl>
+            </div>
+        </div>
+        <div class="index_tit_two" style="height:440px;">
+            <span class="text_left padding1">热门资讯</span>
+            <a th:href="/news/" target="_blank" class="more">更多</a>
+            <div class="game_zixun2">
+                <ul class="hot_zixun">
+                    <li th:each="newsTop:${topNewsList}"><a href="#" th:text="${newsTop.title}"
+                                                            th:href="/news/${newsTop.id}.html"
+                                                            th:title="${newsTop.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="index_tit_two">
+            <span class="text_left padding1" style="margin-top:20px;">最新资讯</span>
+            <a th:href="/news/" target="_blank" class="more" style="margin-top:24px;">更多</a>
+            <div class="game_zixun2">
+                <ul class="hot_zixun">
+                    <li th:each="news:${newestNewsList}"><a href="#" th:text="${news.title}"
+                                                            th:href="/news/${news.id}.html"
+                                                            th:title="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<!--线上琵琶网首页的foot，这里只是截图-->
+<div th:replace="/bottom.html::bottom"></div>
+
+</body>
+</html>
