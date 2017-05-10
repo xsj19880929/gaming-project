@@ -116,3 +116,22 @@ project(':gaming-crawler') {
         )
     }
 }
+project(':gaming-msite') {
+    apply from: file("${rootDir}/gradle/web.gradle")
+    dependencies {
+        compile(
+                project(':gaming-common'),
+                'core.framework:core:2.0.0',
+                'org.hsqldb:hsqldb:2.3.2',
+                'commons-dbcp:commons-dbcp:1.4',
+                'com.ymc:file-api:1.0.0',
+                'mysql:mysql-connector-java:5.1.21'
+        )
+        testCompile(
+                "org.springframework:spring-test:${springVersion}",
+                'com.jayway.jsonpath:json-path:0.9.1',
+                'javax.el:javax.el-api:3.0.0',
+                'org.hsqldb:hsqldb:2.3.2'
+        )
+    }
+}
