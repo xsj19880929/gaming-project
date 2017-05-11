@@ -8,11 +8,11 @@
     <meta content="yes" name="apple-mobile-web-app-capable"/>
     <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
     <title>专区首页</title>
-    <link rel="stylesheet" type="text/css" href="static/css/gpwx.css"/>
-    <link rel="stylesheet" type="text/css" href="static/css/index.css"/>
-    <script type="text/javascript" src="static/js/jquery.js"></script>
-    <script type="text/javascript" src="static/js/wcgp.js"></script>
-    <script src="static/js/ProjectHome.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/gpwx.css" th:href="static/css/gpwx.css"/>
+    <link rel="stylesheet" type="text/css" href="static/css/index.css" th:href="static/css/index.css"/>
+    <script type="text/javascript" src="static/js/jquery.js" th:src="static/js/jquery.js"></script>
+    <script type="text/javascript" src="static/js/wcgp.js" th:src="static/js/wcgp.js"></script>
+    <script type="text/javascript" src="static/js/ProjectHome.js" th:src="static/js/ProjectHome.js"></script>
 </head>
 
 <body>
@@ -192,7 +192,8 @@
                 <span class="long-string"></span><em th:text="${matchZone.name}">dnf视频</em></li>
         </ul>
     </div>
-    <div class="video-play videoPlay1">
+    <div th:each="infoMatchZoneVideoList,iterStatAll:${infoMatchZoneVideoListAll}"
+         th:class="iterStatAll.index==0?'video-play videoPlay1':'video-play videoPlay1 hide'">
         <ul>
             <li th:each="info,iterStat:${infoMatchZoneVideoList}">
                 <a th:href="/video/${info.id}.html" th:title="${info.title}">
@@ -229,116 +230,7 @@
             </li>
         </ul>
     </div>
-    <div class="video-play videoPlay1" style="display: none;">
-        <ul>
 
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">比赛视频高清 rngvstsm比赛录像</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp1.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">小苍剑圣第一视角 细节成就五杀</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp3.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
-            </li>
-        </ul>
-    </div>
-    <div class="video-play videoPlay1" style="display: none;">
-        <ul>
-
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp3.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp1.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">小苍剑圣第一视角 细节成就五杀</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">比赛视频高清 rngvstsm比赛录像</a>
-            </li>
-        </ul>
-    </div>
-    <div class="video-play videoPlay1" style="display: none;">
-        <ul>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp1.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">小苍剑圣第一视角 细节成就五杀</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">比赛视频高清 rngvstsm比赛录像</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp3.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
-            </li>
-        </ul>
-    </div>
 </div>
 <!--主播解说-->
 <div class="wcgp-news-box">
@@ -353,7 +245,8 @@
                     class="long-string"></span> <em th:text="${anchorZone.name}">dnf视频</em></li>
         </ul>
     </div>
-    <div class="video-play videoPlay2 ">
+    <div th:each="infoAnchorZoneVideoList,iterStatAll:${infoAnchorZoneVideoListAll}"
+         th:class="iterStatAll.index==0?'video-play videoPlay1':'video-play videoPlay1 hide'">
         <ul>
             <li th:each="info,iterStat:${infoAnchorZoneVideoList}">
                 <a th:href="/video/${info.id}.html" th:title="${info.title}">
@@ -362,115 +255,6 @@
                 </a>
                 <div class="mengcheng"></div>
                 <a th:href="/video/${info.id}.html" th:title="${info.title}" th:text="${info.title}">小苍剑圣第一视角 细节成就五杀</a>
-            </li>
-        </ul>
-    </div>
-    <div class="video-play videoPlay2" style="display: none;">
-        <ul>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">比赛视频高清 rngvstsm比赛录像</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp3.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp1.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">小苍剑圣第一视角 细节成就五杀</a>
-            </li>
-        </ul>
-    </div>
-    <div class="video-play videoPlay2" style="display: none;">
-        <ul>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">比赛视频高清 rngvstsm比赛录像</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp1.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">小苍剑圣第一视角 细节成就五杀</a>
-            </li>
-
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp3.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
-            </li>
-        </ul>
-    </div>
-    <div class="video-play videoPlay2" style="display: none;">
-        <ul>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp1.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">小苍剑圣第一视角 细节成就五杀</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">比赛视频高清 rngvstsm比赛录像</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="static/img/yxsp3.png" alt="">
-                    <img class="playIoc" src="static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
             </li>
         </ul>
     </div>

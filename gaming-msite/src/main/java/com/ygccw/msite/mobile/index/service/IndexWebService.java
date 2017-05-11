@@ -172,6 +172,23 @@ public class IndexWebService {
         return matchZoneList;
     }
 
+    public List<List<Info>> findMatchZoneVideoVideoInfoList(int size) {
+        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.matchZoneVideo, RecommendType.matchZone, 0, 4);
+        List<List<Info>> listData = new ArrayList<>();
+        for (RecommendMapping recommendMapping : recommendMappingList) {
+            Info info = new Info();
+            info.setInfoVideoType(InfoVideoType.matchVideo);
+            info.setVerify(1);
+            info.setSortIfDesc(true);
+            info.setSortName("publishTime");
+            info.setInfoZoneType(InfoZoneType.matchZone);
+            info.setZoneId(recommendMapping.getEntityId());
+            listData.add(infoService.list(info, 0, size));
+        }
+        return listData;
+
+    }
+
     public List<Info> findZoneVideoInfoByRecommendLocal(RecommendLocal recommendLocal, RecommendType recommendType, InfoVideoType infoVideoType) {
         List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(recommendLocal, recommendType, 0, 7);
         List<Info> infoList = new ArrayList<>();
@@ -198,6 +215,23 @@ public class IndexWebService {
             anchorZoneList.add(anchorZone);
         }
         return anchorZoneList;
+    }
+
+    public List<List<Info>> findAnchorZoneVideoVideoInfoList(int size) {
+        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.anchorZoneVideo, RecommendType.anchorZone, 0, 4);
+        List<List<Info>> listData = new ArrayList<>();
+        for (RecommendMapping recommendMapping : recommendMappingList) {
+            Info info = new Info();
+            info.setInfoVideoType(InfoVideoType.anchorVideo);
+            info.setVerify(1);
+            info.setSortIfDesc(true);
+            info.setSortName("publishTime");
+            info.setInfoZoneType(InfoZoneType.anchorZone);
+            info.setZoneId(recommendMapping.getEntityId());
+            listData.add(infoService.list(info, 0, size));
+        }
+        return listData;
+
     }
 
 
