@@ -1,0 +1,475 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta http-equiv="Cache-Control" content="max-age=3600"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <title>专区首页</title>
+    <link rel="stylesheet" href="css/CompetitionList.css">
+    <link rel="stylesheet" type="text/css" href="css/gp.css"/>
+</head>
+<body>
+<!--头部1-->
+<header class="header1">
+    <div class="top">
+        <!--<script type="text/javascript" src="http://static.pipaw.com/touch/zq/js/public.js?v=4"></script>-->
+        <div class="menu-new-back">
+            <a href="http://m.pipaw.com/" class="js-go-back"></a>
+        </div>
+        <div class="menu menu-new" style="height:45px;">
+            <img src="img/menu.png" class="menu_ico">
+            <div class="list_menu list_menu_new">
+                <img src="img/xiala_ico_02.png" class="img">
+                <ul>
+                    <li><a href="http://m.pipaw.com/">首页</a></li>
+                    <li><a href="http://m.wy.pipaw.com/">安卓网游</a></li>
+                    <li><a href="http://m.pipaw.com/danji/">单机手游</a></li>
+                    <li><a href="http://m.fahao.pipaw.com/">发号中心</a></li>
+                    <li><a href="http://m.pipaw.com/azkf.html">开服/开测</a></li>
+                    <li><a href="http://www.7724.com/">在线小游戏</a></li>
+                    <li><a href="http://m.pipaw.com/tech/">琵琶前瞻</a></li>
+                    <li><a href="http://bbs.pipaw.com/">进入论坛</a></li>
+                    <li><a href="http://m.app.pipaw.com/">客户端下载</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="menu-new-search">
+            <a href="http://m.pipaw.com/searchsite.html"></a>
+        </div>
+    </div>
+</header>
+
+<!--导航1-->
+<div class="wcgp-nav-box">
+    <ul class="clearfix" id="wcgp-nav1">
+        <li class="on">
+            <a href="#">电竞</a>
+        </li>
+        <li>
+            <a href="#">新闻</a>
+        </li>
+        <li>
+            <a href="#">视频</a>
+        </li>
+        <li>
+            <a href="#">赛事</a>
+        </li>
+        <li>
+            <a href="#">主播</a>
+        </li>
+        <li>
+            <a href="#">美图</a>
+        </li>
+        <!--<div class="wcgp-nav-more">-->
+        <!--<p id="wcgp-nav-p1">更多</p>-->
+        <!--<p id="wcgp-nav-p2">收起</p>-->
+        <!--<span></span>-->
+        <!--<div class="wcgp-nav-bg" id="nav-bg"></div>-->
+        <!--</div>-->
+        <!--<div class="wcgp-navm-con hide">-->
+        <!--<ul class="clearfix" id="wcgp-nav2">-->
+        <!--<li>-->
+        <!--<a href="#">攻略</a>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<a href="#">活动</a>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<a href="#">赛事</a>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<a href="#">美图</a>-->
+        <!--</li>-->
+        <!--</ul>-->
+        <!--</div>-->
+    </ul>
+</div>
+
+<!--中间-->
+<div class="wrapper">
+    <div class="Competition-header">
+        <h3>赛事筛选</h3>
+        <div class="tab-icon ">
+            <ul id="tabUl">
+                <li class="active">
+                    <div class="tab-icon-content">
+                        <img class="chengaeImg" src="img/saish1-1.png" alt="游戏">
+                    </div>
+                    <div>游戏</div>
+                    <span class="long-string"></span>
+                    <div class="triangle">
+                        <img src="img/triangle.jpg" alt="">
+                    </div>
+                </li>
+                <li>
+                    <div class="tab-icon-content">
+                        <img class="chengaeImg" src="img/saish2.png" alt="地区">
+                    </div>
+                    <div>地区</div>
+                    <span class="long-string"></span>
+                    <div class="triangle" style="display: none;">
+                        <img src="img/triangle.jpg" alt="">
+                    </div>
+                </li>
+                <li>
+
+                    <div class="tab-icon-content">
+                        <img class="chengaeImg" src="img/saish3.png" alt="时间">
+                    </div>
+                    <div>时间</div>
+                    <span class="long-string"></span>
+                    <div class="triangle" style="display: none;">
+                        <img src="img/triangle.jpg" alt="">
+                    </div>
+                </li>
+                <li>
+                    <div class="tab-icon-content">
+                        <img class="chengaeImg" src="img/saish4.png" alt="状态">
+                    </div>
+                    <div>状态</div>
+                    <div class="triangle" style="display: none;">
+                        <img src="img/triangle.jpg" alt="">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="Competition-list">
+        <div class="imgList-content">
+            <ul>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ltsj.png" alt=""> </a>
+                    </div>
+                    <p>龙腾世纪</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ydc.png" alt=""> </a>
+                    </div>
+                    <p>妖刀传</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/XJQYICO.png" alt=""></a>
+                    </div>
+                    <p>仙境奇缘</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/lxb2.png" alt=""></a>
+                    </div>
+                    <p>吕小布传奇</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ltsj2.png" alt=""></a>
+                    </div>
+                    <p>龙腾世纪</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ydc2.png" alt=""> </a>
+                    </div>
+                    <p>妖刀传</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/xjqy.png" alt=""> </a>
+                    </div>
+                    <p>仙境奇缘</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/lxb2.png" alt=""> </a>
+                    </div>
+                    <p>吕小布传奇</p>
+                </li>
+            </ul>
+            <p class="searchMore"><a href="">查看更多  <img src="img/morejt.png" alt=""></a></p>
+        </div>
+        <div class="imgList-content" style="display: none;">
+            <ul>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ydc.png" alt=""> </a>
+                    </div>
+                    <p>妖刀传</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/XJQYICO.png" alt=""></a>
+                    </div>
+                    <p>仙境奇缘</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ltsj.png" alt=""> </a>
+                    </div>
+                    <p>龙腾世纪</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/lxb2.png" alt=""></a>
+                    </div>
+                    <p>吕小布传奇</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ltsj2.png" alt=""></a>
+                    </div>
+                    <p>龙腾世纪</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ydc2.png" alt=""> </a>
+                    </div>
+                    <p>妖刀传</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/xjqy.png" alt=""> </a>
+                    </div>
+                    <p>仙境奇缘</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/lxb2.png" alt=""> </a>
+                    </div>
+                    <p>吕小布传奇</p>
+                </li>
+            </ul>
+            <p class="searchMore"><a href="">查看更多  <img src="img/morejt.png" alt=""></a></p>
+        </div>
+        <div class="imgList-content" style="display: none;">
+            <ul>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ydc.png" alt=""> </a>
+                    </div>
+                    <p>妖刀传</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ltsj.png" alt=""> </a>
+                    </div>
+                    <p>龙腾世纪</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/lxb2.png" alt=""></a>
+                    </div>
+                    <p>吕小布传奇</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/XJQYICO.png" alt=""></a>
+                    </div>
+                    <p>仙境奇缘</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ltsj2.png" alt=""></a>
+                    </div>
+                    <p>龙腾世纪</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ydc2.png" alt=""> </a>
+                    </div>
+                    <p>妖刀传</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/xjqy.png" alt=""> </a>
+                    </div>
+                    <p>仙境奇缘</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/lxb2.png" alt=""> </a>
+                    </div>
+                    <p>吕小布传奇</p>
+                </li>
+            </ul>
+            <p class="searchMore"><a href="">查看更多  <img src="img/morejt.png" alt=""></a></p>
+        </div>
+        <div class="imgList-content" style="display: none;">
+            <ul>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ltsj.png" alt=""> </a>
+                    </div>
+                    <p>龙腾世纪</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ydc.png" alt=""> </a>
+                    </div>
+                    <p>妖刀传</p>
+                </li>
+
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/lxb2.png" alt=""></a>
+                    </div>
+                    <p>吕小布传奇</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ltsj2.png" alt=""></a>
+                    </div>
+                    <p>龙腾世纪</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/ydc2.png" alt=""> </a>
+                    </div>
+                    <p>妖刀传</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/xjqy.png" alt=""> </a>
+                    </div>
+                    <p>仙境奇缘</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/XJQYICO.png" alt=""></a>
+                    </div>
+                    <p>仙境奇缘</p>
+                </li>
+                <li>
+                    <div class="rand-wrap">
+                        <a href=""><img src="img/lxb2.png" alt=""> </a>
+                    </div>
+                    <p>吕小布传奇</p>
+                </li>
+            </ul>
+            <p class="searchMore"><a href="">查看更多  <img src="img/morejt.png" alt=""></a></p>
+        </div>
+
+    </div>
+
+    <div class="Competition-data">
+        <div class="item">
+            <div class="left-content">
+                <a href="">
+                    <img src="temp/datangwushuang.png" alt="">
+                    <img class="tipIco" src="img/hding.png" alt="">
+                </a>
+            </div>
+            <div class="right-content">
+                <a href=""><p>lol6.20努努增强后怎么玩 S6雪人打野天 赋符文出装</p></a>
+                <p>时间：2016.10.10-2017.01-12</p>
+                <p class="sqc">赛区 ： <span><a href="">全球 </a></span></p>
+            </div>
+            <a  href="#" class="zright-content">
+                进入专区
+            </a>
+        </div>
+        <div class="item">
+            <div class="left-content">
+                <a href="">
+                    <img src="temp/datangwushuang.png" alt="">
+                    <img class="tipIco" src="img/hding.png" alt="">
+                </a>
+            </div>
+            <div class="right-content">
+                <a href=""><p>1分钟看完LPL次周比赛 NB新中单首秀 掀翻EDG</p></a>
+                <p>时间：2016.10.10-2017.01-12</p>
+                <p class="sqc">赛区 ： <span><a href="">全球 </a></span></p>
+            </div>
+            <a  href="#" class="zright-content">
+                进入专区
+            </a>
+        </div>
+        <div class="item">
+            <div class="left-content">
+                <a href="">
+                    <img src="temp/datangwushuang.png" alt="">
+                    <img class="tipIco" src="img/hding.png" alt="">
+                </a>
+            </div>
+            <div class="right-content">
+                <a href=""><p>lol6.20努努增强后怎么玩 S6雪人打野天 赋符文出装</p></a>
+                <p>时间：2016.10.10-2017.01-12</p>
+                <p class="sqc">赛区 ： <span><a href="">全球 </a></span></p>
+            </div>
+            <a  href="#" class="zright-content">
+                进入专区
+            </a>
+        </div>
+        <div class="item">
+            <div class="left-content">
+                <a href="">
+                    <img src="temp/datangwushuang.png" alt="">
+                    <img class="tipIco" src="img/hdqidai.png" alt="">
+                </a>
+            </div>
+            <div class="right-content">
+                <a href=""><p>1分钟看完LPL次周比赛 NB新中单首秀 掀翻EDG</p></a>
+                <p>时间：2016.10.10-2017.01-12</p>
+                <p class="sqc">赛区 ： <span><a href="">全球 </a></span></p>
+            </div>
+            <a  href="#" class="zright-content">
+                进入专区
+            </a>
+        </div>
+        <div class="item">
+            <div class="left-content">
+                <a href="">
+                    <img src="temp/datangwushuang.png" alt="">
+                    <img class="tipIco" src="img/hdover.png" alt="">
+                </a>
+            </div>
+            <div class="right-content">
+                <a href=""><p>1分钟看完LPL次周比赛 NB新中单首秀 掀翻EDG</p></a>
+                <p>时间：2016.10.10-2017.01-12</p>
+                <p class="sqc">赛区 ： <span><a href="">全球 </a></span></p>
+            </div>
+            <a  href="#" class="zright-content">
+                进入专区
+            </a>
+        </div>
+    </div>
+
+    <div class="Competition-more">
+        <p><a href="">加载更多  <img src="img/morejt.png" alt=""></a></p>
+    </div>
+</div>
+
+<!--底部导航-->
+<nav class="bottom_nav">
+    <ul>
+        <li><a href="http://m.pipaw.com/">首页</a></li>
+        <li><a href="http://m.wy.pipaw.com/">网游</a></li>
+        <li><a href="http://m.pipaw.com/danji/">单机</a></li>
+        <li><a href="http://m.fahao.pipaw.com/">发号</a></li>
+        <li><a href="http://m.pipaw.com/apps/">论坛</a></li>
+        <li><a class="noline" href="http://bbs.pipaw.com/">美图</a></li>
+    </ul>
+</nav>
+<!--TOP-->
+<div class="tipTop backtop">
+    TOP ∧
+</div>
+
+<!--底部-->
+<footer class="footer">
+    <p><a href="http://www.pipaw.com/">电脑版</a>|<a href="http://m.2094.cn/">客户端</a></p>
+    <p>闽ICP备12000443号-2
+        <a href="http://passport.pipaw.com/m/user/login?url=http://m.pipaw.com/">登录</a>|
+        <a href="http://passport.pipaw.com/m/user/register?url=http://passport.pipaw.com">注册</a>
+    </p>
+</footer>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/wcgp.js"></script>
+<script type="text/javascript" src="js/CompetitionList.js"></script>
+</body>
+</html>
