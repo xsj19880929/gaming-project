@@ -2,497 +2,605 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" th:href="static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" th:href="static/css/wcg.css"/>
-    <script type="text/javascript" th:src="static/js/jquery.js"></script>
-    <script type="text/javascript" th:src="static/js/wcg.js"></script>
-    <script type="text/javascript" th:src="static/js/jquery.SuperSlide.2.1.1.js"></script>
-    <title>55电竞游戏网_电竞赛事综合门户网站_移动电竞游戏网</title>
-    <meta name="keywords" content="55电竞游戏网,电竞,电子竞技,游戏,电竞游戏,电竞资讯,电竞赛事,电竞攻略,电竞战队,电竞人物"/>
-    <meta name="description"
-          content="55电竞游戏网提供电竞游戏及移动电竞赛事资讯，提供王者荣耀直播、球球大作战直播、阴阳师直播及英雄联盟lol等赛事新闻、电竞赛事报道、赛事视频在线直播、赛事战报点评及手游相关攻略资讯内容，最专业的电竞游戏资讯门户网站。"/>
-    <meta name="baidu-site-verification" content="MZA58sj9Pc"/>
-    <meta name="360-site-verification" content="ec9805e6a681450e24a4d3a9da55be68"/>
-    <meta name="sogou_site_verification" content="vyfhmHbwzB"/>
-    <meta name="shenma-site-verification" content="e386e657fb6dda21cce7b1780f1bed2d_1490707954">
+    <meta content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta http-equiv="Cache-Control" content="max-age=3600"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <title>专区首页</title>
+    <link rel="stylesheet" type="text/css" href="static/css/gpwx.css"/>
+    <link rel="stylesheet" type="text/css" href="static/css/index.css"/>
+    <script type="text/javascript" src="static/js/jquery.js"></script>
+    <script type="text/javascript" src="static/js/wcgp.js"></script>
+    <script src="static/js/ProjectHome.js"></script>
 </head>
 
 <body>
-<!--head-->
-<div th:replace="/head.html::top('index')"></div>
-<!--赛事列表-->
-<div class="general">
-    <ul class="wcg_list">
-        <li th:each="matchZone,iterStat:${matchZoneList}" th:if="${matchZone!=null}"
-            th:class="${iterStat.index==3?'no_margin':''}">
-            <div class="bg"></div>
-            <div class="con">
-                <p class="p1"><a href="#" th:text="${matchZone.name}"
-                                 th:href="/game/${matchZone.id}/" th:title="${matchZone.name}" target="_blank">2015风暴英雄总决赛</a>
-                </p>
-                <dl class="d1">
-                    <dt><img th:if="${iterStat.index==0}"
-                             th:each="matchTeam,iterStat:${matchZone.matchTeamList}"
-                             th:img-src="/image/66x66${matchTeam.icoImage}" th:alt="${matchZone.name}"
-                             th:title="${matchZone.name}"/></dt>
-                    <dd>
-                        <p class="p2"><img th:if="${iterStat.index!=0&&iterStat.index<7}"
-                                           th:each="matchTeam,iterStat:${matchZone.matchTeamList}"
-                                           th:img-src="/image/28x28${matchTeam.icoImage}" th:alt="${matchTeam.name}"
-                                           th:title="${matchTeam.name}"/>
-                        <p class="p3"><em class="over" th:text="${matchZone.matchStatus.label}">已结束</em></p>
-                    </dd>
-                </dl>
+<!--头部1-->
+<header class="header1">
+    <div class="top">
+        <!--<script type="text/javascript" src="http://static.pipaw.com/touch/zq/js/public.js?v=4"></script>-->
+        <div class="menu-new-back">
+            <a href="http://m.pipaw.com/" class="js-go-back"></a>
+        </div>
+        <div class="menu menu-new" style="height:45px;">
+            <img src="static/img/menu.png" class="menu_ico">
+            <div class="list_menu list_menu_new">
+                <img src="static/img/xiala_ico_02.png" class="img">
+                <ul>
+                    <li><a href="http://m.pipaw.com/">首页</a></li>
+                    <li><a href="http://m.wy.pipaw.com/">安卓网游</a></li>
+                    <li><a href="http://m.pipaw.com/danji/">单机手游</a></li>
+                    <li><a href="http://m.fahao.pipaw.com/">发号中心</a></li>
+                    <li><a href="http://m.pipaw.com/azkf.html">开服/开测</a></li>
+                    <li><a href="http://www.7724.com/">在线小游戏</a></li>
+                    <li><a href="http://m.pipaw.com/tech/">琵琶前瞻</a></li>
+                    <li><a href="http://bbs.pipaw.com/">进入论坛</a></li>
+                    <li><a href="http://m.app.pipaw.com/">客户端下载</a></li>
+                </ul>
             </div>
+        </div>
+        <div class="menu-new-search">
+            <a href="http://m.pipaw.com/searchsite.html"></a>
+        </div>
+    </div>
+</header>
+
+
+<!--导航1-->
+<div class="wcgp-nav-box">
+    <ul class="clearfix" id="wcgp-nav1">
+        <li class="on">
+            <a href="#">电竞</a>
         </li>
+        <li>
+            <a href="#">新闻</a>
+        </li>
+        <li>
+            <a href="#">视频</a>
+        </li>
+        <li>
+            <a href="#">赛事</a>
+        </li>
+        <li>
+            <a href="#">主播</a>
+        </li>
+        <li>
+            <a href="#">美图</a>
+        </li>
+
     </ul>
 </div>
-<!--第三栏-->
-<div class="general white clearfix">
-    <div class="wcg_banner slideBox2">
-        <div class="big_pic bd">
-            <ul>
-                <li th:each="advImage:${advImageList}"><a th:href="${advImage.url}" href="#" target="_blank"><img
-                        th:img-src="/image/698x370${advImage.image}" th:alt="${advImage.name}"
-                        th:title="${advImage.name}"/><span><em
-                        th:text="${advImage.name}">韩国《英雄联盟》代练爆料：Riot韩国公司受贿行为</em></span></a>
-                </li>
-            </ul>
-        </div>
-        <div class="wcg_force hd">
-            <ul>
-                <li class="on"></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+
+<!--banner-->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide" th:each="advImage:${advImageList}">
+            <a th:href="${advImage.url}" href="#">
+                <img th:img-src="/image/698x370${advImage.image}" th:alt="${advImage.name}"
+                     th:title="${advImage.name}"/><span th:text="${advImage.name}">1炫斗三国志斗三国志斗三国志三国志三国志</span></a>
         </div>
     </div>
-    <script type="text/javascript">
-        jQuery(".slideBox2").slide({
-            mainCell: ".bd ul",
-            effect: "leftLoop",
-            autoPlay: true,
-            delayTime: 1000,
-            interTime: 3000
-        });
-    </script>
-    <!--右边-->
-    <div class="index_right">
-        <div class="index_tit">
-            <ul>
-                <li>
-                    <p class="p1"><a target="_blank"
-                                     th:each="info,iterStat:${recommendInfoList}"
-                                     th:if="${info!=null&&iterStat.index==0}"
-                                     th:href="/news/${info.id}.html" th:title="${info.title}" th:text="${info.title}">S7总决赛举办地出炉
-                        S7赛制改革说明</a></p>
-                    <p class="p2">
-                        <a target="_blank" href="/xinwen/news305890.html" th:each="info,iterStat:${recommendInfoList}"
-                           th:if="${info!=null&&iterStat.index>0&&iterStat.index<4}" th:href="/news/${info.id}.html"
-                           th:title="${info.title}" th:text="${'['+info.title+']'}">[原OMG战队教练Dgc加盟LDG担任主教练]</a>
-
-                    </p>
-                </li>
-                <li>
-                    <p class="p1"><a target="_blank"
-                                     th:each="info,iterStat:${recommendInfoList}"
-                                     th:if="${info!=null&&iterStat.index==4}"
-                                     th:href="/news/${info.id}.html" th:title="${info.title}" th:text="${info.title}">S7总决赛举办地出炉
-                        S7赛制改革说明</a></p>
-                    <p class="p2">
-                        <a target="_blank" href="/xinwen/news305890.html" th:each="info,iterStat:${recommendInfoList}"
-                           th:if="${info!=null&&iterStat.index>4&&iterStat.index<8}" th:href="/news/${info.id}.html"
-                           th:title="${info.title}" th:text="${'['+info.title+']'}">[原OMG战队教练Dgc加盟LDG担任主教练]</a>
-
-                    </p>
-                </li>
-            </ul>
-        </div>
-        <div class="index_con">
-            <ul>
-                <li class="clearfix" th:each="info,iterStat:${infoAllList}">
-                    <a target="_blank" class="a1" th:href="/news/" th:text="${'【'+info.infoType.label+'】'}"
-                       th:title="${info.infoType.label}">【新闻】</a>
-                    <a target="_blank" class="a2" href="/xinwen/news308826.html" th:href="/news/${info.id}.html"
-                       th:title="${info.title}" th:text="${info.title}">lol10元抽奖活动网址 2月黑龙瞎等你来拿</a>
-                    <span th:text="${#calendars.format(info.publishTime, 'MM-dd')}">02-22</span>
-                </li>
-
-            </ul>
-        </div>
-    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
 </div>
-<!--赛事列表2-->
-<div class="general">
-    <ul class="wcg_list_two">
-        <li th:each="matchZone,iterStat:${matchZoneNewList}" th:class="${iterStat.index==2?'no_margin':''}"
-            th:if="${matchZone!=null}">
-            <p class="p1"><a href="#" th:href="/game/${matchZone.id}/" th:title="${matchZone.name}" target="_blank"><img
-                    th:img-src="/image/373x155${matchZone.indexImage}" th:alt="${matchZone.name}"
-                    th:title="${matchZone.name}"/></a>
-            </p>
-            <p class="p2"><a href="#" th:text="${matchZone.name}" th:href="/game/${matchZone.id}/"
-                             th:title="${matchZone.name}" target="_blank">LPL2016英雄联盟职业联赛春季赛</a></p>
-            <p class="p3"
-               th:text="${'时间：'+#calendars.format(matchZone.startTime, 'yyyy-MM-dd')+' - '+#calendars.format(matchZone.endTime, 'yyyy-MM-dd')}">
-                时间：2016.01.14 - 2016.04.10</p>
-            <p class="p3"><span class="zt">状态：<em class="ing" th:text="${matchZone.matchStatus.label}">赛事进行中</em></span><span
-                    th:text="${'赛区：'+matchZone.matchZoneAreaName}">赛区：全球</span>
-            </p>
+<script type="text/javascript" src="static/js/swiper.min.js"></script>
+<script type="text/javascript">
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplayDisableOnInteraction: false,
+        speed: 800,
+        autoplay: 3000,
+        loop: true,
+
+    });
+</script>
+
+<!--头条-->
+<div class="wcgp-headnews">
+    <ul>
+        <li th:each="info,iterStat:${recommendInfoList}">
+            <a href="#" th:href="/news/${info.id}.html" th:title="${info.title}" th:text="${info.title}">S6从今天开赛
+                看韩国队能走多远</a>
         </li>
     </ul>
+    <span></span>
 </div>
-<div class="general clearfix">
-    <div class="index_tab_one">
-        <!--推荐资讯tab-->
-        <div class="tab_one">
-            <ul>
-                <li onMouseOver="setTab('one',1,5)" id="one1" class="hover">推荐资讯</li>
-                <li onMouseOver="setTab('one',2,5)" id="one2">行业资讯</li>
-                <li onMouseOver="setTab('one',3,5)" id="one3">赛事资讯</li>
-                <li onMouseOver="setTab('one',4,5)" id="one4">主播资讯</li>
-            </ul>
-        </div>
-        <!--tab内容-->
-        <div class="tab_one_con">
-            <div class="tab_deatil" id="con_one_1" style="display:block">
-                <ul>
-                    <li th:each="info:${infoNewestList}" th:if="${info!=null}">
-                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
-                                           target="_blank"><img
-                                th:img-src="/image/204x108${info.titleImage}"
-                                th:alt="${info.title}" th:title="${info.title}"/></a>
-                        </div>
-                        <div class="d2">
-                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
-                                             th:title="${info.title}" target="_blank">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a>
-                            </p>
-                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}" target="_blank"
-                                             th:href="${info.infoZoneType.name=='matchZone'?'/news_match_1.html':info.infoZoneType.name=='anchorZone'?'/news_anchor_1.html':info.infoZoneType.name=='trade'?'/news_trade_1.html':''}">行业新闻</a><em
-                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
-                                10:35</em>
-                            </p>
-                            <p class="p3" th:text="${info.subTitle}">
-                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                </ul>
-                <p class="add_more"><a th:href="/news/" target="_blank">查看更多</a></p>
-            </div>
 
-            <div class="tab_deatil" id="con_one_2">
-                <ul>
-                    <li th:each="info:${infoTradeList}" th:if="${info!=null}">
-                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
-                                           target="_blank"><img
-                                th:img-src="/image/204x108${info.titleImage}"
-                                th:alt="${info.title}" th:title="${info.title}"/></a>
-                        </div>
-                        <div class="d2">
-                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
-                                             th:title="${info.title}" target="_blank">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a>
-                            </p>
-                            <p class="p2"><a th:href="/news_trade_1.html" th:text="${info.infoZoneType.label}"
-                                             target="_blank">行业新闻</a><em
-                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
-                                10:35</em>
-                            </p>
-                            <p class="p3" th:text="${info.subTitle}">
-                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                </ul>
-                <p class="add_more"><a th:href="/news_trade_1.html" target="_blank">查看更多</a></p>
-            </div>
-            <div class="tab_deatil" id="con_one_3">
-                <ul>
-                    <li th:each="info:${infoMatchZoneList}" th:if="${info!=null}">
-                        <div class="d1"><a href="#" th:href="/news/${info.id}.html"><img
-                                th:img-src="/image/204x108${info.titleImage}"
-                                th:alt="${info.title}" th:title="${info.title}"/></a>
-                        </div>
-                        <div class="d2">
-                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
-                                             th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                            <p class="p2"><a th:href="/news_match_1.html" th:text="${info.infoZoneType.label}"
-                                             th:title="${info.title}" target="_blank">行业新闻</a><em
-                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
-                                10:35</em>
-                            </p>
-                            <p class="p3" th:text="${info.subTitle}">
-                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                </ul>
-                <p class="add_more"><a th:href="/news_match_1.html" target="_blank">查看更多</a></p>
-            </div>
-
-            <div class="tab_deatil" id="con_one_4">
-                <ul>
-                    <li th:each="info:${infoAnchorZoneList}" th:if="${info!=null}">
-                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"
-                                           target="_blank"><img
-                                th:img-src="/image/204x108${info.titleImage}"
-                                th:alt="${info.title}" th:title="${info.title}"/></a>
-                        </div>
-                        <div class="d2">
-                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
-                                             th:title="${info.title}" target="_blank">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a>
-                            </p>
-                            <p class="p2"><a th:href="/news_trade_1.html" th:text="${info.infoZoneType.label}"
-                                             target="_blank">行业新闻</a><em
-                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
-                                10:35</em>
-                            </p>
-                            <p class="p3" th:text="${info.subTitle}">
-                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                </ul>
-                <p class="add_more"><a th:href="/news_anchor_1.html" target="_blank">查看更多</a></p>
-            </div>
-        </div>
+<!--最新资讯-->
+<div class="wcgp-news-box">
+    <div class="wcgp-news-tit">最新资讯
+        <a class="header-rightMore" href="#" th:href="/news/">更多+</a>
     </div>
-    <!--right-->
-    <div class="index_right_two">
-        <!--电竞明星战队 -->
-        <div class="index_star">
-            <div class="index_tit_two">
-                <span class="text_right">电竞明星战队</span>
-                <ul class="arrow">
-                    <li><a href="javascript:void(0)" class="prev"></a></li>
-                    <li><a href="javascript:void(0)" class="next"></a></li>
-                </ul>
-            </div>
-            <div class="qiehuan">
-                <div class="inner">
-                    <ul class="list_01">
-                        <li th:each="matchTeam,iterStat:${starMatchTeamList}"
-                            th:if="${iterStat.index==0||iterStat.index==1}"
-                            th:class="${iterStat.odd==true?'no_border':''}">
-                            <p class="p1"><a><span></span><img
-                                    th:img-src="/image/106x106${matchTeam.icoImage}" th:alt="${matchTeam.name}"
-                                    th:title="${matchTeam.name}"/></a></p>
-                            <p class="p2">
-                                <span class="span01"><a th:text="${matchTeam.name}">Absolute Legends</a></span>
-                                <span class="span02"><em>所属项目：</em><img th:img-src="/image/28x28${matchZone.icoImage}"
-                                                                        th:each="matchZone:${matchTeam.matchZoneList}"
-                                                                        th:alt="${matchZone.name}"
-                                                                        th:title="${matchZone.name}"/></span>
-                                <span class="span02"><em
-                                        th:text="${'成立时间：'+#calendars.format(matchTeam.createTime, 'yyyy年MM月dd日')}">成立时间：2014年11月20日</em></span>
-                            </p>
-                        </li>
-                    </ul>
-                    <ul class=" list_01">
-                        <li th:each="matchTeam,iterStat:${starMatchTeamList}"
-                            th:if="${iterStat.index==2||iterStat.index==3}"
-                            th:class="${iterStat.odd==true?'no_border':''}">
-                            <p class="p1"><span></span><img
-                                    th:img-src="/image/106x106${matchTeam.icoImage}" th:alt="${matchTeam.name}"
-                                    th:title="${matchTeam.name}"/></p>
-                            <p class="p2">
-                                <span class="span01"><a th:text="${matchTeam.name}">Absolute Legends</a></span>
-                                <span class="span02"><em>所属项目：</em><img th:img-src="/image/28x28${matchZone.icoImage}"
-                                                                        th:each="matchZone:${matchTeam.matchZoneList}"
-                                                                        th:alt="${matchZone.name}"
-                                                                        th:title="${matchZone.name}"/></span>
-                                <span class="span02"><em
-                                        th:text="${'成立时间：'+#calendars.format(matchTeam.createTime, 'yyyy年MM月dd日')}">成立时间：2014年11月20日</em></span>
-                            </p>
-                        </li>
-                    </ul>
+    <div class="wcgp-news-con">
+        <ul class="clearfix">
+            <li th:each="info:${infoNewestList}" th:if="${info!=null}">
+                <div class="wcgp-news-pic">
+                    <a href="#" th:href="/news/${info.id}.html" th:title="${info.title}">
+                        <img src="static/temp/pic.jpg" th:img-src="/image/203x120${info.titleImage}"
+                             th:alt="${info.title}" th:title="${info.title}"></a>
                 </div>
-            </div>
-        </div>
-        <!--电竞主播推荐-->
-        <div class="index_zhubo">
-            <div class="index_tit_two">
-                <span class="text_right">电竞主播推荐</span>
-                <a th:href="/anchor/" target="_blank" class="more">更多</a>
-            </div>
-            <ul class="zhubo_list">
-                <li th:each="anchorZone:${anchorZoneList}">
-                    <a href="#" th:href="/anchor/${anchorZone.id}/"
-                       th:title="${anchorZone.name}" target="_blank"><img
-                            th:img-src="/image/340x160${anchorZone.recommendImage}"
-                            th:alt="${anchorZone.name}"
-                            th:title="${anchorZone.name}"/>
-                        <p class="p1" th:text="${anchorZone.name}">LOL代练MOBA大神 美萌老鼠mayuyu</p></a>
-                    <p class="p2">
-                        <span>主播：<a href="#" th:text="${anchorZone.username}" th:href="/anchor/${anchorZone.id}/"
-                                    th:title="${anchorZone.username}" target="_blank">小智脑残粉</a></span>
-                        <span>人气：<em th:text="${anchorZone.visitCount}">58621032</em></span>
-                    </p>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-</div>
-<!--电竞比赛视频-->
-<div class="general white clearfix">
-    <div class="index_tit_two title">
-        <span class="text_left">电竞比赛视频</span>
-        <p class="link_nav"><span th:each="matchZone:${matchZoneVideoList}"><a href="#"
-                                                                               th:text="${matchZone.name}"
-                                                                               th:href="/game/${matchZone.id}/"
-                                                                               th:title="${matchZone.name}"
-                                                                               target="_blank">炉石传说</a>|</span>
-        </p>
-        <a th:href="/video_new/matchVideo/all/0_1.html" class="more" target="_blank">更多</a>
-    </div>
-    <div class="index_video clearfix">
-        <p class="index_video_left"><a href="#" th:each="info,iterStat:${infoMatchZoneVideoList}"
-                                       th:if="${iterStat.index==0}" th:href="/video/${info.id}.html"
-                                       th:title="${info.title}" target="_blank"><img
-                th:img-src="/image/486x360${info.titleImage}" th:alt="${info.title}"
-                th:title="${info.title}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
-        </p>
-        <div class="index_video_right">
-            <ul>
-                <li th:each="info,iterStat:${infoMatchZoneVideoList}" th:if="${iterStat.index!=0}">
-                    <a href="#" class="img" th:href="/video/${info.id}.html"
-                       th:title="${info.title}" target="_blank">
-                        <img th:img-src="/image/200x118${info.titleImage}" th:alt="${info.title}"
-                             th:title="${info.title}"/>
-                        <p class="p1"><span></span></p>
-                        <p class="p2"><em></em></p>
-                    </a>
-                    <a href="#" class="text" th:text="${info.title}" th:href="/video/${info.id}.html"
-                       th:title="${info.title}" target="_blank">电竞校园联赛炉石传说Top3</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!--电竞主播解说-->
-<div class="general white clearfix">
-    <div class="index_tit_two title">
-        <span class="text_left">电竞主播解说</span>
-        <p class="link_nav"><span th:each="anchorZone:${anchorZoneVideoList}"><a href="#"
-                                                                                 th:text="${anchorZone.name}"
-                                                                                 th:href="/anchor/${anchorZone.id}/"
-                                                                                 th:title="${anchorZone.name}"
-                                                                                 target="_blank">炉石传说</a>|</span>
-        </p>
-        <a th:href="/video_new/anchorVideo/all/0_1.html" class="more" target="_blank">更多</a>
-    </div>
-    <div class="index_video clearfix">
-        <p class="index_video_left"><a href="#" th:each="info,iterStat:${infoAnchorZoneVideoList}"
-                                       th:if="${iterStat.index==0}" th:href="/video/${info.id}.html"
-                                       th:title="${info.title}" target="_blank"><img
-                th:img-src="/image/486x360${info.titleImage}"/><span th:text="${info.title}">魔兽电影导演 正搭建黑暗之门场景《全民枪神》 爆破生死决战</span></a>
-        </p>
-        <div class="index_video_right">
-            <ul>
-                <li th:each="info,iterStat:${infoAnchorZoneVideoList}" th:if="${iterStat.index!=0}">
-                    <a href="#" class="img" th:href="/video/${info.id}.html" th:title="${info.title}" target="_blank">
-                        <img th:img-src="/image/200x118${info.titleImage}" th:alt="${info.title}"
-                             th:title="${info.title}"/>
-                        <p class="p1"><span></span></p>
-                        <p class="p2"><em></em></p>
-                    </a>
-                    <a href="#" class="text" th:text="${info.title}" th:href="/video/${info.id}.html"
-                       th:title="${info.title}" target="_blank">电竞校园联赛炉石传说Top3</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!--玩家游戏直播-->
-<div class="general game_user clearfix" th:unless="${#lists.isEmpty(infoPlayerVideoInfoList)}">
-    <div class="index_tit_two title">
-        <span class="text_left">玩家游戏直播</span>
-        <a th:href="/video_new/playerVideo/all/0_1.html" class="more" target="_blank">更多</a>
-    </div>
-    <div class="index_video_right game_user_con">
-        <ul>
-            <li th:each="info:${infoPlayerVideoInfoList}">
-                <a href="#" class="img" th:href="/video/${info.id}.html"
-                   th:title="${info.title}" target="_blank">
-                    <img th:img-src="/image/200x118${info.titleImage}" th:alt="${info.title}"
-                         th:title="${info.title}"/>
-                    <p class="p1"><span></span></p>
-                    <p class="p2"><em></em></p>
-                </a>
-                <a href="#" class="text" th:text="${info.title}" th:href="/video/${info.id}.html"
-                   th:title="${info.title}" target="_blank">电竞校园联赛炉石传说Top3</a>
+                <div class="wcgp-news-passage">
+                    <a href="#" th:href="/news/${info.id}.html" th:title="${info.title}" th:text="${info.title}">lol6.20努努增强后怎么玩
+                        S6雪人打野天赋符文出装</a>
+                    <span th:text="${info.infoZoneType.label}">新闻</span>
+                    <em th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-12 09:43</em>
+                </div>
             </li>
         </ul>
     </div>
 </div>
-<!--横条广告2-->
-<!--<div class="general"><a href="#" class="ad_heng"><img src="static/temp/banner1180.jpg"/></a></div>-->
-<!--电竞游戏排行榜-->
-<div class="general index_rank">
-    <div class="index_tit_two title"><span class="text_left">电竞游戏排行榜</span></div>
-    <ul class="index_rank_con clearfix">
-        <li th:each="matchZone:${matchZoneTopList}">
-            <p class="p1"><a href="#" th:href="/game/${matchZone.id}/"
-                             th:title="${matchZone.name}" target="_blank"><span></span><img
-                    th:img-src="/image/106x106/${matchZone.icoImage}" th:alt="${matchZone.name}"
-                    th:title="${matchZone.name}"/></a></p>
-            <p class="p2">
-                <span class="span01"><a href="#" th:text="${matchZone.name}" th:href="/game/${matchZone.id}/"
-                                        th:title="${matchZone.name}" target="_blank">风暴英雄</a></span>
-                <span class="span02">人气：<em th:text="${matchZone.visitCount}">41987</em></span>
-            </p>
-        </li>
 
+<!--赛事专题-->
+<div class="wcgp-news-box">
+    <div class="wcgp-news-tit">
+        赛事专题
+        <a class="header-rightMore" href="#" th:href="/game/">更多+</a>
+    </div>
+    <div class="wcgp-game-con">
+        <ul class="clearfix">
+            <li th:each="matchZone,iterStat:${matchZoneNewList}">
+                <a href="#" th:href="/game/${matchZone.id}/" th:title="${matchZone.name}">
+                        <span>
+                            <img src="static/temp/wcgp-pic.jpg" th:img-src="/image/341x142${matchZone.indexImage}"
+                                 th:alt="${matchZone.name}"
+                                 th:title="${matchZone.name}">
+                        </span>
+                    <p th:text="${matchZone.name}">NEST2016全国电子竞技大赛</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--主播专题-->
+<div class="wcgp-news-box">
+    <div class="wcgp-news-tit">
+        主播专题
+        <a class="header-rightMore" href="#" th:href="/anchor/">更多+</a>
+    </div>
+    <div class="wcgp-hot-theme">
+        <ul>
+            <li th:each="anchorZone:${anchorZoneList}">
+                <a href="" th:href="/anchor/${anchorZone.id}/"
+                   th:title="${anchorZone.name}">
+                    <div class="img-content">
+                        <img th:img-src="/image/340x160${anchorZone.recommendImage}"
+                             th:alt="${anchorZone.name}"
+                             th:title="${anchorZone.name}">
+                        <div class="mengcheng-radius"></div>
+                        <p class="mzbai" th:text="'主播：'+${anchorZone.username}">主播：小智脑残粉</p>
+                    </div>
+                    <p class="tips" th:text="${anchorZone.name}">lol代练moba大神美蒙老师</p>
+                </a>
+                <p class="hotp">人气：<em th:text="${anchorZone.visitCount}">586210</em></p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--比赛视频-->
+<div class="wcgp-news-box">
+    <div class="wcgp-news-tit">
+        比赛视频
+        <a class="header-rightMore" href="#" th:href="/video_new/matchVideo/all/0_1.html">更多+</a>
+    </div>
+    <div class="video-tab">
+        <ul id="videoTab1">
+            <li th:each="matchZone,iterStat:${matchZoneVideoList}" th:class="${iterStat.index==0?'active':''}">
+                <span class="long-string"></span><em th:text="${matchZone.name}">dnf视频</em></li>
+        </ul>
+    </div>
+    <div class="video-play videoPlay1">
+        <ul>
+            <li th:each="info,iterStat:${infoMatchZoneVideoList}">
+                <a th:href="/video/${info.id}.html" th:title="${info.title}">
+                    <img th:img-src="/image/330x195${info.titleImage}" th:alt="${info.title}"
+                         th:title="${info.title}">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a th:href="/video/${info.id}.html" th:title="${info.title}" th:text="${info.title}">小苍剑圣第一视角 细节成就五杀</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">比赛视频高清 rngvstsm比赛录像</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp3.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
+            </li>
+        </ul>
+    </div>
+    <div class="video-play videoPlay1" style="display: none;">
+        <ul>
+
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">比赛视频高清 rngvstsm比赛录像</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp1.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">小苍剑圣第一视角 细节成就五杀</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp3.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
+            </li>
+        </ul>
+    </div>
+    <div class="video-play videoPlay1" style="display: none;">
+        <ul>
+
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp3.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp1.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">小苍剑圣第一视角 细节成就五杀</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">比赛视频高清 rngvstsm比赛录像</a>
+            </li>
+        </ul>
+    </div>
+    <div class="video-play videoPlay1" style="display: none;">
+        <ul>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp1.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">小苍剑圣第一视角 细节成就五杀</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">比赛视频高清 rngvstsm比赛录像</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp3.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--主播解说-->
+<div class="wcgp-news-box">
+    <div class="wcgp-news-tit">
+        主播解说
+        <a class="header-rightMore" href="#" th:href="/video_new/anchorVideo/all/0_1.html">更多+</a>
+    </div>
+    <div class="video-tab">
+        <ul id="videoTab2">
+            <li th:each="anchorZone,iterStat:${anchorZoneVideoList}"
+                th:class="${iterStat.index==0?'active':''}"><span
+                    class="long-string"></span> <em th:text="${anchorZone.name}">dnf视频</em></li>
+        </ul>
+    </div>
+    <div class="video-play videoPlay2 ">
+        <ul>
+            <li th:each="info,iterStat:${infoAnchorZoneVideoList}">
+                <a th:href="/video/${info.id}.html" th:title="${info.title}">
+                    <img src="static/img/yxsp1.png" th:img-src="/image/385x233${info.titleImage}">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a th:href="/video/${info.id}.html" th:title="${info.title}" th:text="${info.title}">小苍剑圣第一视角 细节成就五杀</a>
+            </li>
+        </ul>
+    </div>
+    <div class="video-play videoPlay2" style="display: none;">
+        <ul>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">比赛视频高清 rngvstsm比赛录像</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp3.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp1.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">小苍剑圣第一视角 细节成就五杀</a>
+            </li>
+        </ul>
+    </div>
+    <div class="video-play videoPlay2" style="display: none;">
+        <ul>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">比赛视频高清 rngvstsm比赛录像</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp1.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">小苍剑圣第一视角 细节成就五杀</a>
+            </li>
+
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp3.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
+            </li>
+        </ul>
+    </div>
+    <div class="video-play videoPlay2" style="display: none;">
+        <ul>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp1.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">小苍剑圣第一视角 细节成就五杀</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">比赛视频高清 rngvstsm比赛录像</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp2.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="static/img/yxsp3.png" alt="">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--玩家视频-->
+<div class="wcgp-news-box" th:unless="${#lists.isEmpty(infoPlayerVideoInfoList)}">
+    <div class="wcgp-news-tit">
+        玩家视频
+        <a class="header-rightMore" href="#" th:href="/video_new/playerVideo/all/0_1.html">更多+</a>
+    </div>
+    <div class="video-play">
+        <ul>
+            <li th:each="info:${infoPlayerVideoInfoList}">
+                <a th:href="/video/${info.id}.html"
+                   th:title="${info.title}">
+                    <img th:img-src="/image/200x118${info.titleImage}" th:alt="${info.title}"
+                         th:title="${info.title}">
+                    <img class="playIoc" src="static/img/playico.png" alt="">
+                </a>
+                <div class="mengcheng"></div>
+                <a th:text="${info.title}" th:href="/video/${info.id}.html"
+                   th:title="${info.title}">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<!--电竞排行榜-->
+<div class="wcgp-news-box">
+    <div class="wcgp-news-tit">
+        电竞排行榜
+        <a class="header-rightMore" href="#" th:href="/game/">更多+</a>
+    </div>
+    <div class="wcgp-number-con">
+        <ul>
+            <li class="clearfix" th:each="matchZone,iterStat:${matchZoneTopList}">
+                <a href="#" th:href="/game/${matchZone.id}/"
+                   th:title="${matchZone.name}">
+                    <p class="p1 first"
+                       th:class="${iterStat.index==0?'p1 first':iterStat.index==1?'p1 second':iterStat.index==2?'p1 third':'p1'}"
+                       th:text="${iterStat.index+1}">1</p>
+                    <p class="p2"><img src="static/temp/pic1.jpg" th:img-src="/image/104x104/${matchZone.icoImage}"
+                                       th:alt="${matchZone.name}"
+                                       th:title="${matchZone.name}"></p>
+                    <div class="wcgp-number-name">
+                        <dl>
+                            <dt th:text="${matchZone.name}">英雄联盟</dt>
+                            <dd>人气：<span th:text="${matchZone.visitCount}">576918</span></dd>
+                        </dl>
+                    </div>
+                    <p class="p3">进入专区</p>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+<!--电竞美图-->
+<div class="wcgp-news-box">
+    <div class="wcgp-news-tit">
+        电竞美图
+        <a class="header-rightMore" href="#" th:href="/picture/">更多+</a>
+    </div>
+    <div class="wcgp-pic-con clearfix">
+        <div class="wcgp-picc-left" th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==0}">
+            <a href="#" th:href="/picture/${picture.id}.html"
+               th:title="${picture.description}">
+                <img th:img-src="/image/280x178${picture.image}" th:alt="${picture.description}"
+                     th:title="${picture.description}">
+                <p th:text="${picture.description}">萌死人不偿命 阴阳师手游式神最萌COS</p>
+            </a>
+        </div>
+        <div class="wcgp-picc-right">
+            <div class="wcgp-picc-right-pic" th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==1}">
+                <a href="#" th:href="/picture/${picture.id}.html"
+                   th:title="${picture.description}">
+                    <img th:img-src="/image/280x178${picture.image}" th:alt="${picture.description}"
+                         th:title="${picture.description}">
+                    <p th:text="${picture.description}">萌死人不偿命 阴阳师手游式神最萌COS</p>
+                </a>
+            </div>
+            <div class="wcgp-picc-right-pic margin" th:each="picture,iterStat:${pictureList}"
+                 th:if="${iterStat.index==2}">
+                <a href="#" th:href="/picture/${picture.id}.html"
+                   th:title="${picture.description}">
+                    <img th:img-src="/image/280x178${picture.image}" th:alt="${picture.description}"
+                         th:title="${picture.description}">
+                    <p th:text="${picture.description}">萌死人不偿命 阴阳师手游式神最萌COS</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--友情链接-->
+<div class="wcgp-news-box wcgp-link-box">
+    <div class="wcgp-news-tit wcgp-link-tit">友情链接</div>
+    <div class="wcgp-link-con">
+        <a href="#">手游排行榜</a>
+        <a href="#">统一手机站</a>
+        <a href="#">单机游戏下载</a>
+        <a href="#">安卓游戏下载</a>
+        <a href="#">下载之家</a>
+        <a href="#">点点软件园</a>
+    </div>
+</div>
+
+
+<!--底部导航-->
+<nav class="bottom_nav">
+    <ul>
+        <li><a href="http://m.pipaw.com/">首页</a></li>
+        <li><a href="http://m.wy.pipaw.com/">网游</a></li>
+        <li><a href="http://m.pipaw.com/danji/">单机</a></li>
+        <li><a href="http://m.fahao.pipaw.com/">发号</a></li>
+        <li><a href="http://m.pipaw.com/apps/">论坛</a></li>
+        <li><a class="noline" href="http://bbs.pipaw.com/">美图</a></li>
     </ul>
-</div>
-<!--电竞美图 -->
-<div class="general index_pic clearfix">
-    <div class="index_tit_two title">
-        <span class="text_left">电竞美图</span>
-        <a th:href="/picture/" class="more" target="_blank">更多</a>
-    </div>
-    <div class="index_pic_con">
-        <ul class="ul1">
-            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==0||iterStat.index==1}"><a href="#"
-                                                                                                             th:href="/picture/${picture.id}.html"
-                                                                                                             th:title="${picture.description}"
-                                                                                                             target="_blank"><img
-                    th:img-src="/image/280x178${picture.image}" th:alt="${picture.description}"
-                    th:title="${picture.description}"/>
-                <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
-        </ul>
-        <ul class="ul2">
-            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==2}"><a href="#"
-                                                                                          th:href="/picture/${picture.id}.html"
-                                                                                          th:title="${picture.description}"
-                                                                                          target="_blank"><img
-                    th:img-src="/image/280x362${picture.image}" th:alt="${picture.description}"
-                    th:title="${picture.description}"/>
-                <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
-        </ul>
-        <ul class="ul1">
-            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==3||iterStat.index==4}"><a href="#"
-                                                                                                             th:href="/picture/${picture.id}.html"
-                                                                                                             th:title="${picture.description}"
-                                                                                                             target="_blank"><img
-                    th:img-src="/image/280x178${picture.image}" th:alt="${picture.description}"
-                    th:title="${picture.description}"/>
-                <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
-        </ul>
-        <ul class="ul2">
-            <li th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==5}"><a href="#"
-                                                                                          th:href="/picture/${picture.id}.html"
-                                                                                          th:title="${picture.description}"
-                                                                                          target="_blank"><img
-                    th:img-src="/image/280x362${picture.image}" th:alt="${picture.description}"
-                    th:title="${picture.description}"/>
-                <p th:text="${picture.description}">黑发巨乳美少女宮浦三汐福利图集</p></a></li>
-        </ul>
-    </div>
-</div>
-
-
-<!--线上琵琶网首页的foot，这里只是截图-->
-<div th:replace="/bottom.html::bottom"></div>
-
+</nav>
+<!--底部-->
+<footer class="footer">
+    <p><a href="http://www.pipaw.com/">电脑版</a>|<a href="http://m.2094.cn/">客户端</a></p>
+    <p>闽ICP备12000443号-2
+        <a href="http://passport.pipaw.com/m/user/login?url=http://m.pipaw.com/">登录</a>|
+        <a href="http://passport.pipaw.com/m/user/register?url=http://passport.pipaw.com">注册</a>
+    </p>
+</footer>
 </body>
 </html>
