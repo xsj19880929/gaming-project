@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#" ui-sref="index">首页</a></li>
+        <li><a href="#" ui-sref="recommend.advertising.list">广告位管理</a></li>
+        <li class="active">友情链接</li>
+    </ol>
+
+    <h2 class="page-header">友情链接列表</h2>
+    <div class="well">
+        <a href="" class="btn btn-success ygccw-add-btn" ui-sref="recommend.advertising.update">添加友情链接</a>
+    </div>
+
+    <div class="well">
+        <ul id="myTab" class="nav nav-tabs">
+            <li ng-class="{active:params.verify==1}">
+                <a href="javascript:void(0)" data-toggle="tab" ng-click="tab('pc')">
+                    pc网站
+                </a>
+            </li>
+            <li ng-class="{active:params.verify==0}">
+                <a href="javascript:void(0)" data-toggle="tab" ng-click="tab('m')">
+                    手机站
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="well form-inline">
+        <select class="form-control" ng-model="params.siteType.name"
+                ng-options="m.name as m.label for m in siteTypeList"
+                name="siteType" ng-change="getSiteTypeList()">
+            <option value="">请选择网站类型</option>
+        </select>
+        <button class="btn btn-primary" ng-click="search()">搜索</button>
+    </div>
+
+    <div class="table-responsive">
+        <div ui-grid="gridOptions" ui-grid-pagination class="grid" style="height: 500px;"></div>
+    </div>
+</div>
+

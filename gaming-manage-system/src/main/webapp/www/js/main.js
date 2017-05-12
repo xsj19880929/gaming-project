@@ -291,6 +291,20 @@
                 templateUrl: "www/view/site/commit-url-search/list.html",
                 controller: 'CommitUrlSearchListController'
             })
+            .state('recommend.link', {
+                url: "/link",
+                templateUrl: "www/view/recommend/link/index.html"
+            })
+            .state('recommend.link.list', {
+                url: "/",
+                templateUrl: "www/view/recommend/link/list.html",
+                controller: 'LinkListController'
+            })
+            .state('recommend.link.update', {
+                url: "/update",
+                templateUrl: "www/view/recommend/link/update.html",
+                controller: 'LinkUpdateController'
+            })
 
 
     }).config(

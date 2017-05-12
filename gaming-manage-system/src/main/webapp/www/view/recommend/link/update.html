@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#" ui-sref="index">首页</a></li>
+        <li><a href="#" ui-sref="recommend.link.list">广告位管理</a></li>
+        <li><a href="#" ui-sref="recommend.link.list">广告位管理</a></li>
+    </ol>
+
+    <h2 class="page-header">编辑广告位</h2>
+
+    <form name="form" class="form-horizontal">
+        <div class="well">
+            <button class="btn btn-primary" validation-submit="form" ng-click="updateLink()">保存</button>
+        </div>
+        <div class="section form-horizontal">
+            <table class="table">
+
+                <tr>
+                    <td width="10%">名称：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="link.name"
+                                   placeholder="" validator="required" name="name"/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">图片：</td>
+                    <td width="40%">
+                        <img img-src="{{link.image}}" alt=""/>
+                        <div class="btn btn-primary" ng-file-select ng-file-change="uploadImage($files)">上传</div>
+                        (支持格式：jpg,jpeg,png,bmp, 建议像素为360*270)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">链接：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" ng-model="link.url"
+                                   placeholder="" validator="required" name="url"/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%">网站类型：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <select class="form-control" ng-model="link.siteType.name"
+                                    ng-options="m.name as m.label for m in siteTypeList" validator="required"
+                                    name="siteType">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+    </form>
+</div>
