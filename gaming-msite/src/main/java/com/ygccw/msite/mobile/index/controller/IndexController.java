@@ -29,7 +29,6 @@ public class IndexController {
     public String index(final ModelMap model) {
         model.put("matchZoneList", indexWebService.findRecommendMatchZone());
         model.put("advImageList", indexWebService.findAdvertising(5));
-        model.put("advWordList", indexWebService.findAdvertising(10));
         model.put("matchZoneNewList", indexWebService.findMatchZone());
         model.put("infoTradeList", indexWebService.findTradeInfo());
         model.put("infoNewestList", indexWebService.findNewestInfoByInfoType(InfoType.news, 5));
@@ -43,6 +42,7 @@ public class IndexController {
         model.put("infoPlayerVideoInfoList", indexWebService.findVideoInfoList(InfoVideoType.playerVideo));
         model.put("matchZoneTopList", indexWebService.findTopMatchZoneList());
         model.put("pictureList", indexWebService.findNewestPictureList());
+        model.put("recommendInfoList", indexWebService.findRecommendInfo(2));
         return "/index.html";
     }
 

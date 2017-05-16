@@ -218,6 +218,7 @@ body {
     font-weight: normal;
     margin-right: 8pt;
 }
+
 /*视频播放*/
 .video-play {
     width: 100%;
@@ -280,6 +281,7 @@ body {
     width: 17% !important;
     height: auto;;
 }
+
 /*
 * * 比赛图集
 */
@@ -533,6 +535,10 @@ body {
     border-bottom: 3px solid #eaa000;
 }
 
+.hangye ul li.action a {
+    color: #eaa000;
+}
+
 /*赛事列表*/
 .Competition {
     border-top: 2px solid rgb(234, 160, 0);
@@ -670,9 +676,11 @@ body {
     color: rgb(198, 198, 198);
     margin-top: 7%;
 }
+
 .Competition-header .tab-icon ul li.active div:nth-child(2) {
     color: #eaa000;
 }
+
 .videoshow {
     width: 100%;
     border: 1px solid #dadada;
@@ -906,9 +914,11 @@ body {
     text-align: center;
     padding: 0 1%;
 }
-.gamelist1{
-    padding-bottom:3%;
+
+.gamelist1 {
+    padding-bottom: 3%;
 }
+
 .gamelist1 ul li {
     padding: 1% 4%;
     line-height: 2.3rem;
@@ -1648,7 +1658,7 @@ span.dian {
     height: 33%;
     position: absolute;
     top: 36%;
-    right: 117%;
+    right: 200%;
     background-color: #d3d3d3;
 }
 
@@ -1695,12 +1705,58 @@ span.dian {
 .header-rightMore {
     text-align: right;
 }
+
 /*头部修改*/
-.header1{ background:#145eb6; width:100%;height:45px;border-top:1px solid #3f89e0; position:fixed; top:0; left:0; z-index:100}
-.menu-new{float: right;}
-.list_menu_new{left: -70px; top: 8px;}
-.list_menu_new .img{float: right; margin-left: 0; margin-right: 13px;}
-.menu-new-back{width: 55px; height: 45px; float: left;}
-.menu-new-back a{display: block; width: 55px; height: 45px; background: url(../img/back.png) no-repeat 14px center; background-size: 22px auto;}
-.menu-new-search{float: right; width: 40px; height: 45px;}
-.menu-new-search a{display: block; width: 40px; height: 45px; background: url(../img/search.png) no-repeat center center; background-size: 23px auto;}
+.header1 {
+    background: #145eb6;
+    width: 100%;
+    height: 45px;
+    border-top: 1px solid #3f89e0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100
+}
+
+.menu-new {
+    float: right;
+}
+
+.list_menu_new {
+    left: -70px;
+    top: 8px;
+}
+
+.list_menu_new .img {
+    float: right;
+    margin-left: 0;
+    margin-right: 13px;
+}
+
+.menu-new-back {
+    width: 55px;
+    height: 45px;
+    float: left;
+}
+
+.menu-new-back a {
+    display: block;
+    width: 55px;
+    height: 45px;
+    background: url(../img/back.png) no-repeat 14px center;
+    background-size: 22px auto;
+}
+
+.menu-new-search {
+    float: right;
+    width: 40px;
+    height: 45px;
+}
+
+.menu-new-search a {
+    display: block;
+    width: 40px;
+    height: 45px;
+    background: url(../img/search.png) no-repeat center center;
+    background-size: 23px auto;
+}

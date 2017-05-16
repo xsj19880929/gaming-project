@@ -45,7 +45,6 @@ public class IndexController {
         model.put("matchZoneTopList", indexWebService.findTopMatchZoneList());
         model.put("pictureList", indexWebService.findNewestPictureList());
         model.put("recommendInfoList", indexWebService.findRecommendInfo());
-        model.put("recommendInfoList", indexWebService.findRecommendInfo());
         model.put("infoAllList", indexWebService.findNewestInfo(6));
         return "/index.html";
     }

@@ -1,80 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
-<div th:fragment="top(selectedMenuName)">
-    <div class="djw_top">
-        <div class="djw_top_general_o">
-            <div class="djw_top_left"><a th:href="">55电竞游戏网</a><a
-                    th:href="/sitemap.html" class="top_menu" target="_blank">全站导航</a><a
-                    href="javascript:void(0)" class="top_phone">手机版</a>
-            </div>
-            <div class="djw_top_right">
-                <a href="javascript:;" onclick="setHome(this,'http://www.55djw.com');">设为主页</a><span>|</span>
-                <a href="javascript:;" onclick="addFavorite('55电竞游戏网',location.href)">收藏网站</a>
-            </div>
+<!--头部1-->
+<header class="header1" th:fragment="top">
+    <div class="top">
+        <div class="menu-new-back">
+            <a href="http://m.pipaw.com/" class="js-go-back"></a>
         </div>
-    </div>
 
-    <!--head-->
-    <div class="general">
-        <div class="djw_logo">
-            <a th:href=""><img
-                    th:img-src="/static/img/logo.png" alt="55电竞游戏网"/></a>
-        </div>
-        <div class="ppw_search">
-            <dl>
-                <dt>
-                <div class="search_change">全部</div>
-                <div class="search_option">
-                    <span>资讯</span>
-                    <span>视频</span>
-                    <span>赛事</span>
-                    <span>主播</span>
-                    <span>图集</span>
-                </div>
-                <input type="text" class="ppw_tx new_ppw_tx" onfocus="if(this.value=='请输入您要搜索的关键字'){this.value=''}"
-                       name="keywords" onblur="if(this.value==''){this.value='请输入您要搜索的关键字'}" value="请输入您要搜索的关键字"/>
-                <input type="button" class="ppw_bt" name="searchSubmit" value="搜索"/>
-                </dt>
-                <dd><a href="###" th:each="hotKeywords:${hotKeywordsList}" th:text="${hotKeywords.keyword}"
-                       th:href="${hotKeywords.url}" target="_blank">WCA</a></dd>
-            </dl>
+        <div class="menu-new-search">
+            <a href="http://m.pipaw.com/searchsite.html"></a>
         </div>
     </div>
-    <!--menu-->
-    <div class="general">
-        <ul class="ppw_nav">
-            <li th:classappend="${selectedMenuName}=='index'?'sel'"><a th:href="" title="电竞首页">电竞首页</a>
-            </li>
-            <li th:classappend="${selectedMenuName}=='news'?'sel'"><a th:href="/news/" title="电竞新闻">电竞新闻</a></li>
-            <li th:classappend="${selectedMenuName}=='video'?'sel'"><a th:href="/video/" title="电竞视频">电竞视频</a></li>
-            <li th:classappend="${selectedMenuName}=='game'?'sel'"><a th:href="/game/" title="电竞赛事">电竞赛事</a></li>
-            <li th:classappend="${selectedMenuName}=='anchor'?'sel'"><a th:href="/anchor/" title="电竞主播">电竞主播</a></li>
-            <li th:classappend="${selectedMenuName}=='picture'?'sel'"><a th:href="/picture/" title="电竞美图">电竞美图</a></li>
-        </ul>
-    </div>
-    <script>
-        $(function () {
-            $("input[name='searchSubmit']").click(function () {
-                var keywords = $("input[name='keywords']").val();
-                if (keywords == "" || keywords == "请输入您要搜索的关键字") {
-                    alert("请输入关键字");
-                    return;
-                }
-                var typeName = $(".search_change").text();
-                var type = "all";
-                if (typeName == "资讯") {
-                    type = "news";
-                } else if (typeName == "视频") {
-                    type = "video";
-                } else if (typeName == "赛事") {
-                    type = "match";
-                } else if (typeName == "主播") {
-                    type = "anchor";
-                } else if (typeName == "图集") {
-                    type = "picture";
-                }
-                window.location.href = "/search_" + keywords + "_" + type + "_1.html";
-            })
-        });
-    </script>
+</header>
+
+
+<!--导航1-->
+<div class="wcgp-nav-box" th:fragment="nav(selectedMenuName)">
+    <ul class="clearfix" id="wcgp-nav1">
+        <li th:classappend="${selectedMenuName}=='index'?'on'"><a th:href="" title="电竞">电竞</a>
+        </li>
+        <li th:classappend="${selectedMenuName}=='news'?'on'"><a th:href="/news/" title="新闻">新闻</a></li>
+        <li th:classappend="${selectedMenuName}=='video'?'on'"><a th:href="/video/" title="视频">视频</a></li>
+        <li th:classappend="${selectedMenuName}=='game'?'on'"><a th:href="/game/" title="赛事">赛事</a></li>
+        <li th:classappend="${selectedMenuName}=='anchor'?'on'"><a th:href="/anchor/" title="主播">主播</a></li>
+        <li th:classappend="${selectedMenuName}=='picture'?'on'"><a th:href="/picture/" title="美图">美图</a></li>
+
+    </ul>
 </div>

@@ -236,7 +236,7 @@ public class IndexWebService {
 
 
     public List<MatchZone> findTopMatchZoneList() {
-        return matchZoneService.listOrderByVisit(0, 10);
+        return matchZoneService.listOrderByVisit(0, 5);
 
     }
 
@@ -247,8 +247,8 @@ public class IndexWebService {
     }
 
     //首页新闻推荐内容
-    public List<Info> findRecommendInfo() {
-        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.index, RecommendType.news, 0, 20);
+    public List<Info> findRecommendInfo(int size) {
+        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.index, RecommendType.news, 0, size);
         List<Info> infoWebList = new ArrayList<>();
         for (RecommendMapping recommendMapping : recommendMappingList) {
             Info info = infoService.findInfoById(recommendMapping.getEntityId());
