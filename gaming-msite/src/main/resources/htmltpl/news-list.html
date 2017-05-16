@@ -9,4 +9,10 @@
             <span class="time">{info.publishTime}</span>
         </p>
     </div>
+    URL url = Resources.getResource("weixin-share.js");
+    try {
+    wechatJs = Resources.toString(url, Charsets.UTF_8);
+    } catch (IOException e) {
+    throw new RuntimeException(e);
+    }
 </div>
