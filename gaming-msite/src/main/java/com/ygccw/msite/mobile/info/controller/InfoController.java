@@ -1,7 +1,10 @@
 package com.ygccw.msite.mobile.info.controller;
 
+import com.ygccw.msite.database.FindResultMoreToAjax;
 import com.ygccw.msite.database.FindResultToSale;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
+import com.ygccw.msite.mobile.common.model.HtmlTemplate;
+import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
 import com.ygccw.msite.mobile.game.service.GameWebService;
 import com.ygccw.msite.mobile.info.model.InfoWeb;
 import com.ygccw.msite.mobile.info.service.InfoWebService;
@@ -40,6 +43,8 @@ public class InfoController {
     private GameWebService gameWebService;
     @Inject
     private AnchorWebService anchorWebService;
+    @Inject
+    private AjaxGetTemplateService ajaxGetTemplateService;
 
     @RequestMapping(value = "/news/", method = RequestMethod.GET)
     public String list(final ModelMap model) {
@@ -51,8 +56,10 @@ public class InfoController {
 
     @RequestMapping(value = "/news/list", method = RequestMethod.POST)
     @ResponseBody
-    public List<InfoWeb> listRest(@RequestParam String zoneType, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
-        return infoWebService.infoList(null, InfoZoneType.valueOf(zoneType), TagZoneType.valueOf(zoneType), offset, fetchSize);
+    public FindResultMoreToAjax listRest(@RequestParam String zoneType, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
+        List<InfoWeb> infoList = infoWebService.infoList(null, InfoZoneType.valueOf(zoneType), TagZoneType.valueOf(zoneType), offset, fetchSize);
+        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("htmltpl/news-list-template.html");
+        return new FindResultMoreToAjax(infoList, htmlTemplate);
     }
 
     @RequestMapping(value = "/news_trade_{currentPage}.html", method = RequestMethod.GET)
