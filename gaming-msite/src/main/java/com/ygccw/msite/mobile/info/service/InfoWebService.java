@@ -44,7 +44,7 @@ public class InfoWebService {
     @Inject
     PictureService pictureService;
 
-    public List<InfoWeb> infoList(Long zoneId, InfoZoneType infoZoneType, TagZoneType tagZoneType, int offset, int fetchSize) {
+    public List<Info> infoList(Long zoneId, InfoZoneType infoZoneType, TagZoneType tagZoneType, int offset, int fetchSize) {
         Info infoRequest = new Info();
         infoRequest.setInfoZoneType(infoZoneType);
         infoRequest.setZoneId(zoneId);
@@ -52,30 +52,7 @@ public class InfoWebService {
         infoRequest.setInfoType(InfoType.news);
         infoRequest.setSortIfDesc(true);
         infoRequest.setSortName("publishTime");
-        List<Info> infoList = infoService.list(infoRequest, offset, fetchSize);
-        List<InfoWeb> infoWebList = new ArrayList<>();
-        for (Info info : infoList) {
-            InfoWeb infoWeb = new InfoWeb();
-            BeanUtils.copyProperties(info, infoWeb);
-            TagMapping tagMappingRequest = new TagMapping();
-            tagMappingRequest.setTagType(TagType.news);
-            tagMappingRequest.setTagZoneType(tagZoneType);
-            tagMappingRequest.setEntityId(info.getId());
-            List<TagMapping> tagMappingList = tagMappingService.list(tagMappingRequest, 0, 10);
-            List<TagMappingWeb> tagMappingWebList = new ArrayList<>();
-            for (TagMapping tagMapping : tagMappingList) {
-                TagMappingWeb tagMappingWeb = new TagMappingWeb();
-                BeanUtils.copyProperties(tagMapping, tagMappingWeb);
-                Tags tags = tagsService.findById(tagMappingWeb.getTagsId());
-                tagMappingWeb.setName(tags.getName());
-                tagMappingWebList.add(tagMappingWeb);
-            }
-            if (!tagMappingWebList.isEmpty()) {
-                infoWeb.setTagMappingWebList(tagMappingWebList);
-            }
-            infoWebList.add(infoWeb);
-        }
-        return infoWebList;
+        return infoService.list(infoRequest, offset, fetchSize);
     }
 
     public int infoListSize(Long zoneId, InfoZoneType infoZoneType) {

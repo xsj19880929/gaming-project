@@ -47,8 +47,6 @@ public class VideoController {
         model.put("pageFlag", "new");
         model.put("anchorZoneList", videoWebService.anchorList(0, 8));
         model.put("matchZoneList", videoWebService.matchZoneList(0, 8));
-        model.put("anchorZoneListMore", videoWebService.anchorList(8, 100));
-        model.put("matchZoneListMore", videoWebService.matchZoneList(8, 100));
         model.put("videoList", new FindResultToSale(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListSize(info), currentPage, fetchSize, url));
         model.put("infoZoneTypeSelected", "all");
         model.put("infoVideoTypeSelected", "all");

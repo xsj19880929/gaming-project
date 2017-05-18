@@ -154,7 +154,7 @@ public class GameWebService {
         return infoService.list(info, offset, fetchSize);
     }
 
-    public List<InfoWeb> listInfoNewsAndTag(Long matchZoneId, int offset, int fetchSize) {
+    public List<Info> listInfoNewsAndTag(Long matchZoneId, int offset, int fetchSize) {
         return infoWebService.infoList(matchZoneId, InfoZoneType.matchZone, TagZoneType.matchZone, offset, fetchSize);
     }
 

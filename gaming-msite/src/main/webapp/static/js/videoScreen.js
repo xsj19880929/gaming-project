@@ -23,12 +23,14 @@ Tab.prototype.imgSrc = function () {
         var that = this;
         this.oLi[i].onclick = function () {
             for (var j = 0; j < that.oLi.length; j++) {
-                that.changeImg[j].src = 'img/class' + (j + 1) + '.png';
+                var imageUrl = that.changeImg[j].src.split('static');
+                that.changeImg[j].src = imageUrl[0] + 'static/img/class' + (j + 1) + '.png';
                 that.oDiv[j].style.display = 'none';
                 that.jiaoBiao[j].style.display = 'none';
                 that.oLi[j].className = '';
             }
-            that.changeImg[this.index].src = 'img/class' + (this.index + 1) + '-1.png';
+            var imageUrl2 = that.changeImg[this.index].src.split('static');
+            that.changeImg[this.index].src = imageUrl2[0] + 'static/img/class' + (this.index + 1) + '-1.png';
             that.oDiv[this.index].style.display = 'block';
             that.jiaoBiao[this.index].style.display = 'block';
             this.className = 'active';

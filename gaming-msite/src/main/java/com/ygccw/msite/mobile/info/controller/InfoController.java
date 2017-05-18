@@ -1,6 +1,7 @@
 package com.ygccw.msite.mobile.info.controller;
 
 import com.ygccw.msite.database.FindResultMoreToAjax;
+import com.ygccw.msite.database.FindResultToMobile;
 import com.ygccw.msite.database.FindResultToSale;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
 import com.ygccw.msite.mobile.common.model.HtmlTemplate;
@@ -9,6 +10,7 @@ import com.ygccw.msite.mobile.game.service.GameWebService;
 import com.ygccw.msite.mobile.info.model.InfoWeb;
 import com.ygccw.msite.mobile.info.service.InfoWebService;
 import com.ygccw.msite.utils.PageUtils;
+import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.tags.entity.Tags;
@@ -48,16 +50,15 @@ public class InfoController {
 
     @RequestMapping(value = "/news/", method = RequestMethod.GET)
     public String list(final ModelMap model) {
-        int currentPage = 1;
-        int fetchSize = 10;
-        model.put("infoList", new FindResultToSale(infoWebService.infoList(null, InfoZoneType.trade, TagZoneType.trade, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), 20, currentPage, fetchSize, "/news_trade"));
+        int fetchSize = 20;
+        model.put("infoList", new FindResultToMobile(infoWebService.infoList(null, InfoZoneType.trade, TagZoneType.trade, 0, fetchSize), fetchSize, "/news_trade"));
         return "/view/news/news-list.html";
     }
 
     @RequestMapping(value = "/news/list", method = RequestMethod.POST)
     @ResponseBody
     public FindResultMoreToAjax listRest(@RequestParam String zoneType, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
-        List<InfoWeb> infoList = infoWebService.infoList(null, InfoZoneType.valueOf(zoneType), TagZoneType.valueOf(zoneType), offset, fetchSize);
+        List<Info> infoList = infoWebService.infoList(null, InfoZoneType.valueOf(zoneType), TagZoneType.valueOf(zoneType), offset, fetchSize);
         HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("htmltpl/news-list-template.html");
         return new FindResultMoreToAjax(infoList, htmlTemplate);
     }

@@ -113,7 +113,7 @@ public class AnchorWebService {
         return anchorZoneHonorService.listByAnchorZoneId(anchorZoneId);
     }
 
-    public List<InfoWeb> listInfoNewsAndTagByAnchorZoneId(Long anchorZoneId, int offset, int fetchSize) {
+    public List<Info> listInfoNewsAndTagByAnchorZoneId(Long anchorZoneId, int offset, int fetchSize) {
         return infoWebService.infoList(anchorZoneId, InfoZoneType.anchorZone, TagZoneType.anchorZone, offset, fetchSize);
     }
 
