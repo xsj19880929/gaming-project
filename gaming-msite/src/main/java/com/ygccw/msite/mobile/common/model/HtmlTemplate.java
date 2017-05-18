@@ -1,17 +1,11 @@
 package com.ygccw.msite.mobile.common.model;
 
-import core.framework.web.site.SiteSettings;
-
-import javax.inject.Inject;
-
 /**
  * @author soldier
  */
 public class HtmlTemplate {
-    @Inject
-    SiteSettings siteSettings;
-    private final String baseUrl = siteSettings.baseUrl();
-    private final String imageUrl = siteSettings.getImgServerUrl();
+    private String baseUrl;
+    private String imageUrl;
     private String htmlTemplate;
 
     public String getHtmlTemplate() {
@@ -26,7 +20,15 @@ public class HtmlTemplate {
         return baseUrl;
     }
 
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
+
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
