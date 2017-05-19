@@ -12,7 +12,7 @@ function getNewsList() {
         url: "/news/list?offset=" + offset + "&zoneType=" + zoneType,
         success: function (data) {
             layer.close(index);
-            if (data != null) {
+            if (data.list.length > 0) {
                 $("#offset").val(Number(offset) + 20);
                 for (var i in data.list) {
                     var map = {};

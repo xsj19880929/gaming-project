@@ -1,15 +1,18 @@
 package com.ygccw.msite.mobile.video.controller;
 
 import com.ygccw.msite.database.FindResultMoreToAjax;
+import com.ygccw.msite.database.FindResultToMobile;
 import com.ygccw.msite.database.FindResultToSale;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
 import com.ygccw.msite.mobile.common.model.HtmlTemplate;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
 import com.ygccw.msite.mobile.game.service.GameWebService;
 import com.ygccw.msite.mobile.info.model.InfoWeb;
+import com.ygccw.msite.mobile.video.model.VideoRequest;
 import com.ygccw.msite.mobile.video.service.VideoWebService;
 import com.ygccw.msite.utils.PageUtils;
 import com.ygccw.wechat.common.info.entity.Info;
+import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.enums.InfoVideoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
@@ -19,6 +22,7 @@ import com.ygccw.wechat.common.zone.entity.MatchZone;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,14 +52,11 @@ public class VideoController {
 
     @RequestMapping(value = "/video/", method = RequestMethod.GET)
     public String videoList(final ModelMap model) {
-        int currentPage = 1;
-        int fetchSize = 16;
-        Info info = new Info();
-        String url = "/video_new/all/all/0";
+        int fetchSize = 20;
         model.put("pageFlag", "new");
-        model.put("anchorZoneList", videoWebService.anchorList(0, 8));
-        model.put("matchZoneList", videoWebService.matchZoneList(0, 8));
-        model.put("videoList", new FindResultToSale(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListSize(info), currentPage, fetchSize, url));
+        model.put("anchorZoneList", videoWebService.anchorList(0, 30));
+        model.put("matchZoneList", videoWebService.matchZoneList(0, 30));
+        model.put("videoList", new FindResultToMobile(videoWebService.videoList(new Info(), 0, fetchSize), fetchSize, "publishTime"));
         model.put("infoZoneTypeSelected", "all");
         model.put("infoVideoTypeSelected", "all");
         model.put("zoneIdSelected", 0);
@@ -65,18 +66,19 @@ public class VideoController {
     /**
      * 视频加载更多
      *
-     * @param infoVideoTypeStr
-     * @param infoZoneTypeStr
-     * @param zoneId
      * @param offset
      * @param fetchSize
      * @return
      */
     @RequestMapping(value = "/video/list", method = RequestMethod.POST)
     @ResponseBody
-    public FindResultMoreToAjax listRest(@PathVariable String infoVideoTypeStr, @PathVariable String infoZoneTypeStr, @PathVariable Long zoneId, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
-        Info info = commonAjax(infoVideoTypeStr, infoZoneTypeStr, zoneId);
-        List<Info> infoList = videoWebService.videoList(info, offset, fetchSize);
+    public FindResultMoreToAjax listRest(@RequestBody VideoRequest videoRequest, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
+        Info info = commonAjax(videoRequest.getInfoVideoTypeStr(), videoRequest.getInfoZoneTypeStr(), videoRequest.getZoneId());
+        info.setVerify(1);
+        info.setInfoType(InfoType.video);
+        info.setSortIfDesc(videoRequest.getSortIfDesc());
+        info.setSortName(videoRequest.getSortName());
+        List<Info> infoList = infoService.list(info, offset, fetchSize);
         HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("htmltpl/video-list-template.html");
         return new FindResultMoreToAjax(infoList, htmlTemplate);
     }
@@ -84,10 +86,9 @@ public class VideoController {
     @RequestMapping(value = "/video_new/{infoVideoTypeStr}/{infoZoneTypeStr}/{zoneId}_{currentPage}.html", method = RequestMethod.GET)
     public String selectVideoList(final ModelMap model, @PathVariable String infoVideoTypeStr, @PathVariable String infoZoneTypeStr, @PathVariable Long zoneId, @PathVariable Integer currentPage) {
         Info info = common(model, infoVideoTypeStr, infoZoneTypeStr, zoneId);
-        int fetchSize = 16;
-        String url = "/video_new/" + infoVideoTypeStr + "/" + infoZoneTypeStr + "/" + zoneId;
+        int fetchSize = 20;
         model.put("pageFlag", "new");
-        model.put("videoList", new FindResultToSale(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListSize(info), currentPage, fetchSize, url));
+        model.put("videoList", new FindResultToMobile(videoWebService.videoList(info, 0, fetchSize), fetchSize, "publishTime"));
         return "/view/video/video-list.html";
     }
 
@@ -95,9 +96,8 @@ public class VideoController {
     public String selectVideoListTop(final ModelMap model, @PathVariable String infoVideoTypeStr, @PathVariable String infoZoneTypeStr, @PathVariable Long zoneId, @PathVariable Integer currentPage) {
         Info info = common(model, infoVideoTypeStr, infoZoneTypeStr, zoneId);
         int fetchSize = 16;
-        String url = "/video_top/" + infoVideoTypeStr + "/" + infoZoneTypeStr + "/" + zoneId;
         model.put("pageFlag", "top");
-        model.put("videoList", new FindResultToSale(videoWebService.videoListTop(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListTopSize(info), currentPage, fetchSize, url));
+        model.put("videoList", new FindResultToMobile(videoWebService.videoListTop(info, 0, fetchSize), fetchSize, "visitCount"));
         return "/view/video/video-list.html";
     }
 
@@ -128,10 +128,8 @@ public class VideoController {
             info.setZoneId(zoneId);
         }
         model.put("zoneIdSelected", zoneId);
-        model.put("anchorZoneList", videoWebService.anchorList(0, 8));
-        model.put("matchZoneList", videoWebService.matchZoneList(0, 8));
-        model.put("anchorZoneListMore", videoWebService.anchorList(8, 100));
-        model.put("matchZoneListMore", videoWebService.matchZoneList(8, 100));
+        model.put("anchorZoneList", videoWebService.anchorList(0, 20));
+        model.put("matchZoneList", videoWebService.matchZoneList(0, 20));
         return info;
     }
 

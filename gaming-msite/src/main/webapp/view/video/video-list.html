@@ -15,7 +15,7 @@
 <!--头部1-->
 <header th:replace="/head.html::top"></header>
 <!--导航1-->
-<div th:replace="/head.html::nav('news')"></div>
+<div th:replace="/head.html::nav('video')"></div>
 <!--中间-->
 <div class="videos">
     <div class="Competition-header">
@@ -61,26 +61,26 @@
         <div class="gamelist1">
             <ul>
                 <li th:classappend="${infoVideoTypeSelected}=='all'?'action'">
-                    <a th:href="/video_${pageFlag}/all/${infoZoneTypeSelected}/${zoneIdSelected}_${videoList.currentPage}.html">全部</a>
+                    <a th:href="/video_${pageFlag}/all/${infoZoneTypeSelected}/${zoneIdSelected}_1.html">全部</a>
                 </li>
                 <li th:classappend="${infoVideoTypeSelected}=='matchVideo'?'action'">
-                    <a th:href="/video_${pageFlag}/matchVideo/${infoZoneTypeSelected}/${zoneIdSelected}_${videoList.currentPage}.html"
+                    <a th:href="/video_${pageFlag}/matchVideo/${infoZoneTypeSelected}/${zoneIdSelected}_1.html"
                        title="比赛视频">比赛视频</a>
                 </li>
                 <li th:classappend="${infoVideoTypeSelected}=='anchorVideo'?'action'">
-                    <a th:href="/video_${pageFlag}/anchorVideo/${infoZoneTypeSelected}/${zoneIdSelected}_${videoList.currentPage}.html"
+                    <a th:href="/video_${pageFlag}/anchorVideo/${infoZoneTypeSelected}/${zoneIdSelected}_1.html"
                        title="主播视频">主播视频</a>
                 </li>
                 <li th:classappend="${infoVideoTypeSelected}=='playerVideo'?'action'">
-                    <a th:href="/video_${pageFlag}/playerVideo/${infoZoneTypeSelected}/${zoneIdSelected}_${videoList.currentPage}.html"
+                    <a th:href="/video_${pageFlag}/playerVideo/${infoZoneTypeSelected}/${zoneIdSelected}_1.html"
                        title="玩家视频">玩家视频</a>
                 </li>
                 <li th:classappend="${infoVideoTypeSelected}=='funVideo'?'action'">
-                    <a th:href="/video_${pageFlag}/funVideo/${infoZoneTypeSelected}/${zoneIdSelected}_${videoList.currentPage}.html"
+                    <a th:href="/video_${pageFlag}/funVideo/${infoZoneTypeSelected}/${zoneIdSelected}_1.html"
                        title="娱乐视频">娱乐视频</a>
                 </li>
                 <li th:classappend="${infoVideoTypeSelected}=='originalVideo'?'action'">
-                    <a th:href="/video_${pageFlag}/originalVideo/${infoZoneTypeSelected}/${zoneIdSelected}_${videoList.currentPage}.html"
+                    <a th:href="/video_${pageFlag}/originalVideo/${infoZoneTypeSelected}/${zoneIdSelected}_1.html"
                        title="原创视频">原创视频</a>
                 </li>
             </ul>
@@ -90,10 +90,10 @@
         <div class="gamelist1">
             <ul>
                 <li th:class="${infoZoneTypeSelected}=='all'?'action':(${infoZoneTypeSelected}=='anchorZone'?'action':'')">
-                    <a th:href="/video_${pageFlag}/${infoVideoTypeSelected}/all/0_${videoList.currentPage}.html">全部</a>
+                    <a th:href="/video_${pageFlag}/${infoVideoTypeSelected}/all/0_1.html">全部</a>
                 </li>
                 <li th:classappend="${zoneIdSelected}==${matchZone.id}?'action'" th:each="matchZone:${matchZoneList}">
-                    <a th:href="/video_${pageFlag}/${infoVideoTypeSelected}/matchZone/${matchZone.id}_${videoList.currentPage}.html"
+                    <a th:href="/video_${pageFlag}/${infoVideoTypeSelected}/matchZone/${matchZone.id}_1.html"
                        th:title="${matchZone.name}" th:text="${matchZone.name}">英雄联盟</a>
                 </li>
             </ul>
@@ -103,11 +103,11 @@
         <div class="gamelist1">
             <ul>
                 <li th:class="${infoZoneTypeSelected}=='all'?'action':(${infoZoneTypeSelected}=='matchZone'?'action':'')">
-                    <a th:href="/video_${pageFlag}/${infoVideoTypeSelected}/all/0_${videoList.currentPage}.html">全部</a>
+                    <a th:href="/video_${pageFlag}/${infoVideoTypeSelected}/all/0_1.html">全部</a>
                 </li>
                 <li th:classappend="${zoneIdSelected}==${anchorZone.id}?'action'"
                     th:each="anchorZone:${anchorZoneList}">
-                    <a th:href="/video_${pageFlag}/${infoVideoTypeSelected}/anchorZone/${anchorZone.id}_${videoList.currentPage}.html"
+                    <a th:href="/video_${pageFlag}/${infoVideoTypeSelected}/anchorZone/${anchorZone.id}_1.html"
                        th:text="${anchorZone.name}" th:title="${anchorZone.name}">英雄联盟</a>
                 </li>
             </ul>
@@ -118,9 +118,9 @@
 <div class="videoList" style="border-top: 2px solid #eaa000;">
     <div class="vedeonav">
         <ul id="tabUl">
-            <li th:classappend="${#strings.startsWith(videoList.pageName,'/video_new')}?'action'"><a
+            <li th:classappend="${#strings.startsWith(videoList.pageName,'publishTime')}?'action'"><a
                     th:href="/video_new/all/all/0_1.html"><span>最新</span></a></li>
-            <li th:classappend="${#strings.startsWith(videoList.pageName,'/video_top')}?'action'">
+            <li th:classappend="${#strings.startsWith(videoList.pageName,'visitCount')}?'action'">
                 <a th:href="/video_top/all/all/0_1.html"><span>最热</span></a></li>
         </ul>
     </div>
@@ -141,7 +141,7 @@
 </div>
 
 <!--加载更多-->
-<div class="footer-more more-other" id="loadMore">
+<div class="footer-more more-other" id="loadMore" th:if="${#lists.size(videoList.list)>=videoList.fetchSize}">
     <a style="color: #808080; font-size: 13px;" href="javascript:;" onclick="getNewsList()">加载更多 <img
             style="width: 16%;" th:src="/static/img/morejt.png"
             alt="加载更多"></a>
@@ -149,8 +149,9 @@
 <input type="hidden" value="trade" id="infoVideoTypeStr" name="infoVideoTypeStr" th:value="${infoVideoTypeSelected}">
 <input type="hidden" value="matchZone" id="infoZoneTypeStr" name="infoZoneTypeStr" th:value="${infoZoneTypeSelected}">
 <input type="hidden" value="anchorZone" id="zoneId" name="zoneId" th:value="${zoneIdSelected}">
-<input type="hidden" id="offset" name="offset" th:value="${infoList.fetchSize}">
-<input type="hidden" id="fetchSize" name="fetchSize" th:value="${infoList.fetchSize}">
+<input type="hidden" id="offset" name="offset" th:value="${videoList.fetchSize}">
+<input type="hidden" id="fetchSize" name="fetchSize" th:value="${videoList.fetchSize}">
+<input type="hidden" id="sortName" name="sortName" th:value="${videoList.pageName}">
 <!--底部导航-->
 <nav th:replace="/bottom.html::footerNav"></nav>
 <!--TOP-->
@@ -162,5 +163,6 @@
 <script type="text/javascript" th:src="/static/js/videoScreen.js"></script>
 <script type="text/javascript" th:src="/static/js/main.js"></script>
 <script type="text/javascript" th:src="/static/js/video/video-list.js"></script>
+<script type="text/javascript" th:src="/static/js/layer/layer.js"></script>
 </body>
 </html>
