@@ -61,12 +61,11 @@
 <input type="hidden" value="matchZone" th:if="${infoList.pageName}=='/news_match'" id="zoneType" name="zoneType">
 <input type="hidden" value="anchorZone" th:if="${infoList.pageName}=='/news_anchor'" id="zoneType" name="zoneType">
 <input type="hidden" id="offset" name="offset" th:value="${infoList.fetchSize}">
+<input type="hidden" id="fetchSize" name="fetchSize" th:value="${infoList.fetchSize}">
 <!--底部导航-->
 <nav th:replace="/bottom.html::footerNav"></nav>
 <!--TOP-->
-<div class="tipTop backtop">
-    TOP ∧
-</div>
+<div th:replace="/bottom.html::tipTop"></div>
 <!--底部-->
 <footer th:replace="/bottom.html::footer"></footer>
 <script type="text/javascript" th:src="/static/js/jquery.js"></script>

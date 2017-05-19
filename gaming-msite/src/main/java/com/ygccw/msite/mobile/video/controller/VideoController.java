@@ -1,7 +1,10 @@
 package com.ygccw.msite.mobile.video.controller;
 
+import com.ygccw.msite.database.FindResultMoreToAjax;
 import com.ygccw.msite.database.FindResultToSale;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
+import com.ygccw.msite.mobile.common.model.HtmlTemplate;
+import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
 import com.ygccw.msite.mobile.game.service.GameWebService;
 import com.ygccw.msite.mobile.info.model.InfoWeb;
 import com.ygccw.msite.mobile.video.service.VideoWebService;
@@ -18,9 +21,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author soldier
@@ -37,6 +43,8 @@ public class VideoController {
     GameWebService gameWebService;
     @Inject
     AnchorWebService anchorWebService;
+    @Inject
+    AjaxGetTemplateService ajaxGetTemplateService;
 
     @RequestMapping(value = "/video/", method = RequestMethod.GET)
     public String videoList(final ModelMap model) {
@@ -52,6 +60,25 @@ public class VideoController {
         model.put("infoVideoTypeSelected", "all");
         model.put("zoneIdSelected", 0);
         return "/view/video/video-list.html";
+    }
+
+    /**
+     * 视频加载更多
+     *
+     * @param infoVideoTypeStr
+     * @param infoZoneTypeStr
+     * @param zoneId
+     * @param offset
+     * @param fetchSize
+     * @return
+     */
+    @RequestMapping(value = "/video/list", method = RequestMethod.POST)
+    @ResponseBody
+    public FindResultMoreToAjax listRest(@PathVariable String infoVideoTypeStr, @PathVariable String infoZoneTypeStr, @PathVariable Long zoneId, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
+        Info info = commonAjax(infoVideoTypeStr, infoZoneTypeStr, zoneId);
+        List<Info> infoList = videoWebService.videoList(info, offset, fetchSize);
+        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("htmltpl/video-list-template.html");
+        return new FindResultMoreToAjax(infoList, htmlTemplate);
     }
 
     @RequestMapping(value = "/video_new/{infoVideoTypeStr}/{infoZoneTypeStr}/{zoneId}_{currentPage}.html", method = RequestMethod.GET)
@@ -105,6 +132,29 @@ public class VideoController {
         model.put("matchZoneList", videoWebService.matchZoneList(0, 8));
         model.put("anchorZoneListMore", videoWebService.anchorList(8, 100));
         model.put("matchZoneListMore", videoWebService.matchZoneList(8, 100));
+        return info;
+    }
+
+    private Info commonAjax(String infoVideoTypeStr, String infoZoneTypeStr, Long zoneId) {
+        Info info = new Info();
+        if (!"all".equals(infoVideoTypeStr)) {
+            for (InfoVideoType infoVideoType : InfoVideoType.values()) {
+                if (infoVideoType.getName().equals(infoVideoTypeStr)) {
+                    info.setInfoVideoType(infoVideoType);
+                }
+            }
+        }
+
+        if (!"all".equals(infoZoneTypeStr)) {
+            for (InfoZoneType infoZoneType : InfoZoneType.values()) {
+                if (infoZoneType.getName().equals(infoZoneTypeStr)) {
+                    info.setInfoZoneType(infoZoneType);
+                }
+            }
+        }
+        if (zoneId.compareTo(0L) != 0) {
+            info.setZoneId(zoneId);
+        }
         return info;
     }
 

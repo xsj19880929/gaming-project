@@ -125,7 +125,7 @@
         </ul>
     </div>
     <div class="videoshow"><p></p>
-        <ul>
+        <ul id="newsListData">
             <li th:each="video:${videoList.list}">
                 <a th:title="${video.title}" th:href="/video/${video.id}.html">
                     <img th:img-src="/image/330x195${video.titleImage}" th:alt="${video.title}"
@@ -141,20 +141,26 @@
 </div>
 
 <!--加载更多-->
-<div class="footer-more more-other">
-    <a style="color: #808080; font-size: 13px;" href="">加载更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
-                                                                  alt="加载更多"></a>
+<div class="footer-more more-other" id="loadMore">
+    <a style="color: #808080; font-size: 13px;" href="javascript:;" onclick="getNewsList()">加载更多 <img
+            style="width: 16%;" th:src="/static/img/morejt.png"
+            alt="加载更多"></a>
 </div>
+<input type="hidden" value="trade" id="infoVideoTypeStr" name="infoVideoTypeStr" th:value="${infoVideoTypeSelected}">
+<input type="hidden" value="matchZone" id="infoZoneTypeStr" name="infoZoneTypeStr" th:value="${infoZoneTypeSelected}">
+<input type="hidden" value="anchorZone" id="zoneId" name="zoneId" th:value="${zoneIdSelected}">
+<input type="hidden" id="offset" name="offset" th:value="${infoList.fetchSize}">
+<input type="hidden" id="fetchSize" name="fetchSize" th:value="${infoList.fetchSize}">
 <!--底部导航-->
 <nav th:replace="/bottom.html::footerNav"></nav>
 <!--TOP-->
-<div class="tipTop backtop">
-    TOP ∧
-</div>
+<div th:replace="/bottom.html::tipTop"></div>
 <!--底部-->
 <footer th:replace="/bottom.html::footer"></footer>
 <script type="text/javascript" th:src="/static/js/jquery.js"></script>
 <script type="text/javascript" th:src="/static/js/wcgp.js"></script>
 <script type="text/javascript" th:src="/static/js/videoScreen.js"></script>
+<script type="text/javascript" th:src="/static/js/main.js"></script>
+<script type="text/javascript" th:src="/static/js/video/video-list.js"></script>
 </body>
 </html>
