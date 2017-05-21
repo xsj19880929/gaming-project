@@ -129,13 +129,15 @@
     <div class="Competition-more" id="loadMore" th:if="${#lists.size(matchZoneList.list)>=matchZoneList.fetchSize}">
         <p><a href="javascript:;" onclick="getNewsList()">加载更多 <img th:src="/static/img/morejt.png" alt=""></a></p>
     </div>
-    <input type="hidden" value="0" id="matchZoneAreaId" name="matchZoneAreaId"
-           th:value="${matchZoneAreaIdSelected}">
-    <input type="hidden" value="all" id="matchStatus" name="matchStatus" th:value="${matchStatusSelected}">
-    <input type="hidden" value="0" id="matchZoneYearId" name="matchZoneYearId"
-           th:value="${matchZoneYearIdSelected}">
-    <input type="hidden" id="offset" name="offset" th:value="${matchZoneList.fetchSize}">
-    <input type="hidden" id="fetchSize" name="fetchSize" th:value="${matchZoneList.fetchSize}">
+    <div id="loadMoreCondition" style="display:none">
+        <input type="hidden" value="0" id="matchZoneAreaId" name="matchZoneAreaId"
+               th:value="${matchZoneAreaIdSelected}">
+        <input type="hidden" value="all" id="matchStatus" name="matchStatus" th:value="${matchStatusSelected}">
+        <input type="hidden" value="0" id="matchZoneYearId" name="matchZoneYearId"
+               th:value="${matchZoneYearIdSelected}">
+        <input type="hidden" id="offset" name="offset" th:value="${matchZoneList.fetchSize}">
+        <input type="hidden" id="fetchSize" name="fetchSize" th:value="${matchZoneList.fetchSize}">
+    </div>
 </div>
 
 <!--底部导航-->

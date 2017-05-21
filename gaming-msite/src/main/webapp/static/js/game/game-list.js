@@ -2,29 +2,17 @@
  * @author soldier
  */
 function getNewsList() {
-    var offset = $("#offset").val();
-    var fetchSize = $("#fetchSize").val();
-    var matchZoneAreaId = $("#matchZoneAreaId").val();
-    var matchZoneYearId = $("#matchZoneYearId").val();
-    var matchStatus = $("#matchStatus").val();
     var index = layer.load(0, {shade: false});
-    var postData = {
-        "offset": offset,
-        "fetchSize": fetchSize,
-        "matchZoneAreaId": matchZoneAreaId,
-        "matchZoneYearId": matchZoneYearId,
-        "matchStatus": matchStatus
-    };
+    var postData = jsonPostData("#loadMoreCondition");
     $.ajax({
         async: true,
         type: "POST",
         contentType: 'application/json',
         data: JSON.stringify(postData),
-        url: "/game/list?offset=" + offset,
+        url: "/game/list?offset=" + postData.offset,
         success: function (data) {
-            layer.close(index);
             if (data.list.length > 0) {
-                $("#offset").val(Number(offset) + fetchSize);
+                $("#offset").val(Number(postData.offset) + Number(postData.fetchSize));
                 for (var i in data.list) {
                     var map = {};
                     map.name = data.list[i].name;
@@ -47,6 +35,7 @@ function getNewsList() {
             } else {
                 $("#loadMore").hide();
             }
+            layer.close(index);
         }
     });
 }

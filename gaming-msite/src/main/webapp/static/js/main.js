@@ -58,3 +58,11 @@ function formatDate(date, format) {
     v = v.replace(/E/g, weekDayString);
     return v;
 }
+
+function jsonPostData(selector) {
+    var jsonData = {};
+    $(selector + ">input").each(function () {
+        jsonData[$(this).attr("name")] = $(this).attr("value");
+    });
+    return jsonData;
+}

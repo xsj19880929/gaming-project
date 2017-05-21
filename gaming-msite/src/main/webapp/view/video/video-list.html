@@ -20,23 +20,23 @@
         <p style="color: #eaa000; font-size: 13pt;font-weight: bold;padding: 2% 0 3% 3%;">视频筛选</p>
         <div class="tab-icon" style="border-top: 1px solid #dadada;">
             <ul class="tab-icon-sssx" id="videoUl">
-                <li>
+                <li class="active">
                     <div class="tab-icon-content">
-                        <img class="chengaeImg" th:src="/static/img/class1.png" alt="类型">
+                        <img class="chengaeImg" th:src="/static/img/class1-1.png" alt="类型">
                     </div>
                     <div>类型</div>
                     <span class="long-string"></span>
-                    <div class="triangle" style="display: none;">
+                    <div class="triangle">
                         <img th:src="/static/img/triangle.jpg" alt="">
                     </div>
                 </li>
-                <li class="active">
+                <li>
                     <div class="tab-icon-content">
-                        <img class="chengaeImg" th:src="/static/img/class2-1.png" alt="游戏">
+                        <img class="chengaeImg" th:src="/static/img/class2.png" alt="游戏">
                     </div>
                     <div>游戏</div>
                     <span class="long-string"></span>
-                    <div class="triangle">
+                    <div class="triangle" style="display: none;">
                         <img th:src="/static/img/triangle.jpg" alt="">
                     </div>
                 </li>
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <div class="gamelist" style="display: none;">
+    <div class="gamelist">
         <div class="gamelist1">
             <ul>
                 <li th:classappend="${infoVideoTypeSelected}=='all'?'action'">
@@ -84,7 +84,7 @@
             </ul>
         </div>
     </div>
-    <div class="gamelist">
+    <div class="gamelist" style="display: none;">
         <div class="gamelist1">
             <ul>
                 <li th:class="${infoZoneTypeSelected}=='all'?'action':(${infoZoneTypeSelected}=='anchorZone'?'action':'')">
@@ -144,12 +144,16 @@
             style="width: 16%;" th:src="/static/img/morejt.png"
             alt="加载更多"></a>
 </div>
-<input type="hidden" value="trade" id="infoVideoTypeStr" name="infoVideoTypeStr" th:value="${infoVideoTypeSelected}">
-<input type="hidden" value="matchZone" id="infoZoneTypeStr" name="infoZoneTypeStr" th:value="${infoZoneTypeSelected}">
-<input type="hidden" value="anchorZone" id="zoneId" name="zoneId" th:value="${zoneIdSelected}">
-<input type="hidden" id="offset" name="offset" th:value="${videoList.fetchSize}">
-<input type="hidden" id="fetchSize" name="fetchSize" th:value="${videoList.fetchSize}">
-<input type="hidden" id="sortName" name="sortName" th:value="${videoList.pageName}">
+<div id="loadMoreCondition" style="display:none">
+    <input type="hidden" value="trade" id="infoVideoTypeStr" name="infoVideoTypeStr"
+           th:value="${infoVideoTypeSelected}">
+    <input type="hidden" value="matchZone" id="infoZoneTypeStr" name="infoZoneTypeStr"
+           th:value="${infoZoneTypeSelected}">
+    <input type="hidden" value="anchorZone" id="zoneId" name="zoneId" th:value="${zoneIdSelected}">
+    <input type="hidden" id="offset" name="offset" th:value="${videoList.fetchSize}">
+    <input type="hidden" id="fetchSize" name="fetchSize" th:value="${videoList.fetchSize}">
+    <input type="hidden" id="sortName" name="sortName" th:value="${videoList.pageName}">
+</div>
 <!--底部导航-->
 <nav th:replace="/bottom.html::footerNav"></nav>
 <!--TOP-->

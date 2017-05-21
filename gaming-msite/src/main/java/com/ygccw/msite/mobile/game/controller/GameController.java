@@ -48,7 +48,7 @@ public class GameController {
     @RequestMapping(value = "/game/", method = RequestMethod.GET)
     public String gameList(final ModelMap model) {
         MatchZone matchZone = new MatchZone();
-        int fetchSize = 20;
+        int fetchSize = 5;
         model.put("matchZoneList", new FindResultToMobile(gameWebService.findMatchZoneNew(matchZone, 0, fetchSize), fetchSize, ""));
         model.put("matchZoneYearList", gameWebService.listMatchZoneYear());
         model.put("matchZoneAreaList", gameWebService.listMatchZoneArea());
