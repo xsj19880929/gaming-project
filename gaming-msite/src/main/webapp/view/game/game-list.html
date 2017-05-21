@@ -2,118 +2,154 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
-    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
-    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
     <title>电竞赛事专区_游戏电竞赛事汇总_手游赛事专区_55电竞游戏网</title>
     <meta name="keywords" content="电竞,电子竞技,电竞比赛,电竞赛事,lol比赛,dota2比赛,炉石比赛,风暴英雄比赛"/>
     <meta name="description"
           content="55电竞游戏网提供王者荣耀、阴阳师、球球大作战、英雄联盟LOL比赛汇总频道，快速更新比赛资讯、日程，赛事安排、比赛直播、比赛战队、及视频录像等服务，更多精彩内容请关注55电竞游戏网。"/>
+    <link rel="stylesheet" th:href="/static/css/CompetitionList.css">
+    <link rel="stylesheet" type="text/css" th:href="/static/css/gp.css"/>
+
 </head>
-
 <body>
-<!--线上的top内容,这个仅放截图-->
-<div th:replace="/head.html::top('game')"></div>
+<!--头部1-->
+<header th:replace="/head.html::top"></header>
+<!--导航1-->
+<div th:replace="/head.html::nav('game')"></div>
 
-<div class="general">
-    <!--面包屑-->
-    <div class="position"><a th:href="/">电竞首页</a>&gt;<em>赛事列表</em></div>
-    <!--赛事筛选-->
-    <div class="list_choose">
-        <div class="index_tit_two title"><span class="text_left">赛事筛选</span></div>
-        <div class="list_choose_con">
-            <dl>
-                <dt>地区</dt>
-                <dd class="dd1"><a
-                        th:href="/game_${pageFlag}/${matchZoneYearIdSelected}/0/all_${matchZoneList.currentPage}.html"
-                        th:classappend="${matchZoneAreaIdSelected}==0?'hover'">全部</a><a
-                        th:each="matchZoneArea:${matchZoneAreaList}"
-                        th:href="/game_${pageFlag}/${matchZoneYearIdSelected}/${matchZoneArea.id}/all_${matchZoneList.currentPage}.html"
-                        th:text="${matchZoneArea.areaName}"
-                        th:classappend="${matchZoneAreaIdSelected}==${matchZoneArea.id}?'hover'">全球</a></dd>
-            </dl>
-            <dl>
-                <dt>时间</dt>
-                <dd class="dd1"><a
-                        th:href="/game_${pageFlag}/0/${matchZoneAreaIdSelected}/all_${matchZoneList.currentPage}.html"
-                        th:classappend="${matchZoneYearIdSelected}==0?'hover'">全部</a><a
-                        th:each="matchZoneYear:${matchZoneYearList}"
-                        th:href="/game_${pageFlag}/${matchZoneYear.id}/${matchZoneAreaIdSelected}/all_${matchZoneList.currentPage}.html"
-                        th:text="${matchZoneYear.yearName}"
-                        th:classappend="${matchZoneYearIdSelected}==${matchZoneYear.id}?'hover'">2016</a>
-                </dd>
-            </dl>
-            <dl>
-                <dt>状态</dt>
-                <dd class="dd1"><a
-                        th:href="/game_${pageFlag}/${matchZoneYearIdSelected}/${matchZoneAreaIdSelected}/all_${matchZoneList.currentPage}.html"
-                        th:classappend="${matchStatusSelected}=='all'?'hover'">全部</a><a
-                        th:each="matchStatus:${matchStatusList}"
-                        th:href="/game_${pageFlag}/${matchZoneYearIdSelected}/${matchZoneAreaIdSelected}/${matchStatus.name}_${matchZoneList.currentPage}.html"
-                        th:text="${matchStatus.label}"
-                        th:classappend="${matchStatusSelected}==${matchStatus.name}?'hover'">正在进行</a></dd>
-            </dl>
+<!--中间-->
+<div class="wrapper">
+    <div class="Competition-header">
+        <h3>赛事筛选</h3>
+        <div class="tab-icon ">
+            <ul id="tabUl">
+                <li class="active">
+                    <div class="tab-icon-content">
+                        <img class="chengaeImg" th:src="/static/img/saish2-1.png" alt="地区">
+                    </div>
+                    <div>地区</div>
+                    <span class="long-string"></span>
+                    <div class="triangle">
+                        <img th:src="/static/img/triangle.jpg" alt="地区">
+                    </div>
+                </li>
+                <li>
 
-        </div>
-    </div>
-    <!--最新最热-->
-    <div class="list_tab_one">
-        <div class="tab_two">
-            <ul>
-                <li th:classappend="${#strings.startsWith(matchZoneList.pageName,'/game_new')}?'hover'"><a
-                        th:href="/game_new/0/0/all_1.html"><span>最新</span></a></li>
-                <li th:classappend="${#strings.startsWith(matchZoneList.pageName,'/game_top')}?'hover'">
-                    <a
-                            th:href="/game_top/0/0/all_1.html"><span>最热</span></a></li>
+                    <div class="tab-icon-content">
+                        <img class="chengaeImg" th:src="/static/img/saish3.png" alt="时间">
+                    </div>
+                    <div>时间</div>
+                    <span class="long-string"></span>
+                    <div class="triangle" style="display: none;">
+                        <img th:src="/static/img/triangle.jpg" alt="时间">
+                    </div>
+                </li>
+                <li>
+                    <div class="tab-icon-content">
+                        <img class="chengaeImg" th:src="/static/img/saish4.png" alt="状态">
+                    </div>
+                    <div>状态</div>
+                    <div class="triangle" style="display: none;">
+                        <img th:src="/static/img/triangle.jpg" alt="状态">
+                    </div>
+                </li>
             </ul>
         </div>
-        <div id="con_one_1" style="display:block">
-            <div style="margin-top:22px;">
-                <div class="game_report" th:each="matchZone:${matchZoneList.list}">
-                    <div class="report_logo" th:if="${matchZone.matchStatus.name=='START'}">
-                        <span th:text="${matchZone.matchStatus.label}">正在<br/>进行</span>
-                    </div>
-                    <div class="report_logo" th:if="${matchZone.matchStatus.name=='END'}"
-                         style="background:url(/static/img/game/game_list2.png) no-repeat;">
-                        <span th:text="${matchZone.matchStatus.label}">正在<br/>进行</span>
-                    </div>
-                    <div class="report_logo" th:if="${matchZone.matchStatus.name=='DOING'}"
-                         style="background:url(/static/img/game/game_list3.png) no-repeat;">
-                        <span th:text="${matchZone.matchStatus.label}">正在<br/>进行</span>
-                    </div>
-                    <div class="game_report_main">
-                        <a href="#" th:href="/game/${matchZone.id}/" th:title="${matchZone.name}" target="_blank">
-                            <h1
-                                    th:text="${matchZone.name}">LPL第七周末日综述
-                                VG.Endless狂暴五杀</h1></a>
-                        <dl>
-                            <dt>赛区：<em th:text="${matchZone.matchZoneAreaName}">全球</em></dt>
-                            <span th:text="${'时间：'+#calendars.format(matchZone.startTime, 'yyyy-MM-dd')+' - '+#calendars.format(matchZone.endTime, 'yyyy-MM-dd')}">时间：2016.01.14-2016.04.10</span>
-                        </dl>
-                        <ul th:text="${matchZone.introduction}">
-                            本赛季LPL春季赛将采用全新的分组赛制进行比赛，12支LPL队伍被平分到A、B两个组别中进行常规赛。每周将进行十场BO3，共十周，<br/>
-                            其中有四个周日首场轮空，共96场BO3。
-                        </ul>
+    </div>
 
-                    </div>
-                    <a href="#" th:href="/game/${matchZone.id}/" th:title="${matchZone.name}" target="_blank">
-                        <div class="goin">进入专区</div>
-                    </a>
-                    <div class="line"></div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-
-
-            <!--页码-->
-            <div th:replace="/pager.html::page(${matchZoneList.pageName},${matchZoneList.currentPage},${matchZoneList.totalPage})"></div>
+    <div class="gamelist">
+        <div class="gamelist1">
+            <ul>
+                <li th:classappend="${matchZoneAreaIdSelected}==0?'action'">
+                    <a th:href="/game_new/${matchZoneYearIdSelected}/0/all_1.html">全部</a>
+                </li>
+                <li th:each="matchZoneArea:${matchZoneAreaList}"
+                    th:classappend="${matchZoneAreaIdSelected}==${matchZoneArea.id}?'action'">
+                    <a th:href="/game_new/${matchZoneYearIdSelected}/${matchZoneArea.id}/all_1.html"
+                       th:title="${matchZoneArea.areaName}" th:text="${matchZoneArea.areaName}">比赛视频</a>
+                </li>
+            </ul>
         </div>
     </div>
+    <div class="gamelist" style="display: none;">
+        <div class="gamelist1">
+            <ul>
+                <li th:classappend="${matchZoneYearIdSelected}==0?'action'">
+                    <a th:href="/game_new/0/${matchZoneAreaIdSelected}/all_1.html"
+                       th:classappend="${matchZoneYearIdSelected}==0?'action'">全部</a>
+                </li>
+                <li th:classappend="${matchZoneYearIdSelected}==${matchZoneYear.id}?'action'"
+                    th:each="matchZoneYear:${matchZoneYearList}">
+                    <a th:href="/game_new/${matchZoneYear.id}/${matchZoneAreaIdSelected}/all_1.html"
+                       th:text="${matchZoneYear.yearName}" th:title="${matchZoneYear.yearName}">英雄联盟</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="gamelist" style="display: none;">
+        <div class="gamelist1">
+            <ul>
+                <li th:classappend="${matchStatusSelected}=='all'?'action'">
+                    <a th:href="/game_new/${matchZoneYearIdSelected}/${matchZoneAreaIdSelected}/all_1.html">全部</a>
+                </li>
+                <li th:classappend="${matchStatusSelected}==${matchStatus.name}?'action'"
+                    th:each="matchStatus:${matchStatusList}">
+                    <a th:href="/game_new/${matchZoneYearIdSelected}/${matchZoneAreaIdSelected}/${matchStatus.name}_1.html"
+                       th:text="${matchStatus.label}" th:title="${matchStatus.label}">英雄联盟</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="Competition-data" id="newsListData">
+        <div class="item" th:each="matchZone:${matchZoneList.list}">
+            <div class="left-content">
+                <a th:href="/game/${matchZone.id}/" th:title="${matchZone.name}">
+                    <img th:img-src="/image/122x122${matchZone.icoImage}" th:alt="${matchZone.name}">
+                    <img class="tipIco" th:src="/static/img/hdqidai.png" th:if="${matchZone.matchStatus.name=='START'}"
+                         th:alt="${matchZone.matchStatus.label}">
+                    <img class="tipIco" th:src="/static/img/hding.png" th:if="${matchZone.matchStatus.name=='DOING'}"
+                         th:alt="${matchZone.matchStatus.label}">
+                    <img class="tipIco" th:src="/static/img/hdover.png" th:if="${matchZone.matchStatus.name=='END'}"
+                         th:alt="${matchZone.matchStatus.label}">
+                </a>
+            </div>
+            <div class="right-content">
+                <a th:href="/game/${matchZone.id}/" th:title="${matchZone.name}"><p th:text="${matchZone.name}">
+                    lol6.20努努增强后怎么玩 S6雪人打野天 赋符文出装</p></a>
+                <p th:text="${'时间：'+#calendars.format(matchZone.startTime, 'yyyy-MM-dd')+' - '+#calendars.format(matchZone.endTime, 'yyyy-MM-dd')}">
+                    时间：2016.10.10-2017.01-12</p>
+                <p class="sqc">赛区 ： <span><em th:text="${matchZone.matchZoneAreaName}">全球</em></span></p>
+            </div>
+            <a href="#" class="zright-content" th:href="/game/${matchZone.id}/" th:title="${matchZone.name}">
+                进入专区
+            </a>
+        </div>
+    </div>
+
+    <div class="Competition-more" id="loadMore" th:if="${#lists.size(matchZoneList.list)>=matchZoneList.fetchSize}">
+        <p><a href="javascript:;" onclick="getNewsList()">加载更多 <img th:src="/static/img/morejt.png" alt=""></a></p>
+    </div>
+    <input type="hidden" value="0" id="matchZoneAreaId" name="matchZoneAreaId"
+           th:value="${matchZoneAreaIdSelected}">
+    <input type="hidden" value="all" id="matchStatus" name="matchStatus" th:value="${matchStatusSelected}">
+    <input type="hidden" value="0" id="matchZoneYearId" name="matchZoneYearId"
+           th:value="${matchZoneYearIdSelected}">
+    <input type="hidden" id="offset" name="offset" th:value="${matchZoneList.fetchSize}">
+    <input type="hidden" id="fetchSize" name="fetchSize" th:value="${matchZoneList.fetchSize}">
 </div>
 
+<!--底部导航-->
+<nav th:replace="/bottom.html::footerNav"></nav>
+<!--TOP-->
+<div th:replace="/bottom.html::tipTop"></div>
+<!--底部-->
+<footer th:replace="/bottom.html::footer"></footer>
 
-<div th:replace="/bottom.html::bottom"></div>
-
+<script type="text/javascript" th:src="/static/js/jquery.js"></script>
+<script type="text/javascript" th:src="/static/js/main.js"></script>
+<script type="text/javascript" th:src="/static/js/layer/layer.js"></script>
+<script type="text/javascript" th:src="/static/js/wcgp.js"></script>
+<script type="text/javascript" th:src="/static/js/CompetitionList.js"></script>
+<script type="text/javascript" th:src="/static/js/game/game-list.js"></script>
 </body>
 </html>

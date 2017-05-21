@@ -21,7 +21,7 @@ function getNewsList() {
                     map.href = data.htmlTemplate.baseUrl + "/news/" + data.list[i].id + ".html";
                     map.imageSrc = data.htmlTemplate.imageUrl + "/image/275x161" + data.list[i].titleImage;
                     map.infoZoneType = data.list[i].infoZoneType.label;
-                    map.publishTime = data.list[i].publishTime;
+                    map.publishTime = formatDate(new Date(data.list[i].publishTime), "MM-dd HH:mm");
                     var html = htmlRep(data.htmlTemplate.htmlTemplate, map);
                     $("#newsListData").append(html);
                 }
