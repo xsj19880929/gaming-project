@@ -1299,7 +1299,7 @@ a:hover, a:active {
     width: 84%;
     border-top: 1px solid #e6e6e6;
     margin-top: 10px;
-    background: url(../img/clock.png) no-repeat left center;
+    background: url(/static/img/clock.png) no-repeat left center;
     padding-left: 16%;
 }
 
