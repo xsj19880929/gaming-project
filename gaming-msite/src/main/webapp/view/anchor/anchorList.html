@@ -13,7 +13,7 @@
 <!--头部1-->
 <header th:replace="/head.html::top"></header>
 <!--导航1-->
-<div th:replace="/head.html::nav('anchor')"></div>
+<div th:replace="/head.html::nav('news')"></div>
 
 <!--中间-->
 <div class="videos">
@@ -32,10 +32,6 @@
                         <img th:src="/static/img/triangle.jpg" alt="平台">
                     </div>
                 </li>
-                <li>
-
-                </li>
-
             </ul>
         </div>
     </div>
@@ -43,11 +39,11 @@
         <div class="gamelist1">
             <ul>
                 <li th:classappend="${platformIdSelected}==0?'action'"><a
-                        th:href="/anchor_${pageFlag}/findPlatformId/0_1.html">全部</a></li>
+                        th:href="/anchor_${pageFlag}/findPlatformId/0_${anchorZoneList.currentPage}.html">全部</a></li>
                 <li th:classappend="${anchorZonePlatform.id}==${platformIdSelected}?'action'"
                     th:each="anchorZonePlatform:${anchorZonePlatformList}">
                     <a th:text="${anchorZonePlatform.name}"
-                       th:href="/anchor_${pageFlag}/findPlatformId/${anchorZonePlatform.id}_1.html">虎牙视频</a>
+                       th:href="/anchor_${pageFlag}/findPlatformId/${anchorZonePlatform.id}_${anchorZoneList.currentPage}.html">虎牙视频</a>
                 </li>
             </ul>
         </div>
@@ -64,7 +60,7 @@
     </div>
     <!--主播列表-->
     <div class="zhuboleibiao">
-        <ul id="newsListData">
+        <ul>
             <li th:each="anchorZone:${anchorZoneList.list}">
                 <div class="headimg">
                     <a href="" th:href="/anchor/${anchorZone.id}/" th:title="${anchorZone.name}"><img
@@ -85,20 +81,11 @@
 </div>
 
 <!--加载更多-->
-<div class="footer-more more-other" id="loadMore" th:if="${#lists.size(anchorZoneList.list)>=anchorZoneList.fetchSize}">
+<div class="footer-more more-other" id="loadMore">
     <a style="color: #808080; font-size: 13px;" href="javascript:;" onclick="getNewsList()">加载更多 <img
             style="width: 16%;"
             th:src="/static/img/morejt.png"
             alt="加载更多"></a>
-</div>
-<div id="loadMoreCondition" style="display:none">
-    <input type="hidden" value="0" id="platformId" name="platformId" th:value="${platformIdSelected}">
-    <input type="hidden" value="all" id="sortName" name="sortName" value="updateTime"
-           th:if="${#strings.startsWith(pageFlag,'new')}">
-    <input type="hidden" value="all" id="sortName" name="sortName" value="visitCount"
-           th:if="${#strings.startsWith(pageFlag,'top')}">
-    <input type="hidden" id="offset" name="offset" th:value="${anchorZoneList.fetchSize}">
-    <input type="hidden" id="fetchSize" name="fetchSize" th:value="${anchorZoneList.fetchSize}">
 </div>
 <!--底部导航-->
 <nav th:replace="/bottom.html::footerNav"></nav>
@@ -110,6 +97,5 @@
 <script type="text/javascript" th:src="/static/js/wcgp.js"></script>
 <script type="text/javascript" th:src="/static/js/main.js"></script>
 <script type="text/javascript" th:src="/static/js/layer/layer.js"></script>
-<script type="text/javascript" th:src="/static/js/anchor/anchor-list.js"></script>
 </body>
 </html>
