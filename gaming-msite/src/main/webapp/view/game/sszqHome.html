@@ -1,92 +1,19 @@
-<!doctype html>
-<html>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport"/>
-    <meta content="telephone=no" name="format-detection"/>
-    <meta http-equiv="Cache-Control" content="max-age=3600"/>
-    <meta content="yes" name="apple-mobile-web-app-capable"/>
-    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
-    <title>专区首页</title>
-    <link rel="stylesheet" type="text/css" href="css/gp.css"/>
-    <link rel="stylesheet" type="text/css" href="css/VSEC.css"/>
+    <title th:text="${matchZone.seoTitle}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${matchZone.seoKeywords}"/>
+    <meta name="description"
+          content="描述" th:attr="content=${matchZone.seoDescription}"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/gp.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/VSEC.css"/>
 </head>
 <body>
 <!--头部1-->
-<header class="header1">
-    <div class="top">
-        <!--<script type="text/javascript" src="http://static.pipaw.com/touch/zq/js/public.js?v=4"></script>-->
-        <div class="menu-new-back">
-            <a href="http://m.pipaw.com/" class="js-go-back"></a>
-        </div>
-        <div class="menu menu-new" style="height:45px;">
-            <img src="img/menu.png" class="menu_ico">
-            <div class="list_menu list_menu_new">
-                <img src="img/xiala_ico_02.png" class="img">
-                <ul>
-                    <li><a href="http://m.pipaw.com/">首页</a></li>
-                    <li><a href="http://m.wy.pipaw.com/">安卓网游</a></li>
-                    <li><a href="http://m.pipaw.com/danji/">单机手游</a></li>
-                    <li><a href="http://m.fahao.pipaw.com/">发号中心</a></li>
-                    <li><a href="http://m.pipaw.com/azkf.html">开服/开测</a></li>
-                    <li><a href="http://www.7724.com/">在线小游戏</a></li>
-                    <li><a href="http://m.pipaw.com/tech/">琵琶前瞻</a></li>
-                    <li><a href="http://bbs.pipaw.com/">进入论坛</a></li>
-                    <li><a href="http://m.app.pipaw.com/">客户端下载</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="menu-new-search">
-            <a href="http://m.pipaw.com/searchsite.html"></a>
-        </div>
-    </div>
-</header>
-
+<header th:replace="/head.html::top"></header>
 <!--导航1-->
-<div class="wcgp-nav-box">
-    <ul class="clearfix" id="wcgp-nav1">
-        <li class="on">
-            <a href="#">电竞</a>
-        </li>
-        <li>
-            <a href="#">新闻</a>
-        </li>
-        <li>
-            <a href="#">视频</a>
-        </li>
-        <li>
-            <a href="#">赛事</a>
-        </li>
-        <li>
-            <a href="#">主播</a>
-        </li>
-        <li>
-            <a href="#">美图</a>
-        </li>
-        <!--<div class="wcgp-nav-more">-->
-        <!--<p id="wcgp-nav-p1">更多</p>-->
-        <!--<p id="wcgp-nav-p2">收起</p>-->
-        <!--<span></span>-->
-        <!--<div class="wcgp-nav-bg" id="nav-bg"></div>-->
-        <!--</div>-->
-        <!--<div class="wcgp-navm-con hide">-->
-        <!--<ul class="clearfix" id="wcgp-nav2">-->
-        <!--<li>-->
-        <!--<a href="#">攻略</a>-->
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="#">活动</a>-->
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="#">赛事</a>-->
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="#">美图</a>-->
-        <!--</li>-->
-        <!--</ul>-->
-        <!--</div>-->
-    </ul>
-</div>
+<div th:replace="/head.html::nav('game')"></div>
 
 <!--中间-->
 <div class="eventInformation">
@@ -109,7 +36,7 @@
             </tr>
 
             <tr class="blod">
-                <td class="imgshow" rowspan="2"><img src="img/css1.png" alt=""></td>
+                <td class="imgshow" rowspan="2"><img th:src="/static/img/css1.png" alt=""></td>
                 <td>举办方</td>
                 <td class="diqu">比赛地区</td>
                 <td>比赛时间</td>
@@ -130,7 +57,7 @@
                 <li>
                     <div class="top-content">
                         <div class="jiangbei">
-                            <img src="img/gj1.png" alt="">
+                            <img th:src="/static/img/gj1.png" alt="">
                         </div>
                         <div class="jiangjin1">
                             <p><b>冠军</b>（RMB）</p>
@@ -146,7 +73,7 @@
                 <li>
                     <div class="top-content">
                         <div class="jiangbei">
-                            <img src="img/yj1.png" alt="">
+                            <img th:src="/static/img/yj1.png" alt="">
                         </div>
                         <div class="jiangjin2">
                             <p><b>亚军</b>（RMB）</p>
@@ -163,7 +90,7 @@
                 <li>
                     <div class="top-content">
                         <div class="jiangbei">
-                            <img src="img/jj1.png" alt="">
+                            <img th:src="/static/img/jj1.png" alt="">
                         </div>
                         <div class="jiangjin3">
                             <p><b>季军</b>（RMB）</p>
@@ -183,14 +110,14 @@
     <h2 style="color: #eaa000;
     padding: 2.8%;"> 参赛队伍</h2>
     <ul class="cansaizhanduixx">
-        <li><a href=""><img src="img/team1.png" alt="">MVP</a></li>
-        <li><a href=""><img src="img/team2.png" alt="">LD</a></li>
-        <li><a href=""><img src="img/team3.png" alt="">DS</a></li>
-        <li><a href=""><img src="img/team4.png" alt="">SNG</a></li>
-        <li><a href=""><img src="img/team5.png" alt="">GT</a></li>
-        <li><a href=""><img src="img/team6.png" alt="">Snake</a></li>
-        <li><a href=""><img src="img/team7.png" alt="">MVP</a></li>
-        <li><a href=""><img src="img/team8.png" alt="">LD</a></li>
+        <li><a href=""><img th:src="/static/img/team1.png" alt="">MVP</a></li>
+        <li><a href=""><img th:src="/static/img/team2.png" alt="">LD</a></li>
+        <li><a href=""><img th:src="/static/img/team3.png" alt="">DS</a></li>
+        <li><a href=""><img th:src="/static/img/team4.png" alt="">SNG</a></li>
+        <li><a href=""><img th:src="/static/img/team5.png" alt="">GT</a></li>
+        <li><a href=""><img th:src="/static/img/team6.png" alt="">Snake</a></li>
+        <li><a href=""><img th:src="/static/img/team7.png" alt="">MVP</a></li>
+        <li><a href=""><img th:src="/static/img/team8.png" alt="">LD</a></li>
     </ul>
 </div>
 <div class="footer-more"
@@ -199,7 +126,8 @@
     border-bottom: 1px solid #dadada;
     padding: 4% 0;"
 >
-    <a style="font-size: 13px; color: #808080;" href="">查看更多 <img style="width: 16%;" src="img/morejt.png" alt=""></a>
+    <a style="font-size: 13px; color: #808080;" href="">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
+                                                                  alt=""></a>
 </div>
 <!--比赛日程-->
 <div class="bisairicheng">
@@ -214,9 +142,9 @@
             <li>
                 <span>2017-01-12 <strong>17:00</strong></span>
                 <span>
-                    <img src="img/xd1.png" alt="">
-                    <img src="img/vs.png" alt="">
-                    <img src="img/xd2.png" alt="">
+                    <img th:src="/static/img/xd1.png" alt="">
+                    <img th:src="/static/img/vs.png" alt="">
+                    <img th:src="/static/img/xd2.png" alt="">
                 </span>
                 <span>
                     <a href="">已结束</a><br>
@@ -226,9 +154,9 @@
             <li>
                 <span>2017-01-12 <strong>18:00</strong> </span>
                 <span>
-                    <img src="img/dx3.png" alt="">
-                    <img src="img/vs.png" alt="">
-                    <img src="img/dz4.png" alt="">
+                    <img th:src="/static/img/dx3.png" alt="">
+                    <img th:src="/static/img/vs.png" alt="">
+                    <img th:src="/static/img/dz4.png" alt="">
                 </span>
                 <span>
                     <a href="" style="color:blue;">未开始</a><br>
@@ -238,9 +166,9 @@
             <li>
                 <span>2017-01-12 <strong>17:00</strong> </span>
                 <span>
-                     <img src="img/xd1.png" alt="">
-                    <img src="img/vs.png" alt="">
-                    <img src="img/xd2.png" alt="">
+                     <img th:src="/static/img/xd1.png" alt="">
+                    <img th:src="/static/img/vs.png" alt="">
+                    <img th:src="/static/img/xd2.png" alt="">
                 </span>
                 <span>
                     <a href="">已结束</a><br>
@@ -250,9 +178,9 @@
             <li>
                 <span>2017-01-12 <strong>18:00</strong> </span>
                 <span>
-                  <img src="img/dx3.png" alt="">
-                    <img src="img/vs.png" alt="">
-                    <img src="img/dz4.png" alt="">
+                  <img th:src="/static/img/dx3.png" alt="">
+                    <img th:src="/static/img/vs.png" alt="">
+                    <img th:src="/static/img/dz4.png" alt="">
                 </span>
                 <span>
                     <a style="color:blue;" href="">未开始</a><br>
@@ -270,7 +198,8 @@
     border-bottom: 1px solid #ccc;
     padding: 4% 0;"
 >
-    <a style="color: #808080; font-size: 13px;" href="">查看更多 <img style="width: 16%;" src="img/morejt.png" alt=""></a>
+    <a style="color: #808080; font-size: 13px;" href="">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
+                                                                  alt=""></a>
 </div>
 <!--赛事资讯-->
 <div class="sszixun">
@@ -278,7 +207,7 @@
         <h2>赛事资讯</h2>
         <div class="tip">
             <div class="leftcontent">
-                <img src="img/tips1.png" alt="">
+                <img th:src="/static/img/tips1.png" alt="">
             </div>
             <span><a href="#">剑侠世界手游电脑版怎么玩不了 电脑版正确下 载方式地址</a></span>
         </div>
@@ -303,7 +232,8 @@
     border-top: 1px solid #ccc;
     padding: 4% 0;"
 >
-    <a style="color: #808080; font-size: 13px;" href="">查看更多 <img style="width: 16%;" src="img/morejt.png" alt=""></a>
+    <a style="color: #808080; font-size: 13px;" href="">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
+                                                                  alt=""></a>
 </div>
 <!--精彩视频-->
 <div class="videoList" style=" border-top: 3px solid #eaa000; margin-top: 2%">
@@ -314,24 +244,24 @@
         <ul>
             <li>
                 <a href="">
-                    <img src="img/yxsp1.png" alt="">
-                    <img class="playIoc" src="img/playico.png" alt="">
+                    <img th:src="/static/img/yxsp1.png" alt="">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">小苍剑圣第一视角 细节成就五杀</a>
             </li>
             <li>
                 <a href="">
-                    <img src="img/yxsp2.png" alt="">
-                    <img class="playIoc" src="img/playico.png" alt="">
+                    <img th:src="/static/img/yxsp2.png" alt="">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">比赛视频高清 rngvstsm比赛录像</a>
             </li>
             <li>
                 <a href="">
-                    <img src="img/yxsp3.png" alt="">
-                    <img class="playIoc" src="img/playico.png" alt="">
+                    <img th:src="/static/img/yxsp3.png" alt="">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸</a>
@@ -339,8 +269,8 @@
             </li>
             <li>
                 <a href="">
-                    <img src="img/yxsp4.png" alt="">
-                    <img class="playIoc" src="img/playico.png" alt="">
+                    <img th:src="/static/img/yxsp4.png" alt="">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">程高能 s6总决赛八强对阵抽签现场</a>
@@ -356,7 +286,8 @@
     border-bottom: 1px solid #ccc;
     padding: 4% 0;"
 >
-    <a style="color: #808080; font-size: 13px;" href="">查看更多 <img style="width: 16%;" src="img/morejt.png" alt=""></a>
+    <a style="color: #808080; font-size: 13px;" href="">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
+                                                                  alt=""></a>
 </div>
 <!--用户评论-->
 
@@ -370,32 +301,13 @@
 </div>
 
 <!--底部导航-->
-<nav class="bottom_nav">
-    <ul>
-        <li><a href="http://m.pipaw.com/">首页</a></li>
-        <li><a href="http://m.wy.pipaw.com/">网游</a></li>
-        <li><a href="http://m.pipaw.com/danji/">单机</a></li>
-        <li><a href="http://m.fahao.pipaw.com/">发号</a></li>
-        <li><a href="http://m.pipaw.com/apps/">论坛</a></li>
-        <li><a class="noline" href="http://bbs.pipaw.com/">美图</a></li>
-    </ul>
-</nav>
-
+<nav th:replace="/bottom.html::footerNav"></nav>
 <!--TOP-->
-<div class="tipTop backtop">
-    TOP ∧
-</div>
-
+<div th:replace="/bottom.html::tipTop"></div>
 <!--底部-->
-<footer class="footer">
-    <p><a href="http://www.pipaw.com/">电脑版</a>|<a href="http://m.2094.cn/">客户端</a></p>
-    <p>闽ICP备12000443号-2
-        <a href="http://passport.pipaw.com/m/user/login?url=http://m.pipaw.com/">登录</a>|
-        <a href="http://passport.pipaw.com/m/user/register?url=http://passport.pipaw.com">注册</a>
-    </p>
-</footer>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/wcgp.js"></script>
-<script src="js/sszqHome.js"></script>
+<footer th:replace="/bottom.html::footer"></footer>
+<script type="text/javascript" th:src="/static/js/jquery.js"></script>
+<script type="text/javascript" th:src="/static/js/wcgp.js"></script>
+<script th:src="/static/js/sszqHome.js"></script>
 </body>
 </html>
