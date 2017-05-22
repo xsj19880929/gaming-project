@@ -59,42 +59,7 @@
                             <span class="shuxian"></span>
                         </div>
                     </div>
-                    <div class="mengcheng">
-                        <p>殿军100,000<span>（RMB）</span></p>
-                        <span class="shuxian"></span>
-                    </div>
                 </li>
-                <!--<li>-->
-                <!--<div class="top-content">-->
-                <!--<div class="jiangbei">-->
-                <!--<img th:src="/static/img/yj1.png" alt="亚军">-->
-                <!--</div>-->
-                <!--<div class="jiangjin2">-->
-                <!--<p><b>亚军</b>（RMB）</p>-->
-                <!--<p>200,000</p>-->
-                <!--<span class="shuxian"></span>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="mengcheng">-->
-                <!--<p>5-6名 50,000<span>（RMB）</span></p>-->
-                <!--<span class="shuxian"></span>-->
-                <!--</div>-->
-
-                <!--</li>-->
-                <!--<li>-->
-                <!--<div class="top-content">-->
-                <!--<div class="jiangbei">-->
-                <!--<img th:src="/static/img/jj1.png" alt="季军">-->
-                <!--</div>-->
-                <!--<div class="jiangjin3">-->
-                <!--<p><b>季军</b>（RMB）</p>-->
-                <!--<p>100,000</p>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="mengcheng">-->
-                <!--<p>5-6名 25,000<span>（RMB）</span></p>-->
-                <!--</div>-->
-                <!--</li>-->
             </ul>
         </div>
     </div>
@@ -130,11 +95,13 @@
             </li>
             <li th:each="matchZoneCalendar:${matchZoneCalendarList}">
                 <span th:if="${matchZoneCalendar.startTime}"
-                      th:text="${#calendars.format(matchZoneCalendar.startTime, 'yyyy-MM-dd HH:mm')}">2017-01-12 <strong>17:00</strong></span>
+                      th:text="${#calendars.format(matchZoneCalendar.startTime, 'yyyy-MM-dd')+'<strong>'+${#calendars.format(matchZoneCalendar.startTime, 'HH:mm')+'</strong>'}">2017-01-12 <strong>17:00</strong></span>
                 <span>
-                    <img th:src="/static/img/xd1.png" alt="">
-                    <img th:src="/static/img/vs.png" alt="">
-                    <img th:src="/static/img/xd2.png" alt="">
+                    <img th:img-src="/image/24x24${matchZoneCalendar.matchTeamOne.icoImage}"
+                         th:alt="${matchZoneCalendar.matchTeamOne.name}">
+                    <img th:src="/static/img/vs.png" alt="vs">
+                    <img th:img-src="/image/24x24${matchZoneCalendar.matchTeamTwo.icoImage}"
+                         th:alt="${matchZoneCalendar.matchTeamTwo.name}">
                 </span>
                 <span>
                     <a href="">已结束</a><br>

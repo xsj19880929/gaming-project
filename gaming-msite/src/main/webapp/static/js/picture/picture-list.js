@@ -25,9 +25,11 @@ function getNewsList() {
                     var html = htmlRep(data.htmlTemplate.htmlTemplate, map);
                     $("#newsListData").append(html);
                 }
+                $('.wall').jaliswall({item: '.article'});
             } else {
                 $("#loadMore").hide();
             }
         }
     });
+
 }

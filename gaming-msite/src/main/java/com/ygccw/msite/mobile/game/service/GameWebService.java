@@ -1,5 +1,6 @@
 package com.ygccw.msite.mobile.game.service;
 
+import com.ygccw.msite.mobile.game.model.MatchZoneCalendarWeb;
 import com.ygccw.msite.mobile.info.model.InfoWeb;
 import com.ygccw.msite.mobile.info.service.InfoWebService;
 import com.ygccw.wechat.common.info.entity.Info;
@@ -25,6 +26,7 @@ import com.ygccw.wechat.common.zone.service.MatchZoneBonusService;
 import com.ygccw.wechat.common.zone.service.MatchZoneCalendarService;
 import com.ygccw.wechat.common.zone.service.MatchZoneService;
 import com.ygccw.wechat.common.zone.service.MatchZoneYearService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 
 import javax.inject.Inject;
@@ -113,8 +115,19 @@ public class GameWebService {
         return matchZoneBonusService.listByMatchZoneId(matchZoneId);
     }
 
-    public List<MatchZoneCalendar> listMatchZoneCalendarByMatchZoneId(Long matchZoneId) {
-        return matchZoneCalendarService.listByMatchZoneId(matchZoneId);
+    public List<MatchZoneCalendarWeb> listMatchZoneCalendarByMatchZoneId(Long matchZoneId) {
+        List<MatchZoneCalendar> matchZoneCalendarList = matchZoneCalendarService.listByMatchZoneId(matchZoneId);
+        List<MatchZoneCalendarWeb> matchZoneCalendarWebList = new ArrayList<>();
+        for (MatchZoneCalendar calendar : matchZoneCalendarList) {
+            MatchZoneCalendarWeb matchZoneCalendarWeb = new MatchZoneCalendarWeb();
+            BeanUtils.copyProperties(calendar, matchZoneCalendarWeb);
+            MatchTeam matchTeamOne = matchTeamService.findById(calendar.getMatchTeamOneId());
+            MatchTeam matchTeamTwo = matchTeamService.findById(calendar.getMatchTeamTwoId());
+            matchZoneCalendarWeb.setMatchTeamOne(matchTeamOne);
+            matchZoneCalendarWeb.setMatchTeamTwo(matchTeamTwo);
+            matchZoneCalendarWebList.add(matchZoneCalendarWeb);
+        }
+        return matchZoneCalendarWebList;
     }
 
     public List<Info> listInfoVideoByMatchZoneId(Long matchZoneId, int offset, int fetchSize) {

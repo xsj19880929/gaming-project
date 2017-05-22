@@ -114,13 +114,10 @@ public class GameController {
     public String gameList(final ModelMap model, @PathVariable Long id) {
         model.put("matchZone", gameWebService.findById(id));
         model.put("matchTeamList", gameWebService.listMatchTeamByMatchZoneId(id));
-        model.put("newsList", gameWebService.listInfoNewsByMatchZoneId(id, 0, 20));
-        model.put("videoList", gameWebService.listInfoVideoByMatchZoneId(id, 0, 20));
+        model.put("newsList", gameWebService.listInfoNewsByMatchZoneId(id, 0, 4));
+        model.put("videoList", gameWebService.listInfoVideoByMatchZoneId(id, 0, 4));
         model.put("matchZoneBonusList", gameWebService.listMatchZoneBonusByMatchZoneId(id));
         model.put("matchZoneCalendarList", gameWebService.listMatchZoneCalendarByMatchZoneId(id));
-        model.put("pictureList", gameWebService.listPictureByMatchZoneId(id, 0, 10));
-        model.put("recommendVideoList", gameWebService.listInfoVideo(0, 2));
-        model.put("recommendNewsList", gameWebService.listInfoNews(0, 10));
         matchZoneService.updateVisitCount(id);
         return "/view/game/game-index.html";
     }
