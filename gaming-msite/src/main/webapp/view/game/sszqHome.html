@@ -16,23 +16,15 @@
 <div th:replace="/head.html::nav('game')"></div>
 
 <!--中间-->
-<div class="eventInformation">
-    <ul class="ystbsy">
-        <li class="action"><a href="">首页</a><span style="display: block;"></span></li>
-        <li><a href="">资讯</a><span></span></li>
-        <li><a href="">视频</a><span></span></li>
-        <li><a href="">战队</a><span></span></li>
-        <li><a href="">图集</a><span></span></li>
-        <li><a href="">攻略</a><span></span></li>
-    </ul>
-</div>
+<!--线上的top内容,这个仅放截图-->
+<div th:replace="/view/game/game-head.html::top('index',${matchZone})"></div>
 
 <!--比赛主题-->
 <div class="bisaizhuti">
     <div class="zhutitop">
         <table border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <th colspan="4">比赛主题：赛季英雄联盟职业联赛</th>
+                <th colspan="4" th:text="${matchZone.name}">比赛主题：赛季英雄联盟职业联赛</th>
             </tr>
 
             <tr class="blod">
@@ -42,26 +34,28 @@
                 <td>比赛时间</td>
             </tr>
             <tr>
-                <td class="gs">厦门市舜邦网络 科技有限公司</td>
-                <td>中国</td>
-                <td>2016.10.10- 2017.01-12</td>
+                <td class="gs" th:text="${matchZone.hostParty}">厦门市舜邦网络 科技有限公司</td>
+                <td th:text="${matchZone.matchZoneAreaName}">中国</td>
+                <td th:text="${#calendars.format(matchZone.startTime, 'yyyy-MM-dd')+' - '+#calendars.format(matchZone.endTime, 'yyyy-MM-dd')}">
+                    2016.10.10- 2017.01-12
+                </td>
             </tr>
         </table>
         <div class="zhuti-text">
             <p>比赛简介</p>
-            <p>
+            <p th:text="${matchZone.introduction}">
                 英雄联盟职业联赛（LPL）是国内《英雄联盟》最高级别的职业联赛，目前分为常规赛、季后赛、升降级赛三部分。十二支顶尖豪门战队将为赛季总冠军荣誉以及高额的赛事奖金继续展开争夺。常规赛将把LPL的12支队伍均分为两个小组，小组内将进行双循环比赛，不同小组间将进行单循环对抗。积分排名前八的战队将晋级季后赛，为赛季总冠军以及高额的赛事奖金继续展开争夺。另外，各队伍将根据积分与排名实力获得参加2017赛季世界总决赛的资格。</p>
         </div>
         <div class="zhuti-footer">
             <ul>
-                <li>
+                <li th:each="matchZoneBonus,iterStat:${matchZoneBonusList}">
                     <div class="top-content">
                         <div class="jiangbei">
-                            <img th:src="/static/img/gj1.png" alt="">
+                            <img th:src="/static/img/gj1.png" alt="冠军">
                         </div>
                         <div class="jiangjin1">
-                            <p><b>冠军</b>（RMB）</p>
-                            <p>500,000</p>
+                            <p><b th:text="${matchZoneBonus.ranking}">冠军</b>（RMB）</p>
+                            <p th:text="${matchZoneBonus.bonusFee}">500,000</p>
                             <span class="shuxian"></span>
                         </div>
                     </div>
@@ -70,37 +64,37 @@
                         <span class="shuxian"></span>
                     </div>
                 </li>
-                <li>
-                    <div class="top-content">
-                        <div class="jiangbei">
-                            <img th:src="/static/img/yj1.png" alt="">
-                        </div>
-                        <div class="jiangjin2">
-                            <p><b>亚军</b>（RMB）</p>
-                            <p>200,000</p>
-                            <span class="shuxian"></span>
-                        </div>
-                    </div>
-                    <div class="mengcheng">
-                        <p>5-6名 50,000<span>（RMB）</span></p>
-                        <span class="shuxian"></span>
-                    </div>
+                <!--<li>-->
+                <!--<div class="top-content">-->
+                <!--<div class="jiangbei">-->
+                <!--<img th:src="/static/img/yj1.png" alt="亚军">-->
+                <!--</div>-->
+                <!--<div class="jiangjin2">-->
+                <!--<p><b>亚军</b>（RMB）</p>-->
+                <!--<p>200,000</p>-->
+                <!--<span class="shuxian"></span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="mengcheng">-->
+                <!--<p>5-6名 50,000<span>（RMB）</span></p>-->
+                <!--<span class="shuxian"></span>-->
+                <!--</div>-->
 
-                </li>
-                <li>
-                    <div class="top-content">
-                        <div class="jiangbei">
-                            <img th:src="/static/img/jj1.png" alt="">
-                        </div>
-                        <div class="jiangjin3">
-                            <p><b>季军</b>（RMB）</p>
-                            <p>100,000</p>
-                        </div>
-                    </div>
-                    <div class="mengcheng">
-                        <p>5-6名 25,000<span>（RMB）</span></p>
-                    </div>
-                </li>
+                <!--</li>-->
+                <!--<li>-->
+                <!--<div class="top-content">-->
+                <!--<div class="jiangbei">-->
+                <!--<img th:src="/static/img/jj1.png" alt="季军">-->
+                <!--</div>-->
+                <!--<div class="jiangjin3">-->
+                <!--<p><b>季军</b>（RMB）</p>-->
+                <!--<p>100,000</p>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="mengcheng">-->
+                <!--<p>5-6名 25,000<span>（RMB）</span></p>-->
+                <!--</div>-->
+                <!--</li>-->
             </ul>
         </div>
     </div>
@@ -110,22 +104,17 @@
     <h2 style="color: #eaa000;
     padding: 2.8%;"> 参赛队伍</h2>
     <ul class="cansaizhanduixx">
-        <li><a href=""><img th:src="/static/img/team1.png" alt="">MVP</a></li>
-        <li><a href=""><img th:src="/static/img/team2.png" alt="">LD</a></li>
-        <li><a href=""><img th:src="/static/img/team3.png" alt="">DS</a></li>
-        <li><a href=""><img th:src="/static/img/team4.png" alt="">SNG</a></li>
-        <li><a href=""><img th:src="/static/img/team5.png" alt="">GT</a></li>
-        <li><a href=""><img th:src="/static/img/team6.png" alt="">Snake</a></li>
-        <li><a href=""><img th:src="/static/img/team7.png" alt="">MVP</a></li>
-        <li><a href=""><img th:src="/static/img/team8.png" alt="">LD</a></li>
+        <li th:each="matchTeam:${matchTeamList}"><a th:href="/game/team/${matchZone.id}/">
+            <img
+                    th:img-src="/image/131x131${matchTeam.icoImage}"
+                    th:alt="${matchTeam.name}"
+                    th:title="${matchTeam.name}" th:text="${matchTeam.name}">MVP</a></li>
     </ul>
 </div>
-<div class="footer-more"
-     style="display: flex;
+<div class="footer-more" style="display: flex;
     justify-content: center;
     border-bottom: 1px solid #dadada;
-    padding: 4% 0;"
->
+    padding: 4% 0;">
     <a style="font-size: 13px; color: #808080;" href="">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
                                                                   alt=""></a>
 </div>
@@ -139,8 +128,9 @@
                 <span>战队</span>
                 <span>状态</span>
             </li>
-            <li>
-                <span>2017-01-12 <strong>17:00</strong></span>
+            <li th:each="matchZoneCalendar:${matchZoneCalendarList}">
+                <span th:if="${matchZoneCalendar.startTime}"
+                      th:text="${#calendars.format(matchZoneCalendar.startTime, 'yyyy-MM-dd HH:mm')}">2017-01-12 <strong>17:00</strong></span>
                 <span>
                     <img th:src="/static/img/xd1.png" alt="">
                     <img th:src="/static/img/vs.png" alt="">
@@ -151,42 +141,42 @@
                     <a href="">比赛视频</a>
                 </span>
             </li>
-            <li>
-                <span>2017-01-12 <strong>18:00</strong> </span>
-                <span>
-                    <img th:src="/static/img/dx3.png" alt="">
-                    <img th:src="/static/img/vs.png" alt="">
-                    <img th:src="/static/img/dz4.png" alt="">
-                </span>
-                <span>
-                    <a href="" style="color:blue;">未开始</a><br>
-                    <a href="">敬请期待</a>
-                </span>
-            </li>
-            <li>
-                <span>2017-01-12 <strong>17:00</strong> </span>
-                <span>
-                     <img th:src="/static/img/xd1.png" alt="">
-                    <img th:src="/static/img/vs.png" alt="">
-                    <img th:src="/static/img/xd2.png" alt="">
-                </span>
-                <span>
-                    <a href="">已结束</a><br>
-                    <a href="">比赛视频</a>
-                </span>
-            </li>
-            <li>
-                <span>2017-01-12 <strong>18:00</strong> </span>
-                <span>
-                  <img th:src="/static/img/dx3.png" alt="">
-                    <img th:src="/static/img/vs.png" alt="">
-                    <img th:src="/static/img/dz4.png" alt="">
-                </span>
-                <span>
-                    <a style="color:blue;" href="">未开始</a><br>
-                    <a href="">敬请期待</a>
-                </span>
-            </li>
+            <!--<li>-->
+            <!--<span>2017-01-12 <strong>18:00</strong> </span>-->
+            <!--<span>-->
+            <!--<img th:src="/static/img/dx3.png" alt="">-->
+            <!--<img th:src="/static/img/vs.png" alt="">-->
+            <!--<img th:src="/static/img/dz4.png" alt="">-->
+            <!--</span>-->
+            <!--<span>-->
+            <!--<a href="" style="color:blue;">未开始</a><br>-->
+            <!--<a href="">敬请期待</a>-->
+            <!--</span>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<span>2017-01-12 <strong>17:00</strong> </span>-->
+            <!--<span>-->
+            <!--<img th:src="/static/img/xd1.png" alt="">-->
+            <!--<img th:src="/static/img/vs.png" alt="">-->
+            <!--<img th:src="/static/img/xd2.png" alt="">-->
+            <!--</span>-->
+            <!--<span>-->
+            <!--<a href="">已结束</a><br>-->
+            <!--<a href="">比赛视频</a>-->
+            <!--</span>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<span>2017-01-12 <strong>18:00</strong> </span>-->
+            <!--<span>-->
+            <!--<img th:src="/static/img/dx3.png" alt="">-->
+            <!--<img th:src="/static/img/vs.png" alt="">-->
+            <!--<img th:src="/static/img/dz4.png" alt="">-->
+            <!--</span>-->
+            <!--<span>-->
+            <!--<a style="color:blue;" href="">未开始</a><br>-->
+            <!--<a href="">敬请期待</a>-->
+            <!--</span>-->
+            <!--</li>-->
         </ul>
     </div>
 </div>
@@ -205,20 +195,21 @@
 <div class="sszixun">
     <div class="second-content">
         <h2>赛事资讯</h2>
-        <div class="tip">
+        <div class="tip" th:each="news,iterStat:${newsList}" th:if="${iterStat.index==0}">
             <div class="leftcontent">
-                <img th:src="/static/img/tips1.png" alt="">
+                <img th:img-src="/image/204x108${news.titleImage}"
+                     th:alt="${news.title}"
+                     th:title="${news.title}">
             </div>
-            <span><a href="#">剑侠世界手游电脑版怎么玩不了 电脑版正确下 载方式地址</a></span>
+            <span><a href="#" th:title="${news.title}" th:href="/news/${news.id}.html" th:text="${news.title}">剑侠世界手游电脑版怎么玩不了
+                电脑版正确下 载方式地址</a></span>
         </div>
         <div class="text-conten" style="border: none">
             <ul>
-                <li><span class="dian"></span><a href="">悟空说LPL：谁是赛场最强中野？</a></li>
-                <li><span class="dian"></span><a href="">EDG能否夺得桂冠？IEM世界赛最终名单已确定</a></li>
-                <li><span class="dian"></span><a href="">1分钟看完LPL次周比赛 NB新中单首秀掀翻EDG</a></li>
-                <li><span class="dian"></span><a href="">LPL春季赛上周回顾 副班长逆袭领头羊</a></li>
-                <li><span class="dian"></span><a href="">RYL无解阵容轻取胜利 SAT鏖战三场终获首胜</a></li>
-                <li><span class="dian"></span><a href="">老外热议KT首败：道理我懂 为啥不禁卡蜜尔韩国</a></li>
+                <li th:each="news,iterStat:${newsList}" th:if="${iterStat.index>0}"><span
+                        class="dian"></span><a th:text="${news.title}"
+                                               th:title="${news.title}"
+                                               th:href="/news/${news.id}.html">悟空说LPL：谁是赛场最强中野？</a></li>
             </ul>
         </div>
     </div>
@@ -242,38 +233,17 @@
     </div>
     <div class="videoshow" style=" padding-top: 2%;border-top: 1px solid #dadada;"><p></p>
         <ul>
-            <li>
-                <a href="">
-                    <img th:src="/static/img/yxsp1.png" alt="">
-                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
+            <li th:each="video:${videoList}">
+                <a th:title="${video.title}"
+                   th:href="/video/${video.id}.html">
+                    <img th:img-src="/image/200x118${video.titleImage}"
+                         th:alt="${video.title}"
+                         th:title="${video.title}">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="${video.title}">
                 </a>
                 <div class="mengcheng"></div>
-                <a href="">小苍剑圣第一视角 细节成就五杀</a>
-            </li>
-            <li>
-                <a href="">
-                    <img th:src="/static/img/yxsp2.png" alt="">
-                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">比赛视频高清 rngvstsm比赛录像</a>
-            </li>
-            <li>
-                <a href="">
-                    <img th:src="/static/img/yxsp3.png" alt="">
-                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸</a>
-
-            </li>
-            <li>
-                <a href="">
-                    <img th:src="/static/img/yxsp4.png" alt="">
-                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
-                </a>
-                <div class="mengcheng"></div>
-                <a href="">程高能 s6总决赛八强对阵抽签现场</a>
+                <a th:title="${video.title}"
+                   th:href="/video/${video.id}.html" th:text="${video.title}">小苍剑圣第一视角 细节成就五杀</a>
             </li>
         </ul>
     </div>

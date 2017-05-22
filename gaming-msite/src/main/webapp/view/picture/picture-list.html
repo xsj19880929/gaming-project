@@ -17,7 +17,7 @@
 <div th:replace="/head.html::nav('picture')"></div>
 
 <div class="wrapper">
-    <ul class="wall clearfix">
+    <ul class="wall clearfix" id="newsListData">
         <li class="article" th:each="picture:${pictureList.list}" th:if="${picture!=null&&picture.id!=null}">
             <a href="#" th:href="/picture/${picture.id}.html"
                th:title="${picture.description}">
@@ -32,11 +32,16 @@
 </div>
 
 <!--加载更多-->
-<div class="footer-more more-other" id="loadMore">
+<div class="footer-more more-other" id="loadMore" th:if="${#lists.size(pictureList.list)>=pictureList.fetchSize}">
     <a style="color: #808080; font-size: 13px;" href="javascript:;" onclick="getNewsList()">加载更多 <img
             style="width: 16%;"
             th:src="/static/img/morejt.png"
             alt="加载更多"></a>
+</div>
+
+<div id="loadMoreCondition" style="display:none">
+    <input type="hidden" id="offset" name="offset" th:value="${pictureList.fetchSize}">
+    <input type="hidden" id="fetchSize" name="fetchSize" th:value="${pictureList.fetchSize}">
 </div>
 
 <!--底部导航-->

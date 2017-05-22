@@ -1,6 +1,10 @@
 package com.ygccw.msite.mobile.picture.controller;
 
+import com.ygccw.msite.database.FindResultMoreToAjax;
+import com.ygccw.msite.database.FindResultToMobile;
 import com.ygccw.msite.database.FindResultToSale;
+import com.ygccw.msite.mobile.common.model.HtmlTemplate;
+import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
 import com.ygccw.msite.mobile.picture.service.PictureWebService;
 import com.ygccw.msite.utils.PageUtils;
 import com.ygccw.wechat.common.picture.entity.Picture;
@@ -12,9 +16,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author soldier
@@ -29,23 +36,28 @@ public class PictureController {
     TagsService tagsService;
     @Inject
     PictureService pictureService;
+    @Inject
+    private AjaxGetTemplateService ajaxGetTemplateService;
 
     @RequestMapping(value = "/picture/", method = RequestMethod.GET)
     public String pictureList(final ModelMap model) {
-        int currentPage = 1;
-        int fetchSize = 15;
-        String url = "/picture";
-        model.put("pictureList", new FindResultToSale(pictureWebService.pictureList(PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), pictureWebService.pictureListSize(), currentPage, fetchSize, url));
-        model.put("tagList", pictureWebService.listHotTags());
+        int fetchSize = 20;
+        model.put("pictureList", new FindResultToMobile(pictureWebService.pictureList(0, fetchSize), fetchSize, ""));
         return "/view/picture/picture-list.html";
     }
 
+    @RequestMapping(value = "/picture/list", method = RequestMethod.POST)
+    @ResponseBody
+    public FindResultMoreToAjax listRest(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
+        List<Picture> pictureList = pictureWebService.pictureList(offset, fetchSize);
+        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("htmltpl/picture-list-template.html");
+        return new FindResultMoreToAjax(pictureList, htmlTemplate);
+    }
+
     @RequestMapping(value = "/picture_{currentPage}.html", method = RequestMethod.GET)
-    public String pictureListPage(HttpServletRequest request, final ModelMap model, @PathVariable Integer currentPage) {
-        String url = PageUtils.getPageUrl(request);
-        int fetchSize = 15;
-        model.put("pictureList", new FindResultToSale(pictureWebService.pictureList(PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), pictureWebService.pictureListSize(), currentPage, fetchSize, url));
-        model.put("tagList", pictureWebService.listHotTags());
+    public String pictureListPage(final ModelMap model, @PathVariable Integer currentPage) {
+        int fetchSize = 20;
+        model.put("pictureList", new FindResultToMobile(pictureWebService.pictureList(PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, ""));
         return "/view/picture/picture-list.html";
     }
 
