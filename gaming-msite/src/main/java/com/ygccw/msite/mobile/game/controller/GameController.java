@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -118,6 +119,7 @@ public class GameController {
         model.put("videoList", gameWebService.listInfoVideoByMatchZoneId(id, 0, 4));
         model.put("matchZoneBonusList", gameWebService.listMatchZoneBonusByMatchZoneId(id));
         model.put("matchZoneCalendarList", gameWebService.listMatchZoneCalendarByMatchZoneId(id));
+        model.put("nowTime", new Date());
         matchZoneService.updateVisitCount(id);
         return "/view/game/game-index.html";
     }

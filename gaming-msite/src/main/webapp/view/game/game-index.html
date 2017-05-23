@@ -28,7 +28,8 @@
             </tr>
 
             <tr class="blod">
-                <td class="imgshow" rowspan="2"><img th:src="/static/img/css1.png" alt=""></td>
+                <td class="imgshow" rowspan="2"><img th:img-src="/image/120x120${matchZone.icoImage}"
+                                                     alt="${matchZone.name}"></td>
                 <td>举办方</td>
                 <td class="diqu">比赛地区</td>
                 <td>比赛时间</td>
@@ -51,7 +52,10 @@
                 <li th:each="matchZoneBonus,iterStat:${matchZoneBonusList}">
                     <div class="top-content">
                         <div class="jiangbei">
-                            <img th:src="/static/img/gj1.png" alt="冠军">
+                            <img th:src="/static/img/gj1.png" th:alt="${matchZoneBonus.ranking}"
+                                 th:if="iterStat.index==0">
+                            <img th:alt="${matchZoneBonus.ranking}" th:if="iterStat.index==1">
+                            <img th:alt="${matchZoneBonus.ranking}" th:if="iterStat.index==2">
                         </div>
                         <div class="jiangjin1">
                             <p><b th:text="${matchZoneBonus.ranking}">冠军</b>（RMB）</p>
@@ -69,19 +73,20 @@
     <h2 style="color: #eaa000;
     padding: 2.8%;"> 参赛队伍</h2>
     <ul class="cansaizhanduixx">
-        <li th:each="matchTeam:${matchTeamList}"><a th:href="/game/team/${matchZone.id}/">
-            <img
-                    th:img-src="/image/182x137${matchTeam.icoImage}"
-                    th:alt="${matchTeam.name}"
-                    th:title="${matchTeam.name}" th:text="${matchTeam.name}">MVP</a></li>
+        <li th:each="matchTeam:${matchTeamList}">
+            <a th:href="/game/team/${matchZone.id}/">
+                <img th:img-src="/image/182x137${matchTeam.icoImage}"
+                     th:alt="${matchTeam.name}"
+                     th:title="${matchTeam.name}" th:text="${matchTeam.name}">MVP</a></li>
     </ul>
 </div>
 <div class="footer-more" style="display: flex;
     justify-content: center;
     border-bottom: 1px solid #dadada;
     padding: 4% 0;">
-    <a style="font-size: 13px; color: #808080;" href="">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
-                                                                  alt=""></a>
+    <a style="font-size: 13px; color: #808080;" th:href="/game/team/16/${matchZone.id}"
+       th:title="${matchZone.name}+'参赛队伍'">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
+                                                     alt="查看更多"></a>
 </div>
 <!--比赛日程-->
 <div class="bisairicheng">
@@ -95,7 +100,7 @@
             </li>
             <li th:each="matchZoneCalendar:${matchZoneCalendarList}">
                 <span th:if="${matchZoneCalendar.startTime}"
-                      th:utext="${#calendars.format(matchZoneCalendar.startTime, 'yyyy-MM-dd')}+'<strong>'+${#calendars.format(matchZoneCalendar.startTime, 'HH:mm')}+'</strong>'">2017-01-12 <strong>17:00</strong></span>
+                      th:utext="${#calendars.format(matchZoneCalendar.startTime, 'yyyy-MM-dd')}+' <strong>'+${#calendars.format(matchZoneCalendar.startTime, 'HH:mm')}+'</strong>'">2017-01-12 <strong>17:00</strong></span>
                 <span>
                     <img th:img-src="/image/24x24${matchZoneCalendar.matchTeamOne.icoImage}"
                          th:alt="${matchZoneCalendar.matchTeamOne.name}">
@@ -103,60 +108,17 @@
                     <img th:img-src="/image/24x24${matchZoneCalendar.matchTeamTwo.icoImage}"
                          th:alt="${matchZoneCalendar.matchTeamTwo.name}">
                 </span>
-                <span>
-                    <a href="">已结束</a><br>
-                    <a href="">比赛视频</a>
+                <span th:if="${matchZoneCalendar.startTime>nowTime}">
+                   <em style="color:blue;" th:if="${matchZoneCalendar.startTime<nowTime}">未开始</em><br>
+                        <em>敬请期待</em>
+                </span>
+                <span th:if="${matchZoneCalendar.startTime<nowTime}">
+                    <em>已结束</em><br>
+                        <a th:href="/game/video/${matchZone.id}/" th:title="${matchZone.name}+'比赛视频'">比赛视频</a>
                 </span>
             </li>
-            <!--<li>-->
-            <!--<span>2017-01-12 <strong>18:00</strong> </span>-->
-            <!--<span>-->
-            <!--<img th:src="/static/img/dx3.png" alt="">-->
-            <!--<img th:src="/static/img/vs.png" alt="">-->
-            <!--<img th:src="/static/img/dz4.png" alt="">-->
-            <!--</span>-->
-            <!--<span>-->
-            <!--<a href="" style="color:blue;">未开始</a><br>-->
-            <!--<a href="">敬请期待</a>-->
-            <!--</span>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<span>2017-01-12 <strong>17:00</strong> </span>-->
-            <!--<span>-->
-            <!--<img th:src="/static/img/xd1.png" alt="">-->
-            <!--<img th:src="/static/img/vs.png" alt="">-->
-            <!--<img th:src="/static/img/xd2.png" alt="">-->
-            <!--</span>-->
-            <!--<span>-->
-            <!--<a href="">已结束</a><br>-->
-            <!--<a href="">比赛视频</a>-->
-            <!--</span>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<span>2017-01-12 <strong>18:00</strong> </span>-->
-            <!--<span>-->
-            <!--<img th:src="/static/img/dx3.png" alt="">-->
-            <!--<img th:src="/static/img/vs.png" alt="">-->
-            <!--<img th:src="/static/img/dz4.png" alt="">-->
-            <!--</span>-->
-            <!--<span>-->
-            <!--<a style="color:blue;" href="">未开始</a><br>-->
-            <!--<a href="">敬请期待</a>-->
-            <!--</span>-->
-            <!--</li>-->
         </ul>
     </div>
-</div>
-<!--查看更多-->
-<div class="footer-more"
-     style="
-      display: flex;
-    justify-content: center;
-    border-bottom: 1px solid #ccc;
-    padding: 4% 0;"
->
-    <a style="color: #808080; font-size: 13px;" href="">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
-                                                                  alt=""></a>
 </div>
 <!--赛事资讯-->
 <div class="sszixun">
@@ -190,8 +152,10 @@
     border-top: 1px solid #ccc;
     padding: 4% 0;"
 >
-    <a style="color: #808080; font-size: 13px;" href="">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
-                                                                  alt=""></a>
+    <a style="color: #808080; font-size: 13px;" th:href="/game/news/${matchZone.id}/" th:title="${matchZone.name}+查看更多">查看更多
+        <img style="width: 16%;"
+             th:src="/static/img/morejt.png"
+             alt=""></a>
 </div>
 <!--精彩视频-->
 <div class="videoList" style=" border-top: 3px solid #eaa000; margin-top: 2%">
@@ -223,8 +187,8 @@
     border-bottom: 1px solid #ccc;
     padding: 4% 0;"
 >
-    <a style="color: #808080; font-size: 13px;" href="">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
-                                                                  alt=""></a>
+    <a style="color: #808080; font-size: 13px;" th:href="/game/video/${matchZone.id}/"
+       th:title="${matchZone.name}+查看更多">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"></a>
 </div>
 <!--用户评论-->
 
