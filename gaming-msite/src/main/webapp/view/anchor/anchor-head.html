@@ -1,5 +1,24 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<div class="eventInformation" th:fragment="top(selectedMenuName,anchorZone)">
+    <ul>
+        <li th:classappend="${selectedMenuName}=='index'?'action'">
+            <a th:href="/anchor/${anchorZone.id}/"
+               th:text="${anchorZone.name}"
+               th:title="${anchorZone.name}">主页</a><span
+                th:styleappend="${selectedMenuName}=='index'?'display: block;'"></span></li>
+        <li th:classappend="${selectedMenuName}=='news'?'action'">
+            <a th:href="/anchor/news/${anchorZone.id}/" th:title="${anchorZone.name}+'资讯'">资讯</a>
+            <span th:styleappend="${selectedMenuName}=='news'?'display: block;'"></span></li>
+        <li th:classappend="${selectedMenuName}=='video'?'action'">
+            <a th:href="/anchor/video/${anchorZone.id}/" th:title="${anchorZone.name}+'视频'">视频</a>
+            <span th:styleappend="${selectedMenuName}=='video'?'display: block;'"></span></li>
+        <li th:classappend="${selectedMenuName}=='picture'?'action'">
+            <a th:href="/anchor/picture/${anchorZone.id}/" th:title="${anchorZone.name}+'图集'">图集</a>
+            <span th:styleappend="${selectedMenuName}=='picture'?'display: block;'"></span></li>
+    </ul>
+</div>
+
 <div th:fragment="top(anchorZone)">
     <div class="djw_top">
         <div class="djw_top_general_o">

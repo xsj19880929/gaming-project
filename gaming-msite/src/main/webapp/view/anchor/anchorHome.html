@@ -1,157 +1,71 @@
-<!doctype html>
-<html>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport"/>
-    <meta content="telephone=no" name="format-detection"/>
-    <meta http-equiv="Cache-Control" content="max-age=3600"/>
-    <meta content="yes" name="apple-mobile-web-app-capable"/>
-    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
-    <title>专区首页</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/gp.css"/>
-    <link rel="stylesheet" type="text/css" href="../../static/css/VSEC.css"/>
+    <title th:text="${anchorZone.seoTitle}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${anchorZone.seoKeywords}"/>
+    <meta name="description"
+          content="描述" th:attr="content=${anchorZone.seoDescription}"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/gp.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/VSEC.css"/>
 </head>
 <body>
 <!--头部1-->
-<header class="header1">
-    <div class="top">
-        <!--<script type="text/javascript" src="http://static.pipaw.com/touch/zq/js/public.js?v=4"></script>-->
-        <div class="menu-new-back">
-            <a href="http://m.pipaw.com/" class="js-go-back"></a>
-        </div>
-        <div class="menu menu-new" style="height:45px;">
-            <img src="../../static/img/menu.png" class="menu_ico">
-            <div class="list_menu list_menu_new">
-                <img src="../../static/img/xiala_ico_02.png" class="img">
-                <ul>
-                    <li><a href="http://m.pipaw.com/">首页</a></li>
-                    <li><a href="http://m.wy.pipaw.com/">安卓网游</a></li>
-                    <li><a href="http://m.pipaw.com/danji/">单机手游</a></li>
-                    <li><a href="http://m.fahao.pipaw.com/">发号中心</a></li>
-                    <li><a href="http://m.pipaw.com/azkf.html">开服/开测</a></li>
-                    <li><a href="http://www.7724.com/">在线小游戏</a></li>
-                    <li><a href="http://m.pipaw.com/tech/">琵琶前瞻</a></li>
-                    <li><a href="http://bbs.pipaw.com/">进入论坛</a></li>
-                    <li><a href="http://m.app.pipaw.com/">客户端下载</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="menu-new-search">
-            <a href="http://m.pipaw.com/searchsite.html"></a>
-        </div>
-    </div>
-</header>
-
+<header th:replace="/head.html::top"></header>
 <!--导航1-->
-<div class="wcgp-nav-box">
-    <ul class="clearfix" id="wcgp-nav1">
-        <li class="on">
-            <a href="#">电竞</a>
-        </li>
-        <li>
-            <a href="#">新闻</a>
-        </li>
-        <li>
-            <a href="#">视频</a>
-        </li>
-        <li>
-            <a href="#">赛事</a>
-        </li>
-        <li>
-            <a href="#">主播</a>
-        </li>
-        <li>
-            <a href="#">美图</a>
-        </li>
-        <!--<div class="wcgp-nav-more">-->
-        <!--<p id="wcgp-nav-p1">更多</p>-->
-        <!--<p id="wcgp-nav-p2">收起</p>-->
-        <!--<span></span>-->
-        <!--<div class="wcgp-nav-bg" id="nav-bg"></div>-->
-        <!--</div>-->
-        <!--<div class="wcgp-navm-con hide">-->
-        <!--<ul class="clearfix" id="wcgp-nav2">-->
-        <!--<li>-->
-        <!--<a href="#">攻略</a>-->
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="#">活动</a>-->
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="#">赛事</a>-->
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="#">美图</a>-->
-        <!--</li>-->
-        <!--</ul>-->
-        <!--</div>-->
-    </ul>
-</div>
-
+<div th:replace="/head.html::nav('game')"></div>
 <!--中间层-->
-<div class="eventInformation">
-    <ul>
-        <li class="action">
-            <a href="">主页</a>
-            <span style="display: block;"></span>
-        </li>
-        <li><a href="">资讯</a>
-         <span></span>
-        </li>
-        <li><a href="">视频</a>
-         <span></span>
-        </li>
-        <li>
-            <a href="">图集</a>
-            <span></span>
-        </li>
-    </ul>
-</div>
+<div th:replace="/view/anchor/anchor-head.html::top('index',${anchorZone})"></div>
 <div class="anchordeta">
     <div class="anchor-img">
         <div class="left-content">
             <div class="img-content">
-                <a href=""><img src="../../static/img/zbo1.png" alt=""></a>
+                <a href=""><img th:img-src="/image/120x120${anchorZone.icoImage}"
+                                th:alt="${anchorZone.name}"
+                                th:title="${anchorZone.name}"></a>
             </div>
             <div class="contentdeta">
-                <p>会冒泡儿的鱼</p>
+                <p th:text="${anchorZone.name}">会冒泡儿的鱼</p>
                 <p style="margin-top: 9%;">
-                    <img src="../../static/img/cico1.png" alt="">
-                    <img src="../../static/img/cico2.png" alt="">
-                    <img src="../../static/img/cico3.png" alt="">
+                    <img th:src="/static/img/cico1.png" alt="">
+                    <img th:src="/static/img/cico2.png" alt="">
+                    <img th:src="/static/img/cico3.png" alt="">
                 </p>
             </div>
         </div>
         <div class="right-content">
             <div class="aixincontent">
-                <img id="links" src="../../static/img/sc-1.png" alt="0">
+                <img id="links" th:src="/static/img/sc-1.png" alt="0">
             </div>
             <div class="scqk" id="linksText">收藏</div>
         </div>
     </div>
     <div class="anchor-text">
-        <p><span>平台： 斗鱼，虎牙TV </span><span>人气： <span style="color:red;;">12546542</span> </span></p>
-        <p>LOL新晋视频集锦创作者，【秀逗时刻】、【最佳坑姿势】作者。以最搞笑的 方式，为你带来欢乐。以最搞笑的方式，为你带来欢乐</p>
+        <p><span th:text="${anchorZone.platformName}">平台： 斗鱼，虎牙TV </span><span>人气： <span style="color:red;;"
+                                                                                         th:text="${anchorZone.visitCount}">12546542</span> </span>
+        </p>
+        <p th:text="${anchorZone.introduction}">LOL新晋视频集锦创作者，【秀逗时刻】、【最佳坑姿势】作者。以最搞笑的 方式，为你带来欢乐。以最搞笑的方式，为你带来欢乐</p>
     </div>
 </div>
 <!--主播资讯-->
 <div class="zhuanqushouye" style="margin-bottom: 2%;">
     <div class="moremsg">
-        <p><span class="tips">主播资讯 </span><a href="" class="more">更多+</a></p>
+        <p><span class="tips">主播资讯 </span><a th:href="/anchor/news/${anchorZone.id}/" class="more">更多+</a></p>
     </div>
     <div class="CompetitionDeta aifansile" style=" padding-bottom: 0; ">
-        <div class="item">
+        <div class="item" th:each="news,iterStat:${anchorNewsList}">
             <div class="left-content">
-                <a href=""><img src="../../static/img/zxt1.png" alt=""></a>
+                <a th:href="/news/${news.id}.html" th:title="${news.title}"><img
+                        th:img-src="/image/193x113${news.titleImage}" th:alt="${news.title}"></a>
             </div>
             <div class="right-content">
-                <a href=""><p>lol6.20努努增强后怎么玩 S6雪人打野天 赋符文出装</p></a>
+                <a href=""><p th:text="${new.title}">lol6.20努努增强后怎么玩 S6雪人打野天 赋符文出装</p></a>
                 <p>10-12 09:43</p>
             </div>
         </div>
         <div class="item">
             <div class="left-content">
-                <a href=""><img src="../../static/img/zxt2.png" alt=""></a>
+                <a href=""><img th:src="/static/img/zxt2.png" alt=""></a>
             </div>
             <div class="right-content">
                 <a href=""><p>1分钟看完LPL次周比赛 NB新中单首秀 掀翻EDG</p></a>
@@ -161,7 +75,7 @@
         </div>
         <div class="item">
             <div class="left-content">
-                <a href=""><img src="../../static/img/zxt3.png" alt=""></a>
+                <a href=""><img th:src="/static/img/zxt3.png" alt=""></a>
             </div>
             <div class="right-content">
                 <a href=""><p>lol6.20努努增强后怎么玩 S6雪人打野天 赋符文出装</p></a>
@@ -171,7 +85,7 @@
         </div>
         <div class="item">
             <div class="left-content">
-                <a href=""><img src="../../static/img/zxt4.png" alt=""></a>
+                <a href=""><img th:src="/static/img/zxt4.png" alt=""></a>
             </div>
             <div class="right-content">
                 <a href=""><p>1分钟看完LPL次周比赛 NB新中单首秀 掀翻EDG</p></a>
@@ -191,24 +105,24 @@
         <ul>
             <li>
                 <a href="">
-                    <img src="../../static/img/yxsp1.png" alt="">
-                    <img class="playIoc" src="../../static/img/playico.png" alt="">
+                    <img th:src="/static/img/yxsp1.png" alt="">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">小苍剑圣第一视角 细节成就五杀</a>
             </li>
             <li>
                 <a href="">
-                    <img src="../../static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="../../static/img/playico.png" alt="">
+                    <img th:src="/static/img/yxsp2.png" alt="">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">比赛视频高清 rngvstsm比赛录像</a>
             </li>
             <li>
                 <a href="">
-                    <img src="../../static/img/yxsp3.png" alt="">
-                    <img class="playIoc" src="../../static/img/playico.png" alt="">
+                    <img th:src="/static/img/yxsp3.png" alt="">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸</a>
@@ -216,40 +130,40 @@
             </li>
             <li>
                 <a href="">
-                    <img src="../../static/img/yxsp4.png" alt="">
-                    <img class="playIoc" src="../../static/img/playico.png" alt="">
+                    <img th:src="/static/img/yxsp4.png" alt="">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">程高能 s6总决赛八强对阵抽签现场</a>
             </li>
             <li>
                 <a href="">
-                    <img src="../../static/img/yxsp1.png" alt="">
-                    <img class="playIoc" src="../../static/img/playico.png" alt="">
+                    <img th:src="/static/img/yxsp1.png" alt="">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">小苍剑圣第一视角 细节成就五杀</a>
             </li>
             <li>
                 <a href="">
-                    <img src="../../static/img/yxsp2.png" alt="">
-                    <img class="playIoc" src="../../static/img/playico.png" alt="">
+                    <img th:src="/static/img/yxsp2.png" alt="">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">比赛视频高清 rngvstsm比赛录像</a>
             </li>
             <li>
                 <a href="">
-                    <img src="../../static/img/yxsp3.png" alt="">
-                    <img class="playIoc" src="../../static/img/playico.png" alt="">
+                    <img th:src="/static/img/yxsp3.png" alt="">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸杀</a>
             </li>
             <li>
                 <a href="">
-                    <img src="../../static/img/yxsp4.png" alt="">
-                    <img class="playIoc" src="../../static/img/playico.png" alt="">
+                    <img th:src="/static/img/yxsp4.png" alt="">
+                    <img class="playIoc" th:src="/static/img/playico.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
@@ -266,14 +180,14 @@
         <ul>
             <li>
                 <a href="">
-                    <img src="../../static/img/mm2.png" alt="">
+                    <img th:src="/static/img/mm2.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">小苍剑圣第一视角 细节成就五杀</a>
             </li>
             <li>
                 <a href="">
-                    <img src="../../static/img/mm1.png" alt="">
+                    <img th:src="/static/img/mm1.png" alt="">
                 </a>
 
                 <div class="mengcheng"></div>
@@ -281,14 +195,14 @@
             </li>
             <li>
                 <a href="">
-                    <img src="../../static/img/mm1.png" alt="">
+                    <img th:src="/static/img/mm1.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">主播炸了132：miss被塔杀 魔兽爱抓胸</a>
             </li>
             <li>
                 <a href="">
-                    <img src="../../static/img/mm2.png" alt="">
+                    <img th:src="/static/img/mm2.png" alt="">
                 </a>
                 <div class="mengcheng"></div>
                 <a href="">全程高能 s6总决赛八强对阵抽签现场</a>
@@ -301,7 +215,8 @@
     <form action="">
         <p class="tbys"><span>用户评论</span><span>(已有<b>33</b>条评论）</span></p>
         <textarea placeholder="请输入评论内容......" name="" id="" cols="30" rows="10"></textarea>
-        <p><a href="#" style="margin-right: 1%">登录 </a> | <a href="#"  style="margin-left:1%">   注册</a> <input class="publish" type="submit" value="发表"></p>
+        <p><a href="#" style="margin-right: 1%">登录 </a> | <a href="#" style="margin-left:1%"> 注册</a> <input
+                class="publish" type="submit" value="发表"></p>
     </form>
 </div>
 <!--底部导航-->
@@ -329,8 +244,8 @@
         <a href="http://passport.pipaw.com/m/user/register?url=http://passport.pipaw.com">注册</a>
     </p>
 </footer>
-<script type="text/javascript" src="../../static/js/jquery.js"></script>
-<script type="text/javascript" src="../../static/js/wcgp.js"></script>
-<script src="../../static/js/anchorHome.js"></script>
+<script type="text/javascript" th:src="/static/js/jquery.js"></script>
+<script type="text/javascript" th:src="/static/js/wcgp.js"></script>
+<script th:src="/static/js/anchorHome.js"></script>
 </body>
 </html>
