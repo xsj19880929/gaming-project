@@ -54,10 +54,14 @@
                         <div class="jiangbei">
                             <img th:src="/static/img/gj1.png" th:alt="${matchZoneBonus.ranking}"
                                  th:if="iterStat.index==0">
-                            <img th:alt="${matchZoneBonus.ranking}" th:if="iterStat.index==1">
-                            <img th:alt="${matchZoneBonus.ranking}" th:if="iterStat.index==2">
+                            <img th:alt="${matchZoneBonus.ranking}" th:alt="${matchZoneBonus.ranking}"
+                                 th:if="iterStat.index==1"
+                                 th:src="/static/img/yj1.png">
+                            <img th:alt="${matchZoneBonus.ranking}" th:alt="${matchZoneBonus.ranking}"
+                                 th:if="iterStat.index==2"
+                                 th:src="/static/img/jj1.png">
                         </div>
-                        <div class="jiangjin1">
+                        <div class="jiangjin1" th:class="'jiangjin'+${iterStat.index+1}">
                             <p><b th:text="${matchZoneBonus.ranking}">冠军</b>（RMB）</p>
                             <p th:text="${matchZoneBonus.bonusFee}">500,000</p>
                             <span class="shuxian"></span>
@@ -190,16 +194,9 @@
     <a style="color: #808080; font-size: 13px;" th:href="/game/video/${matchZone.id}/"
        th:title="${matchZone.name}+查看更多">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"></a>
 </div>
-<!--用户评论-->
 
-
-<div class="three-content">
-    <form action="">
-        <p class="tbys"><span>用户评论</span><span>(已有<b>33</b>条评论）</span></p>
-        <textarea placeholder="请输入评论内容......" name="" id="" cols="30" rows="10"></textarea>
-        <p><a href="">登录 | </a><a href=""> 注册</a> <input class="publish" type="submit" value="发表"></p>
-    </form>
-</div>
+<!--评论内容-->
+<div th:replace="/comment.html::comment(${matchZone.id},${matchZone.name},${currentUrl})"></div>
 
 <!--底部导航-->
 <nav th:replace="/bottom.html::footerNav"></nav>

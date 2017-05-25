@@ -20,7 +20,7 @@ public class AnchorZoneDao {
     JPAAccess jpaAccess;
 
     public List<AnchorZone> list(AnchorZone anchorZone, int offset, int fetchSize) {
-        QueryBuilder queryBuilder = QueryBuilder.query("from AnchorZone").append("status", 1)
+        QueryBuilder queryBuilder = QueryBuilder.query("from AnchorZone").append("status", 1).append("id", anchorZone.getId())
                 .append("createTime", anchorZone.getCreateStartTime(), "startCreateTime", ">=")
                 .append("createTime", anchorZone.getCreateEndTime(), "endCreateTime", "<=")
                 .skipEmptyFields().append("platformId", anchorZone.getPlatformId());
@@ -37,7 +37,7 @@ public class AnchorZoneDao {
     }
 
     public int listSize(AnchorZone anchorZone) {
-        QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from AnchorZone").append("status", 1)
+        QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from AnchorZone").append("status", 1).append("id", anchorZone.getId())
                 .skipEmptyFields().append("platformId", anchorZone.getPlatformId());
         if (StringUtils.hasText(anchorZone.getName())) {
             queryBuilder.append("name", "%" + anchorZone.getName() + "%", "like");

@@ -102,15 +102,12 @@ public class AnchorController {
 
     @RequestMapping(value = "/anchor/{id}/", method = RequestMethod.GET)
     public String findById(final ModelMap model, @PathVariable Long id) {
-        model.put("anchorZone", anchorWebService.findAnchorById(id));
+        model.put("anchorZone", anchorWebService.findAnchorZoneWebById(id));
         model.put("anchorMatchZoneList", anchorWebService.listMatchZoneListByAnchorZoneId(id));
         model.put("anchorZoneHonorList", anchorWebService.listAnchorZoneHonorByAnchorZoneId(id));
-        model.put("anchorNewsList", anchorWebService.listInfoNewsAndTagByAnchorZoneId(id, 0, 5));
-        model.put("anchorVideoList", anchorWebService.listInfoVideoByAnchorZoneId(id, 0, 12));
-        model.put("anchorPictureList", anchorWebService.listPictureByAnchorZoneId(id, 0, 6));
-        model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(id, 0, 10));
-        model.put("newsTopList", anchorWebService.listInfoNewsTop(0, 10));
-        model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
+        model.put("anchorNewsList", anchorWebService.listInfoNewsAndTagByAnchorZoneId(id, 0, 4));
+        model.put("anchorVideoList", anchorWebService.listInfoVideoByAnchorZoneId(id, 0, 4));
+        model.put("anchorPictureList", anchorWebService.listPictureByAnchorZoneId(id, 0, 4));
         anchorZoneService.updateVisitCount(id);
         return "/view/anchor/anchor-index.html";
     }

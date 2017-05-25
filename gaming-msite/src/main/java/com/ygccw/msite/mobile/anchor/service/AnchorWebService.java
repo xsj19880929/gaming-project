@@ -99,6 +99,16 @@ public class AnchorWebService {
         return anchorZoneService.findById(id);
     }
 
+    public AnchorZoneWeb findAnchorZoneWebById(Long id) {
+        AnchorZone anchorZone = new AnchorZone();
+        anchorZone.setId(id);
+        List<AnchorZoneWeb> anchorZoneWebList = findAnchorZoneWeb(anchorZone, 0, 1);
+        if (anchorZoneWebList != null) {
+            return anchorZoneWebList.get(0);
+        }
+        return null;
+    }
+
     public List<MatchZone> listMatchZoneListByAnchorZoneId(Long anchorZoneId) {
         List<AnchorZoneMatchZoneMapping> anchorZoneMatchZoneMappingList = anchorZoneMatchZoneMappingService.listByAnchorZoneId(anchorZoneId);
         List<MatchZone> matchZoneList = new ArrayList<>();

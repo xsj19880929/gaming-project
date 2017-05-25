@@ -19,43 +19,33 @@
     </ul>
 </div>
 
-<div th:fragment="top(anchorZone)">
-    <div class="djw_top">
-        <div class="djw_top_general_o">
-            <div class="djw_top_left"><a th:href="/">55电竞游戏网</a><a
-                    th:href="/sitemap.html" class="top_menu" target="_blank">全站导航</a><a
-                    href="javascript:void(0)" class="top_phone">手机版</a>
+<div class="anchordeta" th:fragment="anchor(anchorZone)">
+    <div class="anchor-img">
+        <div class="left-content">
+            <div class="img-content">
+                <a href=""><img th:img-src="/image/120x120${anchorZone.icoImage}"
+                                th:alt="${anchorZone.name}"
+                                th:title="${anchorZone.name}"></a>
             </div>
-            <div class="djw_top_right">
-                <a href="javascript:;" onclick="setHome(this,'http://www.55djw.com');">设为主页</a><span>|</span>
-                <a href="javascript:;" onclick="addFavorite('55电竞游戏网',location.href)">收藏网站</a>
+            <div class="contentdeta">
+                <p th:text="${anchorZone.name}">会冒泡儿的鱼</p>
+                <p style="margin-top: 9%;" th:unless="${#lists.isEmpty(anchorZone.matchZoneList)}">
+                    <img th:img-src="/image/24x24${matchZone.icoImage}" th:alt="${matchZone.name}"
+                         th:each="matchZone:${anchorZone.matchZoneList}">
+                </p>
             </div>
+        </div>
+        <div class="right-content">
+            <div class="aixincontent">
+                <img id="links" th:src="/static/img/sc-1.png" alt="0">
+            </div>
+            <div class="scqk" id="linksText">收藏</div>
         </div>
     </div>
-    <div class="zhubo_con_box">
-        <div class="zhubo_data">
-            <div class="head_img"><span><img th:src="/static/img/circle_bg3.png" th:alt="${anchorZone.name}"
-                                             th:title="${anchorZone.name}"/></span><img
-                    src="/static/img/zhubo/zhubo.png" th:img-src="/image/120x120${anchorZone.icoImage}"
-                    th:alt="${anchorZone.name}"
-                    th:title="${anchorZone.name}"/></div>
-            <div class="data">
-                <dl>
-                    <dt>
-                    <h1 th:text="${anchorZone.name}">小智脑残粉</h1>
-                    <h2>人气：<span th:text="${anchorZone.visitCount}">58621</span></h2>
-                    <a href="javascript:;">
-                        <h3><span style="margin-left:15px;margin-top:10px;"><img
-                                th:src="/static/img/zhubo/tianjia.png"/></span><span
-                                style="margin-left:6px;margin-top:7px;color:#fff;font-size:14px;"
-                                th:alt="${anchorZone.name}"
-                                th:title="${anchorZone.name}">收藏</span></h3>
-                    </a> </dt>
-                    <dd th:text="${anchorZone.introduction}"> LOL新晋视频集锦创作者，【秀逗时刻】、【最佳坑姿势】作者。以最搞笑的方式，为你带来欢乐。喜欢不要忘记点收藏。
-                    </dd>
-                </dl>
-            </div>
-            <div class="clear"></div>
-        </div>
+    <div class="anchor-text">
+        <p><span th:text="'平台：'+${anchorZone.platformName}">平台： 斗鱼，虎牙TV </span><span>人气： <span style="color:red;;"
+                                                                                               th:text="${anchorZone.visitCount}">12546542</span> </span>
+        </p>
+        <p th:text="${anchorZone.introduction}">LOL新晋视频集锦创作者，【秀逗时刻】、【最佳坑姿势】作者。以最搞笑的 方式，为你带来欢乐。以最搞笑的方式，为你带来欢乐</p>
     </div>
 </div>
