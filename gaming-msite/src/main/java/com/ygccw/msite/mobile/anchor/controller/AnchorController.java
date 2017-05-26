@@ -67,7 +67,7 @@ public class AnchorController {
         anchorZone.setSortIfDesc(anchorRequest.getSortIfDesc());
         anchorZone.setSortName(anchorRequest.getSortName());
         List<AnchorZoneWeb> anchorZoneWebList = anchorWebService.findAnchorZoneNew(anchorZone, offset, fetchSize);
-        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("htmltpl/anchor-list-template.html");
+        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("anchor-list-template.html");
         return new FindResultMoreToAjax(anchorZoneWebList, htmlTemplate);
     }
 
@@ -115,27 +115,21 @@ public class AnchorController {
     @RequestMapping(value = "/anchor/news/{anchorZoneId}/", method = RequestMethod.GET)
     public String anchorNewsListIndex(final ModelMap model, @PathVariable Long anchorZoneId) {
         int currentPage = 1;
-        int fetchSize = 5;
-        String url = "/anchor/news/" + anchorZoneId + "/page";
-        anchorNewsListCommon(model, anchorZoneId, currentPage, fetchSize, url);
+        int fetchSize = 4;
+        anchorNewsListCommon(model, anchorZoneId, currentPage, fetchSize, "");
         return "/view/anchor/anchor-news-list.html";
     }
 
     @RequestMapping(value = "/anchor/news/{anchorZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
-    public String anchorNewsList(HttpServletRequest request, final ModelMap model, @PathVariable Long anchorZoneId, @PathVariable Integer currentPage) {
-        int fetchSize = 5;
-        String url = PageUtils.getPageUrl(request);
-        anchorNewsListCommon(model, anchorZoneId, currentPage, fetchSize, url);
+    public String anchorNewsList(final ModelMap model, @PathVariable Long anchorZoneId, @PathVariable Integer currentPage) {
+        int fetchSize = 4;
+        anchorNewsListCommon(model, anchorZoneId, currentPage, fetchSize, "");
         return "/view/anchor/anchor-news-list.html";
     }
 
     private void anchorNewsListCommon(ModelMap model, Long anchorZoneId, int currentPage, int fetchSize, String url) {
-
         model.put("anchorZone", anchorWebService.findAnchorById(anchorZoneId));
-        model.put("anchorNewsList", new FindResultToSale(anchorWebService.listInfoNewsAndTagByAnchorZoneId(anchorZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), anchorWebService.listInfoNewsAndTagByAnchorZoneIdSize(anchorZoneId), currentPage, fetchSize, url));
-        model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(anchorZoneId, 0, 10));
-        model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
-        model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
+        model.put("anchorNewsList", new FindResultToMobile(anchorWebService.listInfoNewsAndTagByAnchorZoneId(anchorZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
     }
 
     @RequestMapping(value = "/anchor/news/{id}.html", method = RequestMethod.GET)
@@ -157,17 +151,15 @@ public class AnchorController {
     @RequestMapping(value = "/anchor/video/{anchorZoneId}/", method = RequestMethod.GET)
     public String anchorVideoList(final ModelMap model, @PathVariable Long anchorZoneId) {
         int currentPage = 1;
-        int fetchSize = 9;
-        String url = "/anchor/video/" + anchorZoneId + "/page";
-        anchorVideoCommon(model, anchorZoneId, currentPage, fetchSize, url);
+        int fetchSize = 4;
+        anchorVideoCommon(model, anchorZoneId, currentPage, fetchSize, "");
         return "/view/anchor/anchor-video-list.html";
     }
 
     @RequestMapping(value = "/anchor/video/{anchorZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
-    public String anchorVideoList(HttpServletRequest request, final ModelMap model, @PathVariable Long anchorZoneId, @PathVariable Integer currentPage) {
-        int fetchSize = 9;
-        String url = PageUtils.getPageUrl(request);
-        anchorVideoCommon(model, anchorZoneId, currentPage, fetchSize, url);
+    public String anchorVideoList(final ModelMap model, @PathVariable Long anchorZoneId, @PathVariable Integer currentPage) {
+        int fetchSize = 4;
+        anchorVideoCommon(model, anchorZoneId, currentPage, fetchSize, "");
         return "/view/anchor/anchor-video-list.html";
     }
 
@@ -176,10 +168,7 @@ public class AnchorController {
         info.setInfoZoneType(InfoZoneType.anchorZone);
         info.setZoneId(anchorZoneId);
         model.put("anchorZone", anchorWebService.findAnchorById(anchorZoneId));
-        model.put("anchorVideoList", new FindResultToSale(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListSize(info), currentPage, fetchSize, url));
-        model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(anchorZoneId, 0, 10));
-        model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
-        model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
+        model.put("anchorVideoList", new FindResultToMobile(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
     }
 
     @RequestMapping(value = "/anchor/video/{id}.html", method = RequestMethod.GET)

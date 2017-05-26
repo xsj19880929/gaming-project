@@ -4,13 +4,13 @@ import com.ygccw.msite.database.FindResultMoreToAjax;
 import com.ygccw.msite.database.FindResultToMobile;
 import com.ygccw.msite.database.FindResultToSale;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
-import com.ygccw.msite.mobile.common.model.HtmlTemplate;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
 import com.ygccw.msite.mobile.game.service.GameWebService;
+import com.ygccw.msite.mobile.info.model.InfoRequest;
 import com.ygccw.msite.mobile.info.model.InfoWeb;
 import com.ygccw.msite.mobile.info.service.InfoWebService;
 import com.ygccw.msite.utils.PageUtils;
-import com.ygccw.wechat.common.info.entity.Info;
+import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.tags.entity.Tags;
@@ -21,6 +21,7 @@ import com.ygccw.wechat.common.zone.entity.MatchZone;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +29,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @author soldier
@@ -55,12 +55,20 @@ public class InfoController {
         return "/view/news/news-list.html";
     }
 
+    /**
+     * 所有新闻ajax请求
+     *
+     * @param infoRequest
+     * @param offset
+     * @param fetchSize
+     * @return
+     */
     @RequestMapping(value = "/news/list", method = RequestMethod.POST)
     @ResponseBody
-    public FindResultMoreToAjax listRest(@RequestParam String zoneType, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
-        List<Info> infoList = infoWebService.infoList(null, InfoZoneType.valueOf(zoneType), TagZoneType.valueOf(zoneType), offset, fetchSize);
-        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("htmltpl/news-list-template.html");
-        return new FindResultMoreToAjax(infoList, htmlTemplate);
+    public FindResultMoreToAjax listRest(@RequestBody InfoRequest infoRequest, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
+        infoRequest.setVerify(1);
+        infoRequest.setInfoType(InfoType.news);
+        return new FindResultMoreToAjax(infoWebService.infoListOutCondition(infoRequest, offset, fetchSize), ajaxGetTemplateService.getHtmlTemplate(infoRequest.getTemplateName()));
     }
 
     @RequestMapping(value = "/news_trade_{currentPage}.html", method = RequestMethod.GET)

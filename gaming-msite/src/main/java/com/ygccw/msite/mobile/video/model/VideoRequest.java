@@ -1,5 +1,7 @@
 package com.ygccw.msite.mobile.video.model;
 
+import com.ygccw.wechat.common.info.enums.InfoZoneType;
+
 /**
  * @author soldier
  */
@@ -9,6 +11,24 @@ public class VideoRequest {
     private Long zoneId;
     private String sortName;
     private Boolean sortIfDesc;
+    private String templateName;
+    private InfoZoneType infoZoneType;
+
+    public InfoZoneType getInfoZoneType() {
+        return infoZoneType;
+    }
+
+    public void setInfoZoneType(InfoZoneType infoZoneType) {
+        this.infoZoneType = infoZoneType;
+    }
+
+    public String getTemplateName() {
+        return templateName;
+    }
+
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
+    }
 
     public String getInfoVideoTypeStr() {
         return infoVideoTypeStr;

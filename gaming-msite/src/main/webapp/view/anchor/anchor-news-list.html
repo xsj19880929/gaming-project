@@ -2,105 +2,65 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
-    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
-    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
     <title th:text="${anchorZone.name}+'资讯_'+${anchorZone.name}+'_'+${siteName}">标题</title>
     <meta name="keywords" content="关键字" th:attr="content=${anchorZone.name}+'新闻资讯,'+${anchorZone.name}"/>
     <meta name="description"
           content="描述"
           th:attr="content=${anchorZone.name}+'提供最新最全的'+${anchorZone.name}+'新闻资讯，更多有关'+${anchorZone.name}+'攻略尽在'+${siteName}+'（55djw.com）'+${anchorZone.name}+'专区。'"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/gp.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/VSEC.css"/>
 </head>
-
 <body>
-<!--线上的top内容,这个仅放截图-->
-<div th:replace="/view/anchor/anchor-head.html::top(${anchorZone})"></div>
-<div class="home_page">
-    <div class="home_page_left">
-        <div class="position" style="margin-left:22px;"><a th:href="/">电竞首页</a>&gt;<a
-                th:href="/anchor/${anchorZone.id}/" th:text="${anchorZone.name}">英雄联盟电竞专区</a>&gt;<em>赛事资讯</em></div>
-        <div style="margin-left:10px;" th:replace="/view/anchor/anchor-bar.html::bar('news',${anchorZone.id})"></div>
-        <div class="zhubo_zixun02">
-            <div class="zhubo_news" th:each="news,iterStat:${anchorNewsList.list}"><span><a href="#"
-                                                                                            th:href="/news/${news.id}.html"
-                                                                                            th:title="${news.title}"><img
-                    src="/static/temp/list03.jpg" th:img-src="/image/204x108${news.titleImage}" th:alt="${news.title}"
-                    th:title="${news.title}"/></a></span>
-                <div class="zhubo_news_main"><a href="#" th:href="/news/${news.id}.html"
-                                                th:title="${news.title}">
-                    <h1 th:text="${news.title}">lol主播Miss微博曝光喷子 因私信骂MISS五个月</h1>
-                </a>
-                    <dl>
-                        <dt><img th:src="/static/img/time.png" th:alt="${news.title}" th:title="${news.title}"/> <span
-                                th:text="${#calendars.format(news.publishTime, 'MM-dd HH:mm')}">10-20 10:35</span></dt>
-                        <dd><img th:src="/static/img/bq.jpg" th:alt="${news.title}" th:title="${news.title}"/>&nbsp;<a
-                                href="#" th:href="/news/tag/${tagTrade.id}_1.html"
-                                th:each="tagTrade:${news.tagMappingWebList}"
-                                th:text="${tagTrade.name}">电竞</a></dd>
-                        <div class="clear"></div>
-                    </dl>
-                    <ul th:text="${news.subTitle}">
-                        近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。
-                    </ul>
-                </div>
-                <div class="clear"></div>
+<!--头部1-->
+<header th:replace="/head.html::top"></header>
+<!--导航1-->
+<div th:replace="/head.html::nav('anchor')"></div>
+<!--中间层-->
+<div th:replace="/view/anchor/anchor-head.html::top('news',${anchorZone})"></div>
+<div th:replace="/view/anchor/anchor-head.html::anchor(${anchorZone})"></div>
+<!--主播资讯-->
+<div class="zhuanqushouye" style="border: none">
+    <div class="CompetitionDeta aifansile" style=" padding-bottom: 1px; " id="newsListData">
+        <div class="item" th:each="news,iterStat:${anchorNewsList.list}">
+            <div class="left-content">
+                <a th:href="/news/${news.id}.html"
+                   th:title="${news.title}"><img th:img-src="/image/204x108${news.titleImage}" th:alt="${news.title}"
+                                                 th:title="${news.title}"></a>
             </div>
-            <!--页码-->
-            <div th:replace="/pager.html::page(${anchorNewsList.pageName},${anchorNewsList.currentPage},${anchorNewsList.totalPage})"></div>
-        </div>
-    </div>
-    <div class="main_right">
-        <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">个人视频排行</span></div>
-            <dl class="video_rank">
-                <dt th:each="anchorVideo,iterStat:${anchorVideoTopList}"
-                    th:if="${iterStat.index==0||iterStat.index==1||iterStat.index==2}"><span
-                        style="background:url(/static/img/zhubo/zhubo_shipin.png) no-repeat;"
-                        th:text="${iterStat.index+1}">1</span><a href="#" th:text="${anchorVideo.title}"
-                                                                 th:href="/video/${anchorVideo.id}.html"
-                                                                 th:title="${anchorVideo.title}">驰骋野区的风暴骑手：新版本打野人攻略</a>
-                </dt>
-                <dt th:each="anchorVideo,iterStat:${anchorVideoTopList}"
-                    th:if="${iterStat.index!=0&&iterStat.index!=1&&iterStat.index!=2}"><span
-                        th:text="${iterStat.index+4}">4</span><a href="#" th:text="${anchorVideo.title}"
-                                                                 th:href="/video/${anchorVideo.id}.html"
-                                                                 th:title="${anchorVideo.title}">英雄联盟S6总决赛详情：举办地为北美</a>
-                </dt>
-            </dl>
-        </div>
-        <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">热门主播</span> <a th:href="/anchor/"
-                                                                              class="more vider_more">更多</a>
+            <div class="right-content">
+                <a th:href="/news/${news.id}.html"
+                   th:title="${news.title}"><p th:text="${news.title}">lol6.20努努增强后怎么玩 S6雪人打野天 赋符文出装</p></a>
+                <p th:text="${#calendars.format(news.publishTime, 'MM-dd HH:mm')}">10-12 09:43</p>
             </div>
-            <ul class="hot_zhubo">
-                <li th:each="anchorZone:${anchorZoneTopList}"><a href="#" th:href="/anchor/${anchorZone.id}/"
-                                                                 th:title="${anchorZone.name}">
-                    <p class="p1"><img th:src="/static/img/circle_bg2.png" th:alt="${anchorZone.name}"
-                                       th:title="${anchorZone.name}"/></p>
-                    <p class="p2"><img src="/static/temp/pic01.jpg" th:img-src="/image/120x120${anchorZone.icoImage}"
-                                       th:alt="${anchorZone.name}" th:title="${anchorZone.name}"/>
-                    </p>
-                    <p class="p3" th:text="${anchorZone.name}">拳头暴君</p>
-                </a></li>
-            </ul>
-        </div>
-        <div class="right_mid">
-            <div class="index_tit_two"><span class="text_left">热门游戏</span> <a th:href="/game/"
-                                                                              class="more vider_more">更多</a>
-            </div>
-            <ul class="hot_zixun">
-                <li th:each="matchZone:${matchZoneTopList}"><a href="#"
-                                                               th:text="${matchZone.name}"
-                                                               th:href="/game/${matchZone.id}/"
-                                                               th:title="${matchZone.name}">驰骋野区的风暴骑手：新版本打野人马攻略</a></li>
-            </ul>
-
         </div>
     </div>
 </div>
+<!--加载更多-->
+<div class="footer-more  more-other" id="loadMore">
+    <a style="color: #808080; font-size: 13px;" href="" onclick="getNewsList()">加载更多 <img style="width: 16%;"
+                                                                                          th:src="/static/img/morejt.png"
+                                                                                          alt="加载更多"></a>
+</div>
 
-<!--线上琵琶网首页的foot，这里只是截图-->
-<div th:replace="/bottom.html::bottom"></div>
+<div id="loadMoreCondition" style="display:none">
+    <input type="hidden" value="anchorZone" id="infoZoneType" name="infoZoneType">
+    <input type="hidden" id="offset" name="offset" th:value="${anchorNewsList.fetchSize}">
+    <input type="hidden" id="fetchSize" name="fetchSize" th:value="${anchorNewsList.fetchSize}">
+    <input type="hidden" id="zoneId" name="zoneId" th:value="${anchorZone.id}">
+    <input type="hidden" value="anchor-news-list-template.html" id="templateName" name="templateName">
+    <input type="hidden" value="publishTime" id="sortName" name="sortName">
+    <input type="hidden" value="true" id="sortIfDesc" name="sortIfDesc">
+</div>
+
+<!--底部导航-->
+<nav th:replace="/bottom.html::footerNav"></nav>
+<!--TOP-->
+<div th:replace="/bottom.html::tipTop"></div>
+<!--底部-->
+<footer th:replace="/bottom.html::footer"></footer>
+<script type="text/javascript" th:src="/static/js/jquery.js"></script>
+<script type="text/javascript" th:src="/static/js/wcgp.js"></script>
+<script th:src="/static/js/anchorHome.js"></script>
+<script th:src="/static/js/anchor/anchor-news-list.js"></script>
 </body>
 </html>

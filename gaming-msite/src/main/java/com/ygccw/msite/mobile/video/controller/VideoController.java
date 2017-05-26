@@ -64,7 +64,7 @@ public class VideoController {
     }
 
     /**
-     * 视频加载更多
+     * 所有视频加载更多
      *
      * @param offset
      * @param fetchSize
@@ -79,7 +79,7 @@ public class VideoController {
         info.setSortIfDesc(videoRequest.getSortIfDesc());
         info.setSortName(videoRequest.getSortName());
         List<Info> infoList = infoService.list(info, offset, fetchSize);
-        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("htmltpl/video-list-template.html");
+        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate(videoRequest.getTemplateName());
         return new FindResultMoreToAjax(infoList, htmlTemplate);
     }
 

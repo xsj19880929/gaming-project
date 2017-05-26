@@ -50,7 +50,7 @@ public class PictureController {
     @ResponseBody
     public FindResultMoreToAjax listRest(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
         List<Picture> pictureList = pictureWebService.pictureList(offset, fetchSize);
-        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("htmltpl/picture-list-template.html");
+        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("picture-list-template.html");
         return new FindResultMoreToAjax(pictureList, htmlTemplate);
     }
 

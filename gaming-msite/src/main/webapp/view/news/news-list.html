@@ -57,11 +57,19 @@
             style="width: 16%;"
             th:src="/static/img/morejt.png"></a>
 </div>
-<input type="hidden" value="trade" th:if="${infoList.pageName}=='/news_trade'" id="zoneType" name="zoneType">
-<input type="hidden" value="matchZone" th:if="${infoList.pageName}=='/news_match'" id="zoneType" name="zoneType">
-<input type="hidden" value="anchorZone" th:if="${infoList.pageName}=='/news_anchor'" id="zoneType" name="zoneType">
-<input type="hidden" id="offset" name="offset" th:value="${infoList.fetchSize}">
-<input type="hidden" id="fetchSize" name="fetchSize" th:value="${infoList.fetchSize}">
+<div id="loadMoreCondition" style="display:none">
+    <input type="hidden" value="trade" th:if="${infoList.pageName}=='/news_trade'" id="infoZoneType"
+           name="infoZoneType">
+    <input type="hidden" value="matchZone" th:if="${infoList.pageName}=='/news_match'" id="infoZoneType"
+           name="infoZoneType">
+    <input type="hidden" value="anchorZone" th:if="${infoList.pageName}=='/news_anchor'" id="infoZoneType"
+           name="infoZoneType">
+    <input type="hidden" id="offset" name="offset" th:value="${infoList.fetchSize}">
+    <input type="hidden" id="fetchSize" name="fetchSize" th:value="${infoList.fetchSize}">
+    <input type="hidden" value="news-list-template.html" id="templateName" name="templateName">
+    <input type="hidden" value="publishTime" id="sortName" name="sortName">
+    <input type="hidden" value="true" id="sortIfDesc" name="sortIfDesc">
+</div>
 <!--底部导航-->
 <nav th:replace="/bottom.html::footerNav"></nav>
 <!--TOP-->

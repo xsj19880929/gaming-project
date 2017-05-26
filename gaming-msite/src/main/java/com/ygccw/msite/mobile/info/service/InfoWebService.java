@@ -55,6 +55,10 @@ public class InfoWebService {
         return infoService.list(infoRequest, offset, fetchSize);
     }
 
+    public List<Info> infoListOutCondition(Info infoRequest, int offset, int fetchSize) {
+        return infoService.list(infoRequest, offset, fetchSize);
+    }
+
     public int infoListSize(Long zoneId, InfoZoneType infoZoneType) {
         Info infoRequest = new Info();
         infoRequest.setInfoZoneType(infoZoneType);

@@ -65,7 +65,7 @@ public class GameController {
     public FindResultMoreToAjax listRest(@RequestBody GameRequest gameRequest, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
         MatchZone matchZone = common(new ModelMap(), gameRequest.getMatchZoneYearId(), gameRequest.getMatchZoneAreaId(), gameRequest.getMatchStatusStr());
         List<MatchZone> matchZoneList = gameWebService.findMatchZoneNew(matchZone, offset, fetchSize);
-        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("htmltpl/game-list-template.html");
+        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("game-list-template.html");
         return new FindResultMoreToAjax(matchZoneList, htmlTemplate);
     }
 

@@ -4,6 +4,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import com.ygccw.msite.mobile.common.model.HtmlTemplate;
 import core.framework.web.site.SiteSettings;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -17,10 +18,12 @@ import java.net.URL;
 public class AjaxGetTemplateService {
     @Inject
     private SiteSettings siteSettings;
+    @Inject
+    private Environment env;
 
     public HtmlTemplate getHtmlTemplate(String path) {
         String html;
-        URL url = Resources.getResource(path);
+        URL url = Resources.getResource(env.getProperty("site.ajax.template") + path);
         try {
             html = Resources.toString(url, Charsets.UTF_8);
         } catch (IOException e) {
