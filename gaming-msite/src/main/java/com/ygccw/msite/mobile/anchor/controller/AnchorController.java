@@ -128,7 +128,7 @@ public class AnchorController {
     }
 
     private void anchorNewsListCommon(ModelMap model, Long anchorZoneId, int currentPage, int fetchSize, String url) {
-        model.put("anchorZone", anchorWebService.findAnchorById(anchorZoneId));
+        model.put("anchorZone", anchorWebService.findAnchorZoneWebById(anchorZoneId));
         model.put("anchorNewsList", new FindResultToMobile(anchorWebService.listInfoNewsAndTagByAnchorZoneId(anchorZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
     }
 
@@ -136,7 +136,7 @@ public class AnchorController {
     public String findAnchorNews(final ModelMap model, @PathVariable Long id) {
         InfoWeb info = anchorWebService.findInfoById(id);
         model.put("info", info);
-        model.put("anchorZone", anchorWebService.findAnchorById(info.getZoneId()));
+        model.put("anchorZone", anchorWebService.findAnchorZoneWebById(info.getZoneId()));
         model.put("pictureTopList", anchorWebService.pictureListTop(0, 6));
         model.put("likeInfoList", anchorWebService.likeInfoList(info, 10));
         infoService.updateVisitCount(id);
@@ -162,7 +162,7 @@ public class AnchorController {
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.anchorZone);
         info.setZoneId(anchorZoneId);
-        model.put("anchorZone", anchorWebService.findAnchorById(anchorZoneId));
+        model.put("anchorZone", anchorWebService.findAnchorZoneWebById(anchorZoneId));
         model.put("anchorVideoList", new FindResultToMobile(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
     }
 
@@ -170,7 +170,7 @@ public class AnchorController {
     public String findAnchorVideo(final ModelMap model, @PathVariable Long id) {
         InfoWeb info = anchorWebService.findInfoById(id);
         model.put("info", info);
-        model.put("anchorZone", anchorWebService.findAnchorById(info.getZoneId()));
+        model.put("anchorZone", anchorWebService.findAnchorZoneWebById(info.getZoneId()));
         model.put("pictureTopList", anchorWebService.pictureListTop(0, 6));
         model.put("likeInfoList", anchorWebService.likeInfoList(info, 10));
         model.put("nextInfo", anchorWebService.nextInfo(info));

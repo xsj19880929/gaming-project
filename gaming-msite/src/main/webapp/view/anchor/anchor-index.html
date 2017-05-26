@@ -64,7 +64,7 @@
 <div class="videoList" style=" margin-top: 2%;   border-top: 2px solid #eaa000;"
      th:unless="${#lists.isEmpty(anchorPictureList)}">
     <div class="moremsg">
-        <p><span class="tips">主播图集 </span><a th:href="/picture/" class="more">更多+</a></p>
+        <p><span class="tips">主播图集 </span><a th:href="/anchor/picture/${anchorZone.id}/" class="more">更多+</a></p>
     </div>
     <div class="videoshow" style="border-top: 1px solid #dadada;padding-top: 3%;"><p></p>
         <ul>

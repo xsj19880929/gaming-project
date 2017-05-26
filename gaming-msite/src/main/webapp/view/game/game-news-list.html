@@ -28,8 +28,7 @@
         <div class="item" th:each="news:${newsList.list}">
             <div class="left-content">
                 <a th:href="/news/${news.id}.html"
-                   th:title="${news.title}"><img th:src="/static/img/zxt1.png"
-                                                 th:img-src="/image/193x113${news.titleImage}"
+                   th:title="${news.title}"><img th:img-src="/image/193x113${news.titleImage}"
                                                  th:alt="${news.title}" th:title="${news.title}"></a>
             </div>
             <div class="right-content">
@@ -47,7 +46,7 @@
                                                                                      alt="加载更多"></a>
 </div>
 <div id="loadMoreCondition" style="display:none">
-    <input type="hidden" value="matchZone" id="infoZoneType" name="infoZoneType">
+    <input type="hidden" value="matchZone" id="infoZoneType.name" name="infoZoneType.name">
     <input type="hidden" id="offset" name="offset" th:value="${newsList.fetchSize}">
     <input type="hidden" id="fetchSize" name="fetchSize" th:value="${newsList.fetchSize}">
     <input type="hidden" value="game-news-list-template.html" id="templateName" name="templateName">
@@ -64,6 +63,7 @@
 <script type="text/javascript" th:src="/static/js/jquery.js"></script>
 <script type="text/javascript" th:src="/static/js/wcgp.js"></script>
 <script type="text/javascript" th:src="/static/js/game/game-news-list.js"></script>
-
+<script type="text/javascript" th:src="/static/js/layer/layer.js"></script>
+<script type="text/javascript" th:src="/static/js/main.js"></script>
 </body>
 </html>
