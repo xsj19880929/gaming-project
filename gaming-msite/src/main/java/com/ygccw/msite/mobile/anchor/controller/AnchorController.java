@@ -139,11 +139,6 @@ public class AnchorController {
         model.put("anchorZone", anchorWebService.findAnchorById(info.getZoneId()));
         model.put("pictureTopList", anchorWebService.pictureListTop(0, 6));
         model.put("likeInfoList", anchorWebService.likeInfoList(info, 10));
-        model.put("nextInfo", anchorWebService.nextInfo(info));
-        model.put("lastInfo", anchorWebService.lastInfo(info));
-        model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(info.getZoneId(), 0, 10));
-        model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
-        model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
         infoService.updateVisitCount(id);
         return "/view/anchor/anchor-news-detail.html";
     }
