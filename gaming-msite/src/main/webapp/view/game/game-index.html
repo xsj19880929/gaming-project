@@ -53,12 +53,12 @@
                     <div class="top-content">
                         <div class="jiangbei">
                             <img th:src="/static/img/gj1.png" th:alt="${matchZoneBonus.ranking}"
-                                 th:if="iterStat.index==0">
+                                 th:if="${iterStat.index==0}">
                             <img th:alt="${matchZoneBonus.ranking}" th:alt="${matchZoneBonus.ranking}"
-                                 th:if="iterStat.index==1"
+                                 th:if="${iterStat.index==1}"
                                  th:src="/static/img/yj1.png">
                             <img th:alt="${matchZoneBonus.ranking}" th:alt="${matchZoneBonus.ranking}"
-                                 th:if="iterStat.index==2"
+                                 th:if="${iterStat.index==2}"
                                  th:src="/static/img/jj1.png">
                         </div>
                         <div class="jiangjin1" th:class="'jiangjin'+${iterStat.index+1}">
