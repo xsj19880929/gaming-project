@@ -40,9 +40,10 @@
 <!--加载更多-->
 <div class="footer-more  more-other" id="loadMore"
      th:if="${#lists.size(anchorVideoList.list)>=anchorVideoList.fetchSize}">
-    <a style="color: #808080; font-size: 13px;" href="" onclick="getNewsList()">加载更多 <img style="width: 16%;"
-                                                                                          th:src="/static/img/morejt.png"
-                                                                                          alt="加载更多"></a>
+    <a style="color: #808080; font-size: 13px;" href="javascript:;" onclick="getNewsList()">加载更多 <img
+            style="width: 16%;"
+            th:src="/static/img/morejt.png"
+            alt="加载更多"></a>
 </div>
 <div id="loadMoreCondition" style="display:none">
     <input type="hidden" value="matchZone" id="infoZoneTypeStr" name="infoZoneTypeStr">

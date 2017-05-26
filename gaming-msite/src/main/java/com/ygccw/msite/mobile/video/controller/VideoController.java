@@ -162,6 +162,7 @@ public class VideoController {
         infoService.updateVisitCount(id);
         if (infoWeb.getInfoZoneType() == InfoZoneType.trade) {
             model.put("video", infoWeb);
+            model.put("likeInfoList", videoWebService.likeInfoList(infoWeb, 10));
             model.put("videoTopList", videoWebService.videoListTop(new Info(), 0, 10));
             model.put("anchorTopList", videoWebService.anchorListTop(0, 6));
             model.put("matchZoneTopList", videoWebService.findTopMatchZoneList(0, 10));

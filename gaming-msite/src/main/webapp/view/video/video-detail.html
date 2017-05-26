@@ -2,109 +2,64 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
-    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
-    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
-    <script type="text/javascript" th:src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
     <title th:text="${video.seoTitle}+'_'+${siteName}">标题</title>
     <meta name="keywords" content="关键字" th:attr="content=${video.seoKeywords}"/>
     <meta name="description"
           content="描述" th:attr="content=${video.seoDescription}"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/gp.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/VSEC.css"/>
 </head>
-
 <body>
-<!--线上的top内容,这个仅放截图-->
-<div th:replace="/head.html::top('video')"></div>
+<!--头部1-->
+<header th:replace="/head.html::top"></header>
+<!--导航1-->
+<div th:replace="/head.html::nav('video')"></div>
 
-<div class="general">
-    <!--面包屑-->
-    <div class="position"><a th:href="/">电竞首页</a>&gt;<a th:href="/video/">视频列表</a>&gt;<em
-            th:text="${video.title}">LSPL2016春季赛常规赛第三周INGvsMF</em></div>
+<!--中间-->
+<div class="first-content" style="margin-top: 3%; border-top: 2px solid #eaa000;">
+    <p class="titletext"><a th:href="/">电竞首页</a>&gt;<a th:href="/video/">视频列表</a>&gt;视频详情</p>
 
-    <!--主要内容区-->
-    <div class="main_box">
-        <div class="main_left">
-            <div class="left_top">
-                <ul>
-                    <h1 th:text="${video.title}">LSPL2016春季赛常规赛第三周 ING vs MF</h1>
-                    <h2>
-                        <a th:text="${#calendars.format(video.publishTime, 'yyyy-MM-dd HH:mm')}">2016-10-20 10:25</a>
-                        <a th:text="'来源:'+${video.source}" th:href="${baseUrl}" href="http://www.55djw.com">来源:琵琶网</a>
-                        <a th:text="'作者:'+${video.author}">作者:编辑人员</a>
-                        <a>评论数：<span
-                                id="sourceId::此处替换为配置SourceID的语句" class="cy_cmt_count"
-                                th:attr="id='sourceId::'+${currentUrl}"></span></a>
-                    </h2>
-                </ul>
-            </div>
-            <div class="left_mid" th:utext="${video.content}">
-            </div>
-
-            <div class="left_bottom">
-                <dl>
-                    <dt>
-                    <h1>标签：<a th:each="tagTrade:${video.tagMappingWebList}"
-                              th:text="${tagTrade.name}" th:href="/video/tag/${tagTrade.tagsId}_1.html">电子竞技</a>
-                    </h1>
-                    <h2>上一篇：<span><a href="###" class="a1" th:if="${lastVideo!=null}" th:text="${lastVideo.title}"
-                                     th:href="/video/${lastVideo.id}.html">天天酷跑地狱熊爵熊队长极速5000米对比</a><span
-                            th:if="${lastVideo==null}">没有了</span></span></h2>
-                    </dt>
-                    <dt style="float:right;">
-                    <h1>&nbsp;</h1>
-                    <h2>下一篇：<span><a href="###" th:if="${nextVideo!=null}" th:text="${nextVideo.title}"
-                                     th:href="/news/${nextVideo.id}.html">天天传奇战士搭配什么伙伴好战士阵容搭配推荐</a><span
-                            th:if="${nextVideo==null}">没有了</span></span></h2>
-                    </dt>
-
-                </dl>
-            </div>
-            <div th:replace="/comment.html::comment(${video.id},${video.title},${currentUrl})"></div>
-        </div>
-        <div class="main_right">
-
-            <div class="right_mid">
-                <div class="index_tit_two"><span class="text_left">个人视频排行</span></div>
-                <dl class="video_rank">
-                    <dt th:each="videoTop,iterStat:${videoTopList}"><span
-                            th:class="${(iterStat.index==0||iterStat.index==1||iterStat.index==2)?'num':''}"
-                            th:text="${iterStat.index+1}">1</span>
-                        <a href="#" th:text="${videoTop.title}"
-                           th:href="/vedio/${videoTop.id}.html">驰骋野区的风暴骑手：新版本打野人攻略</a>
-                    </dt>
-                </dl>
-            </div>
-            <div class="right_mid">
-                <div class="index_tit_two"><span class="text_left">热门主播</span> <a th:href="/anchor/" target="_blank"
-                                                                                  class="more vider_more">更多</a></div>
-                <ul class="hot_zhubo">
-                    <li th:each="anchor:${anchorTopList}">
-                        <a th:href="/anchor/${anchor.id}/">
-                            <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                            <p class="p2"><img th:img-src="/image/120x120${anchor.icoImage}" th:alt="${anchor.name}"
-                                               th:title="${anchor.name}"/></p>
-                            <p class=" p3" th:content="${anchor.username}">拳头暴君</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="right_mid">
-                <div class="index_tit_two"><span class="text_left">热门游戏</span> <a th:href="/game/"
-                                                                                  class="more vider_more">更多</a></div>
-                <ul class="hot_zixun">
-                    <li th:each="matchZone:${matchZoneTopList}"><a th:href="/game/${matchZone.id}/"
-                                                                   th:text="${matchZone.name}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <div class="header-title">
+        <h3 th:text="${video.title}">2017LPL春季赛 WE vs GT 赛后采访Condi</h3>
+        <p><span th:text="${#calendars.format(video.publishTime, 'yyyy-MM-dd')}">2017-01-11</span>
+            <span class="author" th:text="' 作者：'+${video.author}"> 作者：官方</span>
+        </p>
     </div>
-    <div class="clear"></div>
-
+    <div class="text-content" th:utext="${video.content}">
+    </div>
 </div>
 
+<div class="videoList" style=" border-top: 2px solid #eaa000;">
+    <div class="moremsg">
+        <p><span class="tips">相关视频 </span></p>
+    </div>
+    <div class="videoshow" style=" padding-top: 2%;border-top: 1px solid #dadada;"><p></p>
+        <ul>
+            <li th:each="likeInfo,iterStat:${likeInfoList}">
+                <a th:title="${likeInfo.title}"
+                   th:href="/video/${likeInfo.id}.html">
+                    <img th:img-src="/image/330x195${video.titleImage}" th:alt="${video.title}"
+                         th:title="${video.title}">
+                    <img class="playIoc" th:src="/static/img/playico.png" th:alt="${video.title}">
+                </a>
+                <div class="mengcheng"></div>
+                <a th:title="${likeInfo.title}"
+                   th:href="/video/${likeInfo.id}.html" th:text="${likeInfo.title}">小苍剑圣第一视角 细节成就五杀</a>
+            </li>
+        </ul>
+    </div>
 </div>
-<div th:replace="/bottom.html::bottom"></div>
+
+<!--评论内容-->
+<div th:replace="/comment.html::comment(${video.id},${video.title},${currentUrl})"></div>
+<!--底部导航-->
+<nav th:replace="/bottom.html::footerNav"></nav>
+<!--TOP-->
+<div th:replace="/bottom.html::tipTop"></div>
+<!--底部-->
+<footer th:replace="/bottom.html::footer"></footer>
+<script type="text/javascript" th:src="/static/js/jquery.js"></script>
+<script type="text/javascript" th:src="/static/js/wcgp.js"></script>
+<script th:src="/static/js/wevsgt.js"></script>
 </body>
 </html>

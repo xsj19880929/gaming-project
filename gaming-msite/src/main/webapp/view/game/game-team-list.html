@@ -2,42 +2,58 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
-    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
-    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
-    <script type="text/javascript" th:src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
     <title th:text="${siteName}+'|战队列表_'+${matchZone.name}+'赛事数据中心'">标题</title>
     <meta name="keywords" content="关键字"
           th:attr="content=${matchZone.name}+','+${matchZone.name}+'赛事,'+${matchZone.name}+'战队,星竞界数据中心'"/>
     <meta name="description"
           content="描述"
           th:attr="content=${siteName}+${matchZone.name}+'是针对'+${matchZone.name}+'赛事定制开发的数据分析系统。通过收录全球'+${matchZone.name}+'赛事数据，'+${matchZone.name}+'战队信息，配合科学高效的算法机制，为用户提供准确，有效的数据化信息与分析。'"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/gp.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/VSEC.css"/>
 </head>
-
 <body>
-<!--线上的top内容,这个仅放截图-->
+<!--头部1-->
+<header th:replace="/head.html::top"></header>
+<!--导航1-->
+<div th:replace="/head.html::nav('game')"></div>
+<!--中间-->
 <div th:replace="/view/game/game-head.html::top('team',${matchZone})"></div>
-<!--面包屑-->
-<div class="game_position"><a th:href="/">电竞首页</a>&gt;<a
-        th:href="/game/${matchZone.id}/" th:text="${matchZone.name}">英雄联盟电竞专区</a>&gt;<em>参赛战队</em></div>
-
-
-<div class="game_main_box">
-    <div class="team-bd">
-        <ul>
-            <li th:each="matchTeam:${matchTeamList}"><a> <img
-                    src="http://static.a.carry6.com/img/team/15.png" th:alt="${matchTeam.name}"
-                    th:title="${matchTeam.name}" th:img-src="/image/130x130${matchTeam.icoImage}"> <span
-                    th:text="${matchTeam.name}">SKT</span>
-            </a></li>
-
+<!--参赛战队-->
+<div class="takeItem" style="    border-top: 2px solid #eaa000;">
+    <div class="tab">
+        <ul id="tabUl">
+            <li>国内</li>
+            <li class="action">国外</li>
         </ul>
     </div>
-
-    <div class="clear"></div>
+    <div class="takeItemContent">
+        <ul>
+            <li th:each="matchTeam:${matchTeamList}"><a href=""><img th:alt="${matchTeam.name}"
+                                                                     th:title="${matchTeam.name}"
+                                                                     th:img-src="/image/182x137${matchTeam.icoImage}">MVP
+            </a></li>
+        </ul>
+    </div>
 </div>
-
-<div th:replace="/bottom.html::bottom"></div>
+<!--加载更多-->
+<div class="footer-more" span
+     style="
+      display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #ccc;
+    padding: 4% 0;"
+>
+    <a style="color: #808080; font-size: 13px;" href="">加载更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
+                                                                  alt="加载更多"></a>
+</div>
+<!--底部导航-->
+<nav th:replace="/bottom.html::footerNav"></nav>
+<!--TOP-->
+<div th:replace="/bottom.html::tipTop"></div>
+<!--底部-->
+<footer th:replace="/bottom.html::footer"></footer>
+<script type="text/javascript" th:src="/static/js/jquery.js"></script>
+<script type="text/javascript" th:src="/static/js/wcgp.js"></script>
+<script th:src="/static/js/zdItm.js"></script>
 </body>
 </html>

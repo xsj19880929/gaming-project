@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author soldier
@@ -112,5 +113,9 @@ public class VideoWebService {
 
     public int videoListByTagIdSize(Long tagId) {
         return tagMappingService.listByTagsIdPagingSize(tagId);
+    }
+
+    public Set<Info> likeInfoList(InfoWeb infoWeb, int fetchSize) {
+        return infoWebService.likeInfoList(infoWeb, fetchSize);
     }
 }

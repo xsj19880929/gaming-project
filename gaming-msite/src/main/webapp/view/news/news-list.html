@@ -52,7 +52,7 @@
 
 </div>
 <!--加载更多-->
-<div class="footer-more more-other" id="loadMore">
+<div class="footer-more more-other" id="loadMore" th:if="${#lists.size(infoList.list)>=infoList.fetchSize}">
     <a style="color: #808080; font-size: 13px;" href="javascript:;" onclick="getNewsList()">加载更多 <img
             style="width: 16%;"
             th:src="/static/img/morejt.png"></a>
