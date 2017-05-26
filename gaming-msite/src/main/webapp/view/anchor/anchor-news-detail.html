@@ -47,17 +47,11 @@
         </div>
         <div class="text-conten" style="border: none">
             <ul>
-                <li th:each="likeInfo,iterStat:${likeInfoList}" th:if="${iterStat.index>0}"><span class="dian"
-                                                                                                  th:classappend="${iterStat.index==1?'dian'}"></span><a
+                <li th:each="likeInfo,iterStat:${likeInfoList}" th:if="${iterStat.index>0}"><span class="dian"></span><a
                         th:text="${likeInfo.title}"
                         th:title="${likeInfo.title}"
                         th:href="/news/${likeInfo.id}.html">悟空说LPL：谁是赛场最强中野？</a>
                 </li>
-                <li><span class="dian"></span><a href="">EDG能否夺得桂冠？IEM世界赛最终名单已确定</a></li>
-                <li><span class="dian"></span><a href="">1分钟看完LPL次周比赛 NB新中单首秀掀翻EDG</a></li>
-                <li><span class="dian"></span><a href="">LPL春季赛上周回顾 副班长逆袭领头羊</a></li>
-                <li><span class="dian"></span><a href="">RYL无解阵容轻取胜利 SAT鏖战三场终获首胜</a></li>
-                <li><span class="dian"></span><a href="">老外热议KT首败：道理我懂 为啥不禁卡蜜尔韩国</a></li>
             </ul>
         </div>
     </div>

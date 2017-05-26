@@ -38,7 +38,8 @@
 </div>
 
 <!--加载更多-->
-<div class="footer-more  more-other" id="loadMore">
+<div class="footer-more  more-other" id="loadMore"
+     th:if="${#lists.size(anchorVideoList.list)>=anchorVideoList.fetchSize}">
     <a style="color: #808080; font-size: 13px;" href="" onclick="getNewsList()">加载更多 <img style="width: 16%;"
                                                                                           th:src="/static/img/morejt.png"
                                                                                           alt="加载更多"></a>
@@ -60,5 +61,6 @@
 <script type="text/javascript" th:src="/static/js/jquery.js"></script>
 <script type="text/javascript" th:src="/static/js/wcgp.js"></script>
 <script type="text/javascript" th:src="/static/js/anchorAtlas.js"></script>
+<script type="text/javascript" th:src="/static/js/anchor/anchor-video-list.js"></script>
 </body>
 </html>

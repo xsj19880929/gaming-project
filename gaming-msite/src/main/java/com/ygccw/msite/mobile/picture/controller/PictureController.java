@@ -14,6 +14,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,10 +47,17 @@ public class PictureController {
         return "/view/picture/picture-list.html";
     }
 
+    /**
+     * 所有图片ajax请求
+     *
+     * @param offset
+     * @param fetchSize
+     * @return
+     */
     @RequestMapping(value = "/picture/list", method = RequestMethod.POST)
     @ResponseBody
-    public FindResultMoreToAjax listRest(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
-        List<Picture> pictureList = pictureWebService.pictureList(offset, fetchSize);
+    public FindResultMoreToAjax listRest(@RequestBody Picture picture, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
+        List<Picture> pictureList = pictureWebService.pictureListOutCondition(picture, offset, fetchSize);
         HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate("picture-list-template.html");
         return new FindResultMoreToAjax(pictureList, htmlTemplate);
     }

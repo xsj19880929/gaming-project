@@ -34,6 +34,10 @@ public class PictureWebService {
     @Inject
     PictureDetailService pictureDetailService;
 
+    public List<Picture> pictureListOutCondition(Picture picture, int offset, int fetchSize) {
+        return pictureService.list(picture, offset, fetchSize);
+    }
+
     public List<Picture> pictureList(int offset, int fetchSize) {
         Picture picture = new Picture();
         return pictureService.list(picture, offset, fetchSize);

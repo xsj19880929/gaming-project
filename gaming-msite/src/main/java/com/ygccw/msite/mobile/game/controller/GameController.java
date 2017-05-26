@@ -198,26 +198,21 @@ public class GameController {
     @RequestMapping(value = "/game/picture/{matchZoneId}/", method = RequestMethod.GET)
     public String gamePictureList(final ModelMap model, @PathVariable Long matchZoneId) {
         int currentPage = 1;
-        int fetchSize = 9;
-        String url = "/game/picture/" + matchZoneId + "/page";
-        gamePictureListCommon(model, matchZoneId, currentPage, fetchSize, url);
+        int fetchSize = 12;
+        gamePictureListCommon(model, matchZoneId, currentPage, fetchSize, "");
         return "/view/game/game-picture-list.html";
     }
 
     @RequestMapping(value = "/game/picture/{matchZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
-    public String gamePictureList(HttpServletRequest request, final ModelMap model, @PathVariable Long matchZoneId, @PathVariable Integer currentPage) {
-        int fetchSize = 9;
-        String url = PageUtils.getPageUrl(request);
-        gamePictureListCommon(model, matchZoneId, currentPage, fetchSize, url);
+    public String gamePictureList(final ModelMap model, @PathVariable Long matchZoneId, @PathVariable Integer currentPage) {
+        int fetchSize = 12;
+        gamePictureListCommon(model, matchZoneId, currentPage, fetchSize, "");
         return "/view/game/game-picture-list.html";
     }
 
     private void gamePictureListCommon(ModelMap model, Long matchZoneId, int currentPage, int fetchSize, String url) {
         model.put("matchZone", gameWebService.findById(matchZoneId));
-        model.put("matchPictureList", new FindResultToSale(gameWebService.gamePictureList(matchZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), gameWebService.gamePictureListSize(matchZoneId), currentPage, fetchSize, url));
-        model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
-        model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
-        model.put("matchZoneListTop", gameWebService.findMatchZoneTop(new MatchZone(), 0, 2));
+        model.put("matchPictureList", new FindResultToMobile(gameWebService.gamePictureList(matchZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
     }
 
     @RequestMapping(value = "/game/video/{id}.html", method = RequestMethod.GET)
