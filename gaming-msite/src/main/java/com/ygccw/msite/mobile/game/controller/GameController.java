@@ -6,6 +6,7 @@ import com.ygccw.msite.database.FindResultToSale;
 import com.ygccw.msite.mobile.common.model.HtmlTemplate;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
 import com.ygccw.msite.mobile.game.model.GameRequest;
+import com.ygccw.msite.mobile.game.model.MatchTeamMappingRequest;
 import com.ygccw.msite.mobile.game.service.GameWebService;
 import com.ygccw.msite.mobile.info.model.InfoWeb;
 import com.ygccw.msite.mobile.video.service.VideoWebService;
@@ -231,5 +232,11 @@ public class GameController {
         model.put("matchZone", gameWebService.findById(matchZoneId));
         model.put("matchTeamList", gameWebService.listMatchTeamByMatchZoneId(matchZoneId));
         return "/view/game/game-team-list.html";
+    }
+
+    @RequestMapping(value = "/game/teamList", method = RequestMethod.GET)
+    @ResponseBody
+    public FindResultMoreToAjax gameTeamListAjax(@RequestBody MatchTeamMappingRequest matchTeamMappingRequest, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
+        return new FindResultMoreToAjax(gameWebService.listMatchTeamByMatchTeamMapping(matchTeamMappingRequest, offset, fetchSize), ajaxGetTemplateService.getHtmlTemplate(matchTeamMappingRequest.getTemplateName()));
     }
 }

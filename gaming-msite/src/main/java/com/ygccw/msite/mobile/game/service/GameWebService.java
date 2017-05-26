@@ -111,6 +111,16 @@ public class GameWebService {
         return matchTeamList;
     }
 
+    public List<MatchTeam> listMatchTeamByMatchTeamMapping(MatchTeamMapping matchTeamMappingRequest, int offset, int fetchSize) {
+        List<MatchTeamMapping> matchTeamMappingList = matchTeamMappingService.list(matchTeamMappingRequest, offset, fetchSize);
+        List<MatchTeam> matchTeamList = new ArrayList<>();
+        for (MatchTeamMapping matchTeamMapping : matchTeamMappingList) {
+            MatchTeam matchTeam = matchTeamService.findById(matchTeamMapping.getMatchTeamId());
+            matchTeamList.add(matchTeam);
+        }
+        return matchTeamList;
+    }
+
     public List<MatchZoneBonus> listMatchZoneBonusByMatchZoneId(Long matchZoneId) {
         return matchZoneBonusService.listByMatchZoneId(matchZoneId);
     }
