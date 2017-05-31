@@ -188,6 +188,7 @@ public class GameController {
         model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
         model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
         model.put("matchZoneListTop", gameWebService.findMatchZoneTop(new MatchZone(), 0, 2));
+        model.put("pictureTopList", gameWebService.pictureListTop(0, 6));
     }
 
     @RequestMapping(value = "/game/picture/{matchZoneId}/", method = RequestMethod.GET)
