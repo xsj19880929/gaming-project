@@ -67,7 +67,7 @@
             <li th:each="picture:${pictureTopList}">
                 <a th:title="${picture.description}"
                    th:href="/picture/${picture.id}.html">
-                    <img th:src="/static/img/mm1.png" th:img-src="/image/335x225${picture.image}"
+                    <img th:img-src="/image/335x225${picture.image}"
                          th:alt="${picture.description}"
                          th:title="${picture.description}">
                 </a>

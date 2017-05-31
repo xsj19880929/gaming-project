@@ -16,14 +16,14 @@
 <!--导航1-->
 <div th:replace="/head.html::nav('anchor')"></div>
 <!--中间层-->
-<div th:replace="/view/anchor/anchor-head.html::top('news',${anchorZone})"></div>
+<div th:replace="/view/anchor/anchor-head.html::top('picture',${anchorZone})"></div>
 <div th:replace="/view/anchor/anchor-head.html::anchor(${anchorZone})"></div>
 <!--比赛图集-->
 <div class="bisaituju" style="background: #fff;">
     <ul id="newsListData">
         <li th:each="picture:${anchorPictureList.list}"><a th:href="/picture/${picture.id}.html"
                                                            th:title="${picture.description}"><img
-                th:src="/static/img/meinv1.png" th:img-src="/image/222x169${picture.image}"
+                th:img-src="/image/222x169${picture.image}"
                 th:alt="${picture.description}" th:title="${picture.description}"></a><a
                 th:text="${picture.description}"
                 th:href="/picture/${picture.id}.html"

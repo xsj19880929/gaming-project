@@ -2,7 +2,6 @@ package com.ygccw.msite.mobile.anchor.controller;
 
 import com.ygccw.msite.database.FindResultMoreToAjax;
 import com.ygccw.msite.database.FindResultToMobile;
-import com.ygccw.msite.database.FindResultToSale;
 import com.ygccw.msite.mobile.anchor.model.AnchorRequest;
 import com.ygccw.msite.mobile.anchor.model.AnchorZoneWeb;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
@@ -27,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -186,22 +184,20 @@ public class AnchorController {
     public String anchorPictureList(final ModelMap model, @PathVariable Long anchorZoneId) {
         int currentPage = 1;
         int fetchSize = 9;
-        String url = "/anchor/picture/" + anchorZoneId + "/page";
-        anchorPictureCommon(model, anchorZoneId, currentPage, fetchSize, url);
+        anchorPictureCommon(model, anchorZoneId, currentPage, fetchSize, "");
         return "/view/anchor/anchor-picture-list.html";
     }
 
     @RequestMapping(value = "/anchor/picture/{anchorZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
-    public String anchorPictureList(HttpServletRequest request, final ModelMap model, @PathVariable Long anchorZoneId, @PathVariable Integer currentPage) {
+    public String anchorPictureList(final ModelMap model, @PathVariable Long anchorZoneId, @PathVariable Integer currentPage) {
         int fetchSize = 9;
-        String url = PageUtils.getPageUrl(request);
-        anchorPictureCommon(model, anchorZoneId, currentPage, fetchSize, url);
+        anchorPictureCommon(model, anchorZoneId, currentPage, fetchSize, "");
         return "/view/anchor/anchor-picture-list.html";
     }
 
     private void anchorPictureCommon(ModelMap model, Long anchorZoneId, int currentPage, int fetchSize, String url) {
-        model.put("anchorZone", anchorWebService.findAnchorById(anchorZoneId));
-        model.put("anchorPictureList", new FindResultToSale(anchorWebService.anchorPictureList(anchorZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), anchorWebService.anchorPictureListSize(anchorZoneId), currentPage, fetchSize, url));
+        model.put("anchorZone", anchorWebService.findAnchorZoneWebById(anchorZoneId));
+        model.put("anchorPictureList", new FindResultToMobile(anchorWebService.anchorPictureList(anchorZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
         model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(anchorZoneId, 0, 10));
         model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
         model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));

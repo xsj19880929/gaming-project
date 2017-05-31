@@ -51,7 +51,7 @@
         <uiobject fieldName="visitCount" nullAble="false">
             <expression><![CDATA[1]]></expression>
         </uiobject>
-        <uiobject fieldName="titleImage">
+        <uiobject fieldName="titleImage" nullAble="false">
             <expression>
                 <![CDATA["http://image.diyiyou.com/"+$KEYVAL($JSONFMT($ARRAY(jsonArr,row)),"img")]]></expression>
         </uiobject>
