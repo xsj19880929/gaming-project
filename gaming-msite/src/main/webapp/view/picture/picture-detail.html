@@ -2,157 +2,76 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
+    <meta content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta http-equiv="Cache-Control" content="max-age=3600"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <title>美图详情页</title>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/gp.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/VSEC.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/swiper.min.css"/>
+    <link rel="stylesheet" th:href="/static/css/img_article.css"/>
     <script type="text/javascript" th:src="/static/js/jquery.js"></script>
-    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
-    <title th:text="${picture.seoTitle}+'_'+${siteName}">标题</title>
-    <meta name="keywords" content="关键字" th:attr="content=${picture.seoKeywords}"/>
-    <meta name="description"
-          content="描述" th:attr="content=${picture.seoDescription}"/>
+    <script type="text/javascript" th:src="/static/js/wcgp.js"></script>
+    <script type="text/javascript" th:src="/static/js/swiper.min.js"></script>
 </head>
 
 <body>
-<!--线上的top内容,这个仅放截图-->
-<div th:replace="/head.html::top('picture')"></div>
-<div class="general">
-    <!--面包屑-->
-    <div class="position"><a th:href="/">电竞首页</a>&gt;<a th:href="/picture/">竞技美图</a>&gt;<em
-            th:text="${picture.description}">不惧走光！韩国美女主播超短裙直播蹲起训练</em>
-    </div>
-    <!--图片展示-->
-    <div class="pic_detail_con">
-        <div class="pic_detail_tit" th:text="${picture.description}">不惧走光！韩国美女主播超短裙直播蹲起训练 (<em>2</em>/35)</div>
-        <div class="pic_detail_writer">
-            <dl>
-                <dd><span th:text="${#calendars.format(picture.createTime, 'yyyy-MM-dd HH:mm')}">2015-02-03 10:23</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来源：<a
-                        th:href="${baseUrl}" href="http://www.55djw.com"
-                        th:text="${picture.source}">琵琶网</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </dd>
-                <dt><span>分享到：</span>
-                <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a> <a title="分享到QQ空间"
-                                                                                                   href="#"
-                                                                                                   class="bds_qzone"
-                                                                                                   data-cmd="qzone"></a>
-                    <a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a> <a title="分享到腾讯微博" href="#"
-                                                                                           class="bds_tqq"
-                                                                                           data-cmd="tqq"></a> <a
-                            title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a> <a title="分享到微信" href="#"
-                                                                                                 class="bds_weixin"
-                                                                                                 data-cmd="weixin"></a>
-                </div>
-                <script>
-                    window._bd_share_config = {
-                        "common": {
-                            "bdSnsKey": {},
-                            "bdText": "",
-                            "bdMini": "2",
-                            "bdPic": "",
-                            "bdStyle": "0",
-                            "bdSize": "16"
-                        }, "share": {}
-                    };
-                    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
-                </script>
-                </dt>
-            </dl>
-        </div>
-        <div class="container">
-            <div class="content">
-                <div id="rg-gallery" class="rg-gallery">
-                    <div class="rg-thumbs">
-                        <div class="es-carousel-wrapper">
-                            <div class="es-nav">
-                                <span class="es-nav-prev"></span>
-                                <span class="es-nav-next"></span>
-                            </div>
-                            <div class="es-carousel">
-                                <ul>
-                                    <li th:each="pictureDetail:${picture.pictureDetailList}"><a href="#"><img
-                                            th:attr="src=${imageServer}+'/image/100x93'+${pictureDetail.image},data-large=${imageServer}+'/image/623x565'+${pictureDetail.image},data-description=${pictureDetail.description},alt=${pictureDetail.description}"
-                                            src="/static/temp/detail01.jpg" data-large="/static/temp/detail01.jpg"
-                                            alt="image01"
-                                            data-description="许允美是韩国著名的美女主播和车模。她是韩国直播平台Afreeca的著名BJ之一，拥有魔鬼身材和漂亮脸蛋的她有很多粉丝。许允美也经常出现在游戏展中，曾连续五年出席G-star，每次都会成为会场的焦点。"/></a><em></em>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript" th:src="/static/js/picjs/jquery.tmpl.min.js"></script>
-            <script type="text/javascript" th:src="/static/js/picjs/jquery.elastislide.js"></script>
-            <script type="text/javascript" th:src="/static/js/picjs/gallery.js"></script>
-        </div>
-    </div>
-    <!--猜你喜欢-->
-    <div class="pic_like">
-        <div class="index_tit_two title"><span class="text_left">猜你喜欢</span></div>
-        <ul class="pic_like_con">
-            <li th:each="pictureLike:${pictureLikeList}">
-                <a href="#">
-                    <p class="p1"><img src="/static/temp/girl1.jpg" th:img-src="/image/280x178${pictureLike.image}"
-                                       th:alt="${pictureLike.description}" th:title="${pictureLike.description}"/>
-                    </p>
-                    <p class="p2" th:text="${pictureLike.description}">LOL日服配音CV表 满满都是回忆你认识几个？</p>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!--热门美图-->
-    <div class="pic_like">
-        <div class="index_tit_two title"><span class="text_left">热门美图</span></div>
-        <ul class="pic_like_con">
-            <li th:each="pictureTop:${pictureTopList}">
-                <a href="#" th:href="/picture/${pictureTop.id}.html" th:title="${pictureTop.description}">
-                    <p class="p1"><img src="/static/temp/girl1.jpg" th:img-src="/image/280x178${pictureTop.image}"
-                                       th:alt="${pictureTop.description}" th:title="${pictureTop.description}"/>
-                    </p>
-                    <p class="p2" th:text="${pictureTop.description}">LOL日服配音CV表 满满都是回忆你认识几个？</p>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div th:replace="/comment.html::comment(${picture.id},${picture.description},${currentUrl})"></div>
+<!--头部1-->
+<header th:replace="/head.html::top"></header>
+<!--导航1-->
+<div th:replace="/head.html::nav('picture')"></div>
 
+<!--图片详情页-->
+<div class="wcgp-pic-tit">
+    <a href="javascript:history.go(-1);"></a>
+    <p class="p1" th:text="${picture.description}">画江湖之不良人真人cos 另类的cosplay</p>
+    <p class="p2"><span>1</span>/9</p>
 </div>
-<noscript>
-    <style>
-        .es-carousel ul {
-            display: block;
-        }
-    </style>
-</noscript>
-<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">
-	<div class="rg-image-wrapper">
-		{{if itemsCount > 1}}
-			<div class="rg-image-nav">
-				<a href="#" class="rg-image-nav-prev"></a>
-				<a href="#" class="rg-image-nav-next"></a>
-			</div>
-		{{/if}}
-		<div class="rg-image"></div>
-		<div class="rg-caption-wrapper">
-			<div class="rg-caption" style="display:none;">
-				<p></p>
-			</div>
-		</div>
-	</div>
 
+<!-- Swiper -->
+<div class="swiper-container nomargin">
+    <div class="swiper-wrapper">
+        <div rel="1" class="swiper-slide" th:each="pictureDetail,iterStat:${picture.pictureDetailList}"
+             th:attr="rel=${iterStat.index+1}"><img
+                th:img-src="${pictureDetail.image}"></div>
+    </div>
+    <div class="wcgp-pic-p">
+        <div class="wcgp-pic-banner-p">
+            <p th:text="${picture.description}">
+                画江湖之不良人之真人cosplay，这是小编见过最恶搞，最好笑的真人cosplay，哈哈哈哈哈哈哈！笑疯了！这还原度小编给满分！</p>
+        </div>
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
 
+<!-- Swiper JS -->
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 30
+    });
 
-
-
-
-
-
-
-
-
-
-
-
+    $(".swiper-button-next,.swiper-button-prev").click(function () {
+        var a = $(".swiper-slide-active").attr("rel");
+        $(".wcgp-pic-tit .p2 span").text(a);
+    });
 </script>
-<div th:replace="/bottom.html::bottom"></div>
+
+
+<!--评论内容-->
+<div th:replace="/comment.html::comment(${picture.id},${picture.description},${currentUrl})"></div>
+
+<!--底部导航-->
+<nav th:replace="/bottom.html::footerNav"></nav>
+<!--底部-->
+<footer th:replace="/bottom.html::footer"></footer>
 </body>
 </html>
