@@ -229,13 +229,16 @@ public class GameController {
     }
 
     @RequestMapping(value = "/game/team/{matchZoneId}/", method = RequestMethod.GET)
-    public String gameTeamList(HttpServletRequest request, final ModelMap model, @PathVariable Long matchZoneId) {
+    public String gameTeamList(final ModelMap model, @PathVariable Long matchZoneId) {
+        int fetchSize = 20;
+        MatchTeamMappingRequest matchTeamMappingRequest = new MatchTeamMappingRequest();
+        matchTeamMappingRequest.setMatchZoneId(matchZoneId);
         model.put("matchZone", gameWebService.findById(matchZoneId));
-        model.put("matchTeamList", gameWebService.listMatchTeamByMatchZoneId(matchZoneId));
+        model.put("matchTeamList", new FindResultToMobile(gameWebService.listMatchTeamByMatchTeamMapping(matchTeamMappingRequest, 0, fetchSize), fetchSize, ""));
         return "/view/game/game-team-list.html";
     }
 
-    @RequestMapping(value = "/game/teamList", method = RequestMethod.GET)
+    @RequestMapping(value = "/game/teamList", method = RequestMethod.POST)
     @ResponseBody
     public FindResultMoreToAjax gameTeamListAjax(@RequestBody MatchTeamMappingRequest matchTeamMappingRequest, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
         return new FindResultMoreToAjax(gameWebService.listMatchTeamByMatchTeamMapping(matchTeamMappingRequest, offset, fetchSize), ajaxGetTemplateService.getHtmlTemplate(matchTeamMappingRequest.getTemplateName()));

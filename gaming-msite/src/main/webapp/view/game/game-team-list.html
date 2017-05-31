@@ -24,24 +24,26 @@
 
     </div>
     <div class="takeItemContent">
-        <ul>
-            <li th:each="matchTeam:${matchTeamList}"><a href=""><img th:alt="${matchTeam.name}"
-                                                                     th:title="${matchTeam.name}"
-                                                                     th:img-src="/image/182x137${matchTeam.icoImage}">MVP
-            </a></li>
+        <ul id="newsListData">
+            <li th:each="matchTeam:${matchTeamList.list}"><img th:alt="${matchTeam.name}"
+                                                               th:title="${matchTeam.name}"
+                                                               th:img-src="/image/182x137${matchTeam.icoImage}">MVP
+            </li>
         </ul>
     </div>
 </div>
 <!--加载更多-->
-<div class="footer-more" span
-     style="
-      display: flex;
-    justify-content: center;
-    border-bottom: 1px solid #ccc;
-    padding: 4% 0;"
->
-    <a style="color: #808080; font-size: 13px;" href="">加载更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
-                                                                  alt="加载更多"></a>
+<div class="footer-more more-other" id="loadMore" th:if="${#lists.size(matchTeamList.list)>=matchTeamList.fetchSize}">
+    <a style="color: #808080; font-size: 13px;" href="javascript:;" onclick="getNewsList()">加载更多 <img
+            style="width: 16%;"
+            th:src="/static/img/morejt.png"
+            alt="加载更多"></a>
+</div>
+<div id="loadMoreCondition" style="display:none">
+    <input type="hidden" id="offset" name="offset" th:value="${matchTeamList.fetchSize}">
+    <input type="hidden" id="fetchSize" name="fetchSize" th:value="${matchTeamList.fetchSize}">
+    <input type="hidden" id="matchZoneId" name="matchZoneId" th:value="${matchZone.id}">
+    <input type="hidden" id="templateName" name="templateName" value="game-team-list-template.html">
 </div>
 <!--底部导航-->
 <nav th:replace="/bottom.html::footerNav"></nav>
@@ -52,5 +54,8 @@
 <script type="text/javascript" th:src="/static/js/jquery.js"></script>
 <script type="text/javascript" th:src="/static/js/wcgp.js"></script>
 <script th:src="/static/js/zdItm.js"></script>
+<script type="text/javascript" th:src="/static/js/game/game-team-list.js"></script>
+<script type="text/javascript" th:src="/static/js/layer/layer.js"></script>
+<script type="text/javascript" th:src="/static/js/main.js"></script>
 </body>
 </html>
