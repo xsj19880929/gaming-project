@@ -73,9 +73,6 @@ public class PictureController {
     public String findById(final ModelMap model, @PathVariable Long id) {
         Picture picture = pictureWebService.findById(id);
         model.put("picture", picture);
-        model.put("pictureTopList", pictureWebService.pictureListTop(0, 10));
-        model.put("pictureLikeList", pictureWebService.likePictureList(picture, 5));
-        model.put("imageServer", env.getProperty("out.image.downloadUrl"));
         pictureService.updateVisitCount(id); //点击
         return "/view/picture/picture-detail.html";
     }
