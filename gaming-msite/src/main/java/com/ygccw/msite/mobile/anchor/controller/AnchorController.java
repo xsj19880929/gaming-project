@@ -7,14 +7,12 @@ import com.ygccw.msite.mobile.anchor.model.AnchorZoneWeb;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
 import com.ygccw.msite.mobile.common.model.HtmlTemplate;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
-import com.ygccw.msite.mobile.info.model.InfoWeb;
 import com.ygccw.msite.mobile.video.service.VideoWebService;
 import com.ygccw.msite.utils.PageUtils;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
-import com.ygccw.wechat.common.zone.entity.MatchZone;
 import com.ygccw.wechat.common.zone.service.AnchorZoneService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -47,7 +45,7 @@ public class AnchorController {
     @RequestMapping(value = "/anchor/", method = RequestMethod.GET)
     public String anchorList(final ModelMap model) {
         AnchorZone anchorZone = new AnchorZone();
-        int fetchSize = 20;
+        int fetchSize = 12;
         model.put("pageFlag", "new");
         model.put("anchorZoneList", new FindResultToMobile(anchorWebService.findAnchorZoneNew(anchorZone, 0, fetchSize), fetchSize, ""));
         model.put("anchorZonePlatformList", anchorWebService.listAnchorZonePlatform());
@@ -76,7 +74,7 @@ public class AnchorController {
         if (platformId != 0) {
             anchorZone.setPlatformId(platformId);
         }
-        int fetchSize = 20;
+        int fetchSize = 12;
         model.put("pageFlag", "new");
         model.put("anchorZoneList", new FindResultToMobile(anchorWebService.findAnchorZoneNew(anchorZone, 0, fetchSize), fetchSize, ""));
         model.put("anchorZonePlatformList", anchorWebService.listAnchorZonePlatform());
@@ -90,7 +88,7 @@ public class AnchorController {
         if (platformId != 0) {
             anchorZone.setPlatformId(platformId);
         }
-        int fetchSize = 20;
+        int fetchSize = 12;
         model.put("pageFlag", "top");
         model.put("anchorZoneList", new FindResultToMobile(anchorWebService.findAnchorZoneNew(anchorZone, 0, fetchSize), fetchSize, ""));
         model.put("anchorZonePlatformList", anchorWebService.listAnchorZonePlatform());
@@ -101,8 +99,6 @@ public class AnchorController {
     @RequestMapping(value = "/anchor/{id}/", method = RequestMethod.GET)
     public String findById(final ModelMap model, @PathVariable Long id) {
         model.put("anchorZone", anchorWebService.findAnchorZoneWebById(id));
-        model.put("anchorMatchZoneList", anchorWebService.listMatchZoneListByAnchorZoneId(id));
-        model.put("anchorZoneHonorList", anchorWebService.listAnchorZoneHonorByAnchorZoneId(id));
         model.put("anchorNewsList", anchorWebService.listInfoNewsAndTagByAnchorZoneId(id, 0, 4));
         model.put("anchorVideoList", anchorWebService.listInfoVideoByAnchorZoneId(id, 0, 4));
         model.put("anchorPictureList", anchorWebService.listPictureByAnchorZoneId(id, 0, 4));
@@ -130,17 +126,6 @@ public class AnchorController {
         model.put("anchorNewsList", new FindResultToMobile(anchorWebService.listInfoNewsAndTagByAnchorZoneId(anchorZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
     }
 
-    @RequestMapping(value = "/anchor/news/{id}.html", method = RequestMethod.GET)
-    public String findAnchorNews(final ModelMap model, @PathVariable Long id) {
-        InfoWeb info = anchorWebService.findInfoById(id);
-        model.put("info", info);
-        model.put("anchorZone", anchorWebService.findAnchorZoneWebById(info.getZoneId()));
-        model.put("pictureTopList", anchorWebService.pictureListTop(0, 6));
-        model.put("likeInfoList", anchorWebService.likeInfoList(info, 10));
-        infoService.updateVisitCount(id);
-        return "/view/anchor/anchor-news-detail.html";
-    }
-
     @RequestMapping(value = "/anchor/video/{anchorZoneId}/", method = RequestMethod.GET)
     public String anchorVideoList(final ModelMap model, @PathVariable Long anchorZoneId) {
         int currentPage = 1;
@@ -164,33 +149,18 @@ public class AnchorController {
         model.put("anchorVideoList", new FindResultToMobile(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
     }
 
-    @RequestMapping(value = "/anchor/video/{id}.html", method = RequestMethod.GET)
-    public String findAnchorVideo(final ModelMap model, @PathVariable Long id) {
-        InfoWeb info = anchorWebService.findInfoById(id);
-        model.put("info", info);
-        model.put("anchorZone", anchorWebService.findAnchorZoneWebById(info.getZoneId()));
-        model.put("pictureTopList", anchorWebService.pictureListTop(0, 6));
-        model.put("likeInfoList", anchorWebService.likeInfoList(info, 10));
-        model.put("nextInfo", anchorWebService.nextInfo(info));
-        model.put("lastInfo", anchorWebService.lastInfo(info));
-        model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(info.getZoneId(), 0, 10));
-        model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
-        model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
-        infoService.updateVisitCount(id);
-        return "/view/anchor/anchor-video-detail.html";
-    }
 
     @RequestMapping(value = "/anchor/picture/{anchorZoneId}/", method = RequestMethod.GET)
     public String anchorPictureList(final ModelMap model, @PathVariable Long anchorZoneId) {
         int currentPage = 1;
-        int fetchSize = 9;
+        int fetchSize = 12;
         anchorPictureCommon(model, anchorZoneId, currentPage, fetchSize, "");
         return "/view/anchor/anchor-picture-list.html";
     }
 
     @RequestMapping(value = "/anchor/picture/{anchorZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
     public String anchorPictureList(final ModelMap model, @PathVariable Long anchorZoneId, @PathVariable Integer currentPage) {
-        int fetchSize = 9;
+        int fetchSize = 12;
         anchorPictureCommon(model, anchorZoneId, currentPage, fetchSize, "");
         return "/view/anchor/anchor-picture-list.html";
     }
@@ -198,9 +168,6 @@ public class AnchorController {
     private void anchorPictureCommon(ModelMap model, Long anchorZoneId, int currentPage, int fetchSize, String url) {
         model.put("anchorZone", anchorWebService.findAnchorZoneWebById(anchorZoneId));
         model.put("anchorPictureList", new FindResultToMobile(anchorWebService.anchorPictureList(anchorZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
-        model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(anchorZoneId, 0, 10));
-        model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
-        model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
     }
 
 }

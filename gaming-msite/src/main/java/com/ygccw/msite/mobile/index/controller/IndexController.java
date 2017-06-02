@@ -27,13 +27,9 @@ public class IndexController {
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(final ModelMap model) {
-        model.put("matchZoneList", indexWebService.findRecommendMatchZone());
         model.put("advImageList", indexWebService.findAdvertising(5));
         model.put("matchZoneNewList", indexWebService.findMatchZone());
-        model.put("infoTradeList", indexWebService.findTradeInfo());
         model.put("infoNewestList", indexWebService.findNewestInfoByInfoType(InfoType.news, 5));
-        model.put("infoMatchZoneList", indexWebService.findMatchZoneInfo());
-        model.put("infoAnchorZoneList", indexWebService.findAnchorZoneInfo());
         model.put("anchorZoneList", indexWebService.findAnchorZone());
         model.put("matchZoneVideoList", indexWebService.findMatchZoneVideo());
         model.put("infoMatchZoneVideoListAll", indexWebService.findMatchZoneVideoVideoInfoList(4));
@@ -43,6 +39,7 @@ public class IndexController {
         model.put("matchZoneTopList", indexWebService.findTopMatchZoneList());
         model.put("pictureList", indexWebService.findNewestPictureList());
         model.put("recommendInfoList", indexWebService.findRecommendInfo(2));
+        model.put("linkList", indexWebService.listLink(10));
         return "/index.html";
     }
 

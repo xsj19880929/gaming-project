@@ -11,6 +11,9 @@ import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.enums.InfoVideoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
+import com.ygccw.wechat.common.link.entity.Link;
+import com.ygccw.wechat.common.link.enums.SiteType;
+import com.ygccw.wechat.common.link.service.LinkService;
 import com.ygccw.wechat.common.picture.entity.Picture;
 import com.ygccw.wechat.common.picture.service.PictureService;
 import com.ygccw.wechat.common.recommend.entity.RecommendMapping;
@@ -64,6 +67,8 @@ public class IndexWebService {
     private TagMappingService tagMappingService;
     @Inject
     private TagsService tagsService;
+    @Inject
+    private LinkService linkService;
 
     public List<MatchZoneWeb> findRecommendMatchZone() {
         List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.index, RecommendType.matchZone, 0, 4);
@@ -90,7 +95,7 @@ public class IndexWebService {
 
     public List<MatchZone> findMatchZone() {
         MatchZone matchZone = new MatchZone();
-        return matchZoneService.list(matchZone, 0, 3);
+        return matchZoneService.list(matchZone, 0, 4);
     }
 
     public List<Info> findNewestInfo(int number) {
@@ -153,7 +158,7 @@ public class IndexWebService {
     }
 
     public List<AnchorZone> findAnchorZone() {
-        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.index, RecommendType.anchorZone, 0, 2);
+        List<RecommendMapping> recommendMappingList = recommendMappingService.listByLocalAndType(RecommendLocal.index, RecommendType.anchorZone, 0, 4);
         List<AnchorZone> anchorZoneList = new ArrayList<>();
         for (RecommendMapping recommendMapping : recommendMappingList) {
             AnchorZone anchorZone = anchorZoneService.findById(recommendMapping.getEntityId());
@@ -398,6 +403,13 @@ public class IndexWebService {
         info.setSortIfDesc(true);
         info.setSortName("publishTime");
         return infoService.list(info, 0, number);
+    }
+
+    //友情链接
+    public List<Link> listLink(int number) {
+        Link link = new Link();
+        link.setSiteType(SiteType.m);
+        return linkService.list(link, 0, number);
     }
 
 

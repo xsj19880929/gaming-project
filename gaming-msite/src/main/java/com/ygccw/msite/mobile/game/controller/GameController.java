@@ -8,7 +8,6 @@ import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
 import com.ygccw.msite.mobile.game.model.GameRequest;
 import com.ygccw.msite.mobile.game.model.MatchTeamMappingRequest;
 import com.ygccw.msite.mobile.game.service.GameWebService;
-import com.ygccw.msite.mobile.info.model.InfoWeb;
 import com.ygccw.msite.mobile.video.service.VideoWebService;
 import com.ygccw.msite.utils.PageUtils;
 import com.ygccw.wechat.common.info.entity.Info;
@@ -73,7 +72,7 @@ public class GameController {
     @RequestMapping(value = "/game_new/{matchZoneYearId}/{matchZoneAreaId}/{matchStatusStr}_{currentPage}.html", method = RequestMethod.GET)
     public String selectGameList(final ModelMap model, @PathVariable Long matchZoneYearId, @PathVariable Long matchZoneAreaId, @PathVariable String matchStatusStr, @PathVariable Integer currentPage) {
         MatchZone matchZone = common(model, matchZoneYearId, matchZoneAreaId, matchStatusStr);
-        int fetchSize = 20;
+        int fetchSize = 5;
         model.put("matchZoneList", new FindResultToMobile(gameWebService.findMatchZoneNew(matchZone, 0, fetchSize), fetchSize, ""));
         return "/view/game/game-list.html";
     }
@@ -81,7 +80,7 @@ public class GameController {
     @RequestMapping(value = "/game_top/{matchZoneYearId}/{matchZoneAreaId}/{matchStatusStr}_{currentPage}.html", method = RequestMethod.GET)
     public String selectGameListTop(final ModelMap model, @PathVariable Long matchZoneYearId, @PathVariable Long matchZoneAreaId, @PathVariable String matchStatusStr, @PathVariable Integer currentPage) {
         MatchZone matchZone = common(model, matchZoneYearId, matchZoneAreaId, matchStatusStr);
-        int fetchSize = 20;
+        int fetchSize = 5;
         model.put("matchZoneList", new FindResultToMobile(gameWebService.findMatchZoneNew(matchZone, 0, fetchSize), fetchSize, ""));
         return "/view/game/game-list.html";
     }
@@ -145,22 +144,6 @@ public class GameController {
         model.put("newsList", new FindResultToMobile(gameWebService.listInfoNewsAndTag(matchZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
     }
 
-    @RequestMapping(value = "/game/news/{newsId}.html", method = RequestMethod.GET)
-    public String gameNews(final ModelMap model, @PathVariable Long newsId) {
-        MatchZone matchZone = new MatchZone();
-        InfoWeb infoWeb = gameWebService.findInfoById(newsId);
-        model.put("info", infoWeb);
-        model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
-        model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
-        model.put("pictureTopList", gameWebService.pictureListTop(0, 6));
-        model.put("likeInfoList", gameWebService.likeInfoList(infoWeb, 10));
-        model.put("nextInfo", gameWebService.nextInfo(infoWeb));
-        model.put("lastInfo", gameWebService.lastInfo(infoWeb));
-        model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 2));
-        model.put("matchZone", gameWebService.findById(infoWeb.getZoneId()));
-        infoService.updateVisitCount(newsId);
-        return "/view/game/game-news-detail.html";
-    }
 
     @RequestMapping(value = "/game/video/{matchZoneId}/", method = RequestMethod.GET)
     public String gameVideoList(final ModelMap model, @PathVariable Long matchZoneId) {
@@ -211,22 +194,6 @@ public class GameController {
         model.put("matchPictureList", new FindResultToMobile(gameWebService.gamePictureList(matchZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
     }
 
-    @RequestMapping(value = "/game/video/{id}.html", method = RequestMethod.GET)
-    public String gameVideo(final ModelMap model, @PathVariable Long id) {
-        MatchZone matchZone = new MatchZone();
-        InfoWeb infoWeb = gameWebService.findInfoById(id);
-        model.put("info", infoWeb);
-        model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
-        model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
-        model.put("pictureTopList", gameWebService.pictureListTop(0, 6));
-        model.put("likeInfoList", gameWebService.likeInfoList(infoWeb, 10));
-        model.put("nextInfo", gameWebService.nextInfo(infoWeb));
-        model.put("lastInfo", gameWebService.lastInfo(infoWeb));
-        model.put("matchZoneListTop", gameWebService.findMatchZoneTop(matchZone, 0, 2));
-        model.put("matchZone", gameWebService.findById(infoWeb.getZoneId()));
-        infoService.updateVisitCount(id);
-        return "/view/game/game-video-detail.html";
-    }
 
     @RequestMapping(value = "/game/team/{matchZoneId}/", method = RequestMethod.GET)
     public String gameTeamList(final ModelMap model, @PathVariable Long matchZoneId) {

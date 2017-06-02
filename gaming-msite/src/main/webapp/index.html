@@ -124,7 +124,7 @@
         </ul>
     </div>
     <div class="video-play videoPlay1" th:each="infoMatchZoneVideoList,iterStatAll:${infoMatchZoneVideoListAll}"
-         th:style="${iterStatAll.index==0?'display: none':'display: block'}">
+         th:style="${iterStatAll.index==0?'display: block':'display: none'}">
         <ul>
             <li th:each="info,iterStat:${infoMatchZoneVideoList}">
                 <a th:href="/video/${info.id}.html" th:title="${info.title}">
@@ -261,15 +261,10 @@
 
 
 <!--友情链接-->
-<div class="wcgp-news-box wcgp-link-box">
+<div class="wcgp-news-box wcgp-link-box" th:unless="${#lists.isEmpty(linkList)}">
     <div class="wcgp-news-tit wcgp-link-tit">友情链接</div>
     <div class="wcgp-link-con">
-        <a href="#">手游排行榜</a>
-        <a href="#">统一手机站</a>
-        <a href="#">单机游戏下载</a>
-        <a href="#">安卓游戏下载</a>
-        <a href="#">下载之家</a>
-        <a href="#">点点软件园</a>
+        <a href="#" th:each="link:${linkList}" th:text="${link.siteName}" th:href="${link.url}">手游排行榜</a>
     </div>
 </div>
 
