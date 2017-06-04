@@ -9,7 +9,7 @@ function getNewsList() {
         type: "POST",
         contentType: 'application/json',
         data: JSON.stringify(postData),
-        url: "/picture/list?offset=" + postData.offset,
+        url: "/picture/list?offset=" + postData.offset + "&fetchSize=" + postData.fetchSize,
         success: function (data) {
             if (data.list.length > 0) {
                 $("#offset").val(Number(postData.offset) + Number(postData.fetchSize));

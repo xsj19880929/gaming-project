@@ -1,5 +1,6 @@
 package com.ygccw.crawler.common;
 
+import com.google.common.io.Resources;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.dom4j.Document;
@@ -27,13 +28,14 @@ class Records {
 public class TemplateUtil {
     private static HashMap<String, JSONObject> extractionRules = new HashMap<String, JSONObject>();
 
-//    public static void main(String[] args) {
+    public static void main(String[] args) {
 //        String a = "<p>蚕豆网LOL交流群：148788322(点击加入)</p>";
 //
 //        a = a.replaceAll("<p>蚕豆网([\\u4E00-\\u9FA5]|\\w)+?交流群：\\d+?\\(点击加入\\)</p>", "11");
 //
 //        System.out.println(a);
-//    }
+        LoadXML();
+    }
 
     public static JSONObject getExtractionRules(String pageType) {
         if (extractionRules == null || extractionRules.isEmpty()) {
@@ -48,10 +50,11 @@ public class TemplateUtil {
 
     private static void LoadXML() {
         try {
-            URL url = TemplateUtil.class.getProtectionDomain().getCodeSource().getLocation();
+            URL url = Resources.getResource("tpl");
+//            URL url = TemplateUtil.class.getProtectionDomain().getCodeSource().getLocation();
             String path = url.toString();
-            int index = path.indexOf("classes");
-            path = path.substring(0, index);
+//            int index = path.indexOf("classes");
+//            path = path.substring(0, index);
             if (path.startsWith("file")) {
                 path = path.substring(6);
             }
@@ -59,7 +62,7 @@ public class TemplateUtil {
                 path = "/" + path;
             }
             // System.out.println("模板路径：" + path + "classes/tpl");
-            File dir = new File(path + "resources/main/tpl");
+            File dir = new File(path);
 //            File dir = new File(path + "classes/tpl");
             if (dir.exists()) {
                 File[] files = dir.listFiles();

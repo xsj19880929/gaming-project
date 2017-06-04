@@ -232,7 +232,7 @@
         <div class="wcgp-picc-left" th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==0}">
             <a href="#" th:href="/picture/${picture.id}.html"
                th:title="${picture.description}">
-                <img th:img-src="/image/280x210${picture.image}" th:alt="${picture.description}"
+                <img th:img-src="/image/300x455${picture.image}" th:alt="${picture.description}"
                      th:title="${picture.description}">
                 <p th:text="${picture.description}">萌死人不偿命 阴阳师手游式神最萌COS</p>
             </a>
@@ -241,7 +241,7 @@
             <div class="wcgp-picc-right-pic" th:each="picture,iterStat:${pictureList}" th:if="${iterStat.index==1}">
                 <a href="#" th:href="/picture/${picture.id}.html"
                    th:title="${picture.description}">
-                    <img th:img-src="/image/280x102${picture.image}" th:alt="${picture.description}"
+                    <img th:img-src="/image/300x194${picture.image}" th:alt="${picture.description}"
                          th:title="${picture.description}">
                     <p th:text="${picture.description}">萌死人不偿命 阴阳师手游式神最萌COS</p>
                 </a>
@@ -250,7 +250,7 @@
                  th:if="${iterStat.index==2}">
                 <a href="#" th:href="/picture/${picture.id}.html"
                    th:title="${picture.description}">
-                    <img th:img-src="/image/280x102${picture.image}" th:alt="${picture.description}"
+                    <img th:img-src="/image/300x194${picture.image}" th:alt="${picture.description}"
                          th:title="${picture.description}">
                     <p th:text="${picture.description}">萌死人不偿命 阴阳师手游式神最萌COS</p>
                 </a>
@@ -286,7 +286,6 @@
     });
 </script>
 <script type="text/javascript" src="static/js/jquery.js" th:src="static/js/jquery.js"></script>
-<script type="text/javascript" src="static/js/wcgp.js" th:src="static/js/wcgp.js"></script>
 <script type="text/javascript" src="static/js/ProjectHome.js" th:src="static/js/ProjectHome.js"></script>
 </body>
 </html>

@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" th:href="/static/css/swiper.min.css"/>
     <link rel="stylesheet" th:href="/static/css/img_article.css"/>
     <script type="text/javascript" th:src="/static/js/jquery.js"></script>
-    <script type="text/javascript" th:src="/static/js/wcgp.js"></script>
     <script type="text/javascript" th:src="/static/js/swiper.min.js"></script>
 </head>
 
@@ -27,7 +26,7 @@
 <div class="wcgp-pic-tit">
     <a href="javascript:history.go(-1);"></a>
     <p class="p1" th:text="${picture.description}">画江湖之不良人真人cos 另类的cosplay</p>
-    <p class="p2"><span>1</span>/9</p>
+    <p class="p2" th:utext="'<span>1</span>/'+${#lists.size(picture.pictureDetailList)}"><span>1</span>/9</p>
 </div>
 
 <!-- Swiper -->

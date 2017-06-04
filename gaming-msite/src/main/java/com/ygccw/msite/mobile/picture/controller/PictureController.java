@@ -42,7 +42,7 @@ public class PictureController {
 
     @RequestMapping(value = "/picture/", method = RequestMethod.GET)
     public String pictureList(final ModelMap model) {
-        int fetchSize = 20;
+        int fetchSize = 6;
         model.put("pictureList", new FindResultToMobile(pictureWebService.pictureList(0, fetchSize), fetchSize, ""));
         return "/view/picture/picture-list.html";
     }
@@ -64,7 +64,7 @@ public class PictureController {
 
     @RequestMapping(value = "/picture_{currentPage}.html", method = RequestMethod.GET)
     public String pictureListPage(final ModelMap model, @PathVariable Integer currentPage) {
-        int fetchSize = 20;
+        int fetchSize = 6;
         model.put("pictureList", new FindResultToMobile(pictureWebService.pictureList(PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, ""));
         return "/view/picture/picture-list.html";
     }
@@ -79,7 +79,7 @@ public class PictureController {
 
     @RequestMapping(value = "/picture/tag/{tagId}_{currentPage}.html", method = RequestMethod.GET)
     public String tagList(HttpServletRequest request, final ModelMap model, @PathVariable Long tagId, @PathVariable Integer currentPage) {
-        int fetchSize = 20;
+        int fetchSize = 6;
         model.put("pictureList", new FindResultToSale(pictureWebService.pictureListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), pictureWebService.pictureListByTagIdSize(tagId), currentPage, fetchSize, PageUtils.getPageUrl(request)));
         model.put("tags", tagsService.findById(tagId));
         return "/view/picture/picture-tag-list.html";

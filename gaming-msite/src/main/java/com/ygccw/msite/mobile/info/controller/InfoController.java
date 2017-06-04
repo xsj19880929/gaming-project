@@ -48,7 +48,7 @@ public class InfoController {
 
     @RequestMapping(value = "/news/", method = RequestMethod.GET)
     public String list(final ModelMap model) {
-        int fetchSize = 20;
+        int fetchSize = 10;
         model.put("infoList", new FindResultToMobile(infoWebService.infoList(null, InfoZoneType.trade, TagZoneType.trade, 0, fetchSize), fetchSize, "/news_trade"));
         return "/view/news/news-list.html";
     }
@@ -71,22 +71,22 @@ public class InfoController {
 
     @RequestMapping(value = "/news_trade_{currentPage}.html", method = RequestMethod.GET)
     public String tradeList(final ModelMap model, @PathVariable Integer currentPage) {
-        int fetchSize = 9;
-        model.put("infoList", new FindResultToSale(infoWebService.infoList(null, InfoZoneType.trade, TagZoneType.trade, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), 20, currentPage, fetchSize, "/news_trade"));
+        int fetchSize = 10;
+        model.put("infoList", new FindResultToMobile(infoWebService.infoList(null, InfoZoneType.trade, TagZoneType.trade, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, "/news_trade"));
         return "/view/news/news-list.html";
     }
 
     @RequestMapping(value = "/news_match_{currentPage}.html", method = RequestMethod.GET)
     public String matchList(final ModelMap model, @PathVariable Integer currentPage) {
-        int fetchSize = 9;
-        model.put("infoList", new FindResultToSale(infoWebService.infoList(null, InfoZoneType.matchZone, TagZoneType.matchZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), 20, currentPage, fetchSize, "/news_match"));
+        int fetchSize = 10;
+        model.put("infoList", new FindResultToMobile(infoWebService.infoList(null, InfoZoneType.matchZone, TagZoneType.matchZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, "/news_match"));
         return "/view/news/news-list.html";
     }
 
     @RequestMapping(value = "/news_anchor_{currentPage}.html", method = RequestMethod.GET)
     public String anchorList(final ModelMap model, @PathVariable Integer currentPage) {
-        int fetchSize = 9;
-        model.put("infoList", new FindResultToSale(infoWebService.infoList(null, InfoZoneType.anchorZone, TagZoneType.anchorZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), 20, currentPage, fetchSize, "/news_anchor"));
+        int fetchSize = 10;
+        model.put("infoList", new FindResultToMobile(infoWebService.infoList(null, InfoZoneType.anchorZone, TagZoneType.anchorZone, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, "/news_anchor"));
         return "/view/news/news-list.html";
     }
 

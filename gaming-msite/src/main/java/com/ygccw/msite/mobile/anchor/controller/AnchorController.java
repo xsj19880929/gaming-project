@@ -85,6 +85,8 @@ public class AnchorController {
     @RequestMapping(value = "/anchor_top/findPlatformId/{platformId}_{currentPage}.html", method = RequestMethod.GET)
     public String selectAnchorListTop(final ModelMap model, @PathVariable Long platformId, @PathVariable Integer currentPage) {
         AnchorZone anchorZone = new AnchorZone();
+        anchorZone.setSortIfDesc(true);
+        anchorZone.setSortName("visitCount");
         if (platformId != 0) {
             anchorZone.setPlatformId(platformId);
         }

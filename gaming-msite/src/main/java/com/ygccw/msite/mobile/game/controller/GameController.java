@@ -2,7 +2,6 @@ package com.ygccw.msite.mobile.game.controller;
 
 import com.ygccw.msite.database.FindResultMoreToAjax;
 import com.ygccw.msite.database.FindResultToMobile;
-import com.ygccw.msite.database.FindResultToSale;
 import com.ygccw.msite.mobile.common.model.HtmlTemplate;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
 import com.ygccw.msite.mobile.game.model.GameRequest;
@@ -148,7 +147,7 @@ public class GameController {
     @RequestMapping(value = "/game/video/{matchZoneId}/", method = RequestMethod.GET)
     public String gameVideoList(final ModelMap model, @PathVariable Long matchZoneId) {
         int currentPage = 1;
-        int fetchSize = 12;
+        int fetchSize = 10;
         String url = "/game/video/" + matchZoneId + "/page";
         gameVideoListCommon(model, matchZoneId, currentPage, fetchSize, url);
         return "/view/game/game-video-list.html";
@@ -156,7 +155,7 @@ public class GameController {
 
     @RequestMapping(value = "/game/video/{matchZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
     public String gameVideoList(HttpServletRequest request, final ModelMap model, @PathVariable Long matchZoneId, @PathVariable Integer currentPage) {
-        int fetchSize = 12;
+        int fetchSize = 10;
         String url = PageUtils.getPageUrl(request);
         gameVideoListCommon(model, matchZoneId, currentPage, fetchSize, url);
         return "/view/game/game-video-list.html";
@@ -167,11 +166,7 @@ public class GameController {
         info.setInfoZoneType(InfoZoneType.matchZone);
         info.setZoneId(matchZoneId);
         model.put("matchZone", gameWebService.findById(matchZoneId));
-        model.put("matchVideoList", new FindResultToSale(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListSize(info), currentPage, fetchSize, url));
-        model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
-        model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
-        model.put("matchZoneListTop", gameWebService.findMatchZoneTop(new MatchZone(), 0, 2));
-        model.put("pictureTopList", gameWebService.pictureListTop(0, 6));
+        model.put("matchVideoList", new FindResultToMobile(videoWebService.videoList(info, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
     }
 
     @RequestMapping(value = "/game/picture/{matchZoneId}/", method = RequestMethod.GET)

@@ -50,7 +50,7 @@ public class VideoController {
 
     @RequestMapping(value = "/video/", method = RequestMethod.GET)
     public String videoList(final ModelMap model) {
-        int fetchSize = 20;
+        int fetchSize = 10;
         model.put("pageFlag", "new");
         model.put("anchorZoneList", videoWebService.anchorList(0, 30));
         model.put("matchZoneList", videoWebService.matchZoneList(0, 30));
@@ -84,7 +84,7 @@ public class VideoController {
     @RequestMapping(value = "/video_new/{infoVideoTypeStr}/{infoZoneTypeStr}/{zoneId}_{currentPage}.html", method = RequestMethod.GET)
     public String selectVideoList(final ModelMap model, @PathVariable String infoVideoTypeStr, @PathVariable String infoZoneTypeStr, @PathVariable Long zoneId, @PathVariable Integer currentPage) {
         Info info = common(model, infoVideoTypeStr, infoZoneTypeStr, zoneId);
-        int fetchSize = 20;
+        int fetchSize = 10;
         model.put("pageFlag", "new");
         model.put("videoList", new FindResultToMobile(videoWebService.videoList(info, 0, fetchSize), fetchSize, "publishTime"));
         return "/view/video/video-list.html";
@@ -93,7 +93,7 @@ public class VideoController {
     @RequestMapping(value = "/video_top/{infoVideoTypeStr}/{infoZoneTypeStr}/{zoneId}_{currentPage}.html", method = RequestMethod.GET)
     public String selectVideoListTop(final ModelMap model, @PathVariable String infoVideoTypeStr, @PathVariable String infoZoneTypeStr, @PathVariable Long zoneId, @PathVariable Integer currentPage) {
         Info info = common(model, infoVideoTypeStr, infoZoneTypeStr, zoneId);
-        int fetchSize = 16;
+        int fetchSize = 10;
         model.put("pageFlag", "top");
         model.put("videoList", new FindResultToMobile(videoWebService.videoListTop(info, 0, fetchSize), fetchSize, "visitCount"));
         return "/view/video/video-list.html";

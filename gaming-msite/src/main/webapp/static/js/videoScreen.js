@@ -5,9 +5,6 @@ window.onload = function () {
 //调用tab-img
     var TABIMG = new Tab('videoUl', 'li', 'gamelist');
     TABIMG.imgSrc();
-    //调用tab-border
-    var TABBORD = new Tab('tabUl', 'li', 'videoshow');
-    TABBORD.forIndx();
 };
 
 function Tab(oul, oli, odiv) {
