@@ -1330,6 +1330,12 @@ a:hover, a:active {
 .wcgp-pic-tit .p1 {
     line-height: 52px;
     margin-left: 26px;
+    float: left;
+    width: 75%;
+    height: 52px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .wcgp-pic-tit .p2 {

@@ -383,7 +383,7 @@ body {
 
 }
 
-.first-content .text-content .img-content img {
+.first-content .text-content img {
     width: 100%;
     max-width: 100%;
     display: block;
@@ -1644,7 +1644,7 @@ span.dian {
     height: 33%;
     position: absolute;
     top: 36%;
-    right: 200%;
+    right: 170%;
     background-color: #d3d3d3;
 }
 
