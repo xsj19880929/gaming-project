@@ -2,6 +2,7 @@ package com.ygccw.crawler.schedule.service;
 
 
 import com.ygccw.crawler.common.CalendarUtils;
+import com.ygccw.crawler.common.Constants;
 import com.ygccw.crawler.common.CrawlerBase;
 import com.ygccw.crawler.common.IKFunction;
 import com.ygccw.wechat.common.crawler.entity.CrCrawlTask;
@@ -35,9 +36,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -49,7 +48,6 @@ import java.util.concurrent.TimeUnit;
 public class InfoCrawlerService {
     private static final BlockingQueue<JSONObject> TASK_LIST = new LinkedBlockingQueue<>();
     private static final ConcurrentHashMap<String, Boolean> LAST_TASK = new ConcurrentHashMap<>();
-    private static final Set<String> INFO_UUID_SET = new HashSet();
     private final Logger logger = LoggerFactory.getLogger(InfoCrawlerService.class);
     @Inject
     private CrawlerBase crawlerBase;
@@ -135,8 +133,8 @@ public class InfoCrawlerService {
 //            }
 //        Info infoSelect = infoService.findByUuid(infoMap.get("uuid"));
 
-        if (!INFO_UUID_SET.contains(infoMap.get("uuid"))) {
-            INFO_UUID_SET.add(info.getUuid());//增加一条咨询加入静态变量中
+        if (!Constants.INFO_UUID_SET.contains(infoMap.get("uuid"))) {
+            Constants.INFO_UUID_SET.add(info.getUuid());//增加一条咨询加入静态变量中
             updateTask(infoMap, taskLast);
             infoService.saveOnly(info);
 
@@ -271,7 +269,7 @@ public class InfoCrawlerService {
 
     //将uuid放入静态变量中
     private synchronized void setUUidMem() {
-        if (INFO_UUID_SET.isEmpty()) {
+        if (Constants.INFO_UUID_SET.isEmpty()) {
             int offset = 0;
             int fetchSize = 1000;
             while (true) {
@@ -281,7 +279,7 @@ public class InfoCrawlerService {
                 }
                 for (Info info : infoList) {
                     if (StringUtils.hasText(info.getUuid())) {
-                        INFO_UUID_SET.add(info.getUuid());
+                        Constants.INFO_UUID_SET.add(info.getUuid());
                     }
                 }
                 offset = offset + fetchSize;

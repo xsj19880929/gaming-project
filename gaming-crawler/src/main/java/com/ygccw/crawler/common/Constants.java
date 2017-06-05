@@ -1,5 +1,8 @@
 package com.ygccw.crawler.common;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Constants {
     public static final int CONNECTION_TIMEOUT = 50000;
     public static final int SO_TIMEOUT = 50000;
@@ -40,6 +43,7 @@ public class Constants {
     public static final String URL_TYPE_ARTICLE_TEST = "http://www.autohome.com.cn/${1}/3/0-0-1-0/";
     public static final String TPLNAME = "templeName";
     public static final String URL = "url";
+    public static final Set<String> INFO_UUID_SET = new HashSet();
     public static String JAVA_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     public static String DATE_FORMAT_YMD = "yyyyMMdd";
     public static String NOYEAR_DATE_FORMAT = "MM-dd HH:mm:ss";
