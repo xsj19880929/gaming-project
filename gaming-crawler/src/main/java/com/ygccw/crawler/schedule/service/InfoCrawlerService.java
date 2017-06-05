@@ -35,7 +35,9 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -47,6 +49,7 @@ import java.util.concurrent.TimeUnit;
 public class InfoCrawlerService {
     private static final BlockingQueue<JSONObject> TASK_LIST = new LinkedBlockingQueue<>();
     private static final ConcurrentHashMap<String, Boolean> LAST_TASK = new ConcurrentHashMap<>();
+    private static final Set<String> INFO_UUID_SET = new HashSet();
     private final Logger logger = LoggerFactory.getLogger(InfoCrawlerService.class);
     @Inject
     private CrawlerBase crawlerBase;
@@ -66,6 +69,8 @@ public class InfoCrawlerService {
     private InfoContentService infoContentService;
 
     public void startTread(int threadNum, String type) {
+        //uuid写入内存
+        setUUidMem();
         // 生成任务
         List<CrCrawlTask> crCrawlTaskList = crCrawlTaskService.list(type);
         logger.info("列表任务数量{}", LAST_TASK.size());
@@ -128,10 +133,13 @@ public class InfoCrawlerService {
 //            if (!dataOperatingService.selectData("uuid", infoMap.get("uuid"), "info")) {
 //                dataOperatingService.insertDate(infoMap, "info");
 //            }
-        Info infoSelect = infoService.findByUuid(infoMap.get("uuid"));
-        if (infoSelect == null) {
+//        Info infoSelect = infoService.findByUuid(infoMap.get("uuid"));
+
+        if (!INFO_UUID_SET.contains(infoMap.get("uuid"))) {
+            INFO_UUID_SET.add(info.getUuid());//增加一条咨询加入静态变量中
             updateTask(infoMap, taskLast);
             infoService.saveOnly(info);
+
             List<Tags> tagListData = setTag(tagList, info);
             if (!tagListData.isEmpty()) {
                 info.setContent(setContentTag(info.getContent(), tagListData, info.getInfoType().getName()));
@@ -252,6 +260,33 @@ public class InfoCrawlerService {
             contentNew = contentNew.replaceFirst(tags.getName(), aTag);
         }
         return contentNew;
+    }
+
+    private List<Info> findInfoList(int offset, int fetchSize) {
+        Info info = new Info();
+        info.setSortIfDesc(true);
+        info.setSortName("id");
+        return infoService.list(info, offset, fetchSize);
+    }
+
+    //将uuid放入静态变量中
+    private synchronized void setUUidMem() {
+        if (INFO_UUID_SET.isEmpty()) {
+            int offset = 0;
+            int fetchSize = 1000;
+            while (true) {
+                List<Info> infoList = findInfoList(offset, fetchSize);
+                if (infoList == null) {
+                    break;
+                }
+                for (Info info : infoList) {
+                    if (StringUtils.hasText(info.getUuid())) {
+                        INFO_UUID_SET.add(info.getUuid());
+                    }
+                }
+                offset = offset + fetchSize;
+            }
+        }
     }
 
 
