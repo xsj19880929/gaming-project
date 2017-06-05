@@ -23,9 +23,9 @@
 <div th:replace="/view/anchor/anchor-head.html::top('news',${anchorZone})"></div>
 
 <div class="first-content">
-    <p class="titletext"><a th:href="/">电竞首页</a>&gt;<a
-            th:href="/anchor/${anchorZone.id}/" th:text="${anchorZone.name}">英雄联盟电竞专区</a>&gt;<a
-            th:href="/anchor/news/${anchorZone.id}/">主播资讯</a>&gt;正文</p>
+    <p class="titletext"><a th:href="/">电竞首页</a><span>&gt;</span><a
+            th:href="/anchor/${anchorZone.id}/" th:text="${anchorZone.name}">英雄联盟电竞专区</a><span>&gt;</span><a
+            th:href="/anchor/news/${anchorZone.id}/">主播资讯</a><span>&gt;</span>正文</p>
 
     <div class="header-title">
         <h3 th:text="${info.title}">Doinb直面Swift QG能否四连胜？</h3>

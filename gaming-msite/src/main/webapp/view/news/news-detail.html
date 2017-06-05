@@ -22,10 +22,10 @@
 
 <!--中间-->
 <div class="first-content" style="margin-top: 3%; border-top: 2px solid #eaa000;">
-    <p class="titletext"><a th:href="">电竞首页</a>&gt;<a th:href="/news/">全部资讯</a>&gt;<a
+    <p class="titletext"><a th:href="">电竞首页</a><span>&gt;</span><a th:href="/news/">全部资讯</a><span>&gt;</span><a
             th:if="${info.infoZoneType.name}=='trade'" th:href="/news_trade_1.html">行业新闻</a><a
             th:if="${info.infoZoneType.name}=='matchZone'" th:href="/news_game_1.html">赛事新闻</a><a
-            th:if="${info.infoZoneType.name}=='anchorZone'" th:href="/news_anchor_1.html">主播新闻</a>&gt;正文</p>
+            th:if="${info.infoZoneType.name}=='anchorZone'" th:href="/news_anchor_1.html">主播新闻</a><span>&gt;</span>正文</p>
 
     <div class="header-title">
         <h3 th:text="${info.title}">2017LPL春季赛常规赛回放NB VS QG 第二场</h3>

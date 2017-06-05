@@ -26,8 +26,8 @@
 <!--专区首页-->
 <div class="zhuanqushouye">
     <div class="tips">
-        <p><a th:href="/">电竞首页</a>&gt;<a
-                th:href="/game/${matchZone.id}/" th:text="${matchZone.name}">英雄联盟电竞专区</a>&gt;<em>赛事资讯</em></p>
+        <p><a th:href="/">电竞首页</a><span>&gt;</span><a
+                th:href="/game/${matchZone.id}/" th:text="${matchZone.name}">英雄联盟电竞专区</a><span>&gt;</span><em>赛事资讯</em></p>
     </div>
     <div class="CompetitionDeta" id="newsListData">
         <div class="item" th:each="news:${newsList.list}">
