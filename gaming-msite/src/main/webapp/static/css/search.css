@@ -1,0 +1,421 @@
+@charset "utf-8";
+/* 搜索分类 */
+.search {
+    background: #fff;
+    border: 1px solid #d8d8d8;
+    margin: 8px 8px 0 8px;
+    height: 34px;
+}
+
+.search_tx {
+    line-height: 20px;
+    width: 83%;
+    background: #fff;
+    border: none;
+    padding: 7px 0;
+    text-indent: 5px;
+    display: inline-block;
+    height: 20px;
+    float: left
+}
+
+.search_bt {
+    background: url(../img/search_ico.png) no-repeat center center;
+    width: 50px;
+    height: 34px;
+    background-size: 20px auto;
+    float: right;
+    border: none;
+    border-left: 1px solid #d8d8d8;
+}
+
+.search_classify {
+    padding: 10px 15px 10px 0;
+    background: #fff;
+}
+
+.search_classify li {
+    float: left;
+    width: 33.3%;
+    position: relative;
+    margin: 6px 0;
+}
+
+.search_classify li a {
+    margin-left: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: block;
+    padding: 5px 0;
+    text-align: center;
+    color: #808080;
+    font-size: 1.1em;
+}
+
+.search_classify li.hover a {
+    border: 1px solid #1393ff;
+    color: #fff;
+    background: #1393ff;
+}
+
+/*.search_classify li span{position:absolute; display:none; width:14px; height:7px; background:url(../img/search_nav.png) no-repeat; background-size:14px 7px; left:50%; bottom:-6px;}
+.search_classify li.hover span{display:block;}*/
+/* 搜索结果 */
+.search_result {
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #e6e6e6;
+    margin-top: 8px;
+}
+
+.search_result_tit {
+    clear: both;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    line-height: 38px;
+    height: 38px;
+    color: #666;
+    overflow: hidden;
+    display: block;
+}
+
+.search_result_tit i, .search_games li .a_in a p span i, .search_libao li .p1 a i, .search_zixun li .p1 a i, .no_result p i {
+    color: #fb5900;
+}
+
+.search_result_tit i {
+    max-width: 65%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+.search_result_tit span {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.search_box {
+    background: #fff;
+    margin-bottom: 8px;
+}
+
+.num_tit_ss {
+    border-bottom: 1px solid #e5e5e5;
+    border-top: 2px solid #4d4d4d;
+    line-height: 40px;
+    height: 40px;
+    text-indent: 10px;
+    font-weight: bold;
+    color: #4d4d4d;
+    font-size: 1.2em;
+}
+
+.search_games, .search_libao, .search_zixun {
+    padding: 5px 10px;
+}
+
+.search_games li, .search_libao li, .search_zixun li {
+    float: left;
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 0;
+    border-bottom: 1px dashed #d7d7d7;
+}
+
+.search_games li .a_in {
+    float: left;
+    width: 50%;
+}
+
+.search_games li .a_in a {
+    display: inline-block;
+    width: 100%;
+}
+
+.search_games li .a_in a img {
+    float: left;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+}
+
+.search_games li .a_in a p {
+    display: inline-block;
+    margin-left: 10px;
+    width: 46%;
+}
+
+.search_games li .a_in a p span {
+    color: #333;
+    display: block;
+    margin: 3px 0 6px;
+    overflow: hidden;
+    height: 20px;
+    line-height: 20px;
+    width: 100%;
+    font-size: 1.1em;
+}
+
+.search_games li .a_in a p em {
+    background: #fff;
+    border: 1px solid #1393ff;
+    border-radius: 3px;
+    color: #1393ff;
+    display: inline-block;
+    font-size: 14px;
+    height: 30px;
+    line-height: 32px;
+    text-align: center;
+    width: 60px;
+}
+
+.search_games li .a_in a p em.libao {
+    border: 1px solid #43c440;
+    color: #43c440;
+}
+
+.search_games li:last-child, .search_libao li:last-child, .search_zixun li:last-child {
+    border-bottom: none;
+}
+
+.search_more {
+    border-top: 1px solid #ccc;
+    text-align: center;
+    line-height: 39px;
+}
+
+.search_more a {
+    color: #666;
+    display: block;
+}
+
+.search_more a span {
+    display: inline-block;
+    padding-left: 5px;
+    text-indent: -9999px;
+    width: 16px;
+    height: 10px;
+    background: url("http://m.pipaw.com/assets/wwwmobile/img/more_ico.png") no-repeat center;
+    background-size: 14px auto;
+}
+
+/*礼包*/
+.search_libao li, .search_zixun li {
+    position: relative;
+}
+
+.search_libao li .a1 {
+    width: 70px;
+    float: left;
+    margin-right: 10px;
+}
+
+.search_libao li .a1 img, .like_games li img {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+}
+
+.search_libao li .p1 {
+    float: left;
+    width: 70%;
+}
+
+.search_libao li .p1 a {
+    display: block;
+    line-height: 20px;
+    height: 40px;
+    margin-top: 6px;
+    width: 74%;
+    overflow: hidden;
+    font-size: 1.1em;
+    color: #333;
+    clear: both;
+}
+
+.search_libao li .p1 .span1 {
+    float: left;
+    width: 36%;
+    background: #dcdcdc;
+    height: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 6px;
+}
+
+.search_libao li .p1 .span1 em {
+    background: #6ec31c;
+    display: inline-block;
+    height: 8px;
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.search_libao li .p1 .span2 {
+    float: left;
+    color: #808080;
+    margin: 2px 0 0 8px;
+}
+
+.search_libao li .a2 {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    border: 1px solid #43c440;
+    color: #43c440;
+    border-radius: 3px;
+    display: block;
+    height: 30px;
+    line-height: 32px;
+    text-align: center;
+    width: 60px;
+}
+
+/*资讯*/
+.search_zixun li .a1 {
+    float: left;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.search_zixun li .a1 img {
+    width: 100px;
+    height: 70px;
+}
+
+.search_zixun li .p1 {
+    position: absolute;
+    left: 110px;
+    right: 0;
+}
+
+.search_zixun li .p1 a {
+    display: block;
+    line-height: 30px;
+    height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+    font-size: 16px;
+}
+
+.search_zixun li .p1 span {
+    display: block;
+    color: #808080;
+    font-size: 12px;
+    line-height: 18px;
+    height: 36px;
+    overflow: hidden;
+}
+
+.no_result {
+    margin-bottom: 8px;
+    background: url(../img/no_result.png) center 15px no-repeat #fff;
+    background-size: 42px auto;
+    padding: 85px 0 10px 0;
+    border-top: 2px solid #4d4d4d;
+}
+
+.no_result p {
+    line-height: 24px;
+    text-align: center;
+    color: #808080;
+}
+
+.no_result p a {
+    font-weight: bold;
+    color: #fb5900;
+    display: block;
+}
+
+.no_result p span {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.no_result p i {
+    max-width: 36%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+/*大家都喜欢的游戏*/
+.like_games {
+    padding-bottom: 15px;
+}
+
+.like_games li {
+    float: left;
+    margin-top: 15px;
+    text-align: center;
+    width: 25%;
+}
+
+.like_games li a {
+    display: block;
+}
+
+.like_games li p {
+    color: #333;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+    margin-bottom: 3px;
+}
+
+.like_games li span {
+    border: 1px solid #1393ff;
+    border-radius: 3px;
+    color: #1393ff;
+    display: inline-block;
+    height: 30px;
+    font-size: 14px;
+    line-height: 32px;
+    text-align: center;
+    width: 60px;
+}
+
+.bottom_nav {
+    overflow: hidden;
+}
+
+@media all and (min-width: 240px) and (max-width: 320px) {
+    html {
+        font-size: 12px;
+    }
+
+    .search_zixun li .p1 a {
+        font-size: 14px;
+    }
+
+}
+
+@media all and (min-width: 330px) and (max-width: 385px) {
+    html {
+        font-size: 13px;
+    }
+
+}
+
+@media all and (min-width: 390px) and (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+
+}
+
+@media all and (min-width: 770px) and (max-width: 1440px) {
+    html {
+        font-size: 14px;
+    }
+
+}

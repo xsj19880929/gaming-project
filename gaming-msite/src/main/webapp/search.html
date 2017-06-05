@@ -2,226 +2,127 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" th:href="static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" th:href="static/css/wcg.css"/>
-    <script type="text/javascript" th:src="static/js/jquery.js"></script>
-    <script type="text/javascript" th:src="static/js/wcg.js"></script>
-    <script type="text/javascript" th:src="static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <meta content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta http-equiv="Cache-Control" content="max-age=3600"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <link rel="stylesheet" type="text/css" href="static/css/gpwx.css" th:href="static/css/gpwx.css"/>
+    <link rel="stylesheet" type="text/css" href="static/css/search.css" th:href="static/css/search.css"/>
     <title>搜索页面</title>
 </head>
 
 <body>
-<!--head-->
-<div th:replace="/head.html::top('search')"></div>
-<div class="general">
-    <div class="search_all_zixun">
-        <div class="search_main_left_div" th:if="${type=='all'||type=='news'}">
-            <div class="search_title">
-                <span class="span01">资讯</span>
-                <p>为您找到的结果约为<b th:text="${infoList.total}">4</b>个</p>
-            </div>
-            <!--tab内容-->
-            <div class="tab_deatil" style="display:block">
-                <ul style="margin-left: 20px">
-                    <li th:each="info:${infoList.list}">
-                        <div class="d1"><a href="#" th:href="/news/${info.id}.html" th:title="${info.title}"><img
-                                th:img-src="/image/204x108${info.titleImage}"
-                                th:alt="${info.title}"/></a>
-                        </div>
-                        <div class="d2">
-                            <p class="p1"><a href="#" th:text="${info.title}" th:href="/news/${info.id}.html"
-                                             th:title="${info.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                            <p class="p2"><a href="#" th:text="${info.infoZoneType.label}" target="_blank"
-                                             th:href="${info.infoZoneType.name=='matchZone'?'/news_match_1.html':info.infoZoneType.name=='anchorZone'?'/news_anchor_1.html':info.infoZoneType.name=='trade'?'/news_trade_1.html':''}">行业新闻</a><em
-                                    th:text="${#calendars.format(info.publishTime, 'MM-dd HH:mm')}">10-20
-                                10:35</em>
-                            </p>
-                            <p class="p3" th:text="${info.subTitle}">
-                                近日有不少玩家发现，《DOTA2》游戏内的饰品可以添加图片，如下图所示。目前仍然有许多人不知道如何操作，我们为大家提供一个简单的教程。</p>
-                        </div>
-                    </li>
-                </ul>
-                <div th:if="${type=='news'}"
-                     th:replace="/pager.html::page(${infoList.pageName},${infoList.currentPage},${infoList.totalPage})"></div>
-            </div>
-        </div>
-        <p class="search_more" th:if="${type=='all'}"><a target="_blank"
-                                                         href="#" th:href="/search_${keywords}_news_1.html">查看更多</a>
-        </p>
-        <div class="search_main_left_div" th:if="${type=='all'||type=='video'}">
-            <div class="index_video_right zone_view_box">
-                <div class="search_title">
-                    <span class="span01">视频</span>
-                    <p>为您找到的结果约为<b th:text="${videoList.total}">4</b>个</p>
-                </div>
-                <ul>
-                    <li th:each="video:${videoList.list}">
-                        <a href="#" class="img" th:title="${video.title}"
-                           th:href="/video/${video.id}.html">
-                            <img th:img-src="/image/230x160${video.titleImage}" th:alt="${video.title}"/>
-                            <p class="p1"><span></span></p>
-                            <p class="p2"><em></em></p>
-                        </a>
-                        <a href="#" class="text" th:text="${video.title}" th:title="${video.title}"
-                           th:href="/video/${video.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
-                        <p class="p3" th:text="${video.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
-                        </p>
-                    </li>
-                </ul>
-                <p class="search_more" th:if="${type=='all'}"><a target="_blank"
-                                                                 href="#"
-                                                                 th:href="/search_${keywords}_video_1.html">查看更多</a>
-                </p>
-            </div>
-            <div th:if="${type=='video'}"
-                 th:replace="/pager.html::page(${videoList.pageName},${videoList.currentPage},${videoList.totalPage})"></div>
-        </div>
-        <div class="search_main_left_div" th:if="${type=='all'||type=='match'}">
-            <div class="search_title">
-                <span class="span01">赛事</span>
-                <p>为您找到的结果约为<b th:text="${matchZoneList.total}">4</b>个</p>
-            </div>
-            <div class="search_game_report" th:each="matchZone:${matchZoneList.list}">
-                <div class="search_game_report_main">
-                    <a href="#" th:href="/game/${matchZone.id}/" th:title="${matchZone.name}"><h1
-                            th:text="${matchZone.name}">LPL第七周末日综述
-                        VG.Endless狂暴五杀</h1></a>
-                    <dl>
-                        <dt>赛区：<em th:text="${matchZone.matchZoneAreaName}">全球</em></dt>
-                        <span th:text="${'时间：'+#calendars.format(matchZone.startTime, 'yyyy-MM-dd')+' - '+#calendars.format(matchZone.endTime, 'yyyy-MM-dd')}">时间：2016.01.14-2016.04.10</span>
-                    </dl>
-                    <ul th:text="${matchZone.introduction}">
-                        本赛季LPL春季赛将采用全新的分组赛制进行比赛，12支LPL队伍被平分到A、B两个组别中进行常规赛。每周将进行十场BO3，共十周，<br/>
-                        其中有四个周日首场轮空，共96场BO3。
-                    </ul>
+<!--头部1-->
+<header th:replace="/head.html::top"></header>
+<!--导航1-->
+<div th:replace="/head.html::nav('index')"></div>
+<!--搜索-->
+<div class="search">
+    <form action='/searchsite.html' method='get'>
+        <input type="text" class="search_tx" placeholder="倩女幽魂手游" name='keyword' value="手游"/>
 
-                </div>
-                <a href="#" th:href="/game/${matchZone.id}/" th:title="${matchZone.name}">
-                    <div class="goin">进入专区</div>
-                </a>
-                <div class="line"></div>
-                <div class="clear"></div>
-            </div>
-
-            <div th:if="${type=='match'}"
-                 th:replace="/pager.html::page(${matchZoneList.pageName},${matchZoneList.currentPage},${matchZoneList.totalPage})"></div>
-            <p class="search_more" th:if="${type=='all'}"><a target="_blank"
-                                                             href="#"
-                                                             th:href="/search_${keywords}_match_1.html">查看更多</a>
-            </p>
-        </div>
-
-        <div class="search_main_left_div" th:if="${type=='all'||type=='anchor'}">
-            <div class="search_title">
-                <span class="span01">主播</span>
-                <p>为您找到的结果约为<b th:text="${anchorZoneList.total}">4</b>个</p>
-            </div>
-            <div class="zhubo_main_box">
-                <dl style="margin-left:19px;" th:each="anchorZone:${anchorZoneList.list}">
-                    <dt>
-                        <a href="" th:href="/anchor/${anchorZone.id}/">
-                            <p class="zhubo_p1"><span><img src="/static/img/circle_bg.png"/></span><img
-                                    th:img-src="/image/120x120${anchorZone.icoImage}"/></p>
-                            <p class="zhubo_p2" th:text="${anchorZone.username}">小学生院长</p>
-                            <!--<p style="margin-bottom:11px;"><span style="margin-right:14px;"-->
-                            <!--th:each="matchZone:${anchorZone.matchZoneList}"><img-->
-                            <!--th:img-src="/image/24x24${matchZone.icoImage}"/></span></p>-->
-                        </a>
-                    </dt>
-                    <dd>人气：<span th:text="${anchorZone.visitCount}">432432</span></dd>
-                    <div class="change_border">
-                        <span><a href="" th:href="/anchor/${anchorZone.id}/">点击查看</a></span>
-                    </div>
-                </dl>
-
-                <div class="clear"></div>
-            </div>
-
-            <div th:if="${type=='anchor'}"
-                 th:replace="/pager.html::page(${anchorZoneList.pageName},${anchorZoneList.currentPage},${anchorZoneList.totalPage})"></div>
-            <p class="search_more" th:if="${type=='all'}"><a target="_blank"
-                                                             href="#"
-                                                             th:href="/search_${keywords}_anchor_1.html">查看更多</a>
-            </p>
-        </div>
-
-        <div class="index_video_right zone_view_box search_main_left_div"
-             th:if="${type=='all'||type=='picture'}">
-            <div class="search_title">
-                <span class="span01">图集</span>
-                <p>为您找到的结果约为<b th:text="${pictureList.total }">4</b>个</p>
-            </div>
-            <ul>
-                <li th:each="picture:${pictureList.list}">
-                    <a href="#" class="img" th:title="${picture.description}"
-                       th:href="/picture/${picture.id}.html">
-                        <img th:img-src="/image/230x160${picture.image}" th:alt="${picture.description}"/>
-
-                    </a>
-                    <a href="#" class="text" th:text="${picture.description}" th:title="${picture.description}"
-                       th:href="/picture/${picture.id}.html">MISS排位日记263期 中单阿狸大杀四方</a>
-                    <p class="p3" th:text="${picture.visitCount}"><img src="/static/img/view/view_arrow.png"/>43265
-                    </p>
-                </li>
-            </ul>
-            <div th:if="${type=='picture'}"
-                 th:replace="/pager.html::page(${pictureList.pageName},${pictureList.currentPage},${pictureList.totalPage})"></div>
-            <p class="search_more" th:if="${type=='all'}"><a target="_blank"
-                                                             href="#"
-                                                             th:href="/search_${keywords}_picture_1.html">查看更多</a>
-            </p>
-        </div>
-
-    </div>
-    <!--资讯列表右边-->
-    <div class="search_zixun_right">
-        <!--精选视频-->
-        <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">精选视频</span> <a th:href="/video/" class="more">更多</a>
-            </div>
-            <div class="index_video_right game_user_con small">
-                <ul>
-                    <li th:each="video:${videoTopList}"><a href="#" class="img" th:href="/video/${video.id}.html"
-                                                           th:title="${video.title}"> <img
-                            th:img-src="/image/154x90${video.titleImage}"/>
-                        <p class="p1"><span></span></p>
-                        <p class="p2"><em></em></p>
-                    </a> <a href="#" class="text" th:text="${video.title}" th:href="/video/${video.id}.html"
-                            th:title="${video.title}">电竞校园联赛炉石传说Top3</a></li>
-                </ul>
-            </div>
-        </div>
-        <!--热门主播-->
-        <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">热门主播</span> <a th:href="/anchor/" target="_blank"
-                                                                              class="more">更多</a>
-            </div>
-            <ul class="hot_zhubo">
-                <li th:each="anchor:${anchorTopList}">
-                    <a href="#" th:href="/anchor/${anchor.id}/"
-                       th:title="${anchor.name}">
-                        <p class="p1"><img src="/static/img/circle_bg2.png"/></p>
-                        <p class="p2"><img th:img-src="/image/120x120${anchor.icoImage}"/></p>
-                        <p class="p3" th:text="${anchor.username}">拳头暴君</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!--热门资讯 -->
-        <div class="list2_right_box">
-            <div class="index_tit_two"><span class="text_left">热门资讯</span> <a th:href="/news/" target="_blank"
-                                                                              class="more">更多</a>
-            </div>
-            <ul class="hot_zixun">
-                <li th:each="news:${newsTopList}"><a href="#" th:text="${news.title}"
-                                                     th:href="/news/${news.id}.html" th:title="${news.title}">驰骋野区的风暴骑手：新版本打野人马攻略</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+        <input type="submit" class="search_bt" value=""/>
+    </form>
 </div>
-<!--线上琵琶网首页的foot，这里只是截图-->
-<div th:replace="/bottom.html::bottom"></div>
+<!--搜索结果-->
+<div class="search_result">
+    <div class="search_result_tit"><span>搜索</span><i>手游</i><span>结果如下</span></div>
+</div>
+
+
+<!--相关游戏-->
+<div class="search_box me_shadow">
+    <div class="num_tit_ss">手机游戏</div>
+    <ul class="search_games clearfix">
+        <li>
+            <div class="a_in">
+                <a href="http://m.pipaw.com/xiangzheshengliqianjin/">
+                    <img src="http://img.pipaw.com/Pipaw/Logo/2013/12/31/711dc74614064d62b83a52827414ab2c.png">
+                    <p><span><i>手游</i>向着胜利前进</span><em>下载</em></p>
+                </a>
+            </div>
+        </li>
+    </ul>
+    <!--查看更多-->
+    <div class="search_more"><a href="/searchsite.html?keyword=手游&list_type=1">查看更多<span></span></a></div>
+</div>
+
+
+<!--相关游戏-->
+<div class="search_box me_shadow">
+    <div class="num_tit_ss">手机应用</div>
+    <ul class="search_games clearfix">
+        <li>
+            <div class="a_in">
+                <a href="/apps/190.html">
+                    <img src="http://img.pipaw.net/softgame/logo_file/4cceef78ee91cba172de5f2b426b9dd2.png">
+                    <p><span>87<i>手游</i>宝</span><em>下载</em></p>
+                </a>
+            </div>
+            <div class="a_in">
+                <a href="/apps/639.html">
+                    <img src="http://img.pipaw.net/softgame/logo_file/850f86e49abfa1aa3f7089b656c18e60.png">
+                    <p><span>新浪<i>手游</i>助手</span><em>下载</em></p>
+                </a>
+            </div>
+        </li>
+    </ul>
+    <!--查看更多-->
+    <div class="search_more"><a href="/searchsite.html?keyword=手游&list_type=5">查看更多<span></span></a></div>
+</div>
+<!--相关资讯-->
+<div class="search_box me_shadow">
+    <div class="num_tit_ss">游戏资讯</div>
+    <ul class="search_zixun clearfix">
+        <li>
+            <a href="/dnf/331611.html" class="a1"><img
+                    src="http://img.pipaw.com/wy/title/2017/06/05/0092822e064a5280dc72677f771bb51e.jpg"></a>
+            <p class="p1">
+                <a href="/dnf/331611.html">DNF<i>手游</i>复仇者PK怎么连招 复仇者华丽连招教学</a>
+                <span>　　DNF手游PK怎么连招?这一直是玩家们关注的焦点，很多玩家对于复仇者PK方法不是很清楚，接下来带来详细的介绍。　　虎袭，等级：1　　空斩打，等级：10　　强制-空斩打，等级：1　　武器祝福，等级：10　　直拳冲</span>
+            </p>
+        </li>
+        <li>
+            <a href="/tlbbsy/331595.html" class="a1"><img
+                    src="http://img.pipaw.com/wy/title/2017/06/04/0d2c26d94be9801575ec3c513d2bdeeb.jpg"></a>
+            <p class="p1">
+                <a href="/tlbbsy/331595.html">天龙八部<i>手游</i>峨眉技能指点推荐 平民技能指点英雄选择</a>
+                <span>　　天龙八部手游峨眉技能指点选什么?这历来是玩家关注的焦点。尤其是平民峨眉，并没有那么多的橙色英雄，对技能指点的英雄就更无从下手了。接下来就让琵琶网小编跟大家分享下平民技能指点英雄选择。　　【平民技能</span>
+            </p>
+        </li>
+        <li>
+            <a href="/tlbbsy/331594.html" class="a1"><img
+                    src="http://img.pipaw.com/wy/title/2017/06/04/d2dba7732d33ffbc1a787d54cffb29b6.jpg"></a>
+            <p class="p1">
+                <a href="/tlbbsy/331594.html">天龙八部<i>手游</i>峨眉宝宝推荐 新手峨眉宝宝选择什么</a>
+                <span>　　天龙八部手游峨眉宝宝?这历来就是玩家关注的焦点。天龙八部手游峨眉生存能力高，但是输出一般，不少玩家对峨眉的宝宝选择不是很了解。接下来就让琵琶网小编跟大家分享下新手峨眉宝宝选择。　　【新手峨眉宝宝选</span>
+            </p>
+        </li>
+        <li>
+            <a href="/dhxiy/331540.html" class="a1"><img
+                    src="http://img.pipaw.com/wy/title/2017/06/03/a3c4f5c724169cacf34a8c1f91a272e0.jpg"></a>
+            <p class="p1">
+                <a href="/dhxiy/331540.html">大话西游<i>手游</i>无差别pk赛怎么玩 无差别pk和群雄逐鹿的区别</a>
+                <span>　　大话西游手游无差别pk赛怎么玩呢？这个月有两大跨服赛事，分别是无差别pk和群雄逐鹿，那么无差别pk和群雄逐鹿有什么区别呢？队伍配置一样的吗？琵琶网小编马上给大家解答一下吧。　　大话西游手游六一儿童节活动</span>
+            </p>
+        </li>
+        <li>
+            <a href="/zmqsy/331076.html" class="a1"><img
+                    src="http://img.pipaw.com/wy/title/2017/06/01/d471543a99a8115b21202e567fc78dcc.jpg"></a>
+            <p class="p1">
+                <a href="/zmqsy/331076.html">镇魔曲<i>手游</i>御灵装备选择 御灵装备什么好</a>
+                <span>　　最近不少玩家都在问镇魔曲手游御灵装备选择，很多玩家都说御灵不需要装备什么，那么到底是不是这样呢?御灵装备什么好呢?我们一起来了解下吧。　　镇魔曲手游御灵装备选择：　　大家都知道御灵的定语是辅助，也就</span>
+            </p>
+        </li>
+    </ul>
+    <!--查看更多-->
+    <div class="search_more"><a href="/searchsite.html?keyword=手游&list_type=4">查看更多<span></span></a></div>
+</div>
+<!--底部导航-->
+<nav th:replace="/bottom.html::footerNav"></nav>
+<!--底部-->
+<footer th:replace="/bottom.html::footer"></footer>
 
 </body>
 </html>
