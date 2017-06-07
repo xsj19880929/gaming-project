@@ -20,104 +20,107 @@
 <!--搜索-->
 <div class="search">
     <form action='/searchsite.html' method='get'>
-        <input type="text" class="search_tx" placeholder="倩女幽魂手游" name='keyword' value="手游"/>
+        <input type="text" class="search_tx" placeholder="倩女幽魂手游" name='keyword' value="手游" th:value="${keywords}"/>
 
         <input type="submit" class="search_bt" value=""/>
     </form>
 </div>
 <!--搜索结果-->
 <div class="search_result">
-    <div class="search_result_tit"><span>搜索</span><i>手游</i><span>结果如下</span></div>
-</div>
-
-
-<!--相关游戏-->
-<div class="search_box me_shadow">
-    <div class="num_tit_ss">手机游戏</div>
-    <ul class="search_games clearfix">
-        <li>
-            <div class="a_in">
-                <a href="http://m.pipaw.com/xiangzheshengliqianjin/">
-                    <img src="http://img.pipaw.com/Pipaw/Logo/2013/12/31/711dc74614064d62b83a52827414ab2c.png">
-                    <p><span><i>手游</i>向着胜利前进</span><em>下载</em></p>
-                </a>
-            </div>
-        </li>
-    </ul>
-    <!--查看更多-->
-    <div class="search_more"><a href="/searchsite.html?keyword=手游&list_type=1">查看更多<span></span></a></div>
-</div>
-
-
-<!--相关游戏-->
-<div class="search_box me_shadow">
-    <div class="num_tit_ss">手机应用</div>
-    <ul class="search_games clearfix">
-        <li>
-            <div class="a_in">
-                <a href="/apps/190.html">
-                    <img src="http://img.pipaw.net/softgame/logo_file/4cceef78ee91cba172de5f2b426b9dd2.png">
-                    <p><span>87<i>手游</i>宝</span><em>下载</em></p>
-                </a>
-            </div>
-            <div class="a_in">
-                <a href="/apps/639.html">
-                    <img src="http://img.pipaw.net/softgame/logo_file/850f86e49abfa1aa3f7089b656c18e60.png">
-                    <p><span>新浪<i>手游</i>助手</span><em>下载</em></p>
-                </a>
-            </div>
-        </li>
-    </ul>
-    <!--查看更多-->
-    <div class="search_more"><a href="/searchsite.html?keyword=手游&list_type=5">查看更多<span></span></a></div>
+    <div class="search_result_tit"><span>搜索</span><i th:text="${keywords}"></i><span>结果如下</span></div>
 </div>
 <!--相关资讯-->
-<div class="search_box me_shadow">
+<div class="search_box me_shadow" th:if="${type=='all'||type=='news'}">
     <div class="num_tit_ss">资讯</div>
     <ul class="search_zixun clearfix">
-        <li>
-            <a href="/dnf/331611.html" class="a1"><img
-                    src="http://img.pipaw.com/wy/title/2017/06/05/0092822e064a5280dc72677f771bb51e.jpg"></a>
+        <li th:each="info:${infoList.list}">
+            <a href="/dnf/331611.html" class="a1" th:href="/news/${info.id}.html" th:title="${info.title}"><img
+                    th:img-src="/image/100x70${info.titleImage}"
+                    th:alt="${info.title}"/></a>
             <p class="p1">
-                <a href="/dnf/331611.html">DNF<i>手游</i>复仇者PK怎么连招 复仇者华丽连招教学</a>
-                <span>　　DNF手游PK怎么连招?这一直是玩家们关注的焦点，很多玩家对于复仇者PK方法不是很清楚，接下来带来详细的介绍。　　虎袭，等级：1　　空斩打，等级：10　　强制-空斩打，等级：1　　武器祝福，等级：10　　直拳冲</span>
+                <a th:href="/news/${info.id}.html" th:title="${info.title}" th:text="${info.title}">DNF<i>手游</i>复仇者PK怎么连招
+                    复仇者华丽连招教学</a>
+                <span th:text="${info.subTitle}">　　DNF手游PK怎么连招?这一直是玩家们关注的焦点，很多玩家对于复仇者PK方法不是很清楚，接下来带来详细的介绍。　　虎袭，等级：1　　空斩打，等级：10　　强制-空斩打，等级：1　　武器祝福，等级：10　　直拳冲</span>
             </p>
         </li>
-        <li>
-            <a href="/tlbbsy/331595.html" class="a1"><img
-                    src="http://img.pipaw.com/wy/title/2017/06/04/0d2c26d94be9801575ec3c513d2bdeeb.jpg"></a>
-            <p class="p1">
-                <a href="/tlbbsy/331595.html">天龙八部<i>手游</i>峨眉技能指点推荐 平民技能指点英雄选择</a>
-                <span>　　天龙八部手游峨眉技能指点选什么?这历来是玩家关注的焦点。尤其是平民峨眉，并没有那么多的橙色英雄，对技能指点的英雄就更无从下手了。接下来就让琵琶网小编跟大家分享下平民技能指点英雄选择。　　【平民技能</span>
-            </p>
-        </li>
-        <li>
-            <a href="/tlbbsy/331594.html" class="a1"><img
-                    src="http://img.pipaw.com/wy/title/2017/06/04/d2dba7732d33ffbc1a787d54cffb29b6.jpg"></a>
-            <p class="p1">
-                <a href="/tlbbsy/331594.html">天龙八部<i>手游</i>峨眉宝宝推荐 新手峨眉宝宝选择什么</a>
-                <span>　　天龙八部手游峨眉宝宝?这历来就是玩家关注的焦点。天龙八部手游峨眉生存能力高，但是输出一般，不少玩家对峨眉的宝宝选择不是很了解。接下来就让琵琶网小编跟大家分享下新手峨眉宝宝选择。　　【新手峨眉宝宝选</span>
-            </p>
-        </li>
-        <li>
-            <a href="/dhxiy/331540.html" class="a1"><img
-                    src="http://img.pipaw.com/wy/title/2017/06/03/a3c4f5c724169cacf34a8c1f91a272e0.jpg"></a>
-            <p class="p1">
-                <a href="/dhxiy/331540.html">大话西游<i>手游</i>无差别pk赛怎么玩 无差别pk和群雄逐鹿的区别</a>
-                <span>　　大话西游手游无差别pk赛怎么玩呢？这个月有两大跨服赛事，分别是无差别pk和群雄逐鹿，那么无差别pk和群雄逐鹿有什么区别呢？队伍配置一样的吗？琵琶网小编马上给大家解答一下吧。　　大话西游手游六一儿童节活动</span>
-            </p>
-        </li>
-        <li>
-            <a href="/zmqsy/331076.html" class="a1"><img
-                    src="http://img.pipaw.com/wy/title/2017/06/01/d471543a99a8115b21202e567fc78dcc.jpg"></a>
-            <p class="p1">
-                <a href="/zmqsy/331076.html">镇魔曲<i>手游</i>御灵装备选择 御灵装备什么好</a>
-                <span>　　最近不少玩家都在问镇魔曲手游御灵装备选择，很多玩家都说御灵不需要装备什么，那么到底是不是这样呢?御灵装备什么好呢?我们一起来了解下吧。　　镇魔曲手游御灵装备选择：　　大家都知道御灵的定语是辅助，也就</span>
-            </p>
+
+    </ul>
+    <!--查看更多-->
+    <div class="search_more"><a th:href="/search_${keywords}_news_1.html">查看更多<span></span></a></div>
+</div>
+<!--相关视频-->
+<div class="search_box me_shadow" th:if="${type=='all'||type=='video'}">
+    <div class="num_tit_ss">视频</div>
+    <ul class="search_shipin">
+        <li th:each="video:${videoList.list}">
+            <a th:title="${video.title}"
+               th:href="/video/${video.id}.html">
+                <img th:img-src="/image/230x160${video.titleImage}" th:alt="${video.title}">
+                <img th:alt="${video.title}" class="playIoc" th:src="/static/img/playico.png">
+            </a>
+            <div class="mengcheng"></div>
+            <a th:title="${video.title}"
+               th:href="/video/${video.id}.html" th:text="${video.title}">2017KPL第七周联赛
+                无痕铁血关羽无情秀翻超玩会视频</a>
         </li>
     </ul>
     <!--查看更多-->
-    <div class="search_more"><a href="/searchsite.html?keyword=手游&list_type=4">查看更多<span></span></a></div>
+    <div class="search_more"><a th:href="/search_${keywords}_video_1.html">查看更多<span></span></a></div>
+</div>
+<!--相关图集-->
+<div class="search_box me_shadow" th:if="${type=='all'||type=='picture'}">
+    <div class="num_tit_ss">图集</div>
+    <ul class="search_tuji">
+        <li th:each="picture:${pictureList.list}"><a th:title="${picture.description}"
+                                                     th:href="/picture/${picture.id}.html"><img
+                th:img-src="/image/230x160${picture.image}" th:alt="${picture.description}"></a><a
+                th:title="${picture.description}"
+                th:href="/picture/${picture.id}.html" th:text="${picture.description}">红黄绿</a></li>
+    </ul>
+    <!--查看更多-->
+    <div class="search_more"><a th:href="/search_${keywords}_picture_1.html">查看更多<span></span></a></div>
+</div>
+
+<!--相关赛事-->
+<div class="search_box me_shadow" th:if="${type=='all'||type=='match'}">
+    <div class="num_tit_ss">赛事</div>
+    <ul class="search_libao clearfix">
+        <li th:each="matchZone:${matchZoneList.list}">
+            <a th:href="/game/${matchZone.id}/" th:title="${matchZone.name}" class="a1">
+                <img th:img-src="/image/70x70${matchZone.icoImage}" th:alt="${matchZone.name}"></a>
+            <p class="p1">
+                <a th:href="/game/${matchZone.id}/" th:title="${matchZone.name}" th:text="${matchZone.name}">《<i>倩女</i>幽魂手游》<i>倩女</i>预约礼包</a>
+                <span class="span1"
+                      th:text="${'时间：'+#calendars.format(matchZone.startTime, 'yyyy-MM-dd')+' - '+#calendars.format(matchZone.endTime, 'yyyy-MM-dd')}">时间：2017-02-25 - 2017-03-16</span>
+                <span class="span1" th:text="'赛区：'+${matchZone.matchZoneAreaName}">赛区：全国</span>
+            </p>
+            <a href="http://m.fahao.pipaw.com/libao/14388.html" th:href="/game/${matchZone.id}/"
+               th:title="${matchZone.name}" class="a2">进入专区</a>
+        </li>
+
+    </ul>
+    <!--查看更多-->
+    <div class="search_more"><a th:href="/search_${keywords}_match_1.html">查看更多<span></span></a></div>
+</div>
+<!--相关主播-->
+<div class="search_box me_shadow" th:if="${type=='all'||type=='anchor'}">
+    <div class="num_tit_ss">主播</div>
+    <ul class="search_libao clearfix">
+        <li th:each="anchorZone:${anchorZoneList.list}">
+            <a th:href="/anchor/${anchorZone.id}/" th:title="${anchorZone.username}" class="a1">
+                <img th:img-src="/image/70x70${anchorZone.icoImage}" th:alt="${anchorZone.username}"></a>
+            <p class="p1">
+                <a th:href="/anchor/${anchorZone.id}/" th:title="${anchorZone.username}"
+                   th:text="${anchorZone.username}">《<i>倩女</i>幽魂手游》<i>倩女</i>预约礼包</a>
+                <span class="span3"
+                      th:text="${anchorZone.introduction}">时间：2017-02-25 - 2017-03-16</span>
+            </p>
+            <a th:href="/anchor/${anchorZone.id}/" th:title="${anchorZone.username}" class="a2">进入主播</a>
+        </li>
+
+    </ul>
+    <!--查看更多-->
+    <div class="search_more"><a th:href="/search_${keywords}_anchor_1.html">查看更多<span></span></a></div>
 </div>
 <!--底部导航-->
 <nav th:replace="/bottom.html::footerNav"></nav>
