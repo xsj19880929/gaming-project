@@ -49,6 +49,26 @@ public class Picture {
     private Date startTime;
     @Transient
     private Date endTime;
+    @Transient
+    private Long tagId;
+    @Transient
+    private String templateName;
+
+    public String getTemplateName() {
+        return templateName;
+    }
+
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
+    }
+
+    public Long getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(Long tagId) {
+        this.tagId = tagId;
+    }
 
     public Date getStartTime() {
         return startTime;

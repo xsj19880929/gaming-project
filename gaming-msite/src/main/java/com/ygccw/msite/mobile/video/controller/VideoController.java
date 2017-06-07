@@ -180,11 +180,7 @@ public class VideoController {
 
     @RequestMapping(value = "/video/tag/{tagId}_{currentPage}.html", method = RequestMethod.GET)
     public String tagList(HttpServletRequest request, final ModelMap model, @PathVariable Long tagId, @PathVariable Integer currentPage) {
-        int fetchSize = 16;
-        model.put("anchorZoneList", videoWebService.anchorList(0, 8));
-        model.put("matchZoneList", videoWebService.matchZoneList(0, 8));
-        model.put("anchorZoneListMore", videoWebService.anchorList(8, 100));
-        model.put("matchZoneListMore", videoWebService.matchZoneList(8, 100));
+        int fetchSize = 10;
         model.put("videoList", new FindResultToSale(videoWebService.videoListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListByTagIdSize(tagId), currentPage, fetchSize, PageUtils.getPageUrl(request)));
         model.put("tags", tagsService.findById(tagId));
         return "/view/video/video-tag-list.html";

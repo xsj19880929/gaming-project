@@ -2,7 +2,6 @@ package com.ygccw.msite.mobile.info.controller;
 
 import com.ygccw.msite.database.FindResultMoreToAjax;
 import com.ygccw.msite.database.FindResultToMobile;
-import com.ygccw.msite.database.FindResultToSale;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
 import com.ygccw.msite.mobile.game.service.GameWebService;
@@ -118,13 +117,25 @@ public class InfoController {
 
     @RequestMapping(value = "/news/tag/{tagId}_{currentPage}.html", method = RequestMethod.GET)
     public String tagList(HttpServletRequest request, final ModelMap model, @PathVariable Long tagId, @PathVariable Integer currentPage) {
-        int fetchSize = 9;
-        model.put("infoList", new FindResultToSale(infoWebService.infoListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), infoWebService.infoListByTagIdSize(tagId), currentPage, fetchSize, PageUtils.getPageUrl(request)));
-        model.put("newsTopList", infoWebService.newsListTop(0, 10));
-        model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
-        model.put("videoTopList", infoWebService.videoListTop(0, 4));
+        int fetchSize = 10;
+        model.put("infoList", new FindResultToMobile(infoWebService.infoListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, PageUtils.getPageUrl(request)));
         Tags tags = tagsService.findById(tagId);
         model.put("tags", tags);
         return "/view/news/news-tag-list.html";
     }
+
+    /**
+     * 标签新闻视频ajax请求
+     *
+     * @param infoRequest
+     * @param offset
+     * @param fetchSize
+     * @return
+     */
+    @RequestMapping(value = "/news/tagList", method = RequestMethod.POST)
+    @ResponseBody
+    public FindResultMoreToAjax tagListRest(@RequestBody InfoRequest infoRequest, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
+        return new FindResultMoreToAjax(infoWebService.infoListByTagId(infoRequest.getTagId(), offset, fetchSize), ajaxGetTemplateService.getHtmlTemplate(infoRequest.getTemplateName()));
+    }
+
 }

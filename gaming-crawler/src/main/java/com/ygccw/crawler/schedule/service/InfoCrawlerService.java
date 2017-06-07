@@ -46,8 +46,8 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class InfoCrawlerService {
-    private static final BlockingQueue<JSONObject> TASK_LIST = new LinkedBlockingQueue<>();
-    private static final ConcurrentHashMap<String, Boolean> LAST_TASK = new ConcurrentHashMap<>();
+    //    private static final BlockingQueue<JSONObject> TASK_LIST = new LinkedBlockingQueue<>();
+//    private static final ConcurrentHashMap<String, Boolean> LAST_TASK = new ConcurrentHashMap<>();
     private final Logger logger = LoggerFactory.getLogger(InfoCrawlerService.class);
     @Inject
     private CrawlerBase crawlerBase;
@@ -67,6 +67,8 @@ public class InfoCrawlerService {
     private InfoContentService infoContentService;
 
     public void startTread(int threadNum, String type) {
+        final BlockingQueue<JSONObject> TASK_LIST = new LinkedBlockingQueue<>();
+        final ConcurrentHashMap<String, Boolean> LAST_TASK = new ConcurrentHashMap<>();
         //uuid写入内存
         setUUidMem();
         // 生成任务
@@ -85,7 +87,7 @@ public class InfoCrawlerService {
             executor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    startWork();
+                    startWork(TASK_LIST, LAST_TASK);
                 }
             });
         }
@@ -95,7 +97,7 @@ public class InfoCrawlerService {
         }
     }
 
-    private void startWork() {
+    private void startWork(BlockingQueue<JSONObject> TASK_LIST, ConcurrentHashMap<String, Boolean> LAST_TASK) {
         while (true) {
             logger.info("剩余任务数 {} ", TASK_LIST.size());
             try {

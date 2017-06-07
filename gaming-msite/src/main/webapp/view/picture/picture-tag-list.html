@@ -2,127 +2,70 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" th:href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" th:href="/static/css/wcg.css"/>
-    <script type="text/javascript" th:src="/static/js/jquery.js"></script>
-    <script type="text/javascript" th:src="/static/js/wcg.js"></script>
+    <meta content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta http-equiv="Cache-Control" content="max-age=3600"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
     <title th:text="${tags!=null?tags.name:''}+'_'+${siteName}">标题</title>
     <meta name="keywords" content="关键字" th:attr="content=${tags!=null?tags.name:''}"/>
     <meta name="description"
           content="描述"
           th:attr="content=${siteName}+'（55djw.com）提供最新最全最专业的'+${tags!=null?tags.name:''}+'，电竞游戏资讯，手机游戏行业新闻，游戏攻略，游戏评测等，更多手游产业动态、行业新闻、游戏资讯尽在'+${siteName}+'。'"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/gp.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/static/css/VSEC.css"/>
 </head>
 
 <body>
-<!--线上的top内容,这个仅放截图-->
-<div th:replace="/head.html::top('picture')"></div>
-<div class="general">
-    <!--面包屑-->
-    <div class="position"><a th:href="/">电竞首页</a><span>&gt;</span><a th:href="/picture/">竞技美图</a><span>&gt;</span><em
-            th:text="${tags.Name}">美女</em>
-    </div>
-    <!--瀑布流-->
-    <div class="pubu_list" id="wrapper">
-        <div class="brand-list">
-            <div class="brand-bd cle" id="brand-waterfall">
-                <div class="item" id="brand-a" th:each="picture:${pictureList.list}"
-                     th:if="${picture!=null&&picture.id!=null}">
-                    <p class="p1"><a href="#" th:href="/picture/${picture.id}.html"
-                                     th:title="${picture.description}"><img th:img-src="${picture.image}"
-                                                                            th:alt="${picture.description}"
-                                                                            th:title="${picture.description}"/></a></p>
-                    <p class="p2"><a href="#" th:text="${picture.description}" th:href="/picture/${picture.id}.html"
-                                     th:title="${picture.description}">LOL国服主播排行榜TOP8：第一名小智你们服不服？</a></p>
-                    <p class="p3"><span class="time" th:text="${#calendars.format(picture.createTime, 'yyyy-MM-dd')}">2016-05-02</span><span
-                            class="eye" th:text="${picture.visitCount}">214321</span></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--页码-->
-    <div th:replace="/pager.html::page(${pictureList.pageName},${pictureList.currentPage},${pictureList.totalPage})"></div>
+<!--头部1-->
+<header th:replace="/head.html::top"></header>
+<!--导航1-->
+<div th:replace="/head.html::nav('picture')"></div>
+<p class="titletext"><a th:href="/">电竞首页</a><span>&gt;</span><a th:href="/picture/">竞技美图</a><span>&gt;</span><em
+        th:text="${tags.Name}">美女</em></p>
+<div class="wrapper">
+    <ul class="wall clearfix" id="newsListData">
+        <li class="article" th:each="picture:${pictureList.list}" th:if="${picture!=null&&picture.id!=null}">
+            <a href="#" th:href="/picture/${picture.id}.html"
+               th:title="${picture.description}">
+                <img th:img-src="${picture.image}"
+                     th:alt="${picture.description}"
+                     th:title="${picture.description}"/>
+                <p th:text="${picture.description}">萌死人不偿命 阴阳师手游最强COS合集</p>
+                <small th:text=" ${#calendars.format(picture.createTime, 'yyyy-MM-dd')}">2016-05-02</small>
+            </a>
+        </li>
+    </ul>
 </div>
-<script>
+
+<!--加载更多-->
+<div class="footer-more more-other" id="loadMore" th:if="${#lists.size(pictureList.list)>=pictureList.fetchSize}">
+    <a style="color: #808080; font-size: 13px;" href="javascript:;" onclick="getNewsList()">加载更多 <img
+            style="width: 16%;"
+            th:src="/static/img/morejt.png"
+            alt="加载更多"></a>
+</div>
+
+<div id="loadMoreCondition" style="display:none">
+    <input type="hidden" id="offset" name="offset" th:value="${pictureList.fetchSize}">
+    <input type="hidden" id="fetchSize" name="fetchSize" th:value="${pictureList.fetchSize}">
+    <input type="hidden" id="tagId" name="tagId" th:value="${tags.id}">
+    <input type="hidden" id="templateName" name="templateName" value="picture-tag-list-template.html">
+</div>
+
+<!--底部导航-->
+<nav th:replace="/bottom.html::footerNav"></nav>
+<!--底部-->
+<footer th:replace="/bottom.html::footer"></footer>
+<script type="text/javascript" th:src="/static/js/jquery.js"></script>
+<script type="text/javascript" th:src="/static/js/main.js"></script>
+<script type="text/javascript" th:src="/static/js/layer/layer.js"></script>
+<script type="text/javascript" th:src="/static/js/jaliswall.js"></script>
+<script type="text/javascript" th:src="/static/js/picture/picture-tag-list.js"></script>
+<script type="text/javascript">
     $(function () {
-        $('#brand-waterfall img').load(function () {
-            $('#brand-waterfall').waterfall();
-        });
+        $('.wall').jaliswall({item: '.article'});
     });
-    // 瀑布流插件
-    // pannysp 2013.4.9
-    (function ($) {
-        $.fn.waterfall = function (options) {
-            var df = {
-                item: '.item',
-                margin: 20,
-                addfooter: true
-            };
-            options = $.extend(df, options);
-            return this.each(function () {
-                var $box = $(this), pos = [],
-                        _box_width = $box.width(),
-                        $items = $box.find(options.item),
-                        _owidth = $items.eq(0).outerWidth() + options.margin,
-                        _oheight = $items.eq(0).outerHeight() + options.margin,
-                        _num = Math.floor(_box_width / _owidth);
-                (function () {
-                    var i = 0;
-                    for (; i < _num; i++) {
-                        pos.push([i * _owidth, 0]);
-                    }
-                })();
-                $items.each(function () {
-                    var _this = $(this),
-                            _temp = 0,
-                            _height = _this.outerHeight() + options.margin;
-
-                    _this.hover(function () {
-                        _this.addClass('hover');
-                    }, function () {
-                        _this.removeClass('hover');
-                    });
-
-                    for (var j = 0; j < _num; j++) {
-                        if (pos[j][1] < pos[_temp][1]) {
-                            //暂存top值最小那列的index
-                            _temp = j;
-                        }
-                    }
-                    this.style.cssText = 'left:' + pos[_temp][0] + 'px; top:' + pos[_temp][1] + 'px;';
-                    //插入后，更新下该列的top值
-                    pos[_temp][1] = pos[_temp][1] + _height;
-                });
-
-                // 计算top值最大的赋给外围div
-                (function () {
-                    var i = 0, tops = [];
-                    for (; i < _num; i++) {
-                        tops.push(pos[i][1]);
-                    }
-                    tops.sort(function (a, b) {
-                        return a - b;
-                    });
-                    $box.height(tops[_num - 1]);
-                    //增加尾部填充div
-                    if (options.addfooter) {
-                        addfooter(tops[_num - 1]);
-                    }
-                })();
-                function addfooter(max) {
-                    var addfooter = document.createElement('div');
-                    addfooter.className = 'item additem';
-                    for (var i = 0; i < _num; i++) {
-                        if (max != pos[i][1]) {
-                            var clone = addfooter.cloneNode(),
-                                    _height = max - pos[i][1] - options.margin;
-                            clone.style.cssText = 'left:' + pos[i][0] + 'px; top:' + pos[i][1] + 'px; height:' + _height + 'px;';
-                            $box[0].appendChild(clone);
-                        }
-                    }
-                }
-            });
-        }
-    })(jQuery);</script>
-<div th:replace="/bottom.html::bottom"></div>
+</script>
 </body>
 </html>

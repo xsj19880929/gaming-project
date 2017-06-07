@@ -187,35 +187,14 @@ public class InfoWebService {
         return infoService.nextInfo(infoWeb);
     }
 
-    public List<InfoWeb> infoListByTagId(Long tagId, int offset, int fetchSize) {
-        List<InfoWeb> infoWebList = new ArrayList<>();
+    public List<Info> infoListByTagId(Long tagId, int offset, int fetchSize) {
+        List<Info> infoList = new ArrayList<>();
         List<TagMapping> tagMappingListPaging = tagMappingService.listByTagsIdPaging(tagId, offset, fetchSize);
         for (TagMapping tagMappingPaging : tagMappingListPaging) {
             Info info = infoService.findInfoById(tagMappingPaging.getEntityId());
-            if (info == null) {
-                continue;
-            }
-            InfoWeb infoWeb = new InfoWeb();
-            BeanUtils.copyProperties(info, infoWeb);
-            TagMapping tagMappingRequest = new TagMapping();
-            tagMappingRequest.setTagType(tagMappingPaging.getTagType());
-            tagMappingRequest.setTagZoneType(tagMappingPaging.getTagZoneType());
-            tagMappingRequest.setEntityId(info.getId());
-            List<TagMapping> tagMappingList = tagMappingService.list(tagMappingRequest, 0, 10);
-            List<TagMappingWeb> tagMappingWebList = new ArrayList<>();
-            for (TagMapping tagMapping : tagMappingList) {
-                TagMappingWeb tagMappingWeb = new TagMappingWeb();
-                BeanUtils.copyProperties(tagMapping, tagMappingWeb);
-                Tags tags = tagsService.findById(tagMappingWeb.getTagsId());
-                tagMappingWeb.setName(tags.getName());
-                tagMappingWebList.add(tagMappingWeb);
-            }
-            if (!tagMappingWebList.isEmpty()) {
-                infoWeb.setTagMappingWebList(tagMappingWebList);
-            }
-            infoWebList.add(infoWeb);
+            infoList.add(info);
         }
-        return infoWebList;
+        return infoList;
     }
 
     public int infoListByTagIdSize(Long tagId) {

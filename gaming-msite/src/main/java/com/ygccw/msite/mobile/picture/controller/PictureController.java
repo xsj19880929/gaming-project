@@ -85,5 +85,20 @@ public class PictureController {
         return "/view/picture/picture-tag-list.html";
     }
 
+    /**
+     * 所有图片标签ajax请求
+     *
+     * @param offset
+     * @param fetchSize
+     * @return
+     */
+    @RequestMapping(value = "/picture/tagList", method = RequestMethod.POST)
+    @ResponseBody
+    public FindResultMoreToAjax tagListRest(@RequestBody Picture picture, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
+        List<Picture> pictureList = pictureWebService.pictureListByTagId(picture.getTagId(), offset, fetchSize);
+        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate(picture.getTemplateName());
+        return new FindResultMoreToAjax(pictureList, htmlTemplate);
+    }
+
 
 }
