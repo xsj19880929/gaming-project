@@ -19,11 +19,9 @@
 <div th:replace="/head.html::nav('index')"></div>
 <!--搜索-->
 <div class="search">
-    <form action='/searchsite.html' method='get'>
-        <input type="text" class="search_tx" placeholder="倩女幽魂手游" name='keyword' value="手游" th:value="${keywords}"/>
+    <input type="text" class="search_tx" placeholder="倩女幽魂手游" name='keywords' value="手游" th:value="${keywords}"/>
 
-        <input type="submit" class="search_bt" value=""/>
-    </form>
+    <input type="button" name="searchSubmit" class="search_bt" value=""/>
 </div>
 <!--搜索结果-->
 <div class="search_result">
@@ -32,7 +30,7 @@
 <!--相关资讯-->
 <div class="search_box me_shadow" th:if="${type=='all'||type=='news'}">
     <div class="num_tit_ss">资讯</div>
-    <ul class="search_zixun clearfix">
+    <ul class="search_zixun clearfix" id="newsListData">
         <li th:each="info:${infoList.list}">
             <a href="/dnf/331611.html" class="a1" th:href="/news/${info.id}.html" th:title="${info.title}"><img
                     th:img-src="/image/100x70${info.titleImage}"
@@ -46,12 +44,17 @@
 
     </ul>
     <!--查看更多-->
-    <div class="search_more"><a th:href="/search_${keywords}_news_1.html">查看更多<span></span></a></div>
+    <div class="search_more" th:if="${type=='all'}"><a th:href="/search_${keywords}_news_1.html">查看更多<span></span></a>
+    </div>
+    <!--查看更多-->
+    <div class="search_more" th:if="${type=='news'}" id="loadMore"><a href="javascript:;"
+                                                                      onclick="getNewsList()">查看更多<span></span></a>
+    </div>
 </div>
 <!--相关视频-->
 <div class="search_box me_shadow" th:if="${type=='all'||type=='video'}">
     <div class="num_tit_ss">视频</div>
-    <ul class="search_shipin">
+    <ul class="search_shipin" id="newsListData">
         <li th:each="video:${videoList.list}">
             <a th:title="${video.title}"
                th:href="/video/${video.id}.html">
@@ -65,12 +68,17 @@
         </li>
     </ul>
     <!--查看更多-->
-    <div class="search_more"><a th:href="/search_${keywords}_video_1.html">查看更多<span></span></a></div>
+    <div class="search_more" th:if="${type=='all'}"><a th:href="/search_${keywords}_video_1.html">查看更多<span></span></a>
+    </div>
+    <!--查看更多-->
+    <div class="search_more" th:if="${type=='video'}" id="loadMore"><a href="javascript:;"
+                                                                       onclick="getVideoList()">查看更多<span></span></a>
+    </div>
 </div>
 <!--相关图集-->
 <div class="search_box me_shadow" th:if="${type=='all'||type=='picture'}">
     <div class="num_tit_ss">图集</div>
-    <ul class="search_tuji">
+    <ul class="search_tuji" id="newsListData">
         <li th:each="picture:${pictureList.list}"><a th:title="${picture.description}"
                                                      th:href="/picture/${picture.id}.html"><img
                 th:img-src="/image/230x160${picture.image}" th:alt="${picture.description}"></a><a
@@ -78,13 +86,18 @@
                 th:href="/picture/${picture.id}.html" th:text="${picture.description}">红黄绿</a></li>
     </ul>
     <!--查看更多-->
-    <div class="search_more"><a th:href="/search_${keywords}_picture_1.html">查看更多<span></span></a></div>
+    <div class="search_more" th:if="${type=='all'}"><a
+            th:href="/search_${keywords}_picture_1.html">查看更多<span></span></a></div>
+    <!--查看更多-->
+    <div class="search_more" th:if="${type=='picture'}" id="loadMore"><a href="javascript:;"
+                                                                         onclick="getPictureList()">查看更多<span></span></a>
+    </div>
 </div>
 
 <!--相关赛事-->
 <div class="search_box me_shadow" th:if="${type=='all'||type=='match'}">
     <div class="num_tit_ss">赛事</div>
-    <ul class="search_libao clearfix">
+    <ul class="search_libao clearfix" id="newsListData">
         <li th:each="matchZone:${matchZoneList.list}">
             <a th:href="/game/${matchZone.id}/" th:title="${matchZone.name}" class="a1">
                 <img th:img-src="/image/70x70${matchZone.icoImage}" th:alt="${matchZone.name}"></a>
@@ -100,12 +113,17 @@
 
     </ul>
     <!--查看更多-->
-    <div class="search_more"><a th:href="/search_${keywords}_match_1.html">查看更多<span></span></a></div>
+    <div class="search_more" th:if="${type=='all'}"><a th:href="/search_${keywords}_match_1.html">查看更多<span></span></a>
+    </div>
+    <!--查看更多-->
+    <div class="search_more" th:if="${type=='match'}" id="loadMore"><a href="javascript:;"
+                                                                       onclick="getMatchList()">查看更多<span></span></a>
+    </div>
 </div>
 <!--相关主播-->
 <div class="search_box me_shadow" th:if="${type=='all'||type=='anchor'}">
     <div class="num_tit_ss">主播</div>
-    <ul class="search_libao clearfix">
+    <ul class="search_libao clearfix" id="newsListData">
         <li th:each="anchorZone:${anchorZoneList.list}">
             <a th:href="/anchor/${anchorZone.id}/" th:title="${anchorZone.username}" class="a1">
                 <img th:img-src="/image/70x70${anchorZone.icoImage}" th:alt="${anchorZone.username}"></a>
@@ -120,12 +138,27 @@
 
     </ul>
     <!--查看更多-->
-    <div class="search_more"><a th:href="/search_${keywords}_anchor_1.html">查看更多<span></span></a></div>
+    <div class="search_more" th:if="${type=='all'}"><a th:href="/search_${keywords}_anchor_1.html">查看更多<span></span></a>
+    </div>
+    <!--查看更多-->
+    <div class="search_more" th:if="${type=='anchor'}" id="loadMore"><a href="javascript:;"
+                                                                        onclick="getAnchorList()">查看更多<span></span></a>
+    </div>
+</div>
+<div id="loadMoreCondition" style="display:none">
+    <input type="hidden" id="offset" name="offset" th:value="${fetchSize}">
+    <input type="hidden" id="fetchSize" name="fetchSize" th:value="${fetchSize}">
+    <input type="hidden" value="news-list-template.html" id="templateName" name="templateName">
+    <input type="hidden" id="keywords" name="keywords" th:value="${keywords}">
+    <input type="hidden" id="type" name="type" th:value="${type}">
 </div>
 <!--底部导航-->
 <nav th:replace="/bottom.html::footerNav"></nav>
 <!--底部-->
 <footer th:replace="/bottom.html::footer"></footer>
-
+<script type="text/javascript" th:src="static/js/jquery.js"></script>
+<script type="text/javascript" th:src="static/js/search.js"></script>
+<script type="text/javascript" th:src="/static/js/main.js"></script>
+<script type="text/javascript" th:src="/static/js/layer/layer.js"></script>
 </body>
 </html>
