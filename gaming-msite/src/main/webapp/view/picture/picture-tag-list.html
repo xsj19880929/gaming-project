@@ -22,7 +22,7 @@
 <!--导航1-->
 <div th:replace="/head.html::nav('picture')"></div>
 <div class="wrapper">
-    <p class="picture-bread-lost"><a th:href="/">电竞首页</a><span>&gt;</span><a
+    <p class="bread-lost"><a th:href="/">电竞首页</a><span>&gt;</span><a
             th:href="/picture/">竞技美图</a><span>&gt;</span><em
             th:text="${tags.Name}">美女</em></p>
     <ul class="wall clearfix" id="newsListData">
@@ -40,12 +40,10 @@
 </div>
 
 <!--加载更多-->
-<div class="footer-more more-other" id="loadMore" th:if="${#lists.size(pictureList.list)>=pictureList.fetchSize}">
-    <a style="color: #808080; font-size: 13px;" href="javascript:;" onclick="getNewsList()">加载更多 <img
-            style="width: 16%;"
-            th:src="/static/img/morejt.png"
-            alt="加载更多"></a>
+<div class="load_more" id="loadMore" th:if="${#lists.size(pictureList.list)>=pictureList.fetchSize}">
+    <a href="javascript:;" onclick="getNewsList()">加载更多<span></span></a>
 </div>
+
 
 <div id="loadMoreCondition" style="display:none">
     <input type="hidden" id="offset" name="offset" th:value="${pictureList.fetchSize}">

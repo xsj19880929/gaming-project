@@ -27,7 +27,8 @@
 <div class="zhuanqushouye">
     <div class="tips">
         <p><a th:href="/">电竞首页</a><span>&gt;</span><a
-                th:href="/game/${matchZone.id}/" th:text="${matchZone.name}">英雄联盟电竞专区</a><span>&gt;</span><em>赛事资讯</em></p>
+                th:href="/game/${matchZone.id}/" th:text="${matchZone.name}">英雄联盟电竞专区</a><span>&gt;</span><em>赛事资讯</em>
+        </p>
     </div>
     <div class="CompetitionDeta" id="newsListData">
         <div class="item" th:each="news:${newsList.list}">
@@ -45,10 +46,8 @@
     </div>
 </div>
 <!--加载更多-->
-<div class="footer-more more-other" id="loadMore" th:if="${#lists.size(newsList.list)>=newsList.fetchSize}">
-    <a style="color: #b1b1b1;" href="javascript:;" onclick="getNewsList()">加载更多 <img style="width: 16%;"
-                                                                                     th:src="/static/img/morejt.png"
-                                                                                     alt="加载更多"></a>
+<div class="load_more" id="loadMore" th:if="${#lists.size(newsList.list)>=newsList.fetchSize}">
+    <a href="javascript:;" onclick="getNewsList()">加载更多<span></span></a>
 </div>
 <div id="loadMoreCondition" style="display:none">
     <input type="hidden" value="matchZone" id="infoZoneType.name" name="infoZoneType.name">

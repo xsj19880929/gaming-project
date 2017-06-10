@@ -57,10 +57,8 @@
 
 </div>
 <!--加载更多-->
-<div class="footer-more more-other" id="loadMore" th:if="${#lists.size(infoList.list)>=infoList.fetchSize}">
-    <a style="color: #808080; font-size: 13px;" href="javascript:;" onclick="getNewsList()">加载更多 <img
-            style="width: 16%;"
-            th:src="/static/img/morejt.png"></a>
+<div class="load_more" id="loadMore" th:if="${#lists.size(infoList.list)>=infoList.fetchSize}"><a href="javascript:;"
+                                                                                                  onclick="getNewsList()">加载更多<span></span></a>
 </div>
 <div id="loadMoreCondition" style="display:none">
     <input type="hidden" value="trade" th:if="${infoList.pageName}=='/news_trade'" id="infoZoneType.name"

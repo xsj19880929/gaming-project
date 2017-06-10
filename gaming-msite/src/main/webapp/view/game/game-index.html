@@ -88,13 +88,8 @@
                      th:title="${matchTeam.name}" th:text="${matchTeam.name}">MVP</a></li>
     </ul>
 </div>
-<div class="footer-more" style="display: flex;
-    justify-content: center;
-    border-bottom: 1px solid #dadada;
-    padding: 4% 0;">
-    <a style="font-size: 13px; color: #808080;" th:href="/game/team/${matchZone.id}/"
-       th:title="${matchZone.name}+'参赛队伍'">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"
-                                                     alt="查看更多"></a>
+<div class="load_more">
+    <a th:href="/game/team/${matchZone.id}/" th:title="${matchZone.name}+'参赛队伍'">查看更多<span></span></a>
 </div>
 <!--比赛日程-->
 <div class="bisairicheng">
@@ -152,18 +147,8 @@
     </div>
 </div>
 <!--查看更多-->
-<div class="footer-more"
-     style="
-      display: flex;
-    justify-content: center;
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-    padding: 4% 0;"
->
-    <a style="color: #808080; font-size: 13px;" th:href="/game/news/${matchZone.id}/" th:title="${matchZone.name}+查看更多">查看更多
-        <img style="width: 16%;"
-             th:src="/static/img/morejt.png"
-             alt=""></a>
+<div class="load_more">
+    <a th:href="/game/news/${matchZone.id}/" th:title="${matchZone.name}+查看更多">查看更多<span></span></a>
 </div>
 <!--精彩视频-->
 <div class="videoList" style=" border-top: 3px solid #eaa000; margin-top: 2%">
@@ -188,15 +173,9 @@
     </div>
 </div>
 <!--查看更多-->
-<div class="footer-more"
-     style="
-      display: flex;
-    justify-content: center;
-    border-bottom: 1px solid #ccc;
-    padding: 4% 0;"
->
-    <a style="color: #808080; font-size: 13px;" th:href="/game/video/${matchZone.id}/"
-       th:title="${matchZone.name}+查看更多">查看更多 <img style="width: 16%;" th:src="/static/img/morejt.png"></a>
+<div class="load_more">
+    <a th:href="/game/video/${matchZone.id}/"
+       th:title="${matchZone.name}+查看更多">查看更多<span></span></a>
 </div>
 
 <!--评论内容-->

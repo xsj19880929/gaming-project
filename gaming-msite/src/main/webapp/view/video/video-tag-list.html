@@ -41,11 +41,10 @@
 </div>
 
 <!--加载更多-->
-<div class="footer-more more-other" id="loadMore" th:if="${#lists.size(videoList.list)>=videoList.fetchSize}">
-    <a style="color: #808080; font-size: 13px;" href="javascript:;" onclick="getNewsList()">加载更多 <img
-            style="width: 16%;" th:src="/static/img/morejt.png"
-            alt="加载更多"></a>
+<div class="load_more" id="loadMore" th:if="${#lists.size(videoList.list)>=videoList.fetchSize}">
+    <a href="javascript:;" onclick="getNewsList()">加载更多<span></span></a>
 </div>
+
 <div id="loadMoreCondition" style="display:none">
     <input type="hidden" id="offset" name="offset" th:value="${videoList.fetchSize}">
     <input type="hidden" id="fetchSize" name="fetchSize" th:value="${videoList.fetchSize}">
