@@ -105,7 +105,9 @@ public class PictureWebService {
         List<TagMapping> tagMappingList = tagMappingService.listByTagsIdPaging(tagId, offset, fetchSize);
         for (TagMapping tagMapping : tagMappingList) {
             Picture picture = pictureService.findById(tagMapping.getEntityId());
-            pictureList.add(picture);
+            if (picture != null) {
+                pictureList.add(picture);
+            }
         }
         return pictureList;
     }

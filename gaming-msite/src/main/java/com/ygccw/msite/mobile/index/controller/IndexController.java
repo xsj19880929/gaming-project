@@ -55,7 +55,7 @@ public class IndexController {
     public String search(HttpServletRequest request, final ModelMap model, @PathVariable String keywords, @PathVariable String type, @PathVariable Integer currentPage) {
         int fetchSize = 10;
         if ("all".equals(type)) {
-            fetchSize = 4;
+            fetchSize = 6;
             model.put("infoList", new FindResultToMobile(indexWebService.searchInfo(keywords, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, PageUtils.getPageUrl(request)));
             model.put("matchZoneList", new FindResultToMobile(indexWebService.searchMatchZone(keywords, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, PageUtils.getPageUrl(request)));
             model.put("anchorZoneList", new FindResultToMobile(indexWebService.searchAnchorZone(keywords, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, PageUtils.getPageUrl(request)));

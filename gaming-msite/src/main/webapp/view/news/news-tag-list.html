@@ -24,8 +24,8 @@
 
 <!--中间-->
 <div class="zhuanqushouye" style="border: none; margin-top: 2%;">
-    <p class="titletext"><a th:href="/">电竞首页</a><span>&gt;</span><a th:href="/news/">全部资讯</a><span>&gt;</span><em
-            th:text="${tags!=null?tags.tagZoneType.label:''}+新闻">行业新闻</em></p>
+    <p class="bread-lost"><a th:href="/">电竞首页</a><span>&gt;</span><a th:href="/news/">全部资讯</a><span>&gt;</span><em
+            th:text="${tags.name}">行业新闻</em></p>
     <div style="margin-top: -1.3%">
         <div class="CompetitionDeta" style="padding-bottom: 1%;" id="newsListData">
             <div class="item" th:each="info:${infoList.list}">

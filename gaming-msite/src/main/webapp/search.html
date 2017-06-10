@@ -28,7 +28,7 @@
     <div class="search_result_tit"><span>搜索</span><i th:text="${keywords}"></i><span>结果如下</span></div>
 </div>
 <!--相关资讯-->
-<div class="search_box me_shadow" th:if="${type=='all'||type=='news'}">
+<div class="search_box me_shadow" th:if="${type=='all'||type=='news'}" th:unless="${#lists.isEmpty(infoList.list)}">
     <div class="num_tit_ss">资讯</div>
     <ul class="search_zixun clearfix" id="newsListData">
         <li th:each="info:${infoList.list}">
@@ -52,7 +52,7 @@
     </div>
 </div>
 <!--相关视频-->
-<div class="search_box me_shadow" th:if="${type=='all'||type=='video'}">
+<div class="search_box me_shadow" th:if="${type=='all'||type=='video'}" th:unless="${#lists.isEmpty(videoList.list)}">
     <div class="num_tit_ss">视频</div>
     <ul class="search_shipin" id="newsListData">
         <li th:each="video:${videoList.list}">
@@ -76,7 +76,7 @@
     </div>
 </div>
 <!--相关图集-->
-<div class="search_box me_shadow" th:if="${type=='all'||type=='picture'}">
+<div class="search_box me_shadow" th:if="${type=='all'||type=='picture'}" th:unless="${#lists.isEmpty(pictureList.list)}">
     <div class="num_tit_ss">图集</div>
     <ul class="search_tuji" id="newsListData">
         <li th:each="picture:${pictureList.list}"><a th:title="${picture.description}"
@@ -95,7 +95,7 @@
 </div>
 
 <!--相关赛事-->
-<div class="search_box me_shadow" th:if="${type=='all'||type=='match'}">
+<div class="search_box me_shadow" th:if="${type=='all'||type=='match'}" th:unless="${#lists.isEmpty(matchZoneList.list)}">
     <div class="num_tit_ss">赛事</div>
     <ul class="search_libao clearfix" id="newsListData">
         <li th:each="matchZone:${matchZoneList.list}">
@@ -121,7 +121,7 @@
     </div>
 </div>
 <!--相关主播-->
-<div class="search_box me_shadow" th:if="${type=='all'||type=='anchor'}">
+<div class="search_box me_shadow" th:if="${type=='all'||type=='anchor'}" th:unless="${#lists.isEmpty(anchorZoneList.list)}">
     <div class="num_tit_ss">主播</div>
     <ul class="search_libao clearfix" id="newsListData">
         <li th:each="anchorZone:${anchorZoneList.list}">
@@ -148,7 +148,7 @@
 <div id="loadMoreCondition" style="display:none">
     <input type="hidden" id="offset" name="offset" th:value="${fetchSize}">
     <input type="hidden" id="fetchSize" name="fetchSize" th:value="${fetchSize}">
-    <input type="hidden" value="news-list-template.html" id="templateName" name="templateName">
+    <input type="hidden" id="templateName" name="templateName" th:value="${templateName}">
     <input type="hidden" id="keywords" name="keywords" th:value="${keywords}">
     <input type="hidden" id="type" name="type" th:value="${type}">
 </div>

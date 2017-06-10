@@ -22,11 +22,11 @@
 <!--导航1-->
 <div th:replace="/head.html::nav('video')"></div>
 <div class="videoList" style="border-top: 2px solid #eaa000;">
-    <p class="titletext"><a th:href="">电竞首页</a><span>&gt;</span><a th:href="/video/">视频列表</a><span>&gt;</span><em
-            th:text="${tags.tagZoneType.label}+视频">视频列表</em></p>
+    <p class="bread-lost"><a th:href="">电竞首页</a><span>&gt;</span><a th:href="/video/">视频列表</a><span>&gt;</span><em
+            th:text="${tags.name}">视频列表</em></p>
     <div class="videoshow"><p></p>
         <ul id="newsListData">
-            <li th:each="video:${infoList.list}">
+            <li th:each="video:${videoList.list}">
                 <a th:title="${video.title}" th:href="/video/${video.id}.html">
                     <img th:img-src="/image/330x195${video.titleImage}" th:alt="${video.title}"
                          th:title="${video.title}">
@@ -41,14 +41,14 @@
 </div>
 
 <!--加载更多-->
-<div class="footer-more more-other" id="loadMore" th:if="${#lists.size(infoList.list)>=infoList.fetchSize}">
+<div class="footer-more more-other" id="loadMore" th:if="${#lists.size(videoList.list)>=videoList.fetchSize}">
     <a style="color: #808080; font-size: 13px;" href="javascript:;" onclick="getNewsList()">加载更多 <img
             style="width: 16%;" th:src="/static/img/morejt.png"
             alt="加载更多"></a>
 </div>
 <div id="loadMoreCondition" style="display:none">
-    <input type="hidden" id="offset" name="offset" th:value="${infoList.fetchSize}">
-    <input type="hidden" id="fetchSize" name="fetchSize" th:value="${infoList.fetchSize}">
+    <input type="hidden" id="offset" name="offset" th:value="${videoList.fetchSize}">
+    <input type="hidden" id="fetchSize" name="fetchSize" th:value="${videoList.fetchSize}">
     <input type="hidden" id="tagId" name="tagId" th:value="${tags.id}">
     <input type="hidden" value="video-tag-list-template.html" id="templateName" name="templateName">
 </div>

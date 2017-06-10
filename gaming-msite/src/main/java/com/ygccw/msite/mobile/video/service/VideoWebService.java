@@ -106,7 +106,9 @@ public class VideoWebService {
         List<TagMapping> tagMappingList = tagMappingService.listByTagsIdPaging(tagId, offset, fetchSize);
         for (TagMapping tagMapping : tagMappingList) {
             Info info = infoService.findInfoById(tagMapping.getEntityId());
-            infoList.add(info);
+            if (info != null) {
+                infoList.add(info);
+            }
         }
         return infoList;
     }

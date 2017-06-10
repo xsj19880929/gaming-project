@@ -13,6 +13,15 @@ public class VideoRequest {
     private Boolean sortIfDesc;
     private String templateName;
     private InfoZoneType infoZoneType;
+    private Long tagId;
+
+    public Long getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(Long tagId) {
+        this.tagId = tagId;
+    }
 
     public InfoZoneType getInfoZoneType() {
         return infoZoneType;

@@ -2,7 +2,6 @@ package com.ygccw.msite.mobile.picture.controller;
 
 import com.ygccw.msite.database.FindResultMoreToAjax;
 import com.ygccw.msite.database.FindResultToMobile;
-import com.ygccw.msite.database.FindResultToSale;
 import com.ygccw.msite.mobile.common.model.HtmlTemplate;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
 import com.ygccw.msite.mobile.picture.service.PictureWebService;
@@ -80,7 +79,7 @@ public class PictureController {
     @RequestMapping(value = "/picture/tag/{tagId}_{currentPage}.html", method = RequestMethod.GET)
     public String tagList(HttpServletRequest request, final ModelMap model, @PathVariable Long tagId, @PathVariable Integer currentPage) {
         int fetchSize = 6;
-        model.put("pictureList", new FindResultToSale(pictureWebService.pictureListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), pictureWebService.pictureListByTagIdSize(tagId), currentPage, fetchSize, PageUtils.getPageUrl(request)));
+        model.put("pictureList", new FindResultToMobile(pictureWebService.pictureListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, PageUtils.getPageUrl(request)));
         model.put("tags", tagsService.findById(tagId));
         return "/view/picture/picture-tag-list.html";
     }

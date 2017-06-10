@@ -2,7 +2,6 @@ package com.ygccw.msite.mobile.video.controller;
 
 import com.ygccw.msite.database.FindResultMoreToAjax;
 import com.ygccw.msite.database.FindResultToMobile;
-import com.ygccw.msite.database.FindResultToSale;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
 import com.ygccw.msite.mobile.common.model.HtmlTemplate;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
@@ -181,8 +180,24 @@ public class VideoController {
     @RequestMapping(value = "/video/tag/{tagId}_{currentPage}.html", method = RequestMethod.GET)
     public String tagList(HttpServletRequest request, final ModelMap model, @PathVariable Long tagId, @PathVariable Integer currentPage) {
         int fetchSize = 10;
-        model.put("videoList", new FindResultToSale(videoWebService.videoListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), videoWebService.videoListByTagIdSize(tagId), currentPage, fetchSize, PageUtils.getPageUrl(request)));
+        model.put("videoList", new FindResultToMobile(videoWebService.videoListByTagId(tagId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, PageUtils.getPageUrl(request)));
         model.put("tags", tagsService.findById(tagId));
         return "/view/video/video-tag-list.html";
     }
+
+    /**
+     * 所有图片标签ajax请求
+     *
+     * @param offset
+     * @param fetchSize
+     * @return
+     */
+    @RequestMapping(value = "/video/tagList", method = RequestMethod.POST)
+    @ResponseBody
+    public FindResultMoreToAjax tagListRest(@RequestBody VideoRequest videoRequest, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
+        List<Info> videoList = videoWebService.videoListByTagId(videoRequest.getTagId(), offset, fetchSize);
+        HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate(videoRequest.getTemplateName());
+        return new FindResultMoreToAjax(videoList, htmlTemplate);
+    }
+
 }

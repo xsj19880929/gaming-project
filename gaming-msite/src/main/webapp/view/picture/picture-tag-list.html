@@ -21,9 +21,10 @@
 <header th:replace="/head.html::top"></header>
 <!--导航1-->
 <div th:replace="/head.html::nav('picture')"></div>
-<p class="titletext"><a th:href="/">电竞首页</a><span>&gt;</span><a th:href="/picture/">竞技美图</a><span>&gt;</span><em
-        th:text="${tags.Name}">美女</em></p>
 <div class="wrapper">
+    <p class="picture-bread-lost"><a th:href="/">电竞首页</a><span>&gt;</span><a
+            th:href="/picture/">竞技美图</a><span>&gt;</span><em
+            th:text="${tags.Name}">美女</em></p>
     <ul class="wall clearfix" id="newsListData">
         <li class="article" th:each="picture:${pictureList.list}" th:if="${picture!=null&&picture.id!=null}">
             <a href="#" th:href="/picture/${picture.id}.html"
