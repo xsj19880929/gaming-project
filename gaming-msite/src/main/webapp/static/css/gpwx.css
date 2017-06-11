@@ -138,7 +138,7 @@ a:hover, a:active {
 }
 
 .logo a.a1 img {
-    height: 22px;
+    height: 30px;
 }
 
 .header_r {
@@ -1536,7 +1536,7 @@ li .long-string {
 .menu-new{float: right;}
 .list_menu_new{left: -70px; top: 8px;}
 .list_menu_new .img{float: right; margin-left: 0; margin-right: 13px;}
-.menu-new-back{width: 55px; height: 45px; float: left;}
+.menu-new-back{width: 55px; height: 45px; float: left;border-right: 1px solid #0f53a4;}
 .menu-new-back a{display: block; width: 55px; height: 45px; background: url(../img/back.png) no-repeat 14px center; background-size: 22px auto;}
 .menu-new-search{float: right; width: 40px; height: 45px;}
 .menu-new-search a{display: block; width: 40px; height: 45px; background: url(../img/search.png) no-repeat center center; background-size: 23px auto;}

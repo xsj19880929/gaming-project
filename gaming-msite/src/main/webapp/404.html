@@ -2,22 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" th:page>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" th:href="static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" th:href="static/css/wcg.css"/>
-    <script type="text/javascript" th:src="static/js/jquery.js"></script>
-    <script type="text/javascript" th:src="static/js/wcg.js"></script>
-    <script type="text/javascript" th:src="static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <meta content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta http-equiv="Cache-Control" content="max-age=3600"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
     <title>404</title>
+    <link rel="stylesheet" type="text/css" href="static/css/gpwx.css" th:href="static/css/gpwx.css"/>
+    <link rel="stylesheet" type="text/css" href="static/css/index.css" th:href="static/css/index.css"/>
 </head>
 
 <body>
-<!--head-->
-<div th:replace="/head.html::top('404')"></div>
+<!--头部1-->
+<header th:replace="/head.html::top"></header>
+<!--导航1-->
+<div th:replace="/head.html::nav('index')"></div>
 <div class="general">
     <div class="no-found-page"><h1>404</h1>您所访问的页面不存在！</div>
 
 </div>
-<div th:replace="/bottom.html::bottom"></div>
-
+<!--底部导航-->
+<nav th:replace="/bottom.html::footerNav"></nav>
+<!--底部-->
+<footer th:replace="/bottom.html::footer"></footer>
 </body>
 </html>

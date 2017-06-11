@@ -48,7 +48,7 @@
     </div>
     <!--查看更多-->
     <div class="search_more" th:if="${type=='news'}" id="loadMore"><a href="javascript:;"
-                                                                      onclick="getNewsList()">查看更多<span></span></a>
+                                                                      onclick="getNewsList()">加载更多<span></span></a>
     </div>
 </div>
 <!--相关视频-->
@@ -72,11 +72,12 @@
     </div>
     <!--查看更多-->
     <div class="search_more" th:if="${type=='video'}" id="loadMore"><a href="javascript:;"
-                                                                       onclick="getVideoList()">查看更多<span></span></a>
+                                                                       onclick="getVideoList()">加载更多<span></span></a>
     </div>
 </div>
 <!--相关图集-->
-<div class="search_box me_shadow" th:if="${type=='all'||type=='picture'}" th:unless="${#lists.isEmpty(pictureList.list)}">
+<div class="search_box me_shadow" th:if="${type=='all'||type=='picture'}"
+     th:unless="${#lists.isEmpty(pictureList.list)}">
     <div class="num_tit_ss">图集</div>
     <ul class="search_tuji" id="newsListData">
         <li th:each="picture:${pictureList.list}"><a th:title="${picture.description}"
@@ -90,12 +91,13 @@
             th:href="/search_${keywords}_picture_1.html">查看更多<span></span></a></div>
     <!--查看更多-->
     <div class="search_more" th:if="${type=='picture'}" id="loadMore"><a href="javascript:;"
-                                                                         onclick="getPictureList()">查看更多<span></span></a>
+                                                                         onclick="getPictureList()">加载更多<span></span></a>
     </div>
 </div>
 
 <!--相关赛事-->
-<div class="search_box me_shadow" th:if="${type=='all'||type=='match'}" th:unless="${#lists.isEmpty(matchZoneList.list)}">
+<div class="search_box me_shadow" th:if="${type=='all'||type=='match'}"
+     th:unless="${#lists.isEmpty(matchZoneList.list)}">
     <div class="num_tit_ss">赛事</div>
     <ul class="search_libao clearfix" id="newsListData">
         <li th:each="matchZone:${matchZoneList.list}">
@@ -117,11 +119,12 @@
     </div>
     <!--查看更多-->
     <div class="search_more" th:if="${type=='match'}" id="loadMore"><a href="javascript:;"
-                                                                       onclick="getMatchList()">查看更多<span></span></a>
+                                                                       onclick="getMatchList()">加载更多<span></span></a>
     </div>
 </div>
 <!--相关主播-->
-<div class="search_box me_shadow" th:if="${type=='all'||type=='anchor'}" th:unless="${#lists.isEmpty(anchorZoneList.list)}">
+<div class="search_box me_shadow" th:if="${type=='all'||type=='anchor'}"
+     th:unless="${#lists.isEmpty(anchorZoneList.list)}">
     <div class="num_tit_ss">主播</div>
     <ul class="search_libao clearfix" id="newsListData">
         <li th:each="anchorZone:${anchorZoneList.list}">
@@ -142,7 +145,7 @@
     </div>
     <!--查看更多-->
     <div class="search_more" th:if="${type=='anchor'}" id="loadMore"><a href="javascript:;"
-                                                                        onclick="getAnchorList()">查看更多<span></span></a>
+                                                                        onclick="getAnchorList()">加载更多<span></span></a>
     </div>
 </div>
 <div id="loadMoreCondition" style="display:none">

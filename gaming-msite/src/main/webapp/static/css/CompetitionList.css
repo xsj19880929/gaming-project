@@ -251,6 +251,7 @@
     width: 55px;
     height: 45px;
     float: left;
+    border-right: 1px solid #0f53a4;
 }
 
 .menu-new-back a {
