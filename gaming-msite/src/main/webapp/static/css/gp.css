@@ -223,7 +223,7 @@ a:hover, a:active {
     }
 }
 
-/*wcg电竞触屏端*/
+/***wcg电竞触屏端***/
 .wcgp-nav-box {
     width: 100%;
     border-top: 1px solid #d5d9da;
@@ -309,7 +309,7 @@ a:hover, a:active {
     display: none;
 }
 
-/*banner*/
+/***banner***/
 .wcgp-banner-box {
     width: 96%;
     margin: 0 auto 0 auto;
@@ -349,7 +349,7 @@ a:hover, a:active {
     background: #eaa000;
 }
 
-/*头条*/
+/***头条***/
 .wcgp-headnews {
     position: relative;
     margin-top: 10px;
@@ -390,7 +390,7 @@ a:hover, a:active {
     left: 0;
 }
 
-/*最新资讯*/
+/***最新资讯***/
 .wcgp-news-box {
     margin-top: 10px;
     border-top: 2px solid #eaa000;
@@ -484,7 +484,7 @@ a:hover, a:active {
     color: #808080;
 }
 
-/*赛事专题*/
+/***赛事专题***/
 .wcgp-game-con {
     margin-top: 12px;
     margin-bottom: 6px;
@@ -525,7 +525,7 @@ a:hover, a:active {
     white-space: nowrap;
 }
 
-/*视频中心*/
+/***视频中心***/
 .wcgp-video-con {
     margin-top: 14px;
 }
@@ -580,7 +580,7 @@ a:hover, a:active {
     white-space: nowrap;
 }
 
-/*电竞排行榜*/
+/***电竞排行榜***/
 .wcgp-number-con {
     overflow: hidden;
     margin-bottom: 16px;
@@ -677,7 +677,7 @@ a:hover, a:active {
     -webkit-border-radius: 2px;
 }
 
-/*电竞美图*/
+/***电竞美图***/
 .wcgp-pic-con {
     margin-bottom: 20px;
 }
@@ -757,7 +757,7 @@ a:hover, a:active {
     background: rgba(0, 0, 0, 0.6);
 }
 
-/*友情链接*/
+/***友情链接***/
 .wcgp-link-box {
     border-top: 2px solid #666;
 }
@@ -777,7 +777,7 @@ a:hover, a:active {
     line-height: 24px;
 }
 
-/*赛事专题页*/
+/***赛事专题页***/
 .wcgp-special-tit {
     font-weight: normal;
     color: #666;
@@ -787,7 +787,7 @@ a:hover, a:active {
     color: #666;
 }
 
-/*赛事详情页*/
+/***赛事详情页***/
 .wcgp-detail-banner {
     min-height: 190px;
     position: relative;
@@ -845,7 +845,7 @@ a:hover, a:active {
     margin-bottom: 12px;
 }
 
-/*手游下载*/
+/***手游下载***/
 .wcgp-game-download {
     height: 90px;
     position: relative;
@@ -945,7 +945,7 @@ a:hover, a:active {
     line-height: 40px;
 }
 
-/*评价*/
+/***评价***/
 .perfect_tit_pj {
     background: #fff;
     line-height: 40px;
@@ -1010,7 +1010,7 @@ a:hover, a:active {
 }
 
 .pj_db .evalu .cont_pj .text_2 .shurk {
-    background: #f2f2f2; /* margin-left:60px; */
+    background: #f2f2f2; /*** margin-left:60px; ***/
     border: 1px solid #e6e6e6;
     height: 85px;
 }
@@ -1051,7 +1051,7 @@ a:hover, a:active {
     margin-bottom: 5px;
 }
 
-.pj_db .evalu .cont_pj .text_2 .dr_pj { /*margin-left:60px;*/
+.pj_db .evalu .cont_pj .text_2 .dr_pj { /***margin-left:60px;***/
     display: block;
 }
 
@@ -1246,7 +1246,7 @@ a:hover, a:active {
     background: #fdffea;
 }
 
-/*瀑布流开始*/
+/***瀑布流开始***/
 .wall {
     display: block;
     position: relative;
@@ -1303,9 +1303,9 @@ a:hover, a:active {
     padding-left: 16%;
 }
 
-/*瀑布流结束*/
+/***瀑布流结束***/
 
-/*图片详情页*/
+/***图片详情页***/
 .wcgp-pic-tit {
     background: #fff;
     height: 52px;
@@ -1369,7 +1369,7 @@ a:hover, a:active {
     margin: 0 auto 0 auto;
 }
 
-/*返回顶部*/
+/***返回顶部***/
 .tipTop.backtop {
     background-color: black;
     opacity: 1.6;

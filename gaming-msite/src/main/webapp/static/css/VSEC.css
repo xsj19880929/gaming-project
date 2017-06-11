@@ -8,7 +8,7 @@ body {
 
 }
 
-/*参赛战队*/
+/***参赛战队***/
 .eventInformation {
     width: 99%;
     padding: 3% 0;
@@ -16,13 +16,13 @@ body {
 
 .eventInformation ul {
     width: 100%;
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-direction: row;
     justify-content: space-around;
-    /*padding: 1rem 0.1rem 0.2rem 0;*/
+    /***padding: 1rem 0.1rem 0.2rem 0;***/
 }
 
 .eventInformation ul li {
@@ -77,10 +77,10 @@ body {
 }
 
 .takeItem ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-wrap: wrap;
     text-align: center;
 }
@@ -117,7 +117,7 @@ body {
 .takeItem .tab ul li {
     margin-left: 0;
     margin-bottom: 0;
-    /*padding: 1.4rem 0;*/
+    /***padding: 1.4rem 0;***/
     padding: 1rem 0;
     float: left;
     width: 49.6446%;
@@ -132,7 +132,7 @@ body {
     color: #999999;
 }
 
-/*专区首页*/
+/***专区首页***/
 .zhuanqushouye {
     -display: none;
     background-color: #fff;
@@ -146,8 +146,8 @@ body {
 
 .CompetitionDeta {
     width: 99%;
-    /*border-top: 1px solid #dadada;*/
-    /*border-bottom: 1px solid #dadada;*/
+    /***border-top: 1px solid #dadada;***/
+    /***border-bottom: 1px solid #dadada;***/
     padding-bottom: 1rem;
 }
 
@@ -210,7 +210,7 @@ body {
     color: rgb(179, 179, 179);
 }
 
-/*右边的more+*/
+/***右边的more+***/
 .header-rightMore {
     float: right;
     font-size: 9pt;
@@ -219,7 +219,7 @@ body {
     margin-right: 8pt;
 }
 
-/*视频播放*/
+/***视频播放***/
 .video-play {
     width: 100%;
     padding-bottom: 2%;
@@ -227,16 +227,16 @@ body {
 }
 
 .video-play ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-wrap: wrap;
 }
 
 .video-play ul li {
     width: 47.6%;
-    /*margin:  0 0 2% 1.7%;*/
+    /***margin:  0 0 2% 1.7%;***/
     margin: 0 0 7px 1.7%;
     text-align: center;
     position: relative;
@@ -282,10 +282,10 @@ body {
     height: auto;;
 }
 
-/*
+/***
 * * 比赛图集
-*/
-/*直角蒙层*/
+***/
+/***直角蒙层***/
 .mengcheng {
     width: 100%;
     background-color: black;
@@ -307,17 +307,17 @@ body {
 }
 
 .bisaituju ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     -webkit-flex-wrap: wrap;
 
 }
 
 .bisaituju ul li {
     width: 31%;
-    /*margin: 5% 0 0 2%;*/
+    /***margin: 5% 0 0 2%;***/
     margin: 10px 0 0 1.7%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -338,7 +338,7 @@ body {
     color: rgb(46, 46, 47);
 }
 
-/*新闻详情页*/
+/***新闻详情页***/
 .first-content {
     color: rgb(133, 133, 133);
     line-height: 2.5rem;
@@ -362,7 +362,7 @@ body {
 
 .first-content .header-title {
     text-align: center;
-    /*border-bottom: 1px dashed #d5d9da;*/
+    /***border-bottom: 1px dashed #d5d9da;***/
 }
 
 .first-content .header-title h3 {
@@ -444,13 +444,13 @@ body {
 .three-content .comment {
     margin-left: 8px;
     margin-right: 23px;
-    /*width: 100%*/
+    /***width: 100%***/
 }
 
-/*咨询列表*/
+/***咨询列表***/
 .zhuanqushouye {
     background-color: #fff;
-    /*margin-top: 3%;*/
+    /***margin-top: 3%;***/
 }
 
 .zhuanqushouye .tips {
@@ -464,10 +464,10 @@ body {
 }
 
 .hangye ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     justify-content: space-around;
 }
 
@@ -486,7 +486,7 @@ body {
     color: #eaa000;
 }
 
-/*赛事列表*/
+/***赛事列表***/
 .Competition {
     border-top: 2px solid rgb(234, 160, 0);
     margin-top: 3%;
@@ -636,17 +636,17 @@ body {
 }
 
 .videoshow ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-wrap: wrap;
 }
 
 .videoshow ul li {
     width: 47.6%;
     margin: 0 0 2% 1.4%;
-    /*margin: 8px 0 3px 1.7%;*/
+    /***margin: 8px 0 3px 1.7%;***/
     text-align: center;
     position: relative;
 }
@@ -701,12 +701,12 @@ body {
 }
 
 .anchordeta .anchor-img .left-content {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-direction: row;
-    /*margin: 8% 0 10% 2%;*/
+    /***margin: 8% 0 10% 2%;***/
     margin: 17px 0 31px 5%;
 }
 
@@ -737,10 +737,10 @@ body {
 
 .anchordeta .anchor-img .right-content {
     width: 25%;
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-direction: row;
     margin-left: 13%;
     padding-top: 7vh;
@@ -782,10 +782,10 @@ body {
 }
 
 .anchor-text p:first-child {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     justify-content: space-between;
     border-bottom: 1px dashed #dadada;
     padding-bottom: 4%;
@@ -798,7 +798,7 @@ body {
     font-size: 12px;
 }
 
-/*主播资讯*/
+/***主播资讯***/
 .zhuanqushouye {
     background-color: #fff;
     border-top: 2px solid #eaa000;
@@ -840,10 +840,10 @@ body {
 }
 
 .gamelist1 ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-wrap: wrap;
 }
 
@@ -856,7 +856,7 @@ body {
 }
 
 .gamelist ul li {
-    /*margin: 3.6% 0 0;*/
+    /***margin: 3.6% 0 0;***/
     margin: 15px 0 0;
     background-color: #e5e5e5;
     text-align: center;
@@ -878,10 +878,10 @@ body {
 }
 
 .ganmelist2 ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     justify-content: flex-start;
 }
 
@@ -896,7 +896,7 @@ body {
     padding: 1% 4%
 }
 
-/*主播专题列表*/
+/***主播专题列表***/
 .videos {
     margin-top: 3%;
     width: 100%;
@@ -926,10 +926,10 @@ body {
 }
 
 .videodata ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     justify-content: space-around;
     padding: 3.9% 0 6% 0;
 }
@@ -1016,20 +1016,20 @@ body {
     background-color: #fff;
 }
 
-/*@media screen and (min-width: 26rem){*/
-/*.videoList {*/
-/*margin-top: 1%;*/
-/*}*/
-/*}*/
+/***@media screen and (min-width: 26rem){***/
+/***.videoList {***/
+/***margin-top: 1%;***/
+/***}***/
+/***}***/
 .vedeonav {
     margin-bottom: 5%;
 }
 
 .vedeonav ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-direction: row;
 }
 
@@ -1057,16 +1057,16 @@ body {
 }
 
 .videoList .videoshow ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-wrap: wrap;
 }
 
 .videoList .videoshow ul li {
     width: 47.6%;
-    /*margin:  0 0 2% 1.7%;*/
+    /***margin:  0 0 2% 1.7%;***/
     margin: 0 0 7px 1.7%;
     text-align: center;
     position: relative;
@@ -1107,17 +1107,17 @@ body {
 }
 
 .zhuboleibiao ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-wrap: wrap;
 }
 
 .zhuboleibiao ul li {
     border: 1px solid #dadada;
     width: 29%;
-    /*margin: 2% 1% 3% 2%;*/
+    /***margin: 2% 1% 3% 2%;***/
     margin: 2px 1% 14px 2%;
     text-align: center;
 }
@@ -1168,8 +1168,8 @@ body {
     white-space: nowrap;
 }
 
-/*比赛主题*/
-/*<!--比赛主题-->*/
+/***比赛主题***/
+/***<!--比赛主题-->***/
 .bisaizhuti {
     width: 100%;
     background-color: #fff;
@@ -1179,7 +1179,7 @@ body {
 
 .bisaizhuti table {
     width: 100%;
-    /*border-right: 1px solid #dadada;*/
+    /***border-right: 1px solid #dadada;***/
     border-bottom: 1px solid #dadada
 }
 
@@ -1246,10 +1246,10 @@ body {
 }
 
 .zhuti-footer ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-direction: row;
 }
 
@@ -1265,10 +1265,10 @@ body {
 }
 
 .zhuti-footer .top-content {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-direction: row;
 }
 
@@ -1335,7 +1335,7 @@ body {
     top: 25%;
 }
 
-/*比赛日程*/
+/***比赛日程***/
 .bisairicheng {
     width: 100%;
     background-color: #fff;
@@ -1359,18 +1359,18 @@ span.time {
 }
 
 .bisairicheng .wcgtime ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-direction: column;
 }
 
 .bisairicheng .wcgtime ul li {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     justify-content: space-around;
     margin-top: 2%;
 }
@@ -1439,7 +1439,7 @@ span.time {
     border-radius: 19px;
 }
 
-/*赛事资讯*/
+/***赛事资讯***/
 
 .sszixun {
     margin-top: 3%;
@@ -1448,10 +1448,10 @@ span.time {
 
 .sszixun .tip {
     border-bottom: 1px dashed #dadada;
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-direction: row;
     border-top: 1px solid #dadada;
     margin-left: 3%;
@@ -1545,7 +1545,7 @@ span.dian {
 }
 
 .Competition-header .tab-icon ul li {
-    /*border: 1px solid;*/
+    /***border: 1px solid;***/
     text-align: center;
     position: relative;
     width: 9%;
@@ -1654,7 +1654,7 @@ span.dian {
     text-align: right;
 }
 
-/*头部修改*/
+/***头部修改***/
 .header1 {
     background: #145eb6;
     width: 100%;

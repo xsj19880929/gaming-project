@@ -223,7 +223,7 @@ a:hover, a:active {
     }
 }
 
-/*右边的more+*/
+/***右边的more+***/
 .header-rightMore {
     float: right;
     font-size: 9pt;
@@ -232,7 +232,7 @@ a:hover, a:active {
     margin-right: 8pt;
 }
 
-/*wcg电竞触屏端*/
+/***wcg电竞触屏端***/
 .wcgp-nav-box {
     width: 100%;
     border-top: 1px solid #d5d9da;
@@ -318,7 +318,7 @@ a:hover, a:active {
     display: none;
 }
 
-/*banner*/
+/***banner***/
 .wcgp-banner-box {
     width: 96%;
     margin: 0 auto 0 auto;
@@ -358,7 +358,7 @@ a:hover, a:active {
     background: #eaa000;
 }
 
-/*头条*/
+/***头条***/
 .wcgp-headnews {
     position: relative;
     margin-top: 10px;
@@ -399,7 +399,7 @@ a:hover, a:active {
     left: 0;
 }
 
-/*最新资讯*/
+/***最新资讯***/
 .wcgp-news-box {
     margin-top: 10px;
     border-top: 2px solid #eaa000;
@@ -493,7 +493,7 @@ a:hover, a:active {
     color: #808080;
 }
 
-/*赛事专题*/
+/***赛事专题***/
 .wcgp-game-con {
     margin-top: 12px;
     margin-bottom: 6px;
@@ -534,7 +534,7 @@ a:hover, a:active {
     white-space: nowrap;
 }
 
-/*视频中心*/
+/***视频中心***/
 .wcgp-video-con {
     margin-top: 14px;
 }
@@ -589,7 +589,7 @@ a:hover, a:active {
     white-space: nowrap;
 }
 
-/*电竞排行榜*/
+/***电竞排行榜***/
 .wcgp-number-con {
     overflow: hidden;
     margin-bottom: 16px;
@@ -686,7 +686,7 @@ a:hover, a:active {
     -webkit-border-radius: 2px;
 }
 
-/*电竞美图*/
+/***电竞美图***/
 .wcgp-pic-con {
     margin-bottom: 20px;
 }
@@ -766,7 +766,7 @@ a:hover, a:active {
     background: rgba(0, 0, 0, 0.6);
 }
 
-/*友情链接*/
+/***友情链接***/
 .wcgp-link-box {
     border-top: 2px solid #666;
 }
@@ -786,7 +786,7 @@ a:hover, a:active {
     line-height: 24px;
 }
 
-/*赛事专题页*/
+/***赛事专题页***/
 .wcgp-special-tit {
     font-weight: normal;
     color: #666;
@@ -796,7 +796,7 @@ a:hover, a:active {
     color: #666;
 }
 
-/*赛事详情页*/
+/***赛事详情页***/
 .wcgp-detail-banner {
     min-height: 190px;
     position: relative;
@@ -842,7 +842,7 @@ a:hover, a:active {
     height: 42px;
     line-height: 42px;
     padding-left: 22px;
-    /*background: url(../img/read-logo.png) no-repeat 12px center;*/
+    /***background: url(../img/read-logo.png) no-repeat 12px center;***/
     background-size: 4px auto;
 }
 
@@ -854,7 +854,7 @@ a:hover, a:active {
     margin-bottom: 12px;
 }
 
-/*手游下载*/
+/***手游下载***/
 .wcgp-game-download {
     height: 90px;
     position: relative;
@@ -954,7 +954,7 @@ a:hover, a:active {
     line-height: 40px;
 }
 
-/*评价*/
+/***评价***/
 .perfect_tit_pj {
     background: #fff;
     line-height: 40px;
@@ -1019,7 +1019,7 @@ a:hover, a:active {
 }
 
 .pj_db .evalu .cont_pj .text_2 .shurk {
-    background: #f2f2f2; /* margin-left:60px; */
+    background: #f2f2f2; /*** margin-left:60px; ***/
     border: 1px solid #e6e6e6;
     height: 85px;
 }
@@ -1060,7 +1060,7 @@ a:hover, a:active {
     margin-bottom: 5px;
 }
 
-.pj_db .evalu .cont_pj .text_2 .dr_pj { /*margin-left:60px;*/
+.pj_db .evalu .cont_pj .text_2 .dr_pj { /***margin-left:60px;***/
     display: block;
 }
 
@@ -1163,8 +1163,8 @@ a:hover, a:active {
     margin-top: 10px;
 }
 
-/*.pj_db .evalu .all_pj .cont_pj_2 .text_3 .ding_hui_pj .ding_pj { float:right; display:block; background:url(../img/gamecenter/ding_pj.png) no-repeat; background-size:17px 15px; padding-left:18px; cursor:pointer;}*/
-/*.pj_db .evalu .all_pj .cont_pj_2 .text_3 .ding_hui_pj .hui_pj { display:block; float:right; background:url(../img/gamecenter/hui_pj.png) no-repeat; background-size:17px 16px; width:17px; height:16px; margin-right:20px;}*/
+/***.pj_db .evalu .all_pj .cont_pj_2 .text_3 .ding_hui_pj .ding_pj { float:right; display:block; background:url(../img/gamecenter/ding_pj.png) no-repeat; background-size:17px 15px; padding-left:18px; cursor:pointer;}***/
+/***.pj_db .evalu .all_pj .cont_pj_2 .text_3 .ding_hui_pj .hui_pj { display:block; float:right; background:url(../img/gamecenter/hui_pj.png) no-repeat; background-size:17px 16px; width:17px; height:16px; margin-right:20px;}***/
 .pj_db .evalu .all_pj .cont_pj_2 .text_3 .all_shur {
     background: #f1f1f1;
     border: 1px solid #dadada;
@@ -1238,7 +1238,7 @@ a:hover, a:active {
     background: #fdffea;
 }
 
-/*瀑布流开始*/
+/***瀑布流开始***/
 .wall {
     display: block;
     position: relative;
@@ -1261,7 +1261,7 @@ a:hover, a:active {
     background: white;
     border-radius: 3px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    /*transition: all 100;*/
+    /***transition: all 100;***/
     overflow: hidden;
     position: relative;
 }
@@ -1295,9 +1295,9 @@ a:hover, a:active {
     padding-left: 16%;
 }
 
-/*瀑布流结束*/
+/***瀑布流结束***/
 
-/*图片详情页*/
+/***图片详情页***/
 .wcgp-pic-tit {
     background: #fff;
     height: 52px;
@@ -1312,7 +1312,7 @@ a:hover, a:active {
     dsiplay: block;
     width: 15px;
     height: 15px;
-    /*background: url(../img/back-btn.png) no-repeat center center;*/
+    /***background: url(../img/back-btn.png) no-repeat center center;***/
     background-size: 15px 15px;
     position: absolute;
     left: 5px;
@@ -1355,7 +1355,7 @@ a:hover, a:active {
     margin: 0 auto 0 auto;
 }
 
-/*人气主播*/
+/***人气主播***/
 .wcgp-hot-theme {
     width: 100%;
 }
@@ -1384,6 +1384,7 @@ a:hover, a:active {
     width: 100%;
     height: auto;
 }
+
 .wcgp-hot-theme ul li .img-content .mzbai {
     position: absolute;
     bottom: 2px;
@@ -1408,7 +1409,7 @@ a:hover, a:active {
     color: #ff0000;
 }
 
-/*视频播放*/
+/***视频播放***/
 .video-play {
     width: 100%;
     padding-bottom: 2%;
@@ -1416,16 +1417,16 @@ a:hover, a:active {
 }
 
 .video-play ul {
-    display: -moz-box; /* Firefox */
-    display: -ms-flexbox; /* IE10 */
-    display: -webkit-box; /* Safari */
-    display: -webkit-flex; /* Chrome, WebKit */
+    display: -moz-box; /*** Firefox ***/
+    display: -ms-flexbox; /*** IE10 ***/
+    display: -webkit-box; /*** Safari ***/
+    display: -webkit-flex; /*** Chrome, WebKit ***/
     flex-wrap: wrap;
 }
 
 .video-play ul li {
     width: 47.6%;
-    /*margin:  0 0 2% 1.7%;*/
+    /***margin:  0 0 2% 1.7%;***/
     margin: 0 0 7px 1.7%;
     text-align: center;
     position: relative;
@@ -1470,7 +1471,8 @@ a:hover, a:active {
     width: 17% !important;
     height: auto;;
 }
-/*蒙层*/
+
+/***蒙层***/
 .mengcheng-radius {
     position: absolute;
     bottom: 0;
@@ -1481,7 +1483,8 @@ a:hover, a:active {
     border-radius: 9px;
     overflow: hidden;
 }
-/*直角蒙层*/
+
+/***直角蒙层***/
 .mengcheng {
     width: 100%;
     background-color: black;
@@ -1495,7 +1498,8 @@ a:hover, a:active {
     white-space: nowrap;
     opacity: 0.5;
 }
-/*竖线*/
+
+/***竖线***/
 li .long-string {
     width: 1px;
     height: 100%;
@@ -1504,7 +1508,8 @@ li .long-string {
     right: 0;
     background-color: #d3d3d3;
 }
-/*video-tab*/
+
+/***video-tab***/
 .video-tab {
     width: 100%;
     padding: 2% 0 2% 0;
@@ -1531,15 +1536,61 @@ li .long-string {
     display: none;
 }
 
-/*头部修改*/
-.header1{ background:#145eb6; width:100%;height:45px;border-top:1px solid #3f89e0; position:fixed; top:0; left:0; z-index:100}
-.menu-new{float: right;}
-.list_menu_new{left: -70px; top: 8px;}
-.list_menu_new .img{float: right; margin-left: 0; margin-right: 13px;}
-.menu-new-back{width: 55px; height: 45px; float: left;border-right: 1px solid #0f53a4;}
-.menu-new-back a{display: block; width: 55px; height: 45px; background: url(../img/back.png) no-repeat 14px center; background-size: 22px auto;}
-.menu-new-search{float: right; width: 40px; height: 45px;}
-.menu-new-search a{display: block; width: 40px; height: 45px; background: url(../img/search.png) no-repeat center center; background-size: 23px auto;}
+/***头部修改***/
+.header1 {
+    background: #145eb6;
+    width: 100%;
+    height: 45px;
+    border-top: 1px solid #3f89e0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100
+}
+
+.menu-new {
+    float: right;
+}
+
+.list_menu_new {
+    left: -70px;
+    top: 8px;
+}
+
+.list_menu_new .img {
+    float: right;
+    margin-left: 0;
+    margin-right: 13px;
+}
+
+.menu-new-back {
+    width: 55px;
+    height: 45px;
+    float: left;
+    border-right: 1px solid #0f53a4;
+}
+
+.menu-new-back a {
+    display: block;
+    width: 55px;
+    height: 45px;
+    background: url(../img/back.png) no-repeat 14px center;
+    background-size: 22px auto;
+}
+
+.menu-new-search {
+    float: right;
+    width: 40px;
+    height: 45px;
+}
+
+.menu-new-search a {
+    display: block;
+    width: 40px;
+    height: 45px;
+    background: url(../img/search.png) no-repeat center center;
+    background-size: 23px auto;
+}
 
 
 
