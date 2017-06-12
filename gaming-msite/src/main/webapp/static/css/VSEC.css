@@ -1711,6 +1711,7 @@ span.dian {
 }
 
 .bread-lost {
+    border-bottom: 1px solid #d5d9da;
     border-top: 2px solid #eaa000;
     font-size: 1.3rem;
     color: #777777;

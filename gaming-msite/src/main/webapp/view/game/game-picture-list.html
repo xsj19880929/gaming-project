@@ -25,6 +25,8 @@
 <div th:replace="/view/game/game-head.html::top('picture',${matchZone})"></div>
 <!--比赛图集-->
 <div class="bisaituju" style="background: #fff;">
+    <p class="bread-lost"><a th:href="/">电竞首页</a><span>&gt;</span><a
+            th:href="/game/${matchZone.id}/" th:text="${matchZone.name}">英雄联盟电竞专区</a><span>&gt;</span><em>赛事图集</em></p>
     <ul id="newsListData">
         <li th:each="picture:${matchPictureList.list}"><a th:href="/picture/${picture.id}.html"
                                                           th:title="${picture.description}"><img

@@ -23,7 +23,9 @@
 <!--中间-->
 <div th:replace="/view/game/game-head.html::top('video',${matchZone})"></div>
 
-<div class="videoList" style="padding-top: 3%; ">
+<div class="videoList">
+    <p class="bread-lost"><a th:href="/">电竞首页</a><span>&gt;</span><a
+            th:href="/game/${matchZone.id}/" th:text="${matchZone.name}">英雄联盟电竞专区</a><span>&gt;</span><em>赛事视频</em></p>
     <div class="videoshow" style="border: none; padding-bottom: 0.1%;">
         <ul id="newsListData">
             <li th:each="video:${matchVideoList.list}">
