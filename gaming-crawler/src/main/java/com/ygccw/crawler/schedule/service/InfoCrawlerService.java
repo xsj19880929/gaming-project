@@ -276,7 +276,7 @@ public class InfoCrawlerService {
             int fetchSize = 1000;
             while (true) {
                 List<Info> infoList = findInfoList(offset, fetchSize);
-                if (infoList == null) {
+                if (infoList == null || infoList.isEmpty()) {
                     break;
                 }
                 for (Info info : infoList) {
