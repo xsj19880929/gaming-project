@@ -48,7 +48,7 @@ public class GameController {
     @RequestMapping(value = "/game/", method = RequestMethod.GET)
     public String gameList(final ModelMap model) {
         MatchZone matchZone = new MatchZone();
-        int fetchSize = 5;
+        int fetchSize = 10;
         model.put("matchZoneList", new FindResultToMobile(gameWebService.findMatchZoneNew(matchZone, 0, fetchSize), fetchSize, ""));
         model.put("matchZoneYearList", gameWebService.listMatchZoneYear());
         model.put("matchZoneAreaList", gameWebService.listMatchZoneArea());
@@ -114,8 +114,8 @@ public class GameController {
     public String gameList(final ModelMap model, @PathVariable Long id) {
         model.put("matchZone", gameWebService.findById(id));
         model.put("matchTeamList", gameWebService.listMatchTeamByMatchZoneId(id));
-        model.put("newsList", gameWebService.listInfoNewsByMatchZoneId(id, 0, 4));
-        model.put("videoList", gameWebService.listInfoVideoByMatchZoneId(id, 0, 4));
+        model.put("newsList", gameWebService.listInfoNewsByMatchZoneId(id, 0, 8));
+        model.put("videoList", gameWebService.listInfoVideoByMatchZoneId(id, 0, 6));
         model.put("matchZoneBonusList", gameWebService.listMatchZoneBonusByMatchZoneId(id));
         model.put("matchZoneCalendarList", gameWebService.listMatchZoneCalendarByMatchZoneId(id));
         model.put("nowTime", new Date());
@@ -126,14 +126,14 @@ public class GameController {
     @RequestMapping(value = "/game/news/{matchZoneId}/", method = RequestMethod.GET)
     public String gameNewsList(final ModelMap model, @PathVariable Long matchZoneId) {
         int currentPage = 1;
-        int fetchSize = 4;
+        int fetchSize = 10;
         gameNewsListCommon(model, matchZoneId, currentPage, fetchSize, "");
         return "/view/game/game-news-list.html";
     }
 
     @RequestMapping(value = "/game/news/{matchZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
     public String gameNewsList(final ModelMap model, @PathVariable Long matchZoneId, @PathVariable Integer currentPage) {
-        int fetchSize = 4;
+        int fetchSize = 10;
         gameNewsListCommon(model, matchZoneId, currentPage, fetchSize, "");
         return "/view/game/game-news-list.html";
     }

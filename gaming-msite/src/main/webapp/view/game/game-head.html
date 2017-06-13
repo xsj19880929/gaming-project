@@ -3,9 +3,7 @@
 <div class="eventInformation" th:fragment="top(selectedMenuName,matchZone)">
     <ul class="ystbsy" th:fragment="top(selectedMenuName,matchZone)">
         <li th:classappend="${selectedMenuName}=='index'?'action'">
-            <a th:href="/game/${matchZone.id}/"
-               th:text="${matchZone.name}"
-               th:title="${matchZone.name}">首页</a><span
+            <a th:href="/game/${matchZone.id}/" th:title="${matchZone.name}">首页</a><span
                 th:styleappend="${selectedMenuName}=='index'?'display: block;'"></span></li>
         <li th:classappend="${selectedMenuName}=='news'?'action'">
             <a th:href="/game/news/${matchZone.id}/" th:title="${matchZone.name}+'资讯'">资讯</a>

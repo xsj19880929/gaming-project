@@ -12,7 +12,10 @@
     <meta http-equiv="Cache-Control" content="max-age=3600"/>
     <meta content="yes" name="apple-mobile-web-app-capable"/>
     <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
-    <title>美图详情页</title>
+    <title th:text="${picture.seoTitle}+'_'+${siteName}">标题</title>
+    <meta name="keywords" content="关键字" th:attr="content=${picture.seoKeywords}"/>
+    <meta name="description"
+          content="描述" th:attr="content=${picture.seoDescription}"/>
     <link rel="stylesheet" type="text/css" th:href="/static/css/gp.css"/>
     <link rel="stylesheet" type="text/css" th:href="/static/css/VSEC.css"/>
     <link rel="stylesheet" type="text/css" th:href="/static/css/swiper.min.css"/>

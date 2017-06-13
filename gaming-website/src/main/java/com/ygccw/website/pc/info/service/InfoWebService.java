@@ -127,6 +127,7 @@ public class InfoWebService {
         InfoWeb infoWeb = new InfoWeb();
         BeanUtils.copyProperties(info, infoWeb);
         TagMapping tagMappingRequest = new TagMapping();
+        tagMappingRequest.setTagZoneType(TagZoneType.valueOf(info.getInfoZoneType().getName()));
         tagMappingRequest.setTagType(getTagTypeByString(info.getInfoType().getName()));
         tagMappingRequest.setEntityId(info.getId());
         List<TagMapping> tagMappingList = tagMappingService.list(tagMappingRequest, 0, 10);

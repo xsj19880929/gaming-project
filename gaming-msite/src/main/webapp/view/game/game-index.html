@@ -77,7 +77,8 @@
     </div>
 </div>
 <!--参赛战队-->
-<div class="takeItem" style="border-top: 2px solid #eaa000; margin-top: 2%;">
+<div class="takeItem" style="border-top: 2px solid #eaa000; margin-top: 2%;"
+     th:unless="${#lists.isEmpty(matchTeamList)}">
     <h2 style="color: #eaa000;
     padding: 2.8%;"> 参赛队伍</h2>
     <ul class="cansaizhanduixx">
@@ -92,7 +93,7 @@
     <a th:href="/game/team/${matchZone.id}/" th:title="${matchZone.name}+'参赛队伍'">查看更多<span></span></a>
 </div>
 <!--比赛日程-->
-<div class="bisairicheng">
+<div class="bisairicheng" th:unless="${#lists.isEmpty(matchZoneCalendarList)}">
     <h2>比赛日程</h2>
     <div class="wcgtime">
         <ul>

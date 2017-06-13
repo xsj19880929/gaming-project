@@ -16,7 +16,7 @@ function getNewsList() {
                 for (var i in data.list) {
                     var map = {};
                     map.name = data.list[i].name;
-                    map.href = data.htmlTemplate.baseUrl + "/game/" + data.list[i].id + ".html";
+                    map.href = data.htmlTemplate.baseUrl + "game/" + data.list[i].id + "/";
                     map.imageSrc = data.htmlTemplate.imageUrl + "/image/122x122" + data.list[i].icoImage;
                     map.matchZoneAreaName = data.list[i].matchZoneAreaName;
                     map.startTime = formatDate(new Date(data.list[i].startTime), "yyyy-MM-dd");

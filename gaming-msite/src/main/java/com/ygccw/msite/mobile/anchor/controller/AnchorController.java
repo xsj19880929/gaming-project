@@ -101,8 +101,8 @@ public class AnchorController {
     @RequestMapping(value = "/anchor/{id}/", method = RequestMethod.GET)
     public String findById(final ModelMap model, @PathVariable Long id) {
         model.put("anchorZone", anchorWebService.findAnchorZoneWebById(id));
-        model.put("anchorNewsList", anchorWebService.listInfoNewsAndTagByAnchorZoneId(id, 0, 4));
-        model.put("anchorVideoList", anchorWebService.listInfoVideoByAnchorZoneId(id, 0, 4));
+        model.put("anchorNewsList", anchorWebService.listInfoNewsAndTagByAnchorZoneId(id, 0, 8));
+        model.put("anchorVideoList", anchorWebService.listInfoVideoByAnchorZoneId(id, 0, 6));
         model.put("anchorPictureList", anchorWebService.listPictureByAnchorZoneId(id, 0, 4));
         anchorZoneService.updateVisitCount(id);
         return "/view/anchor/anchor-index.html";
@@ -111,14 +111,14 @@ public class AnchorController {
     @RequestMapping(value = "/anchor/news/{anchorZoneId}/", method = RequestMethod.GET)
     public String anchorNewsListIndex(final ModelMap model, @PathVariable Long anchorZoneId) {
         int currentPage = 1;
-        int fetchSize = 4;
+        int fetchSize = 10;
         anchorNewsListCommon(model, anchorZoneId, currentPage, fetchSize, "");
         return "/view/anchor/anchor-news-list.html";
     }
 
     @RequestMapping(value = "/anchor/news/{anchorZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
     public String anchorNewsList(final ModelMap model, @PathVariable Long anchorZoneId, @PathVariable Integer currentPage) {
-        int fetchSize = 4;
+        int fetchSize = 10;
         anchorNewsListCommon(model, anchorZoneId, currentPage, fetchSize, "");
         return "/view/anchor/anchor-news-list.html";
     }
@@ -131,14 +131,14 @@ public class AnchorController {
     @RequestMapping(value = "/anchor/video/{anchorZoneId}/", method = RequestMethod.GET)
     public String anchorVideoList(final ModelMap model, @PathVariable Long anchorZoneId) {
         int currentPage = 1;
-        int fetchSize = 4;
+        int fetchSize = 10;
         anchorVideoCommon(model, anchorZoneId, currentPage, fetchSize, "");
         return "/view/anchor/anchor-video-list.html";
     }
 
     @RequestMapping(value = "/anchor/video/{anchorZoneId}/page_{currentPage}.html", method = RequestMethod.GET)
     public String anchorVideoList(final ModelMap model, @PathVariable Long anchorZoneId, @PathVariable Integer currentPage) {
-        int fetchSize = 4;
+        int fetchSize = 10;
         anchorVideoCommon(model, anchorZoneId, currentPage, fetchSize, "");
         return "/view/anchor/anchor-video-list.html";
     }

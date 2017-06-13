@@ -58,6 +58,13 @@ public class InfoModelService {
     @Inject
     private AnchorZoneService anchorZoneService;
 
+    public static void main(String[] args) {
+        String contentNew = "1234562213549987";
+        String[] array = new String[]{"2", "3", "9"};
+        for (String a : array)
+            contentNew = contentNew.replaceFirst(a, "s");
+        System.out.println(contentNew);
+    }
 
     @Transactional
     public void save(InfoModel infoModel) {
@@ -152,7 +159,6 @@ public class InfoModelService {
             }
         }
     }
-
 
     public InfoModel findById(Long id) {
         Info info = infoService.findById(id);
