@@ -27,7 +27,8 @@
         <h3>赛事筛选</h3>
         <div class="tab-icon ">
             <ul id="tabUl">
-                <li class="active">
+                <li onclick="saveTab('/session/gameTab/area')"
+                    th:classappend="${gameTab}=='area'?'active'">
                     <div class="tab-icon-content">
                         <img class="chengaeImg" th:src="/static/img/saish2-1.png" alt="地区">
                     </div>
@@ -37,7 +38,7 @@
                         <img th:src="/static/img/triangle.jpg" alt="地区">
                     </div>
                 </li>
-                <li>
+                <li onclick="saveTab('/session/gameTab/time')" th:classappend="${gameTab}=='time'?'active'">
 
                     <div class="tab-icon-content">
                         <img class="chengaeImg" th:src="/static/img/saish3.png" alt="时间">
@@ -48,7 +49,7 @@
                         <img th:src="/static/img/triangle.jpg" alt="时间">
                     </div>
                 </li>
-                <li>
+                <li onclick="saveTab('/session/gameTab/status')" th:classappend="${gameTab}=='status'?'active'">
                     <div class="tab-icon-content">
                         <img class="chengaeImg" th:src="/static/img/saish4.png" alt="状态">
                     </div>

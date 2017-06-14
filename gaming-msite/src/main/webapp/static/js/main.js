@@ -66,3 +66,14 @@ function jsonPostData(selector) {
     });
     return jsonData;
 }
+
+function saveTab(url) {
+    $.ajax({
+        async: true,
+        type: "POST",
+        contentType: 'application/json',
+        url: url,
+        success: function (data) {
+        }
+    });
+}

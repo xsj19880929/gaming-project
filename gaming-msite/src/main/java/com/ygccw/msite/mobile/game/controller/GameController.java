@@ -4,14 +4,15 @@ import com.ygccw.msite.database.FindResultMoreToAjax;
 import com.ygccw.msite.database.FindResultToMobile;
 import com.ygccw.msite.mobile.common.model.HtmlTemplate;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
+import com.ygccw.msite.mobile.common.service.SessionService;
 import com.ygccw.msite.mobile.game.model.GameRequest;
 import com.ygccw.msite.mobile.game.model.MatchTeamMappingRequest;
 import com.ygccw.msite.mobile.game.service.GameWebService;
 import com.ygccw.msite.mobile.video.service.VideoWebService;
 import com.ygccw.msite.utils.PageUtils;
+import com.ygccw.msite.utils.SessionKeyDefine;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
-import com.ygccw.wechat.common.info.service.InfoService;
 import com.ygccw.wechat.common.zone.entity.MatchZone;
 import com.ygccw.wechat.common.zone.enums.MatchStatus;
 import com.ygccw.wechat.common.zone.service.MatchZoneService;
@@ -41,9 +42,9 @@ public class GameController {
     @Inject
     private MatchZoneService matchZoneService;
     @Inject
-    private InfoService infoService;
-    @Inject
     private AjaxGetTemplateService ajaxGetTemplateService;
+    @Inject
+    private SessionService sessionService;
 
     @RequestMapping(value = "/game/", method = RequestMethod.GET)
     public String gameList(final ModelMap model) {
@@ -56,6 +57,8 @@ public class GameController {
         model.put("matchZoneAreaIdSelected", 0);
         model.put("matchZoneYearIdSelected", 0);
         model.put("matchStatusSelected", "all");
+        String gameTab = sessionService.findSession(SessionKeyDefine.GAMETAB);
+        model.put("gameTab", gameTab == null ? "area" : gameTab);
         return "/view/game/game-list.html";
     }
 
@@ -71,7 +74,7 @@ public class GameController {
     @RequestMapping(value = "/game_new/{matchZoneYearId}/{matchZoneAreaId}/{matchStatusStr}_{currentPage}.html", method = RequestMethod.GET)
     public String selectGameList(final ModelMap model, @PathVariable Long matchZoneYearId, @PathVariable Long matchZoneAreaId, @PathVariable String matchStatusStr, @PathVariable Integer currentPage) {
         MatchZone matchZone = common(model, matchZoneYearId, matchZoneAreaId, matchStatusStr);
-        int fetchSize = 5;
+        int fetchSize = 10;
         model.put("matchZoneList", new FindResultToMobile(gameWebService.findMatchZoneNew(matchZone, 0, fetchSize), fetchSize, ""));
         return "/view/game/game-list.html";
     }
@@ -79,7 +82,7 @@ public class GameController {
     @RequestMapping(value = "/game_top/{matchZoneYearId}/{matchZoneAreaId}/{matchStatusStr}_{currentPage}.html", method = RequestMethod.GET)
     public String selectGameListTop(final ModelMap model, @PathVariable Long matchZoneYearId, @PathVariable Long matchZoneAreaId, @PathVariable String matchStatusStr, @PathVariable Integer currentPage) {
         MatchZone matchZone = common(model, matchZoneYearId, matchZoneAreaId, matchStatusStr);
-        int fetchSize = 5;
+        int fetchSize = 10;
         model.put("matchZoneList", new FindResultToMobile(gameWebService.findMatchZoneNew(matchZone, 0, fetchSize), fetchSize, ""));
         return "/view/game/game-list.html";
     }
@@ -107,6 +110,8 @@ public class GameController {
         model.put("matchZoneYearList", gameWebService.listMatchZoneYear());
         model.put("matchZoneAreaList", gameWebService.listMatchZoneArea());
         model.put("matchStatusList", gameWebService.listMatchStatus());
+        String gameTab = sessionService.findSession(SessionKeyDefine.GAMETAB);
+        model.put("gameTab", gameTab == null ? "area" : gameTab);
         return matchZone;
     }
 
@@ -204,5 +209,16 @@ public class GameController {
     @ResponseBody
     public FindResultMoreToAjax gameTeamListAjax(@RequestBody MatchTeamMappingRequest matchTeamMappingRequest, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "fetchSize", defaultValue = "20") int fetchSize) {
         return new FindResultMoreToAjax(gameWebService.listMatchTeamByMatchTeamMapping(matchTeamMappingRequest, offset, fetchSize), ajaxGetTemplateService.getHtmlTemplate(matchTeamMappingRequest.getTemplateName()));
+    }
+
+    /**
+     * session保存
+     *
+     * @return
+     */
+    @RequestMapping(value = "/session/gameTab/{value}", method = RequestMethod.POST)
+    @ResponseBody
+    public void listRest(@PathVariable String value) {
+        sessionService.saveSession(SessionKeyDefine.GAMETAB, value);
     }
 }

@@ -132,4 +132,15 @@ public class IndexController {
         }
         return null;
     }
+
+    /**
+     * session保存
+     *
+     * @return
+     */
+    @RequestMapping(value = "/session/save/{key}/{value}", method = RequestMethod.POST)
+    @ResponseBody
+    public void listRest(@PathVariable String key, @PathVariable String value) {
+
+    }
 }

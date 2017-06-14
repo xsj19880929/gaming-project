@@ -34,6 +34,7 @@ import com.ygccw.wechat.common.zone.service.AnchorZoneService;
 import com.ygccw.wechat.common.zone.service.MatchTeamMappingService;
 import com.ygccw.wechat.common.zone.service.MatchTeamService;
 import com.ygccw.wechat.common.zone.service.MatchZoneService;
+import core.framework.web.site.session.SessionContext;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 
@@ -47,6 +48,8 @@ import java.util.Map;
  */
 @Controller
 public class IndexWebService {
+    @Inject
+    private SessionContext sessionContext;
     @Inject
     private MatchZoneService matchZoneService;
     @Inject
