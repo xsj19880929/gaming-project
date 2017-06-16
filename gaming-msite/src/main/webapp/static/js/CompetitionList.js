@@ -6,6 +6,8 @@ window.onload = function () {
 
     var TABIMG = new Tab('tabUl', 'li', 'gamelist');
     TABIMG.imgSrc();
+    loadClick();
+
 
 };
 
@@ -24,6 +26,8 @@ Tab.prototype.imgSrc = function () {
         this.oLi[i].index = i;
         var that = this;
         this.oLi[i].onclick = function () {
+            var value = this.getAttribute("data-dw");
+            saveTab('/session/gameTab/' + value);
             for (var j = 0; j < that.oLi.length; j++) {
                 var imageUrl = that.changeImg[j].src.split('static');
                 that.changeImg[j].src = imageUrl[0] + 'static/img/saish' + (j + 2) + '.png';
@@ -39,4 +43,11 @@ Tab.prototype.imgSrc = function () {
         }
     }
 };
+
+function loadClick() {
+    var value = document.getElementById("gameTab").value;
+    var liObj = document.getElementById(value);
+    liObj.click();
+}
+
 
