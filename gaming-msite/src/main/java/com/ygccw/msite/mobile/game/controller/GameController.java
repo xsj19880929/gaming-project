@@ -57,8 +57,8 @@ public class GameController {
         model.put("matchZoneAreaIdSelected", 0);
         model.put("matchZoneYearIdSelected", 0);
         model.put("matchStatusSelected", "all");
-        String gameTab = sessionService.findSession(SessionKeyDefine.GAMETAB);
-        model.put("gameTab", gameTab == null ? "area" : gameTab);
+        String liTab = sessionService.findSession(SessionKeyDefine.GAMETAB);
+        model.put("liTab", liTab == null ? "area" : liTab);
         return "/view/game/game-list.html";
     }
 
@@ -110,8 +110,8 @@ public class GameController {
         model.put("matchZoneYearList", gameWebService.listMatchZoneYear());
         model.put("matchZoneAreaList", gameWebService.listMatchZoneArea());
         model.put("matchStatusList", gameWebService.listMatchStatus());
-        String gameTab = sessionService.findSession(SessionKeyDefine.GAMETAB);
-        model.put("gameTab", gameTab == null ? "area" : gameTab);
+        String liTab = sessionService.findSession(SessionKeyDefine.GAMETAB);
+        model.put("liTab", liTab == null ? "area" : liTab);
         return matchZone;
     }
 

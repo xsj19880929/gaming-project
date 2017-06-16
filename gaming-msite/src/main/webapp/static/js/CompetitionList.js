@@ -45,7 +45,7 @@ Tab.prototype.imgSrc = function () {
 };
 
 function loadClick() {
-    var value = document.getElementById("gameTab").value;
+    var value = document.getElementById("liTab").value;
     var liObj = document.getElementById(value);
     liObj.click();
 }

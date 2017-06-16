@@ -10,7 +10,6 @@ import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
 import com.ygccw.msite.mobile.common.service.SessionService;
 import com.ygccw.msite.mobile.video.service.VideoWebService;
 import com.ygccw.msite.utils.PageUtils;
-import com.ygccw.msite.utils.SessionKeyDefine;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.zone.entity.AnchorZone;
@@ -171,17 +170,6 @@ public class AnchorController {
     private void anchorPictureCommon(ModelMap model, Long anchorZoneId, int currentPage, int fetchSize, String url) {
         model.put("anchorZone", anchorWebService.findAnchorZoneWebById(anchorZoneId));
         model.put("anchorPictureList", new FindResultToMobile(anchorWebService.anchorPictureList(anchorZoneId, PageUtils.getStartRecord(currentPage, fetchSize), fetchSize), fetchSize, url));
-    }
-
-    /**
-     * session保存
-     *
-     * @return
-     */
-    @RequestMapping(value = "/session/anchorTab/{value}", method = RequestMethod.POST)
-    @ResponseBody
-    public void listRest(@PathVariable String value) {
-        sessionService.saveSession(SessionKeyDefine.ANCHORTAB, value);
     }
 
 }

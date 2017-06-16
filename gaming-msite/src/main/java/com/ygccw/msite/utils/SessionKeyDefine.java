@@ -9,6 +9,6 @@ import core.framework.web.site.session.SessionKey;
 public class SessionKeyDefine {
 
     public static final SessionKey<String> GAMETAB = SessionKey.key("gameTab", String.class);
-    public static final SessionKey<String> ANCHORTAB = SessionKey.key("anchorTab", String.class);
+    public static final SessionKey<String> VIDEOTAB = SessionKey.key("videoTab", String.class);
 
 }

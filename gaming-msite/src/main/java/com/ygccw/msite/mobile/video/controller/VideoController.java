@@ -5,11 +5,13 @@ import com.ygccw.msite.database.FindResultToMobile;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
 import com.ygccw.msite.mobile.common.model.HtmlTemplate;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
+import com.ygccw.msite.mobile.common.service.SessionService;
 import com.ygccw.msite.mobile.game.service.GameWebService;
 import com.ygccw.msite.mobile.info.model.InfoWeb;
 import com.ygccw.msite.mobile.video.model.VideoRequest;
 import com.ygccw.msite.mobile.video.service.VideoWebService;
 import com.ygccw.msite.utils.PageUtils;
+import com.ygccw.msite.utils.SessionKeyDefine;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.enums.InfoVideoType;
@@ -46,6 +48,8 @@ public class VideoController {
     AnchorWebService anchorWebService;
     @Inject
     AjaxGetTemplateService ajaxGetTemplateService;
+    @Inject
+    SessionService sessionService;
 
     @RequestMapping(value = "/video/", method = RequestMethod.GET)
     public String videoList(final ModelMap model) {
@@ -57,6 +61,8 @@ public class VideoController {
         model.put("infoZoneTypeSelected", "all");
         model.put("infoVideoTypeSelected", "all");
         model.put("zoneIdSelected", 0);
+        String liTab = sessionService.findSession(SessionKeyDefine.VIDEOTAB);
+        model.put("liTab", liTab == null ? "type" : liTab);
         return "/view/video/video-list.html";
     }
 
@@ -127,6 +133,8 @@ public class VideoController {
         model.put("zoneIdSelected", zoneId);
         model.put("anchorZoneList", videoWebService.anchorList(0, 20));
         model.put("matchZoneList", videoWebService.matchZoneList(0, 20));
+        String liTab = sessionService.findSession(SessionKeyDefine.VIDEOTAB);
+        model.put("liTab", liTab == null ? "type" : liTab);
         return info;
     }
 
@@ -198,6 +206,17 @@ public class VideoController {
         List<Info> videoList = videoWebService.videoListByTagId(videoRequest.getTagId(), offset, fetchSize);
         HtmlTemplate htmlTemplate = ajaxGetTemplateService.getHtmlTemplate(videoRequest.getTemplateName());
         return new FindResultMoreToAjax(videoList, htmlTemplate);
+    }
+
+    /**
+     * session保存
+     *
+     * @return
+     */
+    @RequestMapping(value = "/session/videoTab/{value}", method = RequestMethod.POST)
+    @ResponseBody
+    public void listRest(@PathVariable String value) {
+        sessionService.saveSession(SessionKeyDefine.VIDEOTAB, value);
     }
 
 }

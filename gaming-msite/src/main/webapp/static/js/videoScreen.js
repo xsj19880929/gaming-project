@@ -5,6 +5,7 @@ window.onload = function () {
 //调用tab-img
     var TABIMG = new Tab('videoUl', 'li', 'gamelist');
     TABIMG.imgSrc();
+    loadClick();
 };
 
 function Tab(oul, oli, odiv) {
@@ -19,6 +20,8 @@ Tab.prototype.imgSrc = function () {
         this.oLi[i].index = i;
         var that = this;
         this.oLi[i].onclick = function () {
+            var value = this.getAttribute("data-dw");
+            saveTab('/session/videoTab/' + value);
             for (var j = 0; j < that.oLi.length; j++) {
                 var imageUrl = that.changeImg[j].src.split('static');
                 that.changeImg[j].src = imageUrl[0] + 'static/img/class' + (j + 1) + '.png';
@@ -50,3 +53,9 @@ Tab.prototype.forIndx = function () {
         }
     }
 };
+
+function loadClick() {
+    var value = document.getElementById("liTab").value;
+    var liObj = document.getElementById(value);
+    liObj.click();
+}

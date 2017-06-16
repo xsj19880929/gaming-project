@@ -24,8 +24,9 @@
     <div class="Competition-header">
         <p style="color: #eaa000; font-size: 13pt;font-weight: bold;padding: 2% 0 3% 3%;">视频筛选</p>
         <div class="tab-icon" style="border-top: 1px solid #dadada;">
+            <input name="liTab" id="liTab" th:value="${liTab}" type="hidden">
             <ul class="tab-icon-sssx" id="videoUl">
-                <li class="active">
+                <li class="active" data-dw="type" id="type">
                     <div class="tab-icon-content">
                         <img class="chengaeImg" th:src="/static/img/class1-1.png" alt="类型">
                     </div>
@@ -35,7 +36,7 @@
                         <img th:src="/static/img/triangle.jpg" alt="">
                     </div>
                 </li>
-                <li>
+                <li data-dw="game" id="game">
                     <div class="tab-icon-content">
                         <img class="chengaeImg" th:src="/static/img/class2.png" alt="游戏">
                     </div>
@@ -45,7 +46,7 @@
                         <img th:src="/static/img/triangle.jpg" alt="">
                     </div>
                 </li>
-                <li>
+                <li data-dw="anchor" id="anchor">
 
                     <div class="tab-icon-content">
                         <img class="chengaeImg" th:src="/static/img/class3.png" alt="主播">
