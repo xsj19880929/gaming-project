@@ -5,6 +5,7 @@ import com.ygccw.msite.database.FindResultToMobile;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
 import com.ygccw.msite.mobile.common.model.HtmlTemplate;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
+import com.ygccw.msite.mobile.common.service.RequestService;
 import com.ygccw.msite.mobile.common.service.SessionService;
 import com.ygccw.msite.mobile.game.service.GameWebService;
 import com.ygccw.msite.mobile.info.model.InfoWeb;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -50,6 +52,8 @@ public class VideoController {
     AjaxGetTemplateService ajaxGetTemplateService;
     @Inject
     SessionService sessionService;
+    @Inject
+    RequestService requestService;
 
     @RequestMapping(value = "/video/", method = RequestMethod.GET)
     public String videoList(final ModelMap model) {
@@ -162,8 +166,12 @@ public class VideoController {
     }
 
     @RequestMapping(value = "/video/{id}.html", method = RequestMethod.GET)
-    public String videoList(final ModelMap model, @PathVariable Long id) {
+    public String videoList(HttpServletRequest request, HttpServletResponse response, final ModelMap model, @PathVariable Long id) {
         InfoWeb infoWeb = videoWebService.findById(id);
+        if (infoWeb == null) {
+            //找不到新闻返回404
+            requestService.redirectNoFound(request, response);
+        }
         infoService.updateVisitCount(id);
         if (infoWeb.getInfoZoneType() == InfoZoneType.trade) {
             model.put("video", infoWeb);

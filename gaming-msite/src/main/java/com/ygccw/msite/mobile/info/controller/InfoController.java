@@ -4,6 +4,7 @@ import com.ygccw.msite.database.FindResultMoreToAjax;
 import com.ygccw.msite.database.FindResultToMobile;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
+import com.ygccw.msite.mobile.common.service.RequestService;
 import com.ygccw.msite.mobile.game.service.GameWebService;
 import com.ygccw.msite.mobile.info.model.InfoRequest;
 import com.ygccw.msite.mobile.info.model.InfoWeb;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author soldier
@@ -44,6 +46,8 @@ public class InfoController {
     private AnchorWebService anchorWebService;
     @Inject
     private AjaxGetTemplateService ajaxGetTemplateService;
+    @Inject
+    private RequestService requestService;
 
     @RequestMapping(value = "/news/", method = RequestMethod.GET)
     public String list(final ModelMap model) {
@@ -91,8 +95,12 @@ public class InfoController {
 
 
     @RequestMapping(value = "/news/{id}.html", method = RequestMethod.GET)
-    public String index(final ModelMap model, @PathVariable Long id) {
+    public String index(HttpServletRequest request, HttpServletResponse response, final ModelMap model, @PathVariable Long id) {
         InfoWeb infoWeb = infoWebService.findById(id);
+        if (infoWeb == null) {
+            //找不到新闻返回404
+            requestService.redirectNoFound(request, response);
+        }
         infoService.updateVisitCount(id); // 点击量
         model.put("info", infoWeb);
         if (infoWeb.getInfoZoneType() == InfoZoneType.trade) {

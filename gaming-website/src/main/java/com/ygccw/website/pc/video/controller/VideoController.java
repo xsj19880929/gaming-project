@@ -2,6 +2,7 @@ package com.ygccw.website.pc.video.controller;
 
 import com.ygccw.website.database.FindResultToSale;
 import com.ygccw.website.pc.anchor.service.AnchorWebService;
+import com.ygccw.website.pc.common.service.RequestService;
 import com.ygccw.website.pc.game.service.GameWebService;
 import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.website.pc.video.service.VideoWebService;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author soldier
@@ -37,6 +39,8 @@ public class VideoController {
     GameWebService gameWebService;
     @Inject
     AnchorWebService anchorWebService;
+    @Inject
+    RequestService requestService;
 
     @RequestMapping(value = "/video/", method = RequestMethod.GET)
     public String videoList(final ModelMap model) {
@@ -111,8 +115,12 @@ public class VideoController {
     }
 
     @RequestMapping(value = "/video/{id}.html", method = RequestMethod.GET)
-    public String videoList(final ModelMap model, @PathVariable Long id) {
+    public String videoList(HttpServletRequest request, HttpServletResponse response, final ModelMap model, @PathVariable Long id) {
         InfoWeb infoWeb = videoWebService.findById(id);
+        if (infoWeb == null) {
+            //找不到新闻返回404
+            requestService.redirectNoFound(request, response);
+        }
         infoService.updateVisitCount(id);
         if (infoWeb.getInfoZoneType() == InfoZoneType.trade) {
             model.put("video", infoWeb);

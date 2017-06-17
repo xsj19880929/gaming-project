@@ -124,6 +124,9 @@ public class InfoWebService {
 
     public InfoWeb findById(Long id) {
         Info info = infoService.findById(id);
+        if (info == null) {
+            return null;
+        }
         InfoWeb infoWeb = new InfoWeb();
         BeanUtils.copyProperties(info, infoWeb);
         TagMapping tagMappingRequest = new TagMapping();

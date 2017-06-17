@@ -2,6 +2,7 @@ package com.ygccw.website.pc.info.controller;
 
 import com.ygccw.website.database.FindResultToSale;
 import com.ygccw.website.pc.anchor.service.AnchorWebService;
+import com.ygccw.website.pc.common.service.RequestService;
 import com.ygccw.website.pc.game.service.GameWebService;
 import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.website.pc.info.service.InfoWebService;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author soldier
@@ -37,6 +39,8 @@ public class InfoController {
     private GameWebService gameWebService;
     @Inject
     private AnchorWebService anchorWebService;
+    @Inject
+    private RequestService requestService;
 
     @RequestMapping(value = "/news/", method = RequestMethod.GET)
     public String list(final ModelMap model) {
@@ -81,8 +85,12 @@ public class InfoController {
 
 
     @RequestMapping(value = "/news/{id}.html", method = RequestMethod.GET)
-    public String index(final ModelMap model, @PathVariable Long id) {
+    public String index(HttpServletRequest request, HttpServletResponse response, final ModelMap model, @PathVariable Long id) {
         InfoWeb infoWeb = infoWebService.findById(id);
+        if (infoWeb == null) {
+            //找不到新闻返回404
+            requestService.redirectNoFound(request, response);
+        }
         infoService.updateVisitCount(id); // 点击量
         model.put("info", infoWeb);
         if (infoWeb.getInfoZoneType() == InfoZoneType.trade) {

@@ -7,7 +7,6 @@ import com.ygccw.msite.mobile.anchor.model.AnchorZoneWeb;
 import com.ygccw.msite.mobile.anchor.service.AnchorWebService;
 import com.ygccw.msite.mobile.common.model.HtmlTemplate;
 import com.ygccw.msite.mobile.common.service.AjaxGetTemplateService;
-import com.ygccw.msite.mobile.common.service.SessionService;
 import com.ygccw.msite.mobile.video.service.VideoWebService;
 import com.ygccw.msite.utils.PageUtils;
 import com.ygccw.wechat.common.info.entity.Info;
@@ -39,8 +38,6 @@ public class AnchorController {
     private AnchorZoneService anchorZoneService;
     @Inject
     private AjaxGetTemplateService ajaxGetTemplateService;
-    @Inject
-    private SessionService sessionService;
 
     @RequestMapping(value = "/anchor/", method = RequestMethod.GET)
     public String anchorList(final ModelMap model) {
