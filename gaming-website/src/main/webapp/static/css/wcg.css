@@ -4102,6 +4102,120 @@
     width: 100%;
 }
 
+.friendlink_bar {
+    background: #f8f8f8 none repeat scroll 0 0;
+    border-top: 1px solid #e5e5e5;
+    clear: both;
+    width: 100%;
+}
+
+.friendlink_bar dl {
+    height: 168px;
+    margin: 0 auto;
+    position: relative;
+    width: 1180px;
+}
+
+.friendlink_bar dl dt {
+    border-right: 1px solid #e5e5e5;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 107px;
+}
+
+.friendlink_bar dl dt span {
+    background: rgba(0, 0, 0, 0) url("../img/link.png") no-repeat scroll center top;
+    color: #000;
+    font-size: 18px;
+    height: 40px;
+    margin-top: 40px;
+    padding-top: 56px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 107px;
+}
+
+.friendlink_bar dl dd {
+    left: 110px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+.friendlink_bar dl dd .link_con {
+    clear: both;
+    height: 120px;
+    overflow: hidden;
+}
+
+.friendlink_bar dl dd .link_con a {
+    color: #555;
+    float: left;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    padding: 5px 0 5px 12px;
+    width: 76px;
+}
+
+.friendlink_bar dl dd .link_con a:hover {
+    color: #ff3000;
+    text-decoration: underline;
+}
+
+.friendlink_bar dl dd .arrow03 {
+    clear: both;
+    height: 19px;
+    position: absolute;
+    right: 20px;
+    top: 126px;
+}
+
+.friendlink_bar dl dd .arrow03 li {
+    float: left;
+    height: 19px;
+    margin-left: 13px;
+    width: 28px;
+}
+
+.friendlink_bar dl dd .arrow03 li span {
+    background: rgba(0, 0, 0, 0) url("../img/bg01.png") no-repeat scroll 0 0;
+    display: block;
+    height: 19px;
+    width: 28px;
+}
+
+.friendlink_bar dl dd .arrow03 li span.pre {
+    background-position: 0 -300px;
+}
+
+.friendlink_bar dl dd .arrow03 li span.next {
+    background-position: -60px -300px;
+}
+
+.friendlink_bar dl dd .arrow03 li.active span.pre {
+    background-position: -30px -300px;
+}
+
+.friendlink_bar dl dd .arrow03 li.active span.next {
+    background-position: -90px -300px;
+}
+
+.link_con_out {
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+}
+
+.link_con_in {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
 
 
 

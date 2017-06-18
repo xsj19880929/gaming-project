@@ -46,6 +46,7 @@ public class IndexController {
         model.put("pictureList", indexWebService.findNewestPictureList());
         model.put("recommendInfoList", indexWebService.findRecommendInfo());
         model.put("infoAllList", indexWebService.findNewestInfo(6));
+        model.put("linkList", indexWebService.listLink(100));
         return "/index.html";
     }
 

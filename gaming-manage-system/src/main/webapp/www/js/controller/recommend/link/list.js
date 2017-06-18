@@ -5,7 +5,7 @@
         $scope.offset = 0;
         $scope.fetchSize = 25;
         $scope.params = {};
-        $scope.params.siteType = "pc";
+        //$scope.params.siteType.name = "pc";
 
         var loadData = function (offset, fetchSize) {
             var url = "link/list?offset=" + offset + "&fetchSize=" + fetchSize;
@@ -25,7 +25,7 @@
             columnDefs: [
                 {
                     name: '名称',
-                    field: 'name'
+                    field: 'siteName'
                 },
                 {
                     name: '链接',
