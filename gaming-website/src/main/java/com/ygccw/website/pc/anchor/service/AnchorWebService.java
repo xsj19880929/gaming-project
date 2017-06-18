@@ -126,6 +126,7 @@ public class AnchorWebService {
         info.setInfoZoneType(InfoZoneType.anchorZone);
         info.setInfoType(InfoType.video);
         info.setZoneId(anchorZoneId);
+        info.setVerify(1);
         return infoService.list(info, offset, fetchSize);
     }
 
@@ -135,6 +136,7 @@ public class AnchorWebService {
         picture.setSortIfDesc(true);
         picture.setZoneId(anchorZoneId);
         picture.setPictureZoneType(PictureZoneType.anchorZone);
+        picture.setVerify(1);
         return pictureService.list(picture, offset, fetchSize);
     }
 
@@ -145,6 +147,7 @@ public class AnchorWebService {
         info.setZoneId(anchorZoneId);
         info.setSortIfDesc(true);
         info.setSortName("visitCount");
+        info.setVerify(1);
         return infoService.list(info, offset, fetchSize);
     }
 
@@ -154,6 +157,7 @@ public class AnchorWebService {
         info.setInfoType(InfoType.news);
         info.setSortIfDesc(true);
         info.setSortName("visitCount");
+        info.setVerify(1);
         return infoService.list(info, offset, fetchSize);
     }
 
@@ -165,6 +169,7 @@ public class AnchorWebService {
         infoWeb.setZoneId(infoWeb.getZoneId());
         infoWeb.setInfoZoneType(infoWeb.getInfoZoneType());
         infoWeb.setInfoType(infoWeb.getInfoType());
+        infoWeb.setVerify(1);
         return infoService.lastInfo(infoWeb);
     }
 
@@ -172,6 +177,7 @@ public class AnchorWebService {
         infoWeb.setZoneId(infoWeb.getZoneId());
         infoWeb.setInfoZoneType(infoWeb.getInfoZoneType());
         infoWeb.setInfoType(infoWeb.getInfoType());
+        infoWeb.setVerify(1);
         return infoService.nextInfo(infoWeb);
     }
 
@@ -193,6 +199,7 @@ public class AnchorWebService {
         Picture picture = new Picture();
         picture.setPictureZoneType(PictureZoneType.anchorZone);
         picture.setZoneId(anchorZoneId);
+        picture.setVerify(1);
         return pictureService.list(picture, offset, fetchSize);
     }
 
@@ -200,6 +207,7 @@ public class AnchorWebService {
         Picture picture = new Picture();
         picture.setPictureZoneType(PictureZoneType.anchorZone);
         picture.setZoneId(anchorZoneId);
+        picture.setVerify(1);
         return pictureService.listSize(picture);
     }
 

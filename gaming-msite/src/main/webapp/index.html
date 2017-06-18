@@ -124,12 +124,13 @@
     </div>
     <div class="video-tab">
         <ul id="videoTab1">
-            <li th:each="matchZone,iterStat:${matchZoneVideoList}" th:class="${iterStat.index==0?'active':''}">
-                <span class="long-string"></span><em th:text="${matchZone.name}">dnf视频</em></li>
+            <li th:each="matchZone,iterStat:${matchZoneVideoList}">
+                <a th:href="/game/${matchZone.id}/"
+                   th:title="${matchZone.name}"> <span class="long-string"></span><em
+                        th:text="${matchZone.name}">dnf视频</em></a></li>
         </ul>
     </div>
-    <div class="video-play videoPlay1" th:each="infoMatchZoneVideoList,iterStatAll:${infoMatchZoneVideoListAll}"
-         th:style="${iterStatAll.index==0?'display: block':'display: none'}">
+    <div class="video-play videoPlay1">
         <ul>
             <li th:each="info,iterStat:${infoMatchZoneVideoList}">
                 <a th:href="/video/${info.id}.html" th:title="${info.title}">
@@ -152,13 +153,12 @@
     </div>
     <div class="video-tab">
         <ul id="videoTab2">
-            <li th:each="anchorZone,iterStat:${anchorZoneVideoList}"
-                th:class="${iterStat.index==0?'active':''}"><span
-                    class="long-string"></span> <em th:text="${anchorZone.name}">dnf视频</em></li>
+            <li th:each="anchorZone,iterStat:${anchorZoneVideoList}"><a th:href="/anchor/${anchorZone.id}/"
+                                                                        th:title="${anchorZone.name}"><span
+                    class="long-string"></span> <em th:text="${anchorZone.name}">dnf视频</em></a></li>
         </ul>
     </div>
-    <div th:each="infoAnchorZoneVideoList,iterStatAll:${infoAnchorZoneVideoListAll}"
-         th:class="iterStatAll.index==0?'video-play videoPlay1':'video-play videoPlay1 hide'">
+    <div class="video-play videoPlay1">
         <ul>
             <li th:each="info,iterStat:${infoAnchorZoneVideoList}">
                 <a th:href="/video/${info.id}.html" th:title="${info.title}">
@@ -291,6 +291,6 @@
     });
 </script>
 <script type="text/javascript" src="static/js/jquery.js" th:src="static/js/jquery.js"></script>
-<script type="text/javascript" src="static/js/ProjectHome.js" th:src="static/js/ProjectHome.js"></script>
+<!--<script type="text/javascript" src="static/js/ProjectHome.js" th:src="static/js/ProjectHome.js"></script>-->
 </body>
 </html>

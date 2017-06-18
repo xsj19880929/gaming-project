@@ -66,6 +66,7 @@ public class VideoWebService {
         info.setSortIfDesc(true);
         info.setSortName("visitCount");
         info.setInfoType(InfoType.video);
+        info.setVerify(1);
         return infoService.list(info, offset, fetchSize);
     }
 
@@ -73,6 +74,7 @@ public class VideoWebService {
         info.setSortIfDesc(true);
         info.setSortName("visitCount");
         info.setInfoType(InfoType.video);
+        info.setVerify(1);
         return infoService.listSize(info);
     }
 

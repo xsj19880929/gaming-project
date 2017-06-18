@@ -40,11 +40,13 @@ public class PictureWebService {
 
     public List<Picture> pictureList(int offset, int fetchSize) {
         Picture picture = new Picture();
+        picture.setVerify(1);
         return pictureService.list(picture, offset, fetchSize);
     }
 
     public int pictureListSize() {
         Picture picture = new Picture();
+        picture.setVerify(1);
         return pictureService.listSize(picture);
     }
 
@@ -58,6 +60,7 @@ public class PictureWebService {
         Picture picture = new Picture();
         picture.setSortIfDesc(true);
         picture.setSortName("visitCount");
+        picture.setVerify(1);
         return pictureService.list(picture, offset, fetchSize);
     }
 
@@ -85,7 +88,9 @@ public class PictureWebService {
                 List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId(), 0, fetchSize);
                 for (TagMapping tagMapping : tagMappingList) {
                     Picture pictureNew = pictureService.findById(tagMapping.getEntityId());
-                    mappingMap.put(tagMapping.getEntityId(), pictureNew);
+                    if (pictureNew != null && pictureNew.getVerify() == 1) {
+                        mappingMap.put(tagMapping.getEntityId(), pictureNew);
+                    }
                     if (mappingMap.size() == fetchSize) {
                         break;
                     }

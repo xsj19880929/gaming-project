@@ -122,6 +122,7 @@ public class GameWebService {
         info.setZoneId(matchZoneId);
         info.setInfoZoneType(InfoZoneType.matchZone);
         info.setInfoType(InfoType.video);
+        info.setVerify(1);
         return infoService.list(info, offset, fetchSize);
     }
 
@@ -130,6 +131,7 @@ public class GameWebService {
         info.setZoneId(matchZoneId);
         info.setInfoZoneType(InfoZoneType.matchZone);
         info.setInfoType(InfoType.news);
+        info.setVerify(1);
         return infoService.list(info, offset, fetchSize);
     }
 
@@ -137,6 +139,7 @@ public class GameWebService {
         Picture picture = new Picture();
         picture.setPictureZoneType(PictureZoneType.matchZone);
         picture.setZoneId(matchZoneId);
+        picture.setVerify(1);
         return pictureService.list(picture, offset, fetchSize);
     }
 
@@ -144,6 +147,7 @@ public class GameWebService {
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.matchZone);
         info.setInfoType(InfoType.video);
+        info.setVerify(1);
         return infoService.list(info, offset, fetchSize);
     }
 
@@ -151,6 +155,7 @@ public class GameWebService {
         Info info = new Info();
         info.setInfoZoneType(InfoZoneType.matchZone);
         info.setInfoType(InfoType.news);
+        info.setVerify(1);
         return infoService.list(info, offset, fetchSize);
     }
 
@@ -168,6 +173,7 @@ public class GameWebService {
         info.setInfoType(InfoType.news);
         info.setSortIfDesc(true);
         info.setSortName("visitCount");
+        info.setVerify(1);
         return infoService.list(info, offset, fetchSize);
     }
 
@@ -179,6 +185,7 @@ public class GameWebService {
         infoWeb.setZoneId(infoWeb.getZoneId());
         infoWeb.setInfoZoneType(infoWeb.getInfoZoneType());
         infoWeb.setInfoType(infoWeb.getInfoType());
+        infoWeb.setVerify(1);
         return infoService.lastInfo(infoWeb);
     }
 
@@ -186,6 +193,7 @@ public class GameWebService {
         infoWeb.setZoneId(infoWeb.getZoneId());
         infoWeb.setInfoZoneType(infoWeb.getInfoZoneType());
         infoWeb.setInfoType(infoWeb.getInfoType());
+        infoWeb.setVerify(1);
         return infoService.nextInfo(infoWeb);
     }
 
@@ -201,6 +209,7 @@ public class GameWebService {
         Picture picture = new Picture();
         picture.setPictureZoneType(PictureZoneType.matchZone);
         picture.setZoneId(matchZoneId);
+        picture.setVerify(1);
         return pictureService.list(picture, offset, fetchSize);
     }
 
@@ -208,6 +217,7 @@ public class GameWebService {
         Picture picture = new Picture();
         picture.setPictureZoneType(PictureZoneType.matchZone);
         picture.setZoneId(matchZoneId);
+        picture.setVerify(1);
         return pictureService.listSize(picture);
     }
 

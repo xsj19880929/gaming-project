@@ -212,7 +212,7 @@ public class IndexWebService {
         info.setVerify(1);
         info.setSortIfDesc(true);
         info.setSortName("publishTime");
-        return infoService.list(info, 0, 7);
+        return infoService.list(info, 0, 4);
     }
 
     public List<AnchorZone> findAnchorZoneVideo() {

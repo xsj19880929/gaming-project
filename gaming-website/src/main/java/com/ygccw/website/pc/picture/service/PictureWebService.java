@@ -41,6 +41,7 @@ public class PictureWebService {
 
     public int pictureListSize() {
         Picture picture = new Picture();
+        picture.setVerify(1);
         return pictureService.listSize(picture);
     }
 
@@ -54,6 +55,7 @@ public class PictureWebService {
         Picture picture = new Picture();
         picture.setSortIfDesc(true);
         picture.setSortName("visitCount");
+        picture.setVerify(1);
         return pictureService.list(picture, offset, fetchSize);
     }
 
@@ -81,7 +83,9 @@ public class PictureWebService {
                 List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId(), 0, fetchSize);
                 for (TagMapping tagMapping : tagMappingList) {
                     Picture pictureNew = pictureService.findById(tagMapping.getEntityId());
-                    mappingMap.put(tagMapping.getEntityId(), pictureNew);
+                    if (pictureNew != null && pictureNew.getVerify() == 1) {//审核过了才能显示
+                        mappingMap.put(tagMapping.getEntityId(), pictureNew);
+                    }
                     if (mappingMap.size() == fetchSize) {
                         break;
                     }

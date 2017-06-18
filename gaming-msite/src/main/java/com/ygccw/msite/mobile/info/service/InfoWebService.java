@@ -164,7 +164,9 @@ public class InfoWebService {
                 List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId(), 0, fetchSize);
                 for (TagMapping tagMapping : tagMappingList) {
                     Info info = infoService.findInfoById(tagMapping.getEntityId());
-                    mappingMap.put(tagMapping.getEntityId(), info);
+                    if (info == null && info.getVerify() == 1) {
+                        mappingMap.put(tagMapping.getEntityId(), info);
+                    }
                     if (mappingMap.size() == fetchSize) {
                         break;
                     }

@@ -40,9 +40,11 @@ public class IndexController {
         model.put("infoNewestList", indexWebService.findNewestInfoByInfoType(InfoType.news, 5));
         model.put("anchorZoneList", indexWebService.findAnchorZone());
         model.put("matchZoneVideoList", indexWebService.findMatchZoneVideo());
-        model.put("infoMatchZoneVideoListAll", indexWebService.findMatchZoneVideoVideoInfoList(4));
-        model.put("infoAnchorZoneVideoListAll", indexWebService.findAnchorZoneVideoVideoInfoList(4));
+//        model.put("infoMatchZoneVideoListAll", indexWebService.findMatchZoneVideoVideoInfoList(4));
+//        model.put("infoAnchorZoneVideoListAll", indexWebService.findAnchorZoneVideoVideoInfoList(4));
         model.put("anchorZoneVideoList", indexWebService.findAnchorZoneVideo());
+        model.put("infoMatchZoneVideoList", indexWebService.findVideoInfoList(InfoVideoType.matchVideo));
+        model.put("infoAnchorZoneVideoList", indexWebService.findVideoInfoList(InfoVideoType.anchorVideo));
         model.put("infoPlayerVideoInfoList", indexWebService.findVideoInfoList(InfoVideoType.playerVideo));
         model.put("matchZoneTopList", indexWebService.findTopMatchZoneList());
         model.put("pictureList", indexWebService.findNewestPictureList());
