@@ -163,12 +163,12 @@ public class InfoWebService {
                 if (tags == null) continue;
                 List<TagMapping> tagMappingList = tagMappingService.listByTagsId(tags.getId(), 0, fetchSize);
                 for (TagMapping tagMapping : tagMappingList) {
-                    Info info = infoService.findInfoById(tagMapping.getEntityId());
-                    if (info == null && info.getVerify() == 1) {
-                        mappingMap.put(tagMapping.getEntityId(), info);
-                    }
-                    if (mappingMap.size() == fetchSize) {
+                    if (mappingMap.size() >= fetchSize) {
                         break;
+                    }
+                    Info info = infoService.findInfoById(tagMapping.getEntityId());
+                    if (info != null && info.getVerify() == 1) {
+                        mappingMap.put(tagMapping.getEntityId(), info);
                     }
                 }
             }

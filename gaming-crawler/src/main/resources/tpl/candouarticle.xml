@@ -39,7 +39,7 @@
             <expression><![CDATA[1]]></expression>
         </uiobject>
         <uiobject fieldName="titleImage">
-            <expression><![CDATA[$URL2LOCALIMAGE($KEYVAL(task,"titleImage")+"")]]></expression>
+            <expression><![CDATA[$KEYVAL(task,"titleImage")]]></expression>
         </uiobject>
         <uiobject fieldName="zoneUuid">
             <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>

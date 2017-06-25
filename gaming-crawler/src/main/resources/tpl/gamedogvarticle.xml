@@ -17,7 +17,7 @@
         </uiobject>
         <uiobject fieldName="updateTime" nullAble="false">
             <expression>
-                <![CDATA[$DATEFMT($XPATHROWS(tidyDom,"//span[@itemprop='datePublished']"),"yyyy-MM-dd")]]></expression>
+                <![CDATA[$SYSDATESTR()]]></expression>
         </uiobject>
         <uiobject fieldName="infoZoneType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
@@ -38,7 +38,7 @@
             <expression><![CDATA[1]]></expression>
         </uiobject>
         <uiobject fieldName="titleImage" nullAble="false">
-            <expression><![CDATA[$URL2LOCALIMAGE($KEYVAL(task,"titleImage")+"")]]></expression>
+            <expression><![CDATA[$KEYVAL(task,"titleImage")]]></expression>
         </uiobject>
         <uiobject fieldName="zoneUuid">
             <expression><![CDATA[$KEYVAL(task,"zoneUuid")]]></expression>

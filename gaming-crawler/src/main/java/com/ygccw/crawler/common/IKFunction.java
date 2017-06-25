@@ -603,13 +603,13 @@ public class IKFunction {
             tags.addAttributes("img", "src");
             tags.addAttributes("p", "style");
             String content = Jsoup.clean(newHtml.html(), tags);
-            Document document = Jsoup.parse(content);
-            Elements elements = document.select("img");
-            for (Element element : elements) {
-                String imagePath = element.attr("src");
-                String imageLocalPath = url2LocalImage(imagePath);
-                content = content.replace(imagePath, downServer + imageLocalPath);
-            }
+//            Document document = Jsoup.parse(content);
+//            Elements elements = document.select("img");
+//            for (Element element : elements) {
+//                String imagePath = element.attr("src");
+//                String imageLocalPath = url2LocalImage(imagePath);
+//                content = content.replace(imagePath, downServer + imageLocalPath);
+//            }
             return content;
         } else {
             return "";
@@ -627,13 +627,13 @@ public class IKFunction {
             tags.addAttributes("p", "style");
             tags.addAttributes("iframe", "frameborder", "width", "height", "src");
             String content = Jsoup.clean(newHtml.html(), tags);
-            Document document = Jsoup.parse(content);
-            Elements elements = document.select("img");
-            for (Element element : elements) {
-                String imagePath = element.attr("src");
-                String imageLocalPath = url2LocalImage(imagePath);
-                content = content.replace(imagePath, downServer + imageLocalPath);
-            }
+//            Document document = Jsoup.parse(content);
+//            Elements elements = document.select("img");
+//            for (Element element : elements) {
+//                String imagePath = element.attr("src");
+//                String imageLocalPath = url2LocalImage(imagePath);
+//                content = content.replace(imagePath, downServer + imageLocalPath);
+//            }
             return content;
         } else {
             return "";
@@ -654,9 +654,9 @@ public class IKFunction {
             for (Element element : elements) {
                 String imageSrc = element.attr("src");
                 String imagePath = element.attr(imageTag);
-                String imageLocalPath = url2LocalImage(imagePath);
-                content = content.replace(imageSrc, downServer + imageLocalPath);
-                content = content.replace(imagePath, downServer + imageLocalPath);
+//                String imageLocalPath = url2LocalImage(imagePath);
+                content = content.replace(imageSrc, imagePath);
+//                content = content.replace(imagePath, downServer + imageLocalPath);
             }
             return content;
         } else {
@@ -671,6 +671,23 @@ public class IKFunction {
         org.jsoup.select.Elements newHtml = soup.select(jsoup);
         if (newHtml != null) {
             String content = newHtml.html();
+//            Document document = Jsoup.parse(content);
+//            Elements elements = document.select("img");
+//            for (Element element : elements) {
+//                String imagePath = element.attr("src");
+//                String imageLocalPath = url2LocalImage(imagePath);
+//                content = content.replace(imagePath, downServer + imageLocalPath);
+//            }
+            return content;
+        } else {
+            return "";
+        }
+    }
+
+    //内容里面的图片下载
+    public String imageTagDownLoad(String html) {
+        if (html != null) {
+            String content = html;
             Document document = Jsoup.parse(content);
             Elements elements = document.select("img");
             for (Element element : elements) {
@@ -798,17 +815,36 @@ public class IKFunction {
 
     public String url2LocalImage(String urlString) {
         try {
-            CHttpClient cHttpClient = new CHttpClient();
-            HttpUriRequest request = RequestBuilder.get().setUri(imageServer + urlString).build();
-            HttpResponse httpResponse = cHttpClient.execute(request);
-            String result = EntityUtils.toString(httpResponse.getEntity());
-            JSONObject jsonObject = JSONObject.fromObject(result);
-            return jsonObject.getString("path");
+            if (urlIsOk(urlString)) {
+                CHttpClient cHttpClient = new CHttpClient();
+                HttpUriRequest request = RequestBuilder.get().setUri(imageServer + urlString).build();
+                HttpResponse httpResponse = cHttpClient.execute(request);
+                String result = EntityUtils.toString(httpResponse.getEntity());
+                JSONObject jsonObject = JSONObject.fromObject(result);
+                return jsonObject.getString("path");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
 
+    }
+
+    //检查图片url是否正常，减少服务器请求
+    private boolean urlIsOk(String urlString) {
+        try {
+            CHttpClient cHttpClient = new CHttpClient();
+            HttpUriRequest request = RequestBuilder.get().setUri(urlString).build();
+            HttpResponse httpResponse = cHttpClient.execute(request);
+            if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                request.abort();
+                return true;
+            }
+            logger.info("图片url访问不到{}", urlString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public int add(String var1, String var2) {

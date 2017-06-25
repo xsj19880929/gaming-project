@@ -83,6 +83,7 @@ public class WebConfig extends DefaultSiteConfig {
         registry.addResourceHandler("index").addResourceLocations("/");
         registry.addResourceHandler("baidu_verify_MZA58sj9Pc.html").addResourceLocations("/");
         registry.addResourceHandler("sogousiteverification.txt").addResourceLocations("/");
+        registry.addResourceHandler("shenma-site-verification.txt").addResourceLocations("/");
         registry.addResourceHandler("bdunion.txt").addResourceLocations("/");
         registry.addResourceHandler("robots.txt").addResourceLocations("/");
         registry.addResourceHandler("sitemap.txt").addResourceLocations("/");

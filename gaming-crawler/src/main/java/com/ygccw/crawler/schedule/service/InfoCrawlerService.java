@@ -129,21 +129,24 @@ public class InfoCrawlerService {
             return;
         }
         HashMap<String, String> infoMap = infoList.get(0);
-        Info info = setInfo(infoMap);
 //            if (!dataOperatingService.selectData("uuid", infoMap.get("uuid"), "info")) {
 //                dataOperatingService.insertDate(infoMap, "info");
 //            }
 //        Info infoSelect = infoService.findByUuid(infoMap.get("uuid"));
 
         if (!Constants.INFO_UUID_SET.contains(infoMap.get("uuid"))) {
-            Constants.INFO_UUID_SET.add(info.getUuid());//增加一条咨询加入静态变量中
-            updateTask(infoMap, taskLast);
-            infoService.saveOnly(info);
+            Info info = setInfo(infoMap);
+            if (StringUtils.hasText(info.getTitleImage())) { //页面展现需要头图
+                logger.info("新增资讯内容UUID{}", info.getUuid());
+                Constants.INFO_UUID_SET.add(info.getUuid());//增加一条咨询加入静态变量中
+                updateTask(infoMap, taskLast);
+                infoService.saveOnly(info);
 
-            List<Tags> tagListData = setTag(tagList, info);
-            if (!tagListData.isEmpty()) {
-                info.setContent(setContentTag(info.getContent(), tagListData, info.getInfoType().getName()));
-                infoService.update(info);
+                List<Tags> tagListData = setTag(tagList, info);
+                if (!tagListData.isEmpty()) {
+                    info.setContent(setContentTag(info.getContent(), tagListData, info.getInfoType().getName()));
+                    infoService.update(info);
+                }
             }
 
         }
@@ -185,6 +188,8 @@ public class InfoCrawlerService {
     }
 
     private Info setInfo(HashMap<String, String> infoMap) {
+
+        IKFunction ikFunction = new IKFunction();
         Info info = new Info();
         info.setStatus(1);
         info.setCreateTime(new Date());
@@ -208,8 +213,8 @@ public class InfoCrawlerService {
         info.setTitle(infoMap.get("title"));
         info.setSubTitle(infoMap.get("subTitle"));
         info.setVisitCount(1);
-        info.setTitleImage(infoMap.get("titleImage"));
-        info.setContent(infoMap.get("content"));
+        info.setTitleImage(ikFunction.url2LocalImage(infoMap.get("titleImage"))); //需要保存的内容才下载图片
+        info.setContent(ikFunction.imageTagDownLoad(infoMap.get("content"))); //需要保存的内容才下载图片
         info.setSeoTitle(infoMap.get("seoTitle"));
         info.setTags(infoMap.get("tags"));
         info.setVerify(Integer.parseInt(infoMap.get("verify")));
@@ -275,6 +280,7 @@ public class InfoCrawlerService {
             int offset = 0;
             int fetchSize = 1000;
             while (true) {
+                logger.info("资讯信息放入内存第{}页", (offset / fetchSize) + 1);
                 List<Info> infoList = findInfoList(offset, fetchSize);
                 if (infoList == null || infoList.isEmpty()) {
                     break;
@@ -286,6 +292,7 @@ public class InfoCrawlerService {
                 }
                 offset = offset + fetchSize;
             }
+            logger.info("成功将全部资讯信息放入内存总数{}", Constants.INFO_UUID_SET.size());
         }
     }
 
