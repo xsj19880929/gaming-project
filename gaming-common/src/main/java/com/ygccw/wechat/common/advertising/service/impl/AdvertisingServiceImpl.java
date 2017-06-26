@@ -63,7 +63,7 @@ public class AdvertisingServiceImpl implements AdvertisingService {
         Advertising advertising = new Advertising();
         advertising.setAdvType(advType);
         List<Advertising> list = advertisingDao.list(advertising, 0, 1);
-        if (list != null) {
+        if (list != null && !list.isEmpty()) {
             return list.get(0);
         }
         return null;

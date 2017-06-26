@@ -45,9 +45,9 @@
                     <td width="10%">广告位置：</td>
                     <td width="40%">
                         <div class="col-sm-7">
-                            <select class="form-control" ng-model="advertising.advType"
+                            <select class="form-control" ng-model="advertising.advType.name"
                                     ng-options="m.name as m.label for m in advTypeList" validator="required"
-                                    name="siteType">
+                                    name="advType">
                                 <option value="">请选择</option>
                             </select>
                         </div>
