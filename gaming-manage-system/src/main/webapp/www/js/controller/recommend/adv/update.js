@@ -14,14 +14,9 @@
             $http.get('advertising/' + $location.search().id).success(function (data) {
                 $scope.advertising = data;
             });
-        } else {
-            $http.get('advertising/match-team-mapping-list').success(function (data) {
-                $scope.advertising.advertisingMappingModelList = data;
-            });
-
         }
-        $http.get('/enum/com.ygccw.wechat.common.advertising.enums.AdvertisingType').success(function (data) {
-            $scope.advertisingTypeList = data;
+        $http.get('/enum/com.ygccw.wechat.common.advertising.enums.AdvType').success(function (data) {
+            $scope.advTypeList = data;
         });
         $scope.updateAdvertising = function () {
             if ($scope.id) {

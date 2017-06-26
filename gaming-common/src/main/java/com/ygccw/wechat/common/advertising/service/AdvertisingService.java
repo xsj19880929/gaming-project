@@ -2,6 +2,7 @@ package com.ygccw.wechat.common.advertising.service;
 
 
 import com.ygccw.wechat.common.advertising.entity.Advertising;
+import com.ygccw.wechat.common.advertising.enums.AdvType;
 
 import java.util.List;
 
@@ -23,4 +24,5 @@ public interface AdvertisingService {
 
     int listSize(Advertising advertising);
 
+    Advertising findByAdvType(AdvType advType);
 }

@@ -10,6 +10,8 @@ import com.ygccw.msite.mobile.info.model.InfoRequest;
 import com.ygccw.msite.mobile.info.model.InfoWeb;
 import com.ygccw.msite.mobile.info.service.InfoWebService;
 import com.ygccw.msite.utils.PageUtils;
+import com.ygccw.wechat.common.advertising.enums.AdvType;
+import com.ygccw.wechat.common.advertising.service.AdvertisingService;
 import com.ygccw.wechat.common.info.enums.InfoType;
 import com.ygccw.wechat.common.info.enums.InfoZoneType;
 import com.ygccw.wechat.common.info.service.InfoService;
@@ -48,6 +50,8 @@ public class InfoController {
     private AjaxGetTemplateService ajaxGetTemplateService;
     @Inject
     private RequestService requestService;
+    @Inject
+    private AdvertisingService advertisingService;
 
     @RequestMapping(value = "/news/", method = RequestMethod.GET)
     public String list(final ModelMap model) {
@@ -103,6 +107,8 @@ public class InfoController {
         }
         infoService.updateVisitCount(id); // 点击量
         model.put("info", infoWeb);
+        model.put("newsAdvHead", advertisingService.findByAdvType(AdvType.newsDetailMHead)); //文章头广告
+        model.put("newsAdvBottom", advertisingService.findByAdvType(AdvType.newsDetailMBottom)); //文章底广告
         if (infoWeb.getInfoZoneType() == InfoZoneType.trade) {
             model.put("likeInfoList", infoWebService.likeInfoList(infoWeb, 10));
             return "/view/news/news-detail.html";

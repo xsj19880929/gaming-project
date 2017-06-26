@@ -3,6 +3,7 @@ package com.ygccw.wechat.common.advertising.service.impl;
 
 import com.ygccw.wechat.common.advertising.dao.AdvertisingDao;
 import com.ygccw.wechat.common.advertising.entity.Advertising;
+import com.ygccw.wechat.common.advertising.enums.AdvType;
 import com.ygccw.wechat.common.advertising.service.AdvertisingService;
 import org.springframework.stereotype.Service;
 
@@ -57,4 +58,14 @@ public class AdvertisingServiceImpl implements AdvertisingService {
         return advertisingDao.listSize(advertising);
     }
 
+    @Override
+    public Advertising findByAdvType(AdvType advType) {
+        Advertising advertising = new Advertising();
+        advertising.setAdvType(advType);
+        List<Advertising> list = advertisingDao.list(advertising, 0, 1);
+        if (list != null) {
+            return list.get(0);
+        }
+        return null;
+    }
 }

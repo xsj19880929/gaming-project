@@ -5,6 +5,7 @@ import com.ygccw.website.pc.index.model.MatchZoneWeb;
 import com.ygccw.website.pc.info.model.InfoWeb;
 import com.ygccw.website.pc.info.model.TagMappingWeb;
 import com.ygccw.wechat.common.advertising.entity.Advertising;
+import com.ygccw.wechat.common.advertising.enums.AdvType;
 import com.ygccw.wechat.common.advertising.service.AdvertisingService;
 import com.ygccw.wechat.common.info.entity.Info;
 import com.ygccw.wechat.common.info.enums.InfoType;
@@ -90,7 +91,9 @@ public class IndexWebService {
     }
 
     public List<Advertising> findAdvertising(int number) {
-        return advertisingService.list(null, 0, number);
+        Advertising advertising = new Advertising();
+        advertising.setAdvType(AdvType.index);
+        return advertisingService.list(advertising, 0, number);
     }
 
     public List<MatchZone> findMatchZone() {

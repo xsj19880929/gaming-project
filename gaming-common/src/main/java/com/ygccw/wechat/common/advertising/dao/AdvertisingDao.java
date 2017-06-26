@@ -17,17 +17,17 @@ import java.util.List;
 public class AdvertisingDao {
     @Inject
     JPAAccess jpaAccess;
-    
+
 
     public List<Advertising> list(Advertising advertising, int offset, int fetchSize) {
-        QueryBuilder queryBuilder = QueryBuilder.query("from Advertising").append("status", 1)
+        QueryBuilder queryBuilder = QueryBuilder.query("from Advertising").append("status", 1).append("advType", advertising.getAdvType())
                 .skipEmptyFields().orderBy("createTime").desc();
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
     }
 
     public int listSize(Advertising advertising) {
-        QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from Advertising").append("status", 1)
+        QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from Advertising").append("status", 1).append("advType", advertising.getAdvType())
                 .skipEmptyFields().orderBy("createTime").desc();
         return Integer.parseInt(jpaAccess.find(queryBuilder.build()).get(0).toString());
 

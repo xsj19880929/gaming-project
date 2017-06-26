@@ -37,8 +37,27 @@
                     <td width="10%">链接：</td>
                     <td width="40%">
                         <div class="col-sm-7">
-                            <input class="form-control" type="text" ng-model="advertising.url"
-                                   placeholder="" validator="required" name="url"/>
+                            <input class="form-control" type="text" ng-model="advertising.url" name="url"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">广告位置：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <select class="form-control" ng-model="advertising.advType"
+                                    ng-options="m.name as m.label for m in advTypeList" validator="required"
+                                    name="siteType">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">js代码：</td>
+                    <td width="40%">
+                        <div class="col-sm-7">
+                            <textarea ng-model="advertising.jsCode" class="form-control"></textarea>
                         </div>
                     </td>
                 </tr>

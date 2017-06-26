@@ -1,6 +1,10 @@
 package com.ygccw.wechat.common.advertising.entity;
 
+import com.ygccw.wechat.common.advertising.enums.AdvType;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
@@ -19,6 +23,10 @@ public class Advertising {
     private String image;
     private String url;
     private String name;
+    //广告类型
+    @Enumerated(value = EnumType.STRING)
+    private AdvType advType;
+    private String jsCode;
 
     public Long getId() {
         return id;
@@ -74,5 +82,21 @@ public class Advertising {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public AdvType getAdvType() {
+        return advType;
+    }
+
+    public void setAdvType(AdvType advType) {
+        this.advType = advType;
+    }
+
+    public String getJsCode() {
+        return jsCode;
+    }
+
+    public void setJsCode(String jsCode) {
+        this.jsCode = jsCode;
     }
 }
