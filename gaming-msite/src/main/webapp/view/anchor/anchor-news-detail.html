@@ -33,7 +33,11 @@
             <span class="author" th:text="' 作者：'+${info.author}"> 作者：官方</span>
         </p>
     </div>
+    <div class="text-content" th:utext="${newsAdvBottom.jsCode}" th:if="${newsAdvBottom!=null}">
+    </div>
     <div class="text-content" th:utext="${info.content}">
+    </div>
+    <div class="text-content" th:utext="${newsAdvBottom.jsCode}" th:if="${newsAdvBottom!=null}">
     </div>
 </div>
 

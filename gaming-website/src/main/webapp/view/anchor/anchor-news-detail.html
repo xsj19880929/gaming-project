@@ -36,7 +36,7 @@
                         作者：<span th:text="${info.author}">晨落</span>&nbsp;&nbsp;&nbsp;&nbsp; 评论数：<span
                             id="sourceId::此处替换为配置SourceID的语句" class="cy_cmt_count"
                             th:attr="id='sourceId::'+${currentUrl}"></span></div>
-
+                    <div class="new_d_font" th:utext="${newsAdvHead.jsCode}" th:if="${newsAdvHead!=null}"></div>
                     <div class="new_d_font" th:utext="${info.content}">
                     </div>
                     <div class="detail_tag">
@@ -127,6 +127,8 @@
                                                                  th:title="${anchorVideo.title}">英雄联盟S6总决赛详情：举办地为北美</a>
                 </dt>
             </dl>
+        </div>
+        <div class="right_mid" th:utext="${newsAdvRight.jsCode}" th:if="${newsAdvRight!=null}">
         </div>
         <div class="right_mid">
             <div class="index_tit_two"><span class="text_left">热门主播</span> <a th:href="/anchor/"

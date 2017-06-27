@@ -97,9 +97,9 @@ public class InfoController {
         }
         infoService.updateVisitCount(id); // 点击量
         model.put("info", infoWeb);
-        model.put("newsAdvHead", advertisingService.findByAdvType(AdvType.newsDetailPcHead)); //文章头广告
-        model.put("newsAdvBottom", advertisingService.findByAdvType(AdvType.newsDetailPcBottom)); //文章底广告
         if (infoWeb.getInfoZoneType() == InfoZoneType.trade) {
+            model.put("newsAdvHead", advertisingService.findByAdvType(AdvType.newsDetailPcHead)); //文章头广告
+            model.put("newsAdvRight", advertisingService.findByAdvType(AdvType.newsDetailPcRight)); //文章底广告
             model.put("newsTopList", infoWebService.newsListTop(0, 10));
             model.put("newsNewestList", infoWebService.newsListNewest(0, 10));
             model.put("anchorTopList", infoWebService.anchorListTop(0, 6));
@@ -110,6 +110,8 @@ public class InfoController {
             model.put("lastInfo", infoWebService.lastInfo(infoWeb));
             return "/view/news/news-detail.html";
         } else if (infoWeb.getInfoZoneType() == InfoZoneType.matchZone) {
+            model.put("newsAdvHead", advertisingService.findByAdvType(AdvType.newsDetailMatchPcHead)); //文章头广告
+//            model.put("newsAdvBottom", advertisingService.findByAdvType(AdvType.newsDetailPcBottom)); //文章底广告
             model.put("newestNewsList", gameWebService.listInfoNews(0, 10));
             model.put("topNewsList", gameWebService.listInfoNewsTop(0, 10));
             model.put("pictureTopList", gameWebService.pictureListTop(0, 6));
@@ -120,6 +122,8 @@ public class InfoController {
             model.put("matchZone", gameWebService.findById(infoWeb.getZoneId()));
             return "/view/game/game-news-detail.html";
         } else if (infoWeb.getInfoZoneType() == InfoZoneType.anchorZone) {
+            model.put("newsAdvHead", advertisingService.findByAdvType(AdvType.newsDetailPcHead)); //文章头广告
+            model.put("newsAdvRight", advertisingService.findByAdvType(AdvType.newsDetailAnchorPcRight)); //文章底广告
             model.put("anchorZone", anchorWebService.findAnchorById(infoWeb.getZoneId()));
             model.put("pictureTopList", anchorWebService.pictureListTop(0, 6));
             model.put("likeInfoList", anchorWebService.likeInfoList(infoWeb, 10));

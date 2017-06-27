@@ -32,6 +32,7 @@
                     id="sourceId::此处替换为配置SourceID的语句" class="cy_cmt_count"
                     th:attr="id='sourceId::'+${currentUrl}"></span>
             </div>
+            <div class="new_d_font" th:utext="${newsAdvHead.jsCode}" th:if="${newsAdvHead!=null}"></div>
             <div class="new_d_font" th:utext="${info.content}">
             </div>
             <div class="detail_tag">
@@ -131,6 +132,7 @@
                 </dl>
             </div>
         </div>
+
         <div class="index_tit_two" style="height:442px;">
             <span class="text_left padding1">热门资讯</span>
             <a th:href="/news/" target="_blank" class="more">更多</a>
