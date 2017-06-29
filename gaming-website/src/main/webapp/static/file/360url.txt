@@ -1,9 +1,4 @@
-http://www.55djw.com/news/	http://m.55djw.com/news/
-http://www.55djw.com/video/	http://m.55djw.com/video/
-http://www.55djw.com/game/	http://m.55djw.com/game/
-http://www.55djw.com/anchor/	http://m.55djw.com/anchor/
-http://www.55djw.com/picture/	http://m.55djw.com/picture/
-http://www.55djw.com/sitemap.html	http://m.55djw.com/sitemap.html
+http://www.55djw.com/(\w+)/	http://m.55djw.com/\1/
 http://www.55djw.com/news/(\d+).html	http://m.55djw.com/news/\1.html
 http://www.55djw.com/video/(\d+).html	http://m.55djw.com/video/\1.html
 http://www.55djw.com/game/(\d+)/	http://m.55djw.com/game/\1/

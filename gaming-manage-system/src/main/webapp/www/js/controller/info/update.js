@@ -6,7 +6,8 @@
 
     module.controller('InfoUpdateController', ['$scope', '$http', '$location', '$state', '$upload', '$rootScope', function ($scope, $http, $location, $state, $upload, $rootScope) {
         $scope.info = {};
-
+        $scope.info.infoType = {"name": "news"};
+        $scope.info.infoZoneType = {"name": "trade"};
         $scope.id = $location.search().id;
         $scope.offset = $location.search().offset;
         $scope.verify = $location.search().verify;

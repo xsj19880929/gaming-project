@@ -317,6 +317,8 @@ public class IKFunction {
 //        String html = "photos.push({ orig: 'https://upload.shunwang.com/2016/0627/1467032515821.jpg', big: 'https://upload.shunwang.com/2016/0627/1467032515821.jpg', thumb: 'https://upload.shunwang.com/2016/0627/thumb_100_75_1467032515821.jpg', note: \"0dadf3718991d7bb1218443c2be665c9\" });\n" +
 //                "                    photos.push({ orig: 'https://upload.shunwang.com/2016/0627/1467032515275.jpg', big: 'https://upload.shunwang.com/2016/0627/1467032515275.jpg', thumb: 'https://upload.shunwang.com/2016/0627/thumb_100_75_1467032515275.jpg', note: \"23715edc549f6611a62f6b6116827fc3\" });";
 //        System.out.println(regexpRows(html, "orig: '(.*?)', big", 1));
+        IKFunction ikFunction = new IKFunction();
+        System.out.println(ikFunction.rowsArray(arrayFmt(ikFunction.split("s", ","))));
     }
 
     // 格式化为tidyDom对象（org.w3c.dom.Document）
@@ -585,7 +587,7 @@ public class IKFunction {
         org.jsoup.select.Elements newHtml = soup.select(jsoup);
         if (newHtml != null) {
             Whitelist tags = new Whitelist();
-            tags.addTags("div", "table", "tbody", "tr", "td", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
+            tags.addTags("div", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
             tags.addAttributes("img", "src");
             return Jsoup.clean(newHtml.html(), tags);
         } else {
@@ -599,7 +601,7 @@ public class IKFunction {
         org.jsoup.select.Elements newHtml = soup.select(jsoup);
         if (newHtml != null) {
             Whitelist tags = new Whitelist();
-            tags.addTags("div", "table", "tbody", "tr", "td", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
+            tags.addTags("div", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
             tags.addAttributes("img", "src");
             tags.addAttributes("p", "style");
             String content = Jsoup.clean(newHtml.html(), tags);
@@ -622,7 +624,7 @@ public class IKFunction {
         org.jsoup.select.Elements newHtml = soup.select(jsoup);
         if (newHtml != null) {
             Whitelist tags = new Whitelist();
-            tags.addTags("div", "table", "tbody", "tr", "td", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
+            tags.addTags("div", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
             tags.addAttributes("img", "src");
             tags.addAttributes("p", "style");
             tags.addAttributes("iframe", "frameborder", "width", "height", "src");
@@ -646,7 +648,7 @@ public class IKFunction {
         org.jsoup.select.Elements newHtml = soup.select(jsoup);
         if (newHtml != null) {
             Whitelist tags = new Whitelist();
-            tags.addTags("div", "table", "tbody", "tr", "td", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
+            tags.addTags("div", "p", "br", "ul", "li", "h1", "h2", "h3", "h4", "h5");
             tags.addAttributes("img", "src", imageTag);
             String content = Jsoup.clean(newHtml.html(), tags);
             Document document = Jsoup.parse(content);

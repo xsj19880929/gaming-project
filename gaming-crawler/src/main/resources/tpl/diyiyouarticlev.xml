@@ -69,6 +69,9 @@
         <uiobject fieldName="source" nullAble="false">
             <expression><![CDATA["www.55djw.com"]]></expression>
         </uiobject>
+        <uiobject fieldName="tags" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"seoKeywords")]]></expression>
+        </uiobject>
         <uiobject fieldName="publishTime" nullAble="false">
             <expression>
                 <![CDATA[$KEYVAL(task,"publishTime")]]></expression>
@@ -84,6 +87,32 @@
         </uiobject>
         <uiobject fieldName="webSite" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"webSite")]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="tags">
+        <rows>
+            <![CDATA[$ROWSARRAY($ARRAYFMT($SPLIT($KEYVAL(task,"seoKeywords"),",")))]]></rows>
+        <uiobject fieldName="name" nullAble="false">
+            <expression>
+                <![CDATA[$ARRAY($ARRAYFMT($SPLIT($KEYVAL(task,"seoKeywords"),",")),row)]]></expression>
+        </uiobject>
+        <uiobject fieldName="tagType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="tagZoneType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="uuid" nullAble="false">
+            <expression><![CDATA[$UUID()]]></expression>
+        </uiobject>
+        <uiobject fieldName="status" nullAble="false">
+            <expression><![CDATA[1]]></expression>
+        </uiobject>
+        <uiobject fieldName="createTime" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="updateTime" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
         </uiobject>
     </uielements>
 </page>
