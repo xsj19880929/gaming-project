@@ -319,6 +319,7 @@ public class IKFunction {
 //        System.out.println(regexpRows(html, "orig: '(.*?)', big", 1));
         IKFunction ikFunction = new IKFunction();
         System.out.println(ikFunction.rowsArray(arrayFmt(ikFunction.split("s", ","))));
+        ikFunction.urlIsOk("http://www.eyu.com/ueditor/php/upload/image/20170629/1498718175942852.png");
     }
 
     // 格式化为tidyDom对象（org.w3c.dom.Document）
@@ -836,7 +837,9 @@ public class IKFunction {
     private boolean urlIsOk(String urlString) {
         try {
             CHttpClient cHttpClient = new CHttpClient();
-            HttpUriRequest request = RequestBuilder.get().setUri(urlString).build();
+            HttpUriRequest request = RequestBuilder.get().setUri(urlString)
+                    .setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.04")
+                    .build();
             HttpResponse httpResponse = cHttpClient.execute(request);
             if (httpResponse.getStatusLine().getStatusCode() == 200) {
                 request.abort();

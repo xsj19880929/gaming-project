@@ -78,5 +78,35 @@
         <uiobject fieldName="webSite" nullAble="false">
             <expression><![CDATA["ÓÎÏ·¹·"]]></expression>
         </uiobject>
+        <uiobject fieldName="tags" nullAble="false">
+            <expression>
+                <![CDATA[$XPATHROWS(tidyDom,"//meta[@name='keywords']/@content")]]></expression>
+        </uiobject>
+    </uielements>
+    <uielements objectName="tags">
+        <rows>
+            <![CDATA[$ROWSARRAY($ARRAYFMT($SPLIT($XPATHROWS(tidyDom,"//meta[@name='keywords']/@content"),",")))]]></rows>
+        <uiobject fieldName="name" nullAble="false">
+            <expression>
+                <![CDATA[$ARRAY($ARRAYFMT($SPLIT($XPATHROWS(tidyDom,"//meta[@name='keywords']/@content"),",")),row)]]></expression>
+        </uiobject>
+        <uiobject fieldName="tagType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="tagZoneType" nullAble="false">
+            <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
+        </uiobject>
+        <uiobject fieldName="uuid" nullAble="false">
+            <expression><![CDATA[$UUID()]]></expression>
+        </uiobject>
+        <uiobject fieldName="status" nullAble="false">
+            <expression><![CDATA[1]]></expression>
+        </uiobject>
+        <uiobject fieldName="createTime" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
+        <uiobject fieldName="updateTime" nullAble="false">
+            <expression><![CDATA[$SYSDATESTR()]]></expression>
+        </uiobject>
     </uielements>
 </page>
