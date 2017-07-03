@@ -58,7 +58,7 @@
             <expression><![CDATA["öùÓãÏÂÔØÕ¾"]]></expression>
         </uiobject>
         <uiobject fieldName="pageType" nullAble="false">
-            <expression><![CDATA["diyiyouarticle"]]></expression>
+            <expression><![CDATA["eyuarticle"]]></expression>
         </uiobject>
         <uiobject fieldName="lastUrl">
             <expression><![CDATA[$KEYVAL(task,"lastUrl")]]></expression>

@@ -1,4 +1,4 @@
-package com.ygccw.wechat.utils;
+package com.ygccw.wechat.commiturlsearch.model;
 
 /**
  * @author soldier

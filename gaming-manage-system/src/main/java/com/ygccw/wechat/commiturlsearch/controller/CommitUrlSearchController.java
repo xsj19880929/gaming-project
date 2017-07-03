@@ -60,4 +60,11 @@ public class CommitUrlSearchController {
         return commitUrlSearchService.findById(id);
     }
 
+    @RequireSession
+    @RequestMapping(value = "/commitUrlSearch/createSiteMap/{webSite}", method = RequestMethod.GET)
+    @ResponseBody
+    public void createSiteMap(@PathVariable("webSite") String webSite) {
+
+    }
+
 }

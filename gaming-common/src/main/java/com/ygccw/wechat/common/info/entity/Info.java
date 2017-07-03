@@ -60,6 +60,24 @@ public class Info {
     private Date startTime;
     @Transient
     private Date endTime;
+    private String sourceUrl;
+    private Long taskId;
+
+    public String getSourceUrl() {
+        return sourceUrl;
+    }
+
+    public void setSourceUrl(String sourceUrl) {
+        this.sourceUrl = sourceUrl;
+    }
+
+    public Long getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
+    }
 
     public Date getStartTime() {
         return startTime;

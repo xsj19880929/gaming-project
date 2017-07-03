@@ -225,6 +225,10 @@ public class InfoCrawlerService {
         info.setSeoDescription(infoMap.get("seoDescription"));
         info.setWebSite(infoMap.get("webSite"));
         info.setIfAutoPublish(0);
+        if (StringUtils.hasText(infoMap.get("taskId"))) {
+            info.setTaskId(Long.parseLong(infoMap.get("taskId")));
+        }
+        info.setSourceUrl(infoMap.get("url"));
         return info;
     }
 

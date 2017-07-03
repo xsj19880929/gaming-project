@@ -1,4 +1,4 @@
-package com.ygccw.wechat.utils;
+package com.ygccw.wechat.commiturlsearch.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

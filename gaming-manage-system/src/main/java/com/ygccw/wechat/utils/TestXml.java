@@ -1,5 +1,7 @@
 package com.ygccw.wechat.utils;
 
+import com.ygccw.wechat.commiturlsearch.model.SoSiteMapUrl;
+import com.ygccw.wechat.commiturlsearch.model.UrlSet;
 import core.framework.util.XMLBinder;
 
 import java.util.ArrayList;
