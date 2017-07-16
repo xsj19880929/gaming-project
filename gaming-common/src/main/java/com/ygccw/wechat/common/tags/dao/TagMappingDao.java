@@ -29,7 +29,7 @@ public class TagMappingDao {
 
     public List<TagMapping> listByTagsId(Long tagsId, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from TagMapping").append("status", 1).append("tagsId", tagsId)
-                .skipEmptyFields().orderBy("createTime").desc();
+                .skipEmptyFields().orderBy("id").desc();
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
     }
@@ -37,7 +37,7 @@ public class TagMappingDao {
     public List<TagMapping> list(TagMapping tagMapping, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from TagMapping").append("status", 1)
                 .append("tagType", tagMapping.getTagType()).append("tagZoneType", tagMapping.getTagZoneType()).append("entityId", tagMapping.getEntityId())
-                .skipEmptyFields().orderBy("createTime").desc();
+                .skipEmptyFields().orderBy("id").desc();
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
     }
@@ -50,7 +50,7 @@ public class TagMappingDao {
     public int listSize(TagMapping tagMapping) {
         QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from TagMapping").append("status", 1)
                 .append("tagType", tagMapping.getTagType()).append("tagZoneType", tagMapping.getTagZoneType()).append("entityId", tagMapping.getEntityId())
-                .skipEmptyFields().orderBy("createTime").desc();
+                .skipEmptyFields().orderBy("id").desc();
         return Integer.parseInt(jpaAccess.find(queryBuilder.build()).get(0).toString());
 
     }
@@ -88,14 +88,14 @@ public class TagMappingDao {
 
     public List<TagMapping> listByTagsIdPaging(Long tagsId, int offset, int fetchSize) {
         QueryBuilder queryBuilder = QueryBuilder.query("from TagMapping").append("status", 1).append("tagsId", tagsId)
-                .skipEmptyFields().orderBy("createTime").desc();
+                .skipEmptyFields().orderBy("id").desc();
         Query query = queryBuilder.build().from(offset).fetch(fetchSize);
         return jpaAccess.find(query);
     }
 
     public int listByTagsIdPagingSize(Long tagsId) {
         QueryBuilder queryBuilder = QueryBuilder.query("select count(id) from TagMapping").append("status", 1).append("tagsId", tagsId)
-                .skipEmptyFields().orderBy("createTime").desc();
+                .skipEmptyFields().orderBy("id").desc();
         return Integer.parseInt(jpaAccess.find(queryBuilder.build()).get(0).toString());
     }
 

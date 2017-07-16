@@ -72,7 +72,7 @@
             </div>
         </div>
         <!--相关文章-->
-        <div class="about_read clearfix">
+        <div class="about_read clearfix" th:unless="${#lists.isEmpty(likeInfoList)}">
             <div class="index_tit_two"><span class="text_left">相关文章</span></div>
             <ul class="hot_zixun read_text">
                 <li th:each="likeInfo:${likeInfoList}" th:if="${likeInfo!=null&&likeInfo.id!=null}"><a href="#"

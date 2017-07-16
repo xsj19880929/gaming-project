@@ -41,7 +41,7 @@
     </div>
 </div>
 
-<div class="sszixun">
+<div class="sszixun" th:unless="${#lists.isEmpty(likeInfoList)}">
     <div class="second-content">
         <h2>相关资讯</h2>
         <div class="tip" th:each="likeInfo,iterStat:${likeInfoList}" th:if="${iterStat.index==0}">

@@ -41,9 +41,10 @@
                             <div class="d2">
                                 <p class="p1"><a href="#" th:text="${news.title}" th:href="/news/${news.id}.html"
                                                  th:title="${news.title}">iGirls战队处罚相关人员 恶意煽动队员离队将予以起诉</a></p>
-                                <p class="p2"><span><a href="#" th:href="/news/${news.id}.html"
-                                                       th:each="tag:${news.tagMappingWebList}" th:if="${tag!=null}"
-                                                       th:text="${tag.name}">电竞</a></span><em
+                                <p class="p2"><span th:unless="${#lists.isEmpty(news.tagMappingWebList)}"><a href="#"
+                                                                                                             th:href="/news/${news.id}.html"
+                                                                                                             th:each="tag:${news.tagMappingWebList}"
+                                                                                                             th:text="${tag.name}">电竞</a></span><em
                                         th:text="${#calendars.format(news.publishTime, 'MM-dd HH:mm')}">10-20 10:35</em>
                                 </p>
                                 <p class="p3" th:text="${news.subTitle}">

@@ -20,7 +20,7 @@ public class PictureDetailDao {
 
     public List<PictureDetail> listByPictureId(Long pictureId) {
         QueryBuilder queryBuilder = QueryBuilder.query("from PictureDetail").append("status", 1).append("pictureId", pictureId)
-                .skipEmptyFields().orderBy("createTime").desc();
+                .skipEmptyFields().orderBy("id").desc();
         Query query = queryBuilder.build();
         return jpaAccess.find(query);
     }
