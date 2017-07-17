@@ -97,6 +97,7 @@ public class InfoController {
         }
         infoService.updateVisitCount(id); // 点击量
         model.put("info", infoWeb);
+
         if (infoWeb.getInfoZoneType() == InfoZoneType.trade) {
             model.put("newsAdvHead", advertisingService.findByAdvType(AdvType.newsDetailPcHead)); //文章头广告
             model.put("newsAdvRight", advertisingService.findByAdvType(AdvType.newsDetailPcRight)); //文章底广告
@@ -108,6 +109,7 @@ public class InfoController {
             model.put("likeInfoList", infoWebService.likeInfoList(infoWeb, 10));
             model.put("nextInfo", infoWebService.nextInfo(infoWeb));
             model.put("lastInfo", infoWebService.lastInfo(infoWeb));
+            model.put("newsAdvImagePlus", advertisingService.findByAdvType(AdvType.imagePlus)); //图加广告
             return "/view/news/news-detail.html";
         } else if (infoWeb.getInfoZoneType() == InfoZoneType.matchZone) {
             model.put("newsAdvHead", advertisingService.findByAdvType(AdvType.newsDetailMatchPcHead)); //文章头广告
@@ -120,6 +122,7 @@ public class InfoController {
             model.put("lastInfo", gameWebService.lastInfo(infoWeb));
             model.put("matchZoneListTop", gameWebService.findMatchZoneTop(new MatchZone(), 0, 2));
             model.put("matchZone", gameWebService.findById(infoWeb.getZoneId()));
+            model.put("newsAdvGameImagePlus", advertisingService.findByAdvType(AdvType.gameImagePlus)); //图加广告
             return "/view/game/game-news-detail.html";
         } else if (infoWeb.getInfoZoneType() == InfoZoneType.anchorZone) {
             model.put("newsAdvHead", advertisingService.findByAdvType(AdvType.newsDetailPcHead)); //文章头广告
@@ -132,6 +135,7 @@ public class InfoController {
             model.put("anchorVideoTopList", anchorWebService.listInfoVideoTopByAnchorZoneId(infoWeb.getZoneId(), 0, 10));
             model.put("anchorZoneTopList", anchorWebService.findAnchorZoneTop(new AnchorZone(), 0, 10));
             model.put("matchZoneTopList", anchorWebService.findMatchZoneTop(new MatchZone(), 0, 10));
+            model.put("newsAdvImagePlus", advertisingService.findByAdvType(AdvType.imagePlus)); //图加广告
             return "/view/anchor/anchor-news-detail.html";
         }
 

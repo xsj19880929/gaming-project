@@ -160,9 +160,8 @@
     <div class="clear"></div>
 </div>
 
-
 <!--线上琵琶网首页的foot，这里只是截图-->
 <div th:replace="/bottom.html::bottom"></div>
-
+<div th:utext="${newsAdvGameImagePlus.jsCode}" th:if="${newsAdvGameImagePlus!=null}"></div>
 </body>
 </html>

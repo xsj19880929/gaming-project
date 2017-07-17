@@ -1,5 +1,7 @@
 package com.ygccw.website.interceptor;
 
+import com.ygccw.wechat.common.advertising.enums.AdvType;
+import com.ygccw.wechat.common.advertising.service.AdvertisingService;
 import com.ygccw.wechat.common.hotkeywords.entity.HotKeywords;
 import com.ygccw.wechat.common.hotkeywords.service.HotKeywordsService;
 import core.framework.web.site.SiteSettings;
@@ -15,6 +17,8 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
     SiteSettings siteSettings;
     @Inject
     HotKeywordsService hotKeywordsService;
+    @Inject
+    AdvertisingService advertisingService;
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
@@ -22,5 +26,6 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
         request.setAttribute("hotKeywordsList", hotKeywordsService.list(new HotKeywords(), 0, 10));
         request.setAttribute("siteName", "55电竞游戏网");
         request.setAttribute("baseUrl", siteSettings.baseUrl());
+        request.setAttribute("newsAdvTop", advertisingService.findByAdvType(AdvType.top)); //头广告
     }
 }

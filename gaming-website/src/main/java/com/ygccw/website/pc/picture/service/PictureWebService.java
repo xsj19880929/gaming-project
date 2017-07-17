@@ -70,7 +70,7 @@ public class PictureWebService {
         Set<Picture> pictureList = new HashSet<>(fetchSize);
         Map<Long, Picture> mappingMap = new HashMap<>(fetchSize);
         if (StringUtils.hasText(picture.getTags())) {
-            String[] tagArray = picture.getTags().split(" ");
+            String[] tagArray = picture.getTags().split(" |,");
             TagZoneType tagZoneTypeRequest = null;
             for (TagZoneType tagZoneType : TagZoneType.values()) {
                 if (picture.getPictureZoneType() != null && tagZoneType.getName().equals(picture.getPictureZoneType().getName())) {

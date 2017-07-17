@@ -151,7 +151,7 @@ public class InfoWebService {
         Set<Info> infoList = new HashSet<>(fetchSize);
         Map<Long, Info> mappingMap = new HashMap<>(fetchSize);
         if (StringUtils.hasText(infoWeb.getTags())) {
-            String[] tagArray = infoWeb.getTags().split(" ");
+            String[] tagArray = infoWeb.getTags().split(" |,");
             TagZoneType tagZoneTypeRequest = null;
             for (TagZoneType tagZoneType : TagZoneType.values()) {
                 if (infoWeb.getInfoZoneType().getName().equals(tagZoneType.getName())) {
