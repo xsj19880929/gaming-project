@@ -4,6 +4,18 @@
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
+                <pc_url_pattern>http://www.55djw.com/(\w+)/$</pc_url_pattern>
+                <url_pattern>http://m.55djw.com/${1}/$</url_pattern>
+                <pc_sample>http://www.55djw.com/news/$</pc_sample>
+                <wap_sample>http://m.55djw.com/news/$</wap_sample>
+                <version>7</version>
+            </display>
+        </data>
+    </url>
+    <url>
+        <loc>http://www.55djw.com</loc>
+        <data>
+            <display>
                 <pc_url_pattern>http://www.55djw.com/news/(\d+).html</pc_url_pattern>
                 <url_pattern>http://m.55djw.com/news/${1}.html</url_pattern>
                 <pc_sample>http://www.55djw.com/news/85186.html</pc_sample>
@@ -12,7 +24,7 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -24,31 +36,31 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
-                <pc_url_pattern>http://www.55djw.com/game/(\d+)/</pc_url_pattern>
-                <url_pattern>http://m.55djw.com/game/${1}/</url_pattern>
-                <pc_sample>http://www.55djw.com/game/27/</pc_sample>
-                <wap_sample>http://m.55djw.com/game/27/</wap_sample>
+                <pc_url_pattern>http://www.55djw.com/game/(\d+)/$</pc_url_pattern>
+                <url_pattern>http://m.55djw.com/game/${1}/$</url_pattern>
+                <pc_sample>http://www.55djw.com/game/27/$</pc_sample>
+                <wap_sample>http://m.55djw.com/game/27/$</wap_sample>
                 <version>7</version>
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
-                <pc_url_pattern>http://www.55djw.com/anchor/(\d+)/</pc_url_pattern>
-                <url_pattern>http://m.55djw.com/anchor/${1}/</url_pattern>
-                <pc_sample>http://www.55djw.com/anchor/5/</pc_sample>
-                <wap_sample>http://m.55djw.com/anchor/5/</wap_sample>
+                <pc_url_pattern>http://www.55djw.com/anchor/(\d+)/$</pc_url_pattern>
+                <url_pattern>http://m.55djw.com/anchor/${1}/$</url_pattern>
+                <pc_sample>http://www.55djw.com/anchor/5/$</pc_sample>
+                <wap_sample>http://m.55djw.com/anchor/5/$</wap_sample>
                 <version>7</version>
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -60,7 +72,7 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -72,7 +84,7 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -84,7 +96,7 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -96,7 +108,7 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -108,7 +120,7 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -120,7 +132,7 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -132,7 +144,7 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -144,7 +156,7 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -156,7 +168,7 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -168,7 +180,7 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -180,7 +192,7 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -192,19 +204,19 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
-                <pc_url_pattern>http://www.55djw.com/game/news/(\d+)/</pc_url_pattern>
-                <url_pattern>http://m.55djw.com/game/news/${1}/</url_pattern>
-                <pc_sample>http://www.55djw.com/game/news/27/</pc_sample>
-                <wap_sample>http://m.55djw.com/game/news/27/</wap_sample>
+                <pc_url_pattern>http://www.55djw.com/game/news/(\d+)/$</pc_url_pattern>
+                <url_pattern>http://m.55djw.com/game/news/${1}/$</url_pattern>
+                <pc_sample>http://www.55djw.com/game/news/27/$</pc_sample>
+                <wap_sample>http://m.55djw.com/game/news/27/$</wap_sample>
                 <version>7</version>
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -216,19 +228,19 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
-                <pc_url_pattern>http://www.55djw.com/game/video/(\d+)/</pc_url_pattern>
-                <url_pattern>http://m.55djw.com/game/video/${1}/</url_pattern>
-                <pc_sample>http://www.55djw.com/game/video/27/</pc_sample>
-                <wap_sample>http://m.55djw.com/game/video/27/</wap_sample>
+                <pc_url_pattern>http://www.55djw.com/game/video/(\d+)/$</pc_url_pattern>
+                <url_pattern>http://m.55djw.com/game/video/${1}/$</url_pattern>
+                <pc_sample>http://www.55djw.com/game/video/27/$</pc_sample>
+                <wap_sample>http://m.55djw.com/game/video/27/$</wap_sample>
                 <version>7</version>
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -240,67 +252,67 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
-                <pc_url_pattern>http://www.55djw.com/game/team/(\d+)/</pc_url_pattern>
-                <url_pattern>http://m.55djw.com/game/team/${1}/</url_pattern>
-                <pc_sample>http://www.55djw.com/game/team/27/</pc_sample>
-                <wap_sample>http://m.55djw.com/game/team/27/</wap_sample>
+                <pc_url_pattern>http://www.55djw.com/game/team/(\d+)/$</pc_url_pattern>
+                <url_pattern>http://m.55djw.com/game/team/${1}/$</url_pattern>
+                <pc_sample>http://www.55djw.com/game/team/27/$</pc_sample>
+                <wap_sample>http://m.55djw.com/game/team/27/$</wap_sample>
                 <version>7</version>
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
-                <pc_url_pattern>http://www.55djw.com/game/picture/(\d+)/</pc_url_pattern>
-                <url_pattern>http://m.55djw.com/game/picture/${1}/</url_pattern>
-                <pc_sample>http://www.55djw.com/game/picture/27/</pc_sample>
-                <wap_sample>http://m.55djw.com/game/picture/27/</wap_sample>
+                <pc_url_pattern>http://www.55djw.com/game/picture/(\d+)/$</pc_url_pattern>
+                <url_pattern>http://m.55djw.com/game/picture/${1}/$</url_pattern>
+                <pc_sample>http://www.55djw.com/game/picture/27/$</pc_sample>
+                <wap_sample>http://m.55djw.com/game/picture/27/$</wap_sample>
                 <version>7</version>
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
-                <pc_url_pattern>http://www.55djw.com/anchor/news/(\d+)/</pc_url_pattern>
-                <url_pattern>http://m.55djw.com/anchor/news/${1}/</url_pattern>
-                <pc_sample>http://www.55djw.com/anchor/5/</pc_sample>
-                <wap_sample>http://m.55djw.com/anchor/5/</wap_sample>
+                <pc_url_pattern>http://www.55djw.com/anchor/news/(\d+)/$</pc_url_pattern>
+                <url_pattern>http://m.55djw.com/anchor/news/${1}/$</url_pattern>
+                <pc_sample>http://www.55djw.com/anchor/5/$</pc_sample>
+                <wap_sample>http://m.55djw.com/anchor/5/$</wap_sample>
                 <version>7</version>
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
                 <pc_url_pattern>http://www.55djw.com/anchor/news/(\d+)/page_(\d+).html</pc_url_pattern>
                 <url_pattern>http://m.55djw.com/anchor/news/${1}/page_${2}.html</url_pattern>
-                <pc_sample>http://www.55djw.com/anchor/news/5/</pc_sample>
-                <wap_sample>http://m.55djw.com/anchor/news/5/</wap_sample>
+                <pc_sample>http://www.55djw.com/anchor/news/5/$</pc_sample>
+                <wap_sample>http://m.55djw.com/anchor/news/5/$</wap_sample>
                 <version>7</version>
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
-                <pc_url_pattern>http://www.55djw.com/anchor/video/(\d+)/</pc_url_pattern>
-                <url_pattern>http://m.55djw.com/anchor/video/${1}/</url_pattern>
-                <pc_sample>http://www.55djw.com/anchor/video/5/</pc_sample>
-                <wap_sample>http://m.55djw.com/anchor/video/5/</wap_sample>
+                <pc_url_pattern>http://www.55djw.com/anchor/video/(\d+)/$</pc_url_pattern>
+                <url_pattern>http://m.55djw.com/anchor/video/${1}/$</url_pattern>
+                <pc_sample>http://www.55djw.com/anchor/video/5/$</pc_sample>
+                <wap_sample>http://m.55djw.com/anchor/video/5/$</wap_sample>
                 <version>7</version>
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -312,19 +324,19 @@
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
-                <pc_url_pattern>http://www.55djw.com/anchor/picture/(\d+)/</pc_url_pattern>
-                <url_pattern>http://m.55djw.com/anchor/picture/${1}/</url_pattern>
-                <pc_sample>http://www.55djw.com/anchor/picture/5/</pc_sample>
-                <wap_sample>http://m.55djw.com/anchor/picture/5/</wap_sample>
+                <pc_url_pattern>http://www.55djw.com/anchor/picture/(\d+)/$</pc_url_pattern>
+                <url_pattern>http://m.55djw.com/anchor/picture/${1}/$</url_pattern>
+                <pc_sample>http://www.55djw.com/anchor/picture/5/$</pc_sample>
+                <wap_sample>http://m.55djw.com/anchor/picture/5/$</wap_sample>
                 <version>7</version>
             </display>
         </data>
     </url>
-	<url>
+    <url>
         <loc>http://www.55djw.com</loc>
         <data>
             <display>
@@ -336,49 +348,4 @@
             </display>
         </data>
     </url>
-	<url>
-		<loc>http://www.55djw.com/news/</loc> 
-		<data>
-			<display>
-				<url_pattern>http://m.55djw.com/news/</url_pattern>
-				<version>7</version> 
-			</display>
-		</data>
-	</url>
-	<url>
-		<loc>http://www.55djw.com/video/</loc> 
-		<data>
-			<display>
-				<url_pattern>http://m.55djw.com/video/</url_pattern>
-				<version>7</version> 
-			</display>
-		</data>
-	</url>
-	<url>
-		<loc>http://www.55djw.com/game/</loc> 
-		<data>
-			<display>
-				<url_pattern>http://m.55djw.com/game/</url_pattern>
-				<version>7</version> 
-			</display>
-		</data>
-	</url>
-	<url>
-		<loc>http://www.55djw.com/anchor/</loc> 
-		<data>
-			<display>
-				<url_pattern>http://m.55djw.com/anchor/</url_pattern>
-				<version>7</version> 
-			</display>
-		</data>
-	</url>
-	<url>
-		<loc>http://www.55djw.com/picture/</loc> 
-		<data>
-			<display>
-				<url_pattern>http://m.55djw.com/picture/</url_pattern>
-				<version>7</version> 
-			</display>
-		</data>
-	</url>
 </urlset> 
