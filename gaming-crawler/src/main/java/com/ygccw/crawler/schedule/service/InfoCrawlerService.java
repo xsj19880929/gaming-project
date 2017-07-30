@@ -121,6 +121,7 @@ public class InfoCrawlerService {
     }
 
     private void mergeData(HashMap<String, List<HashMap<String, String>>> results, ConcurrentHashMap<String, Boolean> taskLast) {
+        IKFunction ikFunction = new IKFunction();
         List<HashMap<String, String>> infoList = results.get("info");
         List<HashMap<String, String>> tagList = results.get("tags");
         List<HashMap<String, String>> infoContentAddList = results.get("infoContent_add");
@@ -144,7 +145,7 @@ public class InfoCrawlerService {
 
                 List<Tags> tagListData = setTag(tagList, info);
                 if (!tagListData.isEmpty()) {
-                    info.setContent(setContentTag(info.getContent(), tagListData, info.getInfoType().getName()));
+                    info.setContent(ikFunction.formatHtml(setContentTag(info.getContent(), tagListData, info.getInfoType().getName())));
                     infoService.update(info);
                 }
             }
@@ -214,7 +215,7 @@ public class InfoCrawlerService {
         info.setSubTitle(infoMap.get("subTitle"));
         info.setVisitCount(1);
         info.setTitleImage(ikFunction.url2LocalImage(infoMap.get("titleImage"))); //需要保存的内容才下载图片
-        info.setContent(ikFunction.imageTagDownLoad(infoMap.get("content"))); //需要保存的内容才下载图片
+        info.setContent(ikFunction.formatHtml(ikFunction.imageTagDownLoad(infoMap.get("content")))); //需要保存的内容才下载图片
         info.setSeoTitle(infoMap.get("seoTitle"));
         info.setTags(infoMap.get("tags"));
         info.setVerify(Integer.parseInt(infoMap.get("verify")));

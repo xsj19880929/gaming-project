@@ -54,9 +54,13 @@
             <expression>
                 <![CDATA[$REGEXP($KEYVAL(map,"contentTemp")+"","</table>(.*)")==""?$KEYVAL(map,"contentTemp")+"":$REGEXP($KEYVAL(map,"contentTemp")+"","</table>(.*)")]]></expression>
         </uiobject>
-        <uiobject fieldName="content" nullAble="false">
+        <uiobject fieldName="contentTemp3" nullAble="false">
             <expression>
                 <![CDATA[$REPLACESTR($REGEXP($KEYVAL(map,"contentTemp2")+"","(.*)<table")==""?$KEYVAL(map,"contentTemp2")+"":$REGEXP($KEYVAL(map,"contentTemp2")+"","(.*)<table"),"</div> 点击查看更多+","")]]></expression>
+        </uiobject>
+        <uiobject fieldName="content" nullAble="false">
+            <expression>
+                <![CDATA[$REGEXP($KEYVAL(map,"contentTemp3")+"","(.*)相关推荐")==""?$KEYVAL(map,"contentTemp3")+"":$REGEXP($KEYVAL(map,"contentTemp3")+"","(.*)相关推荐")]]></expression>
         </uiobject>
         <uiobject fieldName="seoTitle" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"seoTitle")]]></expression>

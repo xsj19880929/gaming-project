@@ -14,6 +14,7 @@ import org.jsoup.safety.Whitelist;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -288,6 +289,9 @@ public class IKFunction {
     }
 
     public static void main(String[] args) {
+//        String s = "<div><div><p>cesdfsdf</p></div>";
+
+//        System.out.println(Jsoup.parse(s).body().html());
 //        String a = "￥1,000.00";
 //        System.out.println(regexp(a, "(\\d{1,3})"));
 //        String b = "http://car.autohome.com.cn/price/brand-34.html";
@@ -317,9 +321,12 @@ public class IKFunction {
 //        String html = "photos.push({ orig: 'https://upload.shunwang.com/2016/0627/1467032515821.jpg', big: 'https://upload.shunwang.com/2016/0627/1467032515821.jpg', thumb: 'https://upload.shunwang.com/2016/0627/thumb_100_75_1467032515821.jpg', note: \"0dadf3718991d7bb1218443c2be665c9\" });\n" +
 //                "                    photos.push({ orig: 'https://upload.shunwang.com/2016/0627/1467032515275.jpg', big: 'https://upload.shunwang.com/2016/0627/1467032515275.jpg', thumb: 'https://upload.shunwang.com/2016/0627/thumb_100_75_1467032515275.jpg', note: \"23715edc549f6611a62f6b6116827fc3\" });";
 //        System.out.println(regexpRows(html, "orig: '(.*?)', big", 1));
-        IKFunction ikFunction = new IKFunction();
-        System.out.println(ikFunction.rowsArray(arrayFmt(ikFunction.split("s", ","))));
-        ikFunction.urlIsOk("http://www.eyu.com/ueditor/php/upload/image/20170629/1498718175942852.png");
+//        IKFunction ikFunction = new IKFunction();
+//        System.out.println(ikFunction.formatHtml(s));
+//        System.out.println(ikFunction.rowsArray(arrayFmt(ikFunction.split("s", ","))));
+//        ikFunction.urlIsOk("http://www.eyu.com/ueditor/php/upload/image/20170629/1498718175942852.png");
+        String e = "233232324";
+        System.out.println(regexp(e, "(.*)相关推荐"));
     }
 
     // 格式化为tidyDom对象（org.w3c.dom.Document）
@@ -855,5 +862,15 @@ public class IKFunction {
     public int add(String var1, String var2) {
         return Integer.parseInt(var1) + Integer.parseInt(var2);
 
+
+    }
+
+    //格式化html
+    public String formatHtml(String html) {
+        if (StringUtils.hasText(html)) {
+            return Jsoup.parse(html).body().html();
+        } else {
+            return "";
+        }
     }
 }

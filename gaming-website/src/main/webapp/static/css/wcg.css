@@ -1383,6 +1383,12 @@
     margin-top: 15px
 }
 
+.new_d_font h4.pre1 {
+    margin: 0;
+    padding: 0;
+    font: inherit
+}
+
 .new_d_font a:link {
     color: #FF0000;
     text-decoration: underline;

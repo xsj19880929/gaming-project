@@ -36,7 +36,7 @@
                           th:attr="id='sourceId::'+${currentUrl}"></span>
             </div>
             <div class="new_d_font" th:utext="${newsAdvHead.jsCode}" th:if="${newsAdvHead!=null}"></div>
-            <div class="new_d_font" th:utext="${info.content}"></div>
+            <div class="new_d_font"><h4 class="pre1" th:utext="${info.content}"></h4></div>
             <div class="detail_tag">
                 <p class="p1">标签：<a href="#" th:href="/news/tag/${tagTrade.tagsId}_1.html"
                                     th:each="tagTrade:${info.tagMappingWebList}"

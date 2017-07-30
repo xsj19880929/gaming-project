@@ -24,7 +24,7 @@
             <dl>
                 <dt>热门标签</dt>
                 <dd class="dd1"><a href="#" th:href="/picture/tag/${tag.id}_1.html" th:each="tag:${tagList}"
-                                   th:text="${tag.name}">ShowGirl</a></dd>
+                                   th:text="${tag!=null?tag.name:''}">ShowGirl</a></dd>
             </dl>
         </div>
     </div>
