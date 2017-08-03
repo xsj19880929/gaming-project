@@ -56,7 +56,7 @@
         </uiobject>
         <uiobject fieldName="contentTemp3" nullAble="false">
             <expression>
-                <![CDATA[$REPLACESTR($REGEXP($KEYVAL(map,"contentTemp2")+"","(.*)<table")==""?$KEYVAL(map,"contentTemp2")+"":$REGEXP($KEYVAL(map,"contentTemp2")+"","(.*)<table"),"</div> 点击查看更多+","")]]></expression>
+                <![CDATA[$REGEXP($KEYVAL(map,"contentTemp2")+"","(.*)<table")==""?$KEYVAL(map,"contentTemp2")+"":$REGEXP($KEYVAL(map,"contentTemp2")+"","(.*)<table")]]></expression>
         </uiobject>
         <uiobject fieldName="contentTemp4" nullAble="false">
             <expression>
