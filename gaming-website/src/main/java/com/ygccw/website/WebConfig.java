@@ -86,6 +86,7 @@ public class WebConfig extends DefaultSiteConfig {
         registry.addResourceHandler("bdunion.txt").addResourceLocations("/");
         registry.addResourceHandler("robots.txt").addResourceLocations("/");
         registry.addResourceHandler("sitemap.txt").addResourceLocations("/");
+        registry.addResourceHandler("/404.html").addResourceLocations("/");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 

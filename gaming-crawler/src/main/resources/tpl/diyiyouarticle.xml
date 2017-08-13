@@ -64,7 +64,7 @@
         </uiobject>
         <uiobject fieldName="content" nullAble="false">
             <expression>
-                <![CDATA[$REGEXP($KEYVAL(map,"contentTemp4")+"","点击查看更多+</span>(.*)")==""?$KEYVAL(map,"contentTemp4")+"":$REGEXP($KEYVAL(map,"contentTemp4")+"","点击查看更多+</span>(.*)")]]></expression>
+                <![CDATA[$REGEXP($KEYVAL(map,"contentTemp4")+"","</div> 点击查看更多\\+(.*)")==""?$KEYVAL(map,"contentTemp4")+"":$REGEXP($KEYVAL(map,"contentTemp4")+"","</div> 点击查看更多\\+(.*)")]]></expression>
         </uiobject>
         <uiobject fieldName="seoTitle" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"seoTitle")]]></expression>

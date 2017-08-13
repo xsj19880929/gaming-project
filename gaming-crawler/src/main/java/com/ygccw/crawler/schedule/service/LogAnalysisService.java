@@ -1,18 +1,27 @@
-package com.ygccw.wechat.log.analysis;
+package com.ygccw.crawler.schedule.service;
 
+import com.ygccw.crawler.utils.SFTPUtil;
+import core.framework.mail.Mail;
+import core.framework.mail.MailSender;
+import core.framework.util.DateUtils;
 import core.framework.util.JSONBinder;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -22,12 +31,52 @@ import java.util.regex.Pattern;
 /**
  * @author soldier
  */
-public class LogAnalysis {
+@Service
+public class LogAnalysisService {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     public Map<String, Object> data = new LinkedHashMap<String, Object>();
+    private String logDir = "D://logs//";
+    private String remote = "/var/log/nginx";
 
     public static void main(String[] args) {
-        LogAnalysis logAnalysis = new LogAnalysis();
-        logAnalysis.readLog("C:\\Users\\Administrator\\Desktop\\电竞\\www_access.log");
+
+//        startWork();
+//        LogAnalysisService logAnalysisService = new LogAnalysisService();
+//        logAnalysisService.AnalysisWork();
+//        logAnalysisService.readLog("D:\\logs\\www_access_2017-08-05.log");
+    }
+
+    public void AnalysisWork() {
+        String dateStr = DateFormatUtils.format(DateUtils.add(new Date(), Calendar.DATE, -1), "yyyy-MM-dd");
+        String fileName = "www_access_" + dateStr + ".log";
+        File file = new File(logDir);
+        if (!file.exists()) {
+            logger.info(logDir + "不存在就创建");
+            file.mkdirs();
+        }
+        SFTPUtil ftp = new SFTPUtil();
+        ftp.connect();
+        ftp.download(remote, fileName, logDir + fileName);
+        ftp.disconnect();
+        Map<String, Object> data = readLog(logDir + fileName);
+        send(JSONBinder.toJSON(data));
+    }
+
+    public void send(String text) {
+        MailSender sender = new MailSender();
+        sender.setPort(25);
+        sender.setHost("smtp.163.com");
+        sender.setUsername("xsj19880929@163.com");
+        sender.setPassword("xsj19880929hp");
+        Mail mail = new Mail();
+        mail.subject(DateFormatUtils.format(DateUtils.add(new Date(), Calendar.DATE, -1), "yyyy-MM-dd") + " 搜索引擎爬虫访问监控");
+        mail.from("xsj19880929@163.com");
+        mail.addTo("253855983@qq.com");
+        mail.addTo("290976515@qq.com");
+        mail.htmlBody(text);
+        sender.send(mail);
+        logger.info("send mail --------------------------");
+
     }
 
     /**
@@ -36,7 +85,7 @@ public class LogAnalysis {
      * @param filePath
      * @return
      */
-    public List<String> readLog(String filePath) {
+    public Map<String, Object> readLog(String filePath) {
         try {
             FileInputStream is = new FileInputStream(filePath);
             InputStreamReader isr = new InputStreamReader(is);
@@ -58,7 +107,7 @@ public class LogAnalysis {
             System.out.println("文件读取路径错误FileNotFoundException");
         }
         System.out.println(JSONBinder.toJSON(data));
-        return null;
+        return data;
     }
 
     private void analysisLog(String content) {
