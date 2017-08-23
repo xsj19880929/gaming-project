@@ -59,7 +59,43 @@ public class LogAnalysisService {
         ftp.download(remote, fileName, logDir + fileName);
         ftp.disconnect();
         Map<String, Object> data = readLog(logDir + fileName);
-        send(JSONBinder.toJSON(data));
+        send(switchMailContent(data));
+    }
+
+    /**
+     * 邮件内容格式转换
+     *
+     * @param data
+     * @return
+     */
+
+    private String switchMailContent(Map<String, Object> data) {
+        StringBuilder stringBuilder = new StringBuilder("<table>");
+        int row = 0;
+        for (Map.Entry entry : data.entrySet()) {
+            row++;
+            Map<String, Object> dataMap = (Map) entry.getValue();
+            if (row == 1) {//表头
+                stringBuilder.append("<tr>").append("<td>日期</td>");
+                for (Map.Entry dataEntry : dataMap.entrySet()) {
+                    String whichSpider = dataEntry.getKey().toString();
+                    stringBuilder.append("<td>").append(whichSpider).append("</td>");
+                }
+                stringBuilder.append("</tr>");
+            }
+            stringBuilder.append("<tr>");
+            String date = entry.getKey().toString();
+            stringBuilder.append("<td>").append(date).append("</td>");
+            for (Map.Entry dataEntry : dataMap.entrySet()) {
+                Map<String, Object> countMap = (Map) dataEntry.getValue();
+                String count = countMap.get("count").toString();
+                stringBuilder.append("<td>").append(count).append("</td>");
+
+            }
+            stringBuilder.append("</tr>");
+        }
+        stringBuilder.append("</table>");
+        return stringBuilder.toString();
     }
 
     public void send(String text) {
@@ -72,7 +108,7 @@ public class LogAnalysisService {
         mail.subject(DateFormatUtils.format(DateUtils.add(new Date(), Calendar.DATE, -1), "yyyy-MM-dd") + " 搜索引擎爬虫访问监控");
         mail.from("xsj19880929@163.com");
         mail.addTo("253855983@qq.com");
-        mail.addTo("290976515@qq.com");
+//        mail.addTo("290976515@qq.com");
         mail.htmlBody(text);
         sender.send(mail);
         logger.info("send mail --------------------------");
@@ -180,6 +216,8 @@ public class LogAnalysisService {
             return "sogou";
         } else if (content.contains("360Spider")) {
             return "360";
+        } else if (content.contains("YisouSpider")) {
+            return "sm";
         }
         return "other";
     }
