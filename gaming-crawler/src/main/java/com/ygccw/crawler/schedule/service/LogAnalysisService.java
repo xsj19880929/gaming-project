@@ -44,6 +44,9 @@ public class LogAnalysisService {
 //        LogAnalysisService logAnalysisService = new LogAnalysisService();
 //        logAnalysisService.AnalysisWork();
 //        logAnalysisService.readLog("D:\\logs\\www_access_2017-08-05.log");
+//        String str = "{\"2017-08-12\":{\"baidu\":{\"count\":42},\"other\":{\"count\":13938},\"google\":{\"count\":3956},\"bing\":{\"count\":3436},\"sogou\":{\"count\":3066},\"yahoo\":{\"count\":38},\"360\":{\"count\":596}},\"2017-08-13\":{\"baidu\":{\"count\":67},\"other\":{\"count\":18292},\"google\":{\"count\":4370},\"bing\":{\"count\":2649},\"sogou\":{\"count\":3426},\"yahoo\":{\"count\":25},\"360\":{\"count\":946}},\"2017-08-14\":{\"baidu\":{\"count\":138},\"google\":{\"count\":2991},\"other\":{\"count\":16699},\"bing\":{\"count\":3036},\"sogou\":{\"count\":3966},\"yahoo\":{\"count\":80},\"360\":{\"count\":779}},\"2017-08-15\":{\"baidu\":{\"count\":41},\"google\":{\"count\":5770},\"other\":{\"count\":25649},\"bing\":{\"count\":2240},\"sogou\":{\"count\":3055},\"yahoo\":{\"count\":13},\"360\":{\"count\":2253}},\"2017-08-16\":{\"baidu\":{\"count\":44},\"other\":{\"count\":25768},\"google\":{\"count\":15639},\"bing\":{\"count\":2060},\"sogou\":{\"count\":4275},\"yahoo\":{\"count\":11},\"360\":{\"count\":1213}},\"2017-08-17\":{\"baidu\":{\"count\":47},\"other\":{\"count\":23198},\"google\":{\"count\":22219},\"bing\":{\"count\":1905},\"sogou\":{\"count\":3747},\"yahoo\":{\"count\":8},\"360\":{\"count\":1471}},\"2017-08-18\":{\"baidu\":{\"count\":48},\"other\":{\"count\":21428},\"google\":{\"count\":20594},\"bing\":{\"count\":2850},\"sogou\":{\"count\":12721},\"yahoo\":{\"count\":11},\"360\":{\"count\":1210}},\"2017-08-19\":{\"baidu\":{\"count\":54},\"other\":{\"count\":17489},\"google\":{\"count\":13847},\"bing\":{\"count\":3172},\"sogou\":{\"count\":14231},\"yahoo\":{\"count\":217},\"360\":{\"count\":1888}},\"2017-08-20\":{\"baidu\":{\"count\":54},\"other\":{\"count\":18740},\"google\":{\"count\":14372},\"bing\":{\"count\":2194},\"sogou\":{\"count\":3953},\"360\":{\"count\":995},\"yahoo\":{\"count\":157}},\"2017-08-21\":{\"baidu\":{\"count\":191},\"other\":{\"count\":24135},\"google\":{\"count\":50352},\"bing\":{\"count\":3062},\"sogou\":{\"count\":3629},\"yahoo\":{\"count\":51},\"360\":{\"count\":1056}},\"2017-08-22\":{\"baidu\":{\"count\":129},\"other\":{\"count\":27715},\"google\":{\"count\":30802},\"bing\":{\"count\":2123},\"sogou\":{\"count\":4175},\"yahoo\":{\"count\":23},\"360\":{\"count\":1327}}}";
+//        Map<String, Object> data = JSONBinder.fromJSON(Map.class, str);
+//        logAnalysisService.send(logAnalysisService.switchMailContent(data));
     }
 
     public void AnalysisWork() {
@@ -69,8 +72,8 @@ public class LogAnalysisService {
      * @return
      */
 
-    private String switchMailContent(Map<String, Object> data) {
-        StringBuilder stringBuilder = new StringBuilder("<table>");
+    public String switchMailContent(Map<String, Object> data) {
+        StringBuilder stringBuilder = new StringBuilder("<table cellpadding=\"0\" cellspacing=\"0\" border=\"1\" style=\"width:800px;text-align:center;font:12px\">");
         int row = 0;
         for (Map.Entry entry : data.entrySet()) {
             row++;
