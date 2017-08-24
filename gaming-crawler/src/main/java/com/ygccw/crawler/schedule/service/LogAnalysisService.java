@@ -111,7 +111,7 @@ public class LogAnalysisService {
         mail.subject(DateFormatUtils.format(DateUtils.add(new Date(), Calendar.DATE, -1), "yyyy-MM-dd") + " 搜索引擎爬虫访问监控");
         mail.from("xsj19880929@163.com");
         mail.addTo("253855983@qq.com");
-//        mail.addTo("290976515@qq.com");
+        mail.addTo("290976515@qq.com");
         mail.htmlBody(text);
         sender.send(mail);
         logger.info("send mail --------------------------");
