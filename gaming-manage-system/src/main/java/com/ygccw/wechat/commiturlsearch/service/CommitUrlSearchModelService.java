@@ -29,7 +29,7 @@ public class CommitUrlSearchModelService {
         CommitUrlSearch commitUrlSearch = new CommitUrlSearch();
         commitUrlSearch.setWebType(WebType.baidu);
         int offset = 0;
-        int fetchSize = 10000;
+        int fetchSize = 8000;
         List<CommitUrlSearch> commitUrlSearchList = null;
         do {
             List<SoSiteMapUrl> list = new ArrayList<>();
@@ -39,8 +39,8 @@ public class CommitUrlSearchModelService {
                 SoSiteMapUrl soSiteMapUrl = new SoSiteMapUrl();
                 soSiteMapUrl.setChangefreq("daily");
                 soSiteMapUrl.setLastmod(simpleDateFormat.format(commitUrlSearch1.getCreateTime()));
-                soSiteMapUrl.setLoc(commitUrlSearch1.getUrl().replace("http://www.55djw.com", "http://m.55djw.com"));
-                soSiteMapUrl.setPriority("0.5");
+                soSiteMapUrl.setLoc(commitUrlSearch1.getUrl());
+                soSiteMapUrl.setPriority("1");
                 list.add(soSiteMapUrl);
             }
             UrlSet soSiteMap = new UrlSet();
@@ -48,7 +48,7 @@ public class CommitUrlSearchModelService {
             System.out.println();
             try {
                 String content = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + XMLBinder.toXML(soSiteMap);
-                File file = new File("D:\\360sitemap" + offset + ".xml");
+                File file = new File("D:\\smsitemap" + offset + ".xml");
                 if (!file.exists()) {
                     file.createNewFile();
                 }

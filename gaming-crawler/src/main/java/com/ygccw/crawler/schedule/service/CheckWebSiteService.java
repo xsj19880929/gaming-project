@@ -1,12 +1,12 @@
 package com.ygccw.crawler.schedule.service;
 
 import com.ygccw.crawler.common.CHttpClient;
+import com.ygccw.crawler.utils.DateUtils;
 import core.framework.mail.Mail;
 import core.framework.mail.MailSender;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
-import org.apache.http.client.utils.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -54,7 +54,7 @@ public class CheckWebSiteService {
                 e.printStackTrace();
             }
             if (webBreakTimes == 5) {//已经挂掉一分钟那就要邮件通知
-                send(url + "已经挂了一分钟了，时间：" + DateUtils.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"));
+                send(url + "已经挂了一分钟了，时间：" + DateUtils.formatToString(new Date(), "yyyy-MM-dd HH:mm:ss"));
                 logger.info(url + "已经挂了一分钟了");
                 break;
             }
