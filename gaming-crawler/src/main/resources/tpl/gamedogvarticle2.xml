@@ -29,7 +29,7 @@
             <expression><![CDATA[$KEYVAL(task,"infoVideoType")]]></expression>
         </uiobject>
         <uiobject fieldName="title" nullAble="false">
-            <expression><![CDATA[$XPATHROWS(tidyDom,"//h1[@class='newst1']")]]></expression>
+            <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='headlines']/h1")]]></expression>
         </uiobject>
         <uiobject fieldName="subTitle" nullAble="false">
             <expression><![CDATA[$XPATHROWS(tidyDom,"//meta[@name='description']/@content")]]></expression>
@@ -45,10 +45,10 @@
         </uiobject>
         <uiobject fieldName="content" nullAble="false">
             <expression>
-                <![CDATA[$JSOUPHTMLDOWNIMAGEALLTAG(html,"div[class=news_neirong]")]]></expression>
+                <![CDATA[$JSOUPHTMLDOWNIMAGEALLTAG(html,"div[class=d_main]")]]></expression>
         </uiobject>
         <uiobject fieldName="seoTitle" nullAble="false">
-            <expression><![CDATA[$XPATHROWS(tidyDom,"//h1[@class='newst1']")]]></expression>
+            <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='headlines']/h1")]]></expression>
         </uiobject>
         <uiobject fieldName="seoKeywords">
             <expression><![CDATA[$XPATHROWS(tidyDom,"//meta[@name='keywords']/@content")]]></expression>
@@ -64,7 +64,7 @@
         </uiobject>
         <uiobject fieldName="publishTime" nullAble="false">
             <expression>
-                <![CDATA[$DATEFMT($XPATHROWS(tidyDom,"//div[@class='newsa color_from']/span[1]"),"yyyy-MM-dd")]]></expression>
+                <![CDATA[$DATEFMT($XPATHROWS(tidyDom,"//div[@class='headlines']/p/span[1]"),"yyyy-MM-dd")]]></expression>
         </uiobject>
         <uiobject fieldName="author" nullAble="false">
             <expression><![CDATA["55µç¾ºÍø"]]></expression>
@@ -78,7 +78,7 @@
         <uiobject fieldName="webSite" nullAble="false">
             <expression><![CDATA["ÓÎÏ·¹·"]]></expression>
         </uiobject>
-        <uiobject fieldName="tags" nullAble="false">
+        <uiobject fieldName="tags">
             <expression>
                 <![CDATA[$XPATHROWS(tidyDom,"//meta[@name='keywords']/@content")]]></expression>
         </uiobject>

@@ -78,7 +78,7 @@
         <uiobject fieldName="webSite" nullAble="false">
             <expression><![CDATA["ÓÎÏ·¹·"]]></expression>
         </uiobject>
-        <uiobject fieldName="tags" nullAble="false">
+        <uiobject fieldName="tags">
             <expression>
                 <![CDATA[$XPATHROWS(tidyDom,"//meta[@name='keywords']/@content")]]></expression>
         </uiobject>

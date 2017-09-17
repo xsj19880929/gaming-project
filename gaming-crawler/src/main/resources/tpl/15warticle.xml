@@ -31,7 +31,7 @@
             <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='headline-box']/p[@class='hdline']")]]></expression>
         </uiobject>
         <uiobject fieldName="subTitle">
-            <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='leadbox cl6']")]]></expression>
+            <expression><![CDATA[$KEYVAL(task,"subTitle")]]></expression>
         </uiobject>
         <uiobject fieldName="visitCount" nullAble="false">
             <expression><![CDATA[1]]></expression>
@@ -47,7 +47,7 @@
                 <![CDATA[$JSOUPHTMLDOWNIMAGE(html,"div[id=fix-pos-left]>div[class=newscon]:gt(1)")]]></expression>
         </uiobject>
         <uiobject fieldName="seoTitle" nullAble="false">
-            <expression><![CDATA[$REPLACESTR($XPATHROWS(tidyDom,"//title"),"_要我玩电竞门户www.15w.com","")]]></expression>
+            <expression><![CDATA[$XPATHROWS(tidyDom,"//div[@class='headline-box']/p[@class='hdline']")]]></expression>
         </uiobject>
         <uiobject fieldName="seoKeywords" nullAble="false">
             <expression><![CDATA[$XPATHROWS(tidyDom,"//meta[@name='keywords']/@content")]]></expression>

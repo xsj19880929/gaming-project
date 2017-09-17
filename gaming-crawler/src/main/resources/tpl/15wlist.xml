@@ -13,6 +13,9 @@
         <uiobject fieldName="titleImage" nullAble="false">
             <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='indexcon']/div/a/img/@src",row)]]></expression>
         </uiobject>
+        <uiobject fieldName="subTitle" nullAble="false">
+            <expression><![CDATA[$XPATHCOLS(tidyDom,"//div[@class='artli-rbox']/p[@class='dec']",row)]]></expression>
+        </uiobject>
         <uiobject fieldName="infoZoneType" nullAble="false">
             <expression><![CDATA[$KEYVAL(task,"infoZoneType")]]></expression>
         </uiobject>
