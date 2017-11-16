@@ -1,9 +1,11 @@
 package com.ygccw.crawler.schedule.service;
 
 import com.ygccw.crawler.common.CHttpClient;
+import com.ygccw.crawler.utils.ConLinux;
 import com.ygccw.crawler.utils.DateUtils;
 import core.framework.mail.Mail;
 import core.framework.mail.MailSender;
+import core.framework.util.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
@@ -22,21 +24,29 @@ import java.util.concurrent.Executors;
 @Service
 public class CheckWebSiteService {
     private final Logger logger = LoggerFactory.getLogger(getClass());
+    private final String mUrl = "http://m.55djw.com";
+    private final String pcUrl = "http://www.55djw.com";
     @Inject
     private CHttpClient cHttpClient;
 
     public void startTread() {
-        ExecutorService executor = Executors.newFixedThreadPool(2);
+        ExecutorService executor = Executors.newFixedThreadPool(3);
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                startWork("http://www.55djw.com");
+                startWork(pcUrl);
             }
         });
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                startWork("http://m.55djw.com");
+                startWork(mUrl);
+            }
+        });
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                startWork("http://www.xuanwind.com");
             }
         });
         executor.shutdown();
@@ -54,8 +64,19 @@ public class CheckWebSiteService {
                 e.printStackTrace();
             }
             if (webBreakTimes == 5) {//已经挂掉一分钟那就要邮件通知
-                send(url + "已经挂了一分钟了，时间：" + DateUtils.formatToString(new Date(), "yyyy-MM-dd HH:mm:ss"));
+                send("监控网站是否正常", url + "已经挂了一分钟了，时间：" + DateUtils.formatToString(new Date(), "yyyy-MM-dd HH:mm:ss"));
                 logger.info(url + "已经挂了一分钟了");
+                if (StringUtils.equals(url, pcUrl)) {
+                    ConLinux conLinux = new ConLinux();
+                    conLinux.restartPcSite();
+                    send("自动重启服务", url + "已经重启完毕，时间：" + DateUtils.formatToString(new Date(), "yyyy-MM-dd HH:mm:ss"));
+                    logger.info(url + "自动重启");
+                } else if (StringUtils.equals(url, mUrl)) {
+                    ConLinux conLinux = new ConLinux();
+                    conLinux.restartMSite();
+                    send("自动重启服务", url + "已经重启完毕，时间：" + DateUtils.formatToString(new Date(), "yyyy-MM-dd HH:mm:ss"));
+                    logger.info(url + "自动重启");
+                }
                 break;
             }
         }
@@ -74,17 +95,19 @@ public class CheckWebSiteService {
         return statusCode;
     }
 
-    private void send(String text) {
+    private void send(String title, String text) {
         MailSender sender = new MailSender();
         sender.setPort(25);
         sender.setHost("smtp.163.com");
         sender.setUsername("xsj19880929@163.com");
         sender.setPassword("xsj19880929hp");
         Mail mail = new Mail();
-        mail.subject("监控网站是否正常");
+        mail.subject(title);
         mail.from("xsj19880929@163.com");
         mail.addTo("253855983@qq.com");
-        mail.addTo("290976515@qq.com");
+        if (!text.contains("www.xuanwind.com")) {
+            mail.addTo("290976515@qq.com");
+        }
         mail.htmlBody(text);
         sender.send(mail);
         logger.info("send mail --------------------------");
