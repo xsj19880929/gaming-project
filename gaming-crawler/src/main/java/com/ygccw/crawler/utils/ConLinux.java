@@ -62,6 +62,28 @@ public class ConLinux {
         }
     }
 
+    /**
+     * 重启pc端服务
+     *
+     * @throws Exception
+     */
+    public void restartFileSystem() {
+        try {
+            String userName = "root"; // 用户名
+            String password = "Qwert!2345"; // 密码
+            String host = "123.207.235.25"; // 服务器地址
+            int port = 22; // 端口号
+            Session session = getSession(userName, password, host, port);
+            commit(session, "/opt/app/bin/tomcat-file-service-stop.sh"); //关闭pc端服务
+            commit(session, "/opt/app/bin/tomcat-file-service-start.sh"); //启动pc端服务
+            if (null != session) {
+                session.disconnect();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private Session getSession(String userName, String password, String host, int port) throws Exception {
         JSch jsch = new JSch(); // 创建JSch对象
 // String userName = "root";// 用户名

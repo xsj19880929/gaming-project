@@ -1,9 +1,12 @@
 package com.ygccw.website;
 
 import core.framework.util.JSONBinder;
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.rules.ExternalResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -135,6 +138,27 @@ public class DatabaseRule extends ExternalResource {
 
         public T get() {
             return instance;
+        }
+    }
+
+    /**
+     * @author neo
+     */
+    public static class ConfigurationTest extends SpringTest {
+        @Inject
+        ApplicationContext applicationContext;
+
+        @Test
+        public void contextShouldBeInitialized() {
+            Assert.assertNotNull(applicationContext);
+        }
+
+        @Test
+        public void verifyBeanConfiguration() {
+            String[] beanNames = applicationContext.getBeanDefinitionNames();
+            for (String beanName : beanNames) {
+                applicationContext.getBean(beanName);
+            }
         }
     }
 }

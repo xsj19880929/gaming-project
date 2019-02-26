@@ -8,7 +8,7 @@ import javax.inject.Inject;
 /**
  * @author soldier
  */
-public class CheckWebSiteServiceTest extends SpringTest {
+public class CheckWebSiteServiceITest extends SpringTest {
     @Inject
     private CheckWebSiteService checkWebSiteService;
 
